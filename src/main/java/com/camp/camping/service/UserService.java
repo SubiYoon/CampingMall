@@ -17,32 +17,27 @@ public class UserService implements MyService<String, UserDTO>{
 
     @Override
     public void insert(UserDTO v) throws Exception {
-        // TODO Auto-generated method stub
-        
+        mapper.insert(v);
     }
 
     @Override
     public void delete(String k) throws Exception {
-        // TODO Auto-generated method stub
-        
+        mapper.delete(k);
     }
 
     @Override
     public void update(UserDTO v) throws Exception {
-        // TODO Auto-generated method stub
-        
+        mapper.update(v);
     }
 
     @Override
     public UserDTO select(String k) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        return mapper.select(k);
     }
 
     @Override
     public List<UserDTO> selectAll() throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        return mapper.selectall();
     }
     
 }
