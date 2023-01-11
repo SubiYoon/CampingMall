@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class UserDTO {
-    private int grant;
+    private int user_code;
     private String user_id;
     private String user_password;
     private String user_name;
