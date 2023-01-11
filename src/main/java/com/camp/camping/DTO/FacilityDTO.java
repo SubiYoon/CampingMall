@@ -7,8 +7,9 @@ import lombok.*;
 @Getter
 @Setter
 @ToString
-public class Facility {
+public class FacilityDTO {
     private int facility_code;
+    private int company_code;
     private String facility_name;
     private String facility_content;
     private String facility_img1;

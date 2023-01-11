@@ -11,9 +11,12 @@ import java.util.Date;
 @ToString
 public class BookDTO {
     private int book_code;
-    private Date calendar_date;
     private int site_code;
     private int user_code;
+    private int payment_code;
     private int book_member;
     private Date book_date;
+    private int book_price;
+    private int book_review;
+    private String book_car_number;
 }

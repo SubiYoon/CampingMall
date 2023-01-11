@@ -12,6 +12,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ZoneDTO {
+    private int zone_code;
+    private int company_code;
     private String zone_name;
     private String zone_content;
     private String zone_img1;
