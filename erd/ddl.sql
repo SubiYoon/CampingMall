@@ -1,17 +1,17 @@
 use campdb;
 
-Drop table review;
-Drop table  home;
-Drop table facility;
-Drop table notice;
-Drop table book;
-Drop table user;
-Drop table payment;
-Drop table site;
-Drop table zone;
-Drop table schedule;
-Drop table admin;
-Drop table company;
+Drop table IF EXISTS review;
+Drop table IF EXISTS home;
+Drop table IF EXISTS facility;
+Drop table IF EXISTS notice;
+Drop table IF EXISTS book;
+Drop table IF EXISTS user;
+Drop table IF EXISTS payment;
+Drop table IF EXISTS site;
+Drop table IF EXISTS zone;
+Drop table IF EXISTS schedule;
+Drop table IF EXISTS admin;
+Drop table IF EXISTS company;
 
 
 CREATE TABLE `notice` (
