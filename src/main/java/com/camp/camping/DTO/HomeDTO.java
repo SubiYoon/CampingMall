@@ -10,6 +10,7 @@ import lombok.*;
 public class HomeDTO {
     private int home_code;
     private int admin_code;
+    private String home_owner;
     private String home_content;
     private String home_address;
     private String home_coordinate;
