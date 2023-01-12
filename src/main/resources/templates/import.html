@@ -12,15 +12,20 @@
 	const IMP = window.IMP; // 생략 가능
 	IMP.init("imp57467885"); // 예: imp00000000a
 	
+	//우선 해야할것
+	//다수의 이용자가 동시에 같은자리 같은시간에 예약하게 될경우를 방지하기위해
+	//결제 직전에 그 사이트 그자리가 예약이 되는지 확인하는 작업이 필요
+	//결제완료시 update
+	
 	function requestPay() {
 	    IMP.request_pay({
 	      pg: "html5_inicis",
-	      pay_method: "card",
+	      pay_method: "card", //다른 타입들 입력받아 넣는 테스트 필요
 	      merchant_uid:"122141",  // 주문번호
-	      name: "노르웨이 회전 의자",
-	      amount: 100,                         // 숫자 타입
-	      buyer_name: "홍길동",
-	      buyer_tel: "010-4242-4242",
+	      name: "노르웨이 회전 의자", //뷰단에서 입력받아와야함
+	      amount: 100,                         // 숫자 타입 뷰단에서 입력받아와야함
+	      buyer_name: "홍길동", // 뷰단에서 입력받아와야함
+	      buyer_tel: "010-4242-4242", // 뷰단에서 입력받아와야함
 	    }, function (rsp) { // callback
 	      if (rsp.success) {
 	    	  
@@ -34,6 +39,8 @@
 	    	        data: JSON.stringify(param)
 	    	      }).done(function (data) {
 	    	    	  alert("결제성공")
+	    	    	  //결제검증절차
+	    	    	  
 	    	      })
 	    	   
 	      } else {
