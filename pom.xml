@@ -87,7 +87,6 @@
 			<version>1.1</version>
   		</dependency>
   		
-<<<<<<< HEAD
   		<!--검증을위한 import
   		<dependency>
 		  <groupId>com.github.iamport</groupId>
@@ -97,7 +96,6 @@
 		  		-->
   		
   		
-=======
   		<!-- thymeleaf -->
   		<dependency>
             <groupId>org.springframework.boot</groupId>
@@ -105,7 +103,6 @@
         </dependency>
         
         
->>>>>>> a7783e95bd5427b35a647b8c979cce0094b6f3e4
 	</dependencies>
 
 	<build>
