@@ -212,4 +212,3 @@ ALTER TABLE `schedule` ADD CONSTRAINT `FK_admin_TO_schedule_1` FOREIGN KEY (
 REFERENCES `admin` (
 	`admin_code`
 );
-

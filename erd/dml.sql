@@ -14,9 +14,9 @@ insert into `admin`(company_code, admin_id, admin_password) values(1,'admin01','
 insert into `admin`(company_code, admin_id, admin_password) values(1,'admin02','222222');
 
 -- 공지
-INSERT INTO notice VALUES(0, 1, 1, '공지사항1', 0, "공지사항 1입니다.");
-INSERT INTO notice VALUES(0, 1, NULL, '공지사항2', 0, "공지사항 1입니다.");
-INSERT INTO notice VALUES(0, 1, NULL, '공지사항2', 0, "공지사항 1입니다.");
+INSERT INTO notice(notice_code, admin_code, notice_level, notice_title, notice_content) VALUES(0, 1, 1, '공지사항1', "공지사항 1입니다.");
+INSERT INTO notice(notice_code, admin_code, notice_level, notice_title, notice_content) VALUES(0, 1, NULL, '공지사항2', "공지사항 1입니다.");
+INSERT INTO notice(notice_code, admin_code, notice_level, notice_title, notice_content) VALUES(0, 1, NULL, '공지사항2', "공지사항 1입니다.");
 
 -- 시설
 INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시설1", "시설1입니다.");
@@ -55,6 +55,12 @@ INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, 'D-
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, 'D-4',50000,'D-4 입니다.');
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, 'D-5',50000,'D-5 입니다.');
 
+-- 결제
+insert into `payment`(payment_type, payment_uid) values('카드',1);
+insert into `payment`(payment_type, payment_uid) values('카드',1);
+insert into `payment`(payment_type, payment_uid) values('무통장',1);
+insert into `payment`(payment_type, payment_uid) values('계좌이체',1);
+
 -- 예약
 insert into `book`(site_code, user_code, payment_code, book_member, book_date, book_price, book_car_number) values(1,1,1,3,'2023-02-03',30000,'12가1234');
 insert into `book`(site_code, user_code, payment_code, book_member, book_date, book_price, book_car_number) values(7,2,2,2,'2023-02-01',35000,'13나1234');
@@ -65,18 +71,7 @@ insert into `book`(site_code, user_code, payment_code, book_member, book_date, b
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-06','방역');
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-07','방역');
 
--- 결제
-insert into `payment`(payment_type, payment_uid) values('카드',1);
-insert into `payment`(payment_type, payment_uid) values('카드',1);
-insert into `payment`(payment_type, payment_uid) values('무통장',1);
-insert into `payment`(payment_type, payment_uid) values('계좌이체',1);
-
 -- 리뷰
 insert into `review`(book_code, review_content, review_score) values(1,'맛있어요',5);
 insert into `review`(book_code, review_content, review_score) values(2,'추워요',2);
 insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',5);
-
-SELECT * FROM user;
-SELECT * FROM zone;
-SELECT * FROM calendar;
-SELECT * FROM site;
