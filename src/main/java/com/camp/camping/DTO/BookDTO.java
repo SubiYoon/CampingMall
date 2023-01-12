@@ -17,6 +17,5 @@ public class BookDTO {
     private int book_member;
     private Date book_date;
     private int book_price;
-    private int book_review;
     private String book_car_number;
 }

@@ -9,6 +9,5 @@ import lombok.*;
 @ToString
 public class CompanyDTO {
     private int company_code;
-    private int admin_code;
     private String company_name;
 }

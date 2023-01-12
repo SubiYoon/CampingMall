@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 public class FacilityDTO {
     private int facility_code;
-    private int company_code;
+    private int admin_code;
     private String facility_name;
     private String facility_content;
     private String facility_img1;
