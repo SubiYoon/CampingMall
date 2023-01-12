@@ -45,11 +45,11 @@ CREATE TABLE `home` (
 	`home_address`	VARCHAR(100)	NULL,
 	`home_coordinate`	VARCHAR(50)	NULL,
 	`home_https`	VARCHAR(50)	NULL,
-	`company_phone_number`	VARCHAR(20)	NULL,
+	`home_tell`	VARCHAR(20)	NULL,
 	`home_img1`	VARCHAR(30)	NULL,
 	`home_img2`	VARCHAR(30)	NULL,
 	`home_img3`	VARCHAR(30)	NULL,
-	`owner`	VARCHAR(20)	NULL,
+	`home_owner`	VARCHAR(20)	NULL,
     primary key (home_code)
 );
 
