@@ -19,7 +19,7 @@ CREATE TABLE `notice` (
 	`admin_code`	INT	NOT NULL,
 	`notice_level`	INT	NULL,
 	`notice_title`	varchar(100)	NULL,
-	`notice_writedate`	date	NULL,
+	`notice_writedate`	date	NOT NULL DEFAULT NOW(),
 	`notice_content`	varchar(500)	NULL,
     primary key (notice_code)
 );
@@ -71,7 +71,7 @@ CREATE TABLE `book` (
 	`payment_code`	INT	NOT NULL,
 	`book_member`	INT	NOT NULL,
 	`book_date`	DATE	NOT NULL,
-	`rdate`	DATE	NOT NULL,
+	`book_writedate`	DATE	NOT NULL DEFAULT NOW(),
 	`book_price`	INT	NOT NULL,
 	`book_car_number`	VARCHAR(8)	NULL,
     primary key (book_code)
@@ -83,6 +83,8 @@ CREATE TABLE `zone` (
 	`zone_name`	VARCHAR(30)	NOT NULL,
 	`zone_content`	LONGTEXT	NULL,
 	`zone_img1`	VARCHAR(50)	NULL,
+	`zone_img2`	VARCHAR(50)	NULL,
+	`zone_img3`	VARCHAR(50)	NULL,
     primary key (zone_code)
 );
 
