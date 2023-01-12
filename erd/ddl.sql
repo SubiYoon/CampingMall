@@ -1,38 +1,27 @@
-USE CAMPDB;
+use campdb;
 
--- 테이블 삭제 순서
+Drop table IF EXISTS review;
+Drop table IF EXISTS home;
+Drop table IF EXISTS facility;
+Drop table IF EXISTS notice;
+Drop table IF EXISTS book;
+Drop table IF EXISTS user;
+Drop table IF EXISTS payment;
+Drop table IF EXISTS site;
+Drop table IF EXISTS zone;
+Drop table IF EXISTS schedule;
+Drop table IF EXISTS admin;
+Drop table IF EXISTS company;
 
-DROP TABLE NOTICE;
-
-DROP TABLE FACILITY;
-
-DROP TABLE HOME;
-
-DROP TABLE REVIEW;
-
-DROP TABLE BOOK;
-
-DROP TABLE PAYMENT;
-
-DROP TABLE SITE;
-
-DROP TABLE ZONE;
-
-DROP TABLE COMPANY;
-
-DROP TABLE ADMIN;
-
-DROP TABLE USER;
 
 CREATE TABLE `notice` (
 	`notice_code`	INT	NOT NULL auto_increment,
-	`company_code`	INT	NOT NULL,
+	`admin_code`	INT	NOT NULL,
 	`notice_level`	INT	NULL,
 	`notice_title`	varchar(100)	NULL,
-	`notice_writer`	varchar(50)	NULL,
-	`notice_writedate`	date	NULL,
+	`notice_writedate`	DATETIME	NOT NULL DEFAULT NOW(),
 	`notice_content`	varchar(500)	NULL,
-    PRIMARY KEY(notice_code)
+    primary key (notice_code)
 );
 
 CREATE TABLE `site` (
@@ -46,64 +35,57 @@ CREATE TABLE `site` (
 	`site_img3`	VARCHAR(50)	NULL,
 	`site_img4`	VARCHAR(50)	NULL,
 	`site_img5`	VARCHAR(50)	NULL,
-    PRIMARY KEY(site_code)
-);
-
-CREATE TABLE `review` (
-	`review_code`	INT	NOT NULL auto_increment,
-	`user_code`	INT	NOT NULL,
-	`company_code`	INT	NOT NULL,
-	`review_content`	LONGTEXT	NULL,
-	`review_score`	INT	NULL,
-	`review_img1`	VARCHAR(50)	NULL,
-    PRIMARY KEY(review_code)
+    primary key (site_code)
 );
 
 CREATE TABLE `home` (
 	`home_code`	INT	NOT NULL auto_increment,
-	`company_code`	INT	NOT NULL,
+	`admin_code`	INT	NOT NULL,
 	`home_content`	LONGTEXT	NOT NULL,
+	`home_address`	VARCHAR(100)	NULL,
+	`home_coordinate`	VARCHAR(50)	NULL,
+	`home_https`	VARCHAR(50)	NULL,
+	`home_tell`	VARCHAR(20)	NULL,
 	`home_img1`	VARCHAR(30)	NULL,
 	`home_img2`	VARCHAR(30)	NULL,
 	`home_img3`	VARCHAR(30)	NULL,
-	`home_address`	VARCHAR(255)	NULL,
-	`home_coordinate`	VARCHAR(255)	NULL,
-	`https`	VARCHAR(50)	NULL,
-	`company_phone_number`	VARCHAR(20)	NULL,
-    PRIMARY KEY(home_code)
+	`home_owner`	VARCHAR(20)	NULL,
+    primary key (home_code)
 );
 
 CREATE TABLE `facility` (
 	`facility_code`	INT	NOT NULL auto_increment,
-	`company_code`	INT	NOT NULL,
+	`admin_code`	INT	NOT NULL,
 	`facility_name`	VARCHAR(100)	NULL,
 	`facility_content`	LONGTEXT	NULL,
 	`facility_img1`	VARCHAR(50)	NULL,
 	`facility_img2`	VARCHAR(50)	NULL,
 	`facility_img3`	VARCHAR(50)	NULL,
-    PRIMARY KEY(facility_code)
+    primary key (facility_code)
 );
 
 CREATE TABLE `book` (
 	`book_code`	INT	NOT NULL auto_increment,
 	`site_code`	INT	NOT NULL,
 	`user_code`	INT	NOT NULL,
-	`payment_code`	INT	NOT NULL	COMMENT '타입수정될수도있음',
+	`payment_code`	INT	NOT NULL,
 	`book_member`	INT	NOT NULL,
 	`book_date`	DATE	NOT NULL,
+	`book_writedate`	DATETIME	NOT NULL DEFAULT NOW(),
 	`book_price`	INT	NOT NULL,
-	`book_review`	INT	NOT NULL	COMMENT '0:작성X, 1:작성O',
 	`book_car_number`	VARCHAR(8)	NULL,
-    PRIMARY KEY(book_code)
+    primary key (book_code)
 );
 
 CREATE TABLE `zone` (
 	`zone_code`	INT	NOT NULL auto_increment,
-	`company_code`	INT	NOT NULL,
+	`admin_code`	INT	NOT NULL,
 	`zone_name`	VARCHAR(30)	NOT NULL,
 	`zone_content`	LONGTEXT	NULL,
 	`zone_img1`	VARCHAR(50)	NULL,
-    PRIMARY KEY(zone_code)
+	`zone_img2`	VARCHAR(50)	NULL,
+	`zone_img3`	VARCHAR(50)	NULL,
+    primary key (zone_code)
 );
 
 CREATE TABLE `user` (
@@ -113,36 +95,52 @@ CREATE TABLE `user` (
 	`user_name`	VARCHAR(20)	NOT NULL,
 	`user_birthday`	INT	NOT NULL,
 	`user_phone_number`	VARCHAR(20)	NOT NULL,
-    PRIMARY KEY(user_code)
+    primary key (user_code)
 );
 
 CREATE TABLE `company` (
 	`company_code`	INT	NOT NULL auto_increment,
-	`admin_code`	INT	NOT NULL,
 	`company_name`	VARCHAR(20)	NOT NULL,
-    PRIMARY KEY(company_code)
+    primary key (company_code)
 );
 
 CREATE TABLE `admin` (
 	`admin_code`	INT	NOT NULL auto_increment,
+	`company_code`	INT	NOT NULL,
 	`admin_id`	VARCHAR(20)	NOT NULL,
-	`admin_pwd`	VARCHAR(20)	NOT NULL,
-	`admin_name`	VARCHAR(50)	NOT NULL,
-    PRIMARY KEY(admin_code)
+	`admin_password`	VARCHAR(20)	NOT NULL,
+    primary key (admin_code)
 );
 
 CREATE TABLE `payment` (
 	`payment_code`	INT	NOT NULL auto_increment,
 	`payment_type`	varchar(30)	NOT NULL,
-	`payment_detail`	INT	NOT NULL	COMMENT '결제 완료/환불 신청/환불 완료',
-    PRIMARY KEY(payment_code)
+	`payment_uid`	INT	NOT NULL	COMMENT '결제 완료/환불 신청/환불 완료',
+    primary key (payment_code)
 );
 
-ALTER TABLE `notice` ADD CONSTRAINT `FK_company_TO_notice_1` FOREIGN KEY (
-	`company_code`
+CREATE TABLE `review` (
+	`review_code`	INT	NOT NULL auto_increment,
+	`book_code`	INT	NOT NULL,
+	`review_content`	LONGTEXT	NULL,
+	`review_score`	INT	NULL,
+	`review_img1`	VARCHAR(50)	NULL,
+    primary key (review_code)
+);
+
+CREATE TABLE `schedule` (
+	`schedule_code`	INT	NOT NULL auto_increment,
+	`admin_code`	INT	NOT NULL,
+	`schedule_date`	DATE	NOT NULL,
+	`schedule_name`	VARCHAR(20)	NOT NULL,
+    primary key (schedule_code)
+);
+
+ALTER TABLE `notice` ADD CONSTRAINT `FK_admin_TO_notice_1` FOREIGN KEY (
+	`admin_code`
 )
-REFERENCES `company` (
-	`company_code`
+REFERENCES `admin` (
+	`admin_code`
 );
 
 ALTER TABLE `site` ADD CONSTRAINT `FK_zone_TO_site_1` FOREIGN KEY (
@@ -152,32 +150,18 @@ REFERENCES `zone` (
 	`zone_code`
 );
 
-ALTER TABLE `review` ADD CONSTRAINT `FK_user_TO_review_1` FOREIGN KEY (
-	`user_code`
+ALTER TABLE `home` ADD CONSTRAINT `FK_admin_TO_home_1` FOREIGN KEY (
+	`admin_code`
 )
-REFERENCES `user` (
-	`user_code`
+REFERENCES `admin` (
+	`admin_code`
 );
 
-ALTER TABLE `review` ADD CONSTRAINT `FK_company_TO_review_1` FOREIGN KEY (
-	`company_code`
+ALTER TABLE `facility` ADD CONSTRAINT `FK_admin_TO_facility_1` FOREIGN KEY (
+	`admin_code`
 )
-REFERENCES `company` (
-	`company_code`
-);
-
-ALTER TABLE `home` ADD CONSTRAINT `FK_company_TO_home_1` FOREIGN KEY (
-	`company_code`
-)
-REFERENCES `company` (
-	`company_code`
-);
-
-ALTER TABLE `facility` ADD CONSTRAINT `FK_company_TO_facility_1` FOREIGN KEY (
-	`company_code`
-)
-REFERENCES `company` (
-	`company_code`
+REFERENCES `admin` (
+	`admin_code`
 );
 
 ALTER TABLE `book` ADD CONSTRAINT `FK_site_TO_book_1` FOREIGN KEY (
@@ -201,14 +185,28 @@ REFERENCES `payment` (
 	`payment_code`
 );
 
-ALTER TABLE `zone` ADD CONSTRAINT `FK_company_TO_zone_1` FOREIGN KEY (
+ALTER TABLE `zone` ADD CONSTRAINT `FK_admin_TO_zone_1` FOREIGN KEY (
+	`admin_code`
+)
+REFERENCES `admin` (
+	`admin_code`
+);
+
+ALTER TABLE `admin` ADD CONSTRAINT `FK_company_TO_admin_1` FOREIGN KEY (
 	`company_code`
 )
 REFERENCES `company` (
 	`company_code`
 );
 
-ALTER TABLE `company` ADD CONSTRAINT `FK_admin_TO_company_1` FOREIGN KEY (
+ALTER TABLE `review` ADD CONSTRAINT `FK_book_TO_review_1` FOREIGN KEY (
+	`book_code`
+)
+REFERENCES `book` (
+	`book_code`
+);
+
+ALTER TABLE `schedule` ADD CONSTRAINT `FK_admin_TO_schedule_1` FOREIGN KEY (
 	`admin_code`
 )
 REFERENCES `admin` (
