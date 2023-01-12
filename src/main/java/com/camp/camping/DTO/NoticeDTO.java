@@ -11,10 +11,9 @@ import java.util.Date;
 @ToString
 public class NoticeDTO {
     private int notice_code;
-    private int company_code;
+    private int admin_code;
     private int notice_level;
     private String notice_title;
-    private String notice_writer;
     private Date notice_writedate;
     private String notice_content;
 

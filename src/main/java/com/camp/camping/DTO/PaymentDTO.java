@@ -10,5 +10,5 @@ import lombok.*;
 public class PaymentDTO {
     private int payment_code;
     private String payment_type;
-    private int payment_detail;
+    private int payment_uid;
 }
