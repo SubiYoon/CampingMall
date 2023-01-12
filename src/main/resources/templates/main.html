@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
    <head>
       <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- jQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <!-- mobile metas -->
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -13,18 +15,18 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
       <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" th:href="@{/css/style.css}">
       <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
+      <link rel="stylesheet" th:href="@{/css/responsive.css}">
       <!-- fevicon -->
-      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <link rel="icon" th:href="@{/images/fevicon.png}" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.min.css}">
       <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <link rel="stylesheet" th:href="@{/https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css}">
+      <link rel="stylesheet" th:href="@{/https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css}" media="screen">
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -46,7 +48,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="index.html"><img src="images/logo.png" alt="#" /></a>
+                              <a th:href="@{/}"><img src="images/logo.png" alt="#" /></a>
                            </div>
                         </div>
                      </div>
@@ -58,23 +60,26 @@
                         </button>
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
-                              <li class="nav-item ">
-                                 <a class="nav-link" href="index.html">Home</a>
+                              
+                              <!-- 현재 선택 활성화로 보이게 하려면 class="nav-item active" 해야합니다-->
+                              
+                              <li class="nav-item">
+                                 <a class="nav-link" th:href="@{/}">Home</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="about.html">About</a>
+                                 <a class="nav-link" th:href="@{/about}">공지사항</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="room.html">Our room</a>
+                                 <a class="nav-link" th:href="@{/room}">구역안내</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="gallery.html">Gallery</a>
+                                 <a class="nav-link" th:href="@{/gallery}">시설안내</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="blog.html">Blog</a>
+                                 <a class="nav-link" th:href="@{/blog}">예약하기</a>
                               </li>
-                              <li class="nav-item active">
-                                 <a class="nav-link" href="contact.html">Contact Us</a>
+                              <li class="nav-item">
+                                 <a class="nav-link" th:href="@{/contact}">오시는길</a>
                               </li>
                            </ul>
                         </div>
@@ -86,53 +91,19 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-     <div class="back_re">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="title">
-                      <h2>Contact Us</h2>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!--  contact -->
-      <div class="contact">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-6">
-                  <form id="request" class="main_form">
-                     <div class="row">
-                        <div class="col-md-12 ">
-                           <input class="contactus" placeholder="Name" type="type" name="Name"> 
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contactus" placeholder="Email" type="type" name="Email"> 
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
-                        </div>
-                        <div class="col-md-12">
-                           <textarea class="textarea" placeholder="Message" type="type" Message="Name">Message</textarea>
-                        </div>
-                        <div class="col-md-12">
-                           <button class="send_btn">Send</button>
-                        </div>
-                     </div>
-                  </form>
-               </div>
-               <div class="col-md-6">
-                  <div class="map_main">
-                     <div class="map-responsive">
-                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="400" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
+      
+      
+      <!-- banner -->
+      <section class="banner_main">
+      	<aside id="center_aside" th:include="${center} ? ${center} : index"></aside>
+      </section>
+      <!-- end banner -->
+
+      
+      
       <!-- end contact -->
+      
+     
       <!--  footer -->
       <footer>
          <div class="footer">
@@ -143,18 +114,18 @@
                      <ul class="conta">
                         <li><i class="fa fa-map-marker" aria-hidden="true"></i> Address</li>
                         <li><i class="fa fa-mobile" aria-hidden="true"></i> +01 1234569540</li>
-                        <li> <i class="fa fa-envelope" aria-hidden="true"></i><a href="#"> demo@gmail.com</a></li>
+                        <li> <i class="fa fa-envelope" aria-hidden="true"></i><a th:href="@{#}"> demo@gmail.com</a></li>
                      </ul>
                   </div>
                   <div class="col-md-4">
                      <h3>Menu Link</h3>
                      <ul class="link_menu">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="about.html"> about</a></li>
-                        <li><a href="room.html">Our Room</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li class="active"><a href="contact.html">Contact Us</a></li>
+                        <li class="active"><a th:href="@{/#}">Home</a></li>
+                        <li><a th:href="@{/about.html}"> about</a></li>
+                        <li><a th:href="@{/room.html}">Our Room</a></li>
+                        <li><a th:href="@{/gallery.html}">Gallery</a></li>
+                        <li><a th:href="@{/blog.html}">Blog</a></li>
+                        <li><a th:href="@{/contact.html}">Contact Us</a></li>
                      </ul>
                   </div>
                   <div class="col-md-4">
@@ -164,10 +135,10 @@
                         <button class="sub_btn">subscribe</button>
                      </form>
                      <ul class="social_icon">
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                        <li><a th:href="@{/#}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a th:href="@{/#}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a th:href="@{/#}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a th:href="@{/#}"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
                      </ul>
                   </div>
                </div>
@@ -176,11 +147,13 @@
                <div class="container">
                   <div class="row">
                      <div class="col-md-10 offset-md-1">
+                        
                         <p>
-                           © 2019 All Rights Reserved. Design by <a href="https://html.design/"> Free Html Templates</a>
-                           <br><br>
-                           Distributed by <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
-                           </p>
+                        © 2019 All Rights Reserved. Design by <a th:href="@{/https://html.design/}"> Free Html Templates</a>
+                        <br><br>
+                        Distributed by <a th:href="@{/https://themewagon.com/}" target="_blank">ThemeWagon</a>
+                        </p>
+
                      </div>
                   </div>
                </div>
