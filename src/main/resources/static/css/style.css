@@ -345,7 +345,7 @@ button {
 }
 
 
-/** banner section **/
+/** 메인페이지 section **/
 
 .banner_main {
      position: relative;
@@ -444,7 +444,7 @@ button {
 }
 
 
-/** end banner section **/
+
 
 .titlepage {
      text-align: center;
@@ -504,6 +504,18 @@ button {
      color: #fff;
      transition: ease-in all 0.5s;
 }
+
+#map {
+	width:90%;
+	height:400px;
+	margin: 0 auto;
+}
+.map_addr {
+	text-align: center;
+}
+
+
+/** end 메인페이지 section **/
 
 /** about section **/
 

@@ -3,6 +3,9 @@ $(document).ready(function(){
 	$(".nav-item:nth-child(1)").attr('class','nav-item active');
 	$(".notactive:nth-child(1)").attr('class','active');
 });
+
+//카카오맵
+
 </script>
 
      <!-- banner -->
@@ -274,18 +277,22 @@ $(document).ready(function(){
          </div>
       </div>
       <!-- end blog -->
+      
+      
       <!--  contact -->
       <div class="contact">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Contact Us</h2>
+                     <h2>&nbsp;&nbsp;오시는 길&nbsp;</h2>
                   </div>
                </div>
             </div>
             <div class="row">
+            	<!-- 원래:컨텍트 입력칸 
                <div class="col-md-6">
+               
                   <form id="request" class="main_form">
                      <div class="row">
                         <div class="col-md-12 ">
@@ -306,11 +313,17 @@ $(document).ready(function(){
                      </div>
                   </form>
                </div>
-               <div class="col-md-6">
+                 -->
+               <!-------------------------------- 지도자리 -------------------------------->
+               <div class="col-md-12">
                   <div class="map_main">
-                     <div class="map-responsive">
-                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="400" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
-                     </div>
+                     	<div id="map"></div>
+                  </div>
+               </div>
+                <div class="col-md-12">
+                  <div class="map_addr">
+                  	<br>
+                     	서울특별시 강남구 언주로 508 14층(역삼동, 서울상록빌딩)
                   </div>
                </div>
             </div>
