@@ -115,7 +115,7 @@ CREATE TABLE `admin` (
 CREATE TABLE `payment` (
 	`merchant_uid`	VARCHAR(30)	NOT NULL,
 	`payment_type`	VARCHAR(30)	NOT NULL,
-	`payment_uid`	VARCHAR(30)	NOT NULL	COMMENT '결제 완료/환불 신청/환불 완료',
+	`payment_uid`	VARCHAR(30)	NOT NULL,
     primary key(merchant_uid)
 );
 
