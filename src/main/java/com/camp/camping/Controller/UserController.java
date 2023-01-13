@@ -17,28 +17,27 @@ public class UserController {
     @Autowired
     UserService service;
 
-    @RequestMapping("")
-    public String main(Model model){
-        model.addAttribute("left", dir+"left");
-        model.addAttribute("center", dir+"center");
-        return dir+"main";
-    }
-
     @RequestMapping("register")
     public String register(Model model){
-        model.addAttribute("left", dir+"left");
-        model.addAttribute("center", dir+"userRegister");
-        return dir+"main";
+        model.addAttribute("center", dir+"register");
+        return "main";
     }
 
     @RequestMapping("registerOk")
-    public String registerOk(Model model, UserDTO userDTO){
-        try {
-            service.insert(userDTO);
-        } catch (Exception e) {
-            //e.printStackTrace();
-            System.out.println("실패");
-        }
-        return dir+"main";
-    }
+	public String registerOk(Model model, UserDTO userDTO){
+		
+		String user_phone_number = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" +userDTO.getUser_tel3();
+
+		userDTO.setUser_phone_number(user_phone_number);
+
+		try {
+			//service.insert(userDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		System.out.println(userDTO.toString());
+
+		return "main";
+	}
 }
