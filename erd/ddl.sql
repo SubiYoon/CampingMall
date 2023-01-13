@@ -1,4 +1,4 @@
-use camping;
+use campdb;
 
 Drop table IF EXISTS review;
 Drop table IF EXISTS home;
@@ -43,7 +43,8 @@ CREATE TABLE `home` (
 	`admin_code`	INT	NOT NULL,
 	`home_content`	LONGTEXT	NOT NULL,
 	`home_address`	VARCHAR(100)	NULL,
-	`home_coordinate`	VARCHAR(50)	NULL,
+	`home_log`	DOUBLE	NULL,
+    `home_lat`	DOUBLE	NULL,
 	`home_https`	VARCHAR(50)	NULL,
 	`home_tell`	VARCHAR(20)	NULL,
 	`home_img1`	VARCHAR(30)	NULL,
