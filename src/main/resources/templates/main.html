@@ -44,8 +44,9 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
 
 <script>
-window.onload = function(){
+function kakaomap(){
 	//카카오맵-------------------------
+	
 	//기본 카카오맵
 		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 		var options = { //지도를 생성할 때 필요한 기본 옵션
@@ -82,24 +83,53 @@ window.onload = function(){
 		});
 		
 		// 마커가 지도 위에 표시되도록 설정합니다
-		marker.setMap(map);  
-		
-	
-	//end 카카오맵-------------------------
+		marker.setMap(map);	
+}
+//end 카카오맵-------------------------
+
+$(document).ready(function(){
+	//카카오맵----------------------
+	kakaomap();
 	
 	//모달-------------------------
-	document.getElementById("modal_open").onclick = function() {
-	    document.getElementById("modal").style.display="block";
-	}
+	$('#modal_open').click(function(){
+		document.getElementById("modal").style.display="flex";
+	    document.body.style="overflow: hidden";
+	});
 	
-	document.getElementById("modal_close").onclick = function() {
-	    document.getElementById("modal").style.display="none";
-	}
+	$('#modal_close').click(function(){
+		document.getElementById("modal").style.display="none";
+	    document.body.style="overflow: auto";
+	});
 	//end 모달-------------------------
-}
+});
 </script>
 
 </head>
+
+<!-- 모달창-->
+<div id="modal" class="modal-overlay">
+	<div class="modal-content">
+		<div class="modal-btn">
+			<button th:onclick="|location.href='@{/user/register}'|">회원가입</button>
+			<button id="modal_close">닫기</button>
+		</div>
+		<div class="modal-login">
+		<h2>로그인</h2>
+		<p>모달 테스트입니다</p>
+		<p>모달 테스트입니다</p>
+		<p>모달 테스트입니다</p>
+		<p>모달 테스트입니다</p>
+		<p>모달 테스트입니다</p>
+		<p>모달 테스트입니다</p>
+		<p>모달 테스트입니다</p>
+		<p>모달 테스트입니다</p>
+		
+		<button>로그인</button>
+		<br>
+		</div>
+	</div>
+</div>
 
 <!-- body -->
 <body class="main-layout">
@@ -113,14 +143,7 @@ window.onload = function(){
 	<!-- header -->
 	<header>
 	
-		<!-- 모달창 -->
-		<div id="modal" class="modal-modal-overlay">
-			<div class="modal-content">
-				<h2>모달</h2>
-				<p>모달 테스트입니다</p>
-				<button id="modal_close">[닫기]</button>
-			</div>
-		</div>
+
 
 		<!-- header inner -->
 		<div class="header">
@@ -137,7 +160,8 @@ window.onload = function(){
 					</div>
 					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
 						<nav class="navigation navbar navbar-expand-md navbar-dark ">
-							<button class="navbar-toggler" type="button"
+						
+							<button id="" class="navbar-toggler" type="button"
 								data-toggle="collapse" data-target="#navbarsExample04"
 								aria-controls="navbarsExample04" aria-expanded="false"
 								aria-label="Toggle navigation">
@@ -155,7 +179,7 @@ window.onload = function(){
 									<li class="nav-item"><a class="nav-link" th:href="@{/facility}">시설안내</a></li>
 									<li class="nav-item"><a class="nav-link" th:href="@{/book}">예약하기</a></li>
 									<li class="nav-item"><a class="nav-link" th:href="@{/waymap}">오시는길</a></li>
-									<li class="nav-item"><a class="nav-link"><button id="modal_open" style="all:unset;">로그인</button></a></li>
+									<li class="nav-item"><a class="nav-link"><button id="modal_open">로그인</button></a></li>
 									<li class="nav-item"><a class="nav-link" th:href="@{/user/register}">회원가입</a></li>
 									</li>
 								</ul>
