@@ -1,4 +1,4 @@
-use campdb;
+use camping;
 
 Drop table IF EXISTS review;
 Drop table IF EXISTS home;
