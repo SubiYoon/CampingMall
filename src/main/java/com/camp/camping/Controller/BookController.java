@@ -5,14 +5,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/contact")
-public class ContactController {
+@RequestMapping("/book")
+public class BookController {
 	
-	String dir = "contact/";
+	String dir = "book/";
 	
 	@RequestMapping("")
 	public String main(Model model) {
-		model.addAttribute("center", dir+"contact");
+		model.addAttribute("center", dir+"book");
 		return "main";
 	}
 	
