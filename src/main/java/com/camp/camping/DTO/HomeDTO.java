@@ -14,7 +14,6 @@ public class HomeDTO {
     private String home_content;
     private int home_lng;
     private int home_lat;
-    private String home_coordinate;
     private String home_https;
     private String home_tell;
     private String home_img1;
