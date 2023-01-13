@@ -12,7 +12,8 @@ public class HomeDTO {
     private int admin_code;
     private String home_owner;
     private String home_content;
-    private String home_address;
+    private int home_lng;
+    private int home_lat;
     private String home_coordinate;
     private String home_https;
     private String home_tell;
