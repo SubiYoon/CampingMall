@@ -56,16 +56,16 @@ INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, 'D-
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, 'D-5',50000,'D-5 입니다.');
 
 -- 결제
-insert into `payment`(payment_type, payment_uid) values('카드',1);
-insert into `payment`(payment_type, payment_uid) values('카드',1);
-insert into `payment`(payment_type, payment_uid) values('무통장',1);
-insert into `payment`(payment_type, payment_uid) values('계좌이체',1);
+insert into `payment`(merchant_uid,payment_type, payment_uid) values('1','카드',1);
+insert into `payment`(merchant_uid,payment_type, payment_uid) values('2','카드',1);
+insert into `payment`(merchant_uid,payment_type, payment_uid) values('3','무통장',1);
+insert into `payment`(merchant_uid,payment_type, payment_uid) values('4','계좌이체',1);
 
 -- 예약
-insert into `book`(site_code, user_code, payment_code, book_member, book_date, book_price, book_car_number) values(1,1,1,3,'2023-02-03',30000,'12가1234');
-insert into `book`(site_code, user_code, payment_code, book_member, book_date, book_price, book_car_number) values(7,2,2,2,'2023-02-01',35000,'13나1234');
-insert into `book`(site_code, user_code, payment_code, book_member, book_date, book_price) values(1,2,3,1,'2023-02-04',20000);
-insert into `book`(site_code, user_code, payment_code, book_member, book_date, book_price, book_car_number) values(15,2,4,2,'2023-02-02',45000,'13나1234');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_date, book_price, book_car_number) values(1,1,'1',3,'2023-02-03',30000,'12가1234');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_date, book_price, book_car_number) values(7,2,'2',2,'2023-02-01',35000,'13나1234');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_date, book_price) values(1,2,'3',1,'2023-02-04',20000);
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_date, book_price, book_car_number) values(15,2,'4',2,'2023-02-02',45000,'13나1234');
 
 -- 스케줄
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-06','방역');

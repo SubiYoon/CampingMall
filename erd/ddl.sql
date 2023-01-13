@@ -1,4 +1,4 @@
-use campdb;
+use camping;
 
 Drop table IF EXISTS review;
 Drop table IF EXISTS home;
@@ -68,7 +68,7 @@ CREATE TABLE `book` (
 	`book_code`	INT	NOT NULL auto_increment,
 	`site_code`	INT	NOT NULL,
 	`user_code`	INT	NOT NULL,
-	`payment_code`	INT	NOT NULL,
+	`merchant_uid`	VARCHAR(30)	NOT NULL,
 	`book_member`	INT	NOT NULL,
 	`book_date`	DATE	NOT NULL,
 	`book_writedate`	DATETIME	NOT NULL DEFAULT NOW(),
@@ -113,10 +113,10 @@ CREATE TABLE `admin` (
 );
 
 CREATE TABLE `payment` (
-	`payment_code`	INT	NOT NULL auto_increment,
-	`payment_type`	varchar(30)	NOT NULL,
-	`payment_uid`	INT	NOT NULL	COMMENT '결제 완료/환불 신청/환불 완료',
-    primary key (payment_code)
+	`merchant_uid`	VARCHAR(30)	NOT NULL,
+	`payment_type`	VARCHAR(30)	NOT NULL,
+	`payment_uid`	VARCHAR(30)	NOT NULL,
+    primary key(merchant_uid)
 );
 
 CREATE TABLE `review` (
@@ -179,10 +179,10 @@ REFERENCES `user` (
 );
 
 ALTER TABLE `book` ADD CONSTRAINT `FK_payment_TO_book_1` FOREIGN KEY (
-	`payment_code`
+	`merchant_uid`
 )
 REFERENCES `payment` (
-	`payment_code`
+	`merchant_uid`
 );
 
 ALTER TABLE `zone` ADD CONSTRAINT `FK_admin_TO_zone_1` FOREIGN KEY (
