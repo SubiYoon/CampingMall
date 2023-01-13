@@ -15,15 +15,15 @@ $(document).ready(function(){
             </ol>
             <div class="carousel-inner">
                <div class="carousel-item active">
-                  <img class="first-slide" src="images/banner1.jpg" alt="First slide">
+                  <img class="first-slide" th:src="@{/images/banner1.jpg}" alt="First slide">
                   <div class="container">
                   </div>
                </div>
                <div class="carousel-item">
-                  <img class="second-slide" src="images/banner2.jpg" alt="Second slide">
+                  <img class="second-slide" th:src="@{/images/banner2.jpg}" alt="Second slide">
                </div>
                <div class="carousel-item">
-                  <img class="third-slide" src="images/banner3.jpg" alt="Third slide">
+                  <img class="third-slide" th:src="@{/images/banner3.jpg}" alt="Third slide">
                </div>
             </div>
             <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -45,12 +45,12 @@ $(document).ready(function(){
                            <div class="row">
                               <div class="col-md-12">
                                  <span>Arrival</span>
-                                 <img class="date_cua" src="images/date.png">
+                                 <img class="date_cua" th:src="@{/images/date.png}">
                                  <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
                               </div>
                               <div class="col-md-12">
                                  <span>Departure</span>
-                                 <img class="date_cua" src="images/date.png">
+                                 <img class="date_cua" th:src="@{/images/date.png}">
                                  <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
                               </div>
                               <div class="col-md-12">
@@ -78,7 +78,7 @@ $(document).ready(function(){
                </div>
                <div class="col-md-7">
                   <div class="about_img">
-                     <figure><img src="images/about.png" alt="#"/></figure>
+                     <figure><img th:src="@{/images/about.png}" alt="#"/></figure>
                   </div>
                </div>
             </div>
@@ -100,7 +100,7 @@ $(document).ready(function(){
                <div class="col-md-4 col-sm-6">
                   <div id="serv_hover"  class="room">
                      <div class="room_img">
-                        <figure><img src="images/room1.jpg" alt="#"/></figure>
+                        <figure><img th:src="@{/images/room1.jpg}" alt="#"/></figure>
                      </div>
                      <div class="bed_room">
                         <h3>Bed Room</h3>
@@ -111,7 +111,7 @@ $(document).ready(function(){
                <div class="col-md-4 col-sm-6">
                   <div id="serv_hover"  class="room">
                      <div class="room_img">
-                        <figure><img src="images/room2.jpg" alt="#"/></figure>
+                        <figure><img th:src="@{/images/room2.jpg}" alt="#"/></figure>
                      </div>
                      <div class="bed_room">
                         <h3>Bed Room</h3>
@@ -122,7 +122,7 @@ $(document).ready(function(){
                <div class="col-md-4 col-sm-6">
                   <div id="serv_hover"  class="room">
                      <div class="room_img">
-                        <figure><img src="images/room3.jpg" alt="#"/></figure>
+                        <figure><img th:src="@{/images/room3.jpg}" alt="#"/></figure>
                      </div>
                      <div class="bed_room">
                         <h3>Bed Room</h3>
@@ -133,7 +133,7 @@ $(document).ready(function(){
                <div class="col-md-4 col-sm-6">
                   <div id="serv_hover"  class="room">
                      <div class="room_img">
-                        <figure><img src="images/room4.jpg" alt="#"/></figure>
+                        <figure><img th:src="@{/images/room4.jpg}" alt="#"/></figure>
                      </div>
                      <div class="bed_room">
                         <h3>Bed Room</h3>
@@ -144,7 +144,7 @@ $(document).ready(function(){
                <div class="col-md-4 col-sm-6">
                   <div id="serv_hover"  class="room">
                      <div class="room_img">
-                        <figure><img src="images/room5.jpg" alt="#"/></figure>
+                        <figure><img th:src="@{/images/room5.jpg}" alt="#"/></figure>
                      </div>
                      <div class="bed_room">
                         <h3>Bed Room</h3>
@@ -155,7 +155,7 @@ $(document).ready(function(){
                <div class="col-md-4 col-sm-6">
                   <div id="serv_hover"  class="room">
                      <div class="room_img">
-                        <figure><img src="images/room6.jpg" alt="#"/></figure>
+                        <figure><img th:src="@{/images/room6.jpg}" alt="#"/></figure>
                      </div>
                      <div class="bed_room">
                         <h3>Bed Room</h3>
@@ -180,42 +180,42 @@ $(document).ready(function(){
             <div class="row">
                <div class="col-md-3 col-sm-6">
                   <div class="gallery_img">
-                     <figure><img src="images/gallery1.jpg" alt="#"/></figure>
+                     <figure><img th:src="@{/images/gallery1.jpg}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-3 col-sm-6">
                   <div class="gallery_img">
-                     <figure><img src="images/gallery2.jpg" alt="#"/></figure>
+                     <figure><img th:src="@{/images/gallery2.jpg}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-3 col-sm-6">
                   <div class="gallery_img">
-                     <figure><img src="images/gallery3.jpg" alt="#"/></figure>
+                     <figure><img th:src="@{/images/gallery3.jpg}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-3 col-sm-6">
                   <div class="gallery_img">
-                     <figure><img src="images/gallery4.jpg" alt="#"/></figure>
+                     <figure><img th:src="@{/images/gallery4.jpg}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-3 col-sm-6">
                   <div class="gallery_img">
-                     <figure><img src="images/gallery5.jpg" alt="#"/></figure>
+                     <figure><img th:src="@{/images/gallery5.jpg}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-3 col-sm-6">
                   <div class="gallery_img">
-                     <figure><img src="images/gallery6.jpg" alt="#"/></figure>
+                     <figure><img th:src="@{/images/gallery6.jpg}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-3 col-sm-6">
                   <div class="gallery_img">
-                     <figure><img src="images/gallery7.jpg" alt="#"/></figure>
+                     <figure><img th:src="@{/images/gallery7.jpg}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-3 col-sm-6">
                   <div class="gallery_img">
-                     <figure><img src="images/gallery8.jpg" alt="#"/></figure>
+                     <figure><img th:src="@{/images/gallery8.jpg}" alt="#"/></figure>
                   </div>
                </div>
             </div>
@@ -237,7 +237,7 @@ $(document).ready(function(){
                <div class="col-md-4">
                   <div class="blog_box">
                      <div class="blog_img">
-                        <figure><img src="images/blog1.jpg" alt="#"/></figure>
+                        <figure><img th:src="@{/images/blog1.jpg}" alt="#"/></figure>
                      </div>
                      <div class="blog_room">
                         <h3>Bed Room</h3>
@@ -249,7 +249,7 @@ $(document).ready(function(){
                <div class="col-md-4">
                   <div class="blog_box">
                      <div class="blog_img">
-                        <figure><img src="images/blog2.jpg" alt="#"/></figure>
+                        <figure><img th:src="@{/images/blog2.jpg}" alt="#"/></figure>
                      </div>
                      <div class="blog_room">
                         <h3>Bed Room</h3>
@@ -261,7 +261,7 @@ $(document).ready(function(){
                <div class="col-md-4">
                   <div class="blog_box">
                      <div class="blog_img">
-                        <figure><img src="images/blog3.jpg" alt="#"/></figure>
+                        <figure><img th:src="@{/images/blog3.jpg}" alt="#"/></figure>
                      </div>
                      <div class="blog_room">
                         <h3>Bed Room</h3>
