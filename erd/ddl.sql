@@ -116,7 +116,7 @@ CREATE TABLE `payment` (
 	`merchant_uid`	VARCHAR(30)	NOT NULL,
 	`payment_type`	VARCHAR(30)	NOT NULL,
 	`payment_uid`	VARCHAR(30)	NOT NULL	COMMENT '결제 완료/환불 신청/환불 완료',
-    primary key (merchant_uid)
+    primary key(merchant_uid)
 );
 
 CREATE TABLE `review` (
@@ -193,10 +193,10 @@ REFERENCES `admin` (
 );
 
 ALTER TABLE `admin` ADD CONSTRAINT `FK_company_TO_admin_1` FOREIGN KEY (
-	`merchant_uid`
+	`company_code`
 )
 REFERENCES `company` (
-	`merchant_uid`
+	`company_code`
 );
 
 ALTER TABLE `review` ADD CONSTRAINT `FK_book_TO_review_1` FOREIGN KEY (
