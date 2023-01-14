@@ -47,7 +47,8 @@ public class UserController {
 		UserDTO user = null;
 
 		try {
-			user = service.select(userDTO.getUser_code());
+			//TODO: 세션의 user_code를 가져오기
+			user = service.select(0);
 			
 			String[] telNum = user.getUser_phone_number().split("-");
 			user.setUser_tel1(telNum[0]);
@@ -55,6 +56,7 @@ public class UserController {
 			user.setUser_tel3(telNum[2]);
 
 			model.addAttribute("selectUser", user);
+			model.addAttribute("center", dir + "mypage");
 
 		} catch (Exception e) {
 			e.printStackTrace();
