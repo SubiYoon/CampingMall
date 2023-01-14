@@ -6,4 +6,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<insert id="insert" parameterType="UserDTO">
         INSERT INTO user VALUES(0, #{user_id}, #{user_password}, #{user_name}, #{user_birthday}, #{user_phone_number})
     </insert>
+    <select id="select" resultType="UserDTO">
+        SELECT * FROM user WHERE user_code=#{user_code}
+    </select>
 </mapper>
