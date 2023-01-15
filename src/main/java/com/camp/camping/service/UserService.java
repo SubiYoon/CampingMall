@@ -37,7 +37,7 @@ public class UserService implements MyService<Integer, UserDTO>{
 
     @Override
     public List<UserDTO> selectAll() throws Exception {
-        return mapper.selectall();
+        return mapper.selectAll();
     }
 
     

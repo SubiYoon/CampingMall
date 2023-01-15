@@ -9,7 +9,7 @@ import com.camp.camping.DTO.UserDTO;
 import com.camp.camping.service.UserService;
 
 @SpringBootTest
-class UserInsertText {
+class UserSelectTest {
 
 	@Inject
 	UserService service;
@@ -17,11 +17,16 @@ class UserInsertText {
 	@Test
 	void contextLoads() {
 
-		UserDTO user = new UserDTO(0, "user011", "pwd001", "우하하", 123456, "010-1234-4567", "010", "1234", "5678");
+		UserDTO user =null;
 
 		try {
-			service.insert(user);
+			user = service.select(1);
+			String[] telNum = user.getUser_phone_number().split("-");
+			user.setUser_tel1(telNum[0]);
+			user.setUser_tel2(telNum[1]);
+			user.setUser_tel3(telNum[2]);
 			System.out.println("성공123");
+			System.out.println(user.toString());
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.out.println("실패");

@@ -9,4 +9,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
     <select id="select" resultType="UserDTO">
         SELECT * FROM user WHERE user_code=#{user_code}
     </select>
+    <select id="selectAll" resultType="UserDTO">
+        SELECT * FROM user
+    </select>
+    <update id="update" parameterType="UserDTO">
+        UPDATE user SET user_password=#{user_password}, user_phone_number=#{user_phone_number} WHERE user_code=#{user_code}
+    </update>
+    <delete id="delete">
+        DELETE FROM user WHERE user_code=#{user_code}
+    </delete>
 </mapper>
