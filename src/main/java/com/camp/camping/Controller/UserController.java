@@ -34,8 +34,10 @@ public class UserController {
 
 		try {
 			service.insert(userDTO);
+			System.out.println("성공");
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("실패");
 		}
 
 		return "main";
@@ -48,7 +50,7 @@ public class UserController {
 
 		try {
 			//TODO: 세션의 user_code를 가져오기
-			user = service.select(1);
+			user = service.select(12);
 			
 			String[] telNum = user.getUser_phone_number().split("-");
 			user.setUser_tel1(telNum[0]);
@@ -57,9 +59,9 @@ public class UserController {
 
 			model.addAttribute("selectUser", user);
 			model.addAttribute("center", dir + "mypage");
-
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("실패");
 		}
 
 		return "main";
@@ -75,10 +77,24 @@ public class UserController {
 		try {
 			service.update(userDTO);
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("실패");
 		}
 
 		//TODO: 페이지 이동 수정필요
+		return "main";
+	}
+
+	@RequestMapping("delete")
+	public String delete(int user_code){
+
+		try {
+			service.delete(user_code);
+		} catch (Exception e) {
+			//e.printStackTrace();
+			System.out.println("실패");
+		}
+
 		return "main";
 	}
 }

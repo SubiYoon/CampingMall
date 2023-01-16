@@ -17,7 +17,7 @@ class UserDeleteTest {
 	void contextLoads() {
 
 		try {
-			service.delete(4);
+			service.delete(8);
 			System.out.println("성공123");
 		} catch (Exception e) {
 			//e.printStackTrace();
