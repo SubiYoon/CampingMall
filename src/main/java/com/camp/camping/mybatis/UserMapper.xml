@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         INSERT INTO user(user_id, user_password, user_name, user_birthday, user_phone_number) VALUES(#{user_id}, #{user_password}, #{user_name}, #{user_birthday}, #{user_phone_number})
     </insert>
     <select id="select" resultType="UserDTO">
-        SELECT * FROM user WHERE user_code=#{user_code}
+        SELECT * FROM user WHERE user_id=#{user_id}
     </select>
     <select id="selectAll" resultType="UserDTO">
         SELECT * FROM user
@@ -16,6 +16,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         UPDATE user SET user_password=#{user_password}, user_phone_number=#{user_phone_number} WHERE user_code=#{user_code}
     </update>
     <delete id="delete">
-        DELETE FROM user WHERE user_code=#{user_code}
+        DELETE FROM user WHERE user_id=#{user_id}
     </delete>
 </mapper>
