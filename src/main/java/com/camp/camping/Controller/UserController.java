@@ -34,8 +34,10 @@ public class UserController {
 
 		try {
 			service.insert(userDTO);
+			System.out.println("성공");
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("실패");
 		}
 
 		return "main";
@@ -57,7 +59,6 @@ public class UserController {
 
 			model.addAttribute("selectUser", user);
 			model.addAttribute("center", dir + "mypage");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

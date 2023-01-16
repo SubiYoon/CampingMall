@@ -23,7 +23,6 @@ class UserSelectAllTest {
 
 		try {
 			user = service.selectAll();
-			
 			for(int i=0; i<user.size(); i++){
 				String[] telNum = user.get(i).getUser_phone_number().split("-");
 				user.get(i).setUser_tel1(telNum[0]);
@@ -33,7 +32,7 @@ class UserSelectAllTest {
 			System.out.println("성공123");
 			System.out.println(user.toString());
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			System.out.println("실패");
 		}
 	}
