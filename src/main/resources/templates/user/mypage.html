@@ -2,10 +2,17 @@
 $(document).ready(function(){
 	$(".nav-item:nth-child(8)").attr('class','nav-item active');
 	$(".notactive:nth-child(8)").attr('class','active');
-   $("#register a").click(function(){
+   $("#update").click(function(){
       $("#register").attr({
          'method' : 'post',
-         'action' : '[[@{/user/registerOk}]]'
+         'action' : '[[@{/user/update}]]'
+      });
+      $("#register").submit();
+   });
+   $("#delete").click(function(){
+      $("#register").attr({
+         'method' : 'post',
+         'action' : '[[@{/user/delete}]]'
       });
       $("#register").submit();
    });
@@ -17,7 +24,7 @@ $(document).ready(function(){
             <div class="row">
                <div class="col-md-12">
                   <div class="title">
-                      <h2>회원가입</h2>
+                      <h2>마이페이지</h2>
                   </div>
                </div>
             </div>
@@ -45,12 +52,14 @@ $(document).ready(function(){
             <div class="blog_box">
                <form id="register">
                   <div class="blog_room">
-                     아이디 <input type="text" name="user_id" value="${user.user_id}" readonly="readonly"><br>
+                     <input type="hidden" name="user_code" th:value="${selectUser.user_code}"/>
+                     아이디 <input type="text" name="user_id" th:value="${selectUser.user_id}" readonly="readonly"/><br>
                      비밀번호 <input type="password" name="user_password"/><br>
-                     이름 <input type="text" name="user_name" value="${user.user_password}" readonly="readonly"/><br>
-                     생년월일 <input type="text" name="user_birthday" value="${user.user_birthday}" readonly="readonly"/><br>
-                     연락처 <input type="text" style="width: 30px;" name="user_tel1" value="${user.user_tel1}"/> - <input type="text" style="width: 30px;" name="user_tel2" value="${user.user_tel2}"/> - <input type="text" style="width: 30px;" name="user_tel3" value="${user.user_tel3}"/><br>
-                     <a href="#">회원가입</a>
+                     이름 <input type="text" name="user_name" th:value="${selectUser.user_password}" readonly="readonly"/><br>
+                     생년월일 <input type="text" name="user_birthday" th:value="${selectUser.user_birthday}" readonly="readonly"/><br>
+                     연락처 <input type="text" style="width: 30px;" name="user_tel1" th:value="${selectUser.user_tel1}"/> - <input type="text" style="width: 30px;" name="user_tel2" th:value="${selectUser.user_tel2}"/> - <input type="text" style="width: 30px;" name="user_tel3" th:value="${selectUser.user_tel3}"/><br>
+                     <a id="update" href="#">수정</a>
+                     <a id="delete" href="#">탈퇴</a>
                   </div>
                </form>
             </div>
