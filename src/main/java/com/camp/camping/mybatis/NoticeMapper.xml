@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.camping.mapper.NoticeMapper">
+	<insert id="insert" parameterType="NoticeDTO">
+        INSERT INTO notice VALUES(null, #{admin_code}, #{notice_level}, #{notice_title}, now(), #{notice_content})
+    </insert>
+    <select id="select" resultType="NoticeDTO">
+        SELECT * FROM notice WHERE notice_code=#{notice_code}
+    </select>
+    <select id="selectAll" resultType="NoticeDTO">
+       SELECT notice_code, notice_title, notice_writedate FROM notice;
+    </select>
+    <update id="update" parameterType="NoticeDTO">
+        UPDATE notice SET notice_level=#{notice_level}, notice_title=#{notice_title}, notice_content=#{notice_content} WHERE notice_code=#{notice_code}
+    </update>
+    <delete id="delete">
+        DELETE FROM notice WHERE notice_code=#{notice_code}
+    </delete>
+</mapper>
