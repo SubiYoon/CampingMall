@@ -106,7 +106,6 @@ public class UserController {
 			user=service.select(userDTO.getUser_id());
 			if(user.getUser_id().equals(userDTO.getUser_id())){
 				session.setAttribute("user", user);
-				model.addAttribute("session", session);
 			}
 		} catch (Exception e) {
 			//e.printStackTrace();
