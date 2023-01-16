@@ -32,4 +32,33 @@ public class NoticeController {
 		return "main";
 	}
 	
+	@RequestMapping("/nowrite")
+	public String nowrite(Model model) {
+		model.addAttribute("center", dir+"nowrite");
+		return "main";
+	}
+	
+	@RequestMapping("/noticedo")
+	public String noticedo(Model model, NoticeDTO noticeDto) {
+		try {
+			ns.insert(noticeDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:notice";
+	}
+	
+	@RequestMapping("/noticeview")
+	public String noticeview(Model model, int notice_code) {
+		NoticeDTO noti = null;
+		try {
+			noti = ns.select(notice_code);
+			model.addAttribute("noti", noti);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("center", dir+"noticeview");
+		return "main";
+	}
+	
 }
