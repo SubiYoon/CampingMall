@@ -9,7 +9,6 @@ public class MainController {
 	
 	@RequestMapping("/")
 	public String main() {
-		System.out.println("두번");
 		return "main";
 	}
 	
