@@ -19,6 +19,7 @@ public class NoticeController {
 	@Autowired
 	NoticeService ns;
 	
+// 공지사항 메인 (목록)	
 	@RequestMapping("")
 	public String main(Model model) {
 		List<NoticeDTO> list = null;
@@ -32,12 +33,14 @@ public class NoticeController {
 		return "main";
 	}
 	
+//	공지 글쓰기 화면
 	@RequestMapping("/nowrite")
 	public String nowrite(Model model) {
 		model.addAttribute("center", dir+"nowrite");
 		return "main";
 	}
 	
+//	공지 쓴 글 등록
 	@RequestMapping("/noticedo")
 	public String noticedo(Model model, NoticeDTO noticeDto) {
 		try {
@@ -48,6 +51,7 @@ public class NoticeController {
 		return "redirect:notice";
 	}
 	
+//	글 조회 화면
 	@RequestMapping("/noticeview")
 	public String noticeview(Model model, int notice_code) {
 		NoticeDTO noti = null;
@@ -61,4 +65,27 @@ public class NoticeController {
 		return "main";
 	}
 	
+//	글 삭제
+	@RequestMapping("/noticedelete")
+	public String noticedelete(Model model, int notice_code) {
+		try {
+			ns.delete(notice_code);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:notice";
+	}
+	
+//	글 수정
+	@RequestMapping("/noticeupdate")
+	public String noticeupdate(Model model, NoticeDTO notdto) {
+		try {
+				ns.update(notdto);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		return "redirect:get?notice_code="+notdto.getNotice_code();
+	}
 }
+
