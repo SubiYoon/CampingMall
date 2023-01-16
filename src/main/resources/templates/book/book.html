@@ -52,13 +52,17 @@ $(document).ready(function(){
                </div>
                <div class="col-md-4">
                   <div class="blog_box">
-                     <div class="blog_img">
-                        <figure><img src="images/blog2.jpg" alt="#"/></figure>
-                     </div>
+                     <form action="book" method="get">
+                        <div>체크인날짜<input type="text" name="bookCheckin"></div>
+                        <div>체크아웃날짜<input type="text" name="bookCheckout"></div>
+                        <div>사이트코드<input type="text" name="bookSite"></div>
+                        <div>유저코드<input type="text" name="bookUser"></div>
+                        <input type="submit" value="전송">
+                     </form>
                      <div class="blog_room">
-                        <h3>Bed Room</h3>
-                        <span>The standard chunk </span>
-                        <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generatorsIf you are   </p>
+                        <h3>예약 샘플</h3>
+                        <span>사이트/체크인/체크아웃/인원/차량번호</span>
+                        <p></p>
                      </div>
                   </div>
                </div>

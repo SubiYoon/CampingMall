@@ -8,6 +8,7 @@ public class CampingApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CampingApplication.class, args);
+		System.out.println("한번");
 	}
 
 }
