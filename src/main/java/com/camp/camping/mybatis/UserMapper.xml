@@ -9,8 +9,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
     <select id="select" resultType="UserDTO">
         SELECT * FROM user WHERE user_code=#{user_code}
     </select>
-<<<<<<< HEAD
-=======
     <select id="selectAll" resultType="UserDTO">
         SELECT * FROM user
     </select>
@@ -20,5 +18,4 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
     <delete id="delete">
         DELETE FROM user WHERE user_code=#{user_code}
     </delete>
->>>>>>> Yoon
 </mapper>
