@@ -8,6 +8,6 @@ import com.camp.camping.frame.MyMapper;
 
 @Repository
 @Mapper
-public interface UserMapper extends MyMapper<Integer, UserDTO>{
+public interface UserMapper extends MyMapper<String, UserDTO>{
     
 }
