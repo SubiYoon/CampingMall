@@ -48,7 +48,7 @@ public class UserController {
 
 		try {
 			//TODO: 세션의 user_code를 가져오기
-			user = service.select(0);
+			user = service.select(1);
 			
 			String[] telNum = user.getUser_phone_number().split("-");
 			user.setUser_tel1(telNum[0]);
@@ -62,6 +62,23 @@ public class UserController {
 			e.printStackTrace();
 		}
 
+		return "main";
+	}
+
+	@RequestMapping("update")
+	public String update(Model model, UserDTO userDTO) {
+
+		String user_phone_number = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
+
+		userDTO.setUser_phone_number(user_phone_number);
+
+		try {
+			service.update(userDTO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		//TODO: 페이지 이동 수정필요
 		return "main";
 	}
 }
