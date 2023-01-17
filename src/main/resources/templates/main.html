@@ -60,6 +60,44 @@
 				});
 				$('#loginForm').submit();
 			});
+
+			//카카오 로그인
+			Kakao.init('0172e111f7c68f1a00f2e9cdd810d74a'); //발급받은 키 중 javascript키를 사용해준다.
+			console.log(Kakao.isInitialized()); // sdk초기화여부판단
+			//카카오로그인
+			function kakaoLogin() {
+				Kakao.Auth.login({
+					success: function (response) {
+						Kakao.API.request({
+							url: '/v2/user/me',
+							success: function (response) {
+								console.log(response)
+							},
+							fail: function (error) {
+								console.log(error)
+							},
+						})
+					},
+					fail: function (error) {
+						console.log(error)
+					},
+				})
+			}
+			//카카오로그아웃  
+			function kakaoLogout() {
+				if (Kakao.Auth.getAccessToken()) {
+					Kakao.API.request({
+						url: '/v1/user/unlink',
+						success: function (response) {
+							console.log(response)
+						},
+						fail: function (error) {
+							console.log(error)
+						},
+					})
+					Kakao.Auth.setAccessToken(undefined)
+				}
+			}
 		});
 	</script>
 
@@ -75,11 +113,23 @@
 		<div class="modal-login">
 			<h2>로그인</h2>
 			<form id="loginForm">
-				아이디 <input type="text" name="user_id"/><br>
+				아이디 <input type="text" name="user_id" /><br>
 				비밀번호 <input type="password" name="user_password"><br>
 				<a href="#">로그인</a>
 			</form>
 			<br>
+			<ul>
+				<li th:if="${session.user==null}">
+				  <a href="javascript:kakaoLogin();">
+					  <img th:src="@{/images/kakao_login_medium_wide.png}"/>
+				  </a>
+				</li>
+				<li th:if="${session.user!=null}" onclick="kakaoLogout();">
+				  <a href="javascript:void(0)">
+					  <span>카카오 로그아웃</span>
+				  </a>
+				</li>
+			</ul>
 		</div>
 	</div>
 </div>
@@ -222,6 +272,8 @@
 	<!-- sidebar -->
 	<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"></script>
 	<script th:src="@{/js/custom.js}"></script>
+	<!-- 카카오 로그인 -->
+	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js" integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
 
 </body>
 
