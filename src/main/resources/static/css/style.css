@@ -9,8 +9,15 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gothic+A1:wght@200;600;800&family=Hahmlet:wght@200;500;700&family=Noto+Sans+KR:wght@300&display=swap');
 
-/*****---------------------------------------- 1) font-family: 'Rajdhani', sans-serif;
- 2) font-family: 'Poppins', sans-serif;
+/*****---------------------------------------- 
+기존폰트
+1) font-family: 'Rajdhani', sans-serif;
+2) font-family: 'Poppins', sans-serif;
+추가폰트
+1)font-family: 'Do Hyeon', sans-serif; 400
+2)font-family: 'Gothic A1', sans-serif; 200 600 800
+3)font-family: 'Hahmlet', serif; 200 500 700
+4)font-family: 'Noto Sans KR', sans-serif; 300
  ----------------------------------------*****/
 
 
