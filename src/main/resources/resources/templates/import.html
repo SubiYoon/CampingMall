@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script>
+	const IMP = window.IMP; // 생략 가능
+	IMP.init("imp57467885"); // 예: imp00000000a
+	
+	//우선 해야할것
+	//다수의 이용자가 동시에 같은자리 같은시간에 예약하게 될경우를 방지하기위해
+	//결제 직전에 그 사이트 그자리가 예약이 되는지 확인하는 작업이 필요
+	//결제완료시 update
+	
+	function requestPay() {
+	    IMP.request_pay({
+	      pg: "html5_inicis",
+	      pay_method: "card", //다른 타입들 입력받아 넣는 테스트 필요
+	      merchant_uid:"122141",  // 주문번호
+	      name: "노르웨이 회전 의자", //뷰단에서 입력받아와야함
+	      amount: 100,                         // 숫자 타입 뷰단에서 입력받아와야함
+	      buyer_name: "홍길동", // 뷰단에서 입력받아와야함
+	      buyer_tel: "010-4242-4242", // 뷰단에서 입력받아와야함
+	    }, function (rsp) { // callback
+	      if (rsp.success) {
+	    	  
+	    	  let param = {'imp_uid':rsp.imp_uid, 'merchant_uid':rsp.merchant_uid};
+	        // 결제 성공 시 로직
+	    	  jQuery.ajax({
+	    	        url: "/pay/paymentOK", 
+	    	        type: "POST",
+	    	        contentType:"application/json;charset=utf-8",
+	    	        dataType:"json",
+	    	        data: JSON.stringify(param)
+	    	      }).done(function (data) {
+	    	    	  alert("결제성공")
+	    	    	  //결제검증절차
+	    	    	  
+	    	      })
+	    	   
+	      } else {
+	        // 결제 실패 시 로직
+	    	  alert("결제실패"+rsp);
+	      }
+	    });
+	  }
+</script>
+
+</head>
+
+<body>
+
+<button onclick="requestPay()">결제하기기</button> <!-- 결제하기 버튼 생성 -->
+
+</body>
+</html>

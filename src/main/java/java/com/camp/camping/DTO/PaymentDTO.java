@@ -1,0 +1,17 @@
+package com.camp.camping.DTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class PaymentDTO {
+	
+	private String imp_uid;
+	private String merchant_uid;
+	private String pay_method;
+	
+
+}
