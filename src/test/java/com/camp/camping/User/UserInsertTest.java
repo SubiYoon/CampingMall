@@ -23,7 +23,7 @@ class UserInsertTest {
 			service.insert(user);
 			System.out.println("성공123");
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			System.out.println("실패");
 		}
 	}
