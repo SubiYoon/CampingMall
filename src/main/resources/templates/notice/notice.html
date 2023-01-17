@@ -25,7 +25,7 @@ $(document).ready(function(){
             	   <div class="table-title">
 					<h3>Data Table</h3>
 					</div>
-	                  <table class="table-fill" style="text-align: center; border: 1px solid #dddddd">
+	                  <table class="table-fill">
 	                  	<thead>
 	                  		<tr>
 	                  			<th class="text-left">번호</th>
@@ -36,10 +36,10 @@ $(document).ready(function(){
 	                  	<tbody class="table-hover">
 							<tr th:each="notice:${plist}">
 								<td class="text-center">
-									<a th:text="${notice.notice_code}" th:href="@{/notice/noticeview(notice_code=${notice_code})}"></a>
+									<a th:text="${notice.notice_code}" th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
 								</td>
 								<td class="text-center">
-									<a th:text="${notice.notice_title}" th:href="@{/notice/noticeview(notice_code=${notice_code})}"></a>
+									<a th:text="${notice.notice_title}" th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
 								</td>
 								<td class="text-center" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"></td>
 							</tr>
@@ -51,3 +51,5 @@ $(document).ready(function(){
          </div>
       </div>
       <!-- end about -->
+     
+

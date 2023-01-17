@@ -54,10 +54,10 @@ public class NoticeController {
 //	글 조회 화면
 	@RequestMapping("/noticeview")
 	public String noticeview(Model model, int notice_code) {
-		NoticeDTO noti = null;
+		NoticeDTO notice = null;
 		try {
-			noti = ns.select(notice_code);
-			model.addAttribute("noti", noti);
+			notice = ns.select(notice_code);
+			model.addAttribute("notice", notice);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -88,4 +88,3 @@ public class NoticeController {
 		return "redirect:get?notice_code="+notdto.getNotice_code();
 	}
 }
-
