@@ -1,13 +1,11 @@
 package com.camp.camping.mapper;
 
+import com.camp.camping.DTO.BookDTO;
+import com.camp.camping.frame.MyMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.camp.camping.DTO.UserDTO;
-import com.camp.camping.frame.MyMapper;
-
 @Repository
 @Mapper
-public interface UserMapper extends MyMapper<String, UserDTO>{
-    
+public interface BookMapper extends MyMapper<Integer, BookDTO> {
 }

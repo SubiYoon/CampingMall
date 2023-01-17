@@ -28,13 +28,12 @@ public class UserController {
 	@RequestMapping("registerOk")
 	public String registerOk(Model model, UserDTO userDTO) {
 
-		String user_phone_number = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
+		String user_tell = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
 
-		userDTO.setUser_phone_number(user_phone_number);
+		userDTO.setUser_tell(user_tell);
 
 		try {
 			service.insert(userDTO);
-			System.out.println("성공");
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.out.println("실패");
@@ -46,13 +45,14 @@ public class UserController {
 	@RequestMapping("mypage")
 	public String myPage(Model model, UserDTO userDTO, HttpSession session) {
 
+		UserDTO login = (UserDTO)session.getAttribute("user");
+
 		UserDTO user = null;
 
 		try {
-			//TODO: 세션의 user_code를 가져오기
-			user = service.select(12);
+			user = service.select(login.getUser_id());
 			
-			String[] telNum = user.getUser_phone_number().split("-");
+			String[] telNum = user.getUser_tell().split("-");
 			user.setUser_tel1(telNum[0]);
 			user.setUser_tel2(telNum[1]);
 			user.setUser_tel3(telNum[2]);
@@ -70,9 +70,9 @@ public class UserController {
 	@RequestMapping("update")
 	public String update(Model model, UserDTO userDTO) {
 
-		String user_phone_number = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
+		String user_tell = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
 
-		userDTO.setUser_phone_number(user_phone_number);
+		userDTO.setUser_tell(user_tell);
 
 		try {
 			service.update(userDTO);
@@ -86,15 +86,37 @@ public class UserController {
 	}
 
 	@RequestMapping("delete")
-	public String delete(int user_code){
+	public String delete(String user_id){
 
 		try {
-			service.delete(user_code);
+			service.delete(user_id);
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.out.println("실패");
 		}
 
+		return "main";
+	}
+
+	//TODO:세션생성까지 완료
+	@RequestMapping("loginOk")
+	public String loginOk(Model model, UserDTO userDTO, HttpSession session){
+		UserDTO user=null;
+		try {
+			user=service.select(userDTO.getUser_id());
+			if(user.getUser_id().equals(userDTO.getUser_id())){
+				session.setAttribute("user", user);
+			}
+		} catch (Exception e) {
+			//e.printStackTrace();
+			System.out.println("실패");
+		}
+		return "main";
+	}
+
+	@RequestMapping("logout")
+	public String logOut(HttpSession session){
+		session.invalidate();
 		return "main";
 	}
 }
