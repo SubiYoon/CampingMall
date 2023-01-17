@@ -25,7 +25,8 @@ INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시
 INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시설4", "시설4입니다.");
 
 -- 대표
-INSERT INTO home(admin_code, home_content)VALUES(1,'안녕하세요.');
+INSERT INTO home(admin_code, home_content, home_lng, home_lat)VALUES(1,'안녕하세요.', 37.5039781087508, 127.04273317956381);
+INSERT INTO home(admin_code, home_content, home_lng, home_lat)VALUES(2,'안녕하세요2', 37.56517320755754, 126.97909982283633);
 
 -- 구역
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역A', 'A존입니다.');

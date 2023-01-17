@@ -10,18 +10,18 @@ import com.camp.camping.frame.MyService;
 import com.camp.camping.mapper.UserMapper;
 
 @Service
-public class UserService implements MyService<String, UserDTO>{
+public class UserService implements MyService<Integer, UserDTO>{
 
     @Autowired
     UserMapper mapper;
 
     @Override
     public void insert(UserDTO v) throws Exception {
-        mapper.insert(v);
+        mapper.insert(v);        
     }
 
     @Override
-    public void delete(String k) throws Exception {
+    public void delete(Integer k) throws Exception {
         mapper.delete(k);
     }
 
@@ -31,13 +31,14 @@ public class UserService implements MyService<String, UserDTO>{
     }
 
     @Override
-    public UserDTO select(String k) throws Exception {
+    public UserDTO select(Integer k) throws Exception {
         return mapper.select(k);
     }
 
     @Override
     public List<UserDTO> selectAll() throws Exception {
-        return mapper.selectall();
+        return mapper.selectAll();
     }
+
     
 }

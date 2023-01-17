@@ -8,5 +8,5 @@ public interface MyMapper<K,V> {
     public void update(V v) throws Exception;
 
     public V select(K k) throws Exception;
-    public List<V> selectall() throws Exception;
+    public List<V> selectAll() throws Exception;
 }

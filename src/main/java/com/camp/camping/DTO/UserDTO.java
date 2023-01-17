@@ -18,4 +18,8 @@ public class UserDTO {
     private String user_name;
     private int user_birthday;
     private String user_phone_number;
+
+    private String user_tel1;
+    private String user_tel2;
+    private String user_tel3;
 }
