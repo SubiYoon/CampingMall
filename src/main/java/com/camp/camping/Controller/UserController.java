@@ -28,9 +28,9 @@ public class UserController {
 	@RequestMapping("registerOk")
 	public String registerOk(Model model, UserDTO userDTO) {
 
-		String user_phone_number = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
+		String user_tell = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
 
-		userDTO.setUser_phone_number(user_phone_number);
+		userDTO.setUser_tell(user_tell);
 
 		try {
 			service.insert(userDTO);
@@ -52,7 +52,7 @@ public class UserController {
 		try {
 			user = service.select(login.getUser_id());
 			
-			String[] telNum = user.getUser_phone_number().split("-");
+			String[] telNum = user.getUser_tell().split("-");
 			user.setUser_tel1(telNum[0]);
 			user.setUser_tel2(telNum[1]);
 			user.setUser_tel3(telNum[2]);
@@ -70,9 +70,9 @@ public class UserController {
 	@RequestMapping("update")
 	public String update(Model model, UserDTO userDTO) {
 
-		String user_phone_number = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
+		String user_tell = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
 
-		userDTO.setUser_phone_number(user_phone_number);
+		userDTO.setUser_tell(user_tell);
 
 		try {
 			service.update(userDTO);
