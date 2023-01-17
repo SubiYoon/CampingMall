@@ -48,7 +48,7 @@ public class NoticeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:notice";
+		return "main";
 	}
 	
 //	글 조회 화면
