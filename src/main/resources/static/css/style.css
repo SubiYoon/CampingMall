@@ -518,7 +518,9 @@ button {
      display: inline-block;
      transition: ease-in all 0.5s;
      font-weight: 500;
-     border-radius: 30px;
+     border-radius: 20px;
+     float: right;
+     margin: 10px 5px;
 }
 
 .read_more:hover {
