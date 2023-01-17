@@ -20,8 +20,8 @@ class UserSelectTest {
 		UserDTO user =null;
 
 		try {
-			user = service.select("id01");
-			String[] telNum = user.getUser_phone_number().split("-");
+			user = service.select("user1");
+			String[] telNum = user.getUser_tell().split("-");
 			user.setUser_tel1(telNum[0]);
 			user.setUser_tel2(telNum[1]);
 			user.setUser_tel3(telNum[2]);
