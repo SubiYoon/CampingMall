@@ -391,6 +391,17 @@ button {
      transform: translateY(-50%);
 }
 
+.booking_ocline2 {
+     position: absolute;
+     width: 100%;
+     top: 2%;
+}
+
+#book_ocline_logo {
+	width:400px !important;
+	opacity:0.3;
+}
+
 .book_room {
      background-color: #000000c7;
      padding: 30px 35px;
@@ -403,14 +414,21 @@ button {
      line-height: 30px;
      color: #fff;
      padding-bottom: 20px;
-     text-transform: uppercase;
+     text-align: center;
+}
+
+.book_room span {
+     font-size: 20px;
+     line-height: 30px;
+     color: #fff;
+     padding-bottom: 20px;
      text-align: center;
 }
 
 .book_now span {
      display: block;
      color: #fff;
-     font-size: 18px;
+     font-size: 15px;
      padding-bottom: 5px;
 }
 
