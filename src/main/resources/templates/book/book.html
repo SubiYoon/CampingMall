@@ -52,11 +52,11 @@ $(document).ready(function(){
                </div>
                <div class="col-md-4">
                   <div class="blog_box">
-                     <form action="book" method="get">
-                        <div>체크인날짜<input type="text" name="bookCheckin"></div>
-                        <div>체크아웃날짜<input type="text" name="bookCheckout"></div>
-                        <div>사이트코드<input type="text" name="bookSite"></div>
-                        <div>유저코드<input type="text" name="bookUser"></div>
+                     <form action="/book/create" method="post">
+                        <div>체크인날짜<input type="date" name="book_checkin"></div>
+                        <div>체크아웃날짜<input type="date" name="book_checkout"></div>
+                        <div>사이트코드<input type="text" name="site_code"></div>
+                        <div>유저코드<input type="text" name="user_code"></div>
                         <input type="submit" value="전송">
                      </form>
                      <div class="blog_room">
