@@ -40,76 +40,12 @@
 	<!-- 카카오 로그인 -->
 	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js" integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-
-<<<<<<< HEAD
 <script>
 	$(document).ready(function () {
 		//모달-------------------------
 		$('#modal_open').click(function () {
 			document.getElementById("modal").style.display = "flex";
 			document.body.style = "overflow: hidden";
-=======
-	<script>
-		$(document).ready(function () {
-			//모달-------------------------
-			$('#modal_open').click(function () {
-				document.getElementById("modal").style.display = "flex";
-				document.body.style = "overflow: hidden";
-			});
-
-			$('#modal_close').click(function () {
-				document.getElementById("modal").style.display = "none";
-				document.body.style = "overflow: auto";
-			});
-			//end 모달-------------------------
-
-			//로그인
-			$('#loginForm a').click(function () {
-				$('#loginForm').attr({
-					'method': 'post',
-					'action': '[[@{user/loginOk}]]'
-				});
-				$('#loginForm').submit();
-			});
-
-			//카카오 로그인
-			Kakao.init('0172e111f7c68f1a00f2e9cdd810d74a'); //발급받은 키 중 javascript키를 사용해준다.
-			console.log(Kakao.isInitialized()); // sdk초기화여부판단
-			//카카오로그인
-			function kakaoLogin() {
-				Kakao.Auth.login({
-					success: function (response) {
-						Kakao.API.request({
-							url: '/v2/user/me',
-							success: function (response) {
-								console.log(response)
-							},
-							fail: function (error) {
-								console.log(error)
-							},
-						})
-					},
-					fail: function (error) {
-						console.log(error)
-					},
-				})
-			}
-			//카카오로그아웃  
-			function kakaoLogout() {
-				if (Kakao.Auth.getAccessToken()) {
-					Kakao.API.request({
-						url: '/v1/user/unlink',
-						success: function (response) {
-							console.log(response)
-						},
-						fail: function (error) {
-							console.log(error)
-						},
-					})
-					Kakao.Auth.setAccessToken(undefined)
-				}
-			}
->>>>>>> 8f6d87e (Yoon User[API, CSS미완])
 		});
 			$('#modal_close').click(function () {
 			document.getElementById("modal").style.display = "none";
