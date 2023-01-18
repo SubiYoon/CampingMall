@@ -48,7 +48,7 @@ public class NoticeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "main";
+		return "redirect:/notice";
 	}
 	
 //	글 조회 화면
@@ -67,14 +67,14 @@ public class NoticeController {
 	
 //	글 삭제
 	@RequestMapping("/noticedelete")
-	public String noticedelete(Model model, int notice_code) {
+	public String noticedelete(Model model, Integer notice_code) {
 		try {
 			ns.delete(notice_code);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "redirect:notice";
+		return "redirect:/notice";
 	}
 	
 //	글 수정
@@ -85,6 +85,6 @@ public class NoticeController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		return "redirect:get?notice_code="+notdto.getNotice_code();
+		return "redirect:/notice";
 	}
 }

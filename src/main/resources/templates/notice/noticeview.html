@@ -3,12 +3,12 @@ $(document).ready(function(){
 	$('#ubtn').click(function(){
 		var c = confirm('수정 하시겠습니까 ?');
 		if(c == true){
-			$('#register_form').attr({
+			$('#up_form').attr({
 				'enctype':'multipart/form-data',
 				'method':'post',
 				'action':'[[@{/notice/noticeupdate}]]'
 			});
-			$('#register_form').submit();
+			$('#up_form').submit();
 		};
 	});
 	
@@ -40,7 +40,7 @@ $(document).ready(function(){
          <div class="container-fluid">
             <div class="row">
                <div class="col-md-12">
-                 	<form>
+                 	<form id="up_form">
 						 <table class="table-fill">
 		                  	<thead>
 		                  		<tr>
@@ -53,14 +53,14 @@ $(document).ready(function(){
 		                  	</thead>
 		                  	<tbody class="table-hover">
 								<tr>
-									<td class="text-center"><input type="number" readonly="readonly" th:value="${notice.notice_code}"></td>
-									<td class="text-center"><input type="text" th:value="${notice.notice_title}"></td>
-									<td class="text-center"><input type="number" readonly="readonly" th:value="${notice.admin_code}"></td>
-									<td class="text-center"><input type="number" th:value="${notice.notice_level}"></td>
+									<td class="text-center"><input type="number" readonly="readonly" name="notice_code" th:value="${notice.notice_code}"></td>
+									<td class="text-center"><input type="text" name="notice_title" th:value="${notice.notice_title}"></td>
+									<td class="text-center"><input type="number" readonly="readonly" name="admin_code" th:value="${notice.admin_code}"></td>
+									<td class="text-center"><input type="number" name="notice_level" th:value="${notice.notice_level}"></td>
 									<td class="text-center"><p th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"/></td>
 								</tr>
 								<tr>
-									<td class="text-center"><input type="text" readonly="readonly" th:value="${notice.notice_content}"></td>
+									<td class="text-center"><input type="text" name="notice_content" th:value="${notice.notice_content}"></td>
 								</tr>
 		                  	</tbody>
 		                  </table>
