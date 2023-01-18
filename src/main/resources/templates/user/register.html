@@ -42,6 +42,10 @@ $(document).ready(function(){
          alert("생일을 입력하세요.");
          return;
       }
+      if(birthday.length != 6){
+         alert("생년월일 6자리를 입력해주세요.")
+         return;
+      }
       //전화번호 확인
       if(tel1 == null || tel1 == '' || tel2 == null || tel2 == '' || tel3 == null || tel3 == ''){
          alert("전화번호를 입력하세요.");
