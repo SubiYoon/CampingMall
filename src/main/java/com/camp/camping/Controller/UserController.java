@@ -37,7 +37,7 @@ public class UserController {
 			service.insert(userDTO);
 		} catch (Exception e) {
 			//e.printStackTrace();
-			System.out.println("실패");
+			System.out.println("실패다");
 		}
 
 		return "main";
