@@ -42,9 +42,16 @@ public class UserController {
 
 		return "main";
 	}
-
 	@RequestMapping("mypage")
-	public String myPage(Model model, UserDTO userDTO, HttpSession session) {
+		public String mypage(Model model, HttpSession session){
+			model.addAttribute("center", dir + "mypage");
+
+			return "main";
+		}
+
+	//TODO: mypage안에 회원정보 수정 버튼 추가하여 이동하게 만들어야함.
+	@RequestMapping("userInfo")
+	public String userInfo(Model model, UserDTO userDTO, HttpSession session) {
 
 		UserDTO login = (UserDTO)session.getAttribute("user");
 
@@ -59,7 +66,7 @@ public class UserController {
 			user.setUser_tel3(telNum[2]);
 
 			model.addAttribute("selectUser", user);
-			model.addAttribute("center", dir + "mypage");
+			model.addAttribute("center", dir + "userInfo");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("실패");
@@ -77,12 +84,12 @@ public class UserController {
 
 		try {
 			service.update(userDTO);
+			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.out.println("실패");
 		}
 
-		//TODO: 페이지 이동 수정필요
 		return "main";
 	}
 
