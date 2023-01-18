@@ -87,12 +87,24 @@
          <span class="sr-only">Next</span>
       </a>
    </div>
+   <div class="booking_ocline2">
+            <div class="col-md-1">
+               	<div id="book_ocline_logo"><img th:src="@{/images/book_ocline_logo.png}"  alt="logo" /></div>
+            </div>
+   </div>
+   
    <div class="booking_ocline">
       <div class="container">
          <div class="row">
             <div class="col-md-5">
                <div class="book_room">
-                  <h1>Book a Room Online</h1>
+                  <h1>NoopCamping<br>방문을 환영합니다</h1>
+                  <div class="row">
+                  	<div class="col-md-12">
+                  		<span>NoopCamping(눕캠핑) 캠핑장은 자연과 함께하는 누스돈욜존다 마봬와 느먹또내 안저다 디하언포사를 데나아업고. 뱍디살티다 트연가놘의 달가아긍뿐 지와알하의 핍혐앗힝을 가라셥서다.</span>
+                  	</div>
+                  </div>
+                  <!--  기존 폼
                   <form class="book_now">
                      <div class="row">
                         <div class="col-md-12">
@@ -110,6 +122,7 @@
                         </div>
                      </div>
                   </form>
+                  -->
                </div>
             </div>
          </div>
@@ -117,7 +130,28 @@
    </div>
 </section>
 <!-- end banner -->
-<!-- about -->
+
+<!-- 공지 -->
+<div class="main_notice">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="titlepage">
+               <h2>&nbsp;&nbsp;&nbsp;주요공지&nbsp;</h2>
+               <ul id="main_notice_list">
+	               	<li>1 [임시휴무안내] The passage experienced a surge in popularity The passage experienced a surge in popularity</li>
+	               	<li>2 [안전수칙] and again during the 90s as desktop publishers The passage experienced a surge in popularity</li>
+	               	<li>3 [분실물안내] and again during the 90s as desktop publishers The passage experienced a surge in popularity</li>
+               </ul>
+               <a class="read_more" href="Javascript:void(0)"> Read More</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- end공지 -->
+
+<!-- about 
 <div class="about">
    <div class="container-fluid">
       <div class="row">
@@ -139,14 +173,15 @@
       </div>
    </div>
 </div>
-<!-- end about -->
-<!-- our_room -->
+	end about -->
+	
+<!-- 구역소개 -->
 <div class="our_room">
    <div class="container">
       <div class="row">
          <div class="col-md-12">
             <div class="titlepage">
-               <h2>Our Room</h2>
+               <h2>&nbsp;&nbsp;&nbsp;구역소개&nbsp;</h2>
                <p>Lorem Ipsum available, but the majority have suffered </p>
             </div>
          </div>
@@ -221,14 +256,15 @@
       </div>
    </div>
 </div>
-<!-- end our_room -->
-<!-- gallery -->
+<!-- end 구역소개 -->
+
+<!-- 편의시설 -->
 <div class="gallery">
    <div class="container">
       <div class="row">
          <div class="col-md-12">
             <div class="titlepage">
-               <h2>gallery</h2>
+               <h2>&nbsp;&nbsp;&nbsp;편의시설&nbsp;</h2>
             </div>
          </div>
       </div>
@@ -276,15 +312,15 @@
       </div>
    </div>
 </div>
-<!-- end gallery -->
+<!-- end 편의시설 -->
 <!-- blog -->
 <div class="blog">
    <div class="container">
       <div class="row">
          <div class="col-md-12">
             <div class="titlepage">
-               <h2>Blog</h2>
-               <p>Lorem Ipsum available, but the majority have suffered </p>
+               <h2>후기?를둘까요</h2>
+               <p>베스트 후기로 선정되신 이용객 박제 </p>
             </div>
          </div>
       </div>
@@ -295,10 +331,9 @@
                   <figure><img th:src="@{/images/blog1.jpg}" alt="#" /></figure>
                </div>
                <div class="blog_room">
-                  <h3>Bed Room</h3>
-                  <span>The standard chunk </span>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
-                     embarrassing hidden in the middle of text. All the Lorem Ipsum generatorsIf you are </p>
+                  <h3>안구건조증에 추천해요</h3>
+                  <span>&#10029;&#10029;&#10029;&#10029;</span>
+                  <p>너무좋아서 눈물이나요</p>
                </div>
             </div>
          </div>
@@ -308,10 +343,9 @@
                   <figure><img th:src="@{/images/blog2.jpg}" alt="#" /></figure>
                </div>
                <div class="blog_room">
-                  <h3>Bed Room</h3>
-                  <span>The standard chunk </span>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
-                     embarrassing hidden in the middle of text. All the Lorem Ipsum generatorsIf you are </p>
+                  <h3>집 없는 사람이라 너무 좋았어요</h3>
+                  <span>&#10029;&#10029;&#10029;&#10029;&#10029;</span>
+                  <p>여기서 살래요 여기서 살래요 여기서 살래요 여기서 살래요 여기서 살래요 여기서 살래요</p>
                </div>
             </div>
          </div>
@@ -321,10 +355,9 @@
                   <figure><img th:src="@{/images/blog3.jpg}" alt="#" /></figure>
                </div>
                <div class="blog_room">
-                  <h3>Bed Room</h3>
-                  <span>The standard chunk </span>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
-                     embarrassing hidden in the middle of text. All the Lorem Ipsum generatorsIf you are </p>
+                  <h3>가족 과 따듯하고.즐건. 여행  시간...</h3>
+                  <span>&#10029;&#10029;&#10029;&#10029;</span>
+                  <p>너무좋아서 눈물이나요 여기서 살래요 가족여행으로 즐거운 추억을 쌓고 갑니다너무좋아서 눈물이나요 여기서 살래요 가족여행으로 즐거운 추억을 쌓고 갑니다</p>
                </div>
             </div>
          </div>
@@ -340,7 +373,7 @@
       <div class="row">
          <div class="col-md-12">
             <div class="titlepage">
-               <h2>&nbsp;&nbsp;오시는 길&nbsp;</h2>
+               <h2>&nbsp;&nbsp;&nbsp;오시는 길&nbsp;</h2>
             </div>
          </div>
       </div>
