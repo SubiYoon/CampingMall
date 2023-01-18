@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.camp.camping.DTO.UserDTO;
 import com.camp.camping.service.UserService;
@@ -60,7 +61,7 @@ public class UserController {
 			model.addAttribute("selectUser", user);
 			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			System.out.println("실패");
 		}
 
@@ -86,10 +87,11 @@ public class UserController {
 	}
 
 	@RequestMapping("delete")
-	public String delete(String user_id){
+	public String delete(String user_id, HttpSession session){
 
 		try {
 			service.delete(user_id);
+			session.invalidate();
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.out.println("실패");
@@ -98,25 +100,47 @@ public class UserController {
 		return "main";
 	}
 
-	//TODO:세션생성까지 완료
 	@RequestMapping("loginOk")
 	public String loginOk(Model model, UserDTO userDTO, HttpSession session){
 		UserDTO user=null;
+		String result_page="user/loginFail";
 		try {
 			user=service.select(userDTO.getUser_id());
 			if(user.getUser_id().equals(userDTO.getUser_id())){
 				session.setAttribute("user", user);
+				result_page="main";
 			}
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.out.println("실패");
+			
 		}
-		return "main";
+		return result_page;
 	}
 
 	@RequestMapping("logout")
 	public String logOut(HttpSession session){
 		session.invalidate();
 		return "main";
+	}
+
+	@RequestMapping("checkid")
+	@ResponseBody
+	public int checkid(String user_id){
+		int result = 0;
+		System.out.println(user_id);
+		UserDTO user = null;
+
+		try {
+			user = service.select(user_id);
+			if(user!=null){
+				result = 1;
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 }

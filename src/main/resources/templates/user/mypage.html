@@ -10,11 +10,13 @@ $(document).ready(function(){
       $("#register").submit();
    });
    $("#delete").click(function(){
-      $("#register").attr({
+      if(confirm("정말 삭제하시겠습니까?")){
+         $("#register").attr({
          'method' : 'post',
          'action' : '[[@{/user/delete}]]'
-      });
-      $("#register").submit();
+         });
+         $("#register").submit();
+      }
    });
 });
 </script>

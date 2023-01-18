@@ -56,11 +56,11 @@
 			$('#loginForm a').click(function () {
 				$('#loginForm').attr({
 					'method': 'post',
-					'action': '[[@{user/loginOk}]]'
+					'action': '[[@{/user/loginOk}]]'
 				});
 				$('#loginForm').submit();
 			});
-
+			//TODO:카카오 로그인 미완
 			//카카오 로그인
 			Kakao.init('0172e111f7c68f1a00f2e9cdd810d74a'); //발급받은 키 중 javascript키를 사용해준다.
 			console.log(Kakao.isInitialized()); // sdk초기화여부판단
@@ -122,11 +122,6 @@
 				<li th:if="${session.user==null}">
 				  <a href="javascript:kakaoLogin();">
 					  <img th:src="@{/images/kakao_login_medium_wide.png}"/>
-				  </a>
-				</li>
-				<li th:if="${session.user!=null}" onclick="kakaoLogout();">
-				  <a href="javascript:void(0)">
-					  <span>카카오 로그아웃</span>
 				  </a>
 				</li>
 			</ul>
