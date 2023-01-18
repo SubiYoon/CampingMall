@@ -20,15 +20,11 @@ class UserSelectTest {
 		UserDTO user =null;
 
 		try {
-			user = service.select("user1");
-			String[] telNum = user.getUser_tell().split("-");
-			user.setUser_tel1(telNum[0]);
-			user.setUser_tel2(telNum[1]);
-			user.setUser_tel3(telNum[2]);
+			user = service.select("user01");
 			System.out.println("성공123");
 			System.out.println(user.toString());
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			System.out.println("실패");
 		}
 	}
