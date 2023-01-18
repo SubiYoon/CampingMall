@@ -15,8 +15,12 @@ $(document).ready(function(){
  	$('#dbtn').click(function(){
 		var c = confirm('삭제 하시겠습니까 ?');
 		if(c == true){
-			var id = $('input[name="notice_code"]').val();
-			location.href='[[@{/notice/noticedelete(id=${notice.notice_code})}]]';
+			$('#up_form').attr({
+				'enctype':'multipart/form-data',
+				'method':'post',
+				'action':'[[@{/notice/noticedelete}]]'
+			});
+			$('#up_form').submit();
 		};
 	});
 	
