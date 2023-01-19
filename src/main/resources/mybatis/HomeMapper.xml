@@ -21,6 +21,6 @@
     </select>
     
     <select id="lnglat" parameterType="Integer" resultType="HomeDTO">
-		SELECT home_longitude, home_latitude FROM home WHERE home_code=#{homecode}
+		SELECT home_code, admin_code, home_longitude, home_latitude FROM home WHERE home_code=#{homecode}
     </select>
 </mapper>
