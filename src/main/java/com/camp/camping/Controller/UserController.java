@@ -20,6 +20,13 @@ public class UserController {
 	@Autowired
 	UserService service;
 
+	//지울거
+	@RequestMapping("test")
+	public String test(Model model){
+		model.addAttribute("center", "test");
+		return "test";
+	}
+
 	@RequestMapping("register")
 	public String register(Model model) {
 		model.addAttribute("center", dir + "register");
