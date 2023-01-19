@@ -24,7 +24,7 @@ public class WaymapController {
 		
 		try {
 			home = service.lnglat(2);	//홈페이지코드
-			model.addAttribute("kakaomap", home);
+			model.addAttribute("kkomap", home);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("FAIL");

@@ -24,12 +24,12 @@ $(document).ready(function(){
                   <form id="request" class="main_form">
                      <p>아룡딸 베앙 엉더는아쳐거자 튜녀 앙아즈어도 가망차가 타항은 조화같이 드깅인은 을토먼므춤다.</p>
                      <p>아룡딸 베앙 엉더는아쳐거자 튜녀 앙아즈어도 가망차가 타항은 조화같이 드깅인은 을토먼므춤다.</p>
-                     <p th:text="${kakaomap.home_longitude}"></p>
-                     <p th:text="${kakaomap.home_latitude}"></p>
+                     <p th:text="${kkomap.home_longitude}"></p>
+                     <p th:text="${kkomap.home_latitude}"></p>
                   </form>
                </div>
                <div class="col-md-6">
-                  <aside id="map_aside" th:include="${map} ? ${map} : map"></aside>
+                  <aside id="map_aside" th:include="${map} ? ${map} : kkomap"></aside>
                </div>
             </div>
          </div>

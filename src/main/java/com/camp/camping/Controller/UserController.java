@@ -39,7 +39,7 @@ public class UserController {
 			System.out.println("실패");
 		}
 
-		return "main";
+		return "redirect:/";
 	}
 
 	@RequestMapping("mypage")
@@ -82,7 +82,7 @@ public class UserController {
 		}
 
 		//TODO: 페이지 이동 수정필요
-		return "main";
+		return "redirect:/";
 	}
 
 	@RequestMapping("delete")
@@ -95,7 +95,7 @@ public class UserController {
 			System.out.println("실패");
 		}
 
-		return "main";
+		return "redirect:/";
 	}
 
 	//TODO:세션생성까지 완료
@@ -111,12 +111,12 @@ public class UserController {
 			//e.printStackTrace();
 			System.out.println("실패");
 		}
-		return "main";
+		return "redirect:/";
 	}
 
 	@RequestMapping("logout")
 	public String logOut(HttpSession session){
 		session.invalidate();
-		return "main";
+		return "redirect:/";
 	}
 }
