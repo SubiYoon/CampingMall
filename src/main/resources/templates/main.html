@@ -60,65 +60,59 @@
 			});
 			$('#loginForm').submit();
 		});
-		//TODO:카카오 로그인 미완
-		//카카오 로그인
+		//카카오 SDK 초기화
 		Kakao.init('0172e111f7c68f1a00f2e9cdd810d74a'); //발급받은 키 중 javascript키를 사용해준다.
-		console.log(Kakao.isInitialized()); // sdk초기화여부판단
+		//console.log(Kakao.isInitialized()); // sdk초기화여부판단
 	});
+
 	//카카오로그인
 	function kakaoLogin() {
-			//로그인 요청(회원가입)
-			Kakao.Auth.login({
-				success: function (response) {
-					//회원 정보 가져오기
-					Kakao.API.request({
-						url: '/v2/user/me',
-						success: function (response) {
-							console.log(response)
-						},
-						fail: function (error) {
-							console.log(error)
-						},
-					})
-					.then(function(response){
-						//window.location.href='/';
-						displayToken();
-					})
-				},
-				fail: function (error) {
-					console.log(error)
-				},
-			})
-			console.log()
-		}
-	//카카오로그아웃
-	function kakaoLogout() {
-    	if (!Kakao.Auth.getAccessToken()) {
-	    	console.log('로그인을 상태가 아닙니다.');
-	    	return;
-	   	}
-	   	Kakao.Auth.logout(function(response) {
-    		alert('로그아웃 하였습니다.');
-	    	window.location.href='/'
-	   	});
-	};
-	//TODO:마이페이지로 차후 이동해야함
-	//카카오로 연동된 계정 탈퇴  
-	function kakaoDelete() {
-		if (Kakao.Auth.getAccessToken()) {
-			Kakao.API.request({
-				url: '/v1/user/unlink',
-				success: function (response) {
-					console.log(response)
-				},
-				fail: function (error) {
-					console.log(error)
-				},
-			})
-			Kakao.Auth.setAccessToken(undefined)
-		}
-	}
+        //로그인 요청(회원가입)
+        Kakao.Auth.login({
+          	success: function (response) {
+            	//회원 정보 가져오기
+            	Kakao.API.request({
+              		url: '/v2/user/me',
+              		success: function (response) {
+                		$.ajax({
+							url:'/user/kakaoLogin',
+							type: 'post',
+							data: {
+								'user_name' : response.properties.nickname,
+								'user_id' : response.id,
+								'user_birthday' : response.kakao_account.birthday
+							},
+							success: function(result){
+								console.log(result);
+								window.location.href='/';
+							}
+               			});
+            	  	},
+              		fail: function (error) {
+                		console.log(error);
+              		},
+            	})
+              	.then(function (response) {
+                	console.log(response);
+              	})
+          	},
+          	fail: function (error) {
+            	console.log(error);
+          	},
+    	})
+    }
 
+	//로그아웃
+	function Logout() {
+		if (!Kakao.Auth.getAccessToken()) {
+          alert('로그아웃 하였습니다.');
+		  window.location.href='/user/logout';
+        }
+    	Kakao.Auth.logout(function (response) {
+          alert('로그아웃 하였습니다.');
+          window.location.href = '/user/logout';
+        });
+	};
 </script>
 
 </head>
@@ -140,16 +134,6 @@
 			<br>
 			<ul>
 				<a href="javascript:kakaoLogin()">
-					<img th:src="@{/images/kakao_login_medium_wide.png}"/>
-				</a>
-			</ul>
-			<ul>
-				<a href="javascript:kakaoLogout()">
-					<img th:src="@{/images/kakao_login_medium_wide.png}"/>
-				</a>
-			</ul>
-			<ul>
-				<a href="javascript:kakaoDelete()">
 					<img th:src="@{/images/kakao_login_medium_wide.png}"/>
 				</a>
 			</ul>
@@ -206,7 +190,7 @@
 									<li class="nav-item"><a class="nav-link" th:href="@{/waymap}">오시는길</a></li>
 									<li th:if="${session.user==null}" class="nav-item"><a class="nav-link"><button id="modal_open">로그인</button></a></li>
 									<li th:if="${session.user==null}" class="nav-item"><a class="nav-link" th:href="@{/user/register}">회원가입</a></li>
-									<li th:if="${session.user!=null}" class="nav-item"><a class="nav-link" th:href="@{/user/logout}">로그아웃</a></li>
+									<li th:if="${session.user!=null}" class="nav-item"><a class="nav-link" href="javascript:Logout()">로그아웃</a></li>
 									<li th:if="${session.user!=null}" class="nav-item"><a class="nav-link" th:href="@{/user/mypage}">마이페이지</a></li>
 								</ul>
 							</div>

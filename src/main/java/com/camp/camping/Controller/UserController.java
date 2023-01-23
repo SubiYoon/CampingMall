@@ -36,9 +36,9 @@ public class UserController {
 	@RequestMapping("registerOk")
 	public String registerOk(Model model, UserDTO userDTO) {
 
-		String user_tell = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
+		String user_tel = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
 
-		userDTO.setUser_tell(user_tell);
+		userDTO.setUser_tel(user_tel);
 
 		try {
 			service.insert(userDTO);
@@ -68,10 +68,14 @@ public class UserController {
 		try {
 			user = service.select(login.getUser_id());
 			
-			String[] telNum = user.getUser_tell().split("-");
-			user.setUser_tel1(telNum[0]);
-			user.setUser_tel2(telNum[1]);
-			user.setUser_tel3(telNum[2]);
+			if(user.getUser_tel()==null || user.getUser_tel().equals("")){
+				
+			}else {
+				String[] telNum = user.getUser_tel().split("-");
+				user.setUser_tel1(telNum[0]);
+				user.setUser_tel2(telNum[1]);
+				user.setUser_tel3(telNum[2]);
+			}
 
 			model.addAttribute("selectUser", user);
 			model.addAttribute("center", dir + "userInfo");
@@ -86,9 +90,9 @@ public class UserController {
 	@RequestMapping("update")
 	public String update(Model model, UserDTO userDTO) {
 
-		String user_tell = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
+		String user_tel = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
 
-		userDTO.setUser_tell(user_tell);
+		userDTO.setUser_tel(user_tel);
 
 		try {
 			service.update(userDTO);
@@ -124,7 +128,7 @@ public class UserController {
 			user=service.select(userDTO.getUser_id());
 			if(user.getUser_id().equals(userDTO.getUser_id())){
 				session.setAttribute("user", user);
-				result_page="main";
+				result_page="redirect:/";
 			}
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -144,7 +148,6 @@ public class UserController {
 	@ResponseBody
 	public int checkid(String user_id){
 		int result = 0;
-		System.out.println(user_id);
 		UserDTO user = null;
 
 		try {
@@ -158,5 +161,23 @@ public class UserController {
 		}
 
 		return result;
+	}
+
+	@RequestMapping("kakaoLogin")
+	@ResponseBody
+	public String kakaoLogin(Model model, UserDTO userDTO, HttpSession session){
+		UserDTO user = null;
+		try {
+			user = service.select(userDTO.getUser_id());
+			if(user==null){
+				service.kakaoLoginInsert(userDTO);
+				user = service.select(userDTO.getUser_id());
+			}
+			
+			session.setAttribute("user", user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "가능";
 	}
 }

@@ -16,8 +16,8 @@ public class UserDTO {
     private String user_id;
     private String user_password;
     private String user_name;
-    private int user_birthday;
-    private String user_tell;
+    private String user_birthday;
+    private String user_tel;
 
     private String user_tel1;
     private String user_tel2;
