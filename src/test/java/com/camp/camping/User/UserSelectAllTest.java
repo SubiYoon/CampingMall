@@ -24,7 +24,7 @@ class UserSelectAllTest {
 		try {
 			user = service.selectAll();
 			for(int i=0; i<user.size(); i++){
-				String[] telNum = user.get(i).getUser_tell().split("-");
+				String[] telNum = user.get(i).getUser_tel().split("-");
 				user.get(i).setUser_tel1(telNum[0]);
 				user.get(i).setUser_tel2(telNum[1]);
 				user.get(i).setUser_tel3(telNum[2]);

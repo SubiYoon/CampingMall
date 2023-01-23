@@ -83,8 +83,8 @@ CREATE TABLE `user` (
    `user_id`   VARCHAR(20)   NOT NULL,
    `user_password`   VARCHAR(20)   NOT NULL,
    `user_name`   VARCHAR(20)   NOT NULL,
-   `user_birthday`   INT   NOT NULL,
-   `user_tell`   VARCHAR(20)   NOT NULL,
+   `user_birthday`   VARCHAR(10)   NOT NULL,
+   `user_tel`   VARCHAR(20)   NULL,
     primary key (user_code)
 );
 
