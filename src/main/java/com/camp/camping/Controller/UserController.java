@@ -126,14 +126,13 @@ public class UserController {
 		String result_page="user/loginFail";
 		try {
 			user=service.select(userDTO.getUser_id());
-			if(user.getUser_id().equals(userDTO.getUser_id())){
+			if(user.getUser_id().equals(userDTO.getUser_id()) && user.getUser_password().equals(userDTO.getUser_password())){
 				session.setAttribute("user", user);
 				result_page="redirect:/";
 			}
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.out.println("실패");
-			
 		}
 		return result_page;
 	}
