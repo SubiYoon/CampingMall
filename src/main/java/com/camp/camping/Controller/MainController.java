@@ -17,14 +17,23 @@ public class MainController {
 	@RequestMapping("/")
 	public String main(Model model) {
 		
-		HomeDTO home = null;
+		HomeDTO homekko = null;
+		HomeDTO homecont = null;
 		
 		try {
-			home = service.lnglat(2);	//홈페이지코드
-			model.addAttribute("kkomap", home);
+			homekko = service.lnglat(2);	//홈페이지코드
+			model.addAttribute("kkomap", homekko);
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("FAIL");
+			System.out.println("MAP_FAIL");
+		}
+		
+		try {
+			homecont = service.homeCont(2);	//홈페이지코드
+			model.addAttribute("homecont", homecont);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("CONTENT_FAIL");
 		}
 		
 		return "main";

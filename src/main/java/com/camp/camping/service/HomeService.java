@@ -45,5 +45,10 @@ public class HomeService implements MyService<Integer, HomeDTO> {
 		return mapper.lnglat(homecode);
 	}
 	
+	//홈컨텐트(소개)불러오기
+		public HomeDTO homeCont(Integer homecont) throws Exception{
+			return mapper.homeCont(homecont);
+		}
+	
 	
 }

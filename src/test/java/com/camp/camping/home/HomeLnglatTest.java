@@ -20,7 +20,7 @@ class HomeLnglatTest {
 		HomeDTO home = null;
 		
 		try {
-			home = service.lnglat(2);
+			home = service.homeCont(2);
 			System.out.println("ok");
 			System.out.println(home);
 
