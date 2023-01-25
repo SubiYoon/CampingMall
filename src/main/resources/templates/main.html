@@ -53,7 +53,7 @@
 		});
 		//end 모달-------------------------
 		//로그인
-		$('#loginForm a').click(function () {
+		$('#loginForm button').click(function () {
 			$('#loginForm').attr({
 				'method': 'post',
 				'action': '[[@{/user/loginOk}]]'
@@ -128,8 +128,8 @@
 			<h2>로그인</h2>
 			<form id="loginForm">
 				아이디 <input type="text" name="user_id" /><br>
-				비밀번호 <input type="password" name="user_password"><br>
-				<a href="#">로그인</a>
+				비밀번호 <input type="password" name="user_password"><br><br>
+				<button style="width:300px;">로그인</button>
 			</form>
 			<br>
 			<ul>

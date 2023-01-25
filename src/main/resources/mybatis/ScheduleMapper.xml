@@ -2,28 +2,26 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.camp.camping.mapper.BookMapper">
-    <insert id="insert" parameterType="BookDTO">
-        INSERT INTO book(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price,
-                         book_car_number)
-        VALUES (#{site_code}, #{user_code}, #{merchant_uid}, #{book_member}, #{book_checkin}, #{book_checkout},
-                #{book_price}, #{book_car_number})
+<mapper namespace="com.camp.camping.mapper.ScheduleMapper">
+    <insert id="insert" parameterType="ScheduleDTO">
+        INSERT INTO book(admin_code, schedule_date, schedule_name)
+        VALUES (#{admin_code}, #{schedule_date}, #{schedule_name})
     </insert>
-    <select id="select" resultType="BookDTO">
+    <select id="select" resultType="ScheduleDTO">
         SELECT *
         FROM book
         WHERE book_code = #{book_code}
     </select>
-    <select id="selectMerchant" resultType="BookDTO">
+    <select id="selectMerchant" resultType="ScheduleDTO">
         SELECT *
         FROM book
         WHERE merchant_uid = #{merchant_uid}
     </select>
-    <select id="selectAll" resultType="BookDTO">
+    <select id="selectAll" resultType="ScheduleDTO">
         SELECT *
         FROM book
     </select>
-    <update id="update" parameterType="BookDTO">
+    <update id="update" parameterType="ScheduleDTO">
         UPDATE book
         SET book_member=#{book_member},
             book_price=#{book_price},

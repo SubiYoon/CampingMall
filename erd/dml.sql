@@ -15,9 +15,12 @@ insert into `admin`(company_code, admin_id, admin_password) values(1,'admin02','
 insert into `admin`(company_code, admin_id, admin_password) values(2,'admin03','222222');
 
 -- 공지
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '공지사항1', "공지사항 1입니다.");
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, NULL, '공지사항2', "공지사항 1입니다.");
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, NULL, '공지사항2', "공지사항 1입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '[휴무안내]공지사항1제목입니다', "공지사항 1입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '[안전수칙안내]공지사항2제목입니다', "공지사항 2입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '[분실물안내]공지사항3제목입니다', "공지사항 3입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, NULL, '[시설수리완료]공지사항4제목입니다', "공지사항 4입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, NULL, '[시설수리예정]공지사항5제목입니다', "공지사항 5입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, NULL, '[이벤트안내]공지사항6제목입니다', "공지사항 6입니다.");
 
 -- 시설
 INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시설1", "시설1입니다.");
@@ -62,6 +65,7 @@ insert into `payment`(merchant_uid,pay_method, imp_uid) values('1','카드','1')
 insert into `payment`(merchant_uid,pay_method, imp_uid) values('2','카드','1');
 insert into `payment`(merchant_uid,pay_method, imp_uid) values('3','무통장','1');
 insert into `payment`(merchant_uid,pay_method, imp_uid) values('4','계좌이체','1');
+insert into `payment`(merchant_uid,pay_method, imp_uid) values('5','카드','1');
 
 -- 예약
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,1,'1',3,'2023-02-03','2023-02-04',30000,'12가1234');
