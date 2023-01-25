@@ -30,7 +30,7 @@ $(document).ready(function(){
         cnt += 1;
    
        cell.setAttribute('id', i);
-        cell.innerHTML = i;
+        cell.innerHTML = "<a href='#'>" + i + "</a>";
         cell.align = "center";
    
        cell.onclick = function(){
@@ -47,11 +47,11 @@ $(document).ready(function(){
        }
    
        if (cnt % 7 == 1) {
-          cell.innerHTML = "<font color=#F79DC2>" + i + "</font>";
+          cell.innerHTML = "<font color=#F79DC2>" + "<a href='#'>" + i + "</a>" + "</font>";
        }
    
        if (cnt % 7 == 0){
-          cell.innerHTML = "<font color=skyblue>" + i + "</font>";
+          cell.innerHTML = "<font color=skyblue>" + "<a href='#'>" + i + "</a>" + "</font>";
           row = calendar.insertRow();
        }
      }
