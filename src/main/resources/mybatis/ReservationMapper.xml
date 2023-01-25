@@ -21,6 +21,16 @@
         FROM reservation
         Where reservation_date = #{reservation_date}
     </select>
+    <select id="selectDateAndSite" resultType="ReservationDTO">
+        SELECT reservation.reservation_code,
+               reservation.book_code,
+               reservation.reservation_date
+        FROM reservation
+                 JOIN book
+                      ON reservation.book_code = book.book_code
+        WHERE reservation.reservation_date = #{reservation_date}
+          AND book.site_code = #{site_code};
+    </select>
     <update id="update" parameterType="ReservationDTO">
         UPDATE reservation
         SET reservation_date=#{reservation_date}

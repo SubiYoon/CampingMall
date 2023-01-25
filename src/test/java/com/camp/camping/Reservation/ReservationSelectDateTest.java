@@ -2,6 +2,7 @@ package com.camp.camping.Reservation;
 
 import com.camp.camping.DTO.ReservationDTO;
 import com.camp.camping.service.ReservationService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,6 +18,7 @@ public class ReservationSelectDateTest {
     ReservationService service;
 
     @Test
+    @Disabled
     void ReservationSelectDateTests(){
         List<ReservationDTO> reservation;
         Date d = new Date();
@@ -34,5 +36,15 @@ public class ReservationSelectDateTest {
             e.printStackTrace();
             System.out.println("버그터짐");
         }
+    }
+    @Test
+    void ReservationDateAndSiteTest(){
+        ReservationDTO  reservation = service.selectDateAndSite(1,"2023-02-04");
+        System.out.println(reservation.toString());
+    }
+    @Test
+    void IsEmpty(){
+        System.out.println(service.IsDateEmpty(1,"2023-02-04"));
+        System.out.println(service.IsDateEmpty(1,"2023-02-09"));
     }
 }

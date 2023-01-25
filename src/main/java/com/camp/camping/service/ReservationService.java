@@ -8,6 +8,7 @@ import com.camp.camping.mapper.ReservationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -68,5 +69,25 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         long diff = (book.getBook_checkout().getTime() - book.getBook_checkin().getTime()) / 1000;
         long difDays = diff / (24 * 60 * 60);
         return (int)difDays;
+    }
+
+    public ReservationDTO selectDateAndSite(int site_code, String reservation_Date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        ReservationDTO reservation;
+        try {
+            reservation = mapper.selectDateAndSite(site_code, new Date(sdf.parse(reservation_Date).getTime()));
+        } catch (ParseException e) {
+            System.out.println("날짜 버그 터짐");
+            throw new RuntimeException(e);
+        }
+        return reservation;
+    }
+    public Boolean IsDateEmpty(int site_code, String reservation_Date){
+        ReservationDTO reservation = selectDateAndSite(site_code,reservation_Date);
+        try{
+            return reservation == null || reservation.getReservation_date() == null;
+        }catch(Exception e){
+            return true;
+        }
     }
 }
