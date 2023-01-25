@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.camping.mapper.ScheduleMapper">
+    <insert id="insert" parameterType="ScheduleDTO">
+        INSERT INTO book(admin_code, schedule_date, schedule_name)
+        VALUES (#{admin_code}, #{schedule_date}, #{schedule_name})
+    </insert>
+    <select id="select" resultType="ScheduleDTO">
+        SELECT *
+        FROM book
+        WHERE book_code = #{book_code}
+    </select>
+    <select id="selectMerchant" resultType="ScheduleDTO">
+        SELECT *
+        FROM book
+        WHERE merchant_uid = #{merchant_uid}
+    </select>
+    <select id="selectAll" resultType="ScheduleDTO">
+        SELECT *
+        FROM book
+    </select>
+    <update id="update" parameterType="ScheduleDTO">
+        UPDATE book
+        SET book_member=#{book_member},
+            book_price=#{book_price},
+            book_car_number=#{book_car_number}
+        WHERE book_code = #{book_code}
+    </update>
+    <delete id="delete">
+        DELETE
+        FROM book
+        WHERE book_code = #{book_code}
+    </delete>
+</mapper>
