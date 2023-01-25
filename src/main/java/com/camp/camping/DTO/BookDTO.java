@@ -36,6 +36,6 @@ public class BookDTO {
             System.out.println("버그터짐");
         }
         this.book_price = book_price;
-        this.book_car_number =book_car_number;
+        this.book_car_number = book_car_number;
     }
 }

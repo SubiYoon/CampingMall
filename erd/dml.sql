@@ -65,6 +65,7 @@ insert into `payment`(merchant_uid,pay_method, imp_uid) values('1','카드','1')
 insert into `payment`(merchant_uid,pay_method, imp_uid) values('2','카드','1');
 insert into `payment`(merchant_uid,pay_method, imp_uid) values('3','무통장','1');
 insert into `payment`(merchant_uid,pay_method, imp_uid) values('4','계좌이체','1');
+insert into `payment`(merchant_uid,pay_method, imp_uid) values('5','카드','1');
 
 -- 예약
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,1,'1',3,'2023-02-03','2023-02-04',30000,'12가1234');
