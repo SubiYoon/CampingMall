@@ -605,11 +605,11 @@ button {
 }
 
 .main_notice .titlepage li:nth-child(1n) {
-	width:5%;
+	width:10%;
 }
 
 .main_notice .titlepage li:nth-child(2n) {
-	width:95%;
+	width:90%;
 }
 
 .main_notice_read_more {

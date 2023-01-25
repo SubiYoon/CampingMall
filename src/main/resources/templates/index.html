@@ -89,12 +89,14 @@
                <ul id="main_notice_list">
                		<div th:each="noticeLv:${noticeLv}">
                			<li th:text="${noticeLv.notice_code}"></li>
-               			<li th:text="${noticeLv.notice_title}"></li>
+               			<li>
+               				<a th:text="${noticeLv.notice_title}" th:href="@{/notice/noticeview(notice_code=${noticeLv.notice_code})}"></a>
+               			</li>
                		</div>
                </ul>
             </div>
             <div class="main_notice_read_more">
-            	<a class="read_more" href="Javascript:void(0)"> Read More</a>
+            	<a class="read_more" th:href="@{/notice}">Read More</a>
             </div>
          </div>
       </div>
