@@ -87,11 +87,14 @@
             <div class="titlepage">
                <h2>&nbsp;&nbsp;&nbsp;주요공지&nbsp;</h2>
                <ul id="main_notice_list">
-	               	<li>1 [임시휴무안내] The passage experienced a surge in popularity The passage experienced a surge in popularity</li>
-	               	<li>2 [안전수칙] and again during the 90s as desktop publishers The passage experienced a surge in popularity</li>
-	               	<li>3 [분실물안내] and again during the 90s as desktop publishers The passage experienced a surge in popularity</li>
+               		<div th:each="noticeLv:${noticeLv}">
+               			<li th:text="${noticeLv.notice_code}"></li>
+               			<li th:text="${noticeLv.notice_title}"></li>
+               		</div>
                </ul>
-               <a class="read_more" href="Javascript:void(0)"> Read More</a>
+            </div>
+            <div class="main_notice_read_more">
+            	<a class="read_more" href="Javascript:void(0)"> Read More</a>
             </div>
          </div>
       </div>

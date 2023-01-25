@@ -39,6 +39,10 @@ public class NoticeService implements MyService<Integer, NoticeDTO>{
     public List<NoticeDTO> selectAll() throws Exception {
         return mapper.selectAll();
     }
+    
+    public List<NoticeDTO> noticeLv() throws Exception {
+    	return mapper.noticeLv();
+    }
 
     
 }
