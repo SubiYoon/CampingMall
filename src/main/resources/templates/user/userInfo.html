@@ -2,20 +2,92 @@
 $(document).ready(function(){
 	$(".nav-item:nth-child(8)").attr('class','nav-item active');
 	$(".notactive:nth-child(8)").attr('class','active');
+
+   function isPassword(asValue) {
+      var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+ 
+      return regExp.test(asValue);
+   }
+   function isBirthday(asValue){
+      var regExp = /^[0-9]*$/;
+
+      return regExp.test(asValue);
+   }
+   function isCorrect(asValue) {
+      var regExp = /^[a-zA-Zㄱ-힣][a-zA-Zㄱ-힣 ]*$/;
+ 
+      return regExp.test(asValue);
+   }
+   
+   //회원 정보 수정
    $("#update").click(function(){
-      $("#register").attr({
+      var pwd = $('#updateInfo input[name=user_password]').val();
+      var pwd_check = $('#updateInfo input[name=user_password_check]').val();
+      var name = $('#updateInfo input[name=user_name]').val();
+      var birthday = $('#updateInfo input[name=user_birthday]').val();
+      var tel1 = $('#updateInfo input[name=user_tel1]').val();
+      var tel2 = $('#updateInfo input[name=user_tel2]').val();
+      var tel3 = $('#updateInfo input[name=user_tel3]').val();
+      
+      //비밀번호 확인
+      if(pwd == null || pwd=='' || pwd_check == null || pwd_check==''){
+         alert("비밀번호를 입력해주세요.");
+         return;
+      }
+      if(!isPassword(pwd)){
+         alert("비밀번호는 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합 해주세요.")
+         return;
+      }
+      if(pwd != pwd_check){
+         alert("비밀번호가 틀립니다.");
+         return;
+      }
+      //이름입력 확인
+      if(name==null || name==''){
+         alert("이름을 입력하세요.");
+         return;
+      }
+      if(!isCorrect(name)){
+         alert("이름은 한글 or 영어만 입려 가능합니다.");
+         return;
+      }
+      //생년월일 확인
+      if(birthday == null || birthday ==''){   
+         alert("생일을 입력하세요.");
+         return;
+      }
+      if(!isBirthday(birthday)){
+         alert("생일은 숫자만 입력해주세요.");
+         return;
+      }
+      if(birthday.length != 6){
+         alert("생년월일 6자리를 입력해주세요.")
+         return;
+      }
+      //전화번호 확인
+      if(tel1 == null || tel1 == '' || tel2 == null || tel2 == '' || tel3 == null || tel3 == ''){
+         alert("전화번호를 입력하세요.");
+         return;
+      }
+      //회원 정보수정
+      $("#updateInfo").attr({
          'method' : 'post',
          'action' : '[[@{/user/update}]]'
       });
-      $("#register").submit();
+      $("#updateInfo").submit();
    });
+
+   //회원 탈퇴
    $("#delete").click(function(){
-      if(confirm("정말 삭제하시겠습니까?")){
-         $("#register").attr({
-         'method' : 'post',
-         'action' : '[[@{/user/delete}]]'
+      if(confirm("정말 탈퇴하시겠습니까?")){
+         Kakao.API.request({
+            url: '/v1/user/unlink',
+         })
+         $("#updateInfo").attr({
+            'method' : 'post',
+            'action' : '[[@{/user/delete}]]'
          });
-         $("#register").submit();
+         $("#updateInfo").submit();
       }
    });
 });
@@ -52,13 +124,14 @@ $(document).ready(function(){
          </div>
          <div class="col-md-4">
             <div class="blog_box">
-               <form id="register">
+               <form id="updateInfo">
                   <div class="blog_room">
                      <input type="hidden" name="user_code" th:value="${selectUser.user_code}"/>
                      아이디 <input type="text" name="user_id" th:value="${selectUser.user_id}" readonly="readonly"/><br>
-                     비밀번호 <input type="password" name="user_password"/><br>
-                     이름 <input type="text" name="user_name" th:value="${selectUser.user_name}" readonly="readonly"/><br>
-                     생년월일 <input type="text" name="user_birthday" th:value="${selectUser.user_birthday}" readonly="readonly"/><br>
+                     비밀번호 <input type="password" name="user_password" maxlength="16" minlength="8"/><br>
+                     비밀번호확인 <input type="password" name="user_password_check" maxlength="16" minlength="8"/><br>
+                     이름 <input type="text" name="user_name" th:value="${selectUser.user_name}"/><br>
+                     생년월일 <input type="text" name="user_birthday" th:value="${selectUser.user_birthday}" maxlength="6"/><br>
                      연락처 <input type="text" style="width: 30px;" name="user_tel1" th:value="${selectUser.user_tel1}"/> - <input type="text" style="width: 30px;" name="user_tel2" th:value="${selectUser.user_tel2}"/> - <input type="text" style="width: 30px;" name="user_tel3" th:value="${selectUser.user_tel3}"/><br>
                      <a id="update" href="#">수정</a>
                      <a id="delete" href="#">탈퇴</a>
