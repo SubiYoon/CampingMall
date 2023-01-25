@@ -14,6 +14,11 @@
         FROM book
         WHERE book_code = #{book_code}
     </select>
+    <select id="selectMerchant" resultType="BookDTO">
+        SELECT *
+        FROM book
+        WHERE merchant_uid = #{merchant_uid}
+    </select>
     <select id="selectAll" resultType="BookDTO">
         SELECT *
         FROM book
