@@ -713,11 +713,16 @@ button {
      transition: ease-in all 0.5s;
 }
 
+.our_read_more {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
 
 /** end our_room section **/
 
 
-/** gallery  section **/
+/** gallery(편의시설)  section **/
 
 .gallery {
      padding-top: 60px;
@@ -745,8 +750,28 @@ button {
      transform: scale(1.2);
 }
 
+.fac {
+	padding: 3px 20px;
+	text-align: center;
+}
 
-/** end gallery  section **/
+.fac h3 {
+	color: #121212;
+     font-size: 24px;
+     line-height: 20px;
+     font-family: 'Hahmlet', sans-serif;
+     font-weight: 500;
+     transition: ease-in all 0.5s;
+     margin: auto;
+}
+
+.fac_read_more {
+	text-align: center;
+	margin-top: 35px;
+}
+
+
+/** end gallery(편의시설)  section **/
 
 
 /** blog section **/
