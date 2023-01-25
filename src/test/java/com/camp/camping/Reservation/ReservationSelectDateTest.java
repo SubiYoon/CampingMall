@@ -46,5 +46,7 @@ public class ReservationSelectDateTest {
     void IsEmpty(){
         System.out.println(service.IsDateEmpty(1,"2023-02-04"));
         System.out.println(service.IsDateEmpty(1,"2023-02-09"));
+        System.out.println(service.IsDateEmpty(1,"2023-03-01"));
+        System.out.println(service.IsOkToReservation(1,"2023-03-01"));
     }
 }

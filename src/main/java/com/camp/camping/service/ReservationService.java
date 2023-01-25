@@ -85,9 +85,19 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
     public Boolean IsDateEmpty(int site_code, String reservation_Date){
         ReservationDTO reservation = selectDateAndSite(site_code,reservation_Date);
         try{
-            return reservation == null || reservation.getReservation_date() == null;
+            return  reservation == null
+                    || reservation.getReservation_date() == null;
         }catch(Exception e){
             return true;
+        }
+    }
+    @Autowired
+    ScheduleService scheduleService;
+    public Boolean IsOkToReservation(int site_code,String date){
+        try {
+            return scheduleService.IsDateEmpty(date)&&this.IsDateEmpty(site_code,date);
+        } catch (Exception e) {
+            return false;
         }
     }
 }
