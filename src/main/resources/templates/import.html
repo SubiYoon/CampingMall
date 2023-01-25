@@ -58,9 +58,10 @@
 			contentType:"application/json",
 			dataType:"json",
 			success:function(data){
-				let dataHeader=data.response.header.resultCode;
+				let dataHeader=data.json1.response.header.resultCode;
+				let dataHeader2=data.json2.response.header.resultCode;
 				
-				if(dataHeader=="00"){
+				if(dataHeader=="00"&&dataHeader2=="00"){
 					console.log("sucee");
 					console.log(data);
 				}else{
