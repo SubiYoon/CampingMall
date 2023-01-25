@@ -1,4 +1,24 @@
 <script>
+   function isId(asValue) {
+      var regExp = /^[a-z]+[a-z0-9]{5,19}$/;
+ 
+      return regExp.test(asValue);
+   }
+   function isPassword(asValue) {
+      var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+ 
+      return regExp.test(asValue);
+   }
+   function isBirthday(asValue){
+      var regExp = /^[0-9]*$/;
+
+      return regExp.test(asValue);
+   }
+   function isCorrect(asValue) {
+      var regExp = /^[a-zA-Zㄱ-힣][a-zA-Zㄱ-힣 ]*$/;
+ 
+      return regExp.test(asValue);
+   }
 $(document).ready(function(){
 	$(".nav-item:nth-child(8)").attr('class','nav-item active');
 	$(".notactive:nth-child(8)").attr('class','active');
@@ -14,9 +34,13 @@ $(document).ready(function(){
       var tel2 = $('#register input[name=user_tel2]').val();
       var tel3 = $('#register input[name=user_tel3]').val();
       
-      //아이디 중복확인
+      //아이디 확인
       if(id == null || id == ''){
          alert("아이디를 입력해주세요.");
+         return;
+      }
+      if(!isId(id)){
+         alert("아이디는 영문자 또는 숫자 6~20자 입니다.")
          return;
       }
       if($('#register input[name=user_id]').attr('alt') == 'N'){
@@ -28,6 +52,10 @@ $(document).ready(function(){
          alert("비밀번호를 입력해주세요.");
          return;
       }
+      if(!isPassword(pwd)){
+         alert("비밀번호는 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합 해주세요.")
+         return;
+      }
       if(pwd != pwd_check){
          alert("비밀번호가 틀립니다.");
          return;
@@ -37,9 +65,17 @@ $(document).ready(function(){
          alert("이름을 입력하세요.");
          return;
       }
+      if(!isCorrect(name)){
+         alert("이름은 한글 or 영어만 입려 가능합니다.");
+         return;
+      }
       //생년월일 확인
       if(birthday == null || birthday ==''){   
          alert("생일을 입력하세요.");
+         return;
+      }
+      if(!isBirthday(birthday)){
+         alert("생일은 숫자만 입력해주세요.");
          return;
       }
       if(birthday.length != 6){
@@ -69,6 +105,10 @@ $(document).ready(function(){
             if(data==1){
                alert("아이디가 이미 존재합니다.");
             }else {
+               if(!isId(id)){
+                  alert("아이디는 영문자 + 숫자 6~20자 입니다.")
+                  return;
+               }
                alert("사용가능한 아이디 입니다.");
                //아이디 중복확인 완료되었는지 체크(N - 안됨, Y - 됨)
                $('#register input[name=user_id]').attr({'alt' : 'Y', 'readonly' : 'readonly'});
@@ -113,10 +153,10 @@ $(document).ready(function(){
                <form id="register">
                   <div class="blog_room">
                      아이디 <input type="text" name="user_id" alt="N"><input type="button" value="아이디 중복확인" id="checkid"/><br>
-                     비밀번호 <input type="password" name="user_password"/><br>
-                     비밀번호확인 <input type="password" name="user_password_check"/><br>
+                     비밀번호 <input type="password" name="user_password" maxlength="16" minlength="8"/><br>
+                     비밀번호확인 <input type="password" name="user_password_check" maxlength="16" minlength="8"/><br>
                      이름 <input type="text" name="user_name"/><br>
-                     생년월일 <input type="text" name="user_birthday"/><br>
+                     생년월일 <input type="text" name="user_birthday" maxlength="6"/><br>
                      연락처 <input type="text" style="width: 30px;" name="user_tel1"/> - <input type="text" style="width: 30px;" name="user_tel2"/> - <input type="text" style="width: 30px;" name="user_tel3"/><br>
                      <a href="#">회원가입</a>
                   </div>

@@ -40,5 +40,7 @@ public class UserService implements MyService<String, UserDTO>{
         return mapper.selectAll();
     }
 
-    
+    public void kakaoLoginInsert(UserDTO userDTO) throws Exception{
+        mapper.kakaoLoginInsert(userDTO);
+    }
 }

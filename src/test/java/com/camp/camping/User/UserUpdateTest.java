@@ -17,7 +17,7 @@ class UserUpdateTest {
 	@Test
 	void contextLoads() {
 
-		UserDTO user = new UserDTO(5, "user011", "비밀번호변경", "우하하", 123456, "010-9999-3333", "010", "4444", "9999");
+		UserDTO user = new UserDTO(5, "user011", "비밀번호변경", "우하하", "123456", "010-9999-3333", "010", "4444", "9999");
 
 		try {
 			service.update(user);

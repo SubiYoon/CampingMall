@@ -12,12 +12,11 @@ public class HomeDTO {
     private int admin_code;
     private String home_owner;
     private String home_content;
-    private int home_lng;
-    private int home_lat;
+    private String home_address;
+    private double home_longitude;
+    private double home_latitude;
     private String home_https;
     private String home_tell;
-    private String home_img1;
-    private String home_img2;
-    private String home_img3;
+
 }
 

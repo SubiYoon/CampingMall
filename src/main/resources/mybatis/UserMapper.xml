@@ -4,18 +4,21 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camp.camping.mapper.UserMapper">
 	<insert id="insert" parameterType="UserDTO">
-        INSERT INTO user(user_id, user_password, user_name, user_birthday, user_tell) VALUES(#{user_id}, #{user_password}, #{user_name}, #{user_birthday}, #{user_tell})
+        INSERT INTO user(user_id, user_password, user_name, user_birthday, user_tel) VALUES(#{user_id}, HEX(AES_ENCRYPT(#{user_password}, SHA2('noobcamp', 256))), #{user_name}, #{user_birthday}, #{user_tel})
     </insert>
     <select id="select" resultType="UserDTO">
-        SELECT * FROM user WHERE user_id=#{user_id}
+        SELECT user_code, user_id, AES_DECRYPT(UNHEX(user_password), SHA2('noobcamp', 256)) AS user_password, user_name, user_birthday, user_tel FROM user WHERE user_id=#{user_id}
     </select>
     <select id="selectAll" resultType="UserDTO">
         SELECT * FROM user
     </select>
     <update id="update" parameterType="UserDTO">
-        UPDATE user SET user_password=#{user_password}, user_tell=#{user_tell} WHERE user_code=#{user_code}
+        UPDATE user SET user_password=HEX(AES_ENCRYPT(#{user_password}, SHA2('noobcamp', 256))), user_tel=#{user_tel}, user_birthday=#{user_birthday}, user_name=#{user_name} WHERE user_code=#{user_code}
     </update>
     <delete id="delete">
         DELETE FROM user WHERE user_id=#{user_id}
     </delete>
+    <insert id="kakaoLoginInsert" parameterType="UserDTO">
+        INSERT INTO user(user_id, user_password, user_name, user_birthday, user_tel) VALUES(#{user_id}, '', #{user_name}, #{user_birthday}, #{user_tel})
+    </insert>
 </mapper>
