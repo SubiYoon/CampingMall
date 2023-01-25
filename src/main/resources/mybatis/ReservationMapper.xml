@@ -4,27 +4,36 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camp.camping.mapper.ReservationMapper">
     <insert id="insert" parameterType="ReservationDTO">
-        INSERT INTO reservation(user_id, user_password, user_name, user_birthday, user_phone_number)
-        VALUES (#{book_code}, #{reservation_date}, #{reservation_detail})
+        INSERT INTO reservation(reservation_code, book_code, reservation_date)
+        VALUES (#{reservation_code}, #{book_code}, #{reservation_date})
     </insert>
-    <select id="select" resultType="UserDTO">
+    <select id="select" resultType="ReservationDTO">
         SELECT *
         FROM reservation
         WHERE reservation_code = #{reservation_code}
     </select>
-    <select id="selectAll" resultType="UserDTO">
+    <select id="selectAll" resultType="ReservationDTO">
         SELECT *
         FROM reservation
     </select>
-    <update id="update" parameterType="UserDTO">
+    <select id="selectDate" resultType="ReservationDTO">
+        SELECT *
+        FROM reservation
+        Where reservation_date = #{reservation_date}
+    </select>
+    <update id="update" parameterType="ReservationDTO">
         UPDATE reservation
-        SET user_password=#{user_password},
-            user_phone_number=#{user_phone_number}
-        WHERE reservation_code = #{reservation_code}
+        SET reservation_date=#{reservation_date}
+        Where reservation_code = #{reservation_code}
     </update>
     <delete id="delete">
         DELETE
         FROM reservation
         WHERE reservation_code = #{reservation_code}
+    </delete>
+    <delete id="deleteByBook">
+        DELETE
+        FROM reservation
+        WHERE book_code = #{book_code}
     </delete>
 </mapper>

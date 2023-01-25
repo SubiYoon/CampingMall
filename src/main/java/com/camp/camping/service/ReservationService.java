@@ -6,6 +6,7 @@ import com.camp.camping.mapper.ReservationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,5 +37,11 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
     @Override
     public List<ReservationDTO> selectAll() throws Exception {
         return mapper.selectAll();
+    }
+    public List<ReservationDTO> selectDate(Date d) throws Exception {
+        return mapper.selectDate(d);
+    }
+    public void deleteByBook(Integer k) throws Exception {
+        mapper.deleteByBook(k);
     }
 }
