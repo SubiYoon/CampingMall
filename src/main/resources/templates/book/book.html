@@ -4,63 +4,124 @@ $(document).ready(function(){
 	$(".notactive:nth-child(5)").attr('class','active');
 });
 </script>
+<!--달력 생성 scipt-->
 <script type="text/javascript">
+   var selectDate1 = null;
+   var selectDate2 = null;
+   
    var today = new Date();
    function buildCalendar(){
-     var row = null
-     var cnt = 0;
-     var calendarTable = document.getElementById("calendar");
-     var calendarTableTitle = document.getElementById("calendarTitle");
-     calendarTableTitle.innerHTML = today.getFullYear()+"년"+(today.getMonth()+1)+"월";
-     
-     var firstDate = new Date(today.getFullYear(), today.getMonth(), 1);
-     var lastDate = new Date(today.getFullYear(), today.getMonth()+1, 0);
-     while(calendarTable.rows.length > 2){
+      var row = null
+      var cnt = 0;
+      var calendarTable = document.getElementById("calendar");
+      var calendarTableTitle = document.getElementById("calendarTitle");
+      calendarTableTitle.innerHTML = today.getFullYear()+"년"+(today.getMonth()+1)+"월";
+      
+      var firstDate = new Date(today.getFullYear(), today.getMonth(), 1);
+      var lastDate = new Date(today.getFullYear(), today.getMonth()+1, 0);
+      while(calendarTable.rows.length > 2){
         calendarTable.deleteRow(calendarTable.rows.length -1);
-     }
+      }
 
-     row = calendarTable.insertRow();
-     for(i = 0; i < firstDate.getDay(); i++){
+      row = calendarTable.insertRow();
+      for(i = 0; i < firstDate.getDay(); i++){
         cell = row.insertCell();
         cnt += 1;
-     }
+      }
+
+      var firstClick = null;
+      var secondClick = null;
+
+      //TODO:달력 앞뒤 이동시 표시 사라짐 해결해야함
+      //달력에 예약날짜 기간 표시
+      function bookPointOn(){
+         if(firstClick > secondClick){
+            var dept = secondClick;
+            secondClick = firstClick;
+            firstClick = dept;
+         }
+         
+         //0이 붙은 숫자라 숫자화를 위해 0을 한번 빼줌
+         if(firstClick<10){
+            firstClick -= 0;
+         }
+         
+         for(var i=firstClick; i<=secondClick; i++){
+            $('#'+i+'').attr('style', 'background-color: rgb(247,233,231);');
+         }
+      };
+
+      //달력에 예약날짜 기간 표시 없애기
+      function bookPointOff(){
+         for(var i=firstClick; i<=secondClick; i++){
+            $('#'+i+'').attr('style', 'background-color: while;');
+         }
+      }
+
+      for(i = 1; i <= lastDate.getDate(); i++){
+         
+         cell = row.insertCell();
+         cnt += 1;
    
-     for(i = 1; i <= lastDate.getDate(); i++){
-        cell = row.insertCell();
-        cnt += 1;
+         cell.setAttribute('id', i);
+         cell.innerHTML = "<a href='#'>" + i + "</a>";
+         cell.align = "center";
+
+      
+         cell.onclick = function(){
+            clickedYear = today.getFullYear();
+            clickedMonth = ( 1 + today.getMonth() );
+            clickedDate = this.getAttribute('id');
+      
+            clickedDate = clickedDate >= 10 ? clickedDate : '0' + clickedDate;
+            clickedMonth = clickedMonth >= 10 ? clickedMonth : '0' + clickedMonth;
+            clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
+            
+            
+            if(selectDate1==null){
+               selectDate1=clickedYMD;
+               bookPointOff();
+               firstClick = clickedDate;
+            }else if(selectDate1==clickedYMD){
+               alert("최소 1박이상을 선택해주세요.")
+               return;
+            }else if(selectDate1!=null){
+               selectDate2=clickedYMD;
+               secondClick = clickedDate;
+               
+               bookPointOn();
+
+               $.ajax({
+                  url:'/selectDate',
+                  type: 'post',
+                  data: {'selectDate1':selectDate1, 'selectDate2':selectDate2},
+                  success: function(result){
+                     $('#bookForm>input[name=book_checkin]').val(result.book_checkin);
+                     $('#bookForm>input[name=book_checkout]').val(result.book_checkout);
+                     selectDate1=null;
+                     selectDate2=null;
+                  }
+               })
+            }
+         //  opener.document.getElementById("date").value = clickedYMD;
+         //  self.close();
+         }
+
+         if (cnt % 7 == 1) {
+            cell.innerHTML = "<a href='#' style='color:#F79DC2;'>" + i + "</a>";
+         }
+      
+         if (cnt % 7 == 0){
+            cell.innerHTML = "<a href='#' style='color:skyblue;'>" + i + "</a>";
+            row = calendar.insertRow();
+         }
+      }
    
-       cell.setAttribute('id', i);
-        cell.innerHTML = "<a href='#'>" + i + "</a>";
-        cell.align = "center";
-   
-       cell.onclick = function(){
-          clickedYear = today.getFullYear();
-          clickedMonth = ( 1 + today.getMonth() );
-          clickedDate = this.getAttribute('id');
-   
-          clickedDate = clickedDate >= 10 ? clickedDate : '0' + clickedDate;
-          clickedMonth = clickedMonth >= 10 ? clickedMonth : '0' + clickedMonth;
-          clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
-   
-          opener.document.getElementById("date").value = clickedYMD;
-          self.close();
-       }
-   
-       if (cnt % 7 == 1) {
-          cell.innerHTML = "<font color=#F79DC2>" + "<a href='#'>" + i + "</a>" + "</font>";
-       }
-   
-       if (cnt % 7 == 0){
-          cell.innerHTML = "<font color=skyblue>" + "<a href='#'>" + i + "</a>" + "</font>";
-          row = calendar.insertRow();
-       }
-     }
-   
-     if(cnt % 7 != 0){
-        for(i = 0; i < 7 - (cnt % 7); i++){
-           cell = row.insertCell();
-        }
-     }
+      if(cnt % 7 != 0){
+         for(i = 0; i < 7 - (cnt % 7); i++){
+         cell = row.insertCell();
+         }
+      }
    }
    
    function prevCalendar(){
@@ -73,12 +134,20 @@ $(document).ready(function(){
       buildCalendar();
    }
    </script>
+   <style>
+      #calendar{
+         width:80%;
+      }
+      #calendar tr{
+         height: 50px;
+      }
+   </style>
         <div class="back_re">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="title">
-                      <h2>Blog</h2>
+                      <h2>예약하기</h2>
                   </div>
                </div>
             </div>
@@ -90,79 +159,52 @@ $(document).ready(function(){
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                    
-                     <table id="calendar" align="center" class="margin_0">
-                        <tr>
-                           <td align="center"><label onclick="prevCalendar()"> ◀ </label></td>
-                           <td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>
-                           <td align="center"><label onclick="nextCalendar()"> ▶ </label></td>
-                        </tr>
-                        <tr>
-                           <td align="center"><font color ="#F79DC2">일</td>
-                           <td align="center">월</td>
-                           <td align="center">화</td>
-                           <td align="center">수</td>
-                           <td align="center">목</td>
-                           <td align="center">금</td>
-                           <td align="center"><font color ="skyblue">토</td>
-                        </tr>
-                        <script type="text/javascript">buildCalendar();</script>
-                     </table>
+                    <p>날짜를 선택 후 Zone에서 Site를 선택해주세요.</p>
                   </div>
                </div>
             </div>
-            <div class="row">
-               <div class="col-md-4">
-                  <div class="book_room">
-                     <h1>Book a Room Online</h1>
-                     <form class="book_now">
-                        <div class="row">
-                           <div class="col-md-12">
-                              <span>Arrival</span>
-                              <img class="date_cua" src="images/date.png">
-                              <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
-                           </div>
-                           <div class="col-md-12">
-                              <span>Departure</span>
-                              <img class="date_cua" src="images/date.png">
-                              <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
-                           </div>
-                           <div class="col-md-12">
-                              <button class="book_btn">Book Now</button>
-                           </div>
-                        </div>
-                     </form>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="blog_box">
-                     <form action="/book/create" method="post">
-                        <div>체크인날짜<input type="date" name="book_checkin"></div>
-                        <div>체크아웃날짜<input type="date" name="book_checkout"></div>
-                        <div>사이트코드<input type="text" name="site_code"></div>
-                        <div>유저코드<input type="text" name="user_code"></div>
-                        <input type="submit" value="전송">
-                     </form>
-                     <div class="blog_room">
-                        <h3>예약 샘플</h3>
-                        <span>사이트/체크인/체크아웃/인원/차량번호</span>
-                        <p></p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div class="blog_box">
-                     <div class="blog_img">
-                        <figure><img src="images/blog3.jpg" alt="#"/></figure>
-                     </div>
-                     <div class="blog_room">
-                        <h3>Bed Room</h3>
-                        <span>The standard chunk </span>
-                        <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generatorsIf you are   </p>
-                     </div>
-                  </div>
-               </div>
-            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-7">
+            <table id="calendar" align="center">
+               <tr>
+                  <td align="center"><label onclick="prevCalendar()"> ◀ </label></td>
+                  <td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>
+                  <td align="center"><label onclick="nextCalendar()"> ▶ </label></td>
+               </tr>
+               <br>
+               <tr>
+                  <td align="center"><font color ="#F79DC2">일</td>
+                  <td align="center">월</td>
+                  <td align="center">화</td>
+                  <td align="center">수</td>
+                  <td align="center">목</td>
+                  <td align="center">금</td>
+                  <td align="center"><font color ="skyblue">토</td>
+               </tr>
+               <script type="text/javascript">buildCalendar();</script>
+            </table>
+         </div>
+         <div class="col-md-5">
+            <form id="bookForm">
+               <input type="date" name="book_checkin" readonly="readonly"/>
+               ~<input type="date" name="book_checkout" readonly="readonly"/><br>
+               <ul>
+                  <li class="col-md-3">
+
+                  </li>
+                  <li class="col-md-3">
+
+                  </li>
+                  <li class="col-md-3">
+
+                  </li>
+                  <li class="col-md-3">
+
+                  </li>
+               </ul>
+            </form>   
          </div>
       </div>
       <!-- end blog -->
