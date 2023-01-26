@@ -49,7 +49,7 @@
                   <h1>NoopCamping<br>방문을 환영합니다</h1>
                   <div class="row">
                   	<div class="col-md-12">
-                  		<span>NoopCamping(눕캠핑) 캠핑장은 자연과 함께하는 누스돈욜존다 마봬와 느먹또내 안저다 디하언포사를 데나아업고. 뱍디살티다 트연가놘의 달가아긍뿐 지와알하의 핍혐앗힝을 가라셥서다.</span>
+                  		<span th:text="${homecont.home_content}"></span>
                   	</div>
                   </div>
                   <!--  기존 폼
@@ -87,11 +87,16 @@
             <div class="titlepage">
                <h2>&nbsp;&nbsp;&nbsp;주요공지&nbsp;</h2>
                <ul id="main_notice_list">
-	               	<li>1 [임시휴무안내] The passage experienced a surge in popularity The passage experienced a surge in popularity</li>
-	               	<li>2 [안전수칙] and again during the 90s as desktop publishers The passage experienced a surge in popularity</li>
-	               	<li>3 [분실물안내] and again during the 90s as desktop publishers The passage experienced a surge in popularity</li>
+               		<div th:each="noticeLv:${noticeLv}">
+               			<li th:text="${noticeLv.notice_code}"></li>
+               			<li>
+               				<a th:text="${noticeLv.notice_title}" th:href="@{/notice/noticeview(notice_code=${noticeLv.notice_code})}"></a>
+               			</li>
+               		</div>
                </ul>
-               <a class="read_more" href="Javascript:void(0)"> Read More</a>
+            </div>
+            <div class="main_notice_read_more">
+            	<a class="read_more" th:href="@{/notice}">Read More</a>
             </div>
          </div>
       </div>
@@ -177,6 +182,11 @@
                </div>
             </div>
          </div>
+         <div class="col-md-12">
+	         <div class="our_read_more">
+	         	<a class="read_more" href="Javascript:void(0)"> Read More</a>
+	         </div>
+         </div>
       </div>
    </div>
 </div>
@@ -197,42 +207,50 @@
             <div class="gallery_img">
                <figure><img th:src="@{/images/gallery1.jpg}" alt="#" /></figure>
             </div>
+            <div class="fac">
+                  <h3>Bed Room</h3>
+                  <p>If you are going to use a passage of Lorem Ipsum</p>
+               </div>
          </div>
          <div class="col-md-3 col-sm-6">
             <div class="gallery_img">
                <figure><img th:src="@{/images/gallery2.jpg}" alt="#" /></figure>
             </div>
+            <div class="fac">
+                  <h3>Bed Room</h3>
+                  <p>If you are going to use a passage of Lorem Ipsum</p>
+               </div>
          </div>
          <div class="col-md-3 col-sm-6">
             <div class="gallery_img">
                <figure><img th:src="@{/images/gallery3.jpg}" alt="#" /></figure>
             </div>
+            <div class="fac">
+                  <h3>Bed Room</h3>
+                  <p>If you are going to use a passage of Lorem Ipsum</p>
+               </div>
          </div>
          <div class="col-md-3 col-sm-6">
             <div class="gallery_img">
                <figure><img th:src="@{/images/gallery4.jpg}" alt="#" /></figure>
             </div>
+            <div class="fac">
+                  <h3>Bed Room</h3>
+                  <p>If you are going to use a passage of Lorem Ipsum</p>
+               </div>
          </div>
+         <div class="col-md-12">
+	         <div class="fac_read_more">
+	         	<a class="read_more" href="Javascript:void(0)"> Read More</a>
+	         </div>
+         </div>
+         <!--  기존양식
          <div class="col-md-3 col-sm-6">
             <div class="gallery_img">
-               <figure><img th:src="@{/images/gallery5.jpg}" alt="#" /></figure>
+               <figure><img th:src="@{/images/gallery2.jpg}" alt="#" /></figure>
             </div>
-         </div>
-         <div class="col-md-3 col-sm-6">
-            <div class="gallery_img">
-               <figure><img th:src="@{/images/gallery6.jpg}" alt="#" /></figure>
-            </div>
-         </div>
-         <div class="col-md-3 col-sm-6">
-            <div class="gallery_img">
-               <figure><img th:src="@{/images/gallery7.jpg}" alt="#" /></figure>
-            </div>
-         </div>
-         <div class="col-md-3 col-sm-6">
-            <div class="gallery_img">
-               <figure><img th:src="@{/images/gallery8.jpg}" alt="#" /></figure>
-            </div>
-         </div>
+         </div>       
+         -->
       </div>
    </div>
 </div>
