@@ -13,11 +13,11 @@ public class SiteSelectTest {
     SiteService service;
 
     @Test
-    @Disabled
     void findAvailableSite(){
         try {
-            System.out.println(service.AvailableSite(1,"2023-03-02","2023-03-03"));
+            System.out.println(service.AvailableSite(1,"2023-02-03","2023-02-05"));
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("ㅈ버그터짐");
         }
     }

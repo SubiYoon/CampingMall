@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.text.ParseException;
 import java.util.*;
 
 @Service
@@ -58,28 +57,38 @@ public class SiteService implements MyService<Integer, SiteDTO> {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(Utility.StringToDate(stringDate2));
         int days = Utility.StringDateDifference(stringDate2, stringDate1);
-
-        Boolean isAvailable=true;
+        List<Integer> site_codes = Collections.emptyList();
+        Boolean isAvailable = true;
 
         for (int i = days; i > 0; i--) {
-            calendar.add(Calendar.DATE,-1);
-            isAvailable=scheduleService.IsDateEmpty(Utility.DateToString(calendar.getTime()),company_code);
-            if(!isAvailable){
-                return null;
+            calendar.add(Calendar.DATE, -1);
+            isAvailable = scheduleService.IsDateEmpty(Utility.DateToString(calendar.getTime()), company_code);
+            if (!isAvailable) {
+                return site_codes;
             }
         }
-        List<Integer> site_codes = selectByCompany(company_code);
+
+        site_codes = selectByCompany(company_code);
         Set<Integer> exclusions = new HashSet<>();
+
         for (int i = days; i > 0; i--) {
-            List< ReservationDTO> reservations =reservationService.selectDate(calendar.getTime());
-            for(ReservationDTO reservation: reservations){
+            List<ReservationDTO> reservations = reservationService.selectDate(calendar.getTime());
+            for (ReservationDTO reservation : reservations) {
                 exclusions.add(reservationService.findSiteCode(reservation.getReservation_code()));
             }
-            calendar.add(Calendar.DATE,+1);
+            calendar.add(Calendar.DATE, 1);
         }
-        for(int exclusion : exclusions){
-            site_codes.remove(exclusion);
+        for (int exclusion : exclusions) {
+            site_codes.remove(Integer.valueOf(exclusion));
         }
         return site_codes;
+    }
+
+    public Boolean IsOkToReservation(int site_code, String date) {
+        try {
+            return scheduleService.IsDateEmpty(date, this.findCompanyCode(site_code)) && reservationService.IsDateEmpty(site_code, date);
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

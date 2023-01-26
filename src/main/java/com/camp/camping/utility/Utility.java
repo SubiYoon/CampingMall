@@ -17,14 +17,14 @@ public class Utility {
 
     static public int DateDifference(Date date1, Date date2) {
         long differenceDays;
-        differenceDays = (date1.getTime() - date2.getTime()) / 1000 * 24 * 60 * 60;
+        differenceDays = (date1.getTime() - date2.getTime()) / (1000 * 24 * 60 * 60);
         return (int) differenceDays;
     }
     static public int StringDateDifference(String stringDate1, String stringDate2) throws ParseException {
         long differenceDays;
         Date date1 = StringToDate(stringDate1);
         Date date2 = StringToDate(stringDate2);
-        differenceDays = (date1.getTime() - date2.getTime()) / 1000 * 24 * 60 * 60;
+        differenceDays = (date1.getTime() - date2.getTime()) / (1000 * 24 * 60 * 60);
         return (int) differenceDays;
     }
 }

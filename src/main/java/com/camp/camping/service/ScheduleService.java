@@ -7,7 +7,6 @@ import com.camp.camping.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -41,8 +40,8 @@ public class ScheduleService implements MyService<Integer, ScheduleDTO> {
         return mapper.selectAll();
     }
 
-    public ScheduleDTO selectDate(Date d, int company_code) throws Exception {
-        return mapper.selectDate(d, company_code);
+    public ScheduleDTO selectDate(Date date, int company_code){
+        return mapper.selectDate(date, company_code);
     }
 
     public Boolean IsDateEmpty(String d, int company_code) throws Exception {

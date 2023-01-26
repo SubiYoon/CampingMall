@@ -3,13 +3,11 @@ package com.camp.camping.service;
 import com.camp.camping.DTO.BookDTO;
 import com.camp.camping.DTO.ReservationDTO;
 import com.camp.camping.frame.MyService;
-import com.camp.camping.mapper.BookMapper;
 import com.camp.camping.mapper.ReservationMapper;
 import com.camp.camping.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,10 +18,6 @@ import java.util.List;
 public class ReservationService implements MyService<Integer, ReservationDTO> {
     @Autowired
     ReservationMapper mapper;
-    @Inject
-    ScheduleService scheduleService;
-    @Inject
-    SiteService siteService;
 
     @Override
     public void insert(ReservationDTO v) throws Exception {
@@ -77,7 +71,7 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
     }
 
     private int BookDays(BookDTO book) {
-        long diff = 0;
+        long diff;
         try {
             diff = (Utility.StringToDate(book.getBook_checkout()).getTime() - Utility.StringToDate(book.getBook_checkin()).getTime()) / 1000;
         } catch (ParseException e) {
@@ -108,11 +102,5 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
             return true;
         }
     }
-    public Boolean IsOkToReservation(int site_code, String date) {
-        try {
-            return scheduleService.IsDateEmpty(date, siteService.findCompanyCode(site_code)) && this.IsDateEmpty(site_code, date);
-        } catch (Exception e) {
-            return false;
-        }
-    }
+
 }

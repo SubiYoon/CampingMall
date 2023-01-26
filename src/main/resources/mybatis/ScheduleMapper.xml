@@ -17,11 +17,15 @@
         FROM schedule
     </select>
     <select id="selectDate" resultType="ScheduleDTO">
-        SELECT schedule.schedule_code, schedule.admin_code, schedule.schedule_date, schedule.schedule_name
-        FROM schedule,
-             admin
+        SELECT schedule.schedule_code schedule_code,
+               schedule.admin_code    admin_code,
+               schedule.schedule_date schedule_date,
+               schedule.schedule_name schedule_name
+        FROM schedule
+                 join admin
+                      on schedule.admin_code = admin.admin_code
         Where schedule_date = #{schedule_date}
-          AND admin.company_code = #{company_code}
+          AND admin.company_code = #{company_code};
     </select>
     <update id="update" parameterType="ScheduleDTO">
         UPDATE schedule
