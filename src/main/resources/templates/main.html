@@ -42,7 +42,17 @@
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 	$(document).ready(function () {
-		//모달-------------------------
+		//챗봇모달----------------------------
+		$('#modal_open_cb').click(function () {
+			document.getElementById("modal_cb").style.display = "flex";
+		});
+		$('#modal_close_cb').click(function () {
+			document.getElementById("modal_cb").style.display = "none";
+			document.body.style = "overflow: auto";
+		});
+		//end 챗봇모달------------------------
+		
+		//로그인모달--------------------------
 		$('#modal_open').click(function () {
 			document.getElementById("modal").style.display = "flex";
 			document.body.style = "overflow: hidden";
@@ -51,7 +61,8 @@
 			document.getElementById("modal").style.display = "none";
 			document.body.style = "overflow: auto";
 		});
-		//end 모달-------------------------
+		//end 로그인모달----------------------
+		
 		//로그인
 		$('#loginForm button').click(function () {
 			$('#loginForm').attr({
@@ -117,7 +128,7 @@
 
 </head>
 
-<!-- 모달창-->
+<!-- 로그인모달창 -->
 <div id="modal" class="modal-overlay">
 	<div class="modal-content">
 		<div class="modal-btn">
@@ -140,6 +151,18 @@
 		</div>
 	</div>
 </div>
+<!-- end 로그인모달창 -->
+
+<!-- 챗봇 모달창 -->
+<div id="modal_cb" class="modal_cb-overlay">
+	<div class="modal_cb-content">
+		<div class="modal_cb-btn">
+			<button id="modal_close_cb">닫기</button>
+		</div>
+		<div>Hi</div>
+	</div>
+</div>
+<!-- 챗봇 모달창 end -->
 
 <!-- body -->
 
@@ -151,11 +174,9 @@
 		</div>
 	</div>
 	<!-- end loader -->
+	
 	<!-- header -->
 	<header>
-
-
-
 		<!-- header inner -->
 		<div class="header">
 			<div class="container">
@@ -201,6 +222,15 @@
 		</div>
 	</header>
 	<!-- end header inner -->
+	
+	<!-- 챗봇아이콘 -->
+	<div id="modal_cbicon">
+		<button id="modal_open_cb">
+			<img th:src="@{/images/chatbot.png}"/>
+		</button>
+	</div>
+	<!-- end 챗봇아이콘 -->
+	
 	<!-- end header -->
 
 	<!-- banner -->
@@ -209,7 +239,7 @@
 	</section>
 	<!-- end banner -->
 	<!-- end contact -->
-
+	
 	<!--  footer -->
 	<footer>
 		<div class="footer">
