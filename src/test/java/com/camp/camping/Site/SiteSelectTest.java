@@ -13,9 +13,18 @@ public class SiteSelectTest {
     SiteService service;
 
     @Test
-    void findAvailableSite(){
+    void findSite(){
         try {
             System.out.println(service.AvailableSite(1,"2023-02-03","2023-02-05"));
+        } catch (Exception e) {
+            System.out.println("ㅈ버그터짐2");
+        }
+    }
+
+    @Test
+    void findAvailableSite(){
+        try {
+            System.out.println(service.AvailableSiteCode(1,"2023-02-03","2023-02-05"));
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("ㅈ버그터짐");

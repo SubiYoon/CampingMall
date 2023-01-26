@@ -21,4 +21,9 @@
           And site.zone_code = zone.zone_code
           And zone.admin_code = admin.admin_code
     </select>
+    <select id="select" resultType="SiteDTO">
+        SELECT *
+        FROM site
+        WHERE site_code = #{site_code}
+    </select>
 </mapper>

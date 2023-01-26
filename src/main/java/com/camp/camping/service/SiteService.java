@@ -37,7 +37,7 @@ public class SiteService implements MyService<Integer, SiteDTO> {
 
     @Override
     public SiteDTO select(Integer integer) throws Exception {
-        return null;
+        return mapper.select(integer);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class SiteService implements MyService<Integer, SiteDTO> {
         return mapper.findCompanyCode(site_code);
     }
 
-    public List<Integer> AvailableSite(int company_code, String stringDate1, String stringDate2) throws Exception {
+    public List<Integer> AvailableSiteCode(int company_code, String stringDate1, String stringDate2) throws Exception {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(Utility.StringToDate(stringDate2));
         int days = Utility.StringDateDifference(stringDate2, stringDate1);
@@ -82,6 +82,15 @@ public class SiteService implements MyService<Integer, SiteDTO> {
             site_codes.remove(Integer.valueOf(exclusion));
         }
         return site_codes;
+    }
+    public List<SiteDTO> AvailableSite(int company_code, String stringDate1, String stringDate2) throws Exception {
+        List<Integer> siteCodes = AvailableSiteCode(company_code, stringDate1,stringDate2);
+        List<SiteDTO> availableSites = new ArrayList<>();
+        for(int siteCode:siteCodes){
+            SiteDTO site = select(siteCode);
+            availableSites.add(site);
+        }
+        return availableSites;
     }
 
     public Boolean IsOkToReservation(int site_code, String date) {
