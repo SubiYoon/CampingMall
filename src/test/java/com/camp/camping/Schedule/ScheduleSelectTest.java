@@ -27,7 +27,7 @@ public class ScheduleSelectTest {
             System.out.println("날짜 버그 터짐");
         }
         try {
-            ScheduleDTO schedule = service.selectDate(schedule_date);
+            ScheduleDTO schedule = service.selectDate(schedule_date,1);
             System.out.println(schedule.toString());
         } catch (Exception e) {
             System.out.println("버그 터짐");
@@ -36,7 +36,7 @@ public class ScheduleSelectTest {
     @Test
     void IsEmptyTest(){
         try {
-            System.out.println(service.IsDateEmpty("2023-03-02"));
+            System.out.println(service.IsDateEmpty("2023-03-02",1));
         } catch (Exception e) {
             System.out.println("ㅈ버그터짐");
         }
@@ -47,7 +47,7 @@ public class ScheduleSelectTest {
         int site_code =1;
         String date="2023-03-02";
         try {
-            System.out.println(service.IsDateEmpty(date) && reservationService.IsDateEmpty(site_code,date));
+            System.out.println(service.IsDateEmpty(date,1) && reservationService.IsDateEmpty(site_code,date));
         } catch (Exception e) {
             System.out.println("ㅈ버그 터짐");
         }

@@ -33,14 +33,4 @@ public class BookDTO {
         this.book_price=book_price;
         this.book_car_number=book_car_number;
     }
-
-    public Date StringToDate(String stringDate) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return new Date(sdf.parse(stringDate).getTime());
-    }
-
-    public String DateToString(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(date);
-    }
 }

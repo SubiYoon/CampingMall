@@ -10,6 +10,5 @@ import java.util.Date;
 @Repository
 @Mapper
 public interface ScheduleMapper extends MyMapper<Integer, ScheduleDTO> {
-    ScheduleDTO selectDate(Date d);
-    ScheduleDTO selectDate(String d);
+    ScheduleDTO selectDate(Date d, int company_code);
 }
