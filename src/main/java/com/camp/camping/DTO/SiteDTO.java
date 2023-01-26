@@ -13,9 +13,4 @@ public class SiteDTO {
     private String site_name;
     private int site_price;
     private String site_content;
-    private String site_img1;
-    private String site_img2;
-    private String site_img3;
-    private String site_img4;
-    private String site_img5;
 }

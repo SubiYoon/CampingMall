@@ -31,6 +31,13 @@
         WHERE reservation.reservation_date = #{reservation_date}
           AND book.site_code = #{site_code};
     </select>
+    <select id="findSiteCode" resultType="Integer">
+        SELECT book.site_code
+        FROM reservation
+                 join book
+                      on reservation.book_code = book.book_code
+        Where reservation_code = #{reservation_code}
+    </select>
     <update id="update" parameterType="ReservationDTO">
         UPDATE reservation
         SET reservation_date=#{reservation_date}

@@ -12,4 +12,5 @@ import java.util.List;
 @Mapper
 public interface SiteMapper extends MyMapper<Integer, SiteDTO> {
     List<Integer> selectByCompany(@Param("company_code")int company_code);
+    int findCompanyCode(@Param("site_code")int site_code);
 }

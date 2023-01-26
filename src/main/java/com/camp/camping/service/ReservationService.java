@@ -3,8 +3,8 @@ package com.camp.camping.service;
 import com.camp.camping.DTO.BookDTO;
 import com.camp.camping.DTO.ReservationDTO;
 import com.camp.camping.frame.MyService;
-import com.camp.camping.mapper.BookMapper;
 import com.camp.camping.mapper.ReservationMapper;
+import com.camp.camping.utility.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +18,6 @@ import java.util.List;
 public class ReservationService implements MyService<Integer, ReservationDTO> {
     @Autowired
     ReservationMapper mapper;
-    @Autowired
-    BookMapper bookMapper;
 
     @Override
     public void insert(ReservationDTO v) throws Exception {
@@ -45,15 +43,22 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
     public List<ReservationDTO> selectAll() throws Exception {
         return mapper.selectAll();
     }
+
     public List<ReservationDTO> selectDate(Date d) throws Exception {
         return mapper.selectDate(d);
     }
+
     public void deleteByBook(Integer k) throws Exception {
         mapper.deleteByBook(k);
     }
-    public void insertReservationByBook(BookDTO book) throws Exception{
+
+    public int findSiteCode(int reservation_code) {
+        return mapper.findSiteCode(reservation_code);
+    }
+
+    public void insertReservationByBook(BookDTO book) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date reservationDate = book.StringToDate(book.getBook_checkout());
+        Date reservationDate = Utility.StringToDate(book.getBook_checkout());
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(reservationDate);
@@ -65,15 +70,15 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         }
     }
 
-    private int BookDays(BookDTO book){
-        long diff = 0;
+    private int BookDays(BookDTO book) {
+        long diff;
         try {
-            diff = (book.StringToDate(book.getBook_checkout()).getTime() - book.StringToDate(book.getBook_checkin()).getTime()) / 1000;
+            diff = (Utility.StringToDate(book.getBook_checkout()).getTime() - Utility.StringToDate(book.getBook_checkin()).getTime()) / 1000;
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
         long difDays = diff / (24 * 60 * 60);
-        return (int)difDays;
+        return (int) difDays;
     }
 
     public ReservationDTO selectDateAndSite(int site_code, String reservation_Date) {
@@ -87,12 +92,15 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         }
         return reservation;
     }
-    public Boolean IsDateEmpty(int site_code, String reservation_Date){
-        ReservationDTO reservation = selectDateAndSite(site_code,reservation_Date);
-        try{
-            return reservation == null || reservation.getReservation_date() == null;
-        }catch(Exception e){
+
+    public Boolean IsDateEmpty(int site_code, String reservation_Date) {
+        ReservationDTO reservation = selectDateAndSite(site_code, reservation_Date);
+        try {
+            return reservation == null
+                    || reservation.getReservation_date() == null;
+        } catch (Exception e) {
             return true;
         }
     }
+
 }
