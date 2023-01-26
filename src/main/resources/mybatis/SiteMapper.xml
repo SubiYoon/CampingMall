@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.camping.mapper.SiteMapper">
+    <select id="selectByCompany" resultType="Integer">
+        select site.site_code
+        from site,
+             zone,
+             admin
+        where admin.company_code = #{company_code}
+          AND admin.admin_code = zone.admin_code
+          And zone.zone_code = site.zone_code;
+    </select>
+</mapper>
