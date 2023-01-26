@@ -1,28 +1,32 @@
-package com.camp.camping.home;
+package com.camp.camping.Notice;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.camp.camping.DTO.HomeDTO;
-import com.camp.camping.service.HomeService;
+import com.camp.camping.DTO.NoticeDTO;
+import com.camp.camping.service.NoticeService;
 
 @SpringBootTest
-class HomeLnglatTest {
+class NoticeTest {
 	
 	@Autowired
-	HomeService service;
+	NoticeService service;
 	
 	@Test
 	void contextLoads() {
 		
-		
-		HomeDTO home = null;
+		List<NoticeDTO> test = null;
 		
 		try {
-			home = service.homeCont(2);
+			test = service.noticeLv();
+			for(int i=0; i<test.size(); i++) {
+			}
+	
 			System.out.println("ok");
-			System.out.println(home);
+			System.out.println(test.toString());
 
 		} catch (Exception e) {
 			e.printStackTrace();
