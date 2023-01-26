@@ -365,6 +365,13 @@ button {
     display: line-block;
 }
 
+#me {
+	width: 95%;
+	height: 50px;
+	border: 2px solid blue;
+}
+
+
 
 /*-- 챗봇모달용 end--*/
 
