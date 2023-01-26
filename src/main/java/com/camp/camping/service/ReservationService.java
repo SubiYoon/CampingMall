@@ -53,7 +53,7 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
     }
     public void insertReservationByBook(BookDTO book) throws Exception{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date reservationDate = book.getBook_checkout();
+        Date reservationDate = book.StringToDate(book.getBook_checkout());
 
         Calendar cal = Calendar.getInstance();
         cal.setTime(reservationDate);
@@ -66,7 +66,12 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
     }
 
     private int BookDays(BookDTO book){
-        long diff = (book.getBook_checkout().getTime() - book.getBook_checkin().getTime()) / 1000;
+        long diff = 0;
+        try {
+            diff = (book.StringToDate(book.getBook_checkout()).getTime() - book.StringToDate(book.getBook_checkin()).getTime()) / 1000;
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         long difDays = diff / (24 * 60 * 60);
         return (int)difDays;
     }
