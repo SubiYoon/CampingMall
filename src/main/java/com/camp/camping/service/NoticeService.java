@@ -40,8 +40,8 @@ public class NoticeService implements MyService<Integer, NoticeDTO>{
         return mapper.selectAll();
     }
     
-    public List<NoticeDTO> noticeLv() throws Exception {
-    	return mapper.noticeLv();
+    public List<NoticeDTO> noticeLv(Integer companycode) throws Exception {
+    	return mapper.noticeLv(companycode);
     }
 
     
