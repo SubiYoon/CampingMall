@@ -18,6 +18,7 @@
         SELECT *
         FROM book
         WHERE merchant_uid = #{merchant_uid}
+            And book_state=1
     </select>
     <select id="selectAll" resultType="BookDTO">
         SELECT *
@@ -27,7 +28,8 @@
         UPDATE book
         SET book_member=#{book_member},
             book_price=#{book_price},
-            book_car_number=#{book_car_number}
+            book_car_number=#{book_car_number},
+            book_state=#{book_state}
         WHERE book_code = #{book_code}
     </update>
     <delete id="delete">

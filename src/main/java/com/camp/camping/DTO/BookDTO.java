@@ -24,6 +24,7 @@ public class BookDTO {
     private Date book_writedate;
     private int book_price;
     private String book_car_number;
+    private int book_state;
 
     public BookDTO(int site_code, int user_code, String merchant_uid, int book_member, String book_checkin, String book_checkout, int book_price, String book_car_number) {
         this.site_code=site_code;
