@@ -59,8 +59,8 @@
                 endDay = 32;
             } else if ((today.getFullYear() * 100 + today.getMonth() + 1) > (secondClickYear * 100 + secondClickMonth)) {
                 endDay = 0;
-            }
 
+            }
             for (var i = startDay; i <= endDay; i++) {
                 $('#' + i + '').attr('style', 'background-color: rgb(247,233,231);');
             }
