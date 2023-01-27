@@ -43,8 +43,6 @@ public class ChatBotUtil {
 		int responseCode = con.getResponseCode();
 		System.out.println("responseCode:"+responseCode);
 
-		BufferedReader br;
-
 		if(responseCode==200) { // 정상 호출
 
 			BufferedReader in = new BufferedReader(

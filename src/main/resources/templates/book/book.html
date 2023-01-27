@@ -8,6 +8,90 @@ $(document).ready(function(){
 <script type="text/javascript">
    var selectDate1 = null;
    var selectDate2 = null;
+   var firstClickYear = null;
+   var secondClickYear = null;
+   var firstClickMonth = null;
+   var secondClickMonth = null;
+   var firstClickDate = null;
+   var secondClickDate = null;
+
+   //0이 붙은 숫자라 숫자화를 위해 0을 한번 빼줌
+   function number(){
+      firstClickDate -= 0;
+      secondClickDate -= 0;
+      firstClickMonth -= 0;
+      secondClickMonth -= 0;      
+   }
+
+   //달력에 예약날짜 기간 표시
+   function bookPointOn(){
+      if(firstClickDate > secondClickDate){
+         var dept = secondClickDate;
+         secondClickDate = firstClickDate;
+         firstClickDate = dept;
+      }
+
+      if(firstClickMonth > secondClickMonth){
+         var dept = secondClickMonth;
+         secondClickMonth = firstClickMonth;
+         firstClickMonth = dept;
+      }
+
+      if(firstClickYear > secondClickYear){
+         var dept = secondClickYear;
+         secondClickYear = firstClickYear;
+         firstClickYear = dept;
+      }
+
+      number();
+
+      if(firstClickMonth==secondClickMonth){
+         for(var i=firstClickDate; i<=secondClickDate; i++){
+            $('#'+i+'').attr('style', 'background-color: rgb(247,233,231);');
+         }
+      }
+      if(firstClickMonth!=secondClickMonth){
+         if(today.getMonth()+1 == firstClickMonth){
+            for(var i = secondClickDate; i<=31; i++){
+               $('#'+i+'').attr('style', 'background-color: rgb(247,233,231);');
+            }
+         }
+         if(today.getMonth()+1 == secondClickMonth){
+            for(var i = firstClickDate; i>=1; i--){
+               $('#'+i+'').attr('style', 'background-color: rgb(247,233,231);');
+            }
+         }
+      }
+   };
+
+   function prevent(){
+      if(firstClickMonth<secondClickMonth){
+         for(var i = secondClickDate; i<=31; i++){
+            $('#'+i+'').attr('style', 'background-color: rgb(247,233,231);');
+         }
+      }
+   };
+
+   function next(){
+      if(firstClickMonth<secondClickMonth){
+         for(var i = firstClickDate; i>=1; i--){
+            $('#'+i+'').attr('style', 'background-color: rgb(247,233,231);');
+         }
+      }
+   }
+
+   //달력에 예약날짜 기간 표시 없애기
+   function bookPointOff(){
+      firstClickYear=null;
+      secondClickYear=null;
+      firstClickMonth=null;
+      secondClickMonth=null;
+      firstClickDate=null;
+      secondClickDate=null;
+      for(var i=1; i<=31; i++){
+         $('#'+i+'').attr('style', 'background-color: while;');
+      }
+   }
    
    var today = new Date();
    function buildCalendar(){
@@ -29,35 +113,6 @@ $(document).ready(function(){
         cnt += 1;
       }
 
-      var firstClick = null;
-      var secondClick = null;
-
-      //TODO:달력 앞뒤 이동시 표시 사라짐 해결해야함
-      //달력에 예약날짜 기간 표시
-      function bookPointOn(){
-         if(firstClick > secondClick){
-            var dept = secondClick;
-            secondClick = firstClick;
-            firstClick = dept;
-         }
-         
-         //0이 붙은 숫자라 숫자화를 위해 0을 한번 빼줌
-         if(firstClick<10){
-            firstClick -= 0;
-         }
-         
-         for(var i=firstClick; i<=secondClick; i++){
-            $('#'+i+'').attr('style', 'background-color: rgb(247,233,231);');
-         }
-      };
-
-      //달력에 예약날짜 기간 표시 없애기
-      function bookPointOff(){
-         for(var i=firstClick; i<=secondClick; i++){
-            $('#'+i+'').attr('style', 'background-color: while;');
-         }
-      }
-
       for(i = 1; i <= lastDate.getDate(); i++){
          
          cell = row.insertCell();
@@ -76,21 +131,46 @@ $(document).ready(function(){
             clickedDate = clickedDate >= 10 ? clickedDate : '0' + clickedDate;
             clickedMonth = clickedMonth >= 10 ? clickedMonth : '0' + clickedMonth;
             clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
-            
-            
+
             if(selectDate1==null){
                selectDate1=clickedYMD;
                bookPointOff();
-               firstClick = clickedDate;
+               firstClickYear = clickedYear;
+               firstClickMonth = clickedMonth;
+               firstClickDate = clickedDate;
             }else if(selectDate1==clickedYMD){
                alert("최소 1박이상을 선택해주세요.")
                return;
             }else if(selectDate1!=null){
                selectDate2=clickedYMD;
-               secondClick = clickedDate;
-               
-               bookPointOn();
+               secondClickYear = clickedYear;
+               secondClickMonth = clickedMonth;
+               secondClickDate = clickedDate;
 
+               console.log(firstClickYear)
+               console.log(firstClickMonth)
+               console.log(firstClickDate)
+               console.log(secondClickYear)
+               console.log(secondClickMonth)
+               console.log(secondClickDate)
+               console.log(today.getMonth()+1)
+
+               // if(firstClickYear!=secondClickYear){
+               //    if(firstClickMonth!=secondClickMonth){
+               //       if(today.getMonth()+1 == firstClickMonth){
+               //          for(var i = firstClickDate; i>=1; i--){
+               //             $('#'+i+'').attr('style', 'background-color: rgb(247,233,231);');
+               //          }
+               //       }
+               //       if(today.getMonth()+1 == secondClickMonth){
+               //          for(var i = secondClickDate; i<=31; i++){
+               //             $('#'+i+'').attr('style', 'background-color: rgb(247,233,231);');
+               //          }
+               //       }
+               //    }                  
+               // }else 
+               bookPointOn();
+                  
                $.ajax({
                   url:'/selectDate',
                   type: 'post',
@@ -105,6 +185,7 @@ $(document).ready(function(){
             }
          //  opener.document.getElementById("date").value = clickedYMD;
          //  self.close();
+         
          }
 
          if (cnt % 7 == 1) {
@@ -127,11 +208,49 @@ $(document).ready(function(){
    function prevCalendar(){
       today = new Date(today.getFullYear(), today.getMonth()-1, today.getDate());
       buildCalendar();
+      number();
+      if(today.getFullYear()!=secondClickYear){
+         if(today.getMonth()+1 == secondClickMonth){
+            prevent();
+         }
+         if(today.getMonth()+1 == firstClickMonth){
+            next();
+         }
+      }else if(today.getFullYear()==firstClickYear){
+         if(today.getMonth()+1 == secondClickMonth){
+            next();
+         }
+         if(today.getMonth()+1 == firstClickMonth){
+            prevent();
+         }
+         if(firstClickMonth == secondClickMonth && secondClickMonth == today.getMonth()+1){
+            bookPointOn();
+         }
+      }
    }
    
    function nextCalendar(){
       today = new Date(today.getFullYear(), today.getMonth()+1, today.getDate());
       buildCalendar();
+      number();
+      if(today.getFullYear()!=firstClickYear){
+         if(today.getMonth()+1 == secondClickMonth){
+            prevent();
+         }
+         if(today.getMonth()+1 == firstClickMonth){
+            next();
+         }
+      }else if(today.getFullYear()==secondClickYear){
+         if(today.getMonth()+1 == secondClickMonth){
+            next();
+         }
+         if(today.getMonth()+1 == firstClickMonth){
+            prevent();
+         }
+         if(firstClickMonth == secondClickMonth && secondClickMonth == today.getMonth()+1){
+            bookPointOn();
+         }
+      }
    }
    </script>
    <style>
@@ -192,10 +311,10 @@ $(document).ready(function(){
                ~<input type="date" name="book_checkout" readonly="readonly"/><br>
                <ul>
                   <li class="col-md-3">
-
+                     
                   </li>
                   <li class="col-md-3">
-
+                     
                   </li>
                   <li class="col-md-3">
 
