@@ -47,7 +47,7 @@ public class UserController {
 			System.out.println("실패");
 		}
 
-		return "redirect:/";
+		return "redirect:/main";
 	}
 	
 	@RequestMapping("mypage")
@@ -103,7 +103,7 @@ public class UserController {
 		}
 
 		//TODO: 페이지 이동 수정필요
-		return "redirect:/";
+		return "redirect:/main";
 	}
 
 	@RequestMapping("delete")
@@ -117,7 +117,7 @@ public class UserController {
 			System.out.println("실패");
 		}
 
-		return "redirect:/";
+		return "redirect:/main";
 	}
 
 	@RequestMapping("loginOk")
@@ -128,7 +128,7 @@ public class UserController {
 			user=service.select(userDTO.getUser_id());
 			if(user.getUser_id().equals(userDTO.getUser_id()) && user.getUser_password().equals(userDTO.getUser_password())){
 				session.setAttribute("user", user);
-				result_page="redirect:/";
+				result_page="redirect:/main";
 			}
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -140,7 +140,7 @@ public class UserController {
 	@RequestMapping("logout")
 	public String logOut(HttpSession session){
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:/main";
 	}
 
 	@RequestMapping("checkid")

@@ -2,11 +2,14 @@ package com.camp.camping.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.camp.camping.DTO.CompanyDTO;
 import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.DTO.NoticeDTO;
 import com.camp.camping.service.HomeService;
@@ -20,9 +23,15 @@ public class MainController {
 	
 	@Autowired
 	NoticeService serviceN;
-	
+
 	@RequestMapping("/")
-	public String main(Model model) {
+	public String select(){
+		
+		return "redirect:/main";
+	}
+
+	@RequestMapping("/main")
+	public String main(Model model, HttpSession session, CompanyDTO compayDTO) {
 		
 		HomeDTO homekko = null;		//카카오맵
 		HomeDTO homecont = null;	//홈페이지소개
@@ -57,6 +66,11 @@ public class MainController {
 			System.out.println("NoticeLv_FAIL");
 		}
 		
+		//상호 세션 생성-----------------------------
+		//TODO:차후 캠핑장 선택 페이지 생성시 수정 필요
+		compayDTO = new CompanyDTO(1, "NoobCamping");
+		session.setAttribute("company", compayDTO);
+
 		return "main";
 	}
 	
