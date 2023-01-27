@@ -13,6 +13,7 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,13 +59,11 @@ public class WeatherController {
 		weather3.setWeather_url("VilageFcstInfoService_2.0/getVilageFcst");//url설정
 		weather3.setWeather_serviceKey("Q3Jb4VLoiLZHahN%2BoYfI%2BerBplbbZ4%2BNN2XrxdjqZ3hNy%2BuAujVtG3s%2F%2BPWq9BiLB5Anfysmb4Kltjhe0bFUCQ%3D%3D");//serviceKey
 		weather3.setWeahter_pageNo(1);
-		weather3.setWeather_numOfRows(350);
+		weather3.setWeather_numOfRows(970);
 		weather3.setWeather_dataType("JSON");
-		Calendar cal = new GregorianCalendar(Locale.KOREA);
-		cal.setTime(fourteen_format);
-		cal.add(0, 0);
+		date =  fourteen_format.format(date_now);
 		weather3.setWeather_base_date(date);
-		weather3.setWeather_base_time("2300");
+		weather3.setWeather_base_time("0200");
 		weather3.setWeather_nx("61");
 		weather3.setWeather_ny("129");
 		
@@ -73,14 +72,22 @@ public class WeatherController {
 		JSONObject json1=getjsondata(weather);
 		//예상 최고,최저 기온
 		JSONObject json2=getjsondata(weather2);
+		//오늘,내일,모레 최고,최저 기온
 		JSONObject json3=getjsondata(weather3);
+		JSONArray list = new JSONArray();
+		list.add(json3.get(list));
+		System.out.println("list:" + list);
+		
+		
+		
+		
+		
 		
 		JSONObject combined = new JSONObject();
 		combined.put("json1", json1);
 		combined.put("json2", json2);
 		combined.put("json3", json3);
 		
-		System.out.println(combined.toString());
 		
         return combined.toString();
     }
@@ -136,8 +143,7 @@ public class WeatherController {
 		return jo;
 	}
 	
-	
-	
+	 
 	
 	
 }
