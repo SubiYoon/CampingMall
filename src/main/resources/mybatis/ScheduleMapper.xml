@@ -4,33 +4,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camp.camping.mapper.ScheduleMapper">
     <insert id="insert" parameterType="ScheduleDTO">
-        INSERT INTO book(admin_code, schedule_date, schedule_name)
+        INSERT INTO schedule(admin_code, schedule_date, schedule_name)
         VALUES (#{admin_code}, #{schedule_date}, #{schedule_name})
     </insert>
     <select id="select" resultType="ScheduleDTO">
         SELECT *
-        FROM book
-        WHERE book_code = #{book_code}
-    </select>
-    <select id="selectMerchant" resultType="ScheduleDTO">
-        SELECT *
-        FROM book
-        WHERE merchant_uid = #{merchant_uid}
+        FROM schedule
+        WHERE schedule_code = #{schedule_code}
     </select>
     <select id="selectAll" resultType="ScheduleDTO">
         SELECT *
-        FROM book
+        FROM schedule
+    </select>
+    <select id="selectDate" resultType="ScheduleDTO">
+        SELECT schedule.schedule_code schedule_code,
+               schedule.admin_code    admin_code,
+               schedule.schedule_date schedule_date,
+               schedule.schedule_name schedule_name
+        FROM schedule
+                 join admin
+                      on schedule.admin_code = admin.admin_code
+        Where schedule_date = #{schedule_date}
+          AND admin.company_code = #{company_code};
     </select>
     <update id="update" parameterType="ScheduleDTO">
-        UPDATE book
-        SET book_member=#{book_member},
-            book_price=#{book_price},
-            book_car_number=#{book_car_number}
-        WHERE book_code = #{book_code}
+        UPDATE schedule
+        SET admin_code=#{admin_code},
+            schedule_date=#{schedule_date},
+            schedule_name=#{schedule_name}
+        WHERE schedule_code = #{schedule_code}
     </update>
     <delete id="delete">
         DELETE
-        FROM book
-        WHERE book_code = #{book_code}
+        FROM schedule
+        WHERE schedule_code = #{schedule_code}
     </delete>
 </mapper>

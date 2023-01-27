@@ -17,4 +17,5 @@ public interface ReservationMapper extends MyMapper<Integer, ReservationDTO> {
     void deleteByBook(Integer k);
 
     ReservationDTO selectDateAndSite(@Param("site_code")int site_code,@Param("reservation_date")Date reservation_date);
+    int findSiteCode(@Param("reservation_code")int reservation_code);
 }
