@@ -58,7 +58,7 @@ public class SiteService implements MyService<Integer, SiteDTO> {
         calendar.setTime(Utility.StringToDate(stringDate2));
         int days = Utility.StringDateDifference(stringDate2, stringDate1);
         List<Integer> site_codes = Collections.emptyList();
-        Boolean isAvailable = true;
+        Boolean isAvailable;
 
         for (int i = days; i > 0; i--) {
             calendar.add(Calendar.DATE, -1);
@@ -93,11 +93,16 @@ public class SiteService implements MyService<Integer, SiteDTO> {
         return availableSites;
     }
 
-    public Boolean IsOkToReservation(int site_code, String date) {
-        try {
-            return scheduleService.IsDateEmpty(date, this.findCompanyCode(site_code)) && reservationService.IsDateEmpty(site_code, date);
-        } catch (Exception e) {
-            return false;
+    public Boolean IsOkToReservation(int site_code, String stringDate1, String stringDate2) throws Exception {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate2));
+        int days = Utility.StringDateDifference(stringDate2, stringDate1);
+        boolean isAvailable = true;
+        for (int i = days; i > 0; i--) {
+            calendar.add(Calendar.DATE, -1);
+            String date = Utility.DateToString(calendar.getTime());
+            isAvailable &= scheduleService.IsDateEmpty(date, this.findCompanyCode(site_code)) & reservationService.IsDateEmpty(site_code, date);
         }
+        return isAvailable;
     }
 }
