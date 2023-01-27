@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface BookMapper extends MyMapper<Integer, BookDTO> {
+    BookDTO selectMerchant(String merchant_uid);
 }

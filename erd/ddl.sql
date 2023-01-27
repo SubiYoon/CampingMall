@@ -62,8 +62,8 @@ CREATE TABLE `book` (
    `user_code`   INT   NOT NULL,
    `merchant_uid`   VARCHAR(30)   NOT NULL,
    `book_member`   INT   NOT NULL,
-   `book_checkin`   DATE   NOT NULL,
-   `book_checkout`   DATE   NOT NULL,
+   `book_checkin`   VARCHAR(15)   NOT NULL,
+   `book_checkout`   VARCHAR(15)   NOT NULL,
    `book_writedate`   DATETIME   NULL   DEFAULT NOW(),
    `book_price`   INT   NOT NULL,
    `book_car_number`   VARCHAR(8)   NULL,
@@ -81,10 +81,10 @@ CREATE TABLE `zone` (
 CREATE TABLE `user` (
    `user_code`   INT   NOT NULL auto_increment,
    `user_id`   VARCHAR(20)   NOT NULL,
-   `user_password`   VARCHAR(20)   NOT NULL,
+   `user_password`   VARCHAR(100)   NOT NULL,
    `user_name`   VARCHAR(20)   NOT NULL,
-   `user_birthday`   INT   NOT NULL,
-   `user_tell`   VARCHAR(20)   NOT NULL,
+   `user_birthday`   VARCHAR(10)   NOT NULL,
+   `user_tel`   VARCHAR(20)   NULL,
     primary key (user_code)
 );
 

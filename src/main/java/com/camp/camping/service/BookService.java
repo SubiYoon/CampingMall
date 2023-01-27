@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class BookService implements MyService<Integer, BookDTO> {
     @Autowired
     BookMapper mapper;
+    @Autowired
+    ReservationService reservationService;
 
     @Override
     public void insert(BookDTO v) throws Exception {
@@ -35,5 +38,21 @@ public class BookService implements MyService<Integer, BookDTO> {
     @Override
     public List<BookDTO> selectAll() throws Exception {
         return mapper.selectAll();
+    }
+
+    public BookDTO selectMerchant(String merchant_uid) throws Exception {
+        return mapper.selectMerchant(merchant_uid);
+    }
+
+    public void insertBookAndReservation(BookDTO v) throws Exception {
+        this.insert(v);
+
+        BookDTO book = this.selectMerchant(v.getMerchant_uid());
+        reservationService.insertReservationByBook(book);
+    }
+
+    public void deleteBookAndReservation(Integer k) throws Exception{
+        reservationService.deleteByBook(k);
+        this.delete(k);
     }
 }
