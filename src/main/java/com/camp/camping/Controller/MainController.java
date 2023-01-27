@@ -31,7 +31,7 @@ public class MainController {
 		
 		//카카오맵경도위도-------------------------------------
 		try {
-			homekko = service.lnglat(2);	//홈페이지코드
+			homekko = service.lnglat(1);	//홈페이지코드
 			model.addAttribute("kkomap", homekko);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,7 +40,7 @@ public class MainController {
 		
 		//홈페이지소개content----------------------------------
 		try {
-			homecont = service.homeCont(2);	//홈페이지코드
+			homecont = service.homeCont(1);	//홈페이지코드
 			model.addAttribute("homecont", homecont);
 		} catch (Exception e) {
 			e.printStackTrace();

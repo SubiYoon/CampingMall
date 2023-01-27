@@ -255,7 +255,7 @@ button {
      width: 280px;
 }
 
-/*-- 모달용 --*/
+/*-- 로그인모달용 --*/
 
 #modal {
 	display:none;
@@ -301,7 +301,7 @@ button {
 	text-align: center;
 }
 
- #modal.modal-overlay {
+#modal.modal-overlay {
             width: 100%;
             height: 100%;
             position: absolute;
@@ -318,7 +318,62 @@ button {
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.18);
         }        
+/*-- end 로그인모달용 --*/
 
+/*-- 챗봇모달용 --*/
+#modal_cbicon {
+	position:fixed;
+	z-index:60;
+	
+	margin: 10px 10px 10px 10px;
+	box-shadow: 0 5px 10px 0 rgba(31, 38, 135, 0.37);
+	
+	bottom: 5%;
+	right: 20px;
+}
+
+#modal_cb {
+	position:fixed;
+	display:none;
+	width:100%;
+	height:100%;
+	z-index:70;
+}
+
+#modal_cb .modal_cb-content {
+  width:320px;
+  height:600px;
+  margin:auto 10px 50px auto;
+  border-radius: 20px;
+  padding:10px 2%;
+  background:#fff;
+  border:2px solid #666;
+}
+
+#modal_cb .modal_cb-btn {
+	text-align: right;
+}
+
+#modal_cb button {
+	background-color: #009898;
+    width: 15%;
+    padding: 5px 0;
+    border-radius: 50px;
+    color: #fff;
+    font-size:15px;
+    transition: ease-in 0.5s;
+    display: line-block;
+}
+
+#me {
+	width: 95%;
+	height: 50px;
+	border: 2px solid blue;
+}
+
+
+
+/*-- 챗봇모달용 end--*/
 
 /*-- header area --*/
 
@@ -605,7 +660,7 @@ button {
 }
 
 .main_notice .titlepage li:nth-child(1n) {
-	width:10%;
+	width:55px;
 }
 
 .main_notice .titlepage li:nth-child(2n) {
