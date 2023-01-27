@@ -53,6 +53,8 @@ public class BookService implements MyService<Integer, BookDTO> {
 
     public void deleteBookAndReservation(Integer k) throws Exception{
         reservationService.deleteByBook(k);
-        this.delete(k);
+        BookDTO book = this.select(k);
+        book.setBook_state(0);
+        this.update(book);
     }
 }
