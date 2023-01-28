@@ -41,7 +41,7 @@ public class MainController {
 		//상호 세션 생성-----------------------------
 		//TODO:차후 캠핑장 선택 페이지 생성시 수정 필요
 		companyDTO = new CompanyDTO(1, "NoobCamping");
-		
+
 		session.setAttribute("company", companyDTO);
 
 		//카카오맵경도위도-------------------------------------

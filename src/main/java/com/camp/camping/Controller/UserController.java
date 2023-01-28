@@ -1,5 +1,8 @@
 package com.camp.camping.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.camp.camping.DTO.BookDTO;
 import com.camp.camping.DTO.UserDTO;
+import com.camp.camping.service.BookService;
 import com.camp.camping.service.UserService;
 
 @Controller
@@ -19,6 +24,8 @@ public class UserController {
 
 	@Autowired
 	UserService service;
+	@Autowired
+	BookService bookService;
 
 	//지울거
 	@RequestMapping("test")
@@ -51,9 +58,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("mypage")
-		public String mypage(Model model, HttpSession session){
+		public String mypage(Model model){
+			
 			model.addAttribute("center", dir + "mypage");
-
+			
 			return "main";
 		}
 
