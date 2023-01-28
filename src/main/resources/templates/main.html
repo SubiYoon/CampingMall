@@ -49,12 +49,16 @@
 		
 		//챗봇모달----------------------------
 		$('#modal_open_cb').click(function () {
+			document.getElementById("modal_cbicon").style.visibility = "hidden";
 			document.getElementById("modal_cb").style.display = "flex";
+			connect(); 
 		});
+		/* 
+		상담종료버튼에 삽입
 		$('#modal_close_cb').click(function () {
 			document.getElementById("modal_cb").style.display = "none";
-			document.body.style = "overflow: auto";
-		});
+			document.body.style = "overflow: auto";	
+		}); */
 		//end 챗봇모달------------------------
 		
 		//로그인모달--------------------------
@@ -154,7 +158,7 @@
 	        setConnected(true);
 	        console.log('Connected: ' + frame);
 	        stompClient.subscribe('/topic/public', function (message) {
-	            showMessage("받은 메시지: " + message.body); 
+	            showMessage("A. " + message.body); 
 	        });
 	    });
 	}
@@ -169,7 +173,7 @@
 	
 	function sendMessage() {
 	    let message = $("#msg").val()
-	    showMessage("보낸 메시지: " + message);
+	    showMessage("Q. " + message);
 	
 	    stompClient.send("/app/sendMessage", {}, JSON.stringify(message)); 
 	}
@@ -181,8 +185,13 @@
 	$(function () {
 	    $(".pD").on('submit', function (e) { e.preventDefault();});	    
 	    $( "#connect" ).click(function() { connect(); });
-	    $( "#disconnect" ).click(function() { disconnect(); });
-	    $( "#send" ).click(function() { sendMessage(); });
+	    $( "#disconnect" ).click(function() { 
+	    	document.getElementById("modal_cb").style.display = "none";
+			document.body.style = "overflow: auto";
+			document.getElementById("modal_cbicon").style.visibility = "visible";
+	    	disconnect(); 
+			});
+	    $( "#send" ).click(function() { sendMessage(); }) ;
 	});
 
 </script>
@@ -218,40 +227,32 @@
 <!-- 챗봇 모달창 -->
 <div id="modal_cb" class="modal_cb-overlay">
 	<div class="modal_cb-content">
-		<div class="modal_cb-btn">
-			<button id="modal_close_cb">닫기</button>
-		<div>
-			    <div class="row">
+		<div class="row">
 			            <form class="pD">
 			                <div class="form-group">
-			                    <button id="connect" type="submit">시작</button>
-			                    <button id="disconnect" type="submit" disabled="disabled">종료
-			                    </button>
+			                    <button id="disconnect" type="submit" disabled="disabled">닫기</button>
 			                </div>
 			            </form>
 			            <form class="pD">
+			            	<label class="msg" for="msg">ChatBot 상담</label>
 			                <div class="form-group">
-			                    <label for="msg">문의사항</label>
-			                    <input type="text" id="msg" class="form-control" placeholder="내용을 입력하세요....">
+			                    <input type="text" id="msg" class="form-control" placeholder="문의 내용을 입력하세요...">
 			                </div>
 			                <button id="send" class="btn btn-default" disabled type="submit">보내기</button>
 			            </form>
-			    </div>
-			    <div class="row">
+		</div>
+		<div class="row" id="chat">
 			        <div class="col-md-12">
 			            <table id="conversation" class="table table-striped">
 			                <thead>
 			                <tr>
-			                    <th>메세지창</th>
+			                    <th></th>
 			                </tr>
 			                </thead>
 			                <tbody id="communicate">
 			                </tbody>
 			            </table>
 			        </div>
-			    </div>
-			</div>
-		
 		</div>
 	</div>
 </div>
