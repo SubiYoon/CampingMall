@@ -31,6 +31,20 @@
         WHERE reservation.reservation_date = #{reservation_date}
           AND book.site_code = #{site_code};
     </select>
+    <select id="selectByDateAndCompanyCode" resultType="ReservationDTO">
+        select reservation.reservation_code, reservation.book_code, reservation.reservation_date
+        from reservation,
+             admin,
+             book,
+             zone,
+             site
+        where admin.company_code = #{company_code}
+          AND admin.admin_code = zone.admin_code
+          And zone.zone_code = site.zone_code
+          And site.site_code = book.site_code
+          And book.book_code = reservation.book_code
+          And reservation.reservation_date = #{reservation_date}
+    </select>
     <select id="findSiteCode" resultType="Integer">
         SELECT book.site_code
         FROM reservation
