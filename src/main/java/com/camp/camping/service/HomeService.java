@@ -41,13 +41,13 @@ public class HomeService implements MyService<Integer, HomeDTO> {
 	}
 	
 	//지도좌표불러오기
-	public HomeDTO lnglat(Integer homecode) throws Exception{
-		return mapper.lnglat(homecode);
+	public HomeDTO lnglat(Integer companycode) throws Exception{
+		return mapper.lnglat(companycode);
 	}
 	
 	//홈컨텐트(소개)불러오기
-		public HomeDTO homeCont(Integer homecont) throws Exception{
-			return mapper.homeCont(homecont);
+		public HomeDTO homeCont(Integer companycode) throws Exception{
+			return mapper.homeCont(companycode);
 		}
 	
 	

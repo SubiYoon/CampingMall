@@ -67,6 +67,7 @@ CREATE TABLE `book` (
    `book_writedate`   DATETIME   NULL   DEFAULT NOW(),
    `book_price`   INT   NOT NULL,
    `book_car_number`   VARCHAR(8)   NULL,
+   `book_state` INT NULL DEFAULT 1,
     primary key (book_code)
 );
 

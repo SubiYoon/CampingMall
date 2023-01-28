@@ -10,7 +10,7 @@ import com.camp.camping.frame.MyMapper;
 @Mapper
 public interface HomeMapper extends MyMapper<Integer, HomeDTO>{
 	
-	public HomeDTO lnglat(Integer homecode) throws Exception;
+	public HomeDTO lnglat(Integer companycode) throws Exception;
 	
-	public HomeDTO homeCont(Integer homecont) throws Exception;
+	public HomeDTO homeCont(Integer companycode) throws Exception;
 }

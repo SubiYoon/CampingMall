@@ -21,7 +21,7 @@ class NoticeTest {
 		List<NoticeDTO> test = null;
 		
 		try {
-			test = service.noticeLv();
+			test = service.noticeLv(1);
 			for(int i=0; i<test.size(); i++) {
 			}
 	
