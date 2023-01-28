@@ -385,6 +385,11 @@ button {
 
 /*-- 챗봇모달용 end--*/
 
+#booktest {
+	max-width: 100%;
+	overflow-x: auto;
+}
+
 /*-- header area --*/
 
 
@@ -685,6 +690,49 @@ button {
 
 /** end 주요공지 section **/
 
+/** 공지사항 section **/
+
+.table-fill {
+	margin: 25px auto;
+	width: 80%;
+	min-width: 80%;
+	padding: 5px 5px 5px 0px;
+	text-align: left;
+	font-size: 15px;
+  
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.table-fill tr>th{
+	font-size: 15px;
+	padding: 8px;
+}
+
+
+.table-fill #no{
+	width: 20px;
+}
+
+.table-fill #impt{
+	font-weight: bold;
+	color: red;
+}
+
+
+.table-fill #date{
+	width: 25%;
+	
+}
+
+#notice_write {
+	position: absolute; top: 5%; right: 10%;
+}
+
+
+
+/** end 공지사항 section **/
 
 /** about section **/
 
