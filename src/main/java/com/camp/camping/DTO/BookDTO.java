@@ -26,6 +26,8 @@ public class BookDTO {
     private String book_car_number;
     private int book_state;
 
+    private String site_name;
+
     public BookDTO(int site_code, int user_code, String merchant_uid, int book_member, String book_checkin, String book_checkout, int book_price, String book_car_number) {
         this.site_code=site_code;
         this.user_code =user_code;

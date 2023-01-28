@@ -1,15 +1,21 @@
 package com.camp.camping.Controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.camp.camping.DTO.BookDTO;
 import com.camp.camping.DTO.SiteDTO;
+import com.camp.camping.DTO.UserDTO;
 import com.camp.camping.DTO.ZoneDTO;
+import com.camp.camping.service.BookService;
 import com.camp.camping.service.SiteService;
 import com.camp.camping.service.ZoneService;
 
@@ -20,6 +26,8 @@ public class AjaxController {
     SiteService sService;
     @Autowired
     ZoneService zService;
+    @Autowired
+    BookService bService;
 
     @RequestMapping("selectDate")
     public Object selectDate(String selectDate1, String selectDate2, String company_code){
@@ -50,6 +58,28 @@ public class AjaxController {
         json.put("book_checkin", selectDate1);
         json.put("book_checkout", selectDate2);
         
+        return json;
+    }
+    
+    @RequestMapping("userBook")
+    public Object userBookList(HttpSession session){
+        JSONObject json = new JSONObject();
+        List<BookDTO> userBookList = null;
+        
+		UserDTO user = (UserDTO)session.getAttribute("user");
+           
+		userBookList = bService.selectUserAll(user.getUser_code());
+	
+		if(userBookList.size()>10){
+			List<BookDTO> userBookListLimit = new ArrayList<BookDTO>();
+			for(int i= 0; i<12; i++){
+				userBookListLimit.add(userBookList.get(i));
+			}
+			json.put("userBookList", userBookListLimit);
+		}else{
+			json.put("userBookList", userBookList);
+		}
+
         return json;
     }
 }

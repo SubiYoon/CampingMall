@@ -17,26 +17,22 @@ public class ZoneService implements MyService<Integer, ZoneDTO>{
 
     @Override
     public void insert(ZoneDTO v) throws Exception {
-        // TODO Auto-generated method stub
-        
+        mapper.insert(v);
     }
 
     @Override
     public void delete(Integer k) throws Exception {
-        // TODO Auto-generated method stub
-        
+        mapper.delete(k);
     }
 
     @Override
     public void update(ZoneDTO v) throws Exception {
-        // TODO Auto-generated method stub
-        
+        mapper.update(v);
     }
 
     @Override
     public ZoneDTO select(Integer k) throws Exception {
-        // TODO Auto-generated method stub
-        return null;
+        return mapper.select(k);
     }
 
     @Override
