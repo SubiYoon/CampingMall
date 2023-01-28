@@ -31,31 +31,22 @@ public class MainController {
 	}
 
 	@RequestMapping("/main")
-	public String main(Model model, HttpSession session/*, CompanyDTO companyDTO*/) {
+	public String main(Model model, HttpSession session, CompanyDTO companyDTO) {
 		
 		HomeDTO homekko = null;		//카카오맵
 		HomeDTO homecont = null;	//홈페이지소개
 		List<NoticeDTO> nolist = null;	//주요공지
-		Integer homecodess = null;	//세션에 homecode담을곳
 		
 		
 		//상호 세션 생성-----------------------------
 		//TODO:차후 캠핑장 선택 페이지 생성시 수정 필요
-		//companyDTO = new CompanyDTO(1, "NoobCamping");
+		companyDTO = new CompanyDTO(1, "NoobCamping");
 		
-		//DTO형태로 넣으니 가져온 세션에서 company_code를 바로 못빼서 수정 전 임의로 넣어둠
-		Integer companyDTO = 1;
 		session.setAttribute("company", companyDTO);
-				
-		homecodess = (Integer) session.getAttribute("company");
-		
-		//테스트용(추후삭제예정)
-		System.out.println(companyDTO);
-		System.out.println(homecodess);
-		
+
 		//카카오맵경도위도-------------------------------------
 		try {
-			homekko = service.lnglat(homecodess);	//상호코드
+			homekko = service.lnglat(companyDTO.getCompany_code());	//상호코드
 			model.addAttribute("kkomap", homekko);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,7 +55,7 @@ public class MainController {
 		
 		//홈페이지소개content----------------------------------
 		try {
-			homecont = service.homeCont(homecodess);	//상호코드
+			homecont = service.homeCont(companyDTO.getCompany_code());	//상호코드
 			model.addAttribute("homecont", homecont);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -74,7 +65,7 @@ public class MainController {
 		//주요공지----------------------------------
 		
 		try {
-			nolist = serviceN.noticeLv(homecodess);	//상호코드
+			nolist = serviceN.noticeLv(companyDTO.getCompany_code());	//상호코드
 			model.addAttribute("noticeLv", nolist);
 		} catch (Exception e) {
 			e.printStackTrace();
