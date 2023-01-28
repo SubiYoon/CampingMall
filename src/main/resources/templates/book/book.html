@@ -110,7 +110,7 @@
          cnt += 1;
 
          cell.setAttribute('id', i);
-         cell.innerHTML = "<a href='#'>" + i + "</a>";
+         cell.innerHTML = "<a href='#check'>" + i + "</a>";
          cell.align = "center";
 
 
@@ -145,10 +145,27 @@
                $.ajax({
                   url: '/selectDate',
                   type: 'post',
-                  data: { 'selectDate1': selectDate1, 'selectDate2': selectDate2 },
+                  data: { 'selectDate1': selectDate1, 'selectDate2': selectDate2, 'company_code':'[[${session.company.company_code}]]' },
                   success: function (result) {
                      $('#bookForm>input[name=book_checkin]').val(result.book_checkin);
                      $('#bookForm>input[name=book_checkout]').val(result.book_checkout);
+                     //TODO: site를 zone_code와 일치
+                     for(var i=0; i<result.zoneList.length; i++){
+                        var siteList = "";
+                        var zoneList = "";
+                        var rate = 100/result.zoneList.length+"%";
+                        zoneList += result.zoneList[i].zone_name;
+
+                        document.getElementById("zone"+(i+1)+"").innerText = zoneList;
+
+                        for(var j=0; j<result.availableSite.length; j++){
+                           if(result.zoneList[i].zone_code == result.availableSite[j].zone_code){
+                              siteList += "<a href='#check' alt='N'>"+result.availableSite[j].site_name+"</a><br>";
+                           }
+                        }
+                        document.getElementById("site"+(i+1)+"").innerHTML = siteList;
+                     }
+                     $('#bookForm li').attr({'style': 'width: '+rate+';'});
                      selectDate1 = null;
                      selectDate2 = null;
                   }
@@ -156,11 +173,11 @@
             }
          }
          if (cnt % 7 == 1) {
-            cell.innerHTML = "<a href='#' style='color:#F79DC2;'>" + i + "</a>";
+            cell.innerHTML = "<a href='#check' style='color:#F79DC2;'>" + i + "</a>";
          }
 
          if (cnt % 7 == 0) {
-            cell.innerHTML = "<a href='#' style='color:skyblue;'>" + i + "</a>";
+            cell.innerHTML = "<a href='#check' style='color:skyblue;'>" + i + "</a>";
             row = calendar.insertRow();
          }
       }
@@ -190,6 +207,12 @@
 
    #calendar tr {
       height: 50px;
+   }
+
+   #bookForm li {
+      float: left;
+      /*width: 25%;*/
+      text-align: center;
    }
 </style>
 <div class="back_re">
@@ -238,22 +261,30 @@
    </div>
    <div class="col-md-5">
       <form id="bookForm">
-         <input type="date" name="book_checkin" readonly="readonly" />
-         ~<input type="date" name="book_checkout" readonly="readonly" /><br>
-         <ul>
-            <li class="col-md-3">
-
-            </li>
-            <li class="col-md-3">
-
-            </li>
-            <li class="col-md-3">
-
-            </li>
-            <li class="col-md-3">
-
-            </li>
-         </ul>
+         <div>
+            <input type="hidden" name="book_checkin"/>
+            <input type="hidden" name="book_checkout"/>
+            <input type="hidden" name="compay_code" th:value="${session.company.company_code}"/>
+            <br>
+            <br>
+         </div>
+         <div>
+            <ul>
+               <li id="zone1"></li>
+               <li id="zone2"></li>
+               <li id="zone3"></li>
+               <li id="zone4"></li>
+            </ul>
+            <ul>
+               <li id="site1"></li>
+               <li id="site2"></li>
+               <li id="site3"></li>
+               <li id="site4"></li>
+            </ul>
+         </div>
+         <div>
+            <input type="button" value="결제하기" class="sub_btn"/>
+         </div>
       </form>
    </div>
 </div>
