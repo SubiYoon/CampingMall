@@ -1,8 +1,11 @@
 package com.camp.camping.service;
 
 import com.camp.camping.DTO.BookDTO;
+import com.camp.camping.DTO.ReservationDTO;
 import com.camp.camping.frame.MyService;
 import com.camp.camping.mapper.BookMapper;
+import java.text.ParseException;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +43,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         return mapper.selectAll();
     }
 
-    public BookDTO selectMerchant(String merchant_uid) throws Exception {
+    public BookDTO selectMerchant(String merchant_uid){
         return mapper.selectMerchant(merchant_uid);
     }
 
@@ -56,5 +59,19 @@ public class BookService implements MyService<Integer, BookDTO> {
         BookDTO book = this.select(k);
         book.setBook_state(0);
         this.update(book);
+    }
+    public BookDTO SelectByReservationCode(int reservation_code){
+        return mapper.selectByReservationCode(reservation_code);
+    }
+
+    //예약 조회 기능
+    public List<BookDTO> SelectByDateAndCompanyCode(String stringDate, int company_code)
+        throws ParseException {
+        List<BookDTO> books = new ArrayList<>();
+        List<ReservationDTO> reservations = reservationService.SelectByDateAndCompanyCode(stringDate,company_code);
+        for(ReservationDTO reservation : reservations){
+            books.add(SelectByReservationCode(reservation.getReservation_code()));
+        }
+        return books;
     }
 }
