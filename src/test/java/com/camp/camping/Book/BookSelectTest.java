@@ -45,6 +45,14 @@ public class BookSelectTest {
             throw new RuntimeException(e);
         }
     }
+    @Test
+    void MonthMoney(){
+        try {
+            System.out.println(service.MonthlySales("2023-02-03",1));
+        } catch (Exception e) {
+            System.out.println("ㅈ버그");
+        }
+    }
 
 
 }
