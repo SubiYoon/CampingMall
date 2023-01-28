@@ -1,7 +1,7 @@
 package com.camp.camping.Controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,10 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.camp.camping.DTO.BookDTO;
 import com.camp.camping.DTO.UserDTO;
 import com.camp.camping.service.BookService;
 import com.camp.camping.service.UserService;
+import com.camp.camping.utility.CryptoUtil;
 
 @Controller
 @RequestMapping("/user")
@@ -44,10 +44,21 @@ public class UserController {
 	public String registerOk(Model model, UserDTO userDTO) {
 
 		String user_tel = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
-
+		String crypString = "";
 		userDTO.setUser_tel(user_tel);
 
 		try {
+			crypString = CryptoUtil.sha512(userDTO.getUser_password());
+		} catch (NoSuchAlgorithmException e) {
+			//e.printStackTrace();
+			System.out.println("알고리즘 예외");
+		} catch (UnsupportedEncodingException e) {
+			//e.printStackTrace();
+			System.out.println("인코딩예외");
+		}
+
+		try {
+			userDTO.setUser_password(crypString);
 			service.insert(userDTO);
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -97,16 +108,27 @@ public class UserController {
 
 	@RequestMapping("update")
 	public String update(Model model, UserDTO userDTO) {
-
+		String crypString = "";
 		String user_tel = userDTO.getUser_tel1() + "-" + userDTO.getUser_tel2() + "-" + userDTO.getUser_tel3();
 
 		userDTO.setUser_tel(user_tel);
 
 		try {
+			crypString = CryptoUtil.sha512(userDTO.getUser_password());
+		} catch (NoSuchAlgorithmException e) {
+			//e.printStackTrace();
+			System.out.println("알고리즘 예외");
+		} catch (UnsupportedEncodingException e) {
+			//e.printStackTrace();
+			System.out.println("인코딩예외");
+		}
+		
+		try {
+			userDTO.setUser_password(crypString);
 			service.update(userDTO);
 			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			System.out.println("실패");
 		}
 
@@ -130,11 +152,23 @@ public class UserController {
 
 	@RequestMapping("loginOk")
 	public String loginOk(Model model, UserDTO userDTO, HttpSession session){
-		UserDTO user=null;
-		String result_page="user/loginFail";
+		UserDTO user = null;
+		String crypString = "";
+		String result_page = "user/loginFail";
+		
+		try {
+			crypString = CryptoUtil.sha512(userDTO.getUser_password());
+		} catch (NoSuchAlgorithmException e) {
+			//e.printStackTrace();
+			System.out.println("알고리즘 예외");
+		} catch (UnsupportedEncodingException e) {
+			//e.printStackTrace();
+			System.out.println("인코딩예외");
+		}
+
 		try {
 			user=service.select(userDTO.getUser_id());
-			if(user.getUser_id().equals(userDTO.getUser_id()) && user.getUser_password().equals(userDTO.getUser_password())){
+			if(user.getUser_id().equals(userDTO.getUser_id()) && user.getUser_password().equals(crypString)){
 				session.setAttribute("user", user);
 				result_page="redirect:/main";
 			}
@@ -174,9 +208,20 @@ public class UserController {
 	@ResponseBody
 	public String kakaoLogin(Model model, UserDTO userDTO, HttpSession session){
 		UserDTO user = null;
+		String crypString = "";
+
+		try {
+			crypString = CryptoUtil.sha512("KakaoLogin");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+
 		try {
 			user = service.select(userDTO.getUser_id());
 			if(user==null){
+				userDTO.setUser_password(crypString);
 				service.kakaoLoginInsert(userDTO);
 				user = service.select(userDTO.getUser_id());
 			}
