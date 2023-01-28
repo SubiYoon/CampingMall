@@ -13,6 +13,7 @@ import java.util.List;
 @Mapper
 public interface ReservationMapper extends MyMapper<Integer, ReservationDTO> {
     List<ReservationDTO> selectDate(Date d);
+    List<ReservationDTO> selectByDateAndCompanyCode(@Param("reservation_date")Date reservation_Date, @Param("company_code")int company_code);
 
     void deleteByBook(Integer k);
 

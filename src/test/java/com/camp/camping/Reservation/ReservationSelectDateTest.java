@@ -21,6 +21,18 @@ public class ReservationSelectDateTest {
     SiteService siteService;
 
     @Test
+    void companyDate(){
+        List<ReservationDTO> reservations;
+        try {
+            reservations = service.SelectByDateAndCompanyCode("2023-02-03",1);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        for(ReservationDTO reservation:reservations){
+            System.out.println(reservation);
+        }
+    }
+    @Test
     @Disabled
     void ReservationSelectDateTests(){
         List<ReservationDTO> reservation;
