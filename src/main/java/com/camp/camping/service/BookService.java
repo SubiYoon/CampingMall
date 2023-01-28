@@ -109,4 +109,8 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return monthlySales;
     }
+
+    public List<BookDTO> selectUserAll(int user_code){
+        return mapper.selectUserAll(user_code);
+    }
 }
