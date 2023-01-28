@@ -33,7 +33,7 @@ public class NoticeController {
 		return "main";
 	}
 	
-//	공지 글쓰기 화면
+//글수정페이지
 	@RequestMapping("/nowrite")
 	public String nowrite(Model model, int notice_code) {
 		NoticeDTO notice = null;
@@ -44,6 +44,13 @@ public class NoticeController {
 			e.printStackTrace();
 		}
 		model.addAttribute("center", dir+"nowrite");
+		return "main";
+	}
+
+//글작성페이지
+	@RequestMapping("/nowrite2")
+	public String nowrite(Model model) {
+		model.addAttribute("center", dir+"nowrite2");
 		return "main";
 	}
 	
