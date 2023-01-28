@@ -158,7 +158,7 @@
 	        setConnected(true);
 	        console.log('Connected: ' + frame);
 	        stompClient.subscribe('/topic/public', function (message) {
-	            showMessage("Q. " + message.body); 
+	            showMessage("A. " + message.body); 
 	        });
 	    });
 	}
@@ -173,7 +173,7 @@
 	
 	function sendMessage() {
 	    let message = $("#msg").val()
-	    showMessage("A. " + message);
+	    showMessage("Q. " + message);
 	
 	    stompClient.send("/app/sendMessage", {}, JSON.stringify(message)); 
 	}
