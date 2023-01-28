@@ -57,7 +57,7 @@ $(document).ready(function(){
 		                  	</thead>
 		                  	<tbody class="table-hover">
 								<tr>
-									<td class="text-center"><input readonly="readonly" name="notice_code" th:value="${notice.notice_code}"></td>
+									<td class="text-center"><div readonly="readonly" name="notice_code" th:value="${notice.notice_code}"></div></td>
 									<td class="text-center"><input type="text" name="notice_title" th:value="${notice.notice_title}"></td>
 									<td class="text-center"><input type="number" readonly="readonly" name="admin_code" th:value="${notice.admin_code}"></td>
 									<td class="text-center"><input type="number" name="notice_level" th:value="${notice.notice_level}"></td>
@@ -68,11 +68,13 @@ $(document).ready(function(){
 								</tr>
 		                  	</tbody>
 		                  </table>
-					<a href="#" id="ubtn" class="read_more">UPDATE</a>
-					<a href="#" id="dbtn" class="read_more">DELETE</a>
+		                  
 					 </form>
 					 
-				
+				<div class="col-sm">
+					<a href="#" id="ubtn" class="read_more">UPDATE</a>
+					<a href="#" id="dbtn" class="read_more">DELETE</a>
+				</div>
                 </div>
              </div>
          </div>

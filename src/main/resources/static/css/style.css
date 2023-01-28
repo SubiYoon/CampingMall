@@ -690,8 +690,8 @@ button {
 
 /** end 주요공지 section **/
 
-/** 공지사항 section **/
-
+/** 공지사항 section 
+	/** 글목록 **/
 .table-fill {
 	margin: 25px auto;
 	width: 80%;
@@ -699,14 +699,12 @@ button {
 	padding: 5px 5px 5px 0px;
 	text-align: left;
 	font-size: 15px;
-  
 	white-space:nowrap;
 	overflow:hidden;
 	text-overflow:ellipsis;
 }
 
 .table-fill tr>th{
-	font-size: 15px;
 	padding: 8px;
 }
 
@@ -729,7 +727,45 @@ button {
 #notice_write {
 	position: absolute; top: 5%; right: 10%;
 }
+	/** end 글목록 **/
+	/** 뷰 **/
+.viewtable-fill {
+	margin: 25px auto;
+	width: 80%;
+	min-width: 50%;
+	padding: 5px 5px 5px 5px;
+	text-align: left;
+	font-size: 16px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
 
+#viewth:nth-child(1){
+	width:7%;
+}
+#viewth:nth-child(2){
+	width:7%;
+}
+#viewth:nth-child(3){
+	width:7%;
+}
+#viewth:nth-child(4){
+	width:40%;
+}
+
+#viewhr{
+	height: 1px;
+	background-color: lightgray;
+}
+
+#viewlast{
+	height: 10px;
+}
+
+
+
+	/** end 뷰 **/
 
 
 /** end 공지사항 section **/

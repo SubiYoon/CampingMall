@@ -35,7 +35,14 @@ public class NoticeController {
 	
 //	공지 글쓰기 화면
 	@RequestMapping("/nowrite")
-	public String nowrite(Model model) {
+	public String nowrite(Model model, int notice_code) {
+		NoticeDTO notice = null;
+		try {
+			notice = ns.select(notice_code);
+			model.addAttribute("notice", notice);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		model.addAttribute("center", dir+"nowrite");
 		return "main";
 	}
@@ -54,10 +61,10 @@ public class NoticeController {
 //	글 조회 화면
 	@RequestMapping("/noticeview")
 	public String noticeview(Model model, int notice_code) {
-		NoticeDTO notice = null;
+		NoticeDTO noticeview = null;
 		try {
-			notice = ns.select(notice_code);
-			model.addAttribute("notice", notice);
+			noticeview = ns.select(notice_code);
+			model.addAttribute("notice", noticeview);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
