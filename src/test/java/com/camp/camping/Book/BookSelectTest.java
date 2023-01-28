@@ -37,6 +37,14 @@ public class BookSelectTest {
             System.out.println(book);
         }
     }
+    @Test
+    void money(){
+        try {
+            System.out.println(service.DailySales("2023-02-03",1));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }

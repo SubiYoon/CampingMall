@@ -4,6 +4,7 @@ import com.camp.camping.DTO.BookDTO;
 import com.camp.camping.DTO.ReservationDTO;
 import com.camp.camping.frame.MyService;
 import com.camp.camping.mapper.BookMapper;
+import com.camp.camping.utility.Utility;
 import java.text.ParseException;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,5 +74,15 @@ public class BookService implements MyService<Integer, BookDTO> {
             books.add(SelectByReservationCode(reservation.getReservation_code()));
         }
         return books;
+    }
+    public double DailySales(String reservation_Date, int company_code) throws Exception {
+        List<ReservationDTO> reservations = reservationService.SelectByDateAndCompanyCode(reservation_Date,company_code);
+        double dailySales=0;
+        for(ReservationDTO reservation : reservations){
+            BookDTO book = select(reservation.getBook_code());
+            double bookDays = Utility.StringDateDifference(book.getBook_checkout(),book.getBook_checkin());
+            dailySales += (double)book.getBook_price()/bookDays;
+        }
+        return dailySales;
     }
 }

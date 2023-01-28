@@ -116,5 +116,4 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
     public int ReservationCount(String reservation_Date, int company_code) throws ParseException {
         return SelectByDateAndCompanyCode(reservation_Date,company_code).size();
     }
-
 }
