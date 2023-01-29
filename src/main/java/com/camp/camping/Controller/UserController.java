@@ -1,5 +1,8 @@
 package com.camp.camping.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.camp.camping.DTO.BookDTO;
 import com.camp.camping.DTO.UserDTO;
+import com.camp.camping.service.BookService;
 import com.camp.camping.service.UserService;
 
 @Controller
@@ -19,6 +24,8 @@ public class UserController {
 
 	@Autowired
 	UserService service;
+	@Autowired
+	BookService bookService;
 
 	//지울거
 	@RequestMapping("test")
@@ -47,13 +54,14 @@ public class UserController {
 			System.out.println("실패");
 		}
 
-		return "redirect:/";
+		return "redirect:/main";
 	}
 	
 	@RequestMapping("mypage")
-		public String mypage(Model model, HttpSession session){
+		public String mypage(Model model){
+			
 			model.addAttribute("center", dir + "mypage");
-
+			
 			return "main";
 		}
 
@@ -103,7 +111,7 @@ public class UserController {
 		}
 
 		//TODO: 페이지 이동 수정필요
-		return "redirect:/";
+		return "redirect:/main";
 	}
 
 	@RequestMapping("delete")
@@ -117,7 +125,7 @@ public class UserController {
 			System.out.println("실패");
 		}
 
-		return "redirect:/";
+		return "redirect:/main";
 	}
 
 	@RequestMapping("loginOk")
@@ -128,7 +136,7 @@ public class UserController {
 			user=service.select(userDTO.getUser_id());
 			if(user.getUser_id().equals(userDTO.getUser_id()) && user.getUser_password().equals(userDTO.getUser_password())){
 				session.setAttribute("user", user);
-				result_page="redirect:/";
+				result_page="redirect:/main";
 			}
 		} catch (Exception e) {
 			//e.printStackTrace();
@@ -140,7 +148,7 @@ public class UserController {
 	@RequestMapping("logout")
 	public String logOut(HttpSession session){
 		session.invalidate();
-		return "redirect:/";
+		return "redirect:/main";
 	}
 
 	@RequestMapping("checkid")

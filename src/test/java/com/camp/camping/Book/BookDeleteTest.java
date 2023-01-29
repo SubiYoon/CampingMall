@@ -45,7 +45,7 @@ public class BookDeleteTest {
 
     @Test
     void BookDeleteTest3(){
-        int book_code=16;
+        int book_code=6;
         try {
             service.deleteBookAndReservation(book_code);
             System.out.println("삭제 성공");

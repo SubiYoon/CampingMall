@@ -9,7 +9,7 @@
  
       return regExp.test(asValue);
    }
-   function isBirthday(asValue){
+   function isNum(asValue){
       var regExp = /^[0-9]*$/;
 
       return regExp.test(asValue);
@@ -74,7 +74,7 @@ $(document).ready(function(){
          alert("생일을 입력하세요.");
          return;
       }
-      if(!isBirthday(birthday)){
+      if(!isNum(birthday)){
          alert("생일은 숫자만 입력해주세요.");
          return;
       }
@@ -85,6 +85,14 @@ $(document).ready(function(){
       //전화번호 확인
       if(tel1 == null || tel1 == '' || tel2 == null || tel2 == '' || tel3 == null || tel3 == ''){
          alert("전화번호를 입력하세요.");
+         return;
+      }
+      if(!isNum(tel1) || !isNum(tel2) || !isNum(tel3)){
+         alert("숫자만 입력해주세요.");
+         return;
+      }
+      if(tel1.length != 3 || tel2.length !=4 || tel3.length !=4){
+         alert("3자리, 4자리, 4자리 입력해주세요.");
          return;
       }
 

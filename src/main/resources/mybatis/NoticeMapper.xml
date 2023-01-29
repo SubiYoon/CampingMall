@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         SELECT * FROM notice WHERE notice_code=#{notice_code}
     </select>
     <select id="selectAll" resultType="NoticeDTO">
-       SELECT notice_code, notice_title, notice_writedate FROM notice ORDER BY notice_level
+       SELECT notice_code, notice_level, notice_title, notice_writedate FROM notice ORDER BY notice_level DESC
     </select>
     <update id="update" parameterType="NoticeDTO">
         UPDATE notice SET notice_level=#{notice_level}, notice_title=#{notice_title}, notice_content=#{notice_content} WHERE notice_code=#{notice_code}
@@ -19,6 +19,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         DELETE FROM notice WHERE notice_code=#{notice_code}
     </delete>
     <select id="noticeLv" parameterType="Integer" resultType="NoticeDTO">
-    	SELECT notice_code, admin_code, notice_level, notice_title, notice_content FROM notice WHERE notice_level=1;
+    	SELECT notice_code, notice.admin_code, notice_level, notice_title, notice_content FROM notice JOIN admin ON notice.admin_code = admin.admin_code WHERE notice_level=1 and admin.company_code=#{companycode}
     </select>
 </mapper>

@@ -12,7 +12,4 @@ public class FacilityDTO {
     private int admin_code;
     private String facility_name;
     private String facility_content;
-    private String facility_img1;
-    private String facility_img2;
-    private String facility_img3;
 }

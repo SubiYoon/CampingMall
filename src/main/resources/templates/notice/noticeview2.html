@@ -1,0 +1,83 @@
+<script>
+$(document).ready(function(){
+	$('#ubtn').click(function(){
+		var c = confirm('수정 하시겠습니까 ?');
+		if(c == true){
+			$('#up_form').attr({
+				'enctype':'multipart/form-data',
+				'method':'post',
+				'action':'[[@{/notice/noticeupdate}]]'
+			});
+			$('#up_form').submit();
+		};
+	});
+	
+ 	$('#dbtn').click(function(){
+		var c = confirm('삭제 하시겠습니까 ?');
+		if(c == true){
+			$('#up_form').attr({
+				'enctype':'multipart/form-data',
+				'method':'post',
+				'action':'[[@{/notice/noticedelete}]]'
+			});
+			$('#up_form').submit();
+		};
+	});
+	
+}); 
+</script>
+
+      <div class="back_re">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                     <h2>공지사항</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      <!-- about -->
+      <div class="about">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-md-12">
+                 	<form id="up_form">
+						 <table class="table-fill">
+		                  	<thead>
+		                  		<tr>
+		                  			<th class="text-left">번호</th>
+		                  			<th class="text-left">제목</th>
+		                  			<th class="text-left">게시자 코드</th>
+		                  			<th class="text-left">글 우선순위</th>
+		                  			<th class="text-left">등록일</th>
+		                  		</tr>
+		                  	</thead>
+		                  	<tbody class="table-hover">
+								<tr>
+									<td class="text-center"><div readonly="readonly" name="notice_code" th:value="${notice.notice_code}"></div></td>
+									<td class="text-center"><input type="text" name="notice_title" th:value="${notice.notice_title}"></td>
+									<td class="text-center"><input type="number" readonly="readonly" name="admin_code" th:value="${notice.admin_code}"></td>
+									<td class="text-center"><input type="number" name="notice_level" th:value="${notice.notice_level}"></td>
+									<td class="text-center"><p th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"/></td>
+								</tr>
+								<tr>
+									<td class="text-center"><input type="text" name="notice_content" th:value="${notice.notice_content}"></td>
+								</tr>
+		                  	</tbody>
+		                  </table>
+		                  
+					 </form>
+					 
+				<div class="col-sm">
+					<a href="#" id="ubtn" class="read_more">UPDATE</a>
+					<a href="#" id="dbtn" class="read_more">DELETE</a>
+				</div>
+                </div>
+             </div>
+         </div>
+      </div>
+      <!-- end about -->
+     

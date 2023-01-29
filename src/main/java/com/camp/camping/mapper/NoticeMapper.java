@@ -12,5 +12,5 @@ import com.camp.camping.frame.MyMapper;
 @Mapper
 public interface NoticeMapper extends MyMapper<Integer, NoticeDTO>{
 	
-	public List<NoticeDTO> noticeLv() throws Exception;
+	public List<NoticeDTO> noticeLv(Integer companycode) throws Exception;
 }

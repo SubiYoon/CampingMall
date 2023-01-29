@@ -49,6 +49,37 @@
 	      }
 	    });
 	  }
+	
+	function weather(){
+		jQuery.ajax({
+			url:"/weather/getweather",
+			type:'get',
+			//timeout:30000,
+			contentType:"application/json",
+			dataType:"json",
+			success:function(data){
+				let dataHeader=data.json1.response.header.resultCode;
+				let dataHeader2=data.json2.response.header.resultCode;
+				
+				if(dataHeader=="00"&&dataHeader2=="00"){
+					console.log("sucee");
+					console.log(data);
+				}else{
+					console.log("sucee");
+					console.log(data);
+				}
+				
+				
+				
+				
+			}
+			
+			
+		})
+		
+	}
+	
+	
 </script>
 
 </head>
@@ -56,6 +87,7 @@
 <body>
 
 <button onclick="requestPay()">결제하기기</button> <!-- 결제하기 버튼 생성 -->
+<button onclick="weather()">날씨정보</button> 
 
 </body>
 </html>

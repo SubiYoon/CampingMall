@@ -1,55 +1,58 @@
 <script>
-$(document).ready(function(){
-	$(".nav-item:nth-child(1)").attr('class','nav-item active');
-	$(".notactive:nth-child(1)").attr('class','active');
-});
+	$(document).ready(function() {
+		$(".nav-item:nth-child(2)").attr('class', 'nav-item active');
+		$(".notactive:nth-child(2)").attr('class', 'active');
+	});
 </script>
 
-      <div class="back_re">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="title">
-                     <h2>공지사항</h2>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      
-      <!-- about -->
-      <div class="about">
-         <div class="container-fluid">
-            <div class="row">
-               <div class="col-md-12">
-            	   <div class="table-title">
-					<h3>Data Table</h3>
-					</div>
-	                  <table class="table-fill">
-	                  	<thead>
-	                  		<tr>
-	                  			<th class="text-left">번호</th>
-	                  			<th class="text-left">제목</th>
-	                  			<th class="text-left">등록일</th>
-	                  		</tr>
-	                  	</thead>
-	                  	<tbody class="table-hover">
-							<tr th:each="notice:${plist}">
-								<td class="text-center">
-									<a th:text="${notice.notice_code}" th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
-								</td>
-								<td class="text-center">
-									<a th:text="${notice.notice_title}" th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
-								</td>
-								<td class="text-center" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"></td>
-							</tr>
-	                  	</tbody>
-	                  </table>
-                  <a th:href="@{/notice/nowrite}" class="read_more">글쓰기</a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end about -->
-     
+<div class="back_re">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="title">
+					<h2>공지사항</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- about -->
+
+<div class="container-md">
+	<div class="col-md-12">
+		<table class="table-fill">
+			<thead>
+				<tr>
+					<th class="text-center" id="no">글번호</th>
+					<th id="impt"></th>
+					<th class="text-center" id="title">제목</th>
+					<th class="text-center" id="date">등록일</th>
+				</tr>
+			</thead>
+			<tbody class="table table-hover">
+				<tr th:each="notice:${plist}">
+					<td class="text-center"><a th:text="${notice.notice_code}" th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
+					</td>
+					<td class="text-right" id="impt">
+						<div th:if="${notice.notice_level == 1}">[필독]</div>
+					</td>
+					<td class="text-left">
+						<div th:style="${notice.notice_level == 1 ? 'font-weight: bold' : 'font-weight: nomal'}">
+							<a th:text="${notice.notice_title}" th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
+						</div>
+					</td>
+					<td class="text-center" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-sm">
+		<!-- 추후 관리자 로그인시만 사용되게 변경 -->
+		<a id="notice_write" class="read_more" th:href="@{/notice/nowrite2}" >공지작성</a>
+	</div>
+</div>
+<!-- end about -->
+
 
