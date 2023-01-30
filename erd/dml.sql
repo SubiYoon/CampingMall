@@ -29,14 +29,14 @@ INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시
 INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시설4", "시설4입니다.");
 
 -- 홈페이지
-INSERT INTO home(admin_code, home_content, home_longitude, home_latitude)VALUES(1,'안녕하세요.', 37.5039781087508, 127.04273317956381);
+INSERT INTO home(admin_code, home_content, home_longitude, home_latitude)VALUES(1,'1번상호설명입니다. 심문도 찍히지 그 것, 인류가 어머니로서 기강에 나오다. 이름에게 많이 재벌이 엄중히, 들어가아서 모르다 읽죠 건설에 예기하세요.', 37.5039781087508, 127.04273317956381);
 INSERT INTO home(admin_code, home_content, home_longitude, home_latitude)VALUES(3,'안녕하세요2', 37.56517320755754, 126.97909982283633);
 
 -- 구역
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역A', 'A존입니다.');
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역B', 'B존입니다.');
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역C', 'C존입니다.');
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역D', 'D존입니다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역A', 'A존 설명입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역B', 'B존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역C', 'C존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역D', 'D존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
 
 -- 사이트
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, 'A-1',20000,'A-1 입니다.');
@@ -83,7 +83,9 @@ insert into `review`(book_code, review_content, review_score) values(2,'추워�
 insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',7);
 
 -- 이미지
-insert into image(company_code, zone_code, image_file) VALUES(1, 1, 'zone_img.png');
+insert into image(company_code, zone_code, image_file) VALUES(1, 1, 'zone_img1.jpg');
+insert into image(company_code, zone_code, image_file) VALUES(1, 2, 'zone_img2.jpg');
+insert into image(company_code, zone_code, image_file) VALUES(1, 4, 'zone_img3.jpg');
 insert into image(company_code, site_code, image_file) VALUES(1, 1, 'site_img.png');
 insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img.png');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'home_img.png');
