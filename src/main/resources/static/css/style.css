@@ -37,6 +37,9 @@
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
 
+
+
+
 * {
      box-sizing: border-box !important;
 }
@@ -617,10 +620,11 @@ button {
      transition: ease-in all 0.5s;
      font-weight: 500;
      border-radius: 30px;
+     border-style: none;
 }
 
 .read_more:hover {
-     background: #009898;
+     background-color: #009898;
      color: #fff;
      transition: ease-in all 0.5s;
 }
@@ -809,9 +813,19 @@ button {
 	border: none;
 	background: transparent;
 }
+#upBtn {
+	position: absolute; top: 5%; right: 10%;
+}
 	
 	/** end 수정 **/
-
+	/** 작성 **/
+#writecontent{
+	padding: 10px;
+	width: 100%;
+	height: 400px;
+	overflow: scroll;
+}
+	/** end 작성 **/
 
 /** end 공지사항 section **/
 
