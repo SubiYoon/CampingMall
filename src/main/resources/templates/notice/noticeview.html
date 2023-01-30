@@ -2,6 +2,17 @@
 	$(document).ready(function() {
 		$(".nav-item:nth-child(2)").attr('class', 'nav-item active');
 		$(".notactive:nth-child(2)").attr('class', 'active');
+		
+		$('#delBtn').click(function(){
+			var c = confirm('삭제하시겠습니까?');
+			if(c == true){
+				$('#up_form').attr({
+					'method':'post',
+					'action':'[[@{/notice/nodel}]]'
+				});
+				$('#up_form').submit();
+			};
+		});
 	});
 </script>
 
@@ -21,21 +32,24 @@
 
 <div class="container-md">
 	<div class="col-md-12">
+	<form id="up_form">
 		<table class="viewtable-fill">
 			<thead>
 				<tr>
-					<th class="text-left" id="viewth">&nbsp;글번호</th>
-					<th class="text-left" id="viewth" th:text="${notice.notice_code}"></th>
+					<th class="text-left" id="viewno">&nbsp;글번호</th>
+					<th class="text-left" id="viewno">
+						<input id="viewno" readonly="readonly" name="notice_code" th:value="${notice.notice_code}">
+					</th>
 					<th colspan="5"></th>
 				</tr>
 				<tr>
 					<th class="text-left" id="viewth">&nbsp;제목</th>
 					<th class="text-left" id="viewth" th:text="${notice.notice_title}"></th>
 					<th class="text-left" id="viewth"></th>
-					<th class="text-right" id="viewth">&nbsp;/ 작성자:&nbsp;</th>
-					<th class="text-right" id="viewth" th:text="${notice.admin_code}"></th>
-					<th class="text-right" id="viewth">&nbsp;/ 등록일:&nbsp;</th>
-					<th class="text-right" id="viewth" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"></th>
+					<th class="text-right" id="viewad">&nbsp;/ 작성자:&nbsp;</th>
+					<th class="text-right" id="viewad" th:text="${notice.admin_code}"></th>
+					<th class="text-right" id="viewdate">&nbsp;/ 등록일:&nbsp;</th>
+					<th class="text-right" id="viewdate" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,7 +69,7 @@
 					<th class="text-left" colspan="1">
 						&nbsp;내용
 					</th>
-					<td class="text-left" id="viewth" colspan="4" th:text="${notice.notice_content}">
+					<td id="viewcontent" colspan="4" th:text="${notice.notice_content}">
 					</td>
 					<th colspan="2">
 					</th>
@@ -66,10 +80,12 @@
 				</tr>
 			</tbody>
 		</table>
+	</form>
 	</div>
 	<div class="col-sm">
 		<!-- 추후 관리자 로그인시만 사용되게 변경 -->
-		<a id="notice_write" class="read_more" th:href="@{/notice/nowrite(notice_code=${notice.notice_code})}" >수정</a>
+		<a id="editBtn" class="read_more" th:href="@{/notice/noedit(notice_code=${notice.notice_code})}" >수정</a>
+		<a id="delBtn" class="read_more" th:href="@{#}" >삭제</a>
 	</div>
 </div>
 <!-- end about -->

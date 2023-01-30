@@ -727,7 +727,9 @@ button {
 #notice_write {
 	position: absolute; top: 5%; right: 10%;
 }
+
 	/** end 글목록 **/
+	
 	/** 뷰 **/
 .viewtable-fill {
 	margin: 25px auto;
@@ -736,22 +738,28 @@ button {
 	padding: 5px 5px 5px 5px;
 	text-align: left;
 	font-size: 16px;
-	white-space:nowrap;
 	overflow:hidden;
 	text-overflow:ellipsis;
 }
 
-#viewth:nth-child(1){
+#viewno{
 	width:7%;
+	white-space:nowrap;
+	border: none;
+	background: transparent;
 }
 #viewth:nth-child(2){
-	width:7%;
+	width:60%;
+	color: black;
 }
-#viewth:nth-child(3){
-	width:7%;
+
+#viewad, #viewdate{
+	width: 5%;
+	white-space:nowrap;
 }
-#viewth:nth-child(4){
-	width:40%;
+
+#viewtitle{
+	color: black !important;
 }
 
 #viewhr{
@@ -763,9 +771,46 @@ button {
 	height: 10px;
 }
 
+#viewcontent{
+	width:50%;
+	word-break:break-all;
+	color: black;
+}
 
+#editBtn {
+	position: absolute; top: 5%; left: 10%;
+}
 
+#delBtn {
+	position: absolute; top: 5%; right: 10%;
+}
 	/** end 뷰 **/
+	
+	/** 수정 **/
+#updateth{
+	width: 100%;
+}
+
+#updatecontent{
+	padding: 10px;
+	width: 100%;
+	height: 400px;
+	overflow: scroll;
+}
+
+#editad, #editdate{
+	width: 5%;
+	white-space:nowrap;
+}
+
+#inputnone{
+	width: 100%;
+	white-space:nowrap;
+	border: none;
+	background: transparent;
+}
+	
+	/** end 수정 **/
 
 
 /** end 공지사항 section **/
