@@ -15,5 +15,4 @@ public class ImageDTO {
     private int home_code;
     private int facility_code;
     private String image_file;
-    private String image_name;
 }
