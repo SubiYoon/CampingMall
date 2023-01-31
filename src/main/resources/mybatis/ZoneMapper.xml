@@ -18,4 +18,11 @@
     <delete id="delete">
         DELETE FROM zone WHERE zone_code=#{zone_code}
     </delete>
+    
+    <select id="selectZone" parameterType="Integer" resultType="ZoneDTO">
+        SELECT zone.zone_code, zone.admin_code, zone_name, zone_content
+			FROM zone
+    			JOIN admin ON zone.admin_code=admin.admin_code
+    				WHERE admin.company_code=#{companycode}
+    </select>
 </mapper>

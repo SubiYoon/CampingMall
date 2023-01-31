@@ -40,4 +40,8 @@ public class ZoneService implements MyService<Integer, ZoneDTO>{
         return mapper.selectAll();
     }
     
+    public List<ZoneDTO> selectZone(Integer companycode) throws Exception {
+        return mapper.selectZone(companycode);
+    }
+    
 }
