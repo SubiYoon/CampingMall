@@ -1,9 +1,9 @@
 use campdb;
 
 -- 유저
-INSERT INTO user VALUES(0, 'user01', '1234', '김씨', 000101, '010-1234-5678');
-INSERT INTO user VALUES(0, 'user02', '1234', '이씨', 010101, '010-1584-5678');
-INSERT INTO user VALUES(0, 'user03', '1234', '박씨', 020202, '010-5238-4828');
+INSERT INTO user VALUES(0, 'user01', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '김씨', 000101, '010-1234-5678');
+INSERT INTO user VALUES(0, 'user02', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '이씨', 010101, '010-1584-5678');
+INSERT INTO user VALUES(0, 'user03', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '박씨', 020202, '010-5238-4828');
 
 -- 상호
 INSERT INTO company(company_name) VALUES('NoopCamping');

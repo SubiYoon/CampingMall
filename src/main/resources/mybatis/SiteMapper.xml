@@ -22,6 +22,11 @@
           And zone.admin_code = admin.admin_code
     </select>
     <select id="select" resultType="SiteDTO">
+        SELECT *
+        FROM site
+        WHERE site_code = #{site_code}
+    </select>
+    <select id="selectView" resultType="SiteDTO">
         SELECT 
             s.site_code site_code, s.zone_code zone_code, s.site_name site_name, s.site_content site_content, s.site_price site_price, i.image_code image_code, i.image_file image_file 
         FROM 

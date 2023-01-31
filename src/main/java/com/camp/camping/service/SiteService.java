@@ -121,4 +121,8 @@ public class SiteService implements MyService<Integer, SiteDTO> {
         }
         return isAvailable;
     }
+
+    public SiteDTO selectView(int site_code){
+        return mapper.selectView(site_code);
+    }
 }

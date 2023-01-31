@@ -46,7 +46,7 @@ public class ZoneController {
 	public String site(Model model, int site_code) {
 		
 		try {
-			SiteDTO site = serviceS.select(site_code);
+			SiteDTO site = serviceS.selectView(site_code);
 			model.addAttribute("site", site);
 		} catch (Exception e) {
 			e.printStackTrace();

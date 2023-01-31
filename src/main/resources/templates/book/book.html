@@ -165,7 +165,7 @@
                         zoneList += result.zoneList[i].zone_name;
 
                         document.getElementById("zone"+(i+1)+"").innerText = zoneList;
-
+                        console.log(result.zoneList.zone_code);
                         for(var j=0; j<result.availableSite.length; j++){
                            if(result.zoneList[i].zone_code == result.availableSite[j].zone_code){
                               siteList += "<a href='#check' onclick='insitezone("+j+")' alt='N'>"+result.availableSite[j].site_name+"</a><br>";
