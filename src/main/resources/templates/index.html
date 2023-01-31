@@ -78,7 +78,7 @@
    </div>
 </section>
 <!-- end banner -->
-
+<!--TODO: CSS수정 필요 (공지사항 번호 밀림)-->
 <!-- 공지 -->
 <div class="main_notice">
    <div class="container-fluid">
@@ -203,45 +203,17 @@
          </div>
       </div>
       <div class="row">
-         <div class="col-md-3 col-sm-6">
+         <div class="col-md-3 col-sm-6" th:each="f : ${facilities}">
             <div class="gallery_img">
-               <figure><img th:src="@{/images/gallery1.jpg}" alt="#" /></figure>
+               <figure><img th:src="@{/images/gallery1.jpg}" alt="#" /></figure><!--차후 th:src='/images/$"{fStat.current.facility_file}"'로 변경-->
             </div>
             <div class="fac">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum</p>
-               </div>
-         </div>
-         <div class="col-md-3 col-sm-6">
-            <div class="gallery_img">
-               <figure><img th:src="@{/images/gallery2.jpg}" alt="#" /></figure>
+               <h3 th:text="${f.facility_name}"></h3>   
             </div>
-            <div class="fac">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum</p>
-               </div>
-         </div>
-         <div class="col-md-3 col-sm-6">
-            <div class="gallery_img">
-               <figure><img th:src="@{/images/gallery3.jpg}" alt="#" /></figure>
-            </div>
-            <div class="fac">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum</p>
-               </div>
-         </div>
-         <div class="col-md-3 col-sm-6">
-            <div class="gallery_img">
-               <figure><img th:src="@{/images/gallery4.jpg}" alt="#" /></figure>
-            </div>
-            <div class="fac">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum</p>
-               </div>
          </div>
          <div class="col-md-12">
 	         <div class="fac_read_more">
-	         	<a class="read_more" href="Javascript:void(0)"> Read More</a>
+	         	<a class="read_more" th:href="@{/facility}"> Read More</a>
 	         </div>
          </div>
          <!--  기존양식

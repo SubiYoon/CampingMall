@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.camp.camping.DTO.CompanyDTO;
+import com.camp.camping.DTO.FacilityDTO;
 import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.DTO.NoticeDTO;
+import com.camp.camping.service.FacilityService;
 import com.camp.camping.service.HomeService;
 import com.camp.camping.service.NoticeService;
 
@@ -23,6 +25,9 @@ public class MainController {
 	
 	@Autowired
 	NoticeService serviceN;
+
+	@Autowired
+	FacilityService serviceF;
 
 	@RequestMapping("/")
 	public String select(){
@@ -72,7 +77,17 @@ public class MainController {
 			System.out.println("NoticeLv_FAIL");
 		}
 		
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		List<FacilityDTO> list = null;
+		
+		try {
+			list = serviceF.selectByCompany(company.getCompany_code());
+		} catch (Exception e) {
+			//e.printStackTrace();
+			System.out.println("실패");
+		}
 
+		model.addAttribute("facilities", list);
 
 		return "main";
 	}

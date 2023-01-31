@@ -82,7 +82,7 @@ CREATE TABLE `zone` (
 CREATE TABLE `user` (
    `user_code`   INT   NOT NULL auto_increment,
    `user_id`   VARCHAR(20)   NOT NULL,
-   `user_password`   VARCHAR(100)   NOT NULL,
+   `user_password`   VARCHAR(1000)   NOT NULL,
    `user_name`   VARCHAR(20)   NOT NULL,
    `user_birthday`   VARCHAR(10)   NOT NULL,
    `user_tel`   VARCHAR(20)   NULL,

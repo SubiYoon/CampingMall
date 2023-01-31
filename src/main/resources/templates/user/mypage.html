@@ -8,7 +8,6 @@
             url: '/userBook',
             type: 'post',
             success:function(data){
-                console.log(data.userBookList);
                 for(var i=0; i<data.userBookList.length; i++){
                     args += '<div class="col-md-4 col-sm-6">';
                     args += '<div id="serv_hover"  class="room">';
