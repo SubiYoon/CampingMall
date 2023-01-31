@@ -670,11 +670,11 @@ button {
 }
 
 .main_notice .titlepage li:nth-child(1n) {
-	width:55px;
+	width:3%;
 }
 
 .main_notice .titlepage li:nth-child(2n) {
-	width:90%;
+	width:94%;
 }
 
 .main_notice_read_more {
