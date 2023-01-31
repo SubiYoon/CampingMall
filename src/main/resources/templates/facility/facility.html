@@ -9,58 +9,41 @@ $(document).ready(function(){
             <div class="row">
                <div class="col-md-12">
                   <div class="title">
-                    <h2>gallery</h2>
+                    <h2>편의시설</h2>
                   </div>
                </div>
             </div>
          </div>
       </div>
-      <!-- gallery -->
-      <div  class="gallery">
-         <div class="container">
-           
-            <div class="row">
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery1.jpg" alt="#"/></figure>
+      <div class="about">
+         <div class="container-fluid">
+            <div class="row" th:each="f, fStat : ${facilities}">
+               <div class="col-md-5" th:if="${fStat.odd}">
+                  <div class="titlepage">
+                     <br>
+                     <h2 th:text="${fStat.current.facility_name}"></h2>
+                     <p th:text="${fStat.current.facility_content}"></p>
                   </div>
                </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery2.jpg" alt="#"/></figure>
+               <div class="col-md-7" th:if="${fStat.odd}">
+                  <div class="about_img">
+                     <br>
+                     <figure><img src="images/about.png" alt="#"></figure><!--차후 th:src='/images/$"{fStat.current.facility_file}"'로 변경-->
                   </div>
                </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery3.jpg" alt="#"/></figure>
+               <div class="col-md-7" th:if="${fStat.even}">
+                  <div class="about_img">
+                     <br>
+                     <figure><img src="images/about.png" alt="#"></figure><!--차후 th:src='/images/$"{fStat.current.facility_file}"'로 변경-->
                   </div>
                </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery4.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery5.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery6.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery7.jpg" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-3 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/gallery8.jpg" alt="#"/></figure>
+               <div class="col-md-5" th:if="${fStat.even}">
+                  <div class="titlepage">
+                     <br>
+                     <h2 th:text="${fStat.current.facility_name}"></h2>
+                     <p th:text="${fStat.current.facility_content}"></p>
                   </div>
                </div>
             </div>
          </div>
       </div>
-      <!-- end gallery -->

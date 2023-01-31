@@ -15,6 +15,7 @@ $(document).ready(function(){
             </div>
          </div>
       </div>
+      <!--TODO: 변경사항 주석확인-->
       <!-- our_room -->
       <div  class="our_room">
          <div class="container">
@@ -31,15 +32,16 @@ $(document).ready(function(){
                <div class="col-md-6 col-sm-6">
                   <div id="serv_hover"  class="room">
                      <div class="room_img">
-                        <figure><img src="images/room1.jpg" alt="#"/></figure>
+                        <figure><img src="images/room1.jpg" alt="#"/></figure><!-- 차후 src='/images/${site.image_file}'로 변경-->
+                        <p th:text="${site.image_file}"></p><!-- 이미지 삽입하게되면 날려야함 -->
                      </div>
                   </div>
                </div>
                <div class="col-md-6 col-sm-6">
                   <div id="serv_hover"  class="room">
                      <div class="bed_room">
-                        <h3>사이트소개</h3>
-                        <p>사이트소개올예정 </p>
+                        <h3 th:text="${site.site_name}"></h3>
+                        <p th:text="${site.site_content}"></p>
                      </div>
                   </div>
                </div>

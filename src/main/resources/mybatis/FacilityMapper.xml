@@ -16,6 +16,22 @@
         SELECT *
         FROM facility
     </select>
+    <select id="selectByCompany" resultType="FacilityDTO">
+        SELECT 
+            f.facility_code facility_code, f.admin_code admin_code, f.facility_name facility_name, f.facility_content facility_content, i.image_code image_code, i.image_file image_file 
+        FROM 
+            facility f 
+        JOIN 
+            admin ad 
+                ON 
+                    f.admin_code=ad.admin_code 
+        JOIN 
+            image i 
+                ON 
+                    f.facility_code=i.facility_code 
+        WHERE 
+            ad.company_code=#{company_code}
+    </select>
     <update id="update" parameterType="FacilityDTO">
         UPDATE facility
         SET facility_name=#{facility_name},
