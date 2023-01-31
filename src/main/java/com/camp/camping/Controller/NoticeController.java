@@ -13,13 +13,13 @@ import com.camp.camping.service.NoticeService;
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
-	
+
 	String dir = "notice/";
-	
+
 	@Autowired
 	NoticeService ns;
-	
-// 공지사항 메인 (목록)	
+
+//공지사항글목록	
 	@RequestMapping("")
 	public String main(Model model) {
 		List<NoticeDTO> list = null;
@@ -29,31 +29,34 @@ public class NoticeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("center", dir+"notice");
+		model.addAttribute("center", dir + "notice");
 		return "main";
 	}
-	
-//	공지 글쓰기 화면
+
+//공지사항글작성페이지
 	@RequestMapping("/nowrite")
 	public String nowrite(Model model) {
-		model.addAttribute("center", dir+"nowrite");
+		model.addAttribute("center", dir + "nowrite");
 		return "main";
 	}
-	
-//	공지 쓴 글 등록
-	@RequestMapping("/noticedo")
-	public String noticedo(Model model, NoticeDTO noticeDto) {
+
+//공지사항글내용페이지
+	@RequestMapping("/noticeview")
+	public String noticeview(Model model, int notice_code) {
+		NoticeDTO noticeview = null;
 		try {
-			ns.insert(noticeDto);
+			noticeview = ns.select(notice_code);
+			model.addAttribute("notice", noticeview);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/notice";
+		model.addAttribute("center", dir + "noticeview");
+		return "main";
 	}
-	
-//	글 조회 화면
-	@RequestMapping("/noticeview")
-	public String noticeview(Model model, int notice_code) {
+
+//공지사항글수정페이지
+	@RequestMapping("/noedit")
+	public String noedit(Model model, int notice_code) {
 		NoticeDTO notice = null;
 		try {
 			notice = ns.select(notice_code);
@@ -61,30 +64,41 @@ public class NoticeController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("center", dir+"noticeview");
+		model.addAttribute("center", dir + "noedit");
 		return "main";
 	}
-	
-//	글 삭제
-	@RequestMapping("/noticedelete")
-	public String noticedelete(Model model, Integer notice_code) {
+
+//공지사항작성기능
+	@RequestMapping("/noticedo")
+	public String noticedo(NoticeDTO noticeDto) {
 		try {
+			ns.insert(noticeDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/notice";
+	}
+
+//공지사항수정기능
+
+	 @RequestMapping("/noticeupdate") public String noticeupdate(Model model, NoticeDTO notdto) {
+		 try {
+			 ns.update(notdto);
+		 } catch (Exception e) {
+			 e.printStackTrace();
+		 } 
+		 return "redirect:/notice";
+	}
+
+	
+//공지사항삭제기능
+	 @RequestMapping("/nodel") public String nodel(Integer notice_code){
+		 try {
 			ns.delete(notice_code);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return "redirect:/notice";
-	}
+		 return "redirect:/notice"; 
+	 }
 	
-//	글 수정
-	@RequestMapping("/noticeupdate")
-	public String noticeupdate(Model model, NoticeDTO notdto) {
-		try {
-				ns.update(notdto);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		return "redirect:/notice";
-	}
 }

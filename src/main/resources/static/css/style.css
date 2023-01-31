@@ -37,6 +37,9 @@
 
 /*--------------------------------------------------------------------- skeleton ---------------------------------------------------------------------*/
 
+
+
+
 * {
      box-sizing: border-box !important;
 }
@@ -385,6 +388,11 @@ button {
 
 /*-- 챗봇모달용 end--*/
 
+#booktest {
+	max-width: 100%;
+	overflow-x: auto;
+}
+
 /*-- header area --*/
 
 
@@ -612,10 +620,11 @@ button {
      transition: ease-in all 0.5s;
      font-weight: 500;
      border-radius: 30px;
+     border-style: none;
 }
 
 .read_more:hover {
-     background: #009898;
+     background-color: #009898;
      color: #fff;
      transition: ease-in all 0.5s;
 }
@@ -685,6 +694,140 @@ button {
 
 /** end 주요공지 section **/
 
+/** 공지사항 section 
+	/** 글목록 **/
+.table-fill {
+	margin: 25px auto;
+	width: 80%;
+	min-width: 80%;
+	padding: 5px 5px 5px 0px;
+	text-align: left;
+	font-size: 15px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+.table-fill tr>th{
+	padding: 8px;
+}
+
+
+.table-fill #no{
+	width: 20px;
+}
+
+.table-fill #impt{
+	font-weight: bold;
+	color: red;
+}
+
+
+.table-fill #date{
+	width: 25%;
+	
+}
+
+#notice_write {
+	position: absolute; top: 5%; right: 10%;
+}
+
+	/** end 글목록 **/
+	
+	/** 뷰 **/
+.viewtable-fill {
+	margin: 25px auto;
+	width: 80%;
+	min-width: 50%;
+	padding: 5px 5px 5px 5px;
+	text-align: left;
+	font-size: 16px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+#viewno{
+	width:7%;
+	white-space:nowrap;
+	border: none;
+	background: transparent;
+}
+#viewth:nth-child(2){
+	width:60%;
+	color: black;
+}
+
+#viewad, #viewdate{
+	width: 5%;
+	white-space:nowrap;
+}
+
+#viewtitle{
+	color: black !important;
+}
+
+#viewhr{
+	height: 1px;
+	background-color: lightgray;
+}
+
+#viewlast{
+	height: 10px;
+}
+
+#viewcontent{
+	width:50%;
+	word-break:break-all;
+	color: black;
+}
+
+#editBtn {
+	position: absolute; top: 5%; left: 10%;
+}
+
+#delBtn {
+	position: absolute; top: 5%; right: 10%;
+}
+	/** end 뷰 **/
+	
+	/** 수정 **/
+#updateth{
+	width: 100%;
+}
+
+#updatecontent{
+	padding: 10px;
+	width: 100%;
+	height: 400px;
+	overflow: scroll;
+}
+
+#editad, #editdate{
+	width: 5%;
+	white-space:nowrap;
+}
+
+#inputnone{
+	width: 100%;
+	white-space:nowrap;
+	border: none;
+	background: transparent;
+}
+#upBtn {
+	position: absolute; top: 5%; right: 10%;
+}
+	
+	/** end 수정 **/
+	/** 작성 **/
+#writecontent{
+	padding: 10px;
+	width: 100%;
+	height: 400px;
+	overflow: scroll;
+}
+	/** end 작성 **/
+
+/** end 공지사항 section **/
 
 /** about section **/
 
@@ -732,7 +875,7 @@ button {
 /** end about section **/
 
 
-/** our_room section **/
+/** 구역안내(our_room) section **/
 
 .our_room {
      background-color: #f4f5f7;
@@ -776,6 +919,7 @@ button {
 
 .our_room .room .bed_room {
      padding: 33px 30px;
+     height: 100%;
 }
 
 .our_room .room .bed_room h3 {
@@ -788,11 +932,13 @@ button {
      margin: auto;
 }
 
+/*
 #serv_hover:hover.room {
      cursor: pointer;
      box-shadow: 0px 0px 30px rgb(0, 128, 128, 0.15);
      transition: ease-in all 0.5s;
 }
+*/
 
 .our_read_more {
 	text-align: center;
@@ -800,7 +946,17 @@ button {
 }
 
 
-/** end our_room section **/
+.zone:nth-child(even){
+     background-color: #fff;
+     padding: 20px 10px 20px 10px;
+}
+
+.zone:nth-child(odd){
+     padding: 20px 10px 20px 10px;
+}
+
+
+/** end 구역안내 section **/
 
 
 /** gallery(편의시설)  section **/
