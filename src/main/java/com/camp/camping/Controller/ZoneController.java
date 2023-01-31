@@ -21,4 +21,11 @@ public class ZoneController {
 		return "main";
 	}
 	
+	@RequestMapping("/site")
+	public String site(Model model) {
+		
+		model.addAttribute("center", dir+"site");
+		return "main";
+	}
+	
 }
