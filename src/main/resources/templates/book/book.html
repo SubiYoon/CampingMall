@@ -6,17 +6,7 @@
       
       var bookFrom=$("#bookForm");
       $("#bookForm>div>input[type='button']").click(function(){
-    	 // let a='[[${session.user.user_id}]]';
-//     	 if(a==null&&a==""){
-//     		 alert("로그인이 필요합니다");
-//     		 loaction.href="/book"
-//     	 }else{
-//     		 bookFrom.submit();	   
-//     	 }
     		 bookFrom.submit();	   
-    	
-    	  
-    	
       });
       
       
@@ -293,7 +283,6 @@
             <input type="hidden" name="book_checkin"/>
             <input type="hidden" name="book_checkout"/>
             <input type="hidden" name="book_sitecode"/>
-            <input type="hidden" name="compay_code" th:value="${session.company.company_code}"/>
             <br>
             <br>
          </div>

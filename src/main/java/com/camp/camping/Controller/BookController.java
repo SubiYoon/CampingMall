@@ -37,7 +37,6 @@ public class BookController {
 		model.addAttribute("center", dir+"bookdetail");
 		
 		
-		
 		BookDTO book=new BookDTO();
 		
 		DateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
