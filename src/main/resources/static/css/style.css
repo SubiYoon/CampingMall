@@ -946,13 +946,22 @@ button {
 }
 
 
-.zone:nth-child(even){
+.zone{
      background-color: #fff;
      padding: 20px 10px 20px 10px;
 }
 
-.zone:nth-child(odd){
-     padding: 20px 10px 20px 10px;
+#siteimg{
+	float: left;
+	text-align: center;
+	font-size: 20px;
+	background-color: #fff;
+    margin-top: 30px;
+    margin-left: 8%;
+}
+
+#siteimg img{
+	width:100px;
 }
 
 
