@@ -2,6 +2,14 @@
    $(document).ready(function () {
       $(".nav-item:nth-child(5)").attr('class', 'nav-item active');
       $(".notactive:nth-child(5)").attr('class', 'active');
+      
+      
+      var bookFrom=$("#bookForm");
+      $("#bookForm>div>input[type='button']").click(function(){
+    		 bookFrom.submit();	   
+      });
+      
+      
    });
 </script>
 <!--달력 생성 scipt-->
@@ -147,8 +155,8 @@
                   type: 'post',
                   data: { 'selectDate1': selectDate1, 'selectDate2': selectDate2, 'company_code':'[[${session.company.company_code}]]' },
                   success: function (result) {
-                     $('#bookForm>input[name=book_checkin]').val(result.book_checkin);
-                     $('#bookForm>input[name=book_checkout]').val(result.book_checkout);
+                     $('#bookForm>div>input[name=book_checkin]').val(result.book_checkin);
+                     $('#bookForm>div>input[name=book_checkout]').val(result.book_checkout);
                      //TODO: site를 zone_code와 일치
                      for(var i=0; i<result.zoneList.length; i++){
                         var siteList = "";
@@ -160,7 +168,7 @@
 
                         for(var j=0; j<result.availableSite.length; j++){
                            if(result.zoneList[i].zone_code == result.availableSite[j].zone_code){
-                              siteList += "<a href='#check' alt='N'>"+result.availableSite[j].site_name+"</a><br>";
+                              siteList += "<a href='#check' onclick='insitezone("+j+")' alt='N'>"+result.availableSite[j].site_name+"</a><br>";
                            }
                         }
                         document.getElementById("site"+(i+1)+"").innerHTML = siteList;
@@ -199,6 +207,16 @@
       buildCalendar();
       bookPointOn();
    }
+   
+   
+   function insitezone(sitecode){
+	   $("#bookForm>div>input[name='book_sitecode']").val(sitecode);
+	   
+   }
+   
+	
+   
+   
 </script>
 <style>
    #calendar {
@@ -260,11 +278,11 @@
       </table>
    </div>
    <div class="col-md-5">
-      <form id="bookForm">
+      <form id="bookForm" action="/book/bookdetail" method="post">
          <div>
             <input type="hidden" name="book_checkin"/>
             <input type="hidden" name="book_checkout"/>
-            <input type="hidden" name="compay_code" th:value="${session.company.company_code}"/>
+            <input type="hidden" name="book_sitecode"/>
             <br>
             <br>
          </div>
