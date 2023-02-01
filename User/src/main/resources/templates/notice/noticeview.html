@@ -2,17 +2,6 @@
 	$(document).ready(function() {
 		$(".nav-item:nth-child(2)").attr('class', 'nav-item active');
 		$(".notactive:nth-child(2)").attr('class', 'active');
-		
-		$('#delBtn').click(function(){
-			var c = confirm('삭제하시겠습니까?');
-			if(c == true){
-				$('#up_form').attr({
-					'method':'post',
-					'action':'[[@{/notice/nodel}]]'
-				});
-				$('#up_form').submit();
-			};
-		});
 	});
 </script>
 
@@ -81,11 +70,6 @@
 			</tbody>
 		</table>
 	</form>
-	</div>
-	<div class="col-sm">
-		<!-- 추후 관리자 로그인시만 사용되게 변경 -->
-		<a id="editBtn" class="read_more" th:href="@{/notice/noedit(notice_code=${notice.notice_code})}" >수정</a>
-		<a id="delBtn" class="read_more" th:href="@{#}" >삭제</a>
 	</div>
 </div>
 <!-- end about -->
