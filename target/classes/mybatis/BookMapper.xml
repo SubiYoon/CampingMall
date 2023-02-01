@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.camping.mapper.BookMapper">
+    <insert id="insert" parameterType="BookDTO">
+        INSERT INTO book(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price,
+                         book_car_number)
+        VALUES (#{site_code}, #{user_code}, #{merchant_uid}, #{book_member}, #{book_checkin}, #{book_checkout},
+                #{book_price}, #{book_car_number})
+    </insert>
+    <select id="select" resultType="BookDTO">
+        SELECT *
+        FROM book
+        WHERE book_code = #{book_code}
+    </select>
+    <select id="selectMerchant" resultType="BookDTO">
+        SELECT *
+        FROM book
+        WHERE merchant_uid = #{merchant_uid}
+            And book_state=1
+    </select>
+    <select id="selectByReservationCode" resultType="BookDTO">
+        select book.book_code,
+               book.site_code,
+               book.user_code,
+               book.merchant_uid,
+               book.book_member,
+               book.book_checkin,
+               book.book_checkout,
+               book.book_writedate,
+               book.book_price,
+               book.book_car_number,
+               book.book_state
+        from book,
+             reservation
+        Where reservation.book_code = book.book_code
+          And reservation_code = #{reservation_code}
+    </select>
+    <select id="selectAll" resultType="BookDTO">
+        SELECT *
+        FROM book
+    </select>
+    <select id="selectUserAll" resultType="BookDTO">
+        SELECT  book.book_member book_book_member,
+                book.book_checkin book_checkin, 
+                book.book_checkout book_checkout,
+                book.book_price book_price,
+                book.book_car_number book_car_number,
+                book.book_state book_state,
+                site.site_name site_name
+        FROM book 
+        JOIN site 
+        ON book.site_code = site.site_code 
+        WHERE user_code=#{user_code} 
+        ORDER BY book_code DESC
+    </select>
+    <update id="update" parameterType="BookDTO">
+        UPDATE book
+        SET book_member=#{book_member},
+            book_price=#{book_price},
+            book_car_number=#{book_car_number},
+            book_state=#{book_state}
+        WHERE book_code = #{book_code}
+    </update>
+    <delete id="delete">
+        DELETE
+        FROM book
+        WHERE book_code = #{book_code}
+    </delete>
+</mapper>

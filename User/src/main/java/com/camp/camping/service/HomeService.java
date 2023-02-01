@@ -31,8 +31,8 @@ public class HomeService implements MyService<Integer, HomeDTO> {
 	}
 
 	@Override
-	public HomeDTO select(Integer k) throws Exception {
-		return mapper.select(k);
+	public HomeDTO select(Integer companycode) throws Exception {
+		return mapper.select(companycode);
 	}
 
 	@Override

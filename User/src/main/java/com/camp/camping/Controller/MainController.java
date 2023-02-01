@@ -50,6 +50,7 @@ public class MainController {
 		
 		HomeDTO homekko = null;		//카카오맵
 		HomeDTO homecont = null;	//홈페이지소개
+		HomeDTO homeselect = null;	//전체정보
 		List<NoticeDTO> nolist = null;	//주요공지
 		List<ZoneDTO> listZ = null;	//구역소개
 		List<FacilityDTO> list = null;	//편의시설
@@ -79,6 +80,14 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("CONTENT_FAIL");
+		}
+		
+		//홈페이지테이블전체----------------------------------
+		try {
+			homeselect = service.select(companyDTO.getCompany_code());	//상호코드
+			model.addAttribute("homeselect", homeselect);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		//주요공지----------------------------------

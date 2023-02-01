@@ -342,10 +342,11 @@
 						<h3>Contact US</h3>
 						<ul class="conta">
 							<li><i class="fa fa-map-marker" aria-hidden="true"></i>
-								Address</li>
-							<li><i class="fa fa-mobile" aria-hidden="true"></i> +01
-								1234569540</li>
-							<li><i class="fa fa-envelope" aria-hidden="true"></i><a th:href="@{#}"> demo@gmail.com</a>
+								<span th:text="${homeselect.home_address}"></span></li>
+							<li><i class="fa fa-mobile" aria-hidden="true"></i>
+								<span th:text="${homeselect.home_tell}"></span></li>
+							<li><i class="fa fa-envelope" aria-hidden="true"></i>
+								대표: <span th:text="${homeselect.home_owner}"></span>
 							</li>
 						</ul>
 					</div>
