@@ -19,6 +19,7 @@ import com.camp.admin.DTO.UserDTO;
 import com.camp.admin.DTO.ZoneDTO;
 import com.camp.admin.service.BookService;
 import com.camp.admin.service.HomeService;
+import com.camp.admin.service.ImageService;
 import com.camp.admin.service.SiteService;
 import com.camp.admin.service.ZoneService;
 
@@ -33,6 +34,8 @@ public class AjaxController {
     BookService bService;
     @Autowired
     HomeService hService;
+    @Autowired
+    ImageService iService;
 
     @RequestMapping("selectDate")
     public Object selectDate(String selectDate1, String selectDate2, String company_code){
@@ -89,18 +92,31 @@ public class AjaxController {
     }
 
     @RequestMapping("boardEdit")
-    public Object boardEdit(HttpSession session){
+    public Object boardEdit(HttpSession session, int home_code){
         HomeDTO home = null;
         JSONObject json = new JSONObject();
         CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-        try {
-            home = hService.select(company.getCompany_code());
-        } catch (Exception e) {
-            //e.printStackTrace();
-            System.out.println("실패");
-        }
+        
+        if(home_code > 0){
+            try {
+                home = hService.select(company.getCompany_code());
+            } catch (Exception e) {
+                //e.printStackTrace();
+                System.out.println("실패");
+            }
 
-        json.put("home", home);
+            json.put("home", home);
+        
+        }
+        return json;
+    }
+
+    @RequestMapping("logoEdit")
+    public Object logoEdit(HttpSession session){
+        JSONObject json = new JSONObject();
+        CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+        
+        json.put("company", company);
 
         return json;
     }

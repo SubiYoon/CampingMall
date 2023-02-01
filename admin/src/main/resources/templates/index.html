@@ -2,11 +2,66 @@
    $(document).ready(function () {
       $(".nav-item:nth-child(1)").attr('class', 'nav-item active');
       $(".notactive:nth-child(1)").attr('class', 'active');
+
+      //마우스 수정영역 표시	
+		$('.modal_block_logo').mouseenter(function(){
+			$('.modal_block_logo').css('border', 'solid 2px red')
+		});
+		$('.modal_block_logo').mouseleave(function(){
+			$('.modal_block_logo').css('border', 'none');
+		});
+		//마우스 수정영역표시 end
+
+      //이미지만 변경하는 이벤트 함수
+      $('#modal_edit_logo > #logo_edit').click(function(){
+			var image_data = $('#modal_edit_logo').serialize();
+			
+			document.getElementById("modal_logo_edit").style.display = "flex"
+			document.body.style = "overflow: hidden";
+			
+			$.ajax({
+				url: '/admin/logoEdit',
+				data: image_data,
+				success: function(data){
+               console.log(data);
+					$('#logo1').val(data.company.company_logo1);
+               $('#logo2').val(data.company.company_logo2);
+				},
+
+			});
+		});
+      $('#modal_logo_edit_close').click(function () {
+			document.getElementById("modal_logo_edit").style.display = "none";
+			document.body.style = "overflow: auto";
+		});
+      $('#logo1Form > #image_edit').click(function(){
+         $('#logo1Form').attr({
+            'method': 'post',
+            'action': '/admin/logo/edit'
+         })
+      });
    });
 </script>
-
+<!-- 이미지 게시글 수정 -->
+<div id="modal_logo_edit" class="modal-overlay">
+	<div class="modal-content">
+		<div class="modal-btn">
+			<button id="modal_logo_edit_close">닫기</button>
+		</div>
+		<div class="modal-login">
+			<h2>로고 수정</h2>
+			<form id="logo1Form" enctype="multipart/form-data">
+            메뉴바 Logo<input type="file" name="company_logo1"/><p id="logo1"></p><br>
+            캠핑장명 Logo<input type="file" name="company_logo2"/><p id="logo2"></p><br>
+				<button id="image_edit" style="width:200px;">수정</button>
+				<button id="image_delete" style="width:200px;">삭제</button>
+			</form>
+		</div>
+	</div>
+</div>
 <!-- banner -->
 <section class="banner_main">
+   <!-- slider -->
    <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
       <ol class="carousel-indicators">
          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -35,44 +90,52 @@
          <span class="sr-only">Next</span>
       </a>
    </div>
-   <div class="booking_ocline2">
+   <!-- Logo -->
+   <form id="modal_edit_logo">
+      <a id="logo_edit" href="#edit">
+         <div class="booking_ocline2">
             <div class="col-md-1">
-               	<div id="book_ocline_logo"><img th:src="@{/images/book_ocline_logo.png}"  alt="logo" /></div>
+               <div id="book_ocline_logo"><img class="modal_block_logo" th:src="@{/images/}+${session.company.company_logo2}"  alt="logo" /></div>
             </div>
-   </div>
+         </div>
+      </a>
+   </form>
+   <!-- 환영 인사 -->
    <form id="modal_edit">
       <div class="booking_ocline">
          <div class="container">
             <div class="row">
                <div class="col-md-5">
-                  <a href="#edit">
-                     <div class="book_room">
-                        <h1 th:text="${session.company.company_name}"></h1><h1>방문을 환영합니다</h1>
-                        <div class="row">
-                           <div class="col-md-12">
-                              <span th:text="${homecont.home_content}"></span>
-                              <input type="hidden" name="home_code" th:value="${homecont.home_code}"/>
-                           </div>
-                        </div>
-                        <!--  기존 폼
-                        <form class="book_now">
+                  <a id="modal_edit_block" href="#edit">
+                     <div class="modal_block">
+                        <div class="book_room">
+                           <h1 th:text="${session.company.company_name}"></h1><h1>방문을 환영합니다</h1>
                            <div class="row">
                               <div class="col-md-12">
-                                 <span>Arrival</span>
-                                 <img class="date_cua" th:src="@{/images/date.png}">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
-                              </div>
-                              <div class="col-md-12">
-                                 <span>Departure</span>
-                                 <img class="date_cua" th:src="@{/images/date.png}">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
-                              </div>
-                              <div class="col-md-12">
-                                 <button class="book_btn">Book Now</button>
+                                 <span th:text="${homecont.home_content}"></span>
+                                 <input type="hidden" name="home_code" th:value="${homecont.home_code}"/>
                               </div>
                            </div>
-                        </form>
-                        -->
+                           <!--  기존 폼
+                           <form class="book_now">
+                              <div class="row">
+                                 <div class="col-md-12">
+                                    <span>Arrival</span>
+                                    <img class="date_cua" th:src="@{/images/date.png}">
+                                    <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
+                                 </div>
+                                 <div class="col-md-12">
+                                    <span>Departure</span>
+                                    <img class="date_cua" th:src="@{/images/date.png}">
+                                    <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
+                                 </div>
+                                 <div class="col-md-12">
+                                    <button class="book_btn">Book Now</button>
+                                 </div>
+                              </div>
+                           </form>
+                           -->
+                        </div>
                      </div>
                   </a>
                </div>
