@@ -698,18 +698,11 @@ button {
      font-size: 20px;
      line-height: 28px;
      padding: 2px 10px;
+     width: 100%;
 
      white-space: nowrap;
      overflow: hidden;
      text-overflow: ellipsis;
-}
-
-.main_notice .titlepage li:nth-child(1n) {
-     width: 3%;
-}
-
-.main_notice .titlepage li:nth-child(2n) {
-     width: 94%;
 }
 
 .main_notice_read_more {

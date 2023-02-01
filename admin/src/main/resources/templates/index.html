@@ -155,9 +155,8 @@
                <h2>&nbsp;&nbsp;&nbsp;주요공지&nbsp;</h2>
                <ul id="main_notice_list">
                		<div th:each="noticeLv:${noticeLv}">
-               			<li th:text="${noticeLv.notice_code}"></li>
                			<li>
-               				<a th:text="${noticeLv.notice_title}" th:href="@{/notice/noticeview(notice_code=${noticeLv.notice_code})}"></a>
+               				<a th:text="'-&nbsp;&nbsp;'+${noticeLv.notice_title}" th:href="@{/notice/noticeview(notice_code=${noticeLv.notice_code})}"></a>
                			</li>
                		</div>
                </ul>
