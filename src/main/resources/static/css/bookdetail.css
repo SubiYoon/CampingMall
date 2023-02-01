@@ -189,3 +189,31 @@
 	border-bottom: 1px solid #f2f2f2;
 }
 
+.verticality{
+	display:flex; 
+	flex-direction: column;
+}
+.addition-item>span:nth-child(2){
+	font-weight: bold;
+	
+}
+
+.reservation-cost-container-total>div:nth-child(n+3):nth-child(-n+6){
+	display:none;
+}
+
+.total-result-container>span{
+	font-size: large;	
+	font-weight: bold;
+}
+.total-result-container>span>span{
+	color:green;
+}
+
+.pay-go{
+	display:block; 
+	text-align: center;
+    width: 100%;
+    height: 60px;
+    
+}

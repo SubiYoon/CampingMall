@@ -114,27 +114,36 @@
 				<section class="addition-container customer-container">
 					<div>추가구매</div>				
 					<div>
-						<span>불멍(모닥불)</span>
-						<span>
-							<button type="button" onclick='addition_count("plus",3)' class="btn btn-outline-primary">+</button>
-							<span id="result3">0</span>
-							<button type="button" onclick='addition_count("minus",3)' class="btn btn-outline-danger">-</button>
+						<span class="addition-item verticality">
+							<span>불멍(모닥불)</span>
+							<span>20000원</span>
 						</span>
-					</div>
-					<div>
-						<span>빠른입실</span>
 						<span>
-							<button type="button" onclick='addition_count("plus", 4)' class="btn btn-outline-primary">+</button>
+							<button type="button" onclick='addition_count("plus",4)' class="btn btn-outline-primary">+</button>
 							<span id="result4">0</span>
 							<button type="button" onclick='addition_count("minus",4)' class="btn btn-outline-danger">-</button>
 						</span>
 					</div>
 					<div>
-						<span>바베큐그릴</span>
+						<span class="addition-item verticality">
+							<span>빠른입실</span>
+							<span>20000원</span>
+						</span>
 						<span>
-							<button type="button" onclick='addition_count("plus",5)' class="btn btn-outline-primary">+</button>
+							<button type="button" onclick='addition_count("plus", 5)' class="btn btn-outline-primary">+</button>
 							<span id="result5">0</span>
 							<button type="button" onclick='addition_count("minus",5)' class="btn btn-outline-danger">-</button>
+						</span>
+					</div>
+					<div>
+						<span class="addition-item verticality">
+							<span>바베큐 그릴</span>
+							<span>20000원</span>
+						</span>
+						<span>
+							<button type="button" onclick='addition_count("plus",6)' class="btn btn-outline-primary">+</button>
+							<span id="result6">0</span>
+							<button type="button" onclick='addition_count("minus",6)' class="btn btn-outline-danger">-</button>
 						</span>
 					</div>				
 				</section>
@@ -148,30 +157,50 @@
 				</section>
 			</section>
 			<section class="reservation-cost-content">
-				<section class="reservation-cost-container customer-container">
+				<section class="reservation-cost-container customer-container reservation-cost-container-total">
 					<div>결제 금액</div>				
 					<div>
 						<span>숙박 예약 요금</span>
 						<span>
-							<span id="result3">170000</span>원
+							<span id="result7">170000</span>원
+						</span>
+					</div>
+					<div>
+						<span>초과 인원 요금</span>
+						<span>
+							<span id="result3">0</span>원
 						</span>
 					</div>
 					<div>
 						<span>불멍(모닥불)</span>
 						<span>
-							<span id="result3">20000</span>원
+							<span>20000</span>원
 						</span>
 					</div>
 					<div>
+						<span>빠른입실</span>
+						<span>
+							<span>20000</span>원
+						</span>
+					</div>
+					<div>
+						<span>바베큐 그릴</span>
+						<span>
+							<span>20000</span>원
+						</span>
+					</div>
+					<div class="total-result-container">
 						<span>총 결제 금액</span>
 						<span>
-							<span id="result3">0</span>원
+							<span id="total_result">0</span>원
 						</span>
 					</div>				
 				</section>
 			</section>
 			<section>
-				<button type="button" style="float:right;" class="btn btn-success">결제하기</button>
+				<section>
+				<button type="button" class="btn btn-success pay-go">결제하기</button>
+				</section>
 			</section>
 		</section>
 	</div>
