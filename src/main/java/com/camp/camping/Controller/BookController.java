@@ -39,7 +39,6 @@ public class BookController {
 		
 		BookDTO book=service.selectViewForm(book_checkin,book_checkout,book_sitecode);
 		
-		
 		model.addAttribute("book", book);
 		return "main";
 	}

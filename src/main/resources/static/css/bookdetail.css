@@ -16,6 +16,9 @@
     margin-right: auto;
     background-color: #fff;
     height: 100%;
+    
+    padding-top: 15px;
+    padding-bottom: 30px;
 }
 
 .zone-content{
@@ -215,5 +218,15 @@
 	text-align: center;
     width: 100%;
     height: 60px;
-    
 }
+
+.footer{
+	margin-top:0px;
+	
+}
+
+
+
+
+
+
