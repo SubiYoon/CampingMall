@@ -2,12 +2,17 @@ package com.camp.camping.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.camp.camping.DTO.CompanyDTO;
+import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.DTO.NoticeDTO;
+import com.camp.camping.service.HomeService;
 import com.camp.camping.service.NoticeService;
 
 @Controller
@@ -18,87 +23,68 @@ public class NoticeController {
 
 	@Autowired
 	NoticeService ns;
+	
+	@Autowired
+	HomeService serviceH;
 
-//공지사항글목록	
+	//공지사항글목록	
 	@RequestMapping("")
-	public String main(Model model) {
+	public String main(Model model, HttpSession session) {
+		
 		List<NoticeDTO> list = null;
+		HomeDTO homecont = null;	//home테이블전체정보
+		
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		
 		try {
 			list = ns.selectAll();
 			model.addAttribute("plist", list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		//홈페이지소개content----------------------------------
+		try {
+			homecont = serviceH.select(company.getCompany_code());	//상호코드
+			model.addAttribute("homecont", homecont);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("CONTENT_FAIL");
+		}
+		
+		
 		model.addAttribute("center", dir + "notice");
-		return "main";
-	}
-
-//공지사항글작성페이지
-	@RequestMapping("/nowrite")
-	public String nowrite(Model model) {
-		model.addAttribute("center", dir + "nowrite");
+		
 		return "main";
 	}
 
 //공지사항글내용페이지
 	@RequestMapping("/noticeview")
-	public String noticeview(Model model, int notice_code) {
+	public String noticeview(Model model, int notice_code, HttpSession session) {
 		NoticeDTO noticeview = null;
+		HomeDTO homecont = null;	//home테이블전체정보
+		
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		
 		try {
 			noticeview = ns.select(notice_code);
 			model.addAttribute("notice", noticeview);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		//홈페이지소개content----------------------------------
+		try {
+			homecont = serviceH.select(company.getCompany_code());	//상호코드
+			model.addAttribute("homecont", homecont);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("CONTENT_FAIL");
+		}
+		
 		model.addAttribute("center", dir + "noticeview");
 		return "main";
 	}
 
-//공지사항글수정페이지
-	@RequestMapping("/noedit")
-	public String noedit(Model model, int notice_code) {
-		NoticeDTO notice = null;
-		try {
-			notice = ns.select(notice_code);
-			model.addAttribute("notice", notice);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("center", dir + "noedit");
-		return "main";
-	}
-
-//공지사항작성기능
-	@RequestMapping("/noticedo")
-	public String noticedo(NoticeDTO noticeDto) {
-		try {
-			ns.insert(noticeDto);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/notice";
-	}
-
-//공지사항수정기능
-
-	 @RequestMapping("/noticeupdate") public String noticeupdate(Model model, NoticeDTO notdto) {
-		 try {
-			 ns.update(notdto);
-		 } catch (Exception e) {
-			 e.printStackTrace();
-		 } 
-		 return "redirect:/notice";
-	}
-
-	
-//공지사항삭제기능
-	 @RequestMapping("/nodel") public String nodel(Integer notice_code){
-		 try {
-			ns.delete(notice_code);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		 return "redirect:/notice"; 
-	 }
 	
 }

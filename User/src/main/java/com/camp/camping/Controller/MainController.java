@@ -25,7 +25,7 @@ import com.camp.camping.service.ZoneService;
 public class MainController {
 	
 	@Autowired
-	HomeService service;
+	HomeService serviceH;
 	
 	@Autowired
 	NoticeService serviceN;
@@ -50,7 +50,6 @@ public class MainController {
 		
 		HomeDTO homekko = null;		//카카오맵
 		HomeDTO homecont = null;	//홈페이지소개
-		HomeDTO homeselect = null;	//전체정보
 		List<NoticeDTO> nolist = null;	//주요공지
 		List<ZoneDTO> listZ = null;	//구역소개
 		List<FacilityDTO> list = null;	//편의시설
@@ -66,7 +65,7 @@ public class MainController {
 
 		//카카오맵경도위도-------------------------------------
 		try {
-			homekko = service.select(companyDTO.getCompany_code());	//상호코드
+			homekko = serviceH.select(company.getCompany_code());	//상호코드
 			model.addAttribute("kkomap", homekko);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,25 +74,17 @@ public class MainController {
 		
 		//홈페이지소개content----------------------------------
 		try {
-			homecont = service.select(companyDTO.getCompany_code());	//상호코드
+			homecont = serviceH.select(company.getCompany_code());	//상호코드
 			model.addAttribute("homecont", homecont);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("CONTENT_FAIL");
 		}
 		
-		//홈페이지테이블전체----------------------------------
-		try {
-			homeselect = service.select(companyDTO.getCompany_code());	//상호코드
-			model.addAttribute("homeselect", homeselect);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
 		//주요공지----------------------------------
 		
 		try {
-			nolist = serviceN.noticeLv(companyDTO.getCompany_code());	//상호코드
+			nolist = serviceN.noticeLv(company.getCompany_code());	//상호코드
 			model.addAttribute("noticeLv", nolist);
 		} catch (Exception e) {
 			e.printStackTrace();

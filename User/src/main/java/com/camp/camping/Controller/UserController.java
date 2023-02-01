@@ -11,8 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.camp.camping.DTO.CompanyDTO;
+import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.DTO.UserDTO;
 import com.camp.camping.service.BookService;
+import com.camp.camping.service.HomeService;
 import com.camp.camping.service.UserService;
 import com.camp.camping.utility.CryptoUtil;
 
@@ -26,6 +29,8 @@ public class UserController {
 	UserService service;
 	@Autowired
 	BookService bookService;
+	@Autowired
+	HomeService serviceH;
 
 	//지울거
 	@RequestMapping("test")
@@ -35,7 +40,21 @@ public class UserController {
 	}
 
 	@RequestMapping("register")
-	public String register(Model model) {
+	public String register(Model model, HttpSession session) {
+		
+		HomeDTO homecont = null;	//home테이블전체정보
+		
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		
+		//홈페이지소개content----------------------------------
+		try {
+			homecont = serviceH.select(company.getCompany_code());	//상호코드
+			model.addAttribute("homecont", homecont);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("CONTENT_FAIL");
+		}
+		
 		model.addAttribute("center", dir + "register");
 		return "main";
 	}

@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.camp.camping.DTO.CompanyDTO;
 import com.camp.camping.DTO.FacilityDTO;
+import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.service.FacilityService;
+import com.camp.camping.service.HomeService;
 
 @Controller
 @RequestMapping("/facility")
@@ -21,11 +23,16 @@ public class FacilityController {
 	
 	@Autowired
 	FacilityService service;
+	
+	@Autowired
+	HomeService serviceH;
 
 	@RequestMapping("")
 	public String main(Model model, HttpSession session) {
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
 		List<FacilityDTO> list = null;
+		HomeDTO homecont = null;	//home테이블전체정보
+
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
 		
 		try {
 			list = service.selectByCompany(company.getCompany_code());
@@ -33,9 +40,19 @@ public class FacilityController {
 			//e.printStackTrace();
 			System.out.println("실패");
 		}
-
 		model.addAttribute("facilities", list);
+		
+		//홈페이지소개content----------------------------------
+		try {
+			homecont = serviceH.select(company.getCompany_code());	//상호코드
+			model.addAttribute("homecont", homecont);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("CONTENT_FAIL");
+		}
+		
 		model.addAttribute("center", dir+"facility");
+		
 		return "main";
 	}
 	
