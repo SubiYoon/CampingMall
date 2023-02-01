@@ -44,7 +44,7 @@ public class AjaxController {
             selectDate1 = selectDate2;
             selectDate2 = change;
         }
-
+        
         try {
             sites = sService.AvailableSite(Integer.parseInt(company_code), selectDate1, selectDate2);
             zones = zService.selectAll();

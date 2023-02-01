@@ -111,66 +111,26 @@
          <div class="col-md-12">
             <div class="titlepage">
                <h2>&nbsp;&nbsp;&nbsp;구역소개&nbsp;</h2>
-               <p>Lorem Ipsum available, but the majority have suffered </p>
+               <p>캠핑장 구역을 확인할 수 있습니다.</p>
             </div>
          </div>
       </div>
       <div class="row">
-         <div class="col-md-4 col-sm-6">
+         <div class="col-md-4 col-sm-6" th:each="zone:${zlist}">
             <div id="serv_hover" class="room">
                <div class="room_img">
-                  <figure><img th:src="@{/images/room1.jpg}" alt="#" /></figure>
-               </div>
+					<span th:each="img:${ilist}" th:if="${zone.zone_code == img.zone_code}">
+						<figure><img th:src="'images/'+${img.image_file}" alt="#"/></figure>
+					</span>
+				</div>
                <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
+                  <h3 th:text="${zone.zone_name}"></h3>
+                  <p th:text="${zone.zone_content}"></p>
                </div>
             </div>
          </div>
-         <div class="col-md-4 col-sm-6">
-            <div id="serv_hover" class="room">
-               <div class="room_img">
-                  <figure><img th:src="@{/images/room2.jpg}" alt="#" /></figure>
-               </div>
-               <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4 col-sm-6">
-            <div id="serv_hover" class="room">
-               <div class="room_img">
-                  <figure><img th:src="@{/images/room3.jpg}" alt="#" /></figure>
-               </div>
-               <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4 col-sm-6">
-            <div id="serv_hover" class="room">
-               <div class="room_img">
-                  <figure><img th:src="@{/images/room4.jpg}" alt="#" /></figure>
-               </div>
-               <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4 col-sm-6">
-            <div id="serv_hover" class="room">
-               <div class="room_img">
-                  <figure><img th:src="@{/images/room5.jpg}" alt="#" /></figure>
-               </div>
-               <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-               </div>
-            </div>
-         </div>
+        
+         <!-- 기존 폼 
          <div class="col-md-4 col-sm-6">
             <div id="serv_hover" class="room">
                <div class="room_img">
@@ -182,9 +142,10 @@
                </div>
             </div>
          </div>
+         -->
          <div class="col-md-12">
 	         <div class="our_read_more">
-	         	<a class="read_more" href="Javascript:void(0)"> Read More</a>
+	         	<a class="read_more" th:href="@{/zone}"> Read More</a>
 	         </div>
          </div>
       </div>

@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.camp.camping.DTO.CompanyDTO;
 import com.camp.camping.DTO.FacilityDTO;
 import com.camp.camping.DTO.HomeDTO;
+import com.camp.camping.DTO.ImageDTO;
 import com.camp.camping.DTO.NoticeDTO;
+import com.camp.camping.DTO.ZoneDTO;
 import com.camp.camping.service.FacilityService;
 import com.camp.camping.service.HomeService;
+import com.camp.camping.service.ImageService;
 import com.camp.camping.service.NoticeService;
+import com.camp.camping.service.ZoneService;
 
 @Controller
 public class MainController {
@@ -28,6 +32,12 @@ public class MainController {
 
 	@Autowired
 	FacilityService serviceF;
+	
+	@Autowired
+	ZoneService serviceZ;
+	
+	@Autowired
+	ImageService serviceI;
 
 	@RequestMapping("/")
 	public String select(){
@@ -36,11 +46,14 @@ public class MainController {
 	}
 
 	@RequestMapping("/main")
-	public String main(Model model, HttpSession session, CompanyDTO companyDTO) {
+	public String main(Model model, HttpSession session, CompanyDTO companyDTO, ZoneDTO zoneDTO, ImageDTO imageDTO) {
 		
 		HomeDTO homekko = null;		//카카오맵
 		HomeDTO homecont = null;	//홈페이지소개
 		List<NoticeDTO> nolist = null;	//주요공지
+		List<ZoneDTO> listZ = null;	//구역소개
+		List<FacilityDTO> list = null;	//편의시설
+		List<ImageDTO> listI = null;
 		
 		
 		//상호 세션 생성-----------------------------
@@ -48,6 +61,7 @@ public class MainController {
 		companyDTO = new CompanyDTO(1, "NoobCamping");
 
 		session.setAttribute("company", companyDTO);
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
 
 		//카카오맵경도위도-------------------------------------
 		try {
@@ -77,17 +91,29 @@ public class MainController {
 			System.out.println("NoticeLv_FAIL");
 		}
 		
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-		List<FacilityDTO> list = null;
+		//구역소개----------------------------------
 		
 		try {
-			list = serviceF.selectByCompany(company.getCompany_code());
+			listZ=serviceZ.selectZone(company.getCompany_code());	//상호코드
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		model.addAttribute("zlist", listZ);
+		
+		//편의시설----------------------------------
+		
+		try {
+			list = serviceF.selectByCompany(company.getCompany_code());	//상호코드
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.out.println("실패");
 		}
-
 		model.addAttribute("facilities", list);
+		
+		//이미지------------------------------------
+
+		listI=serviceI.selectByCompanyCode(company.getCompany_code());	//상호코드
+		model.addAttribute("ilist", listI);
 
 		return "main";
 	}

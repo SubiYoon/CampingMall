@@ -1,9 +1,9 @@
 use campdb;
 
 -- 유저
-INSERT INTO user VALUES(0, 'user01', '1234', '김씨', 000101, '010-1234-5678');
-INSERT INTO user VALUES(0, 'user02', '1234', '이씨', 010101, '010-1584-5678');
-INSERT INTO user VALUES(0, 'user03', '1234', '박씨', 020202, '010-5238-4828');
+INSERT INTO user VALUES(0, 'user01', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '김씨', 000101, '010-1234-5678');
+INSERT INTO user VALUES(0, 'user02', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '이씨', 010101, '010-1584-5678');
+INSERT INTO user VALUES(0, 'user03', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '박씨', 020202, '010-5238-4828');
 
 -- 상호
 INSERT INTO company(company_name) VALUES('NoopCamping');
@@ -36,7 +36,7 @@ INSERT INTO home(admin_code, home_content, home_longitude, home_latitude)VALUES(
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역A', 'A존 설명입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역B', 'B존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역C', 'C존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역D', 'D존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(2,'구역D', 'D존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
 
 -- 사이트
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, 'A-1',20000,'A-1 입니다.');
@@ -85,8 +85,18 @@ insert into `review`(book_code, review_content, review_score) values(4,'풍경�
 -- 이미지
 insert into image(company_code, zone_code, image_file) VALUES(1, 1, 'zone_img1.jpg');
 insert into image(company_code, zone_code, image_file) VALUES(1, 2, 'zone_img2.jpg');
-insert into image(company_code, zone_code, image_file) VALUES(1, 4, 'zone_img3.jpg');
-insert into image(company_code, site_code, image_file) VALUES(1, 1, 'site_img.png');
+insert into image(company_code, zone_code, image_file) VALUES(1, 3, 'zone_img3.jpg');
+insert into image(company_code, zone_code, image_file) VALUES(1, 4, 'zone_img4.jpg');
+insert into image(company_code, site_code, image_file) VALUES(1, 1, 'site_img1.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 2, 'site_img2.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 3, 'site_img3.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 4, 'site_img4.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 5, 'site_img5.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 6, 'site_img1.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 7, 'site_img2.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 8, 'site_img3.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 9, 'site_img4.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 10, 'site_img5.png');
 insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img.png');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'home_img.png');
 

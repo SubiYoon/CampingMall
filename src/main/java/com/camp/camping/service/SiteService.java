@@ -45,7 +45,11 @@ public class SiteService implements MyService<Integer, SiteDTO> {
     public List<SiteDTO> selectAll() throws Exception {
         return null;
     }
-
+    
+    public List<SiteDTO> selectSet(int company_code) throws Exception {
+        return mapper.selectSet(company_code);
+    }
+    
     public List<Integer> selectByCompany(int company_code) {
         return mapper.selectByCompany(company_code);
     }
@@ -120,5 +124,9 @@ public class SiteService implements MyService<Integer, SiteDTO> {
                 && reservationService.IsDateEmpty(site_code, date);
         }
         return isAvailable;
+    }
+
+    public SiteDTO selectView(int site_code){
+        return mapper.selectView(site_code);
     }
 }
