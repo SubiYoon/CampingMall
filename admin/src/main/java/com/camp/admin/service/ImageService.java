@@ -58,4 +58,8 @@ public class ImageService implements MyService<Integer, ImageDTO> {
     public List<ImageDTO> selectByFacilityCode(int facility_code){
         return mapper.selectByFacilityCode(facility_code);
     }
+
+    public ImageDTO selecOnetByHomeCode(int home_code){
+        return mapper.selecOnetByHomeCode(home_code);
+    }
 }
