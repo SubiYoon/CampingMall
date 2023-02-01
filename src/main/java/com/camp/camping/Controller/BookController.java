@@ -2,6 +2,7 @@ package com.camp.camping.Controller;
 
 import com.camp.camping.DTO.BookDTO;
 import com.camp.camping.service.BookService;
+import com.camp.camping.service.SiteService;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,18 +34,13 @@ public class BookController {
 	public String book_detail(Model model,
 						      @RequestParam("book_checkin")String book_checkin,
 						      @RequestParam("book_checkout")String book_checkout,
-						      @RequestParam("book_sitecode")String book_sitecode) {
+						      @RequestParam("book_sitecode")int book_sitecode) {
 		model.addAttribute("center", dir+"bookdetail");
 		
+		BookDTO book=service.selectViewForm(book_checkin,book_checkout,book_sitecode);
 		
-		BookDTO book=new BookDTO();
 		
-		DateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
-		Calendar cal = Calendar.getInstance();
-		Random random = new Random();
-		book.setMerchant_uid(dateFormat.format(cal.getTime())+""+random.nextInt(100000));
-		book.setSite_code(Integer.parseInt(book_sitecode));
-		
+		model.addAttribute("book", book);
 		return "main";
 	}
 	

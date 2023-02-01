@@ -64,14 +64,16 @@
 	   if(over_num>0){
 		   $("#over-count").css("display","flex");
 		   $(".reservation-cost-container-total>div:nth-child(3)").css("display","flex");
-		   let over_cost=over_num*30000;
-		   $("#result3").html(over_cost);
+		   
 		   
 	   }else{
 		   $("#over-count").css("display","none");
 		   $(".reservation-cost-container-total>div:nth-child(3)").css("display","none");
+		   
 	   }
-		   total_count();
+	   let over_cost=over_num*10000;
+	   $("#result3").html(over_cost);
+	   total_count();
 	   
    }
    

@@ -1,15 +1,16 @@
 <script th:src="@{/js/bookdetail.js}">
 //예약코드(insert디폴트)
 //작성일(insert디폴트)
-//사이트코드(request)
-//주문번호(request)
+//사이트코드(request)대신 사이트이름
+//주문번호(request) 결제단에 넣기
 //체크인(request)
 //체크아웃(request)
-//예약상태(server)
-//유저코드(session)
-//인원수(form)
-//차량번호(form)
-//가격(form)
+//예약상태(server) 결제단에 넣기
+//유저코드(session) 결제단에 넣기
+//인원수(form) 결제단에넣기
+//차량번호(form) 결제단에넣기
+//사이트가격(request)
+//결제총가격(form) 결제단에넣기
 </script>
 <link rel="stylesheet" th:href="@{/css/bookdetail.css}">
 <div class="back_re">
@@ -32,7 +33,7 @@
 						<img alt="구역이미지" th:src="@{/images/banner1.jpg}" >
 					</div>
 					<div class="zone-info">
-						<div class="zone-name">a-1사이트</div>
+						<div class="zone-name" th:text="${book.site_name}"></div>
 						<div class="zone-total">기준인원2명</div>
 						<div class="zone-car">기준차량1대</div>
 					</div>
@@ -43,11 +44,11 @@
 					<div class="checkinout-box">
 						<div class="checkinout">
 							<span>체크인</span>
-							<span>2023.01.31 (화) 17:00</span>
+							<span th:text="${book.book_checkin}"></span>
 						</div>
 						<div class="checkinout">
 							<span>체크아웃</span>
-							<span>2023.02.01 (수) 14:00</span>
+							<span th:text="${book.book_checkout}"></span>
 						</div>
 					</div>
 				</section>
@@ -162,7 +163,7 @@
 					<div>
 						<span>숙박 예약 요금</span>
 						<span>
-							<span id="result7">170000</span>원
+							<span id="result7" th:text="${book.book_price}"></span>원
 						</span>
 					</div>
 					<div>
