@@ -7,7 +7,7 @@
 
   </insert>
   <update id="update" parameterType="HomeDTO">
-  
+    UPDATE home SET home_content=#{home_content} where home_code=#{home_code}
   </update>
   <delete id="delete">
   
