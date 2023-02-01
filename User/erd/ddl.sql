@@ -93,6 +93,8 @@ CREATE TABLE `user` (
 CREATE TABLE `company` (
    `company_code`   INT   NOT NULL auto_increment,
    `company_name`   VARCHAR(20)   NOT NULL,
+   `company_logo1`   VARCHAR(50)   NOT NULL,
+   `company_logo2`   VARCHAR(50)   NOT NULL,
     primary key (company_code)
 );
 
