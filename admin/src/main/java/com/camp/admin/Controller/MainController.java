@@ -25,7 +25,7 @@ import com.camp.admin.service.ZoneService;
 public class MainController {
 	
 	@Autowired
-	HomeService service;
+	HomeService serviceH;
 	
 	@Autowired
 	NoticeService serviceN;
@@ -65,7 +65,7 @@ public class MainController {
 
 		//카카오맵경도위도-------------------------------------
 		try {
-			homekko = service.select(companyDTO.getCompany_code());	//상호코드
+			homekko = serviceH.select(companyDTO.getCompany_code());	//상호코드
 			model.addAttribute("kkomap", homekko);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -74,7 +74,7 @@ public class MainController {
 		
 		//홈페이지소개content----------------------------------
 		try {
-			homecont = service.select(companyDTO.getCompany_code());	//상호코드
+			homecont = serviceH.select(companyDTO.getCompany_code());	//상호코드
 			model.addAttribute("homecont", homecont);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -116,6 +116,27 @@ public class MainController {
 		model.addAttribute("ilist", listI);
 
 		return "main";
+	}
+
+	@RequestMapping("board/edit")
+	public String boardEdit(HttpSession session ,String whatDTO, String title, String content, int board_code){
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+
+		if(whatDTO.equals("homeDTO")){
+			HomeDTO homeDTO = new HomeDTO();
+			homeDTO.setHome_code(board_code);
+			homeDTO.setHome_content(content);
+
+			try{
+				serviceH.update(homeDTO);
+				System.out.println("성공");
+			}catch(Exception e){
+				//e.printStackTrace();
+				System.out.println("실패");
+			}
+		}
+
+		return "redirect:/";
 	}
 	
 }
