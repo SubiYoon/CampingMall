@@ -66,7 +66,7 @@ public class MainController {
 
 		//카카오맵경도위도-------------------------------------
 		try {
-			homekko = service.lnglat(companyDTO.getCompany_code());	//상호코드
+			homekko = service.select(companyDTO.getCompany_code());	//상호코드
 			model.addAttribute("kkomap", homekko);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -75,7 +75,7 @@ public class MainController {
 		
 		//홈페이지소개content----------------------------------
 		try {
-			homecont = service.homeCont(companyDTO.getCompany_code());	//상호코드
+			homecont = service.select(companyDTO.getCompany_code());	//상호코드
 			model.addAttribute("homecont", homecont);
 		} catch (Exception e) {
 			e.printStackTrace();

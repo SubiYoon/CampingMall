@@ -13,19 +13,10 @@
 
     </delete>
     
-    <select id="select" parameterType="Integer"  resultType="HomeDTO">
-		SELECT * FROM home JOIN admin ON home.admin_code = admin.admin_code WHERE company_code=#{companycode}
-    </select>
+    <select id="select" resultType="HomeDTO">
+    	SELECT * FROM home JOIN admin ON home.admin_code = admin.admin_code WHERE company_code=#{companycode}
+  	</select>
     <select id="selectAll" resultType="HomeDTO">
 
     </select>
-    
-    <select id="lnglat" parameterType="Integer" resultType="HomeDTO">
-		SELECT home_code, home.admin_code, home_longitude, home_latitude FROM home JOIN admin ON home.admin_code = admin.admin_code WHERE company_code=#{companycode}
-    </select>
-    <select id="homeCont" parameterType="Integer" resultType="HomeDTO">
-		SELECT home_code, home.admin_code, home_content FROM home JOIN admin ON home.admin_code = admin.admin_code WHERE company_code=#{companycode}
-    </select>
-    
-    
 </mapper>

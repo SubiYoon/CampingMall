@@ -31,24 +31,14 @@ public class HomeService implements MyService<Integer, HomeDTO> {
 	}
 
 	@Override
-	public HomeDTO select(Integer companycode) throws Exception {
-		return mapper.select(companycode);
+	public HomeDTO select(Integer k) throws Exception {
+		return mapper.select(k);
 	}
 
 	@Override
 	public List<HomeDTO> selectAll() throws Exception {
 		return mapper.selectAll();
 	}
-	
-	//지도좌표불러오기
-	public HomeDTO lnglat(Integer companycode) throws Exception{
-		return mapper.lnglat(companycode);
-	}
-	
-	//홈컨텐트(소개)불러오기
-		public HomeDTO homeCont(Integer companycode) throws Exception{
-			return mapper.homeCont(companycode);
-		}
 	
 	
 }
