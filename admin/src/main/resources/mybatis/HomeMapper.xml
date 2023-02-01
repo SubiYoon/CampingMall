@@ -14,7 +14,7 @@
   </delete>
   
   <select id="select" resultType="HomeDTO">
-    SELECT * FROM home JOIN admin ON home.admin_code = admin.admin_code WHERE company_code=#{companycode}
+    SELECT * FROM home JOIN admin ON home.admin_code = admin.admin_code WHERE company_code=#{company_code}
   </select>
   <select id="selectAll" resultType="HomeDTO">
 

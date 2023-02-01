@@ -5,9 +5,12 @@
 <mapper namespace="com.camp.admin.mapper.ImageMapper">
     <insert id="insert" parameterType="ImageDTO">
         INSERT INTO image(company_code, zone_code, site_code, home_code, facility_code, image_file)
-        VALUES (IF(#{company_code} = 0, NULL, #{company_code}), IF(#{zone_code}= 0, NULL, #{zone_code}),
-                IF(#{site_code} = 0, NULL, #{site_code}), IF(#{home_code} = 0, NULL, #{home_code}),
-                IF(#{facility_code} = 0, NULL, #{facility_code}), #{image_file})
+        VALUES (IF(#{company_code} = 0, NULL, #{company_code}), 
+                IF(#{zone_code}= 0, NULL, #{zone_code}),
+                IF(#{site_code} = 0, NULL, #{site_code}), 
+                IF(#{home_code} = 0, NULL, #{home_code}),
+                IF(#{facility_code} = 0, NULL, #{facility_code}), 
+                #{image_file})
     </insert>
     <select id="select" resultType="ImageDTO">
         SELECT *
@@ -58,4 +61,9 @@
         FROM image
         WHERE image_code = #{image_code}
     </delete>
+    <select id="selectOneByHomeCode" resultType="ImageDTO">
+        SELECT *
+        FROM image
+        WHERE home_code = #{home_code}
+    </select>
 </mapper>
