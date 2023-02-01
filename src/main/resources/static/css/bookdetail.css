@@ -85,7 +85,6 @@
     text-align: right;
 	
 }
-
 .customer-container{
 	padding-top:2rem;
 	
@@ -153,3 +152,40 @@
 	flex: 0 0 10rem;
 	
 }
+.addition-container{
+	padding:10px 0 10px 0;
+}
+.addition-container>div{
+	padding: 1rem 0rem;
+}
+
+.addition-container>div:nth-child(1){
+	font-weight:bold;
+	font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.reservation-cost-container{
+	padding:10px 0 10px 0;
+}
+.reservation-cost-container>div{
+	padding: 1rem 0rem;
+}
+
+.reservation-cost-container>div:nth-child(1){
+	font-weight:bold;
+	font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+
+.customer-container>div>span>span{
+	padding:0 5px 0 5px;
+	
+}
+
+
+.bord-line{
+	border-bottom: 1px solid #f2f2f2;
+}
+
