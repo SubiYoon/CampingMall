@@ -1,0 +1,180 @@
+<script>
+   function isId(asValue) {
+      var regExp = /^[a-z]+[a-z0-9]{5,19}$/;
+ 
+      return regExp.test(asValue);
+   }
+   function isPassword(asValue) {
+      var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+ 
+      return regExp.test(asValue);
+   }
+   function isNum(asValue){
+      var regExp = /^[0-9]*$/;
+
+      return regExp.test(asValue);
+   }
+   function isCorrect(asValue) {
+      var regExp = /^[a-zA-Zㄱ-힣][a-zA-Zㄱ-힣 ]*$/;
+ 
+      return regExp.test(asValue);
+   }
+$(document).ready(function(){
+	$(".nav-item:nth-child(8)").attr('class','nav-item active');
+	$(".notactive:nth-child(8)").attr('class','active');
+   
+   //회원가입
+   $("#register a").click(function(){
+      var id = $('#register input[name=user_id]').val();
+      var pwd = $('#register input[name=user_password]').val();
+      var pwd_check = $('#register input[name=user_password_check]').val();
+      var name = $('#register input[name=user_name]').val();
+      var birthday = $('#register input[name=user_birthday]').val();
+      var tel1 = $('#register input[name=user_tel1]').val();
+      var tel2 = $('#register input[name=user_tel2]').val();
+      var tel3 = $('#register input[name=user_tel3]').val();
+      
+      //아이디 확인
+      if(id == null || id == ''){
+         alert("아이디를 입력해주세요.");
+         return;
+      }
+      if(!isId(id)){
+         alert("아이디는 영문자 또는 숫자 6~20자 입니다.")
+         return;
+      }
+      if($('#register input[name=user_id]').attr('alt') == 'N'){
+         alert("아이디 중복확인을 해주세요");
+         return;
+      }
+      //비밀번호 확인
+      if(pwd == null || pwd=='' || pwd_check == null || pwd_check==''){
+         alert("비밀번호를 입력해주세요.");
+         return;
+      }
+      if(!isPassword(pwd)){
+         alert("비밀번호는 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합 해주세요.")
+         return;
+      }
+      if(pwd != pwd_check){
+         alert("비밀번호가 틀립니다.");
+         return;
+      }
+      //이름입력 확인
+      if(name==null || name==''){
+         alert("이름을 입력하세요.");
+         return;
+      }
+      if(!isCorrect(name)){
+         alert("이름은 한글 or 영어만 입려 가능합니다.");
+         return;
+      }
+      //생년월일 확인
+      if(birthday == null || birthday ==''){   
+         alert("생일을 입력하세요.");
+         return;
+      }
+      if(!isNum(birthday)){
+         alert("생일은 숫자만 입력해주세요.");
+         return;
+      }
+      if(birthday.length != 6){
+         alert("생년월일 6자리를 입력해주세요.")
+         return;
+      }
+      //전화번호 확인
+      if(tel1 == null || tel1 == '' || tel2 == null || tel2 == '' || tel3 == null || tel3 == ''){
+         alert("전화번호를 입력하세요.");
+         return;
+      }
+      if(!isNum(tel1) || !isNum(tel2) || !isNum(tel3)){
+         alert("숫자만 입력해주세요.");
+         return;
+      }
+      if(tel1.length != 3 || tel2.length !=4 || tel3.length !=4){
+         alert("3자리, 4자리, 4자리 입력해주세요.");
+         return;
+      }
+
+      $("#register").attr({
+         'method' : 'post',
+         'action' : '[[@{/user/registerOk}]]'
+      });
+      $("#register").submit();
+   });
+
+   //아이디 중복확인
+   $('#checkid').click(function(){
+      var id = $('#register input[name=user_id]').val();
+      $.ajax({
+         url : '[[@{/user/checkid}]]',
+         data : {'user_id' : id},
+         success : function(data){
+            if(data==1){
+               alert("아이디가 이미 존재합니다.");
+            }else {
+               if(!isId(id)){
+                  alert("아이디는 영문자 + 숫자 6~20자 입니다.")
+                  return;
+               }
+               alert("사용가능한 아이디 입니다.");
+               //아이디 중복확인 완료되었는지 체크(N - 안됨, Y - 됨)
+               $('#register input[name=user_id]').attr({'alt' : 'Y', 'readonly' : 'readonly'});
+            }
+         }
+      });
+   });
+});
+</script>
+
+        <div class="back_re">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                      <h2>회원가입</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- blog -->
+      <div  class="blog">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="titlepage">
+                     <p class="margin_0">(넣을 문구 설정)</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-md-4">
+            <div class="blog_box">
+               
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="blog_box">
+               <form id="register">
+                  <div class="blog_room">
+                     아이디 <input type="text" name="user_id" alt="N"><input type="button" value="아이디 중복확인" id="checkid"/><br>
+                     비밀번호 <input type="password" name="user_password" maxlength="16" minlength="8"/><br>
+                     비밀번호확인 <input type="password" name="user_password_check" maxlength="16" minlength="8"/><br>
+                     이름 <input type="text" name="user_name"/><br>
+                     생년월일 <input type="text" name="user_birthday" maxlength="6"/><br>
+                     연락처 <input type="text" style="width: 30px;" name="user_tel1"/> - <input type="text" style="width: 30px;" name="user_tel2"/> - <input type="text" style="width: 30px;" name="user_tel3"/><br>
+                     <a href="#">회원가입</a>
+                  </div>
+               </form>
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="blog_box">
+               
+            </div>
+         </div>
+      </div>
+      <!-- end blog -->
