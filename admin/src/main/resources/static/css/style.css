@@ -260,7 +260,7 @@ button {
 
 /*-- 로그인모달용 --*/
 
-#modal {
+#modal, #modal_board_edit {
 	display:none;
  	position:relative;
 	width:100%;
@@ -268,11 +268,11 @@ button {
 	z-index:50;
 }
 
-#modal .modal-btn {
+#modal .modal-btn, #modal_board_edit .modal-btn {
 	text-align: right;
 }
 
-#modal button {
+#modal button, #modal_board_edit button {
 	background-color: #009898;
     width: 15%;
     padding: 5px 0;
@@ -283,11 +283,11 @@ button {
     display: line-block;
 }
 
-#modal h2 {
+#modal h2, #modal_board_edit h2 {
   margin:0;   
 }
 
-#modal .modal-content {
+#modal .modal-content, #modal_board_edit .modal-content {
   width:80%;
   margin:100px auto;
   padding:10px 2%;
@@ -295,16 +295,16 @@ button {
   border:2px solid #666;
 }
 
-#modal .modal-login {
+#modal .modal-login, #modal_board_edit .modal-login {
 	text-align: center;
 	padding: 10px 0;
 }
 
-#modal .modal-login button {
+#modal .modal-login button, #modal_board_edit .modal-login button {
 	text-align: center;
 }
 
-#modal.modal-overlay {
+#modal.modal-overlay, #modal_board_edit.modal-overlay {
             width: 100%;
             height: 100%;
             position: absolute;

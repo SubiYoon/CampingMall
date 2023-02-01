@@ -7,8 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<!-- jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
-	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 	<!-- mobile metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,6 +71,31 @@
 		});
 		//end 로그인모달----------------------
 		
+		//글 수정 모달 -----------------------
+		$('#modal_edit a').click(function(){
+			var board_data = $('#modal_edit').serialize();
+			document.getElementById("modal_board_edit").style.display = "flex"
+			document.body.style = "overflow: hidden";
+			
+			$.ajax({
+				url: '/admin/boardEdit',
+				data: board_data,
+				success: function(data){
+					if (data.home != null) {
+						const content = data.home.home_content;
+						document.getElementById('content').innerText = content;
+						$('#board_code').val('[[${data.home.home_code}]]');
+					}
+				},
+
+			});
+		});
+		$('#modal_edit_close').click(function () {
+			document.getElementById("modal_board_edit").style.display = "none";
+			document.body.style = "overflow: auto";
+		});
+		//end 글 수정 모달--------------------
+
 		//로그인
 		$('#loginForm button').click(function () {
 			$('#loginForm').attr({
@@ -197,7 +221,9 @@
 
 
 </head>
-
+<!--페이지 이동 막기
+<iframe id="iframe1" name="iframe1" style="display:none"></iframe>
+-->
 <!-- 로그인모달창 -->
 <div id="modal" class="modal-overlay">
 	<div class="modal-content">
@@ -222,6 +248,27 @@
 	</div>
 </div>
 <!-- end 로그인모달창 -->
+
+<!-- No images 게시글 수정 모달창 -->
+<div id="modal_board_edit" class="modal-overlay">
+	<div class="modal-content">
+		<div class="modal-btn">
+			<!--<button th:onclick="|location.href='@{/user/register}'|">회원가입</button> -->
+			<button id="modal_edit_close">닫기</button>
+		</div>
+		<div class="modal-login">
+			<h2>게시글 수정</h2>
+			<form id="boardForm">
+				<input id="board_code" type="hidden" name="code" value=""/>
+				<input id="title" type="text" name="title" style="width: 350px;"/><br><br>
+				<textarea id="content" rows="10" cols="50" name="content"></textarea><br><br>
+				<button id="board_edit" style="width:200px;">수정</button>
+				<button id="board_delete" style="width:200px;">삭제</button>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- end No images 게시글 수정 모달창 -->
 
 <!-- 챗봇 모달창 -->
 <div id="modal_cb" class="modal_cb-overlay">
