@@ -22,7 +22,7 @@
 		//소개 게시글 마우스 수정영역표시 end
 
       //이미지만 변경하는 이벤트 함수
-      $('#modal_edit_logo > #logo_edit').click(function(){
+      $('#modal_edit_logo #logo_edit').click(function(){
 			var image_data = $('#modal_edit_logo').serialize();
 			
 			document.getElementById("modal_logo_edit").style.display = "flex"
@@ -38,7 +38,7 @@
 
 			});
 		});
-      $('#logo1Form > #image_edit').click(function(){
+      $('#logo1Form > #image_logo_edit').click(function(){
          $('#logo1Form').attr({
             'method': 'post',
             'action': '/admin/logo/edit'
@@ -73,8 +73,35 @@
 			});
 			$('#boardForm').submit();
 		});
+		//end home 소개 게시글 수정 모달--------------------
 
-		//end 글 수정 모달--------------------
+      //슬라이더 모달
+      
+      //마우스 수정영역 표시	
+		$('.first-slide').mouseenter(function(){
+			$('.first-slide').css('border', 'solid 2px red')
+		});
+		$('.first-slide').mouseleave(function(){
+			$('.first-slide').css('border', 'none');
+		});
+		//마우스 수정영역표시 end
+
+      $('.slide_edit').click(function(){
+			var image_data = $('#modal_edit_logo').serialize();
+			
+			document.getElementById("modal_slide_edit").style.display = "flex"
+			document.body.style = "overflow: hidden";
+		});
+
+      $('#slideForm #image_slide_edit').click(function(){
+			$('#slideForm').attr({
+				'method' : 'post',
+				'action' : '/admin/slide/edit'
+			});
+			$('#slideForm').submit();
+		});
+
+      //슬라이더 모달 end
    });
 </script>
 <!-- home 소개 게시글 수정 모달창 -->
@@ -109,7 +136,7 @@
 			<form id="logo1Form" enctype="multipart/form-data">
             메뉴바 Logo : <span id="logo1"></span><br><input type="file" name="company_logo1"/><br>
             캠핑장명 Logo : <span id="logo2"></span><br><input type="file" name="company_logo2"/><br>
-				<button id="image_edit" style="width:200px;">수정</button>
+				<button id="image_logo_edit" style="width:200px;">수정</button>
 			</form>
 		</div>
 	</div>
@@ -125,8 +152,11 @@
 			<form id="slideForm" enctype="multipart/form-data">
             <li th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code}">
                <span th:text="'슬라이드 ' + ${slideStat.count} + ' : '"></span><span th:text="${slide.image_file}"></span><br>
-               <input type="file" name="home_slide"/></li>
-				<button id="image_edit" style="width:200px;">수정</button>
+               <input type="hidden" name="image_code" th:value="${slide.image_code}"/>
+               <input type="file" name="home_slide"/>
+            </li>
+            <input type="hidden" name="home_code" th:value="${homecont.home_code}"/>
+				<button id="image_slide_edit" style="width:200px;">수정</button>
 			</form>
 		</div>
 	</div>
@@ -141,10 +171,10 @@
       </ol>
       <div class="carousel-inner">
          <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index==0}" class="carousel-item active">
-            <img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide">
+            <a class="slide_edit" href="#edit"><img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide"></a>
          </div>
          <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index>0}" class="carousel-item">
-            <img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide">
+            <a class="slide_edit" href="#edit"><img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide"></a>
          </div>
       </div>
       <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -158,13 +188,11 @@
    </div>
    <!-- Logo -->
    <form id="modal_edit_logo">
-      <a id="logo_edit" href="#edit">
          <div class="booking_ocline2">
             <div class="col-md-1">
-               <div id="book_ocline_logo"><img class="modal_block_logo" th:src="@{/images/}+${session.company.company_logo2}"  alt="logo" /></div>
+               <a id="logo_edit" href="#edit"><div id="book_ocline_logo"><img class="modal_block_logo" th:src="@{/images/}+${session.company.company_logo2}"  alt="logo" /></div></a>
             </div>
          </div>
-      </a>
    </form>
    <!-- 환영 인사 -->
    <form id="modal_edit">
