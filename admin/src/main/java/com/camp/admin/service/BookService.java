@@ -28,6 +28,8 @@ public class BookService implements MyService<Integer, BookDTO> {
     ReservationService reservationService;
     @Autowired
     SiteService siteService;
+    @Autowired
+    ZoneService zoneService;
 
     @Override
     public void insert(BookDTO v) throws Exception {
@@ -252,6 +254,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return new GraphDTO(labesList, stringYearAndMonth, dataList);
     }
+
     //stringYear = "2023"형식
     //해당년도 사이트별 인원수 GraphDTO 형식으로 반환
     public GraphDTO YearlySiteUserGraph(String stringYear, int company_code)
@@ -268,4 +271,92 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return new GraphDTO(labesList, stringYear, dataList);
     }
+
+    public Map<String, Double> DailyZoneSalesMap(String stringDate, int company_code)
+        throws Exception {
+        Map<String, Double> zoneSalesMap = new HashMap<>();
+        List<ReservationDTO> reservationList = reservationService.SelectByDateAndCompanyCode(
+            stringDate, company_code);
+        for (ReservationDTO reservation : reservationList) {
+            BookDTO book = SelectByReservationCode(reservation.getReservation_code());
+            String zoneName = zoneService.select(
+                siteService.select(book.getSite_code()).getZone_code()).getZone_name();
+            int sales = book.getBook_price();
+            double bookDays = Utility.StringDateDifference(book.getBook_checkout(),
+                book.getBook_checkin());
+            if (zoneSalesMap.containsKey(zoneName)) {
+                zoneSalesMap.put(zoneName, zoneSalesMap.get(zoneName) + (sales / bookDays));
+            } else {
+                zoneSalesMap.put(zoneName, sales / bookDays);
+            }
+        }
+        return zoneSalesMap;
+    }
+
+    public Map<String, Double> MonthlyZoneSalesMap(String stringYearAndMonth, int company_code)
+        throws Exception {
+        Map<String, Double> zoneSalesMap = new HashMap<>();
+        String stringDate = stringYearAndMonth + "-01";
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        for (int i = 0; i < Utility.LastDayOfMonth(stringDate); i++) {
+            Map<String, Double> daily = DailyZoneSalesMap(Utility.DateToString(calendar.getTime()),
+                company_code);
+            for (Entry<String, Double> entry : daily.entrySet()) {
+                String key = entry.getKey();
+                Double value = entry.getValue();
+                zoneSalesMap.merge(key, value, Double::sum);
+            }
+            calendar.add(Calendar.DATE, 1);
+        }
+        return zoneSalesMap;
+    }
+    public Map<String, Double> YearlyZoneSalesMap(String stringYear, int company_code)
+        throws Exception {
+        Map<String, Double> ZoneSalesMap = new HashMap<>();
+        for (int i = 1; i <= 12; i++) {
+            String stringYearAndMonth;
+            if (i / 10 == 1) {
+                stringYearAndMonth = stringYear + "-" + i;
+            } else {
+                stringYearAndMonth = stringYear + "-0" + i;
+            }
+            Map<String, Double> monthly = MonthlyZoneSalesMap(stringYearAndMonth, company_code);
+            for (Entry<String, Double> entry : monthly.entrySet()) {
+                String key = entry.getKey();
+                Double value = entry.getValue();
+                ZoneSalesMap.merge(key, value, Double::sum);
+            }
+        }
+        return ZoneSalesMap;
+    }
+
+    public GraphDTO MonthlyZoneSalesGraph(String stringYearAndMonth, int company_code)
+        throws Exception {
+        Map<String, Double> monthlyZoneSalesMap = MonthlyZoneSalesMap(stringYearAndMonth,
+            company_code);
+        List<String> labesList = new ArrayList<>();
+        for (String label : monthlyZoneSalesMap.keySet()) {
+            labesList.add("" + label);
+        }
+        List<String> dataList = new ArrayList<>();
+        for (Double data : monthlyZoneSalesMap.values()) {
+            dataList.add("" + Math.round(data));
+        }
+        return new GraphDTO(labesList, stringYearAndMonth, dataList);
+    }
+    public GraphDTO YearlyZoneSalesGraph(String stringYear, int company_code) throws Exception {
+        Map<String, Double> yearlyZoneSalesMap = YearlyZoneSalesMap(stringYear,
+            company_code);
+        List<String> labesList = new ArrayList<>();
+        for (String label : yearlyZoneSalesMap.keySet()) {
+            labesList.add("" + label);
+        }
+        List<String> dataList = new ArrayList<>();
+        for (Double data : yearlyZoneSalesMap.values()) {
+            dataList.add("" + Math.round(data));
+        }
+        return new GraphDTO(labesList, stringYear, dataList);
+    }
+
 }
