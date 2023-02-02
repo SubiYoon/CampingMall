@@ -127,7 +127,7 @@ h4 a,
 h5 a,
 h6 a {
      color: #212121;
-     text-decoration: none!important;
+     text-decoration: none !important;
      opacity: 1
 }
 
@@ -172,7 +172,12 @@ img {
      height: auto;
 }
 
- :focus {
+.slide_edit > .first-slide{
+     width: 100%;
+     height: 700px;
+}
+
+:focus {
      outline: 0;
 }
 
@@ -260,137 +265,170 @@ button {
 
 /*-- 로그인모달용 --*/
 
-#modal, #modal_board_edit {
-	display:none;
- 	position:relative;
-	width:100%;
-	height:100%;
-	z-index:50;
+#modal {
+     display: none;
+     position: relative;
+     width: 100%;
+     height: 100%;
+     z-index: 50;
 }
 
-#modal .modal-btn, #modal_board_edit .modal-btn {
-	text-align: right;
+#modal_logo_edit, 
+#modal_board_edit,
+#modal_slide_edit {
+     position: fixed;
+     width: 100%;
+     height: 100%;
+     transform: translate(0%, -40%);
+     z-index: 50;
 }
 
-#modal button, #modal_board_edit button {
-	background-color: #009898;
-    width: 15%;
-    padding: 5px 0;
-    border-radius: 50px;
-    color: #fff;
-    font-size:15px;
-    transition: ease-in 0.5s;
-    display: line-block;
+#modal .modal-btn,
+#modal_board_edit .modal-btn,
+#modal_logo_edit .modal-btn,
+#modal_slide_edit .modal-btn {
+     text-align: right;
 }
 
-#modal h2, #modal_board_edit h2 {
-  margin:0;   
+#modal button,
+#modal_board_edit button,
+#modal_logo_edit button,
+#modal_slide_edit button {
+     background-color: #009898;
+     width: 15%;
+     padding: 5px 0;
+     border-radius: 50px;
+     color: #fff;
+     font-size: 15px;
+     transition: ease-in 0.5s;
+     display: line-block;
 }
 
-#modal .modal-content, #modal_board_edit .modal-content {
-  width:80%;
-  margin:100px auto;
-  padding:10px 2%;
-  background:#fff;
-  border:2px solid #666;
+#modal h2,
+#modal_board_edit h2,
+#modal_logo_edit h2,
+#modal_slide_edit h2 {
+     margin: 0;
 }
 
-#modal .modal-login, #modal_board_edit .modal-login {
-	text-align: center;
-	padding: 10px 0;
+#modal .modal-content,
+#modal_board_edit .modal-content,
+#modal_logo_edit .modal-content,
+#modal_slide_edit .modal-content {
+     width: 80%;
+     margin: 100px auto;
+     padding: 10px 2%;
+     background: #fff;
+     border: 2px solid #666;
 }
 
-#modal .modal-login button, #modal_board_edit .modal-login button {
-	text-align: center;
+#modal .modal-login,
+#modal_board_edit .modal-login,
+#modal_logo_edit .modal-login,
+#modal_slide_edit .modal-login {
+     text-align: center;
+     padding: 10px 0;
 }
 
-#modal.modal-overlay, #modal_board_edit.modal-overlay {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(1.5px);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }        
+#modal .modal-login button,
+#modal_board_edit .modal-login button,
+#modal_logo_edit .modal-login button,
+#modal_slide_edit .modal-login button {
+     text-align: center;
+}
+
+#modal.modal-overlay,
+#modal_board_edit.modal-overlay,
+#modal_logo_edit.modal-overlay,
+#modal_slide_edit.modal-overlay {
+     width: 100%;
+     height: 100%;
+     position: absolute;
+     left: 0;
+     top: 0;
+     display: none;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     background: rgba(255, 255, 255, 0.25);
+     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+     backdrop-filter: blur(2px);
+     -webkit-backdrop-filter: blur(1.5px);
+     border-radius: 10px;
+     border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 /*-- end 로그인모달용 --*/
 
 /*-- 챗봇모달용 --*/
 #modal_cbicon {
-	visibility:visible;
-	position:fixed;
-	z-index:60;
-	
-	margin: 10px 10px 10px 10px;
-	box-shadow: 0 5px 10px 0 rgba(31, 38, 135, 0.37);
-	
-	bottom: 5%;
-	right: 20px;
+     visibility: visible;
+     position: fixed;
+     z-index: 60;
+
+     margin: 10px 10px 10px 10px;
+     box-shadow: 0 5px 10px 0 rgba(31, 38, 135, 0.37);
+
+     bottom: 5%;
+     right: 20px;
 }
 
 #modal_cb {
-	position:fixed;
-	display:none;
-	flex-wrap: wrap;
-	flex-direction: column;
-	width:100%;
-	height:100%;
-	z-index:70;
+     position: fixed;
+     display: none;
+     flex-wrap: wrap;
+     flex-direction: column;
+     width: 100%;
+     height: 100%;
+     z-index: 70;
 }
 
 #modal_cb .modal_cb-content {
-  width:320px;
-  height:600px;
-  margin:auto 10px 40px auto;
-  border-radius: 20px;
-  padding:10px 2%;
-  background:#fff;
-  border:2px solid #666;
+     width: 320px;
+     height: 600px;
+     margin: auto 10px 40px auto;
+     border-radius: 20px;
+     padding: 10px 2%;
+     background: #fff;
+     border: 2px solid #666;
 }
 
 #modal_cb .modal_cb-btn {
-	text-align: right;
+     text-align: right;
 }
 
 #modal_cb button {
-	background-color: #009898;
-    padding: 5px 0;
-    color: #fff;
-}
-#modal_cb>label{
-	width: 300px;
-	align-items: center;
+     background-color: #009898;
+     padding: 5px 0;
+     color: #fff;
 }
 
-#modal_cb #msg{
-	width: 300px;
+#modal_cb>label {
+     width: 300px;
+     align-items: center;
 }
 
-#modal_cb #disconnect{
-	width: 50px;
-    border-radius: 50px;
-    font-size:15px;
-    transition: ease-in 0.5s;
+#modal_cb #msg {
+     width: 300px;
 }
 
-#modal_cb #chat{
-	max-height: 350px;
-	overflow-y: auto;
+#modal_cb #disconnect {
+     width: 50px;
+     border-radius: 50px;
+     font-size: 15px;
+     transition: ease-in 0.5s;
+}
+
+#modal_cb #chat {
+     max-height: 350px;
+     overflow-y: auto;
 }
 
 /*-- 챗봇모달용 end--*/
 
 #booktest {
-	max-width: 100%;
-	overflow-x: auto;
+     max-width: 100%;
+     overflow-x: auto;
 }
 
 /*-- header area --*/
@@ -420,7 +458,7 @@ button {
 }
 
 .navigation.navbar-dark .navbar-nav .nav-link button {
-	all:unset;
+     all: unset;
 }
 
 .navigation.navbar-dark .navbar-nav .nav-link:focus,
@@ -480,8 +518,8 @@ button {
 }
 
 #book_ocline_logo {
-	width:400px !important;
-	opacity:0.3;
+     width: 400px !important;
+     opacity: 0.3;
 }
 
 .book_room {
@@ -491,7 +529,7 @@ button {
 }
 
 .book_room h1 {
-	 font-family: 'Hahmlet', sans-serif;
+     font-family: 'Hahmlet', sans-serif;
      font-weight: 500;
      font-size: 30px;
      line-height: 30px;
@@ -630,12 +668,13 @@ button {
 }
 
 #map {
-	width:90%;
-	height:400px;
-	margin: 0 auto;
+     width: 90%;
+     height: 400px;
+     margin: 0 auto;
 }
+
 .map_addr {
-	text-align: center;
+     text-align: center;
 }
 
 
@@ -643,7 +682,7 @@ button {
 
 /** 주요공지 section **/
 .main_notice {
-	background-color: #fff;
+     background-color: #fff;
      padding-top: 60px;
 }
 
@@ -666,29 +705,22 @@ button {
 }
 
 .main_notice .titlepage li {
-	 float:left;
-	 overflow:auto;
+     float: left;
+     overflow: auto;
      font-weight: 400;
      font-size: 20px;
      line-height: 28px;
-     padding:2px 10px;
-     
-     white-space:nowrap;
-	 overflow:hidden;
-	 text-overflow:ellipsis;
-}
+     padding: 2px 10px;
+     width: 100%;
 
-.main_notice .titlepage li:nth-child(1n) {
-	width:3%;
-}
-
-.main_notice .titlepage li:nth-child(2n) {
-	width:94%;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
 }
 
 .main_notice_read_more {
-	text-align: center;
-	margin-top: 25px;
+     text-align: center;
+     margin-top: 25px;
 }
 
 
@@ -697,135 +729,149 @@ button {
 /** 공지사항 section 
 	/** 글목록 **/
 .table-fill {
-	margin: 25px auto;
-	width: 80%;
-	min-width: 80%;
-	padding: 5px 5px 5px 0px;
-	text-align: left;
-	font-size: 15px;
-	white-space:nowrap;
-	overflow:hidden;
-	text-overflow:ellipsis;
+     margin: 25px auto;
+     width: 80%;
+     min-width: 80%;
+     padding: 5px 5px 5px 0px;
+     text-align: left;
+     font-size: 15px;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
 }
 
-.table-fill tr>th{
-	padding: 8px;
-}
-
-
-.table-fill #no{
-	width: 20px;
-}
-
-.table-fill #impt{
-	font-weight: bold;
-	color: red;
+.table-fill tr>th {
+     padding: 8px;
 }
 
 
-.table-fill #date{
-	width: 25%;
-	
+.table-fill #no {
+     width: 20px;
+}
+
+.table-fill #impt {
+     font-weight: bold;
+     color: red;
+}
+
+
+.table-fill #date {
+     width: 25%;
+
 }
 
 #notice_write {
-	position: absolute; top: 5%; right: 10%;
+     position: absolute;
+     top: 5%;
+     right: 10%;
 }
 
-	/** end 글목록 **/
-	
-	/** 뷰 **/
+/** end 글목록 **/
+
+/** 뷰 **/
 .viewtable-fill {
-	margin: 25px auto;
-	width: 80%;
-	min-width: 50%;
-	padding: 5px 5px 5px 5px;
-	text-align: left;
-	font-size: 16px;
-	overflow:hidden;
-	text-overflow:ellipsis;
+     margin: 25px auto;
+     width: 80%;
+     min-width: 50%;
+     padding: 5px 5px 5px 5px;
+     text-align: left;
+     font-size: 16px;
+     overflow: hidden;
+     text-overflow: ellipsis;
 }
 
-#viewno{
-	width:7%;
-	white-space:nowrap;
-	border: none;
-	background: transparent;
-}
-#viewth:nth-child(2){
-	width:60%;
-	color: black;
+#viewno {
+     width: 7%;
+     white-space: nowrap;
+     border: none;
+     background: transparent;
 }
 
-#viewad, #viewdate{
-	width: 5%;
-	white-space:nowrap;
+#viewth:nth-child(2) {
+     width: 60%;
+     color: black;
 }
 
-#viewtitle{
-	color: black !important;
+#viewad,
+#viewdate {
+     width: 5%;
+     white-space: nowrap;
 }
 
-#viewhr{
-	height: 1px;
-	background-color: lightgray;
+#viewtitle {
+     color: black !important;
 }
 
-#viewlast{
-	height: 10px;
+#viewhr {
+     height: 1px;
+     background-color: lightgray;
 }
 
-#viewcontent{
-	width:50%;
-	word-break:break-all;
-	color: black;
+#viewlast {
+     height: 10px;
+}
+
+#viewcontent {
+     width: 50%;
+     word-break: break-all;
+     color: black;
 }
 
 #editBtn {
-	position: absolute; top: 5%; left: 10%;
+     position: absolute;
+     top: 5%;
+     left: 10%;
 }
 
 #delBtn {
-	position: absolute; top: 5%; right: 10%;
-}
-	/** end 뷰 **/
-	
-	/** 수정 **/
-#updateth{
-	width: 100%;
+     position: absolute;
+     top: 5%;
+     right: 10%;
 }
 
-#updatecontent{
-	padding: 10px;
-	width: 100%;
-	height: 400px;
-	overflow: scroll;
+/** end 뷰 **/
+
+/** 수정 **/
+#updateth {
+     width: 100%;
 }
 
-#editad, #editdate{
-	width: 5%;
-	white-space:nowrap;
+#updatecontent {
+     padding: 10px;
+     width: 100%;
+     height: 400px;
+     overflow: scroll;
 }
 
-#inputnone{
-	width: 100%;
-	white-space:nowrap;
-	border: none;
-	background: transparent;
+#editad,
+#editdate {
+     width: 5%;
+     white-space: nowrap;
 }
+
+#inputnone {
+     width: 100%;
+     white-space: nowrap;
+     border: none;
+     background: transparent;
+}
+
 #upBtn {
-	position: absolute; top: 5%; right: 10%;
+     position: absolute;
+     top: 5%;
+     right: 10%;
 }
-	
-	/** end 수정 **/
-	/** 작성 **/
-#writecontent{
-	padding: 10px;
-	width: 100%;
-	height: 400px;
-	overflow: scroll;
+
+/** end 수정 **/
+/** 작성 **/
+#writecontent {
+     padding: 10px;
+     width: 100%;
+     height: 400px;
+     overflow: scroll;
 }
-	/** end 작성 **/
+
+/** end 작성 **/
 
 /** end 공지사항 section **/
 
@@ -872,6 +918,7 @@ button {
 .about_img figure img:hover {
      transform: scale(1.2);
 }
+
 /** end about section **/
 
 
@@ -941,27 +988,27 @@ button {
 */
 
 .our_read_more {
-	text-align: center;
-	margin-bottom: 20px;
+     text-align: center;
+     margin-bottom: 20px;
 }
 
 
-.zone{
+.zone {
      background-color: #fff;
      padding: 20px 10px 20px 10px;
 }
 
-#siteimg{
-	float: left;
-	text-align: center;
-	font-size: 20px;
-	background-color: #fff;
-    margin-top: 30px;
-    margin-left: 8%;
+#siteimg {
+     float: left;
+     text-align: center;
+     font-size: 20px;
+     background-color: #fff;
+     margin-top: 30px;
+     margin-left: 8%;
 }
 
-#siteimg img{
-	width:100px;
+#siteimg img {
+     width: 100px;
 }
 
 
@@ -997,12 +1044,12 @@ button {
 }
 
 .fac {
-	padding: 3px 20px;
-	text-align: center;
+     padding: 3px 20px;
+     text-align: center;
 }
 
 .fac h3 {
-	color: #121212;
+     color: #121212;
      font-size: 24px;
      line-height: 20px;
      font-family: 'Hahmlet', sans-serif;
@@ -1012,8 +1059,8 @@ button {
 }
 
 .fac_read_more {
-	text-align: center;
-	margin-top: 35px;
+     text-align: center;
+     margin-top: 35px;
 }
 
 
@@ -1081,7 +1128,7 @@ button {
      font-weight: 500;
      padding-bottom: 5px;
      transition: ease-in all 0.5s;
-     overflow:hidden;
+     overflow: hidden;
      margin: auto;
 }
 
@@ -1121,7 +1168,7 @@ button {
      box-shadow: 2px 0px 6px rgb(0, 128, 128, 0.20);
 }
 
-.main_form p{
+.main_form p {
      font-size: 20px;
      font-weight: normal;
 }
@@ -1318,28 +1365,36 @@ ul.social_icon li a:hover {
 .back_re {
      background-color: #0f1521;
 }
+
 .back_re .title {
      text-align: center;
 }
+
 .back_re .title h2 {
-color:#fff;
-font-size: 40px;
-padding: 40px 0;
-font-family: 'Hahmlet', sans-serif;
-font-weight: 600;
-text-transform: uppercase;
-line-height: 35px;
+     color: #fff;
+     font-size: 40px;
+     padding: 40px 0;
+     font-family: 'Hahmlet', sans-serif;
+     font-weight: 600;
+     text-transform: uppercase;
+     line-height: 35px;
 }
+
 .margin_0 {
-     margin:0 !important;
+     margin: 0 !important;
 }
 
 
 .inner_page .gallery {
      padding-top: 90px;
 }
+
 .inner_page .blog {
      margin-top: 90px;
 }
 
 
+#text {
+     position: absolute;
+     color: red;
+}

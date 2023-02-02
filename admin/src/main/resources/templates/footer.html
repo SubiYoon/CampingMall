@@ -1,0 +1,59 @@
+		<div class="footer">
+			<div class="container">
+				<div class="row">
+					<div class=" col-md-4">
+						<h3>Contact US</h3>
+						<ul class="conta">
+							<li><i class="fa fa-map-marker" aria-hidden="true"></i>
+								<span th:text="${homecont.home_address}"></span></li>
+							<li><i class="fa fa-mobile" aria-hidden="true"></i>
+								<span th:text="${homecont.home_tell}"></span></li>
+							<li><i class="fa fa-envelope" aria-hidden="true"></i>
+								대표: <span th:text="${homecont.home_owner}"></span>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<h3>Menu Link</h3>
+						<ul class="link_menu">
+							<li class="notactive"><a th:href="@{/}">Home</a></li>
+							<li class="notactive"><a th:href="@{/notice}"> 공지사항</a></li>
+							<li class="notactive"><a th:href="@{/zone}">구역안내</a></li>
+							<li class="notactive"><a th:href="@{/facility}">시설안내</a></li>
+							<li class="notactive"><a th:href="@{/book}">예약하기</a></li>
+							<li class="notactive"><a th:href="@{/waymap}">오시는길</a></li>
+						</ul>
+					</div>
+					<!--  
+                  <div class="col-md-4">
+                     <h3>News letter</h3>
+                     <form class="bottom_form">
+                        <input class="enter" placeholder="Enter your email" type="text" name="Enter your email">
+                        <button class="sub_btn">subscribe</button>
+                     </form>
+                     <ul class="social_icon">
+                        <li><a th:href="@{/#}"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a th:href="@{/#}"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a th:href="@{/#}"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                        <li><a th:href="@{/#}"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                     </ul>
+                  </div>
+                  -->
+				</div>
+			</div>
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-10 offset-md-1">
+
+							<p>
+								© 2019 All Rights Reserved. Design by <a href="https://html.design"> Free Html
+									Templates</a> <br>
+								<br> Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+							</p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>

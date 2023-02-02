@@ -12,22 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.camp.camping.DTO.BookDTO;
+import com.camp.camping.DTO.CompanyDTO;
+import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.DTO.SiteDTO;
 import com.camp.camping.DTO.UserDTO;
 import com.camp.camping.DTO.ZoneDTO;
 import com.camp.camping.service.BookService;
+import com.camp.camping.service.HomeService;
 import com.camp.camping.service.SiteService;
 import com.camp.camping.service.ZoneService;
 
 @RestController
 public class AjaxController {
     
-    @Autowired
+	@Autowired
     SiteService sService;
     @Autowired
     ZoneService zService;
     @Autowired
     BookService bService;
+    @Autowired
+    HomeService hService;
 
     @RequestMapping("selectDate")
     public Object selectDate(String selectDate1, String selectDate2, String company_code){
@@ -79,6 +84,23 @@ public class AjaxController {
 		}else{
 			json.put("userBookList", userBookList);
 		}
+
+        return json;
+    }
+    
+    @RequestMapping("boardEdit")
+    public Object boardEdit(HttpSession session){
+        HomeDTO home = null;
+        JSONObject json = new JSONObject();
+        CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+        try {
+            home = hService.select(company.getCompany_code());
+        } catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println("실패");
+        }
+
+        json.put("home", home);
 
         return json;
     }

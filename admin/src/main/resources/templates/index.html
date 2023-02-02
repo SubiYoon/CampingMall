@@ -2,28 +2,179 @@
    $(document).ready(function () {
       $(".nav-item:nth-child(1)").attr('class', 'nav-item active');
       $(".notactive:nth-child(1)").attr('class', 'active');
+
+      //로고 마우스 수정영역 표시	
+		$('.modal_block_logo').mouseenter(function(){
+			$('.modal_block_logo').css('border', 'solid 2px red')
+		});
+		$('.modal_block, .modal_block_logo').mouseleave(function(){
+			$('.modal_block_logo').css('border', 'none');
+		});
+		//로고 마우스 수정영역표시 end
+      
+      //소개 게시글 마우스 수정영역 표시	
+		$('.modal_block').mouseenter(function(){
+			$('.modal_block').css('border', 'solid 2px red')
+		});
+		$('.modal_block, .modal_block_logo').mouseleave(function(){
+			$('.modal_block').css('border', 'none');
+		});
+		//소개 게시글 마우스 수정영역표시 end
+
+      //이미지만 변경하는 이벤트 함수
+      $('#modal_edit_logo #logo_edit').click(function(){
+			var image_data = $('#modal_edit_logo').serialize();
+			
+			document.getElementById("modal_logo_edit").style.display = "flex"
+			document.body.style = "overflow: hidden";
+			
+			$.ajax({
+				url: '/admin/logoEdit',
+				data: image_data,
+				success: function(data){
+					document.getElementById('logo1').innerText = data.company.company_logo1;
+               document.getElementById('logo2').innerText = data.company.company_logo2;
+				},
+
+			});
+		});
+      $('#logo1Form > #image_logo_edit').click(function(){
+         $('#logo1Form').attr({
+            'method': 'post',
+            'action': '/admin/logo/edit'
+         })
+      });
+
+      //home 소개 게시글 수정 모달 -----------------------
+		$('#modal_edit #modal_edit_block').click(function(){
+			var board_data = $('#modal_edit').serialize();
+			
+			document.getElementById("modal_board_edit").style.display = "flex"
+			document.body.style = "overflow: hidden";
+			
+			$.ajax({
+				url: '/admin/boardEdit',
+				data: board_data,
+				success: function(data){
+					if (data.home != null) {
+						const content = data.home.home_content;
+						document.getElementById('content').innerText = content;
+						$('#board_code').val(data.home.home_code);
+						$('#whatDTO').val('homeDTO');
+					}
+				},
+
+			});
+		});
+		$('#boardForm button[id=board_edit]').click(function(){
+			$('#boardForm').attr({
+				'method': 'post',
+				'action': '/admin/board/edit'
+			});
+			$('#boardForm').submit();
+		});
+		//end home 소개 게시글 수정 모달--------------------
+
+      //슬라이더 모달
+      
+      //마우스 수정영역 표시	
+		$('.first-slide').mouseenter(function(){
+			$('.first-slide').css('border', 'solid 2px red')
+		});
+		$('.first-slide').mouseleave(function(){
+			$('.first-slide').css('border', 'none');
+		});
+		//마우스 수정영역표시 end
+
+      $('.slide_edit').click(function(){
+			var image_data = $('#modal_edit_logo').serialize();
+			
+			document.getElementById("modal_slide_edit").style.display = "flex"
+			document.body.style = "overflow: hidden";
+		});
+
+      $('#slideForm #image_slide_edit').click(function(){
+			$('#slideForm').attr({
+				'method' : 'post',
+				'action' : '/admin/slide/edit'
+			});
+			$('#slideForm').submit();
+		});
+
+      //슬라이더 모달 end
    });
 </script>
+<!-- home 소개 게시글 수정 모달창 -->
+<div id="modal_board_edit" class="modal-overlay">
+	<div class="modal-content">
+		<div class="modal-btn">
+			<!--<button th:onclick="|location.href='@{/user/register}'|">회원가입</button> -->
+			<button class="modal_close">닫기</button>
+		</div>
+		<div class="modal-login">
+			<h2>게시글 수정</h2>
+			<form id="boardForm">
+				<input id="whatDTO" type="hidden" name="whatDTO"/>
+				<input id="board_code" type="hidden" name="board_code"/>
+				<input id="title" type="text" name="title" style="width: 350px;"/><br><br>
+				<textarea id="content" rows="10" cols="50" name="content"></textarea><br><br>
+				<button id="board_edit" style="width:200px;">수정</button>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- end home 소개 게시글 수정 모달창 -->
 
+<!-- 로고 게시글 수정 -->
+<div id="modal_logo_edit" class="modal-overlay">
+	<div class="modal-content">
+		<div class="modal-btn">
+			<button class="modal_close">닫기</button>
+		</div>
+		<div class="modal-login">
+			<h2>로고 수정</h2>
+			<form id="logo1Form" enctype="multipart/form-data">
+            메뉴바 Logo : <span id="logo1"></span><br><input type="file" name="company_logo1"/><br>
+            캠핑장명 Logo : <span id="logo2"></span><br><input type="file" name="company_logo2"/><br>
+				<button id="image_logo_edit" style="width:200px;">수정</button>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- 슬라이드 게시글 수정 -->
+<div id="modal_slide_edit" class="modal-overlay">
+	<div class="modal-content">
+		<div class="modal-btn">
+			<button class="modal_close">닫기</button>
+		</div>
+		<div class="modal-login">
+			<h2>슬라이드 수정</h2>
+			<form id="slideForm" enctype="multipart/form-data">
+            <li th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code}">
+               <span th:text="'슬라이드 ' + ${slideStat.count} + ' : '"></span><span th:text="${slide.image_file}"></span><br>
+               <input type="hidden" name="image_code" th:value="${slide.image_code}"/>
+               <input type="file" name="home_slide"/>
+            </li>
+            <input type="hidden" name="home_code" th:value="${homecont.home_code}"/>
+				<button id="image_slide_edit" style="width:200px;">수정</button>
+			</form>
+		</div>
+	</div>
+</div>
 <!-- banner -->
 <section class="banner_main">
+   <!-- slider -->
    <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
       <ol class="carousel-indicators">
          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-         <li data-target="#myCarousel" data-slide-to="1"></li>
-         <li data-target="#myCarousel" data-slide-to="2"></li>
+         <li th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index>0}" data-target="#myCarousel" th:data-slide-to="${slideStat.index}"></li>
       </ol>
       <div class="carousel-inner">
-         <div class="carousel-item active">
-            <img class="first-slide" th:src="@{/images/banner1.jpg}" alt="First slide">
-            <div class="container">
-            </div>
+         <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index==0}" class="carousel-item active">
+            <a class="slide_edit" href="#edit"><img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide"></a>
          </div>
-         <div class="carousel-item">
-            <img class="second-slide" th:src="@{/images/banner2.jpg}" alt="Second slide">
-         </div>
-         <div class="carousel-item">
-            <img class="third-slide" th:src="@{/images/banner3.jpg}" alt="Third slide">
+         <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index>0}" class="carousel-item">
+            <a class="slide_edit" href="#edit"><img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide"></a>
          </div>
       </div>
       <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
@@ -35,44 +186,31 @@
          <span class="sr-only">Next</span>
       </a>
    </div>
-   <div class="booking_ocline2">
+   <!-- Logo -->
+   <form id="modal_edit_logo">
+         <div class="booking_ocline2">
             <div class="col-md-1">
-               	<div id="book_ocline_logo"><img th:src="@{/images/book_ocline_logo.png}"  alt="logo" /></div>
+               <a id="logo_edit" href="#edit"><div id="book_ocline_logo"><img class="modal_block_logo" th:src="@{/images/}+${session.company.company_logo2}"  alt="logo" /></div></a>
             </div>
-   </div>
+         </div>
+   </form>
+   <!-- 환영 인사 -->
    <form id="modal_edit">
       <div class="booking_ocline">
          <div class="container">
             <div class="row">
                <div class="col-md-5">
-                  <a href="#edit">
-                     <div class="book_room">
-                        <h1 th:text="${session.company.company_name}"></h1><h1>방문을 환영합니다</h1>
-                        <div class="row">
-                           <div class="col-md-12">
-                              <span th:text="${homecont.home_content}"></span>
-                              <input type="hidden" name="home_code" th:value="${homecont.home_code}"/>
-                           </div>
-                        </div>
-                        <!--  기존 폼
-                        <form class="book_now">
+                  <a id="modal_edit_block" href="#edit">
+                     <div class="modal_block">
+                        <div class="book_room">
+                           <h1 th:text="${session.company.company_name}"></h1><h1>방문을 환영합니다</h1>
                            <div class="row">
                               <div class="col-md-12">
-                                 <span>Arrival</span>
-                                 <img class="date_cua" th:src="@{/images/date.png}">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
-                              </div>
-                              <div class="col-md-12">
-                                 <span>Departure</span>
-                                 <img class="date_cua" th:src="@{/images/date.png}">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
-                              </div>
-                              <div class="col-md-12">
-                                 <button class="book_btn">Book Now</button>
+                                 <span th:text="${homecont.home_content}"></span>
+                                 <input type="hidden" name="home_code" th:value="${homecont.home_code}"/>
                               </div>
                            </div>
-                        </form>
-                        -->
+                        </div>
                      </div>
                   </a>
                </div>
@@ -82,7 +220,7 @@
    </form>
 </section>
 <!-- end banner -->
-<!--TODO: CSS수정 필요 (공지사항 번호 밀림)-->
+<!--TODO: CSS수정 필요 (공지사항 번호 밀림) : 현재 번호 삭제상태-->
 <!-- 공지 -->
 <div class="main_notice">
    <div class="container-fluid">
@@ -92,9 +230,8 @@
                <h2>&nbsp;&nbsp;&nbsp;주요공지&nbsp;</h2>
                <ul id="main_notice_list">
                		<div th:each="noticeLv:${noticeLv}">
-               			<li th:text="${noticeLv.notice_code}"></li>
                			<li>
-               				<a th:text="${noticeLv.notice_title}" th:href="@{/notice/noticeview(notice_code=${noticeLv.notice_code})}"></a>
+               				<a th:text="'-&nbsp;&nbsp;'+${noticeLv.notice_title}" th:href="@{/notice/noticeview(notice_code=${noticeLv.notice_code})}"></a>
                			</li>
                		</div>
                </ul>
@@ -253,3 +390,11 @@
    </div>
 </div>
 <!-- end contact -->
+
+<!--  footer -->
+	<footer>
+		<aside id="footer_aside" th:include="${footer} ? ${footer} : footer"></aside>
+	</footer>
+<!-- end footer -->
+
+

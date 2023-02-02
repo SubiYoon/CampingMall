@@ -6,8 +6,8 @@ INSERT INTO user VALUES(0, 'user02', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w
 INSERT INTO user VALUES(0, 'user03', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '박씨', 020202, '010-5238-4828');
 
 -- 상호
-INSERT INTO company(company_name) VALUES('NoopCamping');
-INSERT INTO company(company_name) VALUES('GosuCamping');
+INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('NoopCamping', "logo.png","book_ocline_logo.png");
+INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('GosuCamping', "sample.png", "sample.png");
 
 -- 관리자
 insert into `admin`(company_code, admin_id, admin_password) values(1,'admin01','111111');
@@ -98,7 +98,9 @@ insert into image(company_code, site_code, image_file) VALUES(1, 8, 'site_img3.p
 insert into image(company_code, site_code, image_file) VALUES(1, 9, 'site_img4.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 10, 'site_img5.png');
 insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img.png');
-insert into image(company_code, home_code, image_file) VALUES(1, 1, 'home_img.png');
+insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner1.jpg');
+insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner2.jpg');
+insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner3.jpg');
 
 -- 예약된 날짜
 insert into reservation(book_code,reservation_date) values(1, '2023-02-03');
