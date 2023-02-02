@@ -30,7 +30,7 @@ public class ChatBotController {
     @SendTo("/topic/public")
     public String sendMessage(@Payload String chatMessage) throws IOException
     {
-
+        
         URL url = new URL(apiUrl);
 
         String message =  getReqMessage(chatMessage);
