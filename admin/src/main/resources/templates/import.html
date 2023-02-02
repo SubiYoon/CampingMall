@@ -20,7 +20,7 @@
 	function paymentDo() {
     $.ajax({
         type: "get",
-        url: "/pay/import", // 최종 결제전에 마지막으로 해당 좌석이 예매가능한 상태인지 확인 요청
+        url: "admin/pay/import", // 최종 결제전에 마지막으로 해당 좌석이 예매가능한 상태인지 확인 요청
         data: {
         	'stringDate1':'20230128',
         	'stringDate2':'20230201',
