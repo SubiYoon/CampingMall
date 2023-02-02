@@ -15,6 +15,7 @@ import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.DTO.ImageDTO;
 import com.camp.camping.DTO.NoticeDTO;
 import com.camp.camping.DTO.ZoneDTO;
+import com.camp.camping.service.CompanyService;
 import com.camp.camping.service.FacilityService;
 import com.camp.camping.service.HomeService;
 import com.camp.camping.service.ImageService;
@@ -23,6 +24,9 @@ import com.camp.camping.service.ZoneService;
 
 @Controller
 public class MainController {
+
+	@Autowired
+	CompanyService serviceC;
 	
 	@Autowired
 	HomeService serviceH;
@@ -50,6 +54,7 @@ public class MainController {
 		
 		HomeDTO homekko = null;		//카카오맵
 		HomeDTO homecont = null;	//홈페이지소개
+		CompanyDTO company = null;
 		List<NoticeDTO> nolist = null;	//주요공지
 		List<ZoneDTO> listZ = null;	//구역소개
 		List<FacilityDTO> list = null;	//편의시설
@@ -58,11 +63,13 @@ public class MainController {
 		
 		//상호 세션 생성-----------------------------
 		//TODO:차후 캠핑장 선택 페이지 생성시 수정 필요
-		companyDTO = new CompanyDTO(1, "NoobCamping");
-
-		session.setAttribute("company", companyDTO);
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-
+		try{
+			company = serviceC.select(1);
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("실패123");
+		}
+			session.setAttribute("company", company);
 		//카카오맵경도위도-------------------------------------
 		try {
 			homekko = serviceH.select(company.getCompany_code());	//상호코드
@@ -111,9 +118,22 @@ public class MainController {
 		model.addAttribute("facilities", list);
 		
 		//이미지------------------------------------
-
-		listI=serviceI.selectByCompanyCode(company.getCompany_code());	//상호코드
+		try {
+			listI=serviceI.selectByCompanyCode(company.getCompany_code());	//상호코드
+		} catch (Exception e) {
+			//e.printStackTrace();
+			System.out.println("실패");
+		}
 		model.addAttribute("ilist", listI);
+
+		//슬라이드 이미지
+		try {
+			listI=serviceI.selectByHomeCode(homecont.getHome_code());	//상호코드
+		} catch (Exception e) {
+			//e.printStackTrace();
+			System.out.println("실패");
+		}
+		model.addAttribute("slide", listI);
 
 		return "main";
 	}
