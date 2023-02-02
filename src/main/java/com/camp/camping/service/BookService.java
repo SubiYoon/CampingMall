@@ -1,23 +1,23 @@
 package com.camp.camping.service;
 
-import com.camp.camping.DTO.BookDTO;
-import com.camp.camping.DTO.ReservationDTO;
-import com.camp.camping.DTO.SiteDTO;
-import com.camp.camping.frame.MyService;
-import com.camp.camping.mapper.BookMapper;
-import com.camp.camping.utility.Utility;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Random;
+import com.camp.camping.DTO.BookDTO;
+import com.camp.camping.DTO.ReservationDTO;
+import com.camp.camping.DTO.SiteDTO;
+import com.camp.camping.frame.MyService;
+import com.camp.camping.mapper.BookMapper;
+import com.camp.camping.utility.Utility;
 
 @Service
 public class BookService implements MyService<Integer, BookDTO> {
@@ -135,10 +135,10 @@ public class BookService implements MyService<Integer, BookDTO> {
     	DateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
 		Calendar cal = Calendar.getInstance();
 		Random random = new Random();
-		book.setMerchant_uid(dateFormat.format(cal.getTime())+""+random.nextInt(100000));
+		book.setMerchant_uid(dateFormat.format(cal.getTime())+random.nextInt(100000));
 		book.setBook_checkin(book_checkin);
 		book.setBook_checkout(book_checkout);
-		
+		book.setSite_code(book_sitecode);
 		
 		
     	return book;

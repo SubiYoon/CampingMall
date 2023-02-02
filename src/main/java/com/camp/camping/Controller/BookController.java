@@ -1,19 +1,13 @@
 package com.camp.camping.Controller;
 
-import com.camp.camping.DTO.BookDTO;
-import com.camp.camping.service.BookService;
-import com.camp.camping.service.SiteService;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Random;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.camp.camping.DTO.BookDTO;
+import com.camp.camping.service.BookService;
 
 @Controller
 @RequestMapping("/book")
