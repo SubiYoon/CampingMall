@@ -3,7 +3,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
-    let strRGBAList = [];
+
     $(document).ready(function () {
         getGraph();
         getGraph2();
@@ -62,7 +62,7 @@
         let labelsList = [];
         let dataList = [];
         let label;
-
+        let strRGBAList = [];
         $.ajax({
             url: "/admin/admin.monthlyZone",
             type: "get",
@@ -116,6 +116,7 @@
         let labelsList = [];
         let dataList = [];
         let label;
+        let strRGBAList = [];
         $.ajax({
             url: "/admin/admin.monthlyZoneUser",
             type: "get",
@@ -129,6 +130,11 @@
                 for (let i = 0; i < data.Graph.labelsList.length; i++) {
                     labelsList.push(data.Graph.labelsList[i]);
                     dataList.push(data.Graph.dataList[i]);
+                    var RGB_1 = Math.floor(Math.random() * (255 + 1));
+                    var RGB_2 = Math.floor(Math.random() * (255 + 1));
+                    var RGB_3 = Math.floor(Math.random() * (255 + 1));
+                    var strRGBA = 'rgba(' + RGB_1 + ',' + RGB_2 + ',' + RGB_3 + ',0.3)';
+                    strRGBAList.push(strRGBA);
                 }
                 console.log(label);
                 console.log(dataList);
