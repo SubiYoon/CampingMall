@@ -1011,6 +1011,15 @@ button {
      width: 100px;
 }
 
+#zoneForm{
+	display: flex;
+	justify-content: center;
+	margin: 20px;
+}
+
+#zoneForm div{
+	margin: 10px 20px 10px 10px;
+}
 
 /** end 구역안내 section **/
 

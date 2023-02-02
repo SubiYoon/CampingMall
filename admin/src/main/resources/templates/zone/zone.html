@@ -2,7 +2,28 @@
 $(document).ready(function(){
 	$(".nav-item:nth-child(3)").attr('class','nav-item active');
 	$(".notactive:nth-child(3)").attr('class','active');
+	
+	$('.zoneupBtn').click(function(){
+		
+			$('#zoneForm').attr({
+				'enctype':'multipart/form-data',
+				'method':'post',
+				'action':'[[@{/zone/zoneupdate}]]'
+			});
+			$('#zoneForm').submit();
+	});
+	
+	$('.zoneaddBtn').click(function(){
+		alert('구역이 추가되었습니다.');
+		$('#newzoneForm').attr({
+			'method':'post',
+			'action':'[[@{/zone/zoneinsert}]]'
+		});
+		$('#newzoneForm').submit();
 });
+});
+
+
 </script>
       <div class="back_re">
          <div class="container">
@@ -16,15 +37,33 @@ $(document).ready(function(){
          </div>
       </div>
       <!-- our_room -->
-      <div  class="our_room">
+      <div class="our_room">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <p  class="margin_0">캠핑장 구역을 확인하세요</p>
+                     <p class="margin_0">캠핑장 구역 관리</p>
+                     <form id="zoneForm">
+	                 	<div>수정하려는 구역 코드를 입력하세요: 
+							<input id="zonecode" type="number" name="zone_code" value=0 style="width: 50px;"/>
+							<br>
+							<br>
+							<input id="zoneupdate" type="text" name="zone_name" value="구역 이름을 입력하세요." style="width: 270px;"/>
+						</div>
+						<div>
+							<textarea id="zoneupdate" rows="3" cols="50" name="zone_content">구역 설명을 입력하세요.</textarea>
+						</div>
+					</form>
+					<a href="#" class="zoneupBtn read_more">구역 수정하기</a> <a href="#" class="zoneaddBtn read_more">새 구역 추가하기</a>
+					<form id="newzoneForm">
+							<input id="zoneinsert" type="hidden" name="admin_code" value=1><!-- 세션으로나중에바꾸기 -->
+							<input id="zoneinsert" type="hidden" name="zone_name" value="구역 이름을 수정하세요."/>
+							<input id="zoneinsert" type="hidden" name="zone_content" value="구역 설명을 수정하세요."/>
+					</form>
                   </div>
                </div>
-            </div>
+			</div>
+         </div>
             
             <div th:each="zone:${zlist}">
 	            <div class="zone">
@@ -42,8 +81,8 @@ $(document).ready(function(){
 	                  <div id="serv_hover"  class="room">
 	                     <div class="bed_room">
 	                        <h3 th:text="${zone.zone_name}"></h3>
+	                        <p class="zone_edit" th:text="'('+${zone.zone_name}+'의 구역코드:'+${zone.zone_code}+')'"></p>
 	                        <p th:text="${zone.zone_content}"></p>
-	                        
 	                     </div>
 	                  </div>
 	               </div>
@@ -54,6 +93,7 @@ $(document).ready(function(){
 							<div class="room">
 		                    <div class="bed_room">
 		                    	<h3>사이트 상세보기</h3>
+		                    	<div class="zone_edit">[사이트 추가하기]</div>
 		                        <div id="siteimg" th:each="site:${slist}" th:if="${zone.zone_code == site.zone_code}">
 		                        	<a th:text="${site.site_name}" th:href="'zone/site?site_code='+${site.site_code}"></a>
 		                        	<div th:each="img:${ilist}">
@@ -68,27 +108,7 @@ $(document).ready(function(){
 		               </div>
 		        </div>
 		        </div>
-		            
 	           </div>
-	            
-	            
-	            
             </div>
-            
-         </div>
       </div>
-               <!--  기존x6
-               <div class="col-md-4 col-sm-6">
-                  <div id="serv_hover"  class="room">
-                     <div class="room_img">
-                        <figure><img src="images/room2.jpg" alt="#"/></figure>
-                     </div>
-                     <div class="bed_room">
-                        <h3>Bed Room</h3>
-                        <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-                     </div>
-                  </div>
-               </div>
-             -->
-
       <!-- end our_room -->

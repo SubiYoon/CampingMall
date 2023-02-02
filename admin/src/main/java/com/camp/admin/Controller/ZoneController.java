@@ -59,6 +59,26 @@ public class ZoneController {
 		return "main";
 	}
 	
+	//구역(zone)수정
+	 @RequestMapping("/zoneupdate") public String zoneupdate(Model model, ZoneDTO zonedto) {
+		 try {
+			 serviceZ.update(zonedto);
+		 } catch (Exception e) {
+			 e.printStackTrace();
+		 } 
+		 return "redirect:/zone";
+	}
+	 
+	//새구역(zone)추가
+	 @RequestMapping("/zoneinsert") public String zoneinsert(ZoneDTO zonedto) {
+		 try {
+			 serviceZ.insert(zonedto);
+		 } catch (Exception e) {
+			 e.printStackTrace();
+		 } 
+		 return "redirect:/zone";
+	}
+	
 	
 	@RequestMapping("/site")
 	public String site(Model model, int site_code) {
