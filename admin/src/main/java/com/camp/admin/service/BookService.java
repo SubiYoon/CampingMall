@@ -1,5 +1,6 @@
 package com.camp.admin.service;
 
+import com.camp.admin.DTO.GraphDTO;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -96,6 +97,30 @@ public class BookService implements MyService<Integer, BookDTO> {
         return dailySales;
     }
 
+    //stringYearAndMonth = "2023-02"
+    public List<String> DailyList(String stringYearAndMonth, int company_code)
+        throws Exception {
+        List<String> sales = new ArrayList<>();
+        String stringDate = stringYearAndMonth + "-01";
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        for (int i = 0; i < Utility.LastDayOfMonth(stringDate); i++) {
+            sales.add(""+(int)DailySales(Utility.DateToString(calendar.getTime()), company_code));
+            calendar.add(Calendar.DATE,+1);
+        }
+        return sales;
+    }
+
+    //해당 년월의 일별 매출을 GraphDTO 형식으로 담는다.
+    public GraphDTO MonthSales(String stringYearAndMonth, int company_code) throws Exception {
+        List<String> labelsList = new ArrayList<>();
+        for (int i = 1; i <= Utility.LastDayOfMonth(stringYearAndMonth + "-01"); i++) {
+            labelsList.add("" + i);
+        }
+        return new GraphDTO(labelsList, stringYearAndMonth,
+            DailyList(stringYearAndMonth, company_code));
+    }
+
     //월매출(date는 year랑 month만 정상적으로 담겨있으면 됨)
     public double MonthlySales(String stringDate, int company_code) throws Exception {
         double monthlySales = 0;
@@ -111,7 +136,39 @@ public class BookService implements MyService<Integer, BookDTO> {
         return monthlySales;
     }
 
-    public List<BookDTO> selectUserAll(int user_code){
+    //년간 월별 매출
+    //stringYear = "2022"
+    public List<String> MonthlyList(String stringYear, int company_code) throws Exception {
+        List<String> sales = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
+            String stringDate;
+            if (i / 10 == 0) {
+                stringDate = "-0" + i + "-01";
+            } else {
+                stringDate = "-" + i + "-01";
+            }
+            stringDate = stringYear + stringDate;
+            sales.add("" + (int) MonthlySales(stringDate, company_code));
+        }
+        return sales;
+    }
+
+    //해당 년도의 월간 매출을 GraphDTO 형식으로 담는다.
+    public GraphDTO YearSales(String stringYear, int company_code) throws Exception {
+        List<String> labelsList = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
+            String stringDate;
+            if (i / 10 == 0) {
+                stringDate = stringYear + "/0" + i;
+            } else {
+                stringDate = stringYear + "/" + i;
+            }
+            labelsList.add(stringDate);
+        }
+        return new GraphDTO(labelsList, stringYear, MonthlyList(stringYear, company_code));
+    }
+
+    public List<BookDTO> selectUserAll(int user_code) {
         return mapper.selectUserAll(user_code);
     }
 }
