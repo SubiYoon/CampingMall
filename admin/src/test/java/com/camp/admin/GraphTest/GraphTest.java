@@ -1,6 +1,7 @@
 package com.camp.admin.GraphTest;
 
 import com.camp.admin.service.BookService;
+import java.text.ParseException;
 import javax.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,6 +24,31 @@ public class GraphTest {
         try {
             System.out.println(bookService.MonthSales("2023-02",1));
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    void usersNumberTest(){
+        try {
+            System.out.println(bookService.DailySiteUserMap("2023-02-01",1));
+            System.out.println(bookService.MonthlySiteUserMap("2023-02",1));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    void MonthUsersNumberGraph(){
+        try {
+            System.out.println(bookService.MonthlySiteUserGraph("2023-02",1));
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    void YearUserNumbersGraph(){
+        try {
+            System.out.println(bookService.YearlySiteUserGraph("2023",1));
+        } catch (ParseException e) {
             throw new RuntimeException(e);
         }
     }

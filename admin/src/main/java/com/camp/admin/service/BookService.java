@@ -5,8 +5,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 
+import java.util.Map;
+import java.util.Map.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -98,15 +101,15 @@ public class BookService implements MyService<Integer, BookDTO> {
     }
 
     //stringYearAndMonth = "2023-02"
-    public List<String> DailyList(String stringYearAndMonth, int company_code)
-        throws Exception {
+    public List<String> DailyList(String stringYearAndMonth, int company_code) throws Exception {
         List<String> sales = new ArrayList<>();
         String stringDate = stringYearAndMonth + "-01";
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(Utility.StringToDate(stringDate));
         for (int i = 0; i < Utility.LastDayOfMonth(stringDate); i++) {
-            sales.add(""+(int)DailySales(Utility.DateToString(calendar.getTime()), company_code));
-            calendar.add(Calendar.DATE,+1);
+            sales.add(
+                "" + (int) DailySales(Utility.DateToString(calendar.getTime()), company_code));
+            calendar.add(Calendar.DATE, +1);
         }
         return sales;
     }
@@ -170,5 +173,97 @@ public class BookService implements MyService<Integer, BookDTO> {
 
     public List<BookDTO> selectUserAll(int user_code) {
         return mapper.selectUserAll(user_code);
+    }
+
+    public Map<Integer, Integer> DailySiteUserMap(String stringDate, int company_code)
+        throws ParseException {
+        Map<Integer, Integer> SiteUserMap = new HashMap<>();
+        List<ReservationDTO> reservationList = reservationService.SelectByDateAndCompanyCode(
+            stringDate, company_code);
+        for (ReservationDTO reservation : reservationList) {
+            BookDTO book = SelectByReservationCode(reservation.getReservation_code());
+            int siteCode = book.getSite_code();
+            int userNumber = book.getBook_member();
+            if (SiteUserMap.containsKey(siteCode)) {
+                SiteUserMap.put(siteCode, SiteUserMap.get(siteCode) + userNumber);
+            } else {
+                SiteUserMap.put(siteCode, userNumber);
+            }
+        }
+        return SiteUserMap;
+    }
+
+    //stringYearAndMonth = "20023-02"형식
+    //site_code , Book_member의 합산이 짝지어서 return
+    public Map<Integer, Integer> MonthlySiteUserMap(String stringYearAndMonth, int company_code)
+        throws ParseException {
+        Map<Integer, Integer> SiteUserMap = new HashMap<>();
+        String stringDate = stringYearAndMonth + "-01";
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        for (int i = 0; i < Utility.LastDayOfMonth(stringDate); i++) {
+            Map<Integer, Integer> daily = DailySiteUserMap(Utility.DateToString(calendar.getTime()),
+                company_code);
+            for (Entry<Integer, Integer> entry : daily.entrySet()) {
+                Integer key = entry.getKey();
+                Integer value = entry.getValue();
+                SiteUserMap.merge(key, value, Integer::sum);
+            }
+            calendar.add(Calendar.DATE, 1);
+        }
+        return SiteUserMap;
+    }
+
+    public Map<Integer, Integer> YearlySiteUserMap(String stringYear, int company_code)
+        throws ParseException {
+        Map<Integer, Integer> SiteUserMap = new HashMap<>();
+        for (int i = 1; i <= 12; i++) {
+            String stringYearAndMonth;
+            if (i / 10 == 1) {
+                stringYearAndMonth = stringYear + "-" + i;
+            } else {
+                stringYearAndMonth = stringYear + "-0" + i;
+            }
+            Map<Integer, Integer> monthly = MonthlySiteUserMap(stringYearAndMonth, company_code);
+            for (Entry<Integer, Integer> entry : monthly.entrySet()) {
+                Integer key = entry.getKey();
+                Integer value = entry.getValue();
+                SiteUserMap.merge(key, value, Integer::sum);
+            }
+        }
+        return SiteUserMap;
+    }
+
+    //stringYearAndMonth = "20023-02"형식
+    public GraphDTO MonthlySiteUserGraph(String stringYearAndMonth, int company_code)
+        throws ParseException {
+
+        Map<Integer, Integer> monthlySiteUserMap = MonthlySiteUserMap(stringYearAndMonth,
+            company_code);
+        List<String> labesList = new ArrayList<>();
+        for (int label : monthlySiteUserMap.keySet()) {
+            labesList.add("" + label);
+        }
+        List<String> dataList = new ArrayList<>();
+        for (int data : monthlySiteUserMap.values()) {
+            dataList.add("" + data);
+        }
+        return new GraphDTO(labesList, stringYearAndMonth, dataList);
+    }
+    //stringYear = "2023"형식
+    //해당년도 사이트별 인원수 GraphDTO 형식으로 반환
+    public GraphDTO YearlySiteUserGraph(String stringYear, int company_code)
+        throws ParseException {
+        Map<Integer, Integer> yearlySiteUserMap = YearlySiteUserMap(stringYear,
+            company_code);
+        List<String> labesList = new ArrayList<>();
+        for (int label : yearlySiteUserMap.keySet()) {
+            labesList.add("" + label);
+        }
+        List<String> dataList = new ArrayList<>();
+        for (int data : yearlySiteUserMap.values()) {
+            dataList.add("" + data);
+        }
+        return new GraphDTO(labesList, stringYear, dataList);
     }
 }
