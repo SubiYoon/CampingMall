@@ -23,7 +23,7 @@
 	   let num1=parseInt(resultElement1.innerText);
 	   let num2=parseInt(resultElement2.innerText);
 	   let basic_num=parseInt(basic.innerText);
-	   let over_num=parseInt(basic.innerText);
+	   let over_number=parseInt(over.innerText);
 	   let hap=num1+num2;
 	   
 	   
@@ -46,7 +46,6 @@
 				   number = parseInt(number) - 1;
 				   
 				   if(hap-1>=basic_num){
-					   console.log(1111111);
 					   over_number=hap-1-basic_num;
 					   over.innerText=over_number;
 				   }
@@ -64,8 +63,53 @@
    function overchange(over_num){
 	   if(over_num>0){
 		   $("#over-count").css("display","flex");
+		   $(".reservation-cost-container-total>div:nth-child(3)").css("display","flex");
+		   
+		   
 	   }else{
 		   $("#over-count").css("display","none");
+		   $(".reservation-cost-container-total>div:nth-child(3)").css("display","none");
+		   
 	   }
+	   let over_cost=over_num*10000;
+	   $("#result3").html(over_cost);
+	   total_count();
 	   
    }
+   
+   function addition_count(type,num){
+	   const resultElement = document.getElementById('result'+num);
+	   
+	   let number = resultElement.innerText;
+	   
+	    if(type === 'plus') {
+			   if(number==0){
+				     number = parseInt(number) + 1;
+				     $(".reservation-cost-container-total>div:nth-child("+num+")").css("display","flex");
+		   }
+	   }else if(type === 'minus')  {
+			   if(number==1){
+				   number = parseInt(number) - 1;
+				   $(".reservation-cost-container-total>div:nth-child("+num+")").css("display","none");
+		   }
+	   }
+	   
+	   // 결과 출력
+	   resultElement.innerText = number;
+	   total_count();
+   }
+   
+   function total_count(){
+	   let result7=parseInt($('#result7').text());
+	   let result3=parseInt($('#result3').text());
+	   let result4=parseInt($('#result4').text());
+	   let result5=parseInt($('#result5').text());
+	   let result6=parseInt($('#result6').text());
+	   let total_result=result7+result3+(result4*20000)+(result5*20000)+(result6*20000);
+	   
+	   $('#total_result').html(total_result);
+   }
+   
+   
+   
+   

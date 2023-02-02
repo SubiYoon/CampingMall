@@ -53,7 +53,7 @@ public class BookController {
 	public String book_detail(Model model, HttpSession session,
 						      @RequestParam("book_checkin")String book_checkin,
 						      @RequestParam("book_checkout")String book_checkout,
-						      @RequestParam("book_sitecode")String book_sitecode) {
+						      @RequestParam("book_sitecode")int book_sitecode) {
 
 		HomeDTO homecont = null;	//home테이블전체정보
 		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
@@ -67,23 +67,13 @@ public class BookController {
 			System.out.println("CONTENT_FAIL");
 		}
 		
+		BookDTO book=service.selectViewForm(book_checkin,book_checkout,book_sitecode);
+		
+		model.addAttribute("book", book);
+
 		model.addAttribute("center", dir+"bookdetail");
-		
-		
-		BookDTO book=new BookDTO();
-		
-		DateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
-		Calendar cal = Calendar.getInstance();
-		Random random = new Random();
-		book.setMerchant_uid(dateFormat.format(cal.getTime())+""+random.nextInt(100000));
-		book.setSite_code(Integer.parseInt(book_sitecode));
 		
 		return "main";
 	}
-	
-	
-	
-	
-	
 	
 }

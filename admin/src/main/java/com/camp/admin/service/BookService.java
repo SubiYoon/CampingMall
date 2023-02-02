@@ -1,16 +1,20 @@
 package com.camp.admin.service;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.camp.admin.DTO.BookDTO;
 import com.camp.admin.DTO.ReservationDTO;
+import com.camp.admin.DTO.SiteDTO;
 import com.camp.admin.frame.MyService;
 import com.camp.admin.mapper.BookMapper;
 import com.camp.admin.utility.Utility;
@@ -22,6 +26,8 @@ public class BookService implements MyService<Integer, BookDTO> {
     BookMapper mapper;
     @Autowired
     ReservationService reservationService;
+    @Autowired
+    SiteService siteService;
 
     @Override
     public void insert(BookDTO v) throws Exception {
@@ -114,4 +120,35 @@ public class BookService implements MyService<Integer, BookDTO> {
     public List<BookDTO> selectUserAll(int user_code){
         return mapper.selectUserAll(user_code);
     }
+    
+    
+    public BookDTO selectViewForm(String book_checkin, String book_checkout, int book_sitecode) {
+    	
+		BookDTO book=new BookDTO();
+		try {
+			SiteDTO site=siteService.select(book_sitecode);
+			book.setSite_name(site.getSite_name());
+			book.setBook_price(site.getSite_price());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	DateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
+		Calendar cal = Calendar.getInstance();
+		Random random = new Random();
+		book.setMerchant_uid(dateFormat.format(cal.getTime())+random.nextInt(100000));
+		book.setBook_checkin(book_checkin);
+		book.setBook_checkout(book_checkout);
+		book.setSite_code(book_sitecode);
+		
+		
+    	return book;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }
