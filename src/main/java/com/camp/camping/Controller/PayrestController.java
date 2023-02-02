@@ -34,7 +34,6 @@ public class PayrestController {
 //    	imp_uid: 결제번호
 //    	merchant_uid: 주문번호
 //    	status: 결제 결과
-    	
     	System.out.println("jsonObject"+jsonobject);
     	
     }
@@ -42,6 +41,7 @@ public class PayrestController {
     @PostMapping("/verifyImport/{imp_uid}")
     public void verifyImport(@PathVariable("imp_uid") String imp_uid) {
     	//결제검증
+    	System.out.println(service.getImportToken());
     	
     	
     }
