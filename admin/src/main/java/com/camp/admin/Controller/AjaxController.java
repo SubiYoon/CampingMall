@@ -1,5 +1,6 @@
 package com.camp.admin.Controller;
 
+import com.camp.admin.DTO.GraphDTO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -102,6 +103,21 @@ public class AjaxController {
 
         json.put("home", home);
 
+        return json;
+    }
+
+    @RequestMapping("admin.monthly")
+    public Object DailySales() throws Exception {
+        GraphDTO graph = bService.MonthSalesGraph("2023-02",1);
+        JSONObject json = new JSONObject();
+        json.put("Graph",graph);
+        return json;
+    }
+    @RequestMapping("admin.monthlyUser")
+    public Object monthlyUser() throws Exception {
+        GraphDTO graph = bService.MonthlySiteUserGraph("2023-02",1);
+        JSONObject json = new JSONObject();
+        json.put("Graph",graph);
         return json;
     }
 }

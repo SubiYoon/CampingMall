@@ -26,6 +26,8 @@ public class BookService implements MyService<Integer, BookDTO> {
     BookMapper mapper;
     @Autowired
     ReservationService reservationService;
+    @Autowired
+    SiteService siteService;
 
     @Override
     public void insert(BookDTO v) throws Exception {
@@ -115,7 +117,7 @@ public class BookService implements MyService<Integer, BookDTO> {
     }
 
     //해당 년월의 일별 매출을 GraphDTO 형식으로 담는다.
-    public GraphDTO MonthSales(String stringYearAndMonth, int company_code) throws Exception {
+    public GraphDTO MonthSalesGraph(String stringYearAndMonth, int company_code) throws Exception {
         List<String> labelsList = new ArrayList<>();
         for (int i = 1; i <= Utility.LastDayOfMonth(stringYearAndMonth + "-01"); i++) {
             labelsList.add("" + i);
@@ -157,7 +159,7 @@ public class BookService implements MyService<Integer, BookDTO> {
     }
 
     //해당 년도의 월간 매출을 GraphDTO 형식으로 담는다.
-    public GraphDTO YearSales(String stringYear, int company_code) throws Exception {
+    public GraphDTO YearSalesGraph(String stringYear, int company_code) throws Exception {
         List<String> labelsList = new ArrayList<>();
         for (int i = 1; i <= 12; i++) {
             String stringDate;
@@ -175,19 +177,19 @@ public class BookService implements MyService<Integer, BookDTO> {
         return mapper.selectUserAll(user_code);
     }
 
-    public Map<Integer, Integer> DailySiteUserMap(String stringDate, int company_code)
-        throws ParseException {
-        Map<Integer, Integer> SiteUserMap = new HashMap<>();
+    public Map<String, Integer> DailySiteUserMap(String stringDate, int company_code)
+        throws Exception {
+        Map<String, Integer> SiteUserMap = new HashMap<>();
         List<ReservationDTO> reservationList = reservationService.SelectByDateAndCompanyCode(
             stringDate, company_code);
         for (ReservationDTO reservation : reservationList) {
             BookDTO book = SelectByReservationCode(reservation.getReservation_code());
-            int siteCode = book.getSite_code();
+            String siteName = siteService.select(book.getSite_code()).getSite_name();
             int userNumber = book.getBook_member();
-            if (SiteUserMap.containsKey(siteCode)) {
-                SiteUserMap.put(siteCode, SiteUserMap.get(siteCode) + userNumber);
+            if (SiteUserMap.containsKey(siteName)) {
+                SiteUserMap.put(siteName, SiteUserMap.get(siteName) + userNumber);
             } else {
-                SiteUserMap.put(siteCode, userNumber);
+                SiteUserMap.put(siteName, userNumber);
             }
         }
         return SiteUserMap;
@@ -195,17 +197,17 @@ public class BookService implements MyService<Integer, BookDTO> {
 
     //stringYearAndMonth = "20023-02"형식
     //site_code , Book_member의 합산이 짝지어서 return
-    public Map<Integer, Integer> MonthlySiteUserMap(String stringYearAndMonth, int company_code)
-        throws ParseException {
-        Map<Integer, Integer> SiteUserMap = new HashMap<>();
+    public Map<String, Integer> MonthlySiteUserMap(String stringYearAndMonth, int company_code)
+        throws Exception {
+        Map<String, Integer> SiteUserMap = new HashMap<>();
         String stringDate = stringYearAndMonth + "-01";
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(Utility.StringToDate(stringDate));
         for (int i = 0; i < Utility.LastDayOfMonth(stringDate); i++) {
-            Map<Integer, Integer> daily = DailySiteUserMap(Utility.DateToString(calendar.getTime()),
+            Map<String, Integer> daily = DailySiteUserMap(Utility.DateToString(calendar.getTime()),
                 company_code);
-            for (Entry<Integer, Integer> entry : daily.entrySet()) {
-                Integer key = entry.getKey();
+            for (Entry<String, Integer> entry : daily.entrySet()) {
+                String key = entry.getKey();
                 Integer value = entry.getValue();
                 SiteUserMap.merge(key, value, Integer::sum);
             }
@@ -214,9 +216,9 @@ public class BookService implements MyService<Integer, BookDTO> {
         return SiteUserMap;
     }
 
-    public Map<Integer, Integer> YearlySiteUserMap(String stringYear, int company_code)
-        throws ParseException {
-        Map<Integer, Integer> SiteUserMap = new HashMap<>();
+    public Map<String, Integer> YearlySiteUserMap(String stringYear, int company_code)
+        throws Exception {
+        Map<String, Integer> SiteUserMap = new HashMap<>();
         for (int i = 1; i <= 12; i++) {
             String stringYearAndMonth;
             if (i / 10 == 1) {
@@ -224,9 +226,9 @@ public class BookService implements MyService<Integer, BookDTO> {
             } else {
                 stringYearAndMonth = stringYear + "-0" + i;
             }
-            Map<Integer, Integer> monthly = MonthlySiteUserMap(stringYearAndMonth, company_code);
-            for (Entry<Integer, Integer> entry : monthly.entrySet()) {
-                Integer key = entry.getKey();
+            Map<String, Integer> monthly = MonthlySiteUserMap(stringYearAndMonth, company_code);
+            for (Entry<String, Integer> entry : monthly.entrySet()) {
+                String key = entry.getKey();
                 Integer value = entry.getValue();
                 SiteUserMap.merge(key, value, Integer::sum);
             }
@@ -236,12 +238,12 @@ public class BookService implements MyService<Integer, BookDTO> {
 
     //stringYearAndMonth = "20023-02"형식
     public GraphDTO MonthlySiteUserGraph(String stringYearAndMonth, int company_code)
-        throws ParseException {
+        throws Exception {
 
-        Map<Integer, Integer> monthlySiteUserMap = MonthlySiteUserMap(stringYearAndMonth,
+        Map<String, Integer> monthlySiteUserMap = MonthlySiteUserMap(stringYearAndMonth,
             company_code);
         List<String> labesList = new ArrayList<>();
-        for (int label : monthlySiteUserMap.keySet()) {
+        for (String label : monthlySiteUserMap.keySet()) {
             labesList.add("" + label);
         }
         List<String> dataList = new ArrayList<>();
@@ -253,11 +255,11 @@ public class BookService implements MyService<Integer, BookDTO> {
     //stringYear = "2023"형식
     //해당년도 사이트별 인원수 GraphDTO 형식으로 반환
     public GraphDTO YearlySiteUserGraph(String stringYear, int company_code)
-        throws ParseException {
-        Map<Integer, Integer> yearlySiteUserMap = YearlySiteUserMap(stringYear,
+        throws Exception {
+        Map<String, Integer> yearlySiteUserMap = YearlySiteUserMap(stringYear,
             company_code);
         List<String> labesList = new ArrayList<>();
-        for (int label : yearlySiteUserMap.keySet()) {
+        for (String label : yearlySiteUserMap.keySet()) {
             labesList.add("" + label);
         }
         List<String> dataList = new ArrayList<>();

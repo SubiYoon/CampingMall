@@ -1,0 +1,115 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        getGraph();
+        getGraph2();
+    });
+
+    function getGraph() {
+        let labelsList = [];
+        let dataList = [];
+        let label;
+
+        $.ajax({
+            url: "/admin/admin.monthly",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                console.log(data.Graph.labelsList[0]);
+                console.log(data.Graph.dataList[0]);
+                label = data.Graph.label;
+                // 그래프로 나타낼 자료 리스트에 담기
+                for (let i = 0; i < data.Graph.labelsList.length; i++) {
+                    labelsList.push(data.Graph.labelsList[i]);
+                    dataList.push(data.Graph.dataList[i]);
+                }
+                console.log(label);
+                console.log(dataList);
+                // 그래프
+                new Chart(document.getElementById("line-chart"), {
+                    type: 'line',
+                    data: {
+                        labels: labelsList, // X축
+                        datasets: [{
+                            data: dataList, // 값
+                            label: label,
+                            borderColor: "#3e95cd",
+                            fill: false
+                        }
+                        ]
+                    },
+                }); //그래프
+            },
+            error: function () {
+                alert("실패");
+            }
+
+        }) // ajax
+    } // getGraph
+    function getGraph2() {
+        let labelsList = [];
+        let dataList = [];
+        let label;
+        let strRGBAList= [];
+        $.ajax({
+            url: "/admin/admin.monthlyUser",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                console.log(data.Graph.labelsList[0]);
+                console.log(data.Graph.dataList[0]);
+                label = data.Graph.label;
+
+                // 그래프로 나타낼 자료 리스트에 담기
+                for (let i = 0; i < data.Graph.labelsList.length; i++) {
+                    labelsList.push(data.Graph.labelsList[i]);
+                    dataList.push(data.Graph.dataList[i]);
+                    var RGB_1 = Math.floor(Math.random() * (255 + 1));
+                    var RGB_2 = Math.floor(Math.random() * (255 + 1));
+                    var RGB_3 = Math.floor(Math.random() * (255 + 1));
+                    var strRGBA = 'rgba(' + RGB_1 + ',' + RGB_2 + ',' + RGB_3 + ',0.3)';
+                    strRGBAList.push(strRGBA);
+                }
+                console.log(label);
+                console.log(dataList);
+                // 그래프
+                new Chart(document.getElementById("pie-chart"), {
+                    type: 'pie',
+                    data: {
+                        labels: labelsList, // X축
+                        datasets: [{
+                            data: dataList, // 값
+                            label: label,
+                            backgroundColor: strRGBAList,
+                            fill: false
+                        }
+                        ]
+                    },
+                }); //그래프
+            },
+            error: function () {
+                alert("실패");
+            }
+
+        }) // ajax
+    } // getGraph
+
+</script>
+
+<div>
+    <canvas id="line-chart"></canvas>
+    <div class="pie">
+        <canvas id="pie-chart"></canvas>
+    </div>
+
+</div>
+<style>
+    .pie{
+        border: 1px black solid;
+        width: 50%;
+        height: 50%;
+    }
+</style>

@@ -13,7 +13,7 @@ public class GraphTest {
     @Test
     void YearSales(){
         try {
-            System.out.println(bookService.YearSales("2023",1));
+            System.out.println(bookService.YearSalesGraph("2023",1));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -22,7 +22,7 @@ public class GraphTest {
     @Test
     void MonthSales(){
         try {
-            System.out.println(bookService.MonthSales("2023-02",1));
+            System.out.println(bookService.MonthSalesGraph("2023-02",1));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -32,7 +32,7 @@ public class GraphTest {
         try {
             System.out.println(bookService.DailySiteUserMap("2023-02-01",1));
             System.out.println(bookService.MonthlySiteUserMap("2023-02",1));
-        } catch (ParseException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -42,6 +42,8 @@ public class GraphTest {
             System.out.println(bookService.MonthlySiteUserGraph("2023-02",1));
         } catch (ParseException e) {
             throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
     @Test
@@ -49,6 +51,8 @@ public class GraphTest {
         try {
             System.out.println(bookService.YearlySiteUserGraph("2023",1));
         } catch (ParseException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
