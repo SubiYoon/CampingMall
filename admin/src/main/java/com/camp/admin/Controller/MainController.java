@@ -128,6 +128,10 @@ public class MainController {
 		listI=serviceI.selectByCompanyCode(company.getCompany_code());	//상호코드
 		model.addAttribute("ilist", listI);
 
+		//슬라이드 이미지
+		listI=serviceI.selectByHomeCode(homecont.getHome_code());
+		model.addAttribute("slide", listI);
+
 		return "main";
 	}
 
@@ -156,26 +160,39 @@ public class MainController {
 	public String logoEdit(HttpSession session, MultipartFile company_logo1, MultipartFile company_logo2){
 		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
 		int company_code = company.getCompany_code();
-		if(company_logo1 != null && company_logo2 != null){
+		if(!company_logo1.isEmpty() && !company_logo2.isEmpty()){
 			try {
 				company.setCompany_logo1(company_logo1.getOriginalFilename());
 				company.setCompany_logo2(company_logo2.getOriginalFilename());
-				company.setCompany_code(company_code);
 				serviceC.update(company);
 				SaveFile.saveFile(company_logo1, imagesdir);
 				SaveFile.saveFile(company_logo2, imagesdir);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-		}else if(company_logo1 != null &&company_logo2 == null){
-			company.setCompany_logo1(company_logo1.getOriginalFilename());
-		}else if(company_logo1 == null &&company_logo2 != null){
-			company.setCompany_logo2(company_logo2.getOriginalFilename());
-		}else return "redirect:/";
+		}else if(!company_logo1.isEmpty() && company_logo2.isEmpty()){
+			try {
+				company = serviceC.select(company_code);
+				company.setCompany_logo1(company_logo1.getOriginalFilename());
+				SaveFile.saveFile(company_logo1, imagesdir);
+				serviceC.update(company);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}else if(company_logo1.isEmpty() && !company_logo2.isEmpty()){
+			try {
+				company = serviceC.select(company_code);
+				company.setCompany_logo2(company_logo2.getOriginalFilename());
+				SaveFile.saveFile(company_logo2, imagesdir);
+				serviceC.update(company);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else return "redirect:/main";
 		
-		return "redirect:/";
+		return "redirect:/main";
 	}
 	
 }

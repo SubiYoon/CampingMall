@@ -47,15 +47,6 @@
 	const text = document.querySelector("#text");
 
 	$(document).ready(function () {
-		//마우스 수정영역 표시	
-		$('.modal_block').mouseenter(function(){
-			$('.modal_block').css('border', 'solid 2px red')
-		});
-		$('.modal_block').mouseleave(function(){
-			$('.modal_block').css('border', 'none');
-		});
-		//마우스 수정영역표시 end
-		
 		$(document).mousemove(function(event) {
 			$("#text").css({
 				left: event.pageX +10,
@@ -82,48 +73,17 @@
 			document.getElementById("modal").style.display = "flex";
 			document.body.style = "overflow: hidden";
 		});
-		$('#modal_close').click(function () {
-			document.getElementById("modal").style.display = "none";
-			document.body.style = "overflow: auto";
-		});
 		//end 로그인모달----------------------
-		
-		//글 수정 모달 -----------------------
-		$('#modal_edit #modal_edit_block').click(function(){
-			var board_data = $('#modal_edit').serialize();
-			
-			document.getElementById("modal_board_edit").style.display = "flex"
-			document.body.style = "overflow: hidden";
-			
-			$.ajax({
-				url: '/admin/boardEdit',
-				data: board_data,
-				success: function(data){
-					if (data.home != null) {
-						const content = data.home.home_content;
-						document.getElementById('content').innerText = content;
-						$('#board_code').val(data.home.home_code);
-						$('#whatDTO').val('homeDTO');
-					}
-					//TODO: 조건문으로 모든 DTO받아와야함
-				},
 
-			});
-		});
-		$('#boardForm button[id=board_edit]').click(function(){
-			$('#boardForm').attr({
-				'method': 'post',
-				'action': '/admin/board/edit'
-			});
-			$('#boardForm').submit();
-		});
-
-		$('#modal_edit_close').click(function () {
+		//모달창 닫기
+		$('.modal_close').click(function () {
+			document.getElementById("modal").style.display = "none";
+			document.getElementById("modal_logo_edit").style.display = "none";
 			document.getElementById("modal_board_edit").style.display = "none";
 			document.body.style = "overflow: auto";
 		});
-		//end 글 수정 모달--------------------
-
+		//모달창 닫기
+		
 		//로그인
 		$('#loginForm button').click(function () {
 			$('#loginForm').attr({
@@ -256,7 +216,7 @@
 	<div class="modal-content">
 		<div class="modal-btn">
 			<button th:onclick="|location.href='@{/user/register}'|">회원가입</button>
-			<button id="modal_close">닫기</button>
+			<button class="modal_close">닫기</button>
 		</div>
 		<div class="modal-login">
 			<h2>로그인</h2>
@@ -275,28 +235,6 @@
 	</div>
 </div>
 <!-- end 로그인모달창 -->
-
-<!-- No images 게시글 수정 모달창 -->
-<div id="modal_board_edit" class="modal-overlay">
-	<div class="modal-content">
-		<div class="modal-btn">
-			<!--<button th:onclick="|location.href='@{/user/register}'|">회원가입</button> -->
-			<button id="modal_edit_close">닫기</button>
-		</div>
-		<div class="modal-login">
-			<h2>게시글 수정</h2>
-			<form id="boardForm">
-				<input id="whatDTO" type="hidden" name="whatDTO"/>
-				<input id="board_code" type="hidden" name="board_code"/>
-				<input id="title" type="text" name="title" style="width: 350px;"/><br><br>
-				<textarea id="content" rows="10" cols="50" name="content"></textarea><br><br>
-				<button id="board_edit" style="width:200px;">수정</button>
-				<button id="board_delete" style="width:200px;">삭제</button>
-			</form>
-		</div>
-	</div>
-</div>
-<!-- end No images 게시글 수정 모달창 -->
 
 <!-- 챗봇 모달창 -->
 <div id="modal_cb" class="modal_cb-overlay">

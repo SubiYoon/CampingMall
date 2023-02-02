@@ -261,7 +261,7 @@ button {
 /*-- 로그인모달용 --*/
 
 #modal,
-#modal_board_edit {
+#modal_slide_edit {
      display: none;
      position: relative;
      width: 100%;
@@ -269,7 +269,7 @@ button {
      z-index: 50;
 }
 
-#modal_logo_edit {
+#modal_logo_edit, #modal_board_edit {
      position: fixed;
      width: 100%;
      height: 100%;
@@ -279,13 +279,15 @@ button {
 
 #modal .modal-btn,
 #modal_board_edit .modal-btn,
-#modal_logo_edit .modal-btn {
+#modal_logo_edit .modal-btn,
+#modal_slide_edit .modal-btn {
      text-align: right;
 }
 
 #modal button,
 #modal_board_edit button,
-#modal_logo_edit button {
+#modal_logo_edit button,
+#modal_slide_edit button {
      background-color: #009898;
      width: 15%;
      padding: 5px 0;
@@ -298,13 +300,15 @@ button {
 
 #modal h2,
 #modal_board_edit h2,
-#modal_logo_edit h2 {
+#modal_logo_edit h2,
+#modal_slide_edit h2 {
      margin: 0;
 }
 
 #modal .modal-content,
 #modal_board_edit .modal-content,
-#modal_logo_edit .modal-content {
+#modal_logo_edit .modal-content,
+#modal_slide_edit .modal-content {
      width: 80%;
      margin: 100px auto;
      padding: 10px 2%;
@@ -314,20 +318,23 @@ button {
 
 #modal .modal-login,
 #modal_board_edit .modal-login,
-#modal_logo_edit .modal-login {
+#modal_logo_edit .modal-login,
+#modal_slide_edit .modal-login {
      text-align: center;
      padding: 10px 0;
 }
 
 #modal .modal-login button,
 #modal_board_edit .modal-login button,
-#modal_logo_edit .modal-login button {
+#modal_logo_edit .modal-login button,
+#modal_slide_edit .modal-login button {
      text-align: center;
 }
 
 #modal.modal-overlay,
 #modal_board_edit.modal-overlay,
-#modal_logo_edit.modal-overlay {
+#modal_logo_edit.modal-overlay,
+#modal_slide_edit.modal-overlay {
      width: 100%;
      height: 100%;
      position: absolute;

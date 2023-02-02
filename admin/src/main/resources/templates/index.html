@@ -3,14 +3,23 @@
       $(".nav-item:nth-child(1)").attr('class', 'nav-item active');
       $(".notactive:nth-child(1)").attr('class', 'active');
 
-      //마우스 수정영역 표시	
+      //로고 마우스 수정영역 표시	
 		$('.modal_block_logo').mouseenter(function(){
 			$('.modal_block_logo').css('border', 'solid 2px red')
 		});
-		$('.modal_block_logo').mouseleave(function(){
+		$('.modal_block, .modal_block_logo').mouseleave(function(){
 			$('.modal_block_logo').css('border', 'none');
 		});
-		//마우스 수정영역표시 end
+		//로고 마우스 수정영역표시 end
+      
+      //소개 게시글 마우스 수정영역 표시	
+		$('.modal_block').mouseenter(function(){
+			$('.modal_block').css('border', 'solid 2px red')
+		});
+		$('.modal_block, .modal_block_logo').mouseleave(function(){
+			$('.modal_block').css('border', 'none');
+		});
+		//소개 게시글 마우스 수정영역표시 end
 
       //이미지만 변경하는 이벤트 함수
       $('#modal_edit_logo > #logo_edit').click(function(){
@@ -23,16 +32,11 @@
 				url: '/admin/logoEdit',
 				data: image_data,
 				success: function(data){
-               console.log(data);
-					$('#logo1').val(data.company.company_logo1);
-               $('#logo2').val(data.company.company_logo2);
+					document.getElementById('logo1').innerText = data.company.company_logo1;
+               document.getElementById('logo2').innerText = data.company.company_logo2;
 				},
 
 			});
-		});
-      $('#modal_logo_edit_close').click(function () {
-			document.getElementById("modal_logo_edit").style.display = "none";
-			document.body.style = "overflow: auto";
 		});
       $('#logo1Form > #image_edit').click(function(){
          $('#logo1Form').attr({
@@ -40,21 +44,89 @@
             'action': '/admin/logo/edit'
          })
       });
+
+      //home 소개 게시글 수정 모달 -----------------------
+		$('#modal_edit #modal_edit_block').click(function(){
+			var board_data = $('#modal_edit').serialize();
+			
+			document.getElementById("modal_board_edit").style.display = "flex"
+			document.body.style = "overflow: hidden";
+			
+			$.ajax({
+				url: '/admin/boardEdit',
+				data: board_data,
+				success: function(data){
+					if (data.home != null) {
+						const content = data.home.home_content;
+						document.getElementById('content').innerText = content;
+						$('#board_code').val(data.home.home_code);
+						$('#whatDTO').val('homeDTO');
+					}
+				},
+
+			});
+		});
+		$('#boardForm button[id=board_edit]').click(function(){
+			$('#boardForm').attr({
+				'method': 'post',
+				'action': '/admin/board/edit'
+			});
+			$('#boardForm').submit();
+		});
+
+		//end 글 수정 모달--------------------
    });
 </script>
-<!-- 이미지 게시글 수정 -->
+<!-- home 소개 게시글 수정 모달창 -->
+<div id="modal_board_edit" class="modal-overlay">
+	<div class="modal-content">
+		<div class="modal-btn">
+			<!--<button th:onclick="|location.href='@{/user/register}'|">회원가입</button> -->
+			<button class="modal_close">닫기</button>
+		</div>
+		<div class="modal-login">
+			<h2>게시글 수정</h2>
+			<form id="boardForm">
+				<input id="whatDTO" type="hidden" name="whatDTO"/>
+				<input id="board_code" type="hidden" name="board_code"/>
+				<input id="title" type="text" name="title" style="width: 350px;"/><br><br>
+				<textarea id="content" rows="10" cols="50" name="content"></textarea><br><br>
+				<button id="board_edit" style="width:200px;">수정</button>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- end home 소개 게시글 수정 모달창 -->
+
+<!-- 로고 게시글 수정 -->
 <div id="modal_logo_edit" class="modal-overlay">
 	<div class="modal-content">
 		<div class="modal-btn">
-			<button id="modal_logo_edit_close">닫기</button>
+			<button class="modal_close">닫기</button>
 		</div>
 		<div class="modal-login">
 			<h2>로고 수정</h2>
 			<form id="logo1Form" enctype="multipart/form-data">
-            메뉴바 Logo<input type="file" name="company_logo1"/><p id="logo1"></p><br>
-            캠핑장명 Logo<input type="file" name="company_logo2"/><p id="logo2"></p><br>
+            메뉴바 Logo : <span id="logo1"></span><br><input type="file" name="company_logo1"/><br>
+            캠핑장명 Logo : <span id="logo2"></span><br><input type="file" name="company_logo2"/><br>
 				<button id="image_edit" style="width:200px;">수정</button>
-				<button id="image_delete" style="width:200px;">삭제</button>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- 슬라이드 게시글 수정 -->
+<div id="modal_slide_edit" class="modal-overlay">
+	<div class="modal-content">
+		<div class="modal-btn">
+			<button class="modal_close">닫기</button>
+		</div>
+		<div class="modal-login">
+			<h2>슬라이드 수정</h2>
+			<form id="slideForm" enctype="multipart/form-data">
+            <li th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code}">
+               <span th:text="'슬라이드 ' + ${slideStat.count} + ' : '"></span><span th:text="${slide.image_file}"></span><br>
+               <input type="file" name="home_slide"/></li>
+				<button id="image_edit" style="width:200px;">수정</button>
 			</form>
 		</div>
 	</div>
@@ -65,20 +137,14 @@
    <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
       <ol class="carousel-indicators">
          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-         <li data-target="#myCarousel" data-slide-to="1"></li>
-         <li data-target="#myCarousel" data-slide-to="2"></li>
+         <li th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index>0}" data-target="#myCarousel" th:data-slide-to="${slideStat.index}"></li>
       </ol>
       <div class="carousel-inner">
-         <div class="carousel-item active">
-            <img class="first-slide" th:src="@{/images/banner1.jpg}" alt="First slide">
-            <div class="container">
-            </div>
+         <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index==0}" class="carousel-item active">
+            <img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide">
          </div>
-         <div class="carousel-item">
-            <img class="second-slide" th:src="@{/images/banner2.jpg}" alt="Second slide">
-         </div>
-         <div class="carousel-item">
-            <img class="third-slide" th:src="@{/images/banner3.jpg}" alt="Third slide">
+         <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index>0}" class="carousel-item">
+            <img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide">
          </div>
       </div>
       <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
