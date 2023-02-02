@@ -3,9 +3,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
+    let strRGBAList = [];
     $(document).ready(function () {
         getGraph();
         getGraph2();
+        getGraph3();
     });
 
     function getGraph() {
@@ -41,6 +43,13 @@
                         }
                         ]
                     },
+                    options: {
+                        maintainAspectRatio: false,
+                        title: {
+                            display: true,
+                            text: '매출'
+                        }
+                    }
                 }); //그래프
             },
             error: function () {
@@ -53,9 +62,9 @@
         let labelsList = [];
         let dataList = [];
         let label;
-        let strRGBAList= [];
+
         $.ajax({
-            url: "/admin/admin.monthlyUser",
+            url: "/admin/admin.monthlyZone",
             type: "get",
             dataType: "json",
             success: function (data) {
@@ -88,6 +97,12 @@
                         }
                         ]
                     },
+                    options: {
+                        title: {
+                            display: true,
+                            text: '매출비율'
+                        }
+                    }
                 }); //그래프
             },
             error: function () {
@@ -97,19 +112,76 @@
         }) // ajax
     } // getGraph
 
+    function getGraph3() {
+        let labelsList = [];
+        let dataList = [];
+        let label;
+        $.ajax({
+            url: "/admin/admin.monthlyZoneUser",
+            type: "get",
+            dataType: "json",
+            success: function (data) {
+                console.log(data.Graph.labelsList[0]);
+                console.log(data.Graph.dataList[0]);
+                label = data.Graph.label;
+
+                // 그래프로 나타낼 자료 리스트에 담기
+                for (let i = 0; i < data.Graph.labelsList.length; i++) {
+                    labelsList.push(data.Graph.labelsList[i]);
+                    dataList.push(data.Graph.dataList[i]);
+                }
+                console.log(label);
+                console.log(dataList);
+                // 그래프
+                new Chart(document.getElementById("pie-chart-use"), {
+                    type: 'pie',
+                    data: {
+                        labels: labelsList, // X축
+                        datasets: [{
+                            data: dataList, // 값
+                            label: label,
+                            backgroundColor: strRGBAList,
+                            fill: false
+                        }
+                        ]
+                    },
+                    options: {
+                        title: {
+                            display: true,
+                            text: '인원수'
+                        }
+                    }
+                }); //그래프
+            },
+            error: function () {
+                alert("실패");
+            }
+
+        }) // ajax
+    } // getGraph
 </script>
 
-<div>
-    <canvas id="line-chart"></canvas>
-    <div class="pie">
-        <canvas id="pie-chart"></canvas>
+<div class="row">
+    <div class="col-md-9 col-sm-12">
+        <canvas id="line-chart"></canvas>
+    </div>
+    <div class="col-md-3 col-sm-5">
+        <div class="pie">
+            <canvas id="pie-chart"></canvas>
+        </div>
+        <div class="pie2">
+            <canvas id="pie-chart-use"></canvas>
+        </div>
     </div>
 
 </div>
+
 <style>
     .pie{
         border: 1px black solid;
-        width: 50%;
-        height: 50%;
+    }
+    .pie2{
+        border: 1px black solid;
+        border-top-width: 0;
     }
 </style>

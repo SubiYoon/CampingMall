@@ -129,9 +129,16 @@ public class AjaxController {
         json.put("Graph",graph);
         return json;
     }
-    @RequestMapping("admin.monthlyUser")
+    @RequestMapping("admin.monthlyZone")
+    public Object monthlyZoneSales() throws Exception {
+        GraphDTO graph = bService.MonthlyZoneSalesGraph("2023-02",1);
+        JSONObject json = new JSONObject();
+        json.put("Graph",graph);
+        return json;
+    }
+    @RequestMapping("admin.monthlyZoneUser")
     public Object monthlyUser() throws Exception {
-        GraphDTO graph = bService.MonthlySiteUserGraph("2023-02",1);
+        GraphDTO graph = bService.MonthlyZoneUserGraph("2023-02",1);
         JSONObject json = new JSONObject();
         json.put("Graph",graph);
         return json;

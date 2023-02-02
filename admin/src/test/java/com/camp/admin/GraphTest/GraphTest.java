@@ -60,5 +60,13 @@ public class GraphTest {
             throw new RuntimeException(e);
         }
     }
-
+    @Test
+    void ZoneUse(){
+        try {
+            System.out.println(bookService.MonthlyZoneUserMap("2023-02",1));
+            System.out.println(bookService.YearlyZoneUserMap("2023",1));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
