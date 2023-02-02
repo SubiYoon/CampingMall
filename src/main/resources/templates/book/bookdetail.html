@@ -61,7 +61,6 @@ $.ajax({
    		    	        data: JSON.stringify(param),
                         success: function(data) {
                         	console.log('webhook result '+data);
-                        	//검증절차
                             if (data == "failed") {
                                 alert('결제 실패');
                             } else {

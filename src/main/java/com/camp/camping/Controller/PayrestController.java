@@ -1,5 +1,7 @@
 package com.camp.camping.Controller;
 
+import java.util.Set;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,10 +40,16 @@ public class PayrestController {
     	
     }
     
-    @PostMapping("/verifyImport/{imp_uid}")
-    public void verifyImport(@PathVariable("imp_uid") String imp_uid) {
+    @PostMapping("/verifyImport")
+    public void verifyImport(@RequestParam("merchant_uid")String merchant_uid) {
     	//결제검증
-    	System.out.println(service.getImportToken());
+    	String get_token=service.getImportToken();
+    	String payment_amount=service.getAmount(get_token, merchant_uid);
+    	String amountToBePaid=service.setHackCheck(payment_amount, merchant_uid, get_token);
+    	if(payment_amount.equals(amountToBePaid)) {
+    		//db에 결제정보저장
+    		
+    	}
     	
     	
     }

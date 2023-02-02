@@ -129,7 +129,7 @@ public class PaymentService{
    	}
    	
    	// 아임포트 결제금액 변조는 방지하는 함수
-   	public void setHackCheck(String amount,String mId,String token) {
+   	public String setHackCheck(String amount,String mId,String token) {
    		HttpClient client = HttpClientBuilder.create().build();
    		HttpPost post = new HttpPost(IMPORT_PREPARE_URL);
    		Map<String,String> m  =new HashMap<String,String>();
@@ -142,10 +142,12 @@ public class PaymentService{
    			ObjectMapper mapper = new ObjectMapper();
    			String body = EntityUtils.toString(res.getEntity());
    			JsonNode rootNode = mapper.readTree(body);
-   			System.out.println(rootNode);
+   			amount = rootNode.get("amount").asText();
    		} catch (Exception e) {
    			e.printStackTrace();
    		}	
+   		return amount;
+   		
    	}
     
 }
