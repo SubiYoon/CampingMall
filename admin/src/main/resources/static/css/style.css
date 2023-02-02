@@ -172,6 +172,11 @@ img {
      height: auto;
 }
 
+.slide_edit > .first-slide{
+     width: 100%;
+     height: 700px;
+}
+
 :focus {
      outline: 0;
 }
