@@ -2,16 +2,16 @@
  <script>
     
       //마우스 수정영역 표시	
-		$('.modal_block_logo').mouseenter(function(){
-			$('.modal_block_logo').css('border', 'solid 2px red')
+		$('.first-slide').mouseenter(function(){
+			$('.first-slide').css('border', 'solid 2px red')
 		});
-		$('.modal_block_logo').mouseleave(function(){
-			$('.modal_block_logo').css('border', 'none');
+		$('.first-slide').mouseleave(function(){
+			$('.first-slide').css('border', 'none');
 		});
 		//마우스 수정영역표시 end
 
       //이미지만 변경하는 이벤트 함수
-      $('#modal_edit_logo #logo_edit').click(function(){
+      $('.slide_edit').click(function(){
 			var image_data = $('#modal_edit_logo').serialize();
 			
 			document.getElementById("modal_slide_edit").style.display = "flex"
@@ -34,4 +34,13 @@
 
 			});
 		});
+
+		$('#slideForm #image_slide_edit').click(function(){
+			$('#slideForm').attr({
+				'method' : 'post',
+				'action' : '/admin/slide/edit'
+			});
+			$('#slideForm').submit();
+		});
+
  </script>

@@ -260,8 +260,7 @@ button {
 
 /*-- 로그인모달용 --*/
 
-#modal,
-#modal_slide_edit {
+#modal {
      display: none;
      position: relative;
      width: 100%;
@@ -269,7 +268,9 @@ button {
      z-index: 50;
 }
 
-#modal_logo_edit, #modal_board_edit {
+#modal_logo_edit, 
+#modal_board_edit,
+#modal_slide_edit {
      position: fixed;
      width: 100%;
      height: 100%;

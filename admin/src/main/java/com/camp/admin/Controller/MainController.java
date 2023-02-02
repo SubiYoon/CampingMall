@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.camp.admin.DTO.CompanyDTO;
@@ -195,4 +196,25 @@ public class MainController {
 		return "redirect:/main";
 	}
 	
+	@RequestMapping("slide/edit")
+	public String slideEdit(HttpSession session, List<MultipartFile> home_slide, @RequestParam List<Integer> image_code, int home_code){
+		ImageDTO image = null;
+		
+		for(int i=0; i<home_slide.size(); i++){
+			if(!home_slide.get(i).isEmpty()){
+				try{
+					image = serviceI.select(image_code.get(i));
+					image.setImage_file(home_slide.get(i).getOriginalFilename());
+					image.setHome_code(home_code);
+					serviceI.update(image);
+					SaveFile.saveFile(home_slide.get(i), imagesdir);
+				}catch(Exception e){
+					//e.printStackTrace();
+					System.out.println("파일변경 실패");
+				}
+			}
+		}
+
+		return "redirect:/main";
+	}
 }
