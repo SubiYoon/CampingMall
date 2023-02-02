@@ -10,4 +10,6 @@ import lombok.*;
 public class CompanyDTO {
     private int company_code;
     private String company_name;
+    private String company_logo1;
+    private String company_logo2;
 }
