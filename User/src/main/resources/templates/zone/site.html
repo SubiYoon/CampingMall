@@ -1,118 +1,161 @@
+<style>
+   .star-rating {
+      direction: rtl;
+      display: inline-block;
+   }
+
+   .star-rating input[type=radio] {
+      display: none;
+   }
+
+   .star-rating label {
+      display: inline-block;
+      position: relative;
+      width: 1.1em;
+      font-size: 3em;
+      color: #000;
+   }
+
+   .star-rating label:hover,
+   .star-rating label:hover~label {
+      color: #ffd700;
+   }
+
+   .star-rating input[type=radio]:checked~label {
+      color: #ffd700;
+   }
+</style>
+
 <script>
-$(document).ready(function(){
-	$(".nav-item:nth-child(3)").attr('class','nav-item active');
-	$(".notactive:nth-child(3)").attr('class','active');
-	/* $(".star_rating a:nth-child(#{$('#score').val()}-1)").attr('class', 'on'); */
-/* 	$( ".star_rating a" ).click(function() {
-	     $(this).parent().children("a").removeClass("on");
-	     $(this).addClass("on").prevAll("a").addClass("on");
-	     return false;
-	}); */
-});
+   var rating = 0;
+
+   function setRatingValue(value) {
+      rating = value;
+      console.log("Rating value is: " + rating);
+   }
+
+   function showReview() {
+      $.ajax({
+
+      });
+   }
+
+   $(document).ready(function () {
+      $(".nav-item:nth-child(3)").attr('class', 'nav-item active');
+      $(".notactive:nth-child(3)").attr('class', 'active');
+      /* $(".star_rating a:nth-child(#{$('#score').val()}-1)").attr('class', 'on'); */
+      /* 	$( ".star_rating a" ).click(function() {
+              $(this).parent().children("a").removeClass("on");
+              $(this).addClass("on").prevAll("a").addClass("on");
+              return false;
+         }); */
+   });
 
 </script>
 <script type="text/javascript">
-	function reviewUpload() {
-		var review_content = $('#review_content').val();
-		var review_score = $('#review_score').val();
-		$.ajax({
-            url: '/zone/reviewupload',
-            type: 'post',
-            data: { 'review_content': review_content, 'review_score': review_score},
-	
-		});
-	}
-	
-/* 	function reviewlist(){
-		$.ajax({
-            url: '[[@{/zone/site?site_code=+${site.site_code}}]]',
-            type: 'post'
-            
-		}); 
-	}*/
+   function reviewUpload() {
+      var review_content = $('#review_content').val();
+      $.ajax({
+         url: '/zone/reviewupload',
+         type: 'post',
+         data: { 'review_content': review_content, 'review_score': rating },
+         success: function (result) {
+
+         }
+
+      });
+   }
 </script>
 <script src="http://code.jquery.com/jquery-3.6.3.min.js"></script>
-      <div class="back_re">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="title">
-                     <h2>구역안내</h2>
-                  </div>
-               </div>
+<div class="back_re">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="title">
+               <h2>구역안내</h2>
             </div>
          </div>
       </div>
-      <!-- our_room -->
-      <div  class="our_room">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <p  class="margin_0">캠핑장 구역-사이트를 확인하세요</p>
-                  </div>
-               </div>
+   </div>
+</div>
+<!-- our_room -->
+<div class="our_room">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="titlepage">
+               <p class="margin_0">캠핑장 구역-사이트를 확인하세요</p>
             </div>
-            
-            <div class="zone">
-            <div class="row">
-               <div class="col-md-6 col-sm-6">
-                  <div id="serv_hover"  class="room">
-                     <div class="room_img">
-                        <figure><img th:src="@{/images/} + ${site.image_file}" alt="#"/></figure>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-6 col-sm-6">
-                  <div id="serv_hover"  class="room">
-                     <div class="bed_room">
-                        <h3 th:text="${site.site_name}"></h3>
-                        <p th:text="${site.site_content}"></p>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            </div>
-            
-            <div class="zone">
-            <div class="row">
-               <div class="col-md-12 col-sm-12">
-                  <div id="serv_hover"  class="room">
-                     <div class="bed_room card">
-                        <h3>리뷰</h3>
-                        	<ul class="list-group" th:each="review:${rlist}">
-                        		<li class="list-group-item d-flex justify-content-between">
-                        			<div><a th:text="${review.review_content}"></a></div>
-                        			<div class="d-flex">
-                        				<div class="font-italic">
-                        					별점&nbsp;<a id="score" th:text="${review.review_score}"></a>
-                        					<p class="star_rating">
-											    <a href="javascript:void(0);" class="on">★</a>
-											    <a href="javascript:void(0);" >★</a>
-											    <a href="javascript:void(0);" >★</a>
-											    <a href="javascript:void(0);" >★</a>
-											    <a href="javascript:void(0);" >★</a>
-											</p>
-                        				</div>
-                        				<button class="badge">수정</button>
-                        				<button class="badge">삭제</button>
-                        			</div>
-                        		</li>
-                        	</ul>
-                        	<br/>
-                        	<div class="card-body"><textarea id="review_content" class="form-control" rows="1"></textarea></div>
-                        	<div class="card-body">
-                        		
-                        		<input type="number" min="1" max="5" id="review_score" class="form-control">
-                        	</div>
-                        	<div class="card-footer"><button class="btn btn-primary" onclick="reviewUpload()">등록</button></div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            </div>
-            
          </div>
       </div>
 
-      <!-- end our_room -->
+      <div class="zone">
+         <div class="row">
+            <div class="col-md-6 col-sm-6">
+               <div id="serv_hover" class="room">
+                  <div class="room_img">
+                     <figure><img th:src="@{/images/} + ${site.image_file}" alt="#" /></figure>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+               <div id="serv_hover" class="room">
+                  <div class="bed_room">
+                     <h3 th:text="${site.site_name}"></h3>
+                     <p th:text="${site.site_content}"></p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <div class="zone">
+         <div class="row">
+            <div class="col-md-12 col-sm-12">
+               <div id="serv_hover" class="room">
+                  <div class="bed_room card">
+                     <h3>리뷰</h3>
+                     <ul class="list-group" th:each="review:${rlist}">
+                        <li class="list-group-item d-flex justify-content-between">
+                           <div><a th:text="${review.review_content}"></a></div>
+                           <div class="d-flex">
+                              <div class="font-italic">
+                                 별점&nbsp;<a id="score" th:text="${review.review_score}"></a>
+                                 <p class="star_rating">
+                                    <a href="javascript:void(0);" class="on">★</a>
+                                    <a href="javascript:void(0);">★</a>
+                                    <a href="javascript:void(0);">★</a>
+                                    <a href="javascript:void(0);">★</a>
+                                    <a href="javascript:void(0);">★</a>
+                                 </p>
+                              </div>
+                              <button class="badge">수정</button>
+                              <button class="badge">삭제</button>
+                           </div>
+                        </li>
+                     </ul>
+                     <br />
+
+                     <form id="review_score">
+                        <div class="card-body">
+                           <textarea id="review_content" class="form-control" rows="1"></textarea>
+                        </div>
+                        <div class="star-rating">
+                           <input type="radio" id="star5" name="rating" value="5" onclick="setRatingValue(this.value)" /><label for="star5">✰</label>
+                           <input type="radio" id="star4" name="rating" value="4" onclick="setRatingValue(this.value)" /><label for="star4">✰</label>
+                           <input type="radio" id="star3" name="rating" value="3" onclick="setRatingValue(this.value)" /><label for="star3">✰</label>
+                           <input type="radio" id="star2" name="rating" value="2" onclick="setRatingValue(this.value)" /><label for="star2">✰</label>
+                           <input type="radio" id="star1" name="rating" value="1" onclick="setRatingValue(this.value)" /><label for="star1">✰</label>
+                        </div>
+                        <div class="card-footer"><button class="btn btn-primary" onclick="reviewUpload()">등록</button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- end our_room -->
