@@ -11,7 +11,7 @@ public class PaymentDTO {
 	
 	private String imp_uid;
 	private String merchant_uid;
-	private String pay_method;
+	private String status;
 	
 
 }

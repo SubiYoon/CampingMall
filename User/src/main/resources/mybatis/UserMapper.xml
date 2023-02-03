@@ -21,4 +21,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
     <insert id="kakaoLoginInsert" parameterType="UserDTO">
         INSERT INTO user(user_id, user_password, user_name, user_birthday, user_tel) VALUES(#{user_id}, #{user_password}, #{user_name}, #{user_birthday}, #{user_tel})
     </insert>
+    
+    <select id="selectnt" resultType="UserDTO">
+        SELECT * FROM user WHERE user_name=#{n} and user_tel=#{t}
+    </select>
 </mapper>

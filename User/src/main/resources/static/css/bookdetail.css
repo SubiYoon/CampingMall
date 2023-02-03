@@ -196,6 +196,13 @@
 	display:flex; 
 	flex-direction: column;
 }
+
+.verticality>span:nth-child(2){
+	font-family:Noto Sans CJK KR;
+	font-weight: 900;
+	
+}
+
 .addition-item>span:nth-child(2){
 	font-weight: bold;
 	
@@ -225,7 +232,9 @@
 	
 }
 
-
+.reservation-customerinfo-container{
+	padding: 10px 0 10px 0;
+}
 
 
 

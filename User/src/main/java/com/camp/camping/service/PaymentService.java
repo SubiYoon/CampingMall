@@ -16,16 +16,34 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.camp.camping.DTO.BookDTO;
+import com.camp.camping.DTO.PaymentDTO;
+import com.camp.camping.DTO.UserDTO;
+import com.camp.camping.frame.MyMapper;
+import com.camp.camping.mapper.PaymentMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 @Service
-public class PaymentService{
+public class PaymentService implements MyMapper<String, PaymentDTO>{
     @Autowired
     SiteService siteService;
+    
+    @Autowired
+    UserService userService;
+    
+    @Autowired
+    BookService bookService;
+    
+    @Autowired
+    PaymentMapper mapper;
+    
+    
     
     public static final String IMPORT_TOKEN_URL = "https://api.iamport.kr/users/getToken";
 	public static final String IMPORT_PAYMENTINFO_URL = "https://api.iamport.kr/payments/find/";
@@ -129,7 +147,7 @@ public class PaymentService{
    	}
    	
    	// 아임포트 결제금액 변조는 방지하는 함수
-   	public String setHackCheck(String amount,String mId,String token) {
+   	public void setHackCheck(String amount,String mId,String token) {
    		HttpClient client = HttpClientBuilder.create().build();
    		HttpPost post = new HttpPost(IMPORT_PREPARE_URL);
    		Map<String,String> m  =new HashMap<String,String>();
@@ -142,12 +160,83 @@ public class PaymentService{
    			ObjectMapper mapper = new ObjectMapper();
    			String body = EntityUtils.toString(res.getEntity());
    			JsonNode rootNode = mapper.readTree(body);
-   			amount = rootNode.get("amount").asText();
+   			System.out.println(rootNode);
    		} catch (Exception e) {
    			e.printStackTrace();
    		}	
-   		return amount;
    		
    	}
+   	
+   	public void paybook(BookDTO book) {
+   		try {
+			bookService.insert(book);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+   	}
+   	
+   	public UserDTO user_select(String n,String t) throws Exception {
+   		return userService.selectnt(n,t);
+   	}
+   	
+
+	@Override
+	public void insert(PaymentDTO v) throws Exception {
+		mapper.insert(v);
+	}
+
+	@Override
+	public void delete(String k) throws Exception {
+		mapper.delete(k);
+	}
+
+	@Override
+	public void update(PaymentDTO v) throws Exception {
+		mapper.update(v);
+	}
+
+	@Override
+	public PaymentDTO select(String k) throws Exception {
+		return mapper.select(k);
+	}
+
+	@Override
+	public List<PaymentDTO> selectAll() throws Exception {
+		return mapper.selectAll();
+	}
+	public int selectOk(String k) throws Exception{
+		return mapper.selectOk(k);
+	}
+	
+	
+
+	public void payment_insert(PaymentDTO pay) {
+		
+		try {
+			insert(pay);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	
+	}
+
+	public void verifyImport_payment(JSONObject jsonobject) {
+		String merchant_uid=(String)jsonobject.get("merchant_uid");
+		Gson gson=new Gson();
+    	PaymentDTO pay=gson.fromJson(jsonobject.toString(), PaymentDTO.class);
+    	
+		try {
+			int result=selectOk(merchant_uid); 
+			if(result<1) {
+				payment_insert(pay);
+			}else {
+				update(pay);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
     
 }

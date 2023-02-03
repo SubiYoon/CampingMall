@@ -1,0 +1,117 @@
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$(".nav-item:nth-child(2)").attr('class', 'nav-item active');
+		$(".notactive:nth-child(2)").attr('class', 'active');
+		
+		//글자수제한
+		$('.text_box textarea').keyup(function(){
+			  var content = $(this).val();
+			  $('.text_box .count span').html(content.length);
+			  if (content.length > 500){
+			    alert("최대 500자까지 입력 가능합니다.");
+			    $(this).val(content.substring(0, 500));
+			    $('.text_box .count span').html(500);
+			  }
+		});
+		
+	}); 
+</script>
+      <div class="back_re">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="title">
+                     <h2>공지사항</h2>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      <!-- about -->
+    <div class="container-md">
+		<div class="col-md-12">
+			<form action="/notice/noticedo">
+			<table class="viewtable-fill">
+				<thead>
+					<tr>
+						<th class="text-left" id="viewno">&nbsp;글번호</th>
+						<th class="text-left" id="viewno">
+							-
+						</th>
+						<th colspan="5"></th>
+					</tr>
+					<tr>
+						<th class="text-left" id="viewth">&nbsp;제목</th>
+						<th class="text-left" id="viewth">
+							<input id="updateth" type="text" name="notice_title">
+						</th>
+						<th class="text-left" id="viewth"></th>
+						<th class="text-right" id="editad">&nbsp;/ 작성자:&nbsp;</th>
+						<th class="text-right">
+							<!-- 세션으로나중에바꾸기 -->
+							<input id="inputnone" type="number" name="admin_code" value="1">
+						</th>
+						<th class="text-right" id="editdate">&nbsp;/ 등록일:&nbsp;</th>
+						<th class="text-right">
+							-
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th id="viewlast" colspan="7">
+						</th>
+					</tr>
+					<tr>
+						<th id="viewhr" colspan="7">
+						</th>
+					</tr>
+					<tr>
+						<th id="viewlast" colspan="7">
+						</th>
+					</tr>
+					<tr>
+						<th class="text-left" colspan="1">
+							&nbsp;내용
+						</th>
+						<td colspan="4">
+							<div class="text_box">
+							<textarea id="writecontent" name="notice_content"></textarea>
+							<!--  
+							<input id="writecontent" name="notice_content">
+							-->
+							<div class="count"><span>0</span>/500</div>
+							</div>
+						</td>
+						<th colspan="2">
+						</th>
+					</tr>
+					<tr>
+						<th class="text-left" colspan="1">
+							&nbsp;주요공지
+						</th>
+						<td colspan="4">
+							<input type="number" min='0' max='1' name="notice_level" value="0">
+							* 1: ON / 0: OFF
+						</td>
+						<th colspan="2">
+						</th>
+					</tr>
+					<tr>
+						<th id="viewlast" colspan="7">
+						</th>
+					</tr>
+				</tbody>
+			</table>
+			<div class="col-sm">
+				<input id="upBtn" class="read_more" type="submit" value="등록" style="word-wrap:break-word" >
+			</div>
+			</form>
+		</div>
+		
+	</div>
+      <!-- end about -->
+     
+

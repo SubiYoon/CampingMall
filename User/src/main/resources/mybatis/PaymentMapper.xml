@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.camping.mapper.PaymentMapper">
+	<insert id="insert" parameterType="PaymentDTO">
+        INSERT INTO payment(merchant_uid, pay_method, imp_uid) VALUES(#{merchant_uid},#{status}, #{imp_uid})
+    </insert>
+    <select id="select" resultType="PaymentDTO">
+        SELECT * FROM payment WHERE merchant_uid=#{merchant_uid}
+    </select>
+    <select id="selectOk" resultType="int">
+        select count(*) from payment where merchant_uid=#{merchant_uid}
+    </select>
+    <select id="selectAll" resultType="PaymentDTO">
+        SELECT * FROM payment
+    </select>
+    <update id="update" parameterType="PaymentDTO">
+        UPDATE payment SET pay_method=#{status}, imp_uid=#{imp_uid} WHERE merchant_uid=#{merchant_uid}
+    </update>
+    <delete id="delete" parameterType="PaymentDTO">
+        delete from payment where merchant_uid=#{merchant_uid}
+    </delete>
+</mapper>

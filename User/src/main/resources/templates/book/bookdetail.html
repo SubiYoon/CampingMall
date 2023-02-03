@@ -1,27 +1,16 @@
-<script th:src="@{/js/bookdetail.js}">
-//예약코드(insert디폴트)
-//작성일(insert디폴트)
-//사이트코드(request)대신 사이트이름
-//체크인(request)
-//체크아웃(request)
-//사이트가격(request)
-</script>
+<script th:src="@{/js/bookdetail.js}"></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script th:inline="javascript">
-
-//주문번호(request) 결제단에 넣기
-//예약상태(server) 결제단에 넣기
-//유저코드(session) 결제단에 넣기
-//인원수(form) 결제단에넣기
-//차량번호(form) 결제단에넣기
-//결제총가격(form) 결제단에넣기
-
 function paymentDo() {
 	let checkin_result=$('.checkin_result').text();
 	let checkout_result=$('.checkout_result').text();
 	let zone_name=$('.zone-name').text();
 	let total_result=$('#total_result').text();
+	let car_number=$('#car_number').val();
+	let total_customer=$('#total_customer').text();
+	let customerinfo_name=$('#customerinfo_name').val();
+	let customerinfo_tel=$('#customerinfo_tel').val();
 	
 	/*<![CDATA[*/
 		let site_code = /*[[${book.site_code}]]*/ 'default';
@@ -30,7 +19,7 @@ function paymentDo() {
 	
 $.ajax({
     type: "get",
-    url: "/pay/importready", // 최종 결제전에 마지막으로 해당 좌석이 예매가능한 상태인지 확인 요청
+    url: "/pay/importready",
     data: {
     	'stringDate1': checkin_result,
     	'stringDate2':checkout_result,
@@ -38,34 +27,70 @@ $.ajax({
     },
     success: function(data) {
     	console.log("importready result: "+data);
+    	console.log("merchant_uid 1: "+merchant_uid);
+    	
         if (data) {
             var IMP = window.IMP; 
             IMP.init("imp57467885");
             IMP.request_pay({
 				pg: "html5_inicis",
 				pay_method: "card",
-				merchant_uid:merchant_uid,  // 주문번호
+				merchant_uid:merchant_uid, 
 				name: zone_name,
 				amount: 100,     //테스트100원 실제 total_result원
-				buyer_name: "홍길동",
-				buyer_tel: "010-4242-4242"
+				buyer_name: customerinfo_name, //넣어야함
+				buyer_tel: customerinfo_tel //div 새로만들어서
                 
             }, function(rsp) { // 콜백 함수
                 if (rsp.success) {
-                	let param = {'imp_uid':rsp.imp_uid, 'merchant_uid':rsp.merchant_uid};
+                	let param = {
+		   	    	    	'site_code':site_code,
+		   	    	    	'merchant_uid':rsp.merchant_uid,
+		   	    	    	'book_member':total_customer,
+		   	    	    	'book_checkin':checkin_result,
+		   	    	    	'book_checkout':checkout_result,
+		   	    	    	'book_price':rsp.paid_amount,
+		   	    	    	'book_car_number':car_number,
+		   	    	    	'buyer_name':rsp.buyer_name,
+		   	    	    	'buyer_tel':rsp.buyer_tel,
+		   	    	    	'status':rsp.status,
+		   	    	    	'imp_uid':rsp.imp_uid
+                	};
                     $.ajax({
-	   	    	        url: "/pay/paywebhook", 
+	   	    	        url: "/pay/paybook", 
 	   	    	        type: "POST",
-	   	    	        contentType:"application/json;charset=utf-8",
-	   	    	        dataType:"json",
-   		    	        data: JSON.stringify(param),
+	   	    	     	contentType:"application/json;charset=utf-8",
+	   	    	     	dataType:"json",
+	   	    	   	    data:JSON.stringify(param),
                         success: function(data) {
-                        	console.log('webhook result '+data);
+                        	//검증
                             if (data == "failed") {
                                 alert('결제 실패');
                             } else {
-                                
+                            	
                             }
+                            $.ajax({
+        	   	    	        url: "/pay/verifyImport", 
+        	   	    	        type: "POST",
+        	   	    	   	    data: {
+        		   	    	    	'merchant_uid':rsp.merchant_uid
+        		   	    	    },
+                                success: function(data) {
+                                    if (data == "success") {
+                                    	//결제 성공 페이지만들어서 경로지정
+                                        alert('결제 완료되었습니다.');
+                                    	location.href="/main";
+                                    	
+                                    	
+                                    } else {
+                                        alert('결제 실패');
+                                    	
+                                        
+                                    }
+                                }
+                            })
+                            
+                            
                         }
                     })
                 } else {
@@ -172,7 +197,7 @@ $.ajax({
 						<div class="car-title">차량</div>
 						<form>
 							<div class="form-container">
-								<div class="car-num">차량번호</div><input type="email" class="form-control" id="exampleFormControlInput1" placeholder="차량번호를 입력해주세요">
+								<div class="car-num">차량번호</div><input type="email" class="form-control" id="car_number" placeholder="차량번호를 입력해주세요">
 							</div>
 						</form>
 					</div>
@@ -216,11 +241,31 @@ $.ajax({
 					</div>				
 				</section>
 			</section>
+			<section class="reservation-customerinfo-content bord-line">
+				<section class="reservation-customerinfo-container">
+					<div class="section-title">예약자 정보</div>
+					<div class="alert alert-info" style="margin-top: 22px; color: #000000; background-color: #71d3a8; border-color: #000000;" role="alert">
+						<form>
+							<div class="form-container">
+								<div style="flex:0 0 10rem;">이름</div>
+								<input th:if="${session.user!=null}" th:value="${session.user.user_name}" type="email" class="form-control" id="customerinfo_name"  placeholder="이름을 입력해주세요">
+								<input th:if="${session.user==null}" tpye="email" class="form-control" id="customerinfo_name" placeholder="이름을 입력해주세요">
+							</div>
+							<div class="form-container">
+								<div style="flex:0 0 10rem;">연락처</div>
+								<input th:if="${session.user!=null}" th:value="${session.user.user_tel}" type="email" class="form-control" id="customerinfo_tel" placeholder="연락처를 입력해주세요">
+								<input th:if="${session.user==null}" type="email" class="form-control" id="customerinfo_tel" placeholder="연락처를 입력해주세요">
+							</div>
+						</form>
+					</div>
+				
+				</section>
+			</section>
 			<section class="reservation-cost-content bord-line">
 				<section class="reservation-cost-container">
 					<div>할인 적용</div>
 					<div style="display:flex;">
- 						<div style="flex:1;">쿠폰</div><div style="flex:1; text-align: right;">적용 가능한 쿠폰이 없음</div>				
+ 						<div>쿠폰</div><div style="flex:1; text-align: right;">적용 가능한 쿠폰이 없음</div>				
 					</div>				
 				</section>
 			</section>
@@ -234,7 +279,10 @@ $.ajax({
 						</span>
 					</div>
 					<div>
-						<span>초과 인원 요금</span>
+						<span class="verticality">
+							<span style="padding:0">초과 인원 요금</span>
+							<span style="padding:0"><span  id="over_customer">0</span>명</span>
+						</span>
 						<span>
 							<span id="result3">0</span>원
 						</span>
@@ -260,14 +308,14 @@ $.ajax({
 					<div class="total-result-container">
 						<span>총 결제 금액</span>
 						<span>
-							<span id="total_result">0</span>원
+							<span id="total_result" th:text="${book.book_price}">20000</span>원
 						</span>
 					</div>				
 				</section>
 			</section>
 			<section>
 				<section>
-					<button type="button" onclick="paymentDo()" class="btn btn-success pay-go">결제하기</button>
+					<button type="button" onclick="paymentDo()" class="btn btn-success pay-go">총인원 <span id="total_customer">2</span>명 결제하기</button>
 				</section>
 			</section>
 		</section>

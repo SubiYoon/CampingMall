@@ -36,6 +36,8 @@
 				     if(hap+1>basic_num){
 						   over_number=hap+1-basic_num;
 						   over.innerText=over_number;
+						   count_customer(over_number,basic_num);
+						   
 					   }
 				     overchange(over_number);
 			   }
@@ -48,6 +50,7 @@
 				   if(hap-1>=basic_num){
 					   over_number=hap-1-basic_num;
 					   over.innerText=over_number;
+					   count_customer(over_number,basic_num);
 				   }
 				   overchange(over_number);
 			   }
@@ -71,6 +74,7 @@
 		   $(".reservation-cost-container-total>div:nth-child(3)").css("display","none");
 		   
 	   }
+	   
 	   let over_cost=over_num*10000;
 	   $("#result3").html(over_cost);
 	   total_count();
@@ -110,6 +114,10 @@
 	   $('#total_result').html(total_result);
    }
    
+   function count_customer(over_number,basic_num){
+	   $('#over_customer').html(over_number);
+	   $('#total_customer').html(over_number+basic_num);
+   }
    
    
    

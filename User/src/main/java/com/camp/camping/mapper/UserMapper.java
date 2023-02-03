@@ -10,4 +10,5 @@ import com.camp.camping.frame.MyMapper;
 @Mapper
 public interface UserMapper extends MyMapper<String, UserDTO>{
     public void kakaoLoginInsert(UserDTO userDTO) throws Exception;
+    public UserDTO selectnt(String n,String t) throws Exception;
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.admin.mapper.ReservationMapper">
+    <insert id="insert" parameterType="ReservationDTO">
+        INSERT INTO reservation(reservation_code, book_code, reservation_date)
+        VALUES (#{reservation_code}, #{book_code}, #{reservation_date})
+    </insert>
+    <select id="select" resultType="ReservationDTO">
+        SELECT *
+        FROM reservation
+        WHERE reservation_code = #{reservation_code}
+    </select>
+    <select id="selectAll" resultType="ReservationDTO">
+        SELECT *
+        FROM reservation
+    </select>
+    <select id="selectDate" resultType="ReservationDTO">
+        SELECT *
+        FROM reservation
+        Where reservation_date = #{reservation_date}
+    </select>
+    <select id="selectDateAndSite" resultType="ReservationDTO">
+        SELECT reservation.reservation_code,
+               reservation.book_code,
+               reservation.reservation_date
+        FROM reservation
+                 JOIN book
+                      ON reservation.book_code = book.book_code
+        WHERE reservation.reservation_date = #{reservation_date}
+          AND book.site_code = #{site_code};
+    </select>
+    <select id="selectByDateAndCompanyCode" resultType="ReservationDTO">
+        select reservation.reservation_code, reservation.book_code, reservation.reservation_date
+        from reservation,
+             admin,
+             book,
+             zone,
+             site
+        where admin.company_code = #{company_code}
+          AND admin.admin_code = zone.admin_code
+          And zone.zone_code = site.zone_code
+          And site.site_code = book.site_code
+          And book.book_code = reservation.book_code
+          And reservation.reservation_date = #{reservation_date}
+    </select>
+    <select id="findSiteCode" resultType="Integer">
+        SELECT book.site_code
+        FROM reservation
+                 join book
+                      on reservation.book_code = book.book_code
+        Where reservation_code = #{reservation_code}
+    </select>
+    <update id="update" parameterType="ReservationDTO">
+        UPDATE reservation
+        SET reservation_date=#{reservation_date}
+        Where reservation_code = #{reservation_code}
+    </update>
+    <delete id="delete">
+        DELETE
+        FROM reservation
+        WHERE reservation_code = #{reservation_code}
+    </delete>
+    <delete id="deleteByBook">
+        DELETE
+        FROM reservation
+        WHERE book_code = #{book_code}
+    </delete>
+</mapper>
