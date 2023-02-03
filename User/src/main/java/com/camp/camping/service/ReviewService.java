@@ -1,12 +1,8 @@
 package com.camp.camping.service;
 
-import com.camp.admin.DTO.GraphDTO;
-import com.camp.admin.DTO.ReviewDTO;
-import com.camp.admin.frame.MyService;
-import com.camp.admin.mapper.ReviewMapper;
-
-
-import java.util.ArrayList;
+import com.camp.camping.DTO.ReviewDTO;
+import com.camp.camping.frame.MyService;
+import com.camp.camping.mapper.ReviewMapper;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -88,18 +84,5 @@ public class ReviewService implements MyService<Integer, ReviewDTO> {
             }
         }
         return reviewCountMap;
-    }
-
-    public GraphDTO ReviewScoreGraph(int company_code) throws Exception {
-        Map<String, Double> reviewScoreMap = ReviewScore(company_code);
-        List<String> labesList = new ArrayList<>();
-        for (String label : reviewScoreMap.keySet()) {
-            labesList.add("" + label);
-        }
-        List<String> dataList = new ArrayList<>();
-        for (double data : reviewScoreMap.values()) {
-            dataList.add("" + Math.round(data * 10) / 10);
-        }
-        return new GraphDTO(labesList, "ReviewScore", dataList);
     }
 }
