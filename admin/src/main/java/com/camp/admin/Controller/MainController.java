@@ -47,9 +47,9 @@ public class MainController {
 	ImageService serviceI;
 
 	@RequestMapping("/")
-	public String select(){
+	public String main(){
 		
-		return "redirect:/main";
+		return "login";
 	}
 
 	@RequestMapping("/main")
