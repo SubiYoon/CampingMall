@@ -1,6 +1,7 @@
 package com.camp.admin.GraphTest;
 
 import com.camp.admin.service.BookService;
+import com.camp.admin.service.ReviewService;
 import javax.inject.Inject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class GraphTest {
     @Inject
     BookService bookService;
+    @Inject
+    ReviewService reviewService;
     @Test
     void YearSales(){
         try {
@@ -65,6 +68,14 @@ public class GraphTest {
         try {
             System.out.println(bookService.MonthlyZoneUserMap("2023-02",1));
             System.out.println(bookService.YearlyZoneUserMap("2023",1));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    void Reivew(){
+        try {
+            System.out.println(reviewService.ReviewScoreGraph(1));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
