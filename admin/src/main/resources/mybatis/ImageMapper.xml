@@ -56,6 +56,9 @@
             image_file=#{image_file}
         WHERE image_code = #{image_code}
     </update>
+    <update id="zoneupdate" parameterType="ImageDTO">
+        UPDATE image SET image_file=#{image_file} WHERE zone_code=#{zone_code} AND company_code=#{company_code};
+    </update>
     <delete id="delete">
         DELETE
         FROM image

@@ -17,4 +17,5 @@ public interface ImageMapper extends MyMapper<Integer, ImageDTO> {
     List<ImageDTO> selectByHomeCode(int home_code);
     List<ImageDTO> selectByFacilityCode(int facility_code);
     ImageDTO selecOnetByHomeCode(int home_code);
+	public ImageDTO zoneUpdate(ImageDTO imageDTO);
 }

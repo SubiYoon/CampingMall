@@ -30,7 +30,7 @@ public class SiteService implements MyService<Integer, SiteDTO> {
 
     @Override
     public void insert(SiteDTO siteDTO) throws Exception {
-
+        mapper.insert(siteDTO);
     }
 
     @Override

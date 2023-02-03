@@ -62,4 +62,8 @@ public class ImageService implements MyService<Integer, ImageDTO> {
     public ImageDTO selecOnetByHomeCode(int home_code){
         return mapper.selecOnetByHomeCode(home_code);
     }
+    
+    public void zoneUpdate(ImageDTO imageDTO) throws Exception {
+        mapper.zoneUpdate(imageDTO);
+    }
 }

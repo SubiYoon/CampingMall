@@ -6,9 +6,11 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.camp.admin.DTO.CompanyDTO;
 import com.camp.admin.DTO.ImageDTO;
@@ -17,10 +19,14 @@ import com.camp.admin.DTO.ZoneDTO;
 import com.camp.admin.service.ImageService;
 import com.camp.admin.service.SiteService;
 import com.camp.admin.service.ZoneService;
+import com.camp.admin.utility.SaveFile;
 
 @Controller
 @RequestMapping("/zone")
 public class ZoneController {
+	
+	@Value("${imagesdir}")
+	String imagesdir;
 	
 	@Autowired
 	ImageService serviceI;
@@ -78,6 +84,41 @@ public class ZoneController {
 		 } 
 		 return "redirect:/zone";
 	}
+	 
+	//새사이트(site)추가
+		 @RequestMapping("/siteinsert") public String siteinsert(SiteDTO sitedto) {
+			 try {
+				 serviceS.insert(sitedto);
+			 } catch (Exception e) {
+				 e.printStackTrace();
+			 } 
+			 return "redirect:/zone";
+		}
+	 
+	 //구역이미지수정
+	 @RequestMapping("zoneimgedit")
+		public String zoneImgEdit(HttpSession session, ImageDTO imageDTO, MultipartFile zoneImg){
+		 CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		 /*
+		 ImageDTO zoneimage = null;
+		 
+		 int company_code = company.getCompany_code();
+		 String imgOrgName = zoneImg.getOriginalFilename();
+		 
+		 try {
+			 zoneimage.setCompany_code(company_code);			 
+			 zoneimage.setImage_file(imgOrgName);
+			 
+			 serviceI.zoneUpdate(imageDTO);
+			 SaveFile.saveFile(zoneImg, imagesdir);
+			 
+		 } catch (Exception e) {
+			e.printStackTrace();
+		 }
+		 */
+		 return "redirect:/zone";
+	 }
+	 
 	
 	
 	@RequestMapping("/site")
