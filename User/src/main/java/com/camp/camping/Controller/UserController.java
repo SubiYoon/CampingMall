@@ -106,7 +106,7 @@ public class UserController {
 			
 		return "main";
 	}
-
+	
 	//TODO: mypage안에 회원정보 수정 버튼 추가하여 이동하게 만들어야함.
 	@RequestMapping("userInfo")
 	public String userInfo(Model model, UserDTO userDTO, HttpSession session) {
@@ -126,7 +126,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("CONTENT_FAIL");
-		}
+			}
 
 		try {
 			user = service.select(login.getUser_id());
