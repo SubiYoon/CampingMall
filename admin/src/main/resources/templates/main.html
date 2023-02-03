@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
       
-        <title>Dashboard - NiceAdmin Bootstrap Template</title>
+        <title>Admin page - 관리자용</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
       
@@ -14,8 +14,17 @@
       
         <!-- Google Fonts -->
         <link th:href="@{https://fonts.gstatic.com}" rel="preconnect">
-        <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet">
-      
+        <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet">
+      	<link th:href="@{https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gothic+A1:wght@200;600;800&family=Hahmlet:wght@200;500;700&family=Jua&family=Noto+Sans+KR:wght@300&display=swap}" rel="stylesheet">
+      	<!-- 추가된 폰트
+      		1)font-family: 'Do Hyeon', sans-serif; 400
+			2)font-family: 'Gothic A1', sans-serif; 200 600 800
+			3)font-family: 'Hahmlet', serif; 200 500 700
+			4)font-family: 'Noto Sans KR', sans-serif; 300
+			5)font-family: 'Jua', sans-serif;
+      	
+      	 -->
+      	
         <!-- Vendor CSS Files -->
         <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
         <link th:href="@{vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
@@ -42,9 +51,9 @@
         <header id="header" class="header fixed-top d-flex align-items-center">
       
           <div class="d-flex align-items-center justify-content-between">
-            <a th:href="@{/index}" class="logo d-flex align-items-center">
-              <img src="img/logo.png" alt="">
-              <span class="d-none d-lg-block">NiceAdmin</span>
+            <a th:href="@{/main}" class="logo d-flex align-items-center">
+              <img th:src="@{img/logo.png}" alt="">
+              <span class="d-none d-lg-block">Camping(상호명)관리자 페이지</span>
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
           </div><!-- End Logo -->
@@ -60,14 +69,14 @@
             <ul class="d-flex align-items-center">
       
               <li class="nav-item d-block d-lg-none">
-                <a class="nav-link nav-icon search-bar-toggle " th:href="@{#}">
+                <a class="nav-link nav-icon search-bar-toggle " href="#">
                   <i class="bi bi-search"></i>
                 </a>
               </li><!-- End Search Icon-->
       
               <li class="nav-item dropdown">
       
-                <a class="nav-link nav-icon" th:href="@{#}" data-bs-toggle="dropdown">
+                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                   <i class="bi bi-bell"></i>
                   <span class="badge bg-primary badge-number">4</span>
                 </a><!-- End Notification Icon -->
@@ -75,7 +84,7 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                   <li class="dropdown-header">
                     You have 4 new notifications
-                    <a th:href="@{#}"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                   </li>
                   <li>
                     <hr class="dropdown-divider">
@@ -133,7 +142,7 @@
                     <hr class="dropdown-divider">
                   </li>
                   <li class="dropdown-footer">
-                    <a th:href="@{#}">Show all notifications</a>
+                    <a href="#">Show all notifications</a>
                   </li>
       
                 </ul><!-- End Notification Dropdown Items -->
@@ -142,7 +151,7 @@
       
               <li class="nav-item dropdown">
       
-                <a class="nav-link nav-icon" th:href="@{#}" data-bs-toggle="dropdown">
+                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                   <i class="bi bi-chat-left-text"></i>
                   <span class="badge bg-success badge-number">3</span>
                 </a><!-- End Messages Icon -->
@@ -150,15 +159,15 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                   <li class="dropdown-header">
                     You have 3 new messages
-                    <a th:href="@{#}"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
                   </li>
                   <li>
                     <hr class="dropdown-divider">
                   </li>
       
                   <li class="message-item">
-                    <a th:href="@{#}">
-                      <img src="img/messages-1.jpg" alt="" class="rounded-circle">
+                    <a href="#">
+                      <img th:src="@{img/messages-1.jpg}" alt="" class="rounded-circle">
                       <div>
                         <h4>Maria Hudson</h4>
                         <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -171,8 +180,8 @@
                   </li>
       
                   <li class="message-item">
-                    <a th:href="@{#}">
-                      <img src="img/messages-2.jpg" alt="" class="rounded-circle">
+                    <a href="#">
+                      <img th:src="@{img/messages-2.jpg}" alt="" class="rounded-circle">
                       <div>
                         <h4>Anna Nelson</h4>
                         <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -185,8 +194,8 @@
                   </li>
       
                   <li class="message-item">
-                    <a th:href="@{#}">
-                      <img src="img/messages-3.jpg" alt="" class="rounded-circle">
+                    <a href="#">
+                      <img th:src="@{img/messages-3.jpg}" alt="" class="rounded-circle">
                       <div>
                         <h4>David Muldon</h4>
                         <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
@@ -199,7 +208,7 @@
                   </li>
       
                   <li class="dropdown-footer">
-                    <a th:href="@{#}">Show all messages</a>
+                    <a href="#">Show all messages</a>
                   </li>
       
                 </ul><!-- End Messages Dropdown Items -->
@@ -208,8 +217,8 @@
       
               <li class="nav-item dropdown pe-3">
       
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" th:href="@{#}" data-bs-toggle="dropdown">
-                  <img src="img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                  <img th:src="@{img/profile-img.jpg}" alt="Profile" class="rounded-circle">
                   <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                 </a><!-- End Profile Iamge Icon -->
       
@@ -253,7 +262,7 @@
                   </li>
       
                   <li>
-                    <a class="dropdown-item d-flex align-items-center" th:href="@{#}">
+                    <a class="dropdown-item d-flex align-items-center" href="#">
                       <i class="bi bi-box-arrow-right"></i>
                       <span>Sign Out</span>
                     </a>
@@ -269,96 +278,9 @@
       
         <!-- ======= Sidebar ======= -->
         <aside id="sidebar" class="sidebar">
-      
-          <ul class="sidebar-nav" id="sidebar-nav">
-      
-            <li class="nav-item">
-              <a class="nav-link " th:href="@{index}">
-                <i class="bi bi-grid"></i>
-                <span>Main</span>
-              </a>
-            </li><!-- End Dashboard Nav -->
-      
-            <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" th:href="@{#}">
-                <i class="bi bi-menu-button-wide"></i><span>Zone</span><i class="bi bi-chevron-down ms-auto"></i>
-              </a>
-              <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                  <a th:href="@{components-alerts.html}">
-                    <i class="bi bi-circle"></i><span>Alerts</span>
-                  </a>
-                </li>
-              </ul>
-            </li><!-- End Components Nav -->
-      
-            <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" th:href="@{#}">
-                <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
-              </a>
-              <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                  <a th:href="@{forms-elements.html}">
-                    <i class="bi bi-circle"></i><span>Form Elements</span>
-                  </a>
-                </li>
-                <li>
-                  <a th:href="@{forms-layouts.html}">
-                    <i class="bi bi-circle"></i><span>Form Layouts</span>
-                  </a>
-                </li>
-                <li>
-                  <a th:href="@{forms-editors.html}">
-                    <i class="bi bi-circle"></i><span>Form Editors</span>
-                  </a>
-                </li>
-                <li>
-                  <a th:href="@{forms-validation.html}">
-                    <i class="bi bi-circle"></i><span>Form Validation</span>
-                  </a>
-                </li>
-              </ul>
-            </li><!-- End Forms Nav -->
-      
-            <li class="nav-item">
-              <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" th:href="@{#}">
-                <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
-              </a>
-              <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                  <a th:href="@{tables-general.html}">
-                    <i class="bi bi-circle"></i><span>General Tables</span>
-                  </a>
-                </li>
-                <li>
-                  <a th:href="@{tables-data.html}">
-                    <i class="bi bi-circle"></i><span>Data Tables</span>
-                  </a>
-                </li>
-              </ul>
-            </li><!-- End Tables Nav -->
-            
-            <li class="nav-heading">Pages</li>
-      
-            <li class="nav-item">
-              <a class="nav-link collapsed" th:href="@{users-profile.html}">
-                <i class="bi bi-person"></i>
-                <span>Profile</span>
-              </a>
-            </li><!-- End Profile Page Nav -->
-
-            <li class="nav-item">
-              <a class="nav-link collapsed" th:href="@{pages-login.html}">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
-              </a>
-            </li><!-- End Login Page Nav -->
-      
-           
-      
-          </ul>
-      
-        </aside><!-- End Sidebar-->
+            <aside id="left_aside" th:include="${left} ? ${left} : sidebar"></aside>
+        </aside>
+        <!-- End Sidebar-->
         
         <!--Insert HTML Fil location-->
         <section class="banner_main">
@@ -379,20 +301,20 @@
             </div>
         </footer><!-- End Footer -->
 
-        <a th:href="@{#}" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
         <!-- Vendor JS Files -->
-        <script src="vendor/apexcharts/apexcharts.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="vendor/chart.js/chart.umd.js"></script>
-        <script src="vendor/echarts/echarts.min.js"></script>
-        <script src="vendor/quill/quill.min.js"></script>
-        <script src="vendor/simple-datatables/simple-datatables.js"></script>
-        <script src="vendor/tinymce/tinymce.min.js"></script>
-        <script src="vendor/php-email-form/validate.js"></script>
+        <script th:src="@{vendor/apexcharts/apexcharts.min.js}"></script>
+        <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{vendor/chart.js/chart.umd.js}"></script>
+        <script th:src="@{vendor/echarts/echarts.min.js}"></script>
+        <script th:src="@{vendor/quill/quill.min.js}"></script>
+        <script th:src="@{vendor/simple-datatables/simple-datatables.js}"></script>
+        <script th:src="@{vendor/tinymce/tinymce.min.js}"></script>
+        <script th:src="@{vendor/php-email-form/validate.js}"></script>
 
         <!-- Template Main JS File -->
-        <script src="js/main.js"></script>
+        <script th:src="@{js/main.js}"></script>
 
     </body>
 

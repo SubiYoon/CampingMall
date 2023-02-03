@@ -34,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Nunito", sans-serif;
+  font-family: "Nunito", "Jua", sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -62,7 +62,7 @@ h6 {
 .pagetitle h1 {
   font-size: 24px;
   margin-bottom: 0;
-  font-weight: 600;
+  font-weight: 500;
   color: #012970;
 }
 
@@ -322,9 +322,9 @@ h6 {
 /* Breadcrumbs */
 .breadcrumb {
   font-size: 14px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Nunito", "Jua", sans-serif;
   color: #899bbd;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .breadcrumb a {
@@ -342,7 +342,7 @@ h6 {
 
 .breadcrumb .active {
   color: #51678f;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* Bordered Tabs */
@@ -387,9 +387,9 @@ h6 {
 
 .logo span {
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 500;
   color: #012970;
-  font-family: "Nunito", sans-serif;
+  font-family: "Nunito", "Jua", sans-serif;
 }
 
 .header {
@@ -699,7 +699,7 @@ h6 {
   display: flex;
   align-items: center;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 900;
   color: #4154f1;
   transition: 0.3;
   background: #f6f9ff;
