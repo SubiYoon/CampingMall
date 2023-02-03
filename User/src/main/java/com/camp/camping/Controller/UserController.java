@@ -88,12 +88,24 @@ public class UserController {
 	}
 	
 	@RequestMapping("mypage")
-		public String mypage(Model model){
-			
-			model.addAttribute("center", dir + "mypage");
-			
-			return "main";
+	public String mypage(HttpSession session, Model model){
+		HomeDTO homecont = null;	//홈페이지소개
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		System.out.println(company);
+		//홈페이지소개content----------------------------------
+		try {
+				
+			homecont = serviceH.select(company.getCompany_code());	//상호코드
+			model.addAttribute("homecont", homecont);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("CONTENT_FAIL");
 		}
+
+		model.addAttribute("center", dir + "mypage");
+			
+		return "main";
+	}
 
 	//TODO: mypage안에 회원정보 수정 버튼 추가하여 이동하게 만들어야함.
 	@RequestMapping("userInfo")
@@ -102,6 +114,19 @@ public class UserController {
 		UserDTO login = (UserDTO)session.getAttribute("user");
 
 		UserDTO user = null;
+
+		HomeDTO homecont = null;	//홈페이지소개
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		System.out.println(company);
+		//홈페이지소개content----------------------------------
+		try {
+				
+			homecont = serviceH.select(company.getCompany_code());	//상호코드
+			model.addAttribute("homecont", homecont);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("CONTENT_FAIL");
+		}
 
 		try {
 			user = service.select(login.getUser_id());
