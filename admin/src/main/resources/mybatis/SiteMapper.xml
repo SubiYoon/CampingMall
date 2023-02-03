@@ -37,14 +37,12 @@
             s.site_code=i.site_code 
         WHERE 
             s.site_code=#{site_code}
-    </select>\
+    </select>
+    
     <select id="selectSet" parameterType="Integer" resultType="SiteDTO">
         SELECT * FROM site
 			JOIN zone ON zone.zone_code=site.zone_code
 			JOIN admin ON admin.admin_code=zone.admin_code
 				WHERE admin.company_code=#{company_code}
     </select>
-    <insert id="insert" parameterType="SiteDTO">
-        INSERT INTO site(zone_code, site_name, site_proce, site_content) VALUES(#{zone_code}, #{site_name}, #{site_proce}, #{site_content})
-    </insert>
 </mapper>
