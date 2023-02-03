@@ -217,4 +217,37 @@ public class MainController {
 
 		return "redirect:/main";
 	}
+
+	@RequestMapping("slide/delete")
+	public String slideDelete(int image_code){
+		
+		try {
+			serviceI.delete(image_code);
+		} catch (Exception e) {
+			//e.printStackTrace();
+			System.out.print("실패");
+		}
+		
+		return "redirect:/main";
+	}
+
+	@RequestMapping("slide/add")
+	public String slideAdd(HttpSession session, MultipartFile file, int home_code){
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		ImageDTO image = new ImageDTO();
+		
+		if(!file.isEmpty()){
+			image.setCompany_code(company.getCompany_code());
+			image.setHome_code(home_code);
+			image.setImage_file(file.getOriginalFilename());
+			
+			try {
+				serviceI.insert(image);
+			} catch (Exception e) {
+				//e.printStackTrace();
+				System.out.print("실패");
+			}
+		}
+		return "redirect:/main";
+	}
 }
