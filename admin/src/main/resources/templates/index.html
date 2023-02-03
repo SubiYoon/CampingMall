@@ -102,6 +102,34 @@
 		});
 
       //슬라이더 모달 end
+
+      //슬라이더 추가 모달
+      $('.slide_add_Form').click(function(){			
+			document.getElementById("modal_slide_add").style.display = "flex"
+			document.body.style = "overflow: hidden";
+		});
+
+      $('#slideAddForm #image_slide_add').click(function(){
+			$('#slideForm').attr({
+				'method' : 'post',
+				'action' : '/admin/slide/add'
+			});
+			$('#slideForm').submit();
+		});
+      //슬라이더 추가 모달 end
+
+      //슬라이더 삭제 확인창
+      $('.slide_image_delete').click(function(){
+         if(confirm("정말로 삭제하시겠습니까?")){
+            $('.slide_image_delete_From').attr({
+               'method':"post",
+               'action':"slide/delete"
+            });
+            $('.slide_image_delete_From').submit();
+         }else{
+            return;
+         }
+      });
    });
 </script>
 <!-- home 소개 게시글 수정 모달창 -->
@@ -161,6 +189,22 @@
 		</div>
 	</div>
 </div>
+<!-- 슬라이드 게시글 추가 -->
+<div id="modal_slide_add" class="modal-overlay">
+	<div class="modal-content">
+		<div class="modal-btn">
+			<button class="modal_close">닫기</button>
+		</div>
+		<div class="modal-login">
+			<h2>슬라이드 추가</h2>
+			<form id="slideAddForm" method="post" action="slide/add" enctype="multipart/form-data">
+            <input type="hidden" name="home_code" th:value="${homecont.home_code}"/>
+            추가할 슬라이드 이미지 : <span id="logo1"></span><br><input type="file" name="file"/><br>
+				<button id="image_slide_add" style="width:200px;">추가</button>
+			</form>
+		</div>
+	</div>
+</div>
 <!-- banner -->
 <section class="banner_main">
    <!-- slider -->
@@ -171,9 +215,29 @@
       </ol>
       <div class="carousel-inner">
          <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index==0}" class="carousel-item active">
+            <form class="slide_image_delete_From" style="float: right;">
+               <input type="hidden" name="image_code" th:value="${slide.image_code}"/>
+               <a href="#noAction" class="slide_image_delete">
+                  <img src="images/minus.png"/>
+               </a >
+            </form>
+            &nbsp;&nbsp;&nbsp;
+            <a href="#noAction" class="slide_add_Form" style="float: right;">
+               <img src="images/plus.png"/>
+            </a >
             <a class="slide_edit" href="#edit"><img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide"></a>
          </div>
          <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index>0}" class="carousel-item">
+            <form class="slide_image_delete_From" style="float: right;">
+               <input type="hidden" name="image_code" th:value="${slide.image_code}"/>
+               <a href="#noAction" class="slide_image_delete">
+                  <img src="images/minus.png"/>
+               </a >
+            </form>
+            &nbsp;&nbsp;&nbsp;
+            <a href="#noAction" class="slide_add_Form" style="float: right;">
+               <img src="images/plus.png"/>
+            </a >
             <a class="slide_edit" href="#edit"><img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide"></a>
          </div>
       </div>

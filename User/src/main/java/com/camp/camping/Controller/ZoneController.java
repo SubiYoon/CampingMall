@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.camp.camping.DTO.CompanyDTO;
 import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.DTO.ImageDTO;
+import com.camp.camping.DTO.ReviewDTO;
 import com.camp.camping.DTO.SiteDTO;
 import com.camp.camping.DTO.ZoneDTO;
 import com.camp.camping.service.HomeService;
 import com.camp.camping.service.ImageService;
+import com.camp.camping.service.ReviewService;
 import com.camp.camping.service.SiteService;
 import com.camp.camping.service.ZoneService;
 
@@ -35,6 +37,9 @@ public class ZoneController {
 	
 	@Autowired
 	HomeService serviceH;
+	
+	@Autowired
+	ReviewService serviceR;
 	
 
 	String dir = "zone/";
@@ -100,6 +105,16 @@ public class ZoneController {
 		}
 		model.addAttribute("center", dir+"site");
 		return "main";
+	}
+	
+	@RequestMapping("/reviewupload")
+	public String reviewupload(ReviewDTO reviewDto) {
+		try {
+			serviceR.insert(reviewDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/site";
 	}
 	
 }
