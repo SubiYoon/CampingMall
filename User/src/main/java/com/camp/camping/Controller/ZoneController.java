@@ -105,5 +105,4 @@ public class ZoneController {
 		model.addAttribute("center", dir+"site");
 		return "main";
 	}
-
 }
