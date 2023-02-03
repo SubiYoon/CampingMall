@@ -1,5 +1,7 @@
 package com.camp.admin.Controller;
 
+import com.camp.admin.DTO.GraphDTO;
+import com.camp.admin.service.ReviewService;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,7 +38,8 @@ public class AjaxController {
     HomeService hService;
     @Autowired
     ImageService iService;
-
+    @Autowired
+    ReviewService reviewService;
     @RequestMapping("selectDate")
     public Object selectDate(String selectDate1, String selectDate2, String company_code){
         String change = null;
@@ -118,6 +121,35 @@ public class AjaxController {
         
         json.put("company", company);
 
+        return json;
+    }
+
+    @RequestMapping("admin.monthly")
+    public Object DailySales() throws Exception {
+        GraphDTO graph = bService.MonthSalesGraph("2023-02",1);
+        JSONObject json = new JSONObject();
+        json.put("Graph",graph);
+        return json;
+    }
+    @RequestMapping("admin.monthlyZone")
+    public Object monthlyZoneSales() throws Exception {
+        GraphDTO graph = bService.MonthlyZoneSalesGraph("2023-02",1);
+        JSONObject json = new JSONObject();
+        json.put("Graph",graph);
+        return json;
+    }
+    @RequestMapping("admin.monthlyZoneUser")
+    public Object monthlyUser() throws Exception {
+        GraphDTO graph = bService.MonthlyZoneUserGraph("2023-02",1);
+        JSONObject json = new JSONObject();
+        json.put("Graph",graph);
+        return json;
+    }
+    @RequestMapping("admin.ReviewScore")
+    public Object ReviewScore() throws Exception {
+        GraphDTO graph = reviewService.ReviewScoreGraph(1);
+        JSONObject json = new JSONObject();
+        json.put("Graph",graph);
         return json;
     }
 }
