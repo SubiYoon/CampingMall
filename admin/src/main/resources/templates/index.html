@@ -153,7 +153,7 @@
             <li th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code}">
                <span th:text="'슬라이드 ' + ${slideStat.count} + ' : '"></span><span th:text="${slide.image_file}"></span><br>
                <input type="hidden" name="image_code" th:value="${slide.image_code}"/>
-               <input type="file" name="home_slide"/>
+               <input type="file" name="home_slide"/><br><br>
             </li>
             <input type="hidden" name="home_code" th:value="${homecont.home_code}"/>
 				<button id="image_slide_edit" style="width:200px;">수정</button>

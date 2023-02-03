@@ -1,12 +1,18 @@
 package com.camp.admin.service;
 
+
 import com.camp.admin.DTO.GraphDTO;
+
+import java.text.DateFormat;
+
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -16,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import com.camp.admin.DTO.BookDTO;
 import com.camp.admin.DTO.ReservationDTO;
+import com.camp.admin.DTO.SiteDTO;
 import com.camp.admin.frame.MyService;
 import com.camp.admin.mapper.BookMapper;
 import com.camp.admin.utility.Utility;
@@ -29,8 +36,10 @@ public class BookService implements MyService<Integer, BookDTO> {
     ReservationService reservationService;
     @Autowired
     SiteService siteService;
+
     @Autowired
     ZoneService zoneService;
+
 
     @Override
     public void insert(BookDTO v) throws Exception {
@@ -377,6 +386,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return zoneUserMap;
     }
+
     public Map<String, Integer> MonthlyZoneUserMap(String stringYearAndMonth, int company_code)
         throws Exception {
         Map<String, Integer> zoneUserMap = new TreeMap<>();
@@ -395,6 +405,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return zoneUserMap;
     }
+
     public Map<String, Integer> YearlyZoneUserMap(String stringYear, int company_code)
         throws Exception {
         Map<String, Integer> zoneUserMap = new TreeMap<>();
@@ -414,6 +425,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return zoneUserMap;
     }
+
     public GraphDTO MonthlyZoneUserGraph(String stringYearAndMonth, int company_code)
         throws Exception {
         Map<String, Integer> monthlyZoneUserMap = MonthlyZoneUserMap(stringYearAndMonth,
@@ -428,6 +440,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return new GraphDTO(labesList, stringYearAndMonth, dataList);
     }
+
     public GraphDTO YearlyZoneUserGraph(String stringYear, int company_code) throws Exception {
         Map<String, Integer> yearlyZoneUserMap = YearlyZoneUserMap(stringYear, company_code);
         List<String> labesList = new ArrayList<>();
@@ -440,4 +453,26 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return new GraphDTO(labesList, stringYear, dataList);
     }
+
+    public BookDTO selectViewForm(String book_checkin, String book_checkout, int book_sitecode) {
+
+        BookDTO book = new BookDTO();
+        try {
+            SiteDTO site = siteService.select(book_sitecode);
+            book.setSite_name(site.getSite_name());
+            book.setBook_price(site.getSite_price());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        DateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
+        Calendar cal = Calendar.getInstance();
+        Random random = new Random();
+        book.setMerchant_uid(dateFormat.format(cal.getTime()) + random.nextInt(100000));
+        book.setBook_checkin(book_checkin);
+        book.setBook_checkout(book_checkout);
+        book.setSite_code(book_sitecode);
+
+        return book;
+    }
+
 }
