@@ -1,0 +1,46 @@
+
+ <script>
+    
+      //마우스 수정영역 표시	
+		$('.first-slide').mouseenter(function(){
+			$('.first-slide').css('border', 'solid 2px red')
+		});
+		$('.first-slide').mouseleave(function(){
+			$('.first-slide').css('border', 'none');
+		});
+		//마우스 수정영역표시 end
+
+      //이미지만 변경하는 이벤트 함수
+      $('.slide_edit').click(function(){
+			var image_data = $('#modal_edit_logo').serialize();
+			
+			document.getElementById("modal_slide_edit").style.display = "flex"
+			document.body.style = "overflow: hidden";
+			
+			$.ajax({
+				url: '/admin/logoEdit',
+				data: board_data,
+				success: function(data){
+					if (data.home != null || data.home == "") {
+						const content = data.home.home_content;
+						document.getElementById('content').innerText = content;
+						$('#board_code').val(data.home.home_code);
+						$('#whatDTO').val('homeDTO');
+					}else {
+                        
+                    }
+					//TODO: 조건문으로 모든 DTO받아와야함
+				},
+
+			});
+		});
+
+		$('#slideForm #image_slide_edit').click(function(){
+			$('#slideForm').attr({
+				'method' : 'post',
+				'action' : '/admin/slide/edit'
+			});
+			$('#slideForm').submit();
+		});
+
+ </script>

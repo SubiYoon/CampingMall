@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<script>
+	const IMP = window.IMP; // 생략 가능
+	IMP.init("imp57467885"); // 예: imp00000000a
+	
+	//우선 해야할것
+	//다수의 이용자가 동시에 같은자리 같은시간에 예약하게 될경우를 방지하기위해
+	//결제 직전에 그 사이트 그자리가 예약이 되는지 확인하는 작업이 필요
+	//결제완료시 update
+	
+	function paymentDo() {
+    $.ajax({
+        type: "get",
+        url: "admin/pay/import", // 최종 결제전에 마지막으로 해당 좌석이 예매가능한 상태인지 확인 요청
+        data: {
+        	'stringDate1':'20230128',
+        	'stringDate2':'20230201',
+        	'sitecode':1
+        },
+        success: function(data) {
+            if (data) {
+                var IMP = window.IMP; 
+                IMP.init('imp93258645');// 아임포트 라이브러리를 통해서 가맹점정보를 불러옴
+                IMP.request_pay({
+                    pg: 'html5_inicis', // 웹 표준 결제
+                    pay_method: $(":input:radio[name=paycard]:checked").val(), //결제수단
+                    merchant_uid: mid, // 결제 고유번호
+                    name: '테스트 주문', // 결제 상품 이름
+                    amount: money, // 결제금액 ( RestAPI를 호출한 상태이기 때문에 금액 변조시 결제창이 뜨지 않고 오류 )
+                    buyer_tel: '${sessionScope.loginInfo.userPhone}' // 유저 전화번호 ( 필수 )
+                }, function(rsp) { // 콜백 함수
+                    if (rsp.success) {
+                    	// 결제 정보를 form에 담음
+                        $('#checkSeat').val('${pInfo.checkSeat}');
+                        $('#merchant_uid').val(rsp.merchant_uid);
+                        $('#paid_amount').val(rsp.paid_amount);
+                        $('#pay_method').val(rsp.pay_method);
+                        var queryString = $("#form").serialize();
+                        $.ajax({
+                            type: "post",
+                            url: "/civ/payment/paid", //최종 결제정보를 서버로 전달
+                            data: queryString,
+                            success: function(data) {
+                                if (data == "failed") {
+                                    alert('결제 실패');
+                                } else {
+                                    // 성공시 웹소켓을 사용해서 해당 스케줄을 보고있는 사람들에게도 좌석 정보를 업데이트
+                                    var webSocket = new WebSocket("ws://192.168.219.101/civ/websocket/${pInfo.scheduleCode}");
+                                    webSocket.onopen = () => webSocket.send(data);
+                                    webSocket.onclose = function(message) {
+                                        disconnect();
+                                    };
+                                    function disconnect() {
+                                        webSocket.close();
+                                    }
+                                    // 결제 확인창으로 이동
+                                    location.href = "/civ/payment/payok";
+                                }
+                            }
+                        })
+                    } else {
+                        alert('결제 실패하셨습니다.');
+                    }
+                });
+            } else {
+                alert('결제 오류');
+            }
+        }
+    });
+}
+	
+	
+	
+	
+	
+	
+	
+// 	function paymentDo() {
+// 	    IMP.request_pay({
+// 	      pg: "html5_inicis",
+// 	      pay_method: "card", //다른 타입들 입력받아 넣는 테스트 필요
+// 	      merchant_uid:"122141",  // 주문번호
+// 	      name: "노르웨이 회전 의자", //뷰단에서 입력받아와야함
+// 	      amount: 100,                         // 숫자 타입 뷰단에서 입력받아와야함
+// 	      buyer_name: "홍길동", // 뷰단에서 입력받아와야함
+// 	      buyer_tel: "010-4242-4242", // 뷰단에서 입력받아와야함
+// 	    }, function (rsp) { // callback
+// 	      if (rsp.success) {
+	    	  
+// 	    	  let param = {'imp_uid':rsp.imp_uid, 'merchant_uid':rsp.merchant_uid};
+// 	        // 결제 성공 시 로직
+// 	    	  jQuery.ajax({
+// 	    	        url: "/pay/paymentOK", 
+// 	    	        type: "POST",
+// 	    	        contentType:"application/json;charset=utf-8",
+// 	    	        dataType:"json",
+// 	    	        data: JSON.stringify(param)
+// 	    	      }).done(function (data) {
+// 	    	    	  alert("결제성공")
+// 	    	    	  //결제검증절차
+	    	    	  
+// 	    	      })
+	    	   
+// 	      } else {
+// 	        // 결제 실패 시 로직
+// 	    	  alert("결제실패"+rsp);
+// 	      }
+// 	    });
+// 	  }
+	
+	function weather(){
+		jQuery.ajax({
+			url:"/weather/getweather",
+			type:'get',
+			//timeout:30000,
+			contentType:"application/json",
+			dataType:"json",
+			success:function(data){
+				let dataHeader=data.json1.response.header.resultCode;
+				let dataHeader2=data.json2.response.header.resultCode;
+				
+				if(dataHeader=="00"&&dataHeader2=="00"){
+					console.log("sucee");
+					console.log(data);
+				}else{
+					console.log("sucee");
+					console.log(data);
+				}
+				
+				
+				
+				
+			}
+			
+			
+		})
+		
+	}
+	
+	
+</script>
+
+</head>
+
+<body>
+
+<button onclick="paymentDo()">결제하기기</button> <!-- 결제하기 버튼 생성 -->
+<button onclick="weather()">날씨정보</button> 
+
+</body>
+</html>
