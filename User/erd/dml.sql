@@ -98,6 +98,9 @@ insert into image(company_code, site_code, image_file) VALUES(1, 8, 'site_img3.p
 insert into image(company_code, site_code, image_file) VALUES(1, 9, 'site_img4.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 10, 'site_img5.png');
 insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img.png');
+insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img.png');
+insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img.png');
+insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img.png');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner1.jpg');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner2.jpg');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner3.jpg');
