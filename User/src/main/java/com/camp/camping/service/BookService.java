@@ -3,8 +3,10 @@ package com.camp.camping.service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
@@ -117,39 +119,67 @@ public class BookService implements MyService<Integer, BookDTO> {
         return monthlySales;
     }
 
-    public List<BookDTO> selectUserAll(int user_code){
+    public List<BookDTO> selectUserAll(int user_code) {
         return mapper.selectUserAll(user_code);
     }
-    
-    
+
+
     public BookDTO selectViewForm(String book_checkin, String book_checkout, int book_sitecode) {
-    	
-		BookDTO book=new BookDTO();
-		try {
-			SiteDTO site=siteService.select(book_sitecode);
-			book.setSite_name(site.getSite_name());
-			book.setBook_price(site.getSite_price());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-    	DateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
-		Calendar cal = Calendar.getInstance();
-		Random random = new Random();
-		book.setMerchant_uid(dateFormat.format(cal.getTime())+random.nextInt(100000));
-		book.setBook_checkin(book_checkin);
-		book.setBook_checkout(book_checkout);
-		book.setSite_code(book_sitecode);
-		
-		
-    	return book;
+
+        BookDTO book = new BookDTO();
+        try {
+            SiteDTO site = siteService.select(book_sitecode);
+            book.setSite_name(site.getSite_name());
+            book.setBook_price(site.getSite_price());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        DateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
+        Calendar cal = Calendar.getInstance();
+        Random random = new Random();
+        book.setMerchant_uid(dateFormat.format(cal.getTime()) + random.nextInt(100000));
+        book.setBook_checkin(book_checkin);
+        book.setBook_checkout(book_checkout);
+        book.setSite_code(book_sitecode);
+
+        return book;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
+    public boolean availableUserWriteReview(int site_code, int user_code) {
+        List<BookDTO> bookList1 = mapper.selectUserSiteBook(site_code, user_code);
+        List<BookDTO> bookList2 = mapper.selectUserSiteReview(site_code, user_code);
+        return bookList1.size() > bookList2.size();
+    }
+
+    public List<BookDTO> getReviewAvailableCode(int site_code, int user_code) {
+        List<BookDTO> result = new ArrayList<>();
+        List<BookDTO> bookList1 = mapper.selectUserSiteBook(site_code, user_code);
+        List<BookDTO> bookList2 = mapper.selectUserSiteReview(site_code, user_code);
+
+        first:
+        for (BookDTO bookDTO : bookList1) {
+            for (BookDTO dto : bookList2) {
+                if (bookDTO.getBook_code() == dto.getBook_code()) {
+                    continue first;
+                }
+            }
+            result.add(bookDTO);
+        }
+
+        return result;
+    }
+
+    //날짜(stringDate : "2023-02-01")를 입력받으면 체크인 날짜와 비교한다.
+    //환불 요청 가능이면 1 아니면 0을 반환
+    //환불 요청 가능 여부 판단 메소드
+    public int IsAvailableRequestRefund(int book_code) throws Exception {
+        BookDTO book = select(book_code);
+        Date checkin = Utility.StringToDate(book.getBook_checkin());
+        LocalDate now = LocalDate.now();
+        Date nowDate= Utility.StringToDate(now.toString());
+        if(checkin.after(nowDate)){
+            return 1;
+        }
+        return 0;
+    }
 }

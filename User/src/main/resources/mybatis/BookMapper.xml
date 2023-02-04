@@ -55,6 +55,22 @@
         WHERE user_code=#{user_code} 
         ORDER BY book_code DESC
     </select>
+     <select id="selectUserSiteBook" resultType="BookDTO">
+        SELECT book.book_code 
+        FROM book
+        JOIN user
+        ON book.user_code = user.user_code
+        WHERE book.site_code = #{site_code} AND book.user_code=#{user_code}
+    </select>
+    <select id="selectUserSiteReview" resultType="BookDTO">
+        SELECT book.book_code 
+        FROM book
+        JOIN user
+        ON book.user_code = user.user_code
+        JOIN review
+        ON book.book_Code = review.book_code
+        WHERE book.site_code = #{site_code} AND book.user_code=#{user_code}
+    </select>
     <update id="update" parameterType="BookDTO">
         UPDATE book
         SET book_member=#{book_member},
