@@ -71,16 +71,17 @@ insert into `payment`(merchant_uid,pay_method, imp_uid) values('5','카드','1')
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,1,'1',3,'2023-02-03','2023-02-04',30000,'12가1234');
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(7,2,'2',2,'2023-02-01','2023-02-02',35000,'13나1234');
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price) values(1,2,'3',1,'2023-02-04','2023-02-07',20000);
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(15,3,'4',2,'2023-02-02','2023-02-05',45000,'13나1234');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,3,'4',2,'2023-02-02','2023-02-05',45000,'13나1234');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,1,'4',2,'2023-02-02','2023-02-05',45000,'13나1234');
 
 -- 스케줄
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-06','방역');
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-07','방역');
 
 -- 리뷰
-insert into `review`(book_code, review_content, review_score) values(1,'맛있어요',9);
+insert into `review`(book_code, review_content, review_score) values(1,'맛있어요',5);
 insert into `review`(book_code, review_content, review_score) values(2,'추워요',4);
-insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',7);
+insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',2);
 
 -- 이미지
 insert into image(company_code, zone_code, image_file) VALUES(1, 1, 'zone_img1.jpg');
