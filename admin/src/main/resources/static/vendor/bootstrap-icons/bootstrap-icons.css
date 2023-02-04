@@ -146,7 +146,7 @@ url("./fonts/bootstrap-icons.woff?24e3eb84d0bcaf83d77f904c78ac1f47") format("wof
 .bi-bar-chart-line-fill::before { content: "\f17b"; }
 .bi-bar-chart-line::before { content: "\f17c"; }
 .bi-bar-chart-steps::before { content: "\f17d"; }
-.bi-bar-chart::before { content: "\f17e"; }
+.bi-bar-chart::before { content: "\f463"; }
 .bi-basket-fill::before { content: "\f17f"; }
 .bi-basket::before { content: "\f180"; }
 .bi-basket2-fill::before { content: "\f181"; }
@@ -784,7 +784,7 @@ url("./fonts/bootstrap-icons.woff?24e3eb84d0bcaf83d77f904c78ac1f47") format("wof
 .bi-grid-3x3-gap::before { content: "\f3f9"; }
 .bi-grid-3x3::before { content: "\f3fa"; }
 .bi-grid-fill::before { content: "\f3fb"; }
-.bi-grid::before { content: "\f3fc"; }
+.bi-grid::before { content: "\f17e"; }
 .bi-grip-horizontal::before { content: "\f3fd"; }
 .bi-grip-vertical::before { content: "\f3fe"; }
 .bi-hammer::before { content: "\f3ff"; }
@@ -856,7 +856,7 @@ url("./fonts/bootstrap-icons.woff?24e3eb84d0bcaf83d77f904c78ac1f47") format("wof
 .bi-journal-minus::before { content: "\f441"; }
 .bi-journal-plus::before { content: "\f442"; }
 .bi-journal-richtext::before { content: "\f443"; }
-.bi-journal-text::before { content: "\f444"; }
+.bi-journal-text::before { content: "\f61e"; }
 .bi-journal-x::before { content: "\f445"; }
 .bi-journal::before { content: "\f446"; }
 .bi-journals::before { content: "\f447"; }
@@ -887,7 +887,7 @@ url("./fonts/bootstrap-icons.woff?24e3eb84d0bcaf83d77f904c78ac1f47") format("wof
 .bi-layout-split::before { content: "\f460"; }
 .bi-layout-text-sidebar-reverse::before { content: "\f461"; }
 .bi-layout-text-sidebar::before { content: "\f462"; }
-.bi-layout-text-window-reverse::before { content: "\f463"; }
+.bi-layout-text-window-reverse::before { content: "\f4d0"; }
 .bi-layout-text-window::before { content: "\f464"; }
 .bi-layout-three-columns::before { content: "\f465"; }
 .bi-layout-wtf::before { content: "\f466"; }
@@ -925,7 +925,7 @@ url("./fonts/bootstrap-icons.woff?24e3eb84d0bcaf83d77f904c78ac1f47") format("wof
 .bi-menu-app::before { content: "\f486"; }
 .bi-menu-button-fill::before { content: "\f487"; }
 .bi-menu-button-wide-fill::before { content: "\f488"; }
-.bi-menu-button-wide::before { content: "\f489"; }
+.bi-menu-button-wide::before { content: "\f2cd"; }
 .bi-menu-button::before { content: "\f48a"; }
 .bi-menu-down::before { content: "\f48b"; }
 .bi-menu-up::before { content: "\f48c"; }

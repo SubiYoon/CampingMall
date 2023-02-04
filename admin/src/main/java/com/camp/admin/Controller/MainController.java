@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,9 +48,9 @@ public class MainController {
 	ImageService serviceI;
 
 	@RequestMapping("/")
-	public String select(){
+	public String main(){
 		
-		return "redirect:/main";
+		return "login";
 	}
 
 	@RequestMapping("/main")
@@ -66,6 +67,27 @@ public class MainController {
 		}
 			session.setAttribute("company", company);
 
+		return "main";
+	}
+	
+	@RequestMapping("/mainEdit")
+	public String mainedit(Model model) {
+		
+		model.addAttribute("center", "/mainEdit");
+		return "main";
+	}
+	
+	@RequestMapping("/userEdit")
+	public String useredit(Model model) {
+		
+		model.addAttribute("center", "/userEdit");
+		return "main";
+	}
+	
+	@RequestMapping("/bookEdit")
+	public String bookedit(Model model) {
+		
+		model.addAttribute("center", "/bookEdit");
 		return "main";
 	}
 
