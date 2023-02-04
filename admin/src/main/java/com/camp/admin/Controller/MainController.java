@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.camp.admin.DTO.CompanyDTO;
 import com.camp.admin.DTO.HomeDTO;
 import com.camp.admin.DTO.ImageDTO;
+import com.camp.admin.DTO.ZoneDTO;
 import com.camp.admin.service.CompanyService;
 import com.camp.admin.service.FacilityService;
 import com.camp.admin.service.HomeService;
@@ -54,9 +55,9 @@ public class MainController {
 	}
 
 	@RequestMapping("/main")
-	public String main(HttpSession session, CompanyDTO companyDTO) {
-		
+	public String main(Model model, HttpSession session, CompanyDTO companyDTO, ZoneDTO zoneDTO) {
 		CompanyDTO company = null;
+		List<ZoneDTO> listZ = null;
 		
 		//TODO:차후 캠핑장 선택 페이지 생성시 수정 필요
 		try{
@@ -65,8 +66,16 @@ public class MainController {
 			e.printStackTrace();
 			System.out.println("실패123");
 		}
-			session.setAttribute("company", company);
-
+		session.setAttribute("company", company);
+		
+		
+		try {
+			listZ=serviceZ.selectZone(company.getCompany_code());	//상호코드
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		model.addAttribute("zlist", listZ);
+		
 		return "main";
 	}
 	
