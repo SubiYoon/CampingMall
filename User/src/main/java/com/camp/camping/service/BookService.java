@@ -144,12 +144,29 @@ public class BookService implements MyService<Integer, BookDTO> {
     	return book;
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
+    public boolean availableUserWriteReview(int site_code, int user_code){
+        List<BookDTO> bookList1 = mapper.selectUserSiteBook(site_code, user_code);
+        List<BookDTO> bookList2 = mapper.selectUserSiteReview(site_code, user_code);
+        if(bookList1.size() > bookList2.size()){
+            return true;
+        }
+        return false;
+    }
+
+    public List<BookDTO> getReviewAvailableCode(int site_code, int user_code){
+        List<BookDTO> result = new ArrayList<BookDTO>();
+        List<BookDTO> bookList1 = mapper.selectUserSiteBook(site_code, user_code);
+        List<BookDTO> bookList2 = mapper.selectUserSiteReview(site_code, user_code);
+
+        first:for(int i=0; i<bookList1.size(); i++){
+            for(int j=0; j<bookList2.size(); j++){
+                if(bookList1.get(i).getBook_code()==bookList2.get(j).getBook_code()){
+                    continue first;
+                }
+            }
+            result.add(bookList1.get(i));
+        }
+        
+        return result;
+    }
 }

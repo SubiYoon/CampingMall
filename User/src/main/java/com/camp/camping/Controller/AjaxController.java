@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.camp.camping.DTO.BookDTO;
 import com.camp.camping.DTO.CompanyDTO;
 import com.camp.camping.DTO.HomeDTO;
+import com.camp.camping.DTO.ReviewDTO;
 import com.camp.camping.DTO.SiteDTO;
 import com.camp.camping.DTO.UserDTO;
 import com.camp.camping.DTO.ZoneDTO;
 import com.camp.camping.service.BookService;
 import com.camp.camping.service.HomeService;
+import com.camp.camping.service.ReviewService;
 import com.camp.camping.service.SiteService;
 import com.camp.camping.service.ZoneService;
 
@@ -33,6 +35,8 @@ public class AjaxController {
     BookService bService;
     @Autowired
     HomeService hService;
+    @Autowired
+    ReviewService rService;
 
     @RequestMapping("selectDate")
     public Object selectDate(String selectDate1, String selectDate2, String company_code){
@@ -103,5 +107,36 @@ public class AjaxController {
         json.put("home", home);
 
         return json;
+    }
+
+    @RequestMapping("reviewUpload")
+    public int reviewUpload(HttpSession session, int site_code, ReviewDTO review){
+        int result = 0;
+        UserDTO user = (UserDTO)session.getAttribute("user");
+
+        if(bService.availableUserWriteReview(site_code, user.getUser_code())){
+            List<BookDTO> bookCode = bService.getReviewAvailableCode(site_code, user.getUser_code());
+            review.setBook_code(bookCode.get(0).getBook_code());
+
+            try{
+                rService.insert(review);
+                System.out.println("성공");
+            } catch(Exception e){
+                //e.printStackTrace();
+                System.out.println("실패");
+            }
+
+        }else result = 1;
+
+        return result;
+    }
+
+    @RequestMapping("siteReview")
+    public List<ReviewDTO> siteReview(int site_code){
+        List<ReviewDTO> list = null;
+
+        list = rService.selectBySiteCode(site_code);
+
+        return list;
     }
 }

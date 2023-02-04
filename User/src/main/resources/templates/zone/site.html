@@ -12,7 +12,7 @@
       display: inline-block;
       position: relative;
       width: 1.1em;
-      font-size: 3em;
+      font-size: 2em;
       color: #000;
    }
 
@@ -28,45 +28,79 @@
 
 <script>
    var rating = 0;
-
    function setRatingValue(value) {
       rating = value;
       console.log("Rating value is: " + rating);
-   }
+   };
 
+   var score = "";
+   function star(count){
+      if(count==1){
+         score+='<label for="star1">✰</label>';
+      }else if(count==2){
+         score+='<label for="star2">✰✰</label>';
+      }else if(count==3){
+         score+='<label for="star3">✰✰✰</label>';
+      }else if(count==4){
+         score+='<label for="star4">✰✰✰✰</label>';
+      }else if(count==5){
+         score+='<label for="star5">✰✰✰✰✰</label>';
+      }
+   };
+
+   //리뷰 리스트 조회
    function showReview() {
+      var args = "";
       $.ajax({
-
+         url:'/siteReview',
+         data: {'site_code' : '[[${site.site_code}]]'},
+         success: function(data){
+            for(var i in data){
+               score = "";
+               star(data[i].review_score+0);
+               args += "<ul>";
+               args += "<li>별점 :"+score+" </li>";
+               args += "<li>"+data[i].review_content+"</li>"
+               args += "</ul>";
+            }
+            document.getElementById('viewList').innerHTML = args;
+         }
       });
-   }
+   };
 
    $(document).ready(function () {
       $(".nav-item:nth-child(3)").attr('class', 'nav-item active');
       $(".notactive:nth-child(3)").attr('class', 'active');
-      /* $(".star_rating a:nth-child(#{$('#score').val()}-1)").attr('class', 'on'); */
-      /* 	$( ".star_rating a" ).click(function() {
-              $(this).parent().children("a").removeClass("on");
-              $(this).addClass("on").prevAll("a").addClass("on");
-              return false;
-         }); */
+
+      showReview();
+
+      //리뷰 등록
+      $('#review_score > a').click(function(){
+         if('true'=='[[${session.user==null}]]'){
+            alert("로그인 후 리뷰 등록이 가능합니다.");
+            return;
+         }else {
+            let review_content = $('#review_score > input[name=review_content]').val();
+            console.log(review_content);
+            $.ajax({
+               url: '/reviewUpload',
+               data: {'review_content': review_content, 
+                        'review_score': rating,
+                        'site_code': '[[${site.site_code}]]'
+                     },
+               success: function (result) {
+                  if(result==1){
+                     alert("예약완료 후 작성 할 수 있습니다.")
+                  }
+                  showReview();
+               }
+
+            });
+         }
+      });
    });
 
 </script>
-<script type="text/javascript">
-   function reviewUpload() {
-      var review_content = $('#review_content').val();
-      $.ajax({
-         url: '/zone/reviewupload',
-         type: 'post',
-         data: { 'review_content': review_content, 'review_score': rating },
-         success: function (result) {
-
-         }
-
-      });
-   }
-</script>
-<script src="http://code.jquery.com/jquery-3.6.3.min.js"></script>
 <div class="back_re">
    <div class="container">
       <div class="row">
@@ -114,32 +148,9 @@
             <div class="col-md-12 col-sm-12">
                <div id="serv_hover" class="room">
                   <div class="bed_room card">
-                     <h3>리뷰</h3>
-                     <ul class="list-group" th:each="review:${rlist}">
-                        <li class="list-group-item d-flex justify-content-between">
-                           <div><a th:text="${review.review_content}"></a></div>
-                           <div class="d-flex">
-                              <div class="font-italic">
-                                 별점&nbsp;<a id="score" th:text="${review.review_score}"></a>
-                                 <p class="star_rating">
-                                    <a href="javascript:void(0);" class="on">★</a>
-                                    <a href="javascript:void(0);">★</a>
-                                    <a href="javascript:void(0);">★</a>
-                                    <a href="javascript:void(0);">★</a>
-                                    <a href="javascript:void(0);">★</a>
-                                 </p>
-                              </div>
-                              <button class="badge">수정</button>
-                              <button class="badge">삭제</button>
-                           </div>
-                        </li>
-                     </ul>
-                     <br />
-
+                     <h3>한줄 리뷰</h3>
+                     <div id="viewList"></div>
                      <form id="review_score">
-                        <div class="card-body">
-                           <textarea id="review_content" class="form-control" rows="1"></textarea>
-                        </div>
                         <div class="star-rating">
                            <input type="radio" id="star5" name="rating" value="5" onclick="setRatingValue(this.value)" /><label for="star5">✰</label>
                            <input type="radio" id="star4" name="rating" value="4" onclick="setRatingValue(this.value)" /><label for="star4">✰</label>
@@ -147,8 +158,8 @@
                            <input type="radio" id="star2" name="rating" value="2" onclick="setRatingValue(this.value)" /><label for="star2">✰</label>
                            <input type="radio" id="star1" name="rating" value="1" onclick="setRatingValue(this.value)" /><label for="star1">✰</label>
                         </div>
-                        <div class="card-footer"><button class="btn btn-primary" onclick="reviewUpload()">등록</button>
-                        </div>
+                        <input type="text" name="review_content" style="width: 750px;"/>
+                        &nbsp;&nbsp;&nbsp;<a href="#review_upload_button">등록</a>
                      </form>
                   </div>
                </div>
