@@ -1,10 +1,14 @@
 package com.camp.admin.service;
 
 
+import com.camp.admin.DTO.BookDTO;
 import com.camp.admin.DTO.GraphDTO;
-
+import com.camp.admin.DTO.ReservationDTO;
+import com.camp.admin.DTO.SiteDTO;
+import com.camp.admin.frame.MyService;
+import com.camp.admin.mapper.BookMapper;
+import com.camp.admin.utility.Utility;
 import java.text.DateFormat;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,20 +16,12 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
-
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Random;
 import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.camp.admin.DTO.BookDTO;
-import com.camp.admin.DTO.ReservationDTO;
-import com.camp.admin.DTO.SiteDTO;
-import com.camp.admin.frame.MyService;
-import com.camp.admin.mapper.BookMapper;
-import com.camp.admin.utility.Utility;
 
 @Service
 public class BookService implements MyService<Integer, BookDTO> {
@@ -161,7 +157,7 @@ public class BookService implements MyService<Integer, BookDTO> {
             1);
         for (int i = 0; i < 12; i++) {
             yearlySales += MonthlySales(Utility.DateToString(calendar.getTime()), company_code);
-            calendar.add(Calendar.MONTH,1);
+            calendar.add(Calendar.MONTH, 1);
         }
 
         return yearlySales;
@@ -507,6 +503,7 @@ public class BookService implements MyService<Integer, BookDTO> {
             MonthlySales(Utility.DateToString(calendar.getTime()), company_code));
     }
 
+    //stringYear = "2023"
     public String YearlySalesRate(String stringYear, int company_code) throws Exception {
         String stringDate = stringYear + "-01-01";
         Calendar calendar = Calendar.getInstance();
@@ -516,4 +513,45 @@ public class BookService implements MyService<Integer, BookDTO> {
             YearlySales(Utility.DateToString(calendar.getTime()), company_code));
     }
 
+    public int DailyUser(String stringDate, int company_code) throws Exception {
+        int userCount = 0;
+        List<ReservationDTO> reservations = reservationService.SelectByDateAndCompanyCode(
+            stringDate, company_code);
+        for (ReservationDTO reservation : reservations) {
+            BookDTO book = select(reservation.getBook_code());
+            userCount += book.getBook_member();
+        }
+        return userCount;
+    }
+
+    //stringYearAndMonth = "2023-02"
+    public int MonthlyUser(String stringYearAndMonth, int company_code) throws Exception {
+        int userCount = 0;
+        int lastday = Utility.LastDayOfMonth(stringYearAndMonth + "-01");
+        for (int i = 1; i <= lastday; i++) {
+            String day = "-";
+            if (i / 10 < 1) {
+                day += "0" + i;
+            } else {
+                day += "" + i;
+            }
+            String stringDate = stringYearAndMonth + day;
+            userCount += DailyUser(stringDate, company_code);
+        }
+        return userCount;
+    }
+
+    public int YearlyUser(String stringYear, int company_code) throws Exception {
+        int userCount = 0;
+        for (int i = 0; i < 12; i++) {
+            String stringDate = stringYear;
+            if (i / 10 < 1) {
+                stringDate += "-0" + i;
+            } else {
+                stringDate += "-" + i;
+            }
+            userCount += MonthlyUser(stringDate, company_code);
+        }
+        return userCount;
+    }
 }
