@@ -64,7 +64,7 @@ public class PayrestController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    	
+    	//이름이 프론트에 없어서 생기는문제 
     	service.paybook(book);
     	
     	return book;
