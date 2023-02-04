@@ -36,12 +36,27 @@ public class BookTest {
         try {
             System.out.println(bookService.DailyUser("2023-02-02",1));
             System.out.println(bookService.DailyUser("2023-02-03",1));
+            System.out.println(bookService.DailyUser("2023-02-04",1));
             System.out.println(bookService.MonthlyUser("2023-02",1));
             System.out.println(bookService.YearlyUser("2023",1));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
+    }
+    @Test
+    void UserRate(){
+        try {
+            System.out.println(bookService.DailyUser("2023-02-02",1));
+            System.out.println(bookService.DailyUser("2023-02-03",1));
+            System.out.println(bookService.DailyUser("2023-02-04",1));
+            System.out.println(bookService.DailyUserRate("2023-02-03",1));
+            System.out.println(bookService.DailyUserRate("2023-02-04",1));
+            System.out.println(bookService.MonthlyUserRate("2023-02",1));
+            System.out.println(bookService.YearlyUserRate("2023",1));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

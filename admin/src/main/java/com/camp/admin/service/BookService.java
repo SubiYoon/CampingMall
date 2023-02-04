@@ -153,8 +153,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         double yearlySales = 0;
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(Utility.StringToDate(stringDate));
-        calendar = new GregorianCalendar(calendar.get(Calendar.YEAR), Calendar.JANUARY,
-            1);
+        calendar = new GregorianCalendar(calendar.get(Calendar.YEAR), Calendar.JANUARY, 1);
         for (int i = 0; i < 12; i++) {
             yearlySales += MonthlySales(Utility.DateToString(calendar.getTime()), company_code);
             calendar.add(Calendar.MONTH, 1);
@@ -541,6 +540,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         return userCount;
     }
 
+    //stringYear = "2023"
     public int YearlyUser(String stringYear, int company_code) throws Exception {
         int userCount = 0;
         for (int i = 0; i < 12; i++) {
@@ -553,5 +553,36 @@ public class BookService implements MyService<Integer, BookDTO> {
             userCount += MonthlyUser(stringDate, company_code);
         }
         return userCount;
+    }
+
+    public String DailyUserRate(String stringDate, int company_code) throws Exception {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        calendar.add(Calendar.DATE, -1);
+        return Utility.RateOfIncrease(DailyUser(stringDate, company_code),
+            DailyUser(Utility.DateToString(calendar.getTime()), company_code));
+    }
+
+    public String MonthlyUserRate(String stringYearAndMonth, int company_code) throws Exception {
+        String stringDate = stringYearAndMonth + "-01";
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        calendar.add(Calendar.MONTH, -1);
+        return Utility.RateOfIncrease(
+            MonthlyUser(Utility.StringYearAndMonthFromStringDate(stringDate), company_code),
+            MonthlyUser(
+                Utility.StringYearAndMonthFromStringDate(Utility.DateToString(calendar.getTime())),
+                company_code));
+    }
+
+    public String YearlyUserRate(String stringYear, int company_code) throws Exception {
+        String stringDate = stringYear + "-01-01";
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        calendar.add(Calendar.YEAR, -1);
+        return Utility.RateOfIncrease(
+            YearlyUser(Utility.StringYearFromStringDate(stringDate), company_code),
+            YearlyUser(Utility.StringYearFromStringDate(Utility.DateToString(calendar.getTime())),
+                company_code));
     }
 }

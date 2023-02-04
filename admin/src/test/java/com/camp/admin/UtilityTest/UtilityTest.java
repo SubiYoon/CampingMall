@@ -14,5 +14,10 @@ public class UtilityTest {
         System.out.println(Utility.RateOfIncrease(500,0));
         System.out.println(Utility.RateOfIncrease(100000,1));
     }
+    @Test
+    void YYYYMM(){
+        System.out.println(Utility.StringYearAndMonthFromStringDate("2023-02-01"));
+        System.out.println(Utility.StringYearFromStringDate("2023-02-01"));
+    }
 
 }
