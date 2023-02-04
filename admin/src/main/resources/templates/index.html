@@ -36,7 +36,7 @@
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Sales <span>| Today</span></h5>
+                                <h5 class="card-title">Books <span>| Today</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div
@@ -113,7 +113,7 @@
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Customers <span>| This Year</span></h5>
+                                <h5 class="card-title">Visitor <span>| This Year</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div
@@ -229,7 +229,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="card-body pb-0">
-                                        <h5 class="card-title">Budget Report
+                                        <h5 class="card-title">구역별 매출
                                             <span>| This Month</span>
                                         </h5>
 
@@ -296,7 +296,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="card-body pb-0">
-                                        <h5 class="card-title">Website Traffic <span>| Today</span>
+                                        <h5 class="card-title">구역별 방문자 <span>| Today</span>
                                         </h5>
 
                                         <div id="trafficChart" style="min-height: 400px;"
@@ -388,61 +388,56 @@
                     </div>
 
                     <div class="card-body">
-                        <h5 class="card-title">Recent Activity <span>| Today</span></h5>
+                        <h5 class="card-title">Recent Books <span>| Today</span></h5>
 
-                        <div class="activity">
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">32 min</div>
-                                <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
-                                <div class="activity-content">
-                                    Quia quae rerum <a th:href="@{#}" class="fw-bold text-dark">explicabo
-                                    officiis</a> beatae
-                                </div>
-                            </div><!-- End activity item-->
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">56 min</div>
-                                <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                                <div class="activity-content">
-                                    Voluptatem blanditiis blanditiis eveniet
-                                </div>
-                            </div><!-- End activity item-->
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">2 hrs</div>
-                                <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                                <div class="activity-content">
-                                    Voluptates corrupti molestias voluptatem
-                                </div>
-                            </div><!-- End activity item-->
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">1 day</div>
-                                <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                                <div class="activity-content">
-                                    Tempore autem saepe <a th:href="@{#}" class="fw-bold text-dark">occaecati
-                                    voluptatem</a> tempore
-                                </div>
-                            </div><!-- End activity item-->
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">2 days</div>
-                                <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                                <div class="activity-content">
-                                    Est sit eum reiciendis exercitationem
-                                </div>
-                            </div><!-- End activity item-->
-
-                            <div class="activity-item d-flex">
-                                <div class="activite-label">4 weeks</div>
-                                <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                                <div class="activity-content">
-                                    Dicta dolorem harum nulla eius. Ut quidem quidem sit quas
-                                </div>
-                            </div><!-- End activity item-->
-
-                        </div>
+                        <table class="table table-borderless datatable">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">고객</th>
+                                <th scope="col">구역 사이트</th>
+                                <th scope="col">가격</th>
+                                <th scope="col">상태</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row"><a th:href="@{#}">#2457</a></th>
+                                <td>Brandon Jacob</td>
+                                <td><a th:href="@{#}" class="text-primary">At praesentium minu</a></td>
+                                <td>$64</td>
+                                <td><span class="badge bg-success">Approved</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><a th:href="@{#}">#2147</a></th>
+                                <td>Bridie Kessler</td>
+                                <td><a th:href="@{#}" class="text-primary">Blanditiis dolor omnis similique</a></td>
+                                <td>$47</td>
+                                <td><span class="badge bg-warning">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><a th:href="@{#}">#2049</a></th>
+                                <td>Ashleigh Langosh</td>
+                                <td><a th:href="@{#}" class="text-primary">At recusandae consectetur</a></td>
+                                <td>$147</td>
+                                <td><span class="badge bg-success">Approved</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><a th:href="@{#}">#2644</a></th>
+                                <td>Angus Grady</td>
+                                <td><a th:href="@{#}" class="text-primar">Ut voluptatem id earum et</a></td>
+                                <td>$67</td>
+                                <td><span class="badge bg-danger">Rejected</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><a th:href="@{#}">#2644</a></th>
+                                <td>Raheem Lehner</td>
+                                <td><a th:href="@{#}" class="text-primary">Sunt similique distinctio</a></td>
+                                <td>$165</td>
+                                <td><span class="badge bg-success">Approved</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
 
                     </div>
                 </div><!-- End Recent Activity -->
@@ -464,48 +459,56 @@
                         </ul>
                     </div>
 
-                    <div class="card-body pb-0">
-                        <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+                    <div class="card-body">
+                        <h5 class="card-title">Recent Reviews <span>| Today</span></h5>
 
-                        <div class="news">
-                            <div class="post-item clearfix">
-                                <img th:src="@{/img/news-1.jpg}" alt="">
-                                <h4><a th:href="@{#}">Nihil blanditiis at in nihil autem</a></h4>
-                                <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed
-                                    ut harum...</p>
-                            </div>
+                        <table class="table table-borderless datatable">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">작성자 </th>
+                                <th scope="col">내용 </th>
+                                <th scope="col">별점 </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row"><a th:href="@{#}">#2457</a></th>
+                                <td>Brandon Jacob</td>
+                                <td><a th:href="@{#}" class="text-primary">At praesentium minu</a></td>
+                                <td>$64</td>
 
-                            <div class="post-item clearfix">
-                                <img th:src="@{/img/news-2.jpg}" alt="">
-                                <h4><a th:href="@{#}">Quidem autem et impedit</a></h4>
-                                <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries
-                                    werona nande...</p>
-                            </div>
+                            </tr>
+                            <tr>
+                                <th scope="row"><a th:href="@{#}">#2147</a></th>
+                                <td>Bridie Kessler</td>
+                                <td><a th:href="@{#}" class="text-primary">Blanditiis dolor omnis similique</a></td>
+                                <td>$47</td>
 
-                            <div class="post-item clearfix">
-                                <img th:src="@{/img/news-3.jpg}" alt="">
-                                <h4><a th:href="@{#}">Id quia et et ut maxime similique occaecati
-                                    ut</a></h4>
-                                <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed
-                                    ipsam et totam...</p>
-                            </div>
+                            </tr>
+                            <tr>
+                                <th scope="row"><a th:href="@{#}">#2049</a></th>
+                                <td>Ashleigh Langosh</td>
+                                <td><a th:href="@{#}" class="text-primary">At recusandae consectetur</a></td>
+                                <td>$147</td>
 
-                            <div class="post-item clearfix">
-                                <img th:src="@{/img/news-4.jpg}" alt="">
-                                <h4><a th:href="@{#}">Laborum corporis quo dara net para</a></h4>
-                                <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel
-                                    rerum cuder...</p>
-                            </div>
+                            </tr>
+                            <tr>
+                                <th scope="row"><a th:href="@{#}">#2644</a></th>
+                                <td>Angus Grady</td>
+                                <td><a th:href="@{#}" class="text-primar">Ut voluptatem id earum et</a></td>
+                                <td>$67</td>
 
-                            <div class="post-item clearfix">
-                                <img th:src="@{/img/news-5.jpg}" alt="">
-                                <h4><a th:href="@{#}">Et dolores corrupti quae illo quod dolor</a>
-                                </h4>
-                                <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae
-                                    dignissimos eius...</p>
-                            </div>
+                            </tr>
+                            <tr>
+                                <th scope="row"><a th:href="@{#}">#2644</a></th>
+                                <td>Raheem Lehner</td>
+                                <td><a th:href="@{#}" class="text-primary">Sunt similique distinctio</a></td>
+                                <td>$165</td>
 
-                        </div><!-- End sidebar recent posts-->
+                            </tr>
+                            </tbody>
+                        </table>
 
                     </div>
                 </div><!-- End News & Updates -->
