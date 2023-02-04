@@ -42,7 +42,7 @@
         FROM book
     </select>
     <select id="selectUserAll" resultType="BookDTO">
-        SELECT  book.book_member book_book_member,
+        SELECT  book.book_member book_member,
                 book.book_checkin book_checkin, 
                 book.book_checkout book_checkout,
                 book.book_price book_price,
