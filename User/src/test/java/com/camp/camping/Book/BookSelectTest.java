@@ -54,5 +54,13 @@ public class BookSelectTest {
         }
     }
 
+    @Test
+    void Refund(){
+        try {
+            System.out.println(service.IsAvailableRequestRefund(5));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

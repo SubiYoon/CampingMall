@@ -169,7 +169,7 @@ public class PaymentService implements MyMapper<String, PaymentDTO>{
    	
    	public void paybook(BookDTO book) {
    		try {
-			bookService.insert(book);
+			bookService.insertBookAndReservation(book);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -37,4 +37,21 @@ public class Utility {
         calendar.setTime(Utility.StringToDate(stringDate));
         return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
+
+    public static String RateOfIncrease(double baseNumber, double compareNumber) {
+        double rate;
+        if (compareNumber > 0) {
+            rate = (baseNumber - compareNumber) / compareNumber;
+        } else if (baseNumber > 0) {
+            rate = 999.99;
+        } else {
+            rate = 0;
+        }
+        if (rate > 999.99) {
+            rate = 999.99;
+        } else if (rate < -999.99) {
+            rate = -999.99;
+        }
+        return Math.round(rate * 100) + "%";
+    }
 }
