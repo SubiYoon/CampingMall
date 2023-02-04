@@ -68,7 +68,6 @@ public class MainController {
 		}
 		session.setAttribute("company", company);
 		
-		
 		try {
 			listZ=serviceZ.selectZone(company.getCompany_code());	//상호코드
 		} catch (Exception e) {
