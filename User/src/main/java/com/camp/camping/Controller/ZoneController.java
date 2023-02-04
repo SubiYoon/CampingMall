@@ -9,12 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.camp.camping.DTO.CompanyDTO;
 import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.DTO.ImageDTO;
-import com.camp.camping.DTO.ReviewDTO;
 import com.camp.camping.DTO.SiteDTO;
 import com.camp.camping.DTO.ZoneDTO;
 import com.camp.camping.service.HomeService;
@@ -107,16 +105,5 @@ public class ZoneController {
 		model.addAttribute("center", dir+"site");
 		return "main";
 	}
-	
-	@RequestMapping("/reviewupload")
-	public String reviewupload(ReviewDTO reviewDto) {
 
-		try {
-			serviceR.insert(reviewDto);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/site";
-	}
-	
 }

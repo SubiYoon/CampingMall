@@ -47,6 +47,10 @@ public class ReviewService implements MyService<Integer, ReviewDTO> {
         return mapper.selectAll();
     }
 
+    public List<ReviewDTO> selectBySiteCode(int site_code){
+        return mapper.selectBySiteCode(site_code);
+    }
+
     public List<ReviewDTO> selectByCompanyCode(int company_code) {
         return mapper.selectByCompanyCode(company_code);
     }
