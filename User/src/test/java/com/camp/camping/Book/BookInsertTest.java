@@ -30,7 +30,7 @@ public class BookInsertTest {
     }
         @Test
     void BookInsertTests2() {
-        BookDTO book = new BookDTO(1, 1, "5", 1, "2022-09-01", "2022-09-05", 30000, "18공7001");
+        BookDTO book = new BookDTO(1, 1, "5", 1, "2023-09-01", "2023-09-05", 30000, "18공7001");
         try {
             service.insertBookAndReservation(book);
         } catch (Exception e) {
