@@ -69,14 +69,35 @@ public class ZoneController {
 		return "main";
 	}
 	
+	//구역(zone)수정페이지
+		@RequestMapping("/zoneedit")
+		public String noedit(Model model, ImageDTO imageDTO, int zone_code) {
+			ZoneDTO zoneEdit = null;
+			List<ImageDTO> listI = null;
+			
+			try {
+				listI=serviceI.selectByZoneCode(zone_code);
+				model.addAttribute("ilist", listI);
+				
+				zoneEdit = serviceZ.select(zone_code);
+				model.addAttribute("zoneEdit", zoneEdit);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			model.addAttribute("center", dir + "zoneedit");
+			return "main";
+		}
+	
+	
 	//구역(zone)수정
-	 @RequestMapping("/zoneupdate") public String zoneupdate(Model model, ZoneDTO zonedto) {
+	 @RequestMapping("/zoneupdate") public String zoneupdate(Model model, ZoneDTO zonedto, int zone_code) {
 		 try {
 			 serviceZ.update(zonedto);
 		 } catch (Exception e) {
 			 e.printStackTrace();
-		 } 
-		 return "redirect:/zone";
+		 }
+		 
+		 return "redirect:/main";
 	}
 	 
 	//새구역(zone)추가
@@ -86,6 +107,7 @@ public class ZoneController {
 		 } catch (Exception e) {
 			 e.printStackTrace();
 		 } 
+		 
 		 return "redirect:/zone";
 	}
 	 
@@ -99,7 +121,7 @@ public class ZoneController {
 			 return "redirect:/zone";
 		}
 	 
-	 //구역이미지수정
+	 //구역이미지수정(안됨)
 	 @RequestMapping("zoneimgedit")
 		public String zoneImgEdit(HttpSession session, ImageDTO imageDTO, MultipartFile zoneImg){
 		 CompanyDTO company = (CompanyDTO)session.getAttribute("company");
