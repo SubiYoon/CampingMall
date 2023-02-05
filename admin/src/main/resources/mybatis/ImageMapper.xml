@@ -5,7 +5,7 @@
 <mapper namespace="com.camp.admin.mapper.ImageMapper">
     <insert id="insert" parameterType="ImageDTO">
         INSERT INTO image(company_code, zone_code, site_code, home_code, facility_code, image_file)
-        VALUES (IF(#{company_code} = 0, NULL, #{company_code}), 
+        VALUES (#{company_code}, 
                 IF(#{zone_code}= 0, NULL, #{zone_code}),
                 IF(#{site_code} = 0, NULL, #{site_code}), 
                 IF(#{home_code} = 0, NULL, #{home_code}),
@@ -48,8 +48,7 @@
     </select>
     <update id="update" parameterType="ImageDTO">
         UPDATE image
-        SET company_code=IF(#{company_code} = 0, NULL, #{company_code}),
-            zone_code=IF(#{zone_code} = 0, NULL, #{zone_code}),
+        SET zone_code=IF(#{zone_code} = 0, NULL, #{zone_code}),
             site_code=IF(#{site_code} = 0, NULL, #{site_code}),
             home_code=IF(#{home_code} = 0, NULL, #{home_code}),
             facility_code=IF(#{facility_code} = 0, NULL, #{facility_code}),
