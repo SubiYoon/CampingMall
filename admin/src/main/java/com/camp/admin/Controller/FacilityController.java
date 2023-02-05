@@ -38,5 +38,11 @@ public class FacilityController {
 		model.addAttribute("center", dir+"facility");
 		return "main";
 	}
+
+	@RequestMapping("edit")
+	public String main(Model model, int facility_code){
+		System.out.println(facility_code);
+		return "main";
+	}
 	
 }

@@ -1,3 +1,23 @@
+  <script>
+    $('.fac_form > a').click({function(){
+      console.log("??");
+    }
+    });
+    $('.fac_form > input[name=edit]').click(function(){
+      console.log('??');
+      $('.fac_form').attr({
+        'method': 'post',
+        'action': 'facility/edit'
+      });
+    });
+    $('.fac_form > input[name=delete]').click(function(){
+      $('.fac_form').attr({
+        'method': 'post',
+        'action': 'facility/delete'
+      });
+    });
+  </script>
+  
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -14,16 +34,22 @@
       <div class="row">
       	
       	<span th:each="fac:${facilities}">
-	        <div class="col-lg-12">
-	          <div class="card">
-	            <div class="card-body">
-	              <h5 class="card-title" th:text="${fac.facility_name}"></h5>
-	              <p th:text="${fac.facility_content}"></p>
-	              <img th:src="'images/'+${fac.image_file}"/>
-	              <p th:text="${fac.image_file}"></p>
-	            </div>
-	          </div>
-	        </div>
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" th:text="${fac.facility_name}"></h5>
+                <p th:text="${fac.facility_content}"></p>
+                <img th:src="'images/'+${fac.image_file}"/>
+                <p th:text="${fac.image_file}"></p>
+              </div>
+              <form class="fac_form">
+                <input type="hidden" name="facility_code" th:value="${fac.facility_code}"/>
+                <input type="button" name="edit" value="수정" />
+                <input type="button" name="delete" value="삭제" />
+                <a>dd</a>
+              </form>
+            </div>
+          </div>
         </span>
    
 
