@@ -77,12 +77,12 @@ public class MainController {
 			System.out.println("실패");
 		}
 
-		return "main";
+		return "redirect:main";
 	}
 
 	@RequestMapping("/main")
 	public String main(Model model, HttpSession session, CompanyDTO companyDTO, ZoneDTO zoneDTO) {
-		CompanyDTO company = (CompanyDTO)session.getAttribute("comapny");
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
 		List<ZoneDTO> listZ = null;
 		
 		try {
@@ -90,7 +90,7 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}	
-		model.addAttribute("zlist", listZ);
+		session.setAttribute("zlist", listZ);
 		
 		return "main";
 	}

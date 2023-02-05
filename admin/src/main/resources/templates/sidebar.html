@@ -54,7 +54,7 @@
                 <i class="bi bi-menu-button-wide"></i><span>구역 수정</span><i class="bi bi-chevron-down ms-auto"></i>
               </a>
               <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                <span th:each="zone:${zlist}">
+                <span th:each="zone:${session.zlist}">
 	                <li>
 	                  <a th:href="'zone?zone_code='+${zone.zone_code}">
 	                    <i class="bi bi-circle"></i><span th:text="${zone.zone_name}"></span>
