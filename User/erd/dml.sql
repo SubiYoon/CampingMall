@@ -98,10 +98,10 @@ insert into image(company_code, site_code, image_file) VALUES(1, 7, 'site_img2.p
 insert into image(company_code, site_code, image_file) VALUES(1, 8, 'site_img3.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 9, 'site_img4.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 10, 'site_img5.png');
-insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img.png');
-insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img.png');
-insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img.png');
-insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img.png');
+insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'gallery1.jpg');
+insert into image(company_code, facility_code, image_file) VALUES(1, 2, 'gallery2.jpg');
+insert into image(company_code, facility_code, image_file) VALUES(1, 3, 'gallery3.jpg');
+insert into image(company_code, facility_code, image_file) VALUES(1, 4, 'gallery4.jpg');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner1.jpg');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner2.jpg');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner3.jpg');
