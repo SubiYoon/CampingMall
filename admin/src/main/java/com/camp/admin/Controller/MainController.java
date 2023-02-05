@@ -24,6 +24,7 @@ import com.camp.admin.service.HomeService;
 import com.camp.admin.service.ImageService;
 import com.camp.admin.service.NoticeService;
 import com.camp.admin.service.ZoneService;
+import com.camp.admin.utility.CryptoUtil;
 import com.camp.admin.utility.SaveFile;
 
 @Controller
@@ -61,10 +62,17 @@ public class MainController {
 
 	@RequestMapping("/loginOk")
 	public String loginOk(AdminDTO admin, HttpSession session){
-		
+		String crypPwd ="";
+		try{
+			crypPwd = CryptoUtil.sha512(admin.getAdmin_password());
+		} catch(Exception e){
+			e.printStackTrace();
+			System.out.println("암호화실패");
+		}
+
 		try{
 			AdminDTO dbAdmin = serviceA.select(admin.getAdmin_id());
-			if(admin.getAdmin_password().equals(dbAdmin.getAdmin_password())){
+			if(crypPwd.equals(dbAdmin.getAdmin_password())){
 				CompanyDTO company = serviceC.select(dbAdmin.getCompany_code());
 				session.setAttribute("company", company);
 				session.setAttribute("admin", dbAdmin);
@@ -95,10 +103,19 @@ public class MainController {
 		return "main";
 	}
 	
-	@RequestMapping("/mainEdit")
-	public String mainedit(Model model) {
+	//CompanyEdit
+	@RequestMapping("/company")
+	public String companyEdit(Model model) {
 		
-		model.addAttribute("center", "/mainEdit");
+		model.addAttribute("center", "/company");
+		return "main";
+	}
+
+	//CompanyEdit
+	@RequestMapping("/home")
+	public String homeEdit(Model model) {
+		
+		model.addAttribute("center", "/home");
 		return "main";
 	}
 	

@@ -1,3 +1,11 @@
+<script>
+  $(document).ready(function(){
+    $('#logOutComplete').click(function(){
+      alert("로그아웃 하였습니다.");
+    });
+  });
+</script>
+
 <ul class="sidebar-nav" id="sidebar-nav">
       
             <li class="nav-item">
@@ -13,29 +21,14 @@
               </a>
               <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
               	<li>
-                  <a th:href="@{/mainEdit}">
-                    <i class="bi bi-circle"></i><span>ㅁㅁ수정(임시연결)</span>
+                  <a th:href="@{/company}">
+                    <i class="bi bi-circle"></i><span>Logo 및 상호 수정</span>
                   </a>
                 </li>
               
                 <li>
-                  <a th:href="@{/forms-elements}">
-                    <i class="bi bi-circle"></i><span>상호 정보 수정</span>
-                  </a>
-                </li>
-                <li>
-                  <a th:href="@{/forms-layouts}">
-                    <i class="bi bi-circle"></i><span>배너 수정</span>
-                  </a>
-                </li>
-                <li>
-                  <a th:href="@{/forms-editors}">
-                    <i class="bi bi-circle"></i><span>임시1</span>
-                  </a>
-                </li>
-                <li>
-                  <a th:href="@{/forms-validation}">
-                    <i class="bi bi-circle"></i><span>임시2</span>
+                  <a th:href="@{/home}">
+                    <i class="bi bi-circle"></i><span>Home 화면 수정</span>
                   </a>
                 </li>
               </ul>
@@ -90,17 +83,9 @@
               </ul>
             </li><!-- End Tables Nav -->
             
-            <li class="nav-heading">Pages</li>
-      
-            <li class="nav-item">
-              <a class="nav-link collapsed" th:href="@{/users-profile}">
-                <i class="bi bi-person"></i>
-                <span>Profile</span>
-              </a>
-            </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
-              <a class="nav-link collapsed" th:href="@{logOut}">
+              <a id="logOutComplete" class="nav-link collapsed" th:href="@{logOut}">
                 <i class="bi bi-box-arrow-in-right"></i>
                 <span>LogOut</span>
               </a>

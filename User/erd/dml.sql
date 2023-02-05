@@ -10,9 +10,9 @@ INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('NoopCamp
 INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('GosuCamping', "sample.png", "sample.png");
 
 -- 관리자
-insert into `admin`(company_code, admin_id, admin_password) values(1,'admin01','111111');
-insert into `admin`(company_code, admin_id, admin_password) values(1,'admin02','111111');
-insert into `admin`(company_code, admin_id, admin_password) values(2,'admin03','222222');
+insert into `admin`(company_code, admin_id, admin_password) values(1,'admin01','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
+insert into `admin`(company_code, admin_id, admin_password) values(1,'admin02','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
+insert into `admin`(company_code, admin_id, admin_password) values(2,'admin03','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
 
 -- 공지
 INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '[휴무안내]공지사항1제목입니다', "공지사항 1입니다.");
