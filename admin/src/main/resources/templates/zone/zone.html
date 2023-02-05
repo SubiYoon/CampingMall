@@ -1,5 +1,51 @@
+<script>
+	$(document).ready(function() {
+		//삭제버튼
+		$('#zoneDelBtn').click(function(){
+			var c = confirm('구역을 삭제하시겠습니까?(근데아직안됨)');
+			if(c == true){
+				$('#up_form').attr({
+					'enctype':'multipart/form-data',
+					'method':'post',
+					'action':'[[@{/zone/zonedel}]]'
+				});
+				$('#up_form').submit();
+			};
+		});
+		$('#siteDelBtn').click(function(){
+			var c = confirm('사이트를 삭제하시겠습니까?(근데아직안됨)');
+			if(c == true){
+				$('#up_form').attr({
+					'method':'post',
+					'action':'[[@{/zone/sitedel}]]'
+				});
+				$('#up_form').submit();
+			};
+		});
+		
+		//추가버튼
+		$('.zoneaddBtn').click(function(){
+			alert('구역이 추가되었습니다.');
+			$('#newzoneForm').attr({
+				'method':'post',
+				'action':'[[@{/zone/zoneinsert}]]'
+			});
+			$('#newzoneForm').submit();
+		});
+		$('.siteaddBtn').click(function(){
+			alert('사이트가 추가되었습니다.');
+			$('#newsiteForm').attr({
+				'method':'post',
+				'action':'[[@{/zone/siteinsert}]]'
+			});
+			$('#newsiteForm').submit();
+		});
+		
+	}); 
+</script>
   <main id="main" class="main">
-
+	
+	<div class="zonetitle">
     <div class="pagetitle">
       <h1>구역/사이트 수정</h1>
       <nav>
@@ -8,13 +54,31 @@
           <li class="breadcrumb-item active">zone, site edit</li>
         </ol>
       </nav>
-    </div><!-- End Page Title -->
-
+    </div>
+    <div class="pagetitle">
+      <a href="#" class="zoneaddBtn btn btn-outline-primary"><h1>새 구역 추가하기</h1></a>
+      <a href="#" class="siteaddBtn btn btn-outline-primary"><h1>새 사이트 추가하기</h1></a>
+	</div>
+	</div>
+	<!-- End Page Title -->
+	
+	<form id="newzoneForm">
+		<input id="zoneinsert" type="hidden" name="admin_code" value=1><!-- 관리자로그인세션으로나중에바꾸기 -->
+		<input id="zoneinsert" type="hidden" name="zone_name" value="새로운 구역"/>
+		<input id="zoneinsert" type="hidden" name="zone_content" value="구역 설명을 수정하세요."/>
+	</form>
+	<form id="newsiteForm">
+		<input id="zoneinsert" type="hidden" name="zone_code" th:value="${zoneselect.zone_code}">
+		<input id="zoneinsert" type="hidden" name="site_name" value="새 사이트"/>
+		<input id="zoneinsert" type="hidden" name="site_price" value="20000"/>
+		<input id="zoneinsert" type="hidden" name="site_content" value="사이트 설명을 수정하세요."/>
+	</form>
+	
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
-
-          <div class="card">
+            
+          	<div class="card">
             <div class="card-body">
             
               <h5 class="card-title" th:text="${zoneselect.zone_name}"></h5>
@@ -26,7 +90,7 @@
             </div>
             <div class="Btn">
 				<a id="zone_write" class="btn btn-primary" th:href="@{/zone/zoneedit(zone_code=${zoneselect.zone_code})}">수정</a>
-	            <a id="zone_write" class="btn btn-primary" th:href="@{/notice/nowrite}">삭제</a>
+	            <a id="zoneDelBtn" class="btn btn-primary" th:href="@{#}">삭제</a>
 			</div>
           </div>
         </div>
@@ -36,19 +100,20 @@
             <div class="card-body">
             
              <h5 class="card-title" th:text="${site.site_name}"></h5>
+             <p th:text="${site.site_content}"></p>
              <div th:each="img:${ilist}" th:if="${img.site_code == site.site_code}">
               	<img th:src="'images/'+${img.image_file}"/>
               	<p th:text="${img.image_file}"></p>
              </div>
-			<div class="Btn">
-			<a id="notice_write" class="btn btn-primary" th:href="@{/notice/nowrite}">수정</a>
-			<a id="delBtn" class="btn btn-primary" th:href="@{#}">삭제</a>
-			</div>
-			
+				<div class="Btn">
+				<a id="notice_write" class="btn btn-primary" th:href="@{/zone/siteedit(site_code=${site.site_code})}">수정</a>
+				<a id="siteDelBtn" class="btn btn-primary" th:href="@{#}">삭제</a>
+				</div>
             </div>
-          </div>
-
-      </div>
+          	</div>
+		
+		</div>
+		</div>
     </section>
 
   </main><!-- End #main -->

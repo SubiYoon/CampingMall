@@ -68,10 +68,11 @@ public class ZoneController {
 		model.addAttribute("center", dir+"zone");
 		return "main";
 	}
-	
+
+//-----------------------------------------------------------------		
 	//구역(zone)수정페이지
 		@RequestMapping("/zoneedit")
-		public String noedit(Model model, ImageDTO imageDTO, int zone_code) {
+		public String zoneedit(Model model, ImageDTO imageDTO, int zone_code) {
 			ZoneDTO zoneEdit = null;
 			List<ImageDTO> listI = null;
 			
@@ -87,40 +88,74 @@ public class ZoneController {
 			model.addAttribute("center", dir + "zoneedit");
 			return "main";
 		}
-	
-	
-	//구역(zone)수정
-	 @RequestMapping("/zoneupdate") public String zoneupdate(Model model, ZoneDTO zonedto, int zone_code) {
-		 try {
-			 serviceZ.update(zonedto);
-		 } catch (Exception e) {
-			 e.printStackTrace();
-		 }
-		 
-		 return "redirect:/main";
-	}
+		
+		//구역(zone)수정기능
+		 @RequestMapping("/zoneupdate")
+		 public String zoneupdate(Model model, ZoneDTO zonedto) {
+			 try {
+				 serviceZ.update(zonedto);
+			 } catch (Exception e) {
+				 e.printStackTrace();
+			 }
+			 
+			 return "redirect:/main";
+		}
 	 
-	//새구역(zone)추가
-	 @RequestMapping("/zoneinsert") public String zoneinsert(ZoneDTO zonedto) {
-		 try {
-			 serviceZ.insert(zonedto);
-		 } catch (Exception e) {
-			 e.printStackTrace();
-		 } 
-		 
-		 return "redirect:/zone";
-	}
+		//새구역(zone)추가
+		 @RequestMapping("/zoneinsert") public String zoneinsert(ZoneDTO zonedto) {
+			 try {
+				 serviceZ.insert(zonedto);
+			 } catch (Exception e) {
+				 e.printStackTrace();
+			 } 
+			 
+			 return "redirect:/main";
+		}
 	 
-	//새사이트(site)추가
+//-----------------------------------------------------------------		 
+	//사이트(site)수정페이지
+			@RequestMapping("/siteedit")
+			public String siteedit(Model model, ImageDTO imageDTO, int site_code) {
+				SiteDTO siteEdit = null;
+				List<ImageDTO> listI = null;
+				
+				try {
+					listI=serviceI.selectBySiteCode(site_code);
+					model.addAttribute("ilist", listI);
+					
+					siteEdit = serviceS.select(site_code);
+					model.addAttribute("siteEdit", siteEdit);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				model.addAttribute("center", dir + "siteEdit");
+				return "main";
+			}
+	 
+		//사이트(site)수정기능
+			 @RequestMapping("/siteupdate")
+			 public String siteupdate(Model model, SiteDTO sitedto) {
+				 try {
+					 serviceS.update(sitedto);
+				 } catch (Exception e) {
+					 e.printStackTrace();
+				 }
+				 
+				 return "redirect:/main";
+			}
+			 
+	//새사이트(site)추가기능
 		 @RequestMapping("/siteinsert") public String siteinsert(SiteDTO sitedto) {
 			 try {
 				 serviceS.insert(sitedto);
 			 } catch (Exception e) {
 				 e.printStackTrace();
 			 } 
-			 return "redirect:/zone";
+			 return "redirect:/main";
 		}
-	 
+		 
+
+//-----------------------------------------------------------------	
 	 //구역이미지수정(안됨)
 	 @RequestMapping("zoneimgedit")
 		public String zoneImgEdit(HttpSession session, ImageDTO imageDTO, MultipartFile zoneImg){

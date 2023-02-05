@@ -33,12 +33,12 @@ public class SiteService implements MyService<Integer, SiteDTO> {
 
     @Override
     public void delete(Integer integer) throws Exception {
-
+    	mapper.delete(integer);
     }
 
     @Override
     public void update(SiteDTO siteDTO) throws Exception {
-
+    	mapper.update(siteDTO);
     }
 
     @Override
