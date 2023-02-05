@@ -15,30 +15,55 @@
       <div class="row">
         <div class="col-lg-12">
 
-          <div class="card">
+<!--           <div class="card">
             <div class="card-body">
               <h5 class="card-title">공지 목록</h5>
               <p>주말동안 작업예정!!</p>
             </div>
           </div>
-
+        </div> -->
+        
+        <div class="card">
+        <div class="card-body">
+        
+        <table class="table-fill">
+			<thead>
+				<tr>
+					<th class="text-center" id="no">글번호</th>
+					<th id="impt"></th>
+					<th class="text-center" id="title">제목</th>
+					<th class="text-center" id="date">등록일</th>
+				</tr>
+			</thead>
+			<tbody class="table table-hover">
+				<tr th:each="notice:${plist}">
+					<td class="text-center" style="vertical-align: middle;" th:text="${notice.notice_code}"></td>
+					<td class="text-right" id="impt">
+						<div th:if="${notice.notice_level == 1}">[필독]</div>
+					</td>
+					<td class="text-left">
+						<div th:style="${notice.notice_level == 1 ? 'font-weight: bold' : 'font-weight: nomal'}">
+							<a th:text="${notice.notice_title}" th:href="@{/notice/noedit(notice_code=${notice.notice_code})}"></a>
+						</div>
+					</td>
+					<td class="text-center" style="vertical-align: middle;" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		</div>
+		
+		<div class="Btn">
+			<a id="notice_write" class="btn btn-primary" th:href="@{/notice/nowrite}">새 글 작성</a>
+		</div>
+		
         </div>
-
-<!--  
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">사이트1 수정</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-            </div>
-          </div>
-
-        </div>
--->        
         
 
-      </div>
+                
+	</div>
+	</div>
     </section>
 
   </main><!-- End #main -->
