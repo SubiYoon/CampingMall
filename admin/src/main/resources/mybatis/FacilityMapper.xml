@@ -8,9 +8,13 @@
         VALUES (#{admin_code}, #{facility_name}, #{facility_content})
     </insert>
     <select id="select" resultType="FacilityDTO">
-        SELECT *
-        FROM facility
-        WHERE facility_code = #{facility_code}
+        SELECT f.facility_code facility_code, f.admin_code admin_code, f.facility_name facility_name, f.facility_content facility_content, i.image_code image_code, i.image_file image_file 
+        FROM facility f
+         JOIN 
+            image i 
+                ON 
+                    f.facility_code=i.facility_code 
+        WHERE f.facility_code = #{facility_code}
     </select>
     <select id="selectAll" resultType="FacilityDTO">
         SELECT *

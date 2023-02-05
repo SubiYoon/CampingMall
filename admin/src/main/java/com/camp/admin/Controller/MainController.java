@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.camp.admin.DTO.AdminDTO;
 import com.camp.admin.DTO.CompanyDTO;
 import com.camp.admin.DTO.HomeDTO;
 import com.camp.admin.DTO.ImageDTO;
 import com.camp.admin.DTO.ZoneDTO;
+import com.camp.admin.service.AdminService;
 import com.camp.admin.service.CompanyService;
 import com.camp.admin.service.FacilityService;
 import com.camp.admin.service.HomeService;
@@ -48,25 +50,40 @@ public class MainController {
 	@Autowired
 	ImageService serviceI;
 
+	@Autowired
+	AdminService serviceA;
+
 	@RequestMapping("/")
 	public String main(){
 		
 		return "login";
 	}
 
+	@RequestMapping("/loginOk")
+	public String loginOk(AdminDTO admin, HttpSession session){
+		
+		try{
+			AdminDTO dbAdmin = serviceA.select(admin.getAdmin_id());
+			if(admin.getAdmin_password().equals(dbAdmin.getAdmin_password())){
+				CompanyDTO company = serviceC.select(dbAdmin.getCompany_code());
+				session.setAttribute("company", company);
+				session.setAttribute("admin", dbAdmin);
+			}else {
+				System.out.println(dbAdmin);
+				return "login";
+			}
+		} catch(Exception e){
+			//e.printStackTrace();
+			System.out.println("실패");
+		}
+
+		return "main";
+	}
+
 	@RequestMapping("/main")
 	public String main(Model model, HttpSession session, CompanyDTO companyDTO, ZoneDTO zoneDTO) {
-		CompanyDTO company = null;
+		CompanyDTO company = (CompanyDTO)session.getAttribute("comapny");
 		List<ZoneDTO> listZ = null;
-		
-		//TODO:차후 캠핑장 선택 페이지 생성시 수정 필요
-		try{
-			company = serviceC.select(1);
-		}catch(Exception e){
-			e.printStackTrace();
-			System.out.println("실패123");
-		}
-		session.setAttribute("company", company);
 		
 		try {
 			listZ=serviceZ.selectZone(company.getCompany_code());	//상호코드
@@ -213,5 +230,10 @@ public class MainController {
 		}
 		return "redirect:/main";
 	}
-	
+
+	@RequestMapping("logOut")
+	public String logOut(HttpSession session){
+		session.invalidate();
+		return "redirect:/";
+	}
 }
