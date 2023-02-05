@@ -126,7 +126,56 @@ $(document).ready(function(){
    });
 });
 </script>
+<style>
+   .container {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-top: 50px;
+   }
 
+   #register {
+     display: flex;
+     flex-direction: column;
+     padding: 20px;
+     background-color: #f2f2f2;
+     border-radius: 10px;
+     box-shadow: 2px 2px 5px #ccc;
+     width: 500px;
+   }
+
+   .register_label {
+     margin-top: 10px;
+     font-weight: bold;
+   }
+
+   #register input {
+     padding: 10px;
+     margin-top: 10px;
+     border-radius: 5px;
+     border: 1px solid #ccc;
+     width: 100%;
+   }
+
+   #register a {
+     padding: 10px 20px;
+     margin-top: 20px;
+     background-color: #4CAF50;
+     color: white;
+     border-radius: 5px;
+     border: none;
+     cursor: pointer;
+     width: 100%;
+     float: right;
+     text-align: center;
+   }
+
+   #checkid {
+      background-color: #4CAF50;
+      color: white;
+      float:right;
+   }
+ </style>
         <div class="back_re">
          <div class="container">
             <div class="row">
@@ -139,33 +188,23 @@ $(document).ready(function(){
          </div>
       </div>
       <!-- blog -->
-      <div  class="blog">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <p class="margin_0">(넣을 문구 설정)</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
       <div class="row">
          <div class="col-md-4">
             <div class="blog_box">
-               
+               <h2>다 지우고 새로 UI변경해도 됩니다.</h2>
             </div>
          </div>
          <div class="col-md-4">
+            <br><br><br><br>
             <div class="blog_box">
                <form id="register">
                   <div class="blog_room">
-                     아이디 <input type="text" name="user_id" alt="N"><input type="button" value="아이디 중복확인" id="checkid"/><br>
-                     비밀번호 <input type="password" name="user_password" maxlength="16" minlength="8"/><br>
-                     비밀번호확인 <input type="password" name="user_password_check" maxlength="16" minlength="8"/><br>
-                     이름 <input type="text" name="user_name"/><br>
-                     생년월일 <input type="text" name="user_birthday" maxlength="6"/><br>
-                     연락처 <input type="text" style="width: 30px;" name="user_tel1"/> - <input type="text" style="width: 30px;" name="user_tel2"/> - <input type="text" style="width: 30px;" name="user_tel3"/><br>
+                     <label class="register_label">아이디</label> <input type="text" name="user_id" alt="N"><input type="button" value="아이디 중복확인" id="checkid"/><br>
+                     <label class="register_label">비밀번호</label> <input type="password" name="user_password" maxlength="16" minlength="8"/><br>
+                     <label class="register_label">비밀번호확인</label> <input type="password" name="user_password_check" maxlength="16" minlength="8"/><br>
+                     <label class="register_label">이름</label> <input type="text" name="user_name"/><br>
+                     <label class="register_label">생년월일</label> <input type="text" name="user_birthday" maxlength="6"/><br>
+                     <label class="register_label">연락처</label><br> <input type="text" style="width: 50px;" name="user_tel1"/> - <input type="text" style="width: 50px;" name="user_tel2"/> - <input type="text" style="width: 50px;" name="user_tel3"/><br>
                      <a href="#">회원가입</a>
                   </div>
                </form>
@@ -177,4 +216,5 @@ $(document).ready(function(){
             </div>
          </div>
       </div>
+      
       <!-- end blog -->
