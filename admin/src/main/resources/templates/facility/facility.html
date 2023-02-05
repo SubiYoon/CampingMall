@@ -1,21 +1,8 @@
   <script>
-    $('.fac_form > a').click({function(){
-      console.log("??");
-    }
-    });
-    $('.fac_form > input[name=edit]').click(function(){
-      console.log('??');
-      $('.fac_form').attr({
-        'method': 'post',
-        'action': 'facility/edit'
-      });
-    });
-    $('.fac_form > input[name=delete]').click(function(){
-      $('.fac_form').attr({
-        'method': 'post',
-        'action': 'facility/delete'
-      });
-    });
+    // function fac_edit(){
+    //   document.getElementById('fac_form').setAttribute('method','post');
+    //   document.getElementById('fac_form').setAttribute('action','facility/edit');
+    // }
   </script>
   
   <main id="main" class="main">
@@ -42,11 +29,13 @@
                 <img th:src="'images/'+${fac.image_file}"/>
                 <p th:text="${fac.image_file}"></p>
               </div>
-              <form class="fac_form">
+              <form id="fac_form" method="post" action="facility/edit">
                 <input type="hidden" name="facility_code" th:value="${fac.facility_code}"/>
-                <input type="button" name="edit" value="수정" />
-                <input type="button" name="delete" value="삭제" />
-                <a>dd</a>
+                <button name="edit" onclick="javascript:fac_edit()">수정</button>
+              </form>
+              <form id="fac_form" method="post" action="facility/delete">
+                <input type="hidden" name="facility_code" th:value="${fac.facility_code}"/>
+                <button name="delete" onclick="javascript:fac_delete()">삭제</button>
               </form>
             </div>
           </div>
