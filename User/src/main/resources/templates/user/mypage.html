@@ -44,26 +44,43 @@
     
     function request_refund(num,state){
     		let merchant_uid=num;
-    		jQuery.ajax({
-    		      "url": "/refund",
-    		      "type": "POST",
-    		      "contentType": "application/json",
-    		      "data": JSON.stringify({
-    		        "merchant_uid":merchant_uid,
-    		        "state":state
-    		      }),
-    		      "dataType": "json",
-    		       success:function(data){
-    		    	   if(data==1){
-    		    		   location.reload(true);
-    		    	   }
-    		    	
-    		    }
-    		    
-    		});
-    	
+    		let go_refund;
+    		
+    		if(state==2){
+				var ok=confirm("환불 요청 하시겠습니까 ");
+				if(ok){
+					go_refund=1;
+				}
+				
+    		}else if(state==1){
+    			var ok=confirm("환불 취소 하시겠습니까 ");
+    			if(ok){
+					go_refund=1;
+    			}
+    		}
+			
+			if(go_refund==1){			
+	    		jQuery.ajax({
+	    		      "url": "/refund",
+	    		      "type": "POST",
+	    		      "contentType": "application/json",
+	    		      "data": JSON.stringify({
+	    		        "merchant_uid":merchant_uid,
+	    		        "state":state
+	    		      }),
+	    		      "dataType": "json",
+	    		       success:function(data){
+	    		    	   if(data!=1){
+	    			    		  alert("요청 실패");
+	    			    	  }
+	    		    		  location.reload(true);
+	    		    	
+	    		    }
+	    		    
+	    		});
+	    	
+	    }
     }
-    
     
     
     

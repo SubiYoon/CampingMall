@@ -22,8 +22,8 @@ $(document).ready(function () {
                 args += '<p>예약 인원 : '+data[i].book_member+'</p>';
                 args += '<p>예약자 이름 : '+data[i].user_name+'</p>';
                 args += '<p>예약자 전화번호 : '+data[i].user_tel+'</p></div></div>';
-                args += '<div class="refund-button-container"><button type="button" style="margin-right:10px" class="btn btn-success" onclick="refund('+i+',3)">환불허가</button>';
-                args += '<button type="button" class="btn btn-success" onclick="refund('+i+',4)">환불취소</button></div>';
+                args += '<div class="refund-button-container"><button type="button" style="margin-right:10px" class="btn btn-success" onclick="refund('+i+',3)">환불승인</button>';
+                args += '<button type="button" class="btn btn-success" onclick="refund('+i+',4)">환불거절</button></div>';
                 args += '</div>';
                 args += '</div>';
                 args += '</div>';
@@ -36,29 +36,45 @@ $(document).ready(function () {
 function refund(num,state) {
 	
 	let merchant_uid=$('#m_uid'+num).text();
-	jQuery.ajax({
-	      "url": "/admin/refund", // 예: http://www.myservice.com/payments/cancel
-	      "type": "POST",
-	      "contentType": "application/json",
-	      "data": JSON.stringify({
-	        "merchant_uid":merchant_uid,
-	        "state":state
-	      }),
-	      "dataType": "json",
-	      success:function(data){
-	    	  if(data==1){
-	    		  location.reload(true);
-	    		  
-	    	  }
-	    	  
-	    	  
-	      }
-	      
-	      
-	      
-	      
-	    });
+	let go_refund;
 	
+	if(state==3){
+		var ok=confirm("환불요청 승인 하시겠습니까 ");
+		if(ok){
+			go_refund=1;
+		}
+		
+	}else if(state==4){
+		var ok=confirm("환불요청 거절 하시겠습니까 ");
+		if(ok){
+			go_refund=1;
+		}
+	}
+	
+	if(go_refund==1){	
+		jQuery.ajax({
+		      "url": "/admin/refund", // 예: http://www.myservice.com/payments/cancel
+		      "type": "POST",
+		      "contentType": "application/json",
+		      "data": JSON.stringify({
+		        "merchant_uid":merchant_uid,
+		        "state":state
+		      }),
+		      "dataType": "json",
+		      success:function(data){
+		    	  if(data!=1){
+		    		  alert("요청 실패");
+		    	  }
+	    		  location.reload(true);
+		    	  
+		    	  
+		      }
+		      
+		      
+		      
+		      
+		    });
+	}	
 }
 
 
