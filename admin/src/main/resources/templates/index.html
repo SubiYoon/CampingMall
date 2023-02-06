@@ -1,3 +1,9 @@
+<script>
+
+    $(document).ready(function () {
+        getGraph();
+    });
+</script>
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -198,18 +204,18 @@
                                                 width: 2
                                             },
                                             xaxis: {
-                                                type: 'datetime',
-                                                categories: ["2018-09-19T00:00:00.000Z",
-                                                    "2018-09-19T01:30:00.000Z",
-                                                    "2018-09-19T02:30:00.000Z",
-                                                    "2018-09-19T03:30:00.000Z",
-                                                    "2018-09-19T04:30:00.000Z",
-                                                    "2018-09-19T05:30:00.000Z",
-                                                    "2018-09-19T06:30:00.000Z"]
+                                                type: 'text',
+                                                categories: ["2018-06-01",
+                                                    "2018-07",
+                                                    "2018-08",
+                                                    "2018-09-01",
+                                                    "2018-10-01",
+                                                    "2018-11-01",
+                                                    "2018-12-01"]
                                             },
                                             tooltip: {
                                                 x: {
-                                                    format: 'dd/MM/yy HH:mm'
+                                                    format: 'yyyy-MM'
                                                 },
                                             }
                                         }).render();
@@ -232,81 +238,11 @@
                                         <h5 class="card-title">구역별 매출
                                             <span>| This Month</span>
                                         </h5>
-
-                                        <div id="budgetChart" style="min-height: 400px;"
-                                             class="echart"></div>
-
                                         <script>
-                                            document.addEventListener("DOMContentLoaded", () => {
-                                                var budgetChart = echarts.init(
-                                                    document.querySelector(
-                                                        "#budgetChart")).setOption({
-                                                    legend: {
-                                                        data: ['Allocated Budget',
-                                                            'Actual Spending']
-                                                    },
-                                                    radar: {
-                                                        // shape: 'circle',
-                                                        indicator: [{
-                                                            name: 'Sales',
-                                                            max: 6500
-                                                        },
-                                                            {
-                                                                name: 'Administration',
-                                                                max: 16000
-                                                            },
-                                                            {
-                                                                name: 'Information Technology',
-                                                                max: 30000
-                                                            },
-                                                            {
-                                                                name: 'Customer Support',
-                                                                max: 38000
-                                                            },
-                                                            {
-                                                                name: 'Development',
-                                                                max: 52000
-                                                            },
-                                                            {
-                                                                name: 'Marketing',
-                                                                max: 25000
-                                                            }
-                                                        ]
-                                                    },
-                                                    series: [{
-                                                        name: 'Budget vs spending',
-                                                        type: 'radar',
-                                                        data: [{
-                                                            value: [4200, 3000, 20000, 35000, 50000,
-                                                                18000],
-                                                            name: 'Allocated Budget'
-                                                        },
-                                                            {
-                                                                value: [5000, 14000, 28000, 26000,
-                                                                    42000,
-                                                                    21000],
-                                                                name: 'Actual Spending'
-                                                            }
-                                                        ]
-                                                    }]
-                                                });
-                                            });
-                                        </script>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="card-body pb-0">
-                                        <h5 class="card-title">구역별 방문자 <span>| Today</span>
-                                        </h5>
-
-                                        <div id="trafficChart" style="min-height: 400px;"
-                                             class="echart"></div>
-
-                                        <script>
-                                            document.addEventListener("DOMContentLoaded", () => {
-                                                echarts.init(
-                                                    document.querySelector(
-                                                        "#trafficChart")).setOption({
+                                            function drawChart(divID, obj) {
+                                                let myChart = echarts.init(
+                                                    document.getElementById(divID));
+                                                var option = {
                                                     tooltip: {
                                                         trigger: 'item'
                                                     },
@@ -315,7 +251,7 @@
                                                         left: 'center'
                                                     },
                                                     series: [{
-                                                        name: 'Access From',
+                                                        name: '구역별 매출',
                                                         type: 'pie',
                                                         radius: ['40%', '70%'],
                                                         avoidLabelOverlap: false,
@@ -333,31 +269,55 @@
                                                         labelLine: {
                                                             show: false
                                                         },
-                                                        data: [{
-                                                            value: 1048,
-                                                            name: 'Search Engine'
-                                                        },
-                                                            {
-                                                                value: 735,
-                                                                name: 'Direct'
-                                                            },
-                                                            {
-                                                                value: 580,
-                                                                name: 'Email'
-                                                            },
-                                                            {
-                                                                value: 484,
-                                                                name: 'Union Ads'
-                                                            },
-                                                            {
-                                                                value: 300,
-                                                                name: 'Video Ads'
-                                                            }
-                                                        ]
+                                                        data: obj,
                                                     }]
-                                                });
-                                            });
+                                                }
+                                                myChart.setOption(option);
+                                            }
+
+                                            function getGraph() {
+                                                let label;
+
+                                                $.ajax({
+                                                    url: "/admin/main/graphData",
+                                                    type: "post",
+                                                    success: function (data) {
+                                                        console.log(data.Graph.labelsList[0]);
+                                                        console.log(data.Graph.dataList[0]);
+                                                        label = data.Graph.label;
+                                                        let myobj1 = [];
+                                                        // 그래프로 나타낼 자료 리스트에 담기
+
+                                                        for (let i = 0; i < data.Graph.labelsList.length; i++) {
+                                                            myobj1.push(
+                                                                {
+                                                                    value: data.Graph.dataList[i],
+                                                                    name: data.Graph.labelsList[i]
+                                                                });
+                                                        }
+                                                        drawChart('budgetChart', myobj1)
+                                                        // 그래프
+                                                    },
+                                                    error: function () {
+                                                        alert("실패");
+                                                    }
+
+                                                }) // ajax
+                                            } // getGraph
                                         </script>
+                                        <div id="budgetChart" style="min-height: 400px;"
+                                             class="echart"></div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="card-body pb-0">
+                                        <h5 class="card-title">구역별 방문자 <span>| Today</span>
+                                        </h5>
+
+
 
                                     </div>
                                 </div>
@@ -373,29 +333,16 @@
 
                 <!-- Recent Activity -->
                 <div class="card">
-                    <div class="filter">
-                        <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                            class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
-
-                            <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                            <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                            <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
-                        </ul>
-                    </div>
 
                     <div class="card-body">
-                        <h5 class="card-title">Recent Books <span>| Today</span></h5>
+                        <h5 class="card-title">최근 예약</h5>
 
                         <table class="table table-borderless datatable">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">고객</th>
-                                <th scope="col">구역 사이트</th>
+                                <th scope="col">구역 / 사이트</th>
                                 <th scope="col">가격</th>
                                 <th scope="col">상태</th>
                             </tr>
@@ -404,37 +351,37 @@
                             <tr>
                                 <th scope="row"><a th:href="@{#}">#2457</a></th>
                                 <td>Brandon Jacob</td>
-                                <td><a th:href="@{#}" class="text-primary">At praesentium minu</a></td>
+                                <td>At praesentium minu</td>
                                 <td>$64</td>
                                 <td><span class="badge bg-success">Approved</span></td>
                             </tr>
                             <tr>
                                 <th scope="row"><a th:href="@{#}">#2147</a></th>
                                 <td>Bridie Kessler</td>
-                                <td><a th:href="@{#}" class="text-primary">Blanditiis dolor omnis similique</a></td>
+                                <td>Blanditiis dolor omnis similique</td>
                                 <td>$47</td>
                                 <td><span class="badge bg-warning">Pending</span></td>
                             </tr>
                             <tr>
                                 <th scope="row"><a th:href="@{#}">#2049</a></th>
                                 <td>Ashleigh Langosh</td>
-                                <td><a th:href="@{#}" class="text-primary">At recusandae consectetur</a></td>
+                                <td>At recusandae consectetur</td>
                                 <td>$147</td>
                                 <td><span class="badge bg-success">Approved</span></td>
                             </tr>
                             <tr>
                                 <th scope="row"><a th:href="@{#}">#2644</a></th>
                                 <td>Angus Grady</td>
-                                <td><a th:href="@{#}" class="text-primar">Ut voluptatem id earum et</a></td>
+                                <td>Ut voluptatem id earum et</td>
                                 <td>$67</td>
                                 <td><span class="badge bg-danger">Rejected</span></td>
                             </tr>
                             <tr>
                                 <th scope="row"><a th:href="@{#}">#2644</a></th>
                                 <td>Raheem Lehner</td>
-                                <td><a th:href="@{#}" class="text-primary">Sunt similique distinctio</a></td>
+                                <td>Sunt similique distinctio</td>
                                 <td>$165</td>
-                                <td><span class="badge bg-success">Approved</span></td>
+                                <td>Approved</td>
                             </tr>
                             </tbody>
                         </table>
@@ -445,65 +392,56 @@
 
                 <!-- News & Updates Traffic -->
                 <div class="card">
-                    <div class="filter">
-                        <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                            class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
-
-                            <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                            <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                            <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
-                        </ul>
-                    </div>
-
                     <div class="card-body">
-                        <h5 class="card-title">Recent Reviews <span>| Today</span></h5>
+                        <h5 class="card-title">최근 리뷰</h5>
 
                         <table class="table table-borderless datatable">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">작성자 </th>
-                                <th scope="col">내용 </th>
-                                <th scope="col">별점 </th>
+                                <th scope="col">작성자</th>
+                                <th scope="col">내용</th>
+                                <th scope="col">별점</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <th scope="row"><a th:href="@{#}">#2457</a></th>
                                 <td>Brandon Jacob</td>
-                                <td><a th:href="@{#}" class="text-primary">At praesentium minu</a></td>
+                                <td><a th:href="@{#}" class="text-primary">At praesentium minu</a>
+                                </td>
                                 <td>$64</td>
 
                             </tr>
                             <tr>
                                 <th scope="row"><a th:href="@{#}">#2147</a></th>
                                 <td>Bridie Kessler</td>
-                                <td><a th:href="@{#}" class="text-primary">Blanditiis dolor omnis similique</a></td>
+                                <td><a th:href="@{#}" class="text-primary">Blanditiis dolor omnis
+                                    similique</a></td>
                                 <td>$47</td>
 
                             </tr>
                             <tr>
                                 <th scope="row"><a th:href="@{#}">#2049</a></th>
                                 <td>Ashleigh Langosh</td>
-                                <td><a th:href="@{#}" class="text-primary">At recusandae consectetur</a></td>
+                                <td><a th:href="@{#}" class="text-primary">At recusandae
+                                    consectetur</a></td>
                                 <td>$147</td>
 
                             </tr>
                             <tr>
                                 <th scope="row"><a th:href="@{#}">#2644</a></th>
                                 <td>Angus Grady</td>
-                                <td><a th:href="@{#}" class="text-primar">Ut voluptatem id earum et</a></td>
+                                <td><a th:href="@{#}" class="text-primar">Ut voluptatem id earum
+                                    et</a></td>
                                 <td>$67</td>
 
                             </tr>
                             <tr>
                                 <th scope="row"><a th:href="@{#}">#2644</a></th>
                                 <td>Raheem Lehner</td>
-                                <td><a th:href="@{#}" class="text-primary">Sunt similique distinctio</a></td>
+                                <td><a th:href="@{#}" class="text-primary">Sunt similique
+                                    distinctio</a></td>
                                 <td>$165</td>
 
                             </tr>
