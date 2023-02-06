@@ -22,4 +22,10 @@ public class UserDTO {
     private String user_tel1;
     private String user_tel2;
     private String user_tel3;
+
+    private int bookCount;
+    private String book_checkin;
+    private String book_checkout;
+
+    private String currentBookDate = book_checkin + " ~ " + book_checkout;
 }

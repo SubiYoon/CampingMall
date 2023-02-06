@@ -1,86 +1,74 @@
-  <main id="main" class="main">
+<script>
+  $(document).ready(function(){
+    $('.userDetail').click(function(){
+      $(this).parent().parent().parent().parent().next().attr({
+        'method' : 'post',
+        'action' : 'userDetail'
+      });
+      $(this).parent().parent().parent().parent().next().submit();
+    });
+  });
+</script>
+<main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>유저 관리</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Blank</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+  <div class="pagetitle">
+    <h1>유저 관리</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
+        <li class="breadcrumb-item active">UserList</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
 
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">A구역수정</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">유저 목록</h5>
+            <p>현재 캠핑장을 사용한 사용자의 
+              <code>이름, 생년월일, 예약횟수, 연락처, 최근 예약일, 탈퇴여부</code>
+              목록입니다.
+            </p><br>
+            <p>이름을 
+              <code>클릭</code>
+              하면 과거 예약정보를 볼 수 있습니다.
+            </p>
+            <br>
+            <!-- Table Variants -->
+            <div th:each="userList : ${userList}">
+            <table class="table">
+              <thead>
+                <tr class="table-success">
+                  <th scope="col">이름</th>
+                  <th scope="col">생년월일</th>
+                  <th scope="col">예약횟수</th>
+                  <th scope="col">연락처</th>
+                  <th scope="col">최근 예약일</th>
+                  <th scope="col">탈퇴여부</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <th scope="row"><a class="userDetail" href="#Detail" th:text="${userList.user_name}"></a></th>
+                    <td th:text="${userList.user_birthday}"></td>
+                    <td th:text="${userList.bookCount}"></td>
+                    <td th:text="${userList.user_tel}"></td>
+                    <td th:text="${userList.book_checkin + ' ~ ' + userList.book_checkout}"></td>
+                    <td th:text="${userList.user_tel1}"></td>
+                  </tr>
+              </tbody>
+            </table>
+            <!-- End Table Variants -->
+              <form class="userBookDetail">
+                <input type="hidden" name="user_id" th:value="${userList.user_id}"/>
+              </form>
             </div>
           </div>
-
         </div>
-
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">사이트1 수정</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-            </div>
-          </div>
-
-        </div>
-        
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">사이트2 수정</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-            </div>
-          </div>
-
-        </div>
-        
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">사이트3 수정</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-            </div>
-          </div>
-
-        </div>
-        
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">사이트4 수정</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-            </div>
-          </div>
-
-        </div>
-        
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">사이트5 수정</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-            </div>
-          </div>
-
-        </div>
-        
-
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main><!-- End #main -->
+</main><!-- End #main -->

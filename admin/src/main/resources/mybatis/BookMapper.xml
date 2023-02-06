@@ -93,7 +93,36 @@
         SET book_state=#{state}
         WHERE merchant_uid = #{merchant_uid}
     </update>
-    
+    <select id="selectUserBook" resultType="BookDTO">
+        SELECT 
+            site.site_name site_name,
+            book.book_member,
+            book.book_checkin,
+            book.book_checkout,
+            book.book_price,
+            book.book_car_number,
+            book.book_state,
+            book.book_writedate
+        FROM 
+            user
+        JOIN 
+            book
+        ON 
+            user.user_code=book.user_code
+        JOIN 
+            site
+        ON 
+            book.site_code=site.site_code
+        JOIN
+            image
+        ON
+            site.site_code=image.site_code
+        WHERE 
+            image.company_code=${company_code} AND user.user_id=#{user_id}
+        ORDER BY
+            book.book_code    
+        DESC
+    </select>
     
     
     

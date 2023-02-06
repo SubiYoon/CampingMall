@@ -18,4 +18,5 @@ public interface BookMapper extends MyMapper<Integer, BookDTO> {
     List<BookDTO> selectUserAll(int user_code);
     List<Map<String, Object>> selectAllState(int book_state);
     int updateBookState(@Param("merchant_uid")String merchant_uid,@Param("state")int state);
+    List<BookDTO> selectUserBook(int company_code, String user_id);
 }

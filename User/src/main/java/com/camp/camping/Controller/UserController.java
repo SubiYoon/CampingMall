@@ -187,7 +187,7 @@ public class UserController {
 			service.delete(user_id);
 			session.invalidate();
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			System.out.println("실패");
 		}
 
