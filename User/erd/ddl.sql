@@ -32,6 +32,7 @@ CREATE TABLE `site` (
    `site_name`   VARCHAR(100)   NULL,
    `site_price`   INT   NULL,
    `site_content`   LONGTEXT   NULL,
+   `site_state` INT NULL DEFAULT 1,
     primary key (site_code)
 );
 
@@ -77,6 +78,7 @@ CREATE TABLE `zone` (
    `admin_code`   INT   NOT NULL,
    `zone_name`   VARCHAR(30)   NOT NULL,
    `zone_content`   LONGTEXT   NULL,
+   `zone_state` INT NULL DEFAULT 1,
     primary key (zone_code)
 );
 

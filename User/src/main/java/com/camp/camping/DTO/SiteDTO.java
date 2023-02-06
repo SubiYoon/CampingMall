@@ -20,6 +20,7 @@ public class SiteDTO {
 
     private int image_code;
     private String image_file;
+    private int site_state;
 
     public SiteDTO(int site_code, int zone_code, String site_name, int site_price, String site_content) {
         this.site_code = site_code;
