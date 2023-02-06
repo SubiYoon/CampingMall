@@ -38,8 +38,7 @@ public class NoticeController {
 
 //공지사항글작성페이지
 	@RequestMapping("/nowrite")
-	public String nowrite(Model model, HttpSession session) {		
-		model.addAttribute("admin", new AdminDTO());
+	public String nowrite(Model model, HttpSession session) {
 		model.addAttribute("center", dir + "nowrite");
 		return "main";
 	}
@@ -77,17 +76,9 @@ public class NoticeController {
 //공지사항작성기능
 	@RequestMapping("/noticedo")
 	public String noticedo(NoticeDTO noticeDto, HttpSession session) {
-
-		AdminDTO admin = (AdminDTO)session.getAttribute("admin");
-		NoticeDTO notDto = new NoticeDTO();
-		
-		notDto.setAdmin_code(admin.getAdmin_code());
-		notDto.setNotice_title(noticeDto.getNotice_title());
-		notDto.setNotice_content(noticeDto.getNotice_content());
-		notDto.setNotice_level(noticeDto.getNotice_level());
 		
 		try {
-			ns.insert(notDto);
+			ns.insert(noticeDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

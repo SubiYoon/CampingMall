@@ -17,7 +17,7 @@
 			if(c == true){
 				$('#up_form').attr({
 					'method':'post',
-					'action':'[[@{/zone/sitedel}]]'
+					'action':'[[@{/zone/siteDel}]]'
 				});
 				$('#up_form').submit();
 			};
@@ -63,7 +63,7 @@
 	<!-- End Page Title -->
 	
 	<form id="newzoneForm">
-		<input id="zoneinsert" type="hidden" name="admin_code" value=1><!-- 관리자로그인세션으로나중에바꾸기 -->
+		<input id="zoneinsert" type="hidden" name="admin_code" th:value="${session.admin.Admin_code}">
 		<input id="zoneinsert" type="hidden" name="zone_name" value="새로운 구역"/>
 		<input id="zoneinsert" type="hidden" name="zone_content" value="구역 설명을 수정하세요."/>
 	</form>
@@ -107,7 +107,7 @@
              </div>
 				<div class="Btn">
 				<a id="notice_write" class="btn btn-primary" th:href="@{/zone/siteedit(site_code=${site.site_code})}">수정</a>
-				<a id="siteDelBtn" class="btn btn-primary" th:href="@{#}">삭제</a>
+				<a id="siteDelBtn" class="btn btn-primary" th:href="@{/zone/sitedel(site_code=${site.site_code})}">삭제</a>
 				</div>
             </div>
           	</div>

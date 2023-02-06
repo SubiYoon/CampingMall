@@ -51,6 +51,10 @@ public class SiteService implements MyService<Integer, SiteDTO> {
         return null;
     }
     
+    public void updateDel(Integer integer) throws Exception {
+    	mapper.updateDel(integer);
+    }
+    
     public List<SiteDTO> selectSet(int company_code) throws Exception {
         return mapper.selectSet(company_code);
     }
