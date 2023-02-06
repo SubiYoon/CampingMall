@@ -103,7 +103,7 @@
          </div>
       </div>
       <div class="row">
-         <div class="col-md-4 col-sm-6" th:each="zone:${zlist}">
+         <div class="col-md-4 col-sm-6" th:each="zone:${zlist}" th:if="${zone.zone_code} != 0">
             <div id="serv_hover" class="room">
                <div class="room_img">
 					<span th:each="img:${ilist}" th:if="${zone.zone_code == img.zone_code}">
