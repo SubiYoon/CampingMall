@@ -38,7 +38,8 @@ public class NoticeController {
 
 //공지사항글작성페이지
 	@RequestMapping("/nowrite")
-	public String nowrite(Model model) {
+	public String nowrite(Model model, HttpSession session) {		
+		model.addAttribute("admin", new AdminDTO());
 		model.addAttribute("center", dir + "nowrite");
 		return "main";
 	}
@@ -62,6 +63,7 @@ public class NoticeController {
 	@RequestMapping("/noedit")
 	public String noedit(Model model, int notice_code) {
 		NoticeDTO notice = null;
+		
 		try {
 			notice = ns.select(notice_code);
 			model.addAttribute("notice", notice);
