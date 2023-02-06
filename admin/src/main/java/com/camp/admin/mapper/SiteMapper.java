@@ -17,4 +17,6 @@ public interface SiteMapper extends MyMapper<Integer, SiteDTO> {
     
     List<SiteDTO> selectSet(Integer company_code) throws Exception;
     public SiteDTO selectView(int site_code);
+    
+    public void updateDel(Integer site_code) throws Exception;
 }

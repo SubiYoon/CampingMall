@@ -144,15 +144,27 @@ public class ZoneController {
 				 return "redirect:/main";
 			}
 			 
-	//새사이트(site)추가기능
-		 @RequestMapping("/siteinsert") public String siteinsert(SiteDTO sitedto) {
-			 try {
-				 serviceS.insert(sitedto);
-			 } catch (Exception e) {
-				 e.printStackTrace();
-			 } 
-			 return "redirect:/main";
-		}
+		//새사이트(site)추가기능
+			 @RequestMapping("/siteinsert") 
+			 public String siteinsert(SiteDTO sitedto) {
+				 try {
+					 serviceS.insert(sitedto);
+				 } catch (Exception e) {
+					 e.printStackTrace();
+				 } 
+				 return "redirect:/main";
+			}
+			 
+		//사이트 삭제기능(업데이트로 처리)
+			 @RequestMapping("/sitedel") 
+			 public String siteDel(SiteDTO sitedto, int site_code) {
+				 try {
+					 serviceS.updateDel(site_code);
+				 } catch (Exception e) {
+					 e.printStackTrace();
+				 } 
+				 return "redirect:/main";
+			}
 		 
 
 //-----------------------------------------------------------------	
@@ -182,18 +194,14 @@ public class ZoneController {
 	 
 	
 	
-	@RequestMapping("/site")
-	public String site(Model model, int site_code) {
-		
-		try {
-			SiteDTO site = serviceS.selectView(site_code);
-			model.addAttribute("site", site);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		model.addAttribute("center", dir+"site");
-		return "main";
-	}
+		/*
+		 * @RequestMapping("/site") public String site(Model model, int site_code) {
+		 * 
+		 * try { SiteDTO site = serviceS.selectView(site_code);
+		 * model.addAttribute("site", site); } catch (Exception e) {
+		 * e.printStackTrace(); }
+		 * 
+		 * model.addAttribute("center", dir+"site"); return "main"; }
+		 */
 	
 }

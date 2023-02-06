@@ -54,4 +54,8 @@
         INSERT INTO site(zone_code, site_name, site_price, site_content) VALUES(#{zone_code}, #{site_name}, #{site_price}, #{site_content})
     </insert>
     
+    <update id="updateDel" parameterType="SiteDTO">
+        UPDATE site SET zone_code=0 WHERE site_code=#{site_code}
+    </update>
+    
 </mapper>

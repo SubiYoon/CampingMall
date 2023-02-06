@@ -17,7 +17,7 @@
 			if(c == true){
 				$('#up_form').attr({
 					'method':'post',
-					'action':'[[@{/zone/sitedel}]]'
+					'action':'[[@{/zone/siteDel}]]'
 				});
 				$('#up_form').submit();
 			};
@@ -107,7 +107,7 @@
              </div>
 				<div class="Btn">
 				<a id="notice_write" class="btn btn-primary" th:href="@{/zone/siteedit(site_code=${site.site_code})}">수정</a>
-				<a id="siteDelBtn" class="btn btn-primary" th:href="@{#}">삭제</a>
+				<a id="siteDelBtn" class="btn btn-primary" th:href="@{/zone/sitedel(site_code=${site.site_code})}">삭제</a>
 				</div>
             </div>
           	</div>
