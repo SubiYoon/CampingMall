@@ -43,4 +43,10 @@ public class UserService implements MyService<String, UserDTO>{
     public void kakaoLoginInsert(UserDTO userDTO) throws Exception{
         mapper.kakaoLoginInsert(userDTO);
     }
+
+    public UserDTO selectnt(String n,String t) throws Exception{
+    	return mapper.selectnt(n, t);
+    }
+    
+    
 }

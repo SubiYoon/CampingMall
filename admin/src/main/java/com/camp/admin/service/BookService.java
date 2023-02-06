@@ -474,5 +474,15 @@ public class BookService implements MyService<Integer, BookDTO> {
 
         return book;
     }
+    
+    public List<Map<String, Object>> selectAllState(int book_state) throws Exception{
+    	return mapper.selectAllState(book_state);
+    }
+    
+    public int updateBookState(String merchant_uid,int state) {
+    	return mapper.updateBookState(merchant_uid,state);
+    }
+    
+    
 
 }

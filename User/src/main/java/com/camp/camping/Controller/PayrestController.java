@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.camp.camping.DTO.BookDTO;
-import com.camp.camping.DTO.PaymentDTO;
 import com.camp.camping.DTO.UserDTO;
 import com.camp.camping.service.BookService;
 import com.camp.camping.service.PaymentService;

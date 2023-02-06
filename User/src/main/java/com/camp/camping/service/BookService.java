@@ -182,4 +182,13 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return 0;
     }
+    
+    public int updateBookState(String merchant_uid,int state) {
+    	return mapper.updateBookState(merchant_uid,state);
+    }
+    
+    
+    
+    
+   
 }

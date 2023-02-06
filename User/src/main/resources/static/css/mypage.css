@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.mypage-reservation-info{
+	background-color: #f8f9fa;
+	border: 1px solid rgb(0 0 0 / 10%);;
+	padding :10px;
+}
+
+.mypage-reservation-info>p{
+	text-align: left;
+	
+}
+
+.mypage-reservation-container{
+	border-radius: 1em;
+    box-shadow: 5px 5px 5px 5px #dadce0;
+	
+}
+
+.mypage-reservation-container .room_img{
+	border-radius: 1em 1em 0 0;
+}
+
+.refund-cancel-message{
+	background-color: rgb(0 0 0 / 10%);
+	border: 1px solid rgb(0 0 0 / 10%);
+	padding :10px;
+	
+}
