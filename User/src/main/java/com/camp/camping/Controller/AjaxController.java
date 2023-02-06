@@ -3,11 +3,14 @@ package com.camp.camping.Controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -88,6 +91,7 @@ public class AjaxController {
 		}else{
 			json.put("userBookList", userBookList);
 		}
+		
 
         return json;
     }
@@ -139,4 +143,32 @@ public class AjaxController {
 
         return list;
     }
+    
+    
+    
+    
+    
+    @PostMapping("refund")
+	public int refundOk(@RequestBody JSONObject jsonobject) {
+		int result=0;
+
+		int state=Integer.parseInt(jsonobject.get("state")+"");
+		String merchant_uid=(String)jsonobject.get("merchant_uid");
+		
+		
+		if(state==2) {
+			result=bService.updateBookState(merchant_uid,2);
+			System.out.println("22요청:"+result);
+		}else if(state==1){
+			result=bService.updateBookState(merchant_uid,1);
+			System.out.println("11취소:"+result);
+		}
+		
+		return result;
+	}
+	
+    
+    
+    
+    
 }

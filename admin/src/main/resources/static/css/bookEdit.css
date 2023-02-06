@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+
+.refund-guide>p{
+	font-size: 13px;
+    letter-spacing: 0px;
+    word-spacing: 0px;
+    font-weight: normal;
+    font-family: "Nanum Gothic", "sans-serif", "AppleGothic", "굴림", "Gulim", "Arial", "verdana", "Helvetica";
+    margin-left: 20px;
+    margin-bottom: 10px;
+    
+	
+}
+
+
+.card-container{
+	background-color:#bed3f3;
+	
+}
+
+
+.refund-line-cut{
+	border-bottom: 2px solid #f6f9ff;;
+}
+
+.card-container>div>h5{
+	margin:0;	
+
+}
+
+.card-container>div>p{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+}
+
+
+.refund-button-container{
+	padding:10px;
+	padding-top:0;
+	text-align: center;
+	
+}
+
+
+.refund-button-container>button{
+	width: 47%;
+	height: 50px;
+	
+}
+
+
+.refund-text-container{
+	margin :20px;
+	margin-top:5px;
+	padding:10px;
+	border-radius:10px;
+	background-color:#f6f9ff;
+
+	
+}
+
+.refund-text-container>p{
+	font-family: "Times New Roman",Times,serif;
+}
+
+
+
+.refund-req-title{
+	padding:10px 0 0 20px
+}

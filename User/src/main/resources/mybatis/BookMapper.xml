@@ -48,7 +48,8 @@
                 book.book_price book_price,
                 book.book_car_number book_car_number,
                 book.book_state book_state,
-                site.site_name site_name
+                site.site_name site_name,
+                book.merchant_uid merchant_uid
         FROM book 
         JOIN site 
         ON book.site_code = site.site_code 
@@ -84,4 +85,12 @@
         FROM book
         WHERE book_code = #{book_code}
     </delete>
+    
+    <update id="updateBookState">
+        UPDATE book
+        SET book_state=#{state}
+        WHERE merchant_uid = #{merchant_uid}
+    </update>
+   
+    
 </mapper>

@@ -10,9 +10,9 @@ INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('NoopCamp
 INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('GosuCamping', "sample.png", "sample.png");
 
 -- 관리자
-insert into `admin`(company_code, admin_id, admin_password) values(1,'admin01','111111');
-insert into `admin`(company_code, admin_id, admin_password) values(1,'admin02','111111');
-insert into `admin`(company_code, admin_id, admin_password) values(2,'admin03','222222');
+insert into `admin`(company_code, admin_id, admin_password) values(1,'admin01','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
+insert into `admin`(company_code, admin_id, admin_password) values(1,'admin02','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
+insert into `admin`(company_code, admin_id, admin_password) values(2,'admin03','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
 
 -- 공지
 INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '[휴무안내]공지사항1제목입니다', "공지사항 1입니다.");
@@ -69,9 +69,15 @@ insert into `payment`(merchant_uid,pay_method, imp_uid) values('5','카드','1')
 
 -- 예약
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,1,'1',3,'2023-02-03','2023-02-04',30000,'12가1234');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(5,1,'5',5,'2023-02-18','2023-02-21',300000,'13가1234');
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(7,2,'2',2,'2023-02-01','2023-02-02',35000,'13나1234');
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price) values(1,2,'3',1,'2023-02-04','2023-02-07',20000);
+<<<<<<< HEAD
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(15,3,'4',2,'2023-02-02','2023-02-05',45000,'13나1234');
+=======
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,3,'4',2,'2023-02-02','2023-02-05',45000,'13나1234');
+
+>>>>>>> Develop
 
 -- 스케줄
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-06','방역');
@@ -87,6 +93,7 @@ insert into image(company_code, zone_code, image_file) VALUES(1, 1, 'zone_img1.j
 insert into image(company_code, zone_code, image_file) VALUES(1, 2, 'zone_img2.jpg');
 insert into image(company_code, zone_code, image_file) VALUES(1, 3, 'zone_img3.jpg');
 insert into image(company_code, zone_code, image_file) VALUES(1, 4, 'zone_img4.jpg');
+
 insert into image(company_code, site_code, image_file) VALUES(1, 1, 'site_img1.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 2, 'site_img2.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 3, 'site_img3.png');
@@ -97,10 +104,12 @@ insert into image(company_code, site_code, image_file) VALUES(1, 7, 'site_img2.p
 insert into image(company_code, site_code, image_file) VALUES(1, 8, 'site_img3.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 9, 'site_img4.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 10, 'site_img5.png');
-insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'facility_img1.png');
-insert into image(company_code, facility_code, image_file) VALUES(1, 2, 'facility_img2.png');
-insert into image(company_code, facility_code, image_file) VALUES(1, 3, 'facility_img3.png');
-insert into image(company_code, facility_code, image_file) VALUES(1, 4, 'facility_img4.png');
+
+insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'gallery1.jpg');
+insert into image(company_code, facility_code, image_file) VALUES(1, 2, 'gallery2.jpg');
+insert into image(company_code, facility_code, image_file) VALUES(1, 3, 'gallery3.jpg');
+insert into image(company_code, facility_code, image_file) VALUES(1, 4, 'gallery4.jpg');
+
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner1.jpg');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner2.jpg');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner3.jpg');
@@ -114,3 +123,7 @@ insert into reservation(book_code,reservation_date) values(3, '2023-02-06');
 insert into reservation(book_code,reservation_date) values(4, '2023-02-02');
 insert into reservation(book_code,reservation_date) values(4, '2023-02-03');
 insert into reservation(book_code,reservation_date) values(4, '2023-02-04');
+insert into reservation(book_code,reservation_date) values(5, '2023-02-18');
+insert into reservation(book_code,reservation_date) values(5, '2023-02-19');
+insert into reservation(book_code,reservation_date) values(5, '2023-02-20');
+insert into reservation(book_code,reservation_date) values(5, '2023-02-21');

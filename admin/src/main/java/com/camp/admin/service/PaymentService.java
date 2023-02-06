@@ -1,9 +1,13 @@
-package com.camp.camping.service;
+package com.camp.admin.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -20,11 +24,11 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.camp.camping.DTO.BookDTO;
-import com.camp.camping.DTO.PaymentDTO;
-import com.camp.camping.DTO.UserDTO;
-import com.camp.camping.frame.MyMapper;
-import com.camp.camping.mapper.PaymentMapper;
+import com.camp.admin.DTO.BookDTO;
+import com.camp.admin.DTO.PaymentDTO;
+import com.camp.admin.DTO.UserDTO;
+import com.camp.admin.frame.MyMapper;
+import com.camp.admin.mapper.PaymentMapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -111,7 +115,9 @@ public class PaymentService implements MyMapper<String, PaymentDTO>{
    			HttpResponse res = client.execute(post);
    			ObjectMapper mapper = new ObjectMapper();
    			String enty = EntityUtils.toString(res.getEntity());
+   			System.out.println("root: "+enty);
    			JsonNode rootNode = mapper.readTree(enty);
+   			System.out.println("root: "+rootNode);
    			asd = rootNode.get("response").asText();
    		} catch (Exception e) {
    			e.printStackTrace();
@@ -160,13 +166,12 @@ public class PaymentService implements MyMapper<String, PaymentDTO>{
    			ObjectMapper mapper = new ObjectMapper();
    			String body = EntityUtils.toString(res.getEntity());
    			JsonNode rootNode = mapper.readTree(body);
-   			System.out.println(rootNode);
    		} catch (Exception e) {
    			e.printStackTrace();
    		}	
    		
    	}
-   	
+   	//insert book과 reservation
    	public void paybook(BookDTO book) {
    		try {
 			bookService.insertBookAndReservation(book);
@@ -174,11 +179,10 @@ public class PaymentService implements MyMapper<String, PaymentDTO>{
 			e.printStackTrace();
 		}
    	}
-   	
+   	//name,tel로 유저정보 가져오기
    	public UserDTO user_select(String n,String t) throws Exception {
    		return userService.selectnt(n,t);
    	}
-   	
 
 	@Override
 	public void insert(PaymentDTO v) throws Exception {
@@ -238,11 +242,4 @@ public class PaymentService implements MyMapper<String, PaymentDTO>{
 		
 		
 	}
-	
-	
-	
-	
-	
-	
-    
 }

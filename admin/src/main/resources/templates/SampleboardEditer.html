@@ -1,0 +1,40 @@
+<script>
+    $(document).ready(function(){
+        $('#board_edit').click(function(){
+            
+        });
+    });
+</script>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>시설안내 수정</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/main}">main</a></li>
+                <li class="breadcrumb-item"><a th:href="@{/facility}">facility edit</a></li>
+                <li class="breadcrumb-item active">facility edit</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${boardEdit.facility_name} + ' 수정'"></h5> <!-- 게시글 제목 위치-->
+            <form id="board_edit_form" enctype="multipart/form-data">
+                <input type="hidden" name="board_code" th:value="${boardEdit.facility_code}"/> <!--게시글 코드 위치-->
+                <label>제목 : &nbsp;</label><input type="text" name="board_name" th:value="${boardEdit.facility_name}" width="300px"><br><br><!--게시글 제목 위치-->
+                <label>내용</label><br>
+                <textarea name="board_content" th:text="${boardEdit.facility_content}" cols="80" rows="20" ></textarea>
+                <div>
+                    <label>현재파일 : &nbsp;</label><label th:text="${boardEdit.image_file}"></label>
+                    <input name="mf" type="file"/>
+                    <a href="#board_e" id="board_edit" >수정</ㅑ>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</main><!-- End #main -->

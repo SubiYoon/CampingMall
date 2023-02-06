@@ -1,4 +1,5 @@
-<script>
+	<link rel="stylesheet" th:href="@{/css/mypage.css}">
+	<script>
     $(document).ready(function () {
         $(".nav-item:nth-child(8)").attr('class', 'nav-item active');
         $(".notactive:nth-child(8)").attr('class', 'active');
@@ -10,16 +11,27 @@
             success:function(data){
                 for(var i=0; i<data.userBookList.length; i++){
                     args += '<div class="col-md-4 col-sm-6">';
-                    args += '<div id="serv_hover"  class="room">';
+                    args += '<div id="serv_hover"  class="room mypage-reservation-container">';
                     args += '<div class="room_img">';
                     args += '<figure><img src="/images/room1.jpg" alt="#"/></figure>';
                     args += '</div>';
                     args += '<div class="bed_room">';
                     args += '<h3>'+data.userBookList[i].site_name+'</h3>';
                     args += '<p>'+data.userBookList[i].book_checkin+' ~ ' + data.userBookList[i].book_checkout+'</p></br>';
-                    args += '<p>'+data.userBookList[i].book_member+'명 </p></br>';
-                    args += '<p>'+data.userBookList[i].book_price+' 원</p></br>';
-                    args += '<p>차량번호 : '+data.userBookList[i].book_car_number+'</p></br>';
+                    args += '<div class="mypage-reservation-info"><p> 이용인원 : '+data.userBookList[i].book_member+'명 </p></br>';
+                    args += '<p> 예약가격 : '+data.userBookList[i].book_price+' 원</p></br>';
+                    args += '<p>차량번호 : '+data.userBookList[i].book_car_number+'</p></div></br>';
+                    if(data.userBookList[i].book_state==1){
+            	        args += '<button type="button" style="margin-right:10px" class="btn btn-success" onclick="request_refund(`'+data.userBookList[i].merchant_uid+'`,2)">환불요청</button>';
+                    }else if(data.userBookList[i].book_state==2){
+        	            args += '<button type="button" style="margin-right:10px;cursor:auto;" class="btn btn-success" disabled="disabled" >환불요청중</button>';
+                    }else if(data.userBookList[i].book_state==3){
+    	                args += '<button type="button" style="margin-right:10px;cursor:auto;" class="btn btn-success" disabled="disabled" >환불완료</button>';
+                    }else if(data.userBookList[i].book_state==4){
+                    	args += '<div class="refund-cancel-message"><p style="color:#2fa7bb;"">관리자에 의해 환불 요청이<br> 취소 되었습니다.</p></div></br>';
+                    	args += '<button type="button" style="margin-right:10px" class="btn btn-success" onclick="request_refund(`'+data.userBookList[i].merchant_uid+'`,1)">환불취소</button>';
+	                    args += '<button type="button" style="margin-right:10px" class="btn btn-success" onclick="request_refund(`'+data.userBookList[i].merchant_uid+'`,2)">환불재요청</button>';
+                    }
                     args += '</div>';
                     args += '</div>';
                     args += '</div>';
@@ -28,6 +40,38 @@
             }
         });
     });
+    
+    
+    function request_refund(num,state){
+    		let merchant_uid=num;
+    		jQuery.ajax({
+    		      "url": "/refund",
+    		      "type": "POST",
+    		      "contentType": "application/json",
+    		      "data": JSON.stringify({
+    		        "merchant_uid":merchant_uid,
+    		        "state":state
+    		      }),
+    		      "dataType": "json",
+    		       success:function(data){
+    		    	   if(data==1){
+    		    		   location.reload(true);
+    		    	   }
+    		    	
+    		    }
+    		    
+    		});
+    	
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 </script>
 
 <div class="back_re">
