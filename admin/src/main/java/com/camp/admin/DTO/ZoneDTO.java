@@ -16,4 +16,5 @@ public class ZoneDTO {
     private int admin_code;
     private String zone_name;
     private String zone_content;
+    private int zone_state;
 }

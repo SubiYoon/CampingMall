@@ -13,14 +13,14 @@
         INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(#{admin_code}, #{zone_name}, #{zone_content})
     </insert>
     <update id="update" parameterType="ZoneDTO">
-        UPDATE zone SET zone_name=#{zone_name}, zone_content=#{zone_content} WHERE zone_code=#{zone_code}
+        UPDATE zone SET zone_name=#{zone_name}, zone_content=#{zone_content}, zone_state=#{zone_state} WHERE zone_code=#{zone_code}
     </update>
     <delete id="delete">
         DELETE FROM zone WHERE zone_code=#{zone_code}
     </delete>
     
     <select id="selectZone" parameterType="Integer" resultType="ZoneDTO">
-        SELECT zone.zone_code, zone.admin_code, zone_name, zone_content
+        SELECT zone.zone_code, zone.admin_code, zone_name, zone_content, zone_state
 			FROM zone
     			JOIN admin ON zone.admin_code=admin.admin_code
     				WHERE admin.company_code=#{companycode}
