@@ -1,7 +1,30 @@
 <script>
-
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth() + 1
+    let nowSelectingMainCart = 1;
+    let yearSelected = null;
+    let monthSelected = null;
     $(document).ready(function () {
-        getGraph();
+        monthAndYear();
+        getGraph('' + todayYear + '-' + ('0' + todayMonth).slice(-2));
+        $('#yearSelect').click(function () {
+            yearSelected = $('#yearSelect').val();
+        })
+        $('#monthSelect').click(function () {
+            monthSelected = $('#monthSelect').val();
+            monthSelected = ('0' + monthSelected).slice(-2);
+            let stringDate = yearSelected + '-' + monthSelected;
+            getGraph(stringDate);
+        })
+        $('#mainChartTypeM').click(function () {
+            nowSelectingMainCart = 1;
+            monthAndYear();
+        })
+        $('#mainChartTypeY').click(function () {
+            nowSelectingMainCart = 2;
+            monthAndYear();
+        })
     });
 </script>
 <main id="main" class="main">
@@ -150,20 +173,49 @@
                                     <li class="dropdown-header text-start">
                                         <h6>Filter</h6>
                                     </li>
-
-                                    <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
+                                    <li><a class="dropdown-item" id="mainChartTypeM">Monthly</a>
+                                    </li>
+                                    <li><a class="dropdown-item" id="mainChartTypeY">Yearly</a></li>
                                 </ul>
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Reports <span>/Today</span></h5>
+                                <h5 class="card-title" id="mainChart"></h5>
 
                                 <!-- Line Chart -->
                                 <div id="reportsChart"></div>
 
                                 <script>
+                                    function monthAndYear(){
+                                        let i;
+                                        var str = '통계<select name=\"year\" id=\"yearSelect\">';
+                                        for (i = todayYear - 5; i < todayYear; i++) {
+                                            str += '<option value=' + i + '>' + i + '</option>';
+                                        }
+                                        str += '<option value=' + todayYear
+                                            + ' selected=\"selected\">' + todayYear +
+                                            '</option>';
+                                        for (i = todayYear + 1; i < todayYear + 5; i++) {
+                                            str += '<option value=' + i + '>' + i + '</option>';
+
+                                        }
+                                        str += '</select>';
+                                        if (nowSelectingMainCart < 2) {
+                                            str += '<select name=\"month\" id=\"monthSelect\">';
+                                            for (i = 1; i < todayMonth; i++) {
+                                                str += '<option value=' + i + '>' + i + '</option>';
+                                            }
+                                            str += '<option value=' + todayMonth
+                                                + ' selected=\"selected\">' + todayMonth +
+                                                '</option>';
+                                            for (i = todayMonth + 1; i < 13; i++) {
+                                                str += '<option value=' + i + '>' + i + '</option>';
+                                            }
+                                            str += '</select>';
+                                        }
+                                        document.getElementById("mainChart").innerHTML = str
+                                    }
+
                                     document.addEventListener("DOMContentLoaded", () => {
                                         new ApexCharts(document.querySelector("#reportsChart"), {
                                             series: [{
@@ -236,7 +288,6 @@
                                 <div class="col-6">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">구역별 매출
-                                            <span>| This Month</span>
                                         </h5>
                                         <script>
                                             function drawChart(divID, obj) {
@@ -275,12 +326,13 @@
                                                 myChart.setOption(option);
                                             }
 
-                                            function getGraph() {
+                                            function getGraph(data) {
                                                 let label;
 
                                                 $.ajax({
                                                     url: "/admin/main/graphData",
                                                     type: "post",
+                                                    data: {'stringDate': data},
                                                     success: function (data) {
                                                         console.log(data.Graph.labelsList[0]);
                                                         console.log(data.Graph.dataList[0]);
@@ -288,7 +340,8 @@
                                                         let myobj1 = [];
                                                         // 그래프로 나타낼 자료 리스트에 담기
 
-                                                        for (let i = 0; i < data.Graph.labelsList.length; i++) {
+                                                        for (let i = 0;
+                                                            i < data.Graph.labelsList.length; i++) {
                                                             myobj1.push(
                                                                 {
                                                                     value: data.Graph.dataList[i],
@@ -314,9 +367,7 @@
 
                                 <div class="col-6">
                                     <div class="card-body pb-0">
-                                        <h5 class="card-title">구역별 방문자 <span>| Today</span>
-                                        </h5>
-
+                                        <h5 class="card-title">구역별 방문자</h5>
 
 
                                     </div>

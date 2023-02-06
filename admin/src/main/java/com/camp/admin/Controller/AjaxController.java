@@ -19,7 +19,7 @@ public class AjaxController {
         JSONObject json = new JSONObject();
         CompanyDTO company = (CompanyDTO)session.getAttribute("company");
         try {
-            GraphDTO graphDTO = bService.MonthlyZoneSalesGraph("2023-02",company.getCompany_code());
+            GraphDTO graphDTO = bService.MonthlyZoneSalesGraph(stringDate,company.getCompany_code());
             json.put("Graph", graphDTO);
         } catch (Exception e) {
             e.printStackTrace();
