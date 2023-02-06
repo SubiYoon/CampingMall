@@ -58,5 +58,13 @@ public class BookTest {
             throw new RuntimeException(e);
         }
     }
+    @Test
+    void UserGraph(){
+        try {
+            System.out.println(bookService.MonthlyUserGraph("2023-02",1));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

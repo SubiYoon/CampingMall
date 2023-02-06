@@ -131,7 +131,58 @@ public class BookService implements MyService<Integer, BookDTO> {
             labelsList.add("" + i);
         }
         return new GraphDTO(labelsList, stringYearAndMonth,
-            DailyList(stringYearAndMonth, company_code));
+            DailyUserList(stringYearAndMonth, company_code));
+    }
+
+    private List<String> DailyUserList(String stringYearAndMonth, int companyCode)
+        throws Exception {
+        List<String> sales = new ArrayList<>();
+        String stringDate = stringYearAndMonth + "-01";
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        for (int i = 0; i < Utility.LastDayOfMonth(stringDate); i++) {
+            sales.add(
+                "" + (int) DailyUser(Utility.DateToString(calendar.getTime()), companyCode));
+            calendar.add(Calendar.DATE, +1);
+        }
+        return sales;
+    }
+
+    public GraphDTO MonthlyUserGraph(String stringYearAndMonth, int company_code)
+        throws Exception {
+        List<String> labelsList = new ArrayList<>();
+        for (int i = 1; i <= Utility.LastDayOfMonth(stringYearAndMonth + "-01"); i++) {
+            labelsList.add("" + i);
+        }
+        return new GraphDTO(labelsList, stringYearAndMonth,
+            DailyUserList(stringYearAndMonth, company_code));
+    }
+    public GraphDTO MonthlyBookGraph(String stringYearAndMonth, int company_code)
+        throws Exception {
+        List<String> labelsList = new ArrayList<>();
+        for (int i = 1; i <= Utility.LastDayOfMonth(stringYearAndMonth + "-01"); i++) {
+            labelsList.add("" + i);
+        }
+        return new GraphDTO(labelsList, stringYearAndMonth,
+            DailyBookList(stringYearAndMonth, company_code));
+    }
+
+    private List<String> DailyBookList(String stringYearAndMonth, int companyCode)
+        throws Exception {
+        List<String> sales = new ArrayList<>();
+        String stringDate = stringYearAndMonth + "-01";
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        for (int i = 0; i < Utility.LastDayOfMonth(stringDate); i++) {
+            sales.add(
+                "" + (int) DailyBook(Utility.DateToString(calendar.getTime()), companyCode));
+            calendar.add(Calendar.DATE, +1);
+        }
+        return sales;
+    }
+
+    private int DailyBook(String stringDate, int companyCode) throws ParseException {
+        return reservationService.SelectByDateAndCompanyCode(stringDate,companyCode).size();
     }
 
     //월매출(date는 year랑 month만 정상적으로 담겨있으면 됨)
@@ -193,6 +244,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return new GraphDTO(labelsList, stringYear, MonthlyList(stringYear, company_code));
     }
+
 
     public List<BookDTO> selectUserAll(int user_code) {
         return mapper.selectUserAll(user_code);
@@ -463,6 +515,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         return new GraphDTO(labesList, stringYear, dataList);
     }
 
+
     public BookDTO selectViewForm(String book_checkin, String book_checkout, int book_sitecode) {
 
         BookDTO book = new BookDTO();
@@ -585,4 +638,5 @@ public class BookService implements MyService<Integer, BookDTO> {
             YearlyUser(Utility.StringYearFromStringDate(Utility.DateToString(calendar.getTime())),
                 company_code));
     }
+
 }
