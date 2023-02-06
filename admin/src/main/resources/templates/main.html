@@ -7,15 +7,18 @@
         <title>Admin page - 관리자용</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
-      
+
+        <!-- jQuery -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <!-- Favicons -->
-        <link th:href="@{img/favicon.png}" rel="icon">
-        <link th:href="@{img/apple-touch-icon.png}" rel="apple-touch-icon">
+        <link th:href="@{/img/favicon.png}" rel="icon">
+        <link th:href="@{/img/apple-touch-icon.png}" rel="apple-touch-icon">
       
         <!-- Google Fonts -->
-        <link th:href="@{https://fonts.gstatic.com}" rel="preconnect">
-        <link th:href="@{https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i}" rel="stylesheet">
-      	<link th:href="@{https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gothic+A1:wght@200;600;800&family=Hahmlet:wght@200;500;700&family=Jua&family=Noto+Sans+KR:wght@300&display=swap}" rel="stylesheet">
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+      	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Gothic+A1:wght@200;600;800&family=Hahmlet:wght@200;500;700&family=Jua&family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
       	<!-- 추가된 폰트
       		1)font-family: 'Do Hyeon', sans-serif; 400
 			2)font-family: 'Gothic A1', sans-serif; 200 600 800
@@ -26,16 +29,16 @@
       	 -->
       	
         <!-- Vendor CSS Files -->
-        <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-        <link th:href="@{vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
-        <link th:href="@{vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
-        <link th:href="@{vendor/quill/quill.snow.css}" rel="stylesheet">
-        <link th:href="@{vendor/quill/quill.bubble.css}" rel="stylesheet">
-        <link th:href="@{vendor/remixicon/remixicon.css}" rel="stylesheet">
-        <link th:href="@{vendor/simple-datatables/style.css}" rel="stylesheet">
+        <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+        <link th:href="@{/vendor/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+        <link th:href="@{/vendor/boxicons/css/boxicons.min.css}" rel="stylesheet">
+        <link th:href="@{/vendor/quill/quill.snow.css}" rel="stylesheet">
+        <link th:href="@{/vendor/quill/quill.bubble.css}" rel="stylesheet">
+        <link th:href="@{/vendor/remixicon/remixicon.css}" rel="stylesheet">
+        <link th:href="@{/vendor/simple-datatables/style.css}" rel="stylesheet">
       
         <!-- Template Main CSS File -->
-        <link th:href="@{css/style.css}" rel="stylesheet">
+        <link th:href="@{/css/style.css}" rel="stylesheet">
       
         <!-- =======================================================
         * Template Name: NiceAdmin - v2.5.0
@@ -51,224 +54,21 @@
         <header id="header" class="header fixed-top d-flex align-items-center">
       
           <div class="d-flex align-items-center justify-content-between">
-            <a th:href="@{/main}" class="logo d-flex align-items-center">
-              <img th:src="@{img/logo.png}" alt="">
-              <span class="d-none d-lg-block">Camping(상호명)관리자 페이지</span>
+            <a style="width:230px;" th:href="@{/main}" class="logo d-flex align-items-center">
+              <img th:src="'/admin/images/'+${session.company.company_logo1}"/>	<!-- 이미지경로수정 -->
             </a>
             <i class="bi bi-list toggle-sidebar-btn"></i>
           </div><!-- End Logo -->
-      
-          <div class="search-bar">
-            <form class="search-form d-flex align-items-center" method="POST" action="#">
-              <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-              <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-          </div><!-- End Search Bar -->
-      
+
           <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
-      
-              <li class="nav-item d-block d-lg-none">
-                <a class="nav-link nav-icon search-bar-toggle " href="#">
-                  <i class="bi bi-search"></i>
-                </a>
-              </li><!-- End Search Icon-->
-      
-              <li class="nav-item dropdown">
-      
-                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                  <i class="bi bi-bell"></i>
-                  <span class="badge bg-primary badge-number">4</span>
-                </a><!-- End Notification Icon -->
-      
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                  <li class="dropdown-header">
-                    You have 4 new notifications
-                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li class="notification-item">
-                    <i class="bi bi-exclamation-circle text-warning"></i>
-                    <div>
-                      <h4>Lorem Ipsum</h4>
-                      <p>Quae dolorem earum veritatis oditseno</p>
-                      <p>30 min. ago</p>
-                    </div>
-                  </li>
-      
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li class="notification-item">
-                    <i class="bi bi-x-circle text-danger"></i>
-                    <div>
-                      <h4>Atque rerum nesciunt</h4>
-                      <p>Quae dolorem earum veritatis oditseno</p>
-                      <p>1 hr. ago</p>
-                    </div>
-                  </li>
-      
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li class="notification-item">
-                    <i class="bi bi-check-circle text-success"></i>
-                    <div>
-                      <h4>Sit rerum fuga</h4>
-                      <p>Quae dolorem earum veritatis oditseno</p>
-                      <p>2 hrs. ago</p>
-                    </div>
-                  </li>
-      
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li class="notification-item">
-                    <i class="bi bi-info-circle text-primary"></i>
-                    <div>
-                      <h4>Dicta reprehenderit</h4>
-                      <p>Quae dolorem earum veritatis oditseno</p>
-                      <p>4 hrs. ago</p>
-                    </div>
-                  </li>
-      
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-                  <li class="dropdown-footer">
-                    <a href="#">Show all notifications</a>
-                  </li>
-      
-                </ul><!-- End Notification Dropdown Items -->
-      
-              </li><!-- End Notification Nav -->
-      
-              <li class="nav-item dropdown">
-      
-                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                  <i class="bi bi-chat-left-text"></i>
-                  <span class="badge bg-success badge-number">3</span>
-                </a><!-- End Messages Icon -->
-      
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-                  <li class="dropdown-header">
-                    You have 3 new messages
-                    <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li class="message-item">
-                    <a href="#">
-                      <img th:src="@{img/messages-1.jpg}" alt="" class="rounded-circle">
-                      <div>
-                        <h4>Maria Hudson</h4>
-                        <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                        <p>4 hrs. ago</p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li class="message-item">
-                    <a href="#">
-                      <img th:src="@{img/messages-2.jpg}" alt="" class="rounded-circle">
-                      <div>
-                        <h4>Anna Nelson</h4>
-                        <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                        <p>6 hrs. ago</p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li class="message-item">
-                    <a href="#">
-                      <img th:src="@{img/messages-3.jpg}" alt="" class="rounded-circle">
-                      <div>
-                        <h4>David Muldon</h4>
-                        <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                        <p>8 hrs. ago</p>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li class="dropdown-footer">
-                    <a href="#">Show all messages</a>
-                  </li>
-      
-                </ul><!-- End Messages Dropdown Items -->
-      
-              </li><!-- End Messages Nav -->
       
               <li class="nav-item dropdown pe-3">
       
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                  <img th:src="@{img/profile-img.jpg}" alt="Profile" class="rounded-circle">
-                  <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                  <img th:src="@{/img/profile-img.jpg}" alt="Profile" class="rounded-circle">
+                  <span th:text="${session.company.company_name}"></span>
                 </a><!-- End Profile Iamge Icon -->
-      
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                  <li class="dropdown-header">
-                    <h6>Kevin Anderson</h6>
-                    <span>Web Designer</span>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" th:href="@{users-profile.html}">
-                      <i class="bi bi-person"></i>
-                      <span>My Profile</span>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" th:href="@{users-profile.html}">
-                      <i class="bi bi-gear"></i>
-                      <span>Account Settings</span>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" th:href="@{pages-faq.html}">
-                      <i class="bi bi-question-circle"></i>
-                      <span>Need Help?</span>
-                    </a>
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider">
-                  </li>
-      
-                  <li>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <i class="bi bi-box-arrow-right"></i>
-                      <span>Sign Out</span>
-                    </a>
-                  </li>
-      
-                </ul><!-- End Profile Dropdown Items -->
               </li><!-- End Profile Nav -->
       
             </ul>
@@ -297,24 +97,24 @@
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a th:href="@{https://bootstrapmade.com/}">BootstrapMade</a>
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
             </div>
         </footer><!-- End Footer -->
 
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
         <!-- Vendor JS Files -->
-        <script th:src="@{vendor/apexcharts/apexcharts.min.js}"></script>
-        <script th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
-        <script th:src="@{vendor/chart.js/chart.umd.js}"></script>
-        <script th:src="@{vendor/echarts/echarts.min.js}"></script>
-        <script th:src="@{vendor/quill/quill.min.js}"></script>
-        <script th:src="@{vendor/simple-datatables/simple-datatables.js}"></script>
-        <script th:src="@{vendor/tinymce/tinymce.min.js}"></script>
-        <script th:src="@{vendor/php-email-form/validate.js}"></script>
+        <script th:src="@{/vendor/apexcharts/apexcharts.min.js}"></script>
+        <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/vendor/chart.js/chart.umd.js}"></script>
+        <script th:src="@{/vendor/echarts/echarts.min.js}"></script>
+        <script th:src="@{/vendor/quill/quill.min.js}"></script>
+        <script th:src="@{/vendor/simple-datatables/simple-datatables.js}"></script>
+        <script th:src="@{/vendor/tinymce/tinymce.min.js}"></script>
+        <script th:src="@{/vendor/php-email-form/validate.js}"></script>
 
         <!-- Template Main JS File -->
-        <script th:src="@{js/main.js}"></script>
+        <script th:src="@{/js/main.js}"></script>
 
     </body>
 

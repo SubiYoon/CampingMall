@@ -153,6 +153,20 @@ public class BookService implements MyService<Integer, BookDTO> {
         return monthlySales;
     }
 
+    public double YearlySales(String stringDate, int company_code) throws Exception {
+        double yearlySales = 0;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        calendar = new GregorianCalendar(calendar.get(Calendar.YEAR), Calendar.JANUARY,
+            1);
+        for (int i = 0; i < 12; i++) {
+            yearlySales += MonthlySales(Utility.DateToString(calendar.getTime()), company_code);
+            calendar.add(Calendar.MONTH,1);
+        }
+
+        return yearlySales;
+    }
+
     //년간 월별 매출
     //stringYear = "2022"
     public List<String> MonthlyList(String stringYear, int company_code) throws Exception {
@@ -484,5 +498,32 @@ public class BookService implements MyService<Integer, BookDTO> {
     }
     
     
+
+    public String DailySalesRate(String stringDate, int company_code) throws Exception {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        calendar.add(Calendar.DATE, -1);
+        return Utility.RateOfIncrease(DailySales(stringDate, company_code),
+            DailySales(Utility.DateToString(calendar.getTime()), company_code));
+    }
+
+    //stringYearAndMonth = "2023-08"
+    public String MonthlySalesRate(String stringYearAndMonth, int company_code) throws Exception {
+        String stringDate = stringYearAndMonth + "-01";
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        calendar.add(Calendar.MONTH, -1);
+        return Utility.RateOfIncrease(MonthlySales(stringDate, company_code),
+            MonthlySales(Utility.DateToString(calendar.getTime()), company_code));
+    }
+
+    public String YearlySalesRate(String stringYear, int company_code) throws Exception {
+        String stringDate = stringYear + "-01-01";
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        calendar.add(Calendar.YEAR, -1);
+        return Utility.RateOfIncrease(YearlySales(stringDate, company_code),
+            YearlySales(Utility.DateToString(calendar.getTime()), company_code));
+    }
 
 }

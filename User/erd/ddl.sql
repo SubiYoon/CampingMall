@@ -102,7 +102,7 @@ CREATE TABLE `admin` (
    `admin_code`   INT   NOT NULL auto_increment,
    `company_code`   INT   NOT NULL,
    `admin_id`   VARCHAR(20)   NOT NULL,
-   `admin_password`   VARCHAR(20)   NOT NULL,
+   `admin_password`   VARCHAR(1000)   NOT NULL,
     primary key (admin_code)
 );
 

@@ -145,30 +145,32 @@ public class BookService implements MyService<Integer, BookDTO> {
         return book;
     }
 
-    public boolean availableUserWriteReview(int site_code, int user_code) {
+    public boolean availableUserWriteReview(int site_code, int user_code){
         List<BookDTO> bookList1 = mapper.selectUserSiteBook(site_code, user_code);
         List<BookDTO> bookList2 = mapper.selectUserSiteReview(site_code, user_code);
-        return bookList1.size() > bookList2.size();
+        if(bookList1.size() > bookList2.size()){
+            return true;
+        }
+        return false;
     }
 
-    public List<BookDTO> getReviewAvailableCode(int site_code, int user_code) {
-        List<BookDTO> result = new ArrayList<>();
+    public List<BookDTO> getReviewAvailableCode(int site_code, int user_code){
+        List<BookDTO> result = new ArrayList<BookDTO>();
         List<BookDTO> bookList1 = mapper.selectUserSiteBook(site_code, user_code);
         List<BookDTO> bookList2 = mapper.selectUserSiteReview(site_code, user_code);
 
-        first:
-        for (BookDTO bookDTO : bookList1) {
-            for (BookDTO dto : bookList2) {
-                if (bookDTO.getBook_code() == dto.getBook_code()) {
+        first:for(int i=0; i<bookList1.size(); i++){
+            for(int j=0; j<bookList2.size(); j++){
+                if(bookList1.get(i).getBook_code()==bookList2.get(j).getBook_code()){
                     continue first;
                 }
             }
-            result.add(bookDTO);
+            result.add(bookList1.get(i));
         }
-
+        
         return result;
     }
-
+    
     //날짜(stringDate : "2023-02-01")를 입력받으면 체크인 날짜와 비교한다.
     //환불 요청 가능이면 1 아니면 0을 반환
     //환불 요청 가능 여부 판단 메소드
@@ -191,4 +193,7 @@ public class BookService implements MyService<Integer, BookDTO> {
     
     
    
-}
+    }    
+    
+    
+    

@@ -12,15 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.camp.admin.DTO.AdminDTO;
 import com.camp.admin.DTO.CompanyDTO;
 import com.camp.admin.DTO.HomeDTO;
 import com.camp.admin.DTO.ImageDTO;
+import com.camp.admin.DTO.ZoneDTO;
+import com.camp.admin.service.AdminService;
 import com.camp.admin.service.CompanyService;
 import com.camp.admin.service.FacilityService;
 import com.camp.admin.service.HomeService;
 import com.camp.admin.service.ImageService;
 import com.camp.admin.service.NoticeService;
 import com.camp.admin.service.ZoneService;
+import com.camp.admin.utility.CryptoUtil;
 import com.camp.admin.utility.SaveFile;
 
 @Controller
@@ -47,33 +51,71 @@ public class MainController {
 	@Autowired
 	ImageService serviceI;
 
+	@Autowired
+	AdminService serviceA;
+
 	@RequestMapping("/")
 	public String main(){
 		
 		return "login";
 	}
 
-	@RequestMapping("/main")
-	public String main(HttpSession session, CompanyDTO companyDTO) {
-		
-		CompanyDTO company = null;
-		
-		//TODO:차후 캠핑장 선택 페이지 생성시 수정 필요
+	@RequestMapping("/loginOk")
+	public String loginOk(AdminDTO admin, HttpSession session){
+		String crypPwd ="";
 		try{
-			company = serviceC.select(1);
-		}catch(Exception e){
+			crypPwd = CryptoUtil.sha512(admin.getAdmin_password());
+		} catch(Exception e){
 			e.printStackTrace();
-			System.out.println("실패123");
+			System.out.println("암호화실패");
 		}
-			session.setAttribute("company", company);
 
+		try{
+			AdminDTO dbAdmin = serviceA.select(admin.getAdmin_id());
+			if(crypPwd.equals(dbAdmin.getAdmin_password())){
+				CompanyDTO company = serviceC.select(dbAdmin.getCompany_code());
+				session.setAttribute("company", company);
+				session.setAttribute("admin", dbAdmin);
+			}else {
+				System.out.println(dbAdmin);
+				return "login";
+			}
+		} catch(Exception e){
+			//e.printStackTrace();
+			System.out.println("실패");
+		}
+
+		return "redirect:main";
+	}
+
+	@RequestMapping("/main")
+	public String main(Model model, HttpSession session, CompanyDTO companyDTO, ZoneDTO zoneDTO) {
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		List<ZoneDTO> listZ = null;
+		
+		try {
+			listZ=serviceZ.selectZone(company.getCompany_code());	//상호코드
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		session.setAttribute("zlist", listZ);
+		
 		return "main";
 	}
 	
-	@RequestMapping("/mainEdit")
-	public String mainedit(Model model) {
+	//CompanyEdit
+	@RequestMapping("/company")
+	public String companyEdit(Model model) {
 		
-		model.addAttribute("center", "/mainEdit");
+		model.addAttribute("center", "/company");
+		return "main";
+	}
+
+	//CompanyEdit
+	@RequestMapping("/home")
+	public String homeEdit(Model model) {
+		
+		model.addAttribute("center", "/home");
 		return "main";
 	}
 	
@@ -204,5 +246,11 @@ public class MainController {
 			}
 		}
 		return "redirect:/main";
+	}
+
+	@RequestMapping("logOut")
+	public String logOut(HttpSession session){
+		session.invalidate();
+		return "redirect:/";
 	}
 }
