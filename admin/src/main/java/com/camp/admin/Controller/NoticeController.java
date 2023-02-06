@@ -38,8 +38,7 @@ public class NoticeController {
 
 //공지사항글작성페이지
 	@RequestMapping("/nowrite")
-	public String nowrite(Model model, HttpSession session) {		
-		model.addAttribute("admin", new AdminDTO());
+	public String nowrite(Model model, HttpSession session) {
 		model.addAttribute("center", dir + "nowrite");
 		return "main";
 	}

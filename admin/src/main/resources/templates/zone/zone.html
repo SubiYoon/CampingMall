@@ -63,7 +63,7 @@
 	<!-- End Page Title -->
 	
 	<form id="newzoneForm">
-		<input id="zoneinsert" type="hidden" name="admin_code" value=1><!-- 관리자로그인세션으로나중에바꾸기 -->
+		<input id="zoneinsert" type="hidden" name="admin_code" th:value="${session.admin.Admin_code}">
 		<input id="zoneinsert" type="hidden" name="zone_name" value="새로운 구역"/>
 		<input id="zoneinsert" type="hidden" name="zone_content" value="구역 설명을 수정하세요."/>
 	</form>
