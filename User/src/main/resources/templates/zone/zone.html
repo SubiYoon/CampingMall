@@ -26,7 +26,7 @@ $(document).ready(function(){
                </div>
             </div>
             
-            <div th:each="zone:${zlist}">
+            <div th:each="zone:${zlist}" th:if="${zone.zone_code} != 0">
 	            <div class="zone">
 	            <div class="row">
 					<div class="col-md-6 col-sm-6">
