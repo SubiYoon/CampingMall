@@ -2,14 +2,29 @@
 <script>
 	$(document).ready(function() {
 		
-		//수정버튼
+		//등록버튼
 		$('#upBtn').click(function(){
-			var c = confirm('수정하시겠습니까?');
+			
+			if($('#updateth').val() == '' || $('#updateth').val() == null ){
+				alert("사이트명/가격을 등록하세요");
+		          return;
+		     }
+			if($('#updatecontent').val() == '' || $('#updatecontent').val() == null ){
+				alert("사이트 설명을 등록하세요");
+		          return;
+		     }
+			if($('#siteimg').val() == '' || $('#siteimg').val() == null ){
+				alert("사이트 이미지를 등록하세요");
+		          return;
+		     }
+			
+			
+			var c = confirm('등록하시겠습니까?');
 			if(c == true){
 				$('#up_form').attr({
 					'enctype':'multipart/form-data',
 					'method':'post',
-					'action':'[[@{/zone/siteupdate}]]'
+					'action':'[[@{/zone/siteadd}]]'
 				});
 				$('#up_form').submit();
 			};
@@ -21,7 +36,7 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>구역/사이트 수정</h1>
+      <h1>구역/사이트 추가</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
@@ -41,21 +56,15 @@
 	        <table class="viewtable-fill">
 			<thead>
 				<tr>
-					<th class="text-left zonethF">사이트코드</th>
-					<th class="text-left zonethS" colspan="4">
-						<input id="inputnone" readonly="readonly" type="text" name="site_code" th:value="${siteEdit.site_code}">
-					</th>
-				</tr>
-				<tr>
 					<th class="text-left zonethF">사이트 명</th>
 					<th class="text-left zonethS" colspan="4">
-						<input id="updateth" type="text" name="site_name" th:value="${siteEdit.site_name}">
+						<input id="updateth" type="text" name="site_name">
 					</th>
 				</tr>
 				<tr>
 					<th class="text-left zonethF">사이트 가격</th>
 					<th class="text-left zonethS" colspan="4">
-						<input id="updateth" type="number" name="site_price" th:value="${siteEdit.site_price}">
+						<input id="updateth" type="number" name="site_price" value="0">
 					</th>
 				</tr>
 			</thead>
@@ -65,33 +74,28 @@
 						사이트 설명
 					</th>
 					<td colspan="4">
-						<textarea id="updatecontent" name="site_content" th:text="${siteEdit.site_content}"></textarea>
+						<textarea id="updatecontent" name="site_content" text="사이트 설명을 입력하세요"></textarea>
 					</td>
 				</tr>
 				<tr>
 					<th class="text-left">
-						교체할 이미지
+						사이트 이미지
 					</th>
 					<td colspan="4">
-						<input class="zonethS" name="mf" type="file"/>
+						<input id="siteimg" class="zonethS" name="mf" type="file"/>
 					</td>
 				</tr>
 				<tr>
-					<th class="text-left">
-						현재 이미지
+					<th colspan="5">
+						<input id="inputnone" type="hidden" name="zone_code" th:value="${zone_code}">
 					</th>
-					<td colspan="4">
-						<span th:each="img:${ilist}" th:if="${img.site_code == siteEdit.site_code}">
-						<text th:text="${img.image_file}"></text>
-						</span>
-					</td>
 				</tr>
 			</tbody>
 		</table>
 		</form>
 		
 		<div class="Btn">
-			<a id="upBtn" class="btn btn-primary" th:href="@{#}">수정</a>
+			<a id="upBtn" class="btn btn-primary" th:href="@{#}">등록</a>
 		</div>
 		</div>
         </div>

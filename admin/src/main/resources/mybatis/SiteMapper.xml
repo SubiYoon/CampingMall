@@ -38,7 +38,9 @@
         WHERE 
             s.site_code=#{site_code}
     </select>
-    
+    <select id="selectAll" resultType="SiteDTO">
+        SELECT * FROM site 
+    </select>
     <select id="selectSet" parameterType="Integer" resultType="SiteDTO">
         SELECT * FROM site
 			JOIN zone ON zone.zone_code=site.zone_code

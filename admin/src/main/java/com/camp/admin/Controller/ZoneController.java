@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.camp.admin.DTO.AdminDTO;
 import com.camp.admin.DTO.CompanyDTO;
 import com.camp.admin.DTO.ImageDTO;
 import com.camp.admin.DTO.SiteDTO;
@@ -19,6 +20,7 @@ import com.camp.admin.DTO.ZoneDTO;
 import com.camp.admin.service.ImageService;
 import com.camp.admin.service.SiteService;
 import com.camp.admin.service.ZoneService;
+import com.camp.admin.utility.SaveFile;
 
 @Controller
 @RequestMapping("/zone")
@@ -91,24 +93,64 @@ public class ZoneController {
 		
 		//구역(zone)수정기능
 		 @RequestMapping("/zoneupdate")
-		 public String zoneupdate(Model model, ZoneDTO zonedto) {
+		 public String zoneupdate(Model model, ZoneDTO zonedto, MultipartFile mf) {
+			 
 			 try {
+				 ZoneDTO zone = serviceZ.selectForEdit(zonedto.getZone_code());
+
 				 serviceZ.update(zonedto);
+				 
+				 if(!mf.isEmpty()){
+						ImageDTO img = serviceI.select(zone.getImage_code());
+						img.setImage_file(mf.getOriginalFilename());
+						serviceI.update(img);
+						SaveFile.saveFile(mf, imagesdir);
+					}
+				 
 			 } catch (Exception e) {
 				 e.printStackTrace();
 			 }
 			 
 			 return "redirect:/main";
 		}
-	 
-		//새구역(zone)추가
-		 @RequestMapping("/zoneinsert") public String zoneinsert(ZoneDTO zonedto) {
+
+		 //새 구역(zone)추가페이지
+		 @RequestMapping("/zoneinsert") 
+		 public String siteinsert(Model model) {
+			 	model.addAttribute("center", dir + "zoneinsert");
+			 return "main";
+		}
+		 
+		 //구역(zone)추가기능
+		 @RequestMapping("/zoneadd")
+		 public String zoneadd(Model model, HttpSession session, String zone_name, String zone_content, MultipartFile mf) {
+			 AdminDTO admin = (AdminDTO) session.getAttribute("admin");
+			 CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+				
+			 ZoneDTO zone = new ZoneDTO();
+			 zone.setAdmin_code(admin.getAdmin_code());
+			 zone.setZone_name(zone_name);
+			 zone.setZone_content(zone_content);
 			 
 			 try {
-				 serviceZ.insert(zonedto);
-			 } catch (Exception e) {
-				 e.printStackTrace();
-			 } 
+				serviceZ.insert(zone);
+				
+				if(!mf.isEmpty()){
+					
+					List<ZoneDTO> zonelist = serviceZ.selectAll();
+					
+					ImageDTO img = new ImageDTO();
+					img.setCompany_code(company.getCompany_code());
+					img.setZone_code(zonelist.get(zonelist.size()-1).getZone_code());
+					img.setImage_file(mf.getOriginalFilename());
+					serviceI.insert(img);
+					
+					SaveFile.saveFile(mf, imagesdir);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			 
 			 return "redirect:/main";
 		}
@@ -148,28 +190,72 @@ public class ZoneController {
 	 
 		//사이트(site)수정기능
 			 @RequestMapping("/siteupdate")
-			 public String siteupdate(Model model, SiteDTO sitedto) {
+			 public String siteupdate(Model model, SiteDTO sitedto, MultipartFile mf) {
 				 
+				 SiteDTO site = serviceS.selectView(sitedto.getSite_code());
 				 
 				 try {
-					 serviceS.update(sitedto);
-				 } catch (Exception e) {
-					 e.printStackTrace();
-				 }
+					serviceS.update(site);
+					
+					if(!mf.isEmpty()){
+						
+						ImageDTO img = serviceI.select(site.getImage_code());
+						img.setImage_file(mf.getOriginalFilename());
+						serviceI.update(img);
+						SaveFile.saveFile(mf, imagesdir);
+					}
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				 
 				 return "redirect:/main";
 			}
 			 
-		//새사이트(site)추가기능
+		//새사이트(site)추가페이지
 			 @RequestMapping("/siteinsert") 
-			 public String siteinsert(SiteDTO sitedto) {
-				 try {
-					 serviceS.insert(sitedto);
-				 } catch (Exception e) {
-					 e.printStackTrace();
-				 } 
-				 return "redirect:/main";
+			 public String siteinsert(Model model, int zone_code) {
+				 	model.addAttribute("zone_code", zone_code);
+				 	model.addAttribute("center", dir + "siteinsert");
+				 return "main";
 			}
+			 
+		//사이트(site)추가기능
+			 @RequestMapping("/siteadd")
+			 public String siteadd(Model model, HttpSession session, String site_name, int site_price, String site_content, int zone_code, MultipartFile mf) {
+				 CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+				 
+				 SiteDTO site = new SiteDTO();
+				 site.setSite_name(site_name);
+				 site.setSite_price(site_price);
+				 site.setSite_content(site_content);
+				 site.setZone_code(zone_code);
+				 
+				 try {
+					serviceS.insert(site);
+					
+					if(!mf.isEmpty()){
+						
+						List<SiteDTO> sitelist = serviceS.selectAll();
+						
+						ImageDTO img = new ImageDTO();
+						img.setCompany_code(company.getCompany_code());
+						img.setSite_code(sitelist.get(sitelist.size()-1).getSite_code());
+						img.setImage_file(mf.getOriginalFilename());
+						serviceI.insert(img);
+						
+						SaveFile.saveFile(mf, imagesdir);
+					}
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				 
+				 return "redirect:/zone?zone_code="+zone_code;
+			}
+			 
+			 
 			 
 		//사이트 삭제기능(업데이트로 처리)
 			 @RequestMapping("/sitedel") 
@@ -182,42 +268,5 @@ public class ZoneController {
 				 return "redirect:/zone?zone_code="+zone_code;
 			}
 		 
-
-//-----------------------------------------------------------------	
-	 //구역이미지수정(안됨)
-	 @RequestMapping("zoneimgedit")
-		public String zoneImgEdit(HttpSession session, ImageDTO imageDTO, MultipartFile zoneImg){
-		 CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-		 /*
-		 ImageDTO zoneimage = null;
-		 
-		 int company_code = company.getCompany_code();
-		 String imgOrgName = zoneImg.getOriginalFilename();
-		 
-		 try {
-			 zoneimage.setCompany_code(company_code);			 
-			 zoneimage.setImage_file(imgOrgName);
-			 
-			 serviceI.zoneUpdate(imageDTO);
-			 SaveFile.saveFile(zoneImg, imagesdir);
-			 
-		 } catch (Exception e) {
-			e.printStackTrace();
-		 }
-		 */
-		 return "redirect:/zone";
-	 }
-	 
-	
-	
-		/*
-		 * @RequestMapping("/site") public String site(Model model, int site_code) {
-		 * 
-		 * try { SiteDTO site = serviceS.selectView(site_code);
-		 * model.addAttribute("site", site); } catch (Exception e) {
-		 * e.printStackTrace(); }
-		 * 
-		 * model.addAttribute("center", dir+"site"); return "main"; }
-		 */
 	
 }

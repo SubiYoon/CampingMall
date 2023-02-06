@@ -24,4 +24,10 @@
     			JOIN admin ON zone.admin_code=admin.admin_code
     				WHERE admin.company_code=#{companycode}
     </select>
+    <select id="selectForEdit" resultType="ZoneDTO">
+    	SELECT z.zone_code, z.admin_code, z.zone_name, z.zone_content, z.zone_state, i.image_code, i.image_file
+			FROM zone z
+				JOIN image i ON z.zone_code=i.zone_code 
+					WHERE i.zone_code=#{zone_code}
+    </select>
 </mapper>

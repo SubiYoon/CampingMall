@@ -2,11 +2,11 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.camp.admin.mapper.ImageMapper">
+<mapper namespace="com.camp.admin.mapper.ImageMapper">  
     <insert id="insert" parameterType="ImageDTO">
         INSERT INTO image(company_code, zone_code, site_code, home_code, facility_code, image_file)
         VALUES (#{company_code}, 
-                IF(#{zone_code}= 0, NULL, #{zone_code}),
+                IF(#{zone_code} = 0, NULL, #{zone_code}),
                 IF(#{site_code} = 0, NULL, #{site_code}), 
                 IF(#{home_code} = 0, NULL, #{home_code}),
                 IF(#{facility_code} = 0, NULL, #{facility_code}), 

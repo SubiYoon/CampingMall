@@ -21,26 +21,7 @@
 				});
 				$('#up_form').submit();
 			};
-		});
-		
-		//추가버튼
-		$('.zoneaddBtn').click(function(){
-			alert('구역이 추가되었습니다.');
-			$('#newzoneForm').attr({
-				'method':'post',
-				'action':'[[@{/zone/zoneinsert}]]'
-			});
-			$('#newzoneForm').submit();
-		});
-		$('.siteaddBtn').click(function(){
-			alert('사이트가 추가되었습니다.');
-			$('#newsiteForm').attr({
-				'method':'post',
-				'action':'[[@{/zone/siteinsert}]]'
-			});
-			$('#newsiteForm').submit();
-		});
-		
+		});		
 	}); 
 </script>
   <main id="main" class="main">
@@ -56,8 +37,8 @@
       </nav>
     </div>
     <div class="pagetitle">
-      <a href="#" class="zoneaddBtn btn btn-outline-primary"><h1>새 구역 추가하기</h1></a>
-      <a href="#" class="siteaddBtn btn btn-outline-primary"><h1>새 사이트 추가하기</h1></a>
+      <a th:href="@{/zone/zoneinsert}" class="btn btn-outline-primary"><h1>새 구역 추가하기</h1></a>
+      <a th:href="@{/zone/siteinsert(zone_code=${zoneselect.zone_code})}" class="btn btn-outline-primary"><h1>새 사이트 추가하기</h1></a>
 	</div>
 	</div>
 	<!-- End Page Title -->
@@ -66,12 +47,6 @@
 		<input id="zoneinsert" type="hidden" name="admin_code" th:value="${session.admin.Admin_code}">
 		<input id="zoneinsert" type="hidden" name="zone_name" value="새로운 구역"/>
 		<input id="zoneinsert" type="hidden" name="zone_content" value="구역 설명을 수정하세요."/>
-	</form>
-	<form id="newsiteForm">
-		<input id="zoneinsert" type="hidden" name="zone_code" th:value="${zoneselect.zone_code}">
-		<input id="zoneinsert" type="hidden" name="site_name" value="새 사이트"/>
-		<input id="zoneinsert" type="hidden" name="site_price" value="20000"/>
-		<input id="zoneinsert" type="hidden" name="site_content" value="사이트 설명을 수정하세요."/>
 	</form>
 	
     <section class="section">
@@ -84,7 +59,7 @@
               <h5 class="card-title" th:text="${zoneselect.zone_name}"></h5>
               <p  th:text="${zoneselect.zone_content}"></p>
               <div th:each="img:${ilist}" th:if="${img.zone_code == zoneselect.zone_code}">
-              	<img th:src="'images/'+${img.image_file}"/>
+              	<img class="zoneimg" th:src="'images/'+${img.image_file}"/>
               	<p  th:text="${img.image_file}"></p>
               </div>
             </div>
@@ -102,7 +77,7 @@
              <h5 class="card-title" th:text="${site.site_name}"></h5>
              <p th:text="${site.site_content}"></p>
              <div th:each="img:${ilist}" th:if="${img.site_code == site.site_code}">
-              	<img th:src="'images/'+${img.image_file}"/>
+              	<img class="zoneimg" th:src="'images/'+${img.image_file}"/>
               	<p th:text="${img.image_file}"></p>
              </div>
 				<div class="Btn">

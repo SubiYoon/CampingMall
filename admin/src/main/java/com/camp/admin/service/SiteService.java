@@ -48,7 +48,7 @@ public class SiteService implements MyService<Integer, SiteDTO> {
 
     @Override
     public List<SiteDTO> selectAll() throws Exception {
-        return null;
+    	return mapper.selectAll();
     }
     
     public void updateDel(Integer integer) throws Exception {
