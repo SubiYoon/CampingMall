@@ -13,4 +13,6 @@ import com.camp.admin.frame.MyMapper;
 public interface ZoneMapper extends MyMapper<Integer, ZoneDTO>{
     
 	public List<ZoneDTO> selectZone(Integer companycode) throws Exception;
+	
+	public void updateDel(Integer site_code) throws Exception;
 }

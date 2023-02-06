@@ -2,7 +2,7 @@
 	$(document).ready(function() {
 		//삭제버튼
 		$('#zoneDelBtn').click(function(){
-			var c = confirm('구역을 삭제하시겠습니까?(근데아직안됨)');
+			var c = confirm('구역을 삭제하시겠습니까?');
 			if(c == true){
 				$('#up_form').attr({
 					'enctype':'multipart/form-data',
@@ -13,7 +13,7 @@
 			};
 		});
 		$('#siteDelBtn').click(function(){
-			var c = confirm('사이트를 삭제하시겠습니까?(근데아직안됨)');
+			var c = confirm('사이트를 삭제하시겠습니까?');
 			if(c == true){
 				$('#up_form').attr({
 					'method':'post',
@@ -90,12 +90,12 @@
             </div>
             <div class="Btn">
 				<a id="zone_write" class="btn btn-primary" th:href="@{/zone/zoneedit(zone_code=${zoneselect.zone_code})}">수정</a>
-	            <a id="zoneDelBtn" class="btn btn-primary" th:href="@{#}">삭제</a>
+	            <a id="zoneDelBtn" class="btn btn-primary" th:href="@{/zone/zonedel(zone_code=${zoneselect.zone_code})}">삭제</a>
 			</div>
           </div>
         </div>
         
-        <div class="col-lg-6" th:each="site:${slist}" th:if="${zoneselect.zone_code == site.zone_code}">
+        <div class="col-lg-6" th:each="site:${slist}" th:if="${zoneselect.zone_code == site.zone_code} and ${site.site_state == 1}">
           <div class="card">
             <div class="card-body">
             
@@ -106,8 +106,8 @@
               	<p th:text="${img.image_file}"></p>
              </div>
 				<div class="Btn">
-				<a id="notice_write" class="btn btn-primary" th:href="@{/zone/siteedit(site_code=${site.site_code})}">수정</a>
-				<a id="siteDelBtn" class="btn btn-primary" th:href="@{/zone/sitedel(site_code=${site.site_code})}">삭제</a>
+				<a id="notice_write" class="btn btn-primary" th:href="@{/zone/siteedit(site_code=${site.site_code}, zone_code=${zoneselect.zone_code})}">수정</a>
+				<a id="siteDelBtn" class="btn btn-primary" th:href="@{/zone/sitedel(site_code=${site.site_code}, zone_code=${zoneselect.zone_code})}">삭제</a>
 				</div>
             </div>
           	</div>

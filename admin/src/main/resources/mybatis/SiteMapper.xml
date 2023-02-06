@@ -47,7 +47,7 @@
     </select>
    
    	<update id="update" parameterType="SiteDTO">
-        UPDATE site SET site_name=#{site_name}, site_price=#{site_price}, site_content=#{site_content}, site_state=#{site_state} WHERE site_code=#{site_code}
+        UPDATE site SET site_name=#{site_name}, site_price=#{site_price}, site_content=#{site_content} WHERE site_code=#{site_code}
     </update>
     
     <insert id="insert" parameterType="SiteDTO">
@@ -55,7 +55,7 @@
     </insert>
     
     <update id="updateDel" parameterType="SiteDTO">
-        UPDATE site SET zone_code=0 WHERE site_code=#{site_code}
+        UPDATE site SET site_state=0 WHERE site_code=#{site_code}
     </update>
     
 </mapper>

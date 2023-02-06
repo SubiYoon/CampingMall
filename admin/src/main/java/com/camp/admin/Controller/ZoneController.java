@@ -103,6 +103,7 @@ public class ZoneController {
 	 
 		//새구역(zone)추가
 		 @RequestMapping("/zoneinsert") public String zoneinsert(ZoneDTO zonedto) {
+			 
 			 try {
 				 serviceZ.insert(zonedto);
 			 } catch (Exception e) {
@@ -111,11 +112,22 @@ public class ZoneController {
 			 
 			 return "redirect:/main";
 		}
+		 
+		//구역 삭제기능(업데이트로 처리)
+		 @RequestMapping("/zonedel") 
+		 public String zoneDel(ZoneDTO zonedto, int zone_code) {
+			 try {
+				 serviceZ.updateDel(zone_code);
+			 } catch (Exception e) {
+				 e.printStackTrace();
+			 } 
+			 return "redirect:/main";
+		}
 	 
 //-----------------------------------------------------------------		 
 	//사이트(site)수정페이지
 			@RequestMapping("/siteedit")
-			public String siteedit(Model model, ImageDTO imageDTO, int site_code) {
+			public String siteedit(Model model, ImageDTO imageDTO, int site_code, int zone_code) {
 				SiteDTO siteEdit = null;
 				List<ImageDTO> listI = null;
 				
@@ -128,6 +140,8 @@ public class ZoneController {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
+				model.addAttribute("zone_code", zone_code);
 				model.addAttribute("center", dir + "siteEdit");
 				return "main";
 			}
@@ -135,6 +149,8 @@ public class ZoneController {
 		//사이트(site)수정기능
 			 @RequestMapping("/siteupdate")
 			 public String siteupdate(Model model, SiteDTO sitedto) {
+				 
+				 
 				 try {
 					 serviceS.update(sitedto);
 				 } catch (Exception e) {
@@ -157,13 +173,13 @@ public class ZoneController {
 			 
 		//사이트 삭제기능(업데이트로 처리)
 			 @RequestMapping("/sitedel") 
-			 public String siteDel(SiteDTO sitedto, int site_code) {
+			 public String siteDel(SiteDTO sitedto, int site_code, int zone_code) {
 				 try {
 					 serviceS.updateDel(site_code);
 				 } catch (Exception e) {
 					 e.printStackTrace();
 				 } 
-				 return "redirect:/main";
+				 return "redirect:/zone?zone_code="+zone_code;
 			}
 		 
 
