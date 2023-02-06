@@ -40,11 +40,13 @@ public class ZoneController {
 	String dir = "zone/";
 	
 	@RequestMapping("")
-	public String main(Model model, HttpSession session, ZoneDTO zoneDTO, ImageDTO imageDTO, SiteDTO siteDTO, CompanyDTO companyDTO) {
+	public String main(Model model, HttpSession session, int zone_code, ZoneDTO zoneDTO, ImageDTO imageDTO, SiteDTO siteDTO, CompanyDTO companyDTO) {
 		
 		List<ZoneDTO> listZ = null;
 		List<ImageDTO> listI = null;
 		List<SiteDTO> listS = null;
+		ZoneDTO zonedto = null;
+		
 		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
 		
 		try {
@@ -56,6 +58,9 @@ public class ZoneController {
 		
 			listS = serviceS.selectSet(company.getCompany_code());	//상호코드
 			model.addAttribute("slist", listS);	
+			
+			zonedto = serviceZ.select(zone_code);
+			model.addAttribute("zoneselect", zonedto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
