@@ -29,7 +29,7 @@ INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시
 INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시설4", "시설4입니다.");
 
 -- 홈페이지
-INSERT INTO home(admin_code, home_content, home_longitude, home_latitude)VALUES(1,'1번상호설명입니다. 심문도 찍히지 그 것, 인류가 어머니로서 기강에 나오다. 이름에게 많이 재벌이 엄중히, 들어가아서 모르다 읽죠 건설에 예기하세요.', 37.5039781087508, 127.04273317956381);
+INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude)VALUES(1, '홍길동', '서울시', 'www.naver.com', '02-1234-1234', '1번상호설명입니다. 심문도 찍히지 그 것, 인류가 어머니로서 기강에 나오다. 이름에게 많이 재벌이 엄중히, 들어가아서 모르다 읽죠 건설에 예기하세요.', 37.5039781087508, 127.04273317956381);
 INSERT INTO home(admin_code, home_content, home_longitude, home_latitude)VALUES(3,'안녕하세요2', 37.56517320755754, 126.97909982283633);
 
 -- 구역
