@@ -11,6 +11,29 @@ function paymentDo() {
 	let total_customer=$('#total_customer').text();
 	let customerinfo_name=$('#customerinfo_name').val();
 	let customerinfo_tel=$('#customerinfo_tel').val();
+	let result4=$('#result4').text();
+	let result5=$('#result5').text();
+	let result6=$('#result6').text();
+	
+	let car_num_add=car_number+","+result4+","+result5+","+result6;
+	    	
+	
+	if(car_number==""||car_number==null){
+		$('#car_number').focus();
+		return false;
+	}
+	
+	if(customerinfo_name==""||customerinfo_name==null){
+		$('#customerinfo_name').focus();
+		return false;
+	}
+	
+	if(customerinfo_tel==""||customerinfo_tel==null){
+		$('#customerinfo_tel').focus();
+		return false;
+	}
+	
+	
 	
 	/*<![CDATA[*/
 		let site_code = /*[[${book.site_code}]]*/ 'default';
@@ -48,11 +71,13 @@ $.ajax({
 		   	    	    	'book_checkin':checkin_result,
 		   	    	    	'book_checkout':checkout_result,
 		   	    	    	'book_price':rsp.paid_amount,
-		   	    	    	'book_car_number':car_number,
+		   	    	    	'book_car_number':car_num_add,
 		   	    	    	'buyer_name':rsp.buyer_name,
 		   	    	    	'buyer_tel':rsp.buyer_tel,
 		   	    	    	'status':rsp.status,
 		   	    	    	'imp_uid':rsp.imp_uid
+		   	    	    	
+		   	    	    	
                 	};
                     $.ajax({
 	   	    	        url: "/pay/paybook", 
