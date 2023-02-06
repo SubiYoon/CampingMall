@@ -37,6 +37,8 @@ INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역A', 'A존 
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역B', 'B존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'구역C', 'C존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(2,'구역D', 'D존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'삭제된구역', '삭제된 구역입니다.');
+UPDATE zone SET zone_code=0 WHERE zone_name='삭제된구역';
 
 -- 사이트
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, 'A-1',20000,'A-1 입니다.');
