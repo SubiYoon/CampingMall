@@ -526,4 +526,7 @@ public class BookService implements MyService<Integer, BookDTO> {
             YearlySales(Utility.DateToString(calendar.getTime()), company_code));
     }
 
+    public List<BookDTO> selectUserBook(int company_code, String user_id) throws Exception {
+        return mapper.selectUserBook(company_code, user_id);
+    }
 }

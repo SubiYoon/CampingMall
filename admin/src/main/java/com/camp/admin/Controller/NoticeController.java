@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.camp.admin.DTO.AdminDTO;
 import com.camp.admin.DTO.NoticeDTO;
 import com.camp.admin.service.NoticeService;
 

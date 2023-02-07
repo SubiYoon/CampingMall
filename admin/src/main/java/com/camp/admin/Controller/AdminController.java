@@ -17,8 +17,4 @@ public class AdminController {
 		model.addAttribute("center", dir+"bookEdit");
 		return "main";
 	}
-	
-	
-	
-	
 }
