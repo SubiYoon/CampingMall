@@ -36,12 +36,12 @@ public class BookInsertSampleTest {
         String bookCarNumber;
         for (int i = 10; i < 200; i++) {
             merchantUid = "" + i;
-            String impUID = "imp_"+(int)(Math.random()*10);
-            for(int j=0;j<10;j++) {
+            String impUID = "imp_" + (int) (Math.random() * 10);
+            for (int j = 0; j < 10; j++) {
                 impUID += (int) (Math.random() * 10);
             }
             try {
-                paymentService.insert(new PaymentDTO(impUID,merchantUid,"1"));
+                paymentService.insert(new PaymentDTO(impUID, merchantUid, "1"));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -63,11 +63,15 @@ public class BookInsertSampleTest {
             bookMember = (int) (Math.random() * 2 + Math.random() * 3 + 1);
             bookPrice = (int) (Math.random() * 6 + 1) * 10000;
             bookCarNumber =
-                "" + (int) (Math.random() * 99) + (int) (Math.random() * 10) + center[(int) (
-                    Math.random() * 7)] + (int) (Math.random() * 10) + (int) (Math.random() * 10)
-                    + (int) (Math.random() * 10) + (int) (Math.random() * 10) + "";
+                "" + (int) (Math.random() * 99) + (int) (Math.random() * 10)
+                    + center[(int) (Math.random() * 7)] + (int) (Math.random() * 10)
+                    + (int) (Math.random() * 10) + (int) (Math.random() * 10)
+                    + (int) (Math.random() * 10)
+                    + "," + (int) ((Math.random() * 120) / 100)
+                    + "," + (int) ((Math.random() * 120) / 100)
+                    + "," + (int) ((Math.random() * 120) / 100);
             BookDTO bookDTO = new BookDTO(1, siteCode, userCode, merchantUid, bookMember,
-                bookCheckin, bookCheckout, bookWritedate, bookPrice, bookCarNumber, 1, "");
+                bookCheckin, bookCheckout, bookWritedate, bookPrice, bookCarNumber, 1, "", "");
             try {
                 int count = 0;
                 while (count < 20) {

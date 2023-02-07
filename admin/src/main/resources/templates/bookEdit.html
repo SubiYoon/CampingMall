@@ -4,156 +4,124 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
 </script>
 <script>
-$(document).ready(function () {
-    
+  $(document).ready(function () {
+
     var args = "";
     $.ajax({
-        url: '/admin/refundBook',
-        type: 'post',
-        success:function(data){
-            for(var i=0; i<data.length; i++){
-            	let book_car_number=data[i].book_car_number;
-            	let car_add=book_car_number.split(',');
-            	
-                args += '<div class="col-lg-6">';
-                args += '<div class="card">';
-                args += '<div class="card-body card-container">';
-                args += '<div class="refund-req-title"><span class="badge rounded-pill text-bg-primary">환불요청</span></div>';
-                args += '<div><div class="refund-text-container"><p>주문 번호 : <span id="m_uid'+i+'">'+data[i].merchant_uid+'</span></p>';
-                args += '<p>사이트 이름 : '+data[i].site_name+'</p>';
-                args += '<p>예약 날짜 : '+data[i].book_checkin+' ~ '+data[i].book_checkout+'</p>';
-                args += '<p id="b_price">예약 가격 : '+data[i].book_price+'</p>';
-                args += '<p>예약 인원 : '+data[i].book_member+'</p>';
-                args += '<p>예약자 이름 : '+data[i].user_name+'</p>';
-                args += '<p>예약자 전화번호 : '+data[i].user_tel+'</p>';
-                args += '<p>추가옵션 : ';
-                if(car_add[1]>0){
-                    args += '<i class="fa-solid fa-fire" style="color:red;"><span>불멍(모닥불)</span></i>   ';
-                }
-                if(car_add[2]>0){
-                    args += '<i class="fa-solid fa-rocket" style="color:blue;"><span>빠른입실</span></i>   ';
-                }
-                if(car_add[3]>0){
-                    args += '<i class="fa-solid fa-dumpster-fire" style="color:red;"><span>바베큐그릴</span></i>   ';
-                }
-                args += '</p></div></div>';
-                args += '<div class="refund-button-container"><button type="button" style="margin-right:10px" class="btn btn-success" onclick="refund('+i+',3)">환불승인</button>';
-                args += '<button type="button" class="btn btn-success" onclick="refund('+i+',4)">환불거절</button></div>';
-                args += '</div>';
-                args += '</div>';
-                args += '</div>';
-            }
-            $('.request-refund-list').html(args);
+      url: '/admin/refundBook',
+      type: 'post',
+      success: function (data) {
+        for (var i = 0; i < data.length; i++) {
+          let book_car_number = data[i].book_car_number;
+          let car_add = book_car_number.split(',');
+
+          args += '<div class="col-lg-6">';
+          args += '<div class="card">';
+          args += '<div class="card-body card-container">';
+          args += '<div class="refund-req-title"><span class="badge rounded-pill text-bg-primary">환불요청</span></div>';
+          args += '<div><div class="refund-text-container"><p>주문 번호 : <span id="m_uid' + i + '">' + data[i].merchant_uid + '</span></p>';
+          args += '<p>사이트 이름 : ' + data[i].site_name + '</p>';
+          args += '<p>예약 날짜 : ' + data[i].book_checkin + ' ~ ' + data[i].book_checkout + '</p>';
+          args += '<p id="b_price">예약 가격 : ' + data[i].book_price + '</p>';
+          args += '<p>예약 인원 : ' + data[i].book_member + '</p>';
+          args += '<p>예약자 이름 : ' + data[i].user_name + '</p>';
+          args += '<p>예약자 전화번호 : ' + data[i].user_tel + '</p>';
+          args += '<p>추가옵션 : ';
+          if (car_add[1] > 0) {
+            args += '<i class="fa-solid fa-fire" style="color:red;"><span>불멍(모닥불)</span></i>   ';
+          }
+          if (car_add[2] > 0) {
+            args += '<i class="fa-solid fa-rocket" style="color:blue;"><span>빠른입실</span></i>   ';
+          }
+          if (car_add[3] > 0) {
+            args += '<i class="fa-solid fa-dumpster-fire" style="color:red;"><span>바베큐그릴</span></i>   ';
+          }
+          args += '</p></div></div>';
+          args += '<div class="refund-button-container"><button type="button" style="margin-right:10px" class="btn btn-success" onclick="refund(' + i + ',3)">환불승인</button>';
+          args += '<button type="button" class="btn btn-success" onclick="refund(' + i + ',4)">환불거절</button></div>';
+          args += '</div>';
+          args += '</div>';
+          args += '</div>';
         }
+        $('.request-refund-list').html(args);
+      }
     });
-});
+  });
 
-function refund(num,state) {
-	
-	let merchant_uid=$('#m_uid'+num).text();
-	let go_refund;
-	
-	if(state==3){
-		var ok=confirm("환불요청 승인 하시겠습니까 ");
-		if(ok){
-			go_refund=1;
-		}
-		
-	}else if(state==4){
-		var ok=confirm("환불요청 거절 하시겠습니까 ");
-		if(ok){
-			go_refund=1;
-		}
-	}
-	
-	if(go_refund==1){	
-		jQuery.ajax({
-		      "url": "/admin/refund", // 예: http://www.myservice.com/payments/cancel
-		      "type": "POST",
-		      "contentType": "application/json",
-		      "data": JSON.stringify({
-		        "merchant_uid":merchant_uid,
-		        "state":state
-		      }),
-		      "dataType": "json",
-		      success:function(data){
-		    	  if(data!=1){
-		    		  alert("요청 실패");
-		    	  }
-	    		  location.reload(true);
-		    	  
-		    	  
-		      }
-		      
-		      
-		      
-		      
-		    });
-	}	
-}
+  function refund(num, state) {
 
+    let merchant_uid = $('#m_uid' + num).text();
+    let go_refund;
 
+    if (state == 3) {
+      var ok = confirm("환불요청 승인 하시겠습니까 ");
+      if (ok) {
+        go_refund = 1;
+      }
 
+    } else if (state == 4) {
+      var ok = confirm("환불요청 거절 하시겠습니까 ");
+      if (ok) {
+        go_refund = 1;
+      }
+    }
 
-
-
+    if (go_refund == 1) {
+      jQuery.ajax({
+        "url": "/admin/refund", // 예: http://www.myservice.com/payments/cancel
+        "type": "POST",
+        "contentType": "application/json",
+        "data": JSON.stringify({
+          "merchant_uid": merchant_uid,
+          "state": state
+        }),
+        "dataType": "json",
+        success: function (data) {
+          if (data != 1) {
+            alert("요청 실패");
+          }
+          location.reload(true);
+        }
+      });
+    }
+  }
 </script>
-  <main id="main" class="main">
+<main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>고객 환불요청 처리</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Blank</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
+  <div class="pagetitle">
+    <h1>고객 환불요청 처리</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
+        <li class="breadcrumb-item">Pages</li>
+        <li class="breadcrumb-item active">Blank</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
 
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
 
-          <div class="card">
-            <div  style="padding-bottom: 0;" class="card-body refund-guide">
-              <h5 class="card-title">「소비자 분쟁해결 기준」 중 관광숙박업에 관한 보상기준 참조</h5>
-					<p>날씨로 인하여 환불요청을 할 경우는 환불요청사유로 적합하지 않으므로 환불반환기준에 따라 처리합니다.</p>
-					<p>폭염으로 인한 경보 주의보는 캠핑하는데 문제가 없으므로 환불요청사유로 적합하지 않으므로 환불반환기준에 따라 처리합니다.</p>
-					<p>(단순 우천은 환불규정에 따라 처리 됩니다. 캠핑문화에는 "우중캠핑"이란 환경이 있습니다.</p>
-					<p>※ 코로나 감염병에 의한 환불 요청시에는 해당 기준일 기점으로 감염병 위약금 면책 제도가 실시될 경우 정부지침에 해당되며</p>
-					<p style="margin-bottom: 0;">평시 코로나 일상회복기간에는 모두 야영장업 환불규정으로 적용됩니다.</p>​
-            </div>
+        <div class="card">
+          <div style="padding-bottom: 0;" class="card-body refund-guide">
+            <h5 class="card-title">「소비자 분쟁해결 기준」 중 관광숙박업에 관한 보상기준 참조</h5>
+            <p>날씨로 인하여 환불요청을 할 경우는 환불요청사유로 적합하지 않으므로 환불반환기준에 따라 처리합니다.</p>
+            <p>폭염으로 인한 경보 주의보는 캠핑하는데 문제가 없으므로 환불요청사유로 적합하지 않으므로 환불반환기준에 따라 처리합니다.</p>
+            <p>(단순 우천은 환불규정에 따라 처리 됩니다. 캠핑문화에는 "우중캠핑"이란 환경이 있습니다.</p>
+            <p>※ 코로나 감염병에 의한 환불 요청시에는 해당 기준일 기점으로 감염병 위약금 면책 제도가 실시될 경우 정부지침에 해당되며</p>
+            <p style="margin-bottom: 0;">평시 코로나 일상회복기간에는 모두 야영장업 환불규정으로 적용됩니다.</p>​
           </div>
         </div>
+      </div>
 
-		<div class="row request-refund-list" style="padding:0;margin:0">
-	        
-	        <div class="col-lg-6">
-	          <div class="card">
-	            <div class="card-body">
-	              <h5 class="card-title">사이트1 수정</h5>
-	              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-	              <button type="button" class="btn btn-success pay-go" onclick="refundOk()">환불허가</button>
-	              <button type="button" class="btn btn-success pay-go" onclick="refundCancel()">환불취소</button>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-lg-6">
-	          <div class="card">
-	            <div class="card-body">
-	              <h5 class="card-title">사이트1 수정</h5>
-	              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-	              <button type="button" class="btn btn-success pay-go" onclick="refundOk()">환불허가</button>
-	              <button type="button" class="btn btn-success pay-go" onclick="refundCancel()">환불취소</button>
-	            </div>
-	          </div>
-	        </div>
-         
-        </div>
-         </div>
-        
+      <div class="row request-refund-list" style="padding:0;margin:0">
 
-    </section>
 
-  </main><!-- End #main -->
+      </div>
+    </div>
+
+
+  </section>
+
+</main><!-- End #main -->
