@@ -1365,6 +1365,10 @@ ul.social_icon li a:hover {
 .back_re {
      background-color: #0f1521;
 }
+.back2_re {
+     background-color: #fff;
+     height: 50px;
+}
 
 .back_re .title {
      text-align: center;
