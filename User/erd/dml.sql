@@ -80,9 +80,9 @@ insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-07','방역');
 
 -- 리뷰
-insert into `review`(book_code, review_content, review_score) values(1,'맛있어요',9);
+insert into `review`(book_code, review_content, review_score) values(1,'맛있어요',3);
 insert into `review`(book_code, review_content, review_score) values(2,'추워요',4);
-insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',7);
+insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',5);
 
 -- 이미지
 insert into image(company_code, zone_code, image_file) VALUES(1, 1, 'zone_img1.jpg');
