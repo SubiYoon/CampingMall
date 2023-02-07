@@ -27,7 +27,7 @@ $(document).ready(function(){
             </div>
             
             <div th:each="zone:${zlist}">
-	            <div class="zone">
+	            <div class="zone" th:if="${zone.zone_state} == 1">
 	            <div class="row">
 					<div class="col-md-6 col-sm-6">
 	                  <div id="serv_hover"  class="room">
@@ -54,7 +54,7 @@ $(document).ready(function(){
 							<div class="room">
 		                    <div class="bed_room">
 		                    	<h3>사이트 상세보기</h3>
-		                        <div id="siteimg" th:each="site:${slist}" th:if="${zone.zone_code == site.zone_code}">
+		                        <div id="siteimg" th:each="site:${slist}" th:if="${zone.zone_code == site.zone_code} and ${site.site_state} == 1">
 		                        	<a th:text="${site.site_name}" th:href="'zone/site?site_code='+${site.site_code}"></a>
 		                        	<div th:each="img:${ilist}">
 		                        		<a th:href="'zone/site?site_code='+${site.site_code}">

@@ -29,7 +29,7 @@ INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시
 INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시설4", "시설4입니다.");
 
 -- 홈페이지
-INSERT INTO home(admin_code, home_content, home_longitude, home_latitude)VALUES(1,'1번상호설명입니다. 심문도 찍히지 그 것, 인류가 어머니로서 기강에 나오다. 이름에게 많이 재벌이 엄중히, 들어가아서 모르다 읽죠 건설에 예기하세요.', 37.5039781087508, 127.04273317956381);
+INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude)VALUES(1, '홍길동', '서울시', 'www.naver.com', '02-1234-1234', '1번상호설명입니다. 심문도 찍히지 그 것, 인류가 어머니로서 기강에 나오다. 이름에게 많이 재벌이 엄중히, 들어가아서 모르다 읽죠 건설에 예기하세요.', 37.5039781087508, 127.04273317956381);
 INSERT INTO home(admin_code, home_content, home_longitude, home_latitude)VALUES(3,'안녕하세요2', 37.56517320755754, 126.97909982283633);
 
 -- 구역
@@ -74,21 +74,21 @@ insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price) values(1,2,'3',1,'2023-02-04','2023-02-07',20000);
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,3,'4',2,'2023-02-02','2023-02-05',45000,'13나1234,1,1,1');
 
-
 -- 스케줄
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-06','방역');
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-07','방역');
 
 -- 리뷰
-insert into `review`(book_code, review_content, review_score) values(1,'맛있어요',5);
+insert into `review`(book_code, review_content, review_score) values(1,'맛있어요',9);
 insert into `review`(book_code, review_content, review_score) values(2,'추워요',4);
-insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',2);
+insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',7);
 
 -- 이미지
 insert into image(company_code, zone_code, image_file) VALUES(1, 1, 'zone_img1.jpg');
 insert into image(company_code, zone_code, image_file) VALUES(1, 2, 'zone_img2.jpg');
 insert into image(company_code, zone_code, image_file) VALUES(1, 3, 'zone_img3.jpg');
 insert into image(company_code, zone_code, image_file) VALUES(1, 4, 'zone_img4.jpg');
+
 insert into image(company_code, site_code, image_file) VALUES(1, 1, 'site_img1.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 2, 'site_img2.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 3, 'site_img3.png');
@@ -99,10 +99,12 @@ insert into image(company_code, site_code, image_file) VALUES(1, 7, 'site_img2.p
 insert into image(company_code, site_code, image_file) VALUES(1, 8, 'site_img3.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 9, 'site_img4.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 10, 'site_img5.png');
+
 insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'gallery1.jpg');
 insert into image(company_code, facility_code, image_file) VALUES(1, 2, 'gallery2.jpg');
 insert into image(company_code, facility_code, image_file) VALUES(1, 3, 'gallery3.jpg');
 insert into image(company_code, facility_code, image_file) VALUES(1, 4, 'gallery4.jpg');
+
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner1.jpg');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner2.jpg');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'banner3.jpg');

@@ -1,5 +1,32 @@
+<script>
+	$(document).ready(function() {
+		//삭제버튼
+		$('#zoneDelBtn').click(function(){
+			var c = confirm('구역을 삭제하시겠습니까?');
+			if(c == true){
+				$('#up_form').attr({
+					'enctype':'multipart/form-data',
+					'method':'post',
+					'action':'[[@{/zone/zonedel}]]'
+				});
+				$('#up_form').submit();
+			};
+		});
+		$('#siteDelBtn').click(function(){
+			var c = confirm('사이트를 삭제하시겠습니까?');
+			if(c == true){
+				$('#up_form').attr({
+					'method':'post',
+					'action':'[[@{/zone/siteDel}]]'
+				});
+				$('#up_form').submit();
+			};
+		});		
+	}); 
+</script>
   <main id="main" class="main">
-
+	
+	<div class="zonetitle">
     <div class="pagetitle">
       <h1>구역/사이트 수정</h1>
       <nav>
@@ -8,36 +35,60 @@
           <li class="breadcrumb-item active">zone, site edit</li>
         </ol>
       </nav>
-    </div><!-- End Page Title -->
-
+    </div>
+    <div class="pagetitle">
+      <a th:href="@{/zone/zoneinsert}" class="btn btn-outline-primary"><h1>새 구역 추가하기</h1></a>
+      <a th:href="@{/zone/siteinsert(zone_code=${zoneselect.zone_code})}" class="btn btn-outline-primary"><h1>새 사이트 추가하기</h1></a>
+	</div>
+	</div>
+	<!-- End Page Title -->
+	
+	<form id="newzoneForm">
+		<input id="zoneinsert" type="hidden" name="admin_code" th:value="${session.admin.Admin_code}">
+		<input id="zoneinsert" type="hidden" name="zone_name" value="새로운 구역"/>
+		<input id="zoneinsert" type="hidden" name="zone_content" value="구역 설명을 수정하세요."/>
+	</form>
+	
     <section class="section">
       <div class="row">
         <div class="col-lg-12">
-
-          <div class="card">
+            
+          	<div class="card">
             <div class="card-body">
+            
               <h5 class="card-title" th:text="${zoneselect.zone_name}"></h5>
               <p  th:text="${zoneselect.zone_content}"></p>
               <div th:each="img:${ilist}" th:if="${img.zone_code == zoneselect.zone_code}">
-              	<img th:src="'images/'+${img.image_file}"/>
+              	<img class="zoneimg" th:src="'images/'+${img.image_file}"/>
               	<p  th:text="${img.image_file}"></p>
               </div>
             </div>
+            <div class="Btn">
+				<a id="zone_write" class="btn btn-primary" th:href="@{/zone/zoneedit(zone_code=${zoneselect.zone_code})}">수정</a>
+	            <a id="zoneDelBtn" class="btn btn-primary" th:href="@{/zone/zonedel(zone_code=${zoneselect.zone_code})}">삭제</a>
+			</div>
           </div>
         </div>
         
-        <div class="col-lg-6" th:each="site:${slist}" th:if="${zoneselect.zone_code == site.zone_code}">
+        <div class="col-lg-6" th:each="site:${slist}" th:if="${zoneselect.zone_code == site.zone_code} and ${site.site_state == 1}">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title" th:text="${site.site_name}"></h5>
-              <div th:each="img:${ilist}" th:if="${img.site_code == site.site_code}">
-              	<img th:src="'images/'+${img.image_file}"/>
+            
+             <h5 class="card-title" th:text="${site.site_name}"></h5>
+             <p th:text="${site.site_content}"></p>
+             <div th:each="img:${ilist}" th:if="${img.site_code == site.site_code}">
+              	<img class="zoneimg" th:src="'images/'+${img.image_file}"/>
               	<p th:text="${img.image_file}"></p>
-              </div>
+             </div>
+				<div class="Btn">
+				<a id="notice_write" class="btn btn-primary" th:href="@{/zone/siteedit(site_code=${site.site_code}, zone_code=${zoneselect.zone_code})}">수정</a>
+				<a id="siteDelBtn" class="btn btn-primary" th:href="@{/zone/sitedel(site_code=${site.site_code}, zone_code=${zoneselect.zone_code})}">삭제</a>
+				</div>
             </div>
-          </div>
-
-      </div>
+          	</div>
+		
+		</div>
+		</div>
     </section>
 
   </main><!-- End #main -->

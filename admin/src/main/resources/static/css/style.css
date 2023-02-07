@@ -1352,3 +1352,95 @@ h6 {
      overflow: scroll;
 }
 
+/*-- 슬라이드 추가 모달 --*/
+
+#modal,
+#modal_slide_add {
+  display: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+}
+
+#modal_slide_add .modal-btn {
+  text-align: right;
+}
+
+#modal_slide_add button {
+  background-color: #009898;
+  width: 15%;
+  padding: 5px 0;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 15px;
+  transition: ease-in 0.5s;
+  display: line-block;
+}
+
+#modal_slide_add h2 {
+  margin: 0;
+}
+
+#modal_slide_add .modal-content {
+  width: 80%;
+  margin: 100px auto;
+  padding: 10px 2%;
+  background: #fff;
+  border: 2px solid #666;
+}
+
+#modal_slide_add .modal-login {
+  text-align: center;
+  padding: 10px 0;
+}
+
+#modal_slide_add .modal-login button{
+  text-align: center;
+}
+
+#modal_slide_add.modal-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(1.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/*-- end 슬라이드 추가 모달 --*/
+
+
+/*--------------------------------------------------------------
+# zone
+--------------------------------------------------------------*/
+.zonetitle{
+	display: flex;
+	justify-content: space-between;
+	margin: auto 5px auto auto;
+}
+
+.zoneimg{
+	width: 50%;
+	margin-bottom: 20px;
+}
+
+/*--------------------------------------------------------------
+# zoneedit
+--------------------------------------------------------------*/
+.zonethF{
+	width: 200px;
+}
+
+.zonethS{
+	width: 85%;
+}

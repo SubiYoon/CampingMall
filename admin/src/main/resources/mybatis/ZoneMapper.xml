@@ -15,14 +15,19 @@
     <update id="update" parameterType="ZoneDTO">
         UPDATE zone SET zone_name=#{zone_name}, zone_content=#{zone_content} WHERE zone_code=#{zone_code}
     </update>
-    <delete id="delete">
-        DELETE FROM zone WHERE zone_code=#{zone_code}
-    </delete>
-    
+    <update id="updateDel" parameterType="ZoneDTO">
+        UPDATE zone SET zone_state=0 WHERE zone_code=#{zone_code}
+    </update>
     <select id="selectZone" parameterType="Integer" resultType="ZoneDTO">
-        SELECT zone.zone_code, zone.admin_code, zone_name, zone_content
+        SELECT zone.zone_code, zone.admin_code, zone_name, zone_content, zone_state
 			FROM zone
     			JOIN admin ON zone.admin_code=admin.admin_code
     				WHERE admin.company_code=#{companycode}
+    </select>
+    <select id="selectForEdit" resultType="ZoneDTO">
+    	SELECT z.zone_code, z.admin_code, z.zone_name, z.zone_content, z.zone_state, i.image_code, i.image_file
+			FROM zone z
+				JOIN image i ON z.zone_code=i.zone_code 
+					WHERE i.zone_code=#{zone_code}
     </select>
 </mapper>

@@ -33,12 +33,12 @@ public class SiteService implements MyService<Integer, SiteDTO> {
 
     @Override
     public void delete(Integer integer) throws Exception {
-
+    	mapper.delete(integer);
     }
 
     @Override
     public void update(SiteDTO siteDTO) throws Exception {
-
+    	mapper.update(siteDTO);
     }
 
     @Override
@@ -48,7 +48,11 @@ public class SiteService implements MyService<Integer, SiteDTO> {
 
     @Override
     public List<SiteDTO> selectAll() throws Exception {
-        return null;
+    	return mapper.selectAll();
+    }
+    
+    public void updateDel(Integer integer) throws Exception {
+    	mapper.updateDel(integer);
     }
     
     public List<SiteDTO> selectSet(int company_code) throws Exception {

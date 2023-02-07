@@ -44,4 +44,11 @@ public class ZoneService implements MyService<Integer, ZoneDTO>{
         return mapper.selectZone(companycode);
     }
     
+    public void updateDel(Integer integer) throws Exception {
+    	mapper.updateDel(integer);
+    }
+    
+    public ZoneDTO selectForEdit(Integer k) throws Exception {
+        return mapper.selectForEdit(k);
+    }
 }

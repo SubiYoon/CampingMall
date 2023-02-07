@@ -1,0 +1,95 @@
+
+<script>
+	$(document).ready(function() {
+		
+		//등록버튼
+		$('#upBtn').click(function(){
+			if($('#updateth').val() == '' || $('#updateth').val() == null ){
+				alert("구역명을 등록하세요");
+		          return;
+		     }
+			if($('#updatecontent').val() == '' || $('#updatecontent').val() == null ){
+				alert("구역 설명을 등록하세요");
+		          return;
+		     }
+			if($('#zoneimg').val() == '' || $('#zoneimg').val() == null ){
+				alert("구역 이미지를 등록하세요");
+		          return;
+		     }
+			
+			
+			var c = confirm('등록하시겠습니까?');
+			if(c == true){
+				$('#up_form').attr({
+					'enctype':'multipart/form-data',
+					'method':'post',
+					'action':'[[@{/zone/zoneadd}]]'
+				});
+				$('#up_form').submit();
+			};
+		});
+		
+	}); 
+</script>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>구역/사이트 추가</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
+          <li class="breadcrumb-item">zone, site edit</li>
+          <li class="breadcrumb-item active">edit</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+        
+        <div class="card">
+        <div class="card-body noeditcard">
+	        <form id="up_form">
+	        <table class="viewtable-fill">
+			<thead>
+				<tr>
+					<th class="text-left zonethF">구역 명</th>
+					<th class="text-left zonethS" colspan="4">
+						<input id="updateth" type="text" name="zone_name">
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th class="text-left">
+						구역 설명
+					</th>
+					<td colspan="4">
+						<textarea id="updatecontent" name="zone_content"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th class="text-left">
+						구역 이미지
+					</th>
+					<td colspan="4">
+						<input id="zoneimg" class="zonethS" name="mf" type="file"/>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</form>
+		
+		<div class="Btn">
+			<a id="upBtn" class="btn btn-primary" th:href="@{#}">등록</a>
+		</div>
+		</div>
+        </div>
+		
+		</div>
+		</div>
+    </section>
+
+  </main><!-- End #main -->

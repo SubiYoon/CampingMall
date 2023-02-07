@@ -1,5 +1,5 @@
 <script>
-	$(document).ready(function() {
+	$(document).ready(function() {		
 		//글자수제한
 		$('.text_box textarea').keyup(function(){
 			  var content = $(this).val();
@@ -51,8 +51,7 @@
 						<th class="text-left" id="viewth"></th>
 						<th class="text-right" id="editad">&nbsp;/ 작성자:&nbsp;</th>
 						<th class="text-right">
-							<!-- 관리자코드 세션으로나중에바꾸기 -->
-							<input id="inputnone" readonly="readonly" type="number" name="admin_code" value="1">
+							<input id="inputnone" readonly="readonly" type="number" name="admin_code" th:value="${session.admin.Admin_code}">
 						</th>
 						<th class="text-right" id="editdate">&nbsp;/ 등록일:&nbsp;</th>
 						<th class="text-right">

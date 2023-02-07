@@ -1,0 +1,97 @@
+
+<script>
+	$(document).ready(function() {
+		
+		//수정버튼
+		$('#upBtn').click(function(){
+			var c = confirm('수정하시겠습니까?');
+			if(c == true){
+				$('#up_form').attr({
+					'enctype':'multipart/form-data',
+					'method':'post',
+					'action':'[[@{/zone/zoneupdate}]]'
+				});
+				$('#up_form').submit();
+			};
+		});
+		
+	}); 
+</script>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>구역/사이트 수정</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
+          <li class="breadcrumb-item">zone, site edit</li>
+          <li class="breadcrumb-item active">edit</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+        
+        <div class="card">
+        <div class="card-body noeditcard">
+	        <form id="up_form">
+	        <table class="viewtable-fill">
+			<thead>
+				<tr>
+					<th class="text-left zonethF">구역코드</th>
+					<th class="text-left zonethS" colspan="4">
+						<input id="inputnone" readonly="readonly" type="text" name="zone_code" th:value="${zoneEdit.zone_code}">
+					</th>
+				</tr>
+				<tr>
+					<th class="text-left zonethF">구역명</th>
+					<th class="text-left zonethS" colspan="4">
+						<input id="updateth" type="text" name="zone_name" th:value="${zoneEdit.zone_name}">
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th class="text-left">
+						구역 설명
+					</th>
+					<td colspan="4">
+						<textarea id="updatecontent" name="zone_content" th:text="${zoneEdit.zone_content}"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th class="text-left">
+						교체할 이미지
+					</th>
+					<td colspan="4">
+						<input class="zonethS" name="mf" type="file"/>
+					</td>
+				</tr>
+				<tr>
+					<th class="text-left">
+						현재 이미지
+					</th>
+					<td colspan="4">
+						<span th:each="img:${ilist}" th:if="${img.zone_code == zoneEdit.zone_code}">
+						<text th:text="${img.image_file}"></text>
+						</span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</form>
+		
+		<div class="Btn">
+			<a id="upBtn" class="btn btn-primary" th:href="@{#}">수정</a>
+		</div>
+		</div>
+        </div>
+		
+		</div>
+		</div>
+    </section>
+
+  </main><!-- End #main -->

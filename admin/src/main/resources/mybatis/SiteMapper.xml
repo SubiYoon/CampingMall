@@ -28,9 +28,9 @@
     </select>
     <select id="selectView" resultType="SiteDTO">
         SELECT 
-            s.site_code site_code, s.zone_code zone_code, s.site_name site_name, s.site_content site_content, s.site_price site_price, i.image_code image_code, i.image_file image_file 
+            s.site_code site_code, s.zone_code zone_code, s.site_name site_name, s.site_content site_content, s.site_price site_price, i.image_code image_code, i.image_file image_file, s.site_state site_state
         FROM 
-            site s 
+            site s
         JOIN 
             image i 
         ON 
@@ -38,11 +38,26 @@
         WHERE 
             s.site_code=#{site_code}
     </select>
-    
+    <select id="selectAll" resultType="SiteDTO">
+        SELECT * FROM site 
+    </select>
     <select id="selectSet" parameterType="Integer" resultType="SiteDTO">
         SELECT * FROM site
 			JOIN zone ON zone.zone_code=site.zone_code
 			JOIN admin ON admin.admin_code=zone.admin_code
 				WHERE admin.company_code=#{company_code}
     </select>
+   
+   	<update id="update" parameterType="SiteDTO">
+        UPDATE site SET site_name=#{site_name}, site_price=#{site_price}, site_content=#{site_content} WHERE site_code=#{site_code}
+    </update>
+    
+    <insert id="insert" parameterType="SiteDTO">
+        INSERT INTO site(zone_code, site_name, site_price, site_content) VALUES(#{zone_code}, #{site_name}, #{site_price}, #{site_content})
+    </insert>
+    
+    <update id="updateDel" parameterType="SiteDTO">
+        UPDATE site SET site_state=0 WHERE site_code=#{site_code}
+    </update>
+    
 </mapper>

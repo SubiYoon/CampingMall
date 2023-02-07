@@ -2,11 +2,14 @@ package com.camp.admin.Controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.camp.admin.DTO.AdminDTO;
 import com.camp.admin.DTO.NoticeDTO;
 import com.camp.admin.service.NoticeService;
 
@@ -35,10 +38,11 @@ public class NoticeController {
 
 //공지사항글작성페이지
 	@RequestMapping("/nowrite")
-	public String nowrite(Model model) {
+	public String nowrite(Model model, HttpSession session) {
 		model.addAttribute("center", dir + "nowrite");
 		return "main";
 	}
+	
 
 //공지사항글내용페이지
 	@RequestMapping("/noticeview")
@@ -58,6 +62,7 @@ public class NoticeController {
 	@RequestMapping("/noedit")
 	public String noedit(Model model, int notice_code) {
 		NoticeDTO notice = null;
+		
 		try {
 			notice = ns.select(notice_code);
 			model.addAttribute("notice", notice);
@@ -70,7 +75,8 @@ public class NoticeController {
 
 //공지사항작성기능
 	@RequestMapping("/noticedo")
-	public String noticedo(NoticeDTO noticeDto) {
+	public String noticedo(NoticeDTO noticeDto, HttpSession session) {
+		
 		try {
 			ns.insert(noticeDto);
 		} catch (Exception e) {

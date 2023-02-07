@@ -16,4 +16,7 @@ public class ZoneDTO {
     private int admin_code;
     private String zone_name;
     private String zone_content;
+    private int image_code;
+    private String image_file;
+    private int zone_state;
 }

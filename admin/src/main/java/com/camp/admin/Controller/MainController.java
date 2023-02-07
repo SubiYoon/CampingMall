@@ -105,7 +105,14 @@ public class MainController {
 	
 	//CompanyEdit
 	@RequestMapping("/company")
-	public String companyEdit(Model model) {
+	public String companyEdit(HttpSession session, Model model) {
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		try{
+			serviceC.select(company.getCompany_code());
+			model.addAttribute("company", company);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		model.addAttribute("center", "/company");
 		return "main";
@@ -113,8 +120,18 @@ public class MainController {
 
 	//CompanyEdit
 	@RequestMapping("/home")
-	public String homeEdit(Model model) {
-		
+	public String homeEdit(Model model, HttpSession session) {
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		try {
+			HomeDTO home = serviceH.select(company.getCompany_code());
+			model.addAttribute("home", home);
+
+			List<ImageDTO> img = serviceI.selectByHomeCode(home.getHome_code());
+			model.addAttribute("slideImgs", img);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		model.addAttribute("center", "/home");
 		return "main";
 	}
@@ -133,28 +150,20 @@ public class MainController {
 		return "main";
 	}
 
-	@RequestMapping("board/edit")
-	public String boardEdit(HttpSession session ,String whatDTO, String title, String content, int board_code){
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-
-		if(whatDTO.equals("homeDTO")){
-			HomeDTO homeDTO = new HomeDTO();
-			homeDTO.setHome_code(board_code);
-			homeDTO.setHome_content(content);
-
+	@RequestMapping("homeEdit")
+	public String boardEdit(HttpSession session ,HomeDTO home){
 			try{
-				serviceH.update(homeDTO);
+				serviceH.update(home);
 				System.out.println("성공");
 			}catch(Exception e){
 				//e.printStackTrace();
 				System.out.println("실패");
 			}
-		}
 
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
-	@RequestMapping("logo/edit")
+	@RequestMapping("logoEdit")
 	public String logoEdit(HttpSession session, MultipartFile company_logo1, MultipartFile company_logo2){
 		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
 		int company_code = company.getCompany_code();
@@ -165,16 +174,20 @@ public class MainController {
 				serviceC.update(company);
 				SaveFile.saveFile(company_logo1, imagesdir);
 				SaveFile.saveFile(company_logo2, imagesdir);
+
+				session.invalidate();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
+			
 		}else if(!company_logo1.isEmpty() && company_logo2.isEmpty()){
 			try {
 				company = serviceC.select(company_code);
 				company.setCompany_logo1(company_logo1.getOriginalFilename());
 				SaveFile.saveFile(company_logo1, imagesdir);
 				serviceC.update(company);
+
+				session.invalidate();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -188,34 +201,30 @@ public class MainController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else return "redirect:/main";
+		}else return "redirect:/company";
 		
-		return "redirect:/main";
+		
+
+		return "redirect:/";
 	}
 	
-	@RequestMapping("slide/edit")
-	public String slideEdit(HttpSession session, List<MultipartFile> home_slide, @RequestParam List<Integer> image_code, int home_code){
+	@RequestMapping("slideEdit")
+	public String slideEdit(MultipartFile home_slide, int image_code){
 		ImageDTO image = null;
-		
-		for(int i=0; i<home_slide.size(); i++){
-			if(!home_slide.get(i).isEmpty()){
-				try{
-					image = serviceI.select(image_code.get(i));
-					image.setImage_file(home_slide.get(i).getOriginalFilename());
-					image.setHome_code(home_code);
-					serviceI.update(image);
-					SaveFile.saveFile(home_slide.get(i), imagesdir);
-				}catch(Exception e){
-					//e.printStackTrace();
-					System.out.println("파일변경 실패");
-				}
-			}
+		try{
+		image = serviceI.select(image_code);
+			image.setImage_file(home_slide.getOriginalFilename());
+			serviceI.update(image);
+			SaveFile.saveFile(home_slide, imagesdir);
+		}catch(Exception e){
+			//e.printStackTrace();
+			System.out.println("파일변경 실패");
 		}
-
-		return "redirect:/main";
+		
+		return "redirect:/home";
 	}
 
-	@RequestMapping("slide/delete")
+	@RequestMapping("slideDelete")
 	public String slideDelete(int image_code){
 		
 		try {
@@ -225,10 +234,10 @@ public class MainController {
 			System.out.print("실패");
 		}
 		
-		return "redirect:/main";
+		return "redirect:/home";
 	}
 
-	@RequestMapping("slide/add")
+	@RequestMapping("slideAdd")
 	public String slideAdd(HttpSession session, MultipartFile file, int home_code){
 		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
 		ImageDTO image = new ImageDTO();
@@ -240,12 +249,13 @@ public class MainController {
 			
 			try {
 				serviceI.insert(image);
+				SaveFile.saveFile(file, imagesdir);
 			} catch (Exception e) {
 				//e.printStackTrace();
 				System.out.print("실패");
 			}
 		}
-		return "redirect:/main";
+		return "redirect:/home";
 	}
 
 	@RequestMapping("logOut")
