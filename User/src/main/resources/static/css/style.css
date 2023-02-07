@@ -234,11 +234,19 @@ button {
      padding: 0;
 }
 
+.textnowrap{
+	white-space: nowrap;
+}
 
 /**-- heading section --**/
 
 
 /*---------------------------- preloader area ----------------------------*/
+
+.logo img{
+	height: 100%;
+	margin-left: 10%;
+}
 
 .loader_bg {
      position: fixed;
@@ -318,9 +326,10 @@ button {
      width: 80%;
      margin: 100px auto;
      padding: 10px 2%;
-     background: #fff;
-     border: 2px solid #666;
-
+     background: rgb(0 0 0 / 90%);
+     border-top: 20px solid #009898;
+     border-bottom: 20px solid #009898;
+	 border-radius: 10px;
      transform: scale(0);
      animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
@@ -382,10 +391,6 @@ button {
 	}
 
 }
-
-
-
-
 
 /*-- end 로그인모달용 --*/
 
