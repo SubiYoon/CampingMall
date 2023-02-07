@@ -320,6 +320,9 @@ button {
      padding: 10px 2%;
      background: #fff;
      border: 2px solid #666;
+
+     transform: scale(0);
+     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 #modal .modal-login,
@@ -357,6 +360,32 @@ button {
      border-radius: 10px;
      border: 1px solid rgba(255, 255, 255, 0.18);
 }
+
+@keyframes unfoldIn {
+	0% {
+		transform: scaleX(0) scaleY(0.005);
+	}
+	50% {
+		transform: scaleX(1) scaleY(0.005);
+	}
+	100% {
+		transform: scaleY(1) scaleX(1);
+	}
+}
+
+@keyframes zoomIn {
+	from {
+		transform: scale(0);
+	}
+	to {
+		transform: scale(1);
+	}
+
+}
+
+
+
+
 
 /*-- end 로그인모달용 --*/
 
