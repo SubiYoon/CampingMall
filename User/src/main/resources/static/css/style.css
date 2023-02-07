@@ -922,7 +922,7 @@ button {
 /** end about section **/
 
 
-/** 구역안내(our_room) section **/
+/** -----------구역zone/사이트site안내(our_room) section **/
 
 .our_room {
      background-color: #f4f5f7;
@@ -976,16 +976,7 @@ button {
      font-family: 'Hahmlet', sans-serif;
      font-weight: 500;
      transition: ease-in all 0.5s;
-     margin: auto;
 }
-
-/*
-#serv_hover:hover.room {
-     cursor: pointer;
-     box-shadow: 0px 0px 30px rgb(0, 128, 128, 0.15);
-     transition: ease-in all 0.5s;
-}
-*/
 
 .our_read_more {
      text-align: center;
@@ -1012,7 +1003,62 @@ button {
 }
 
 
-/** end 구역안내 section **/
+   .star-rating {
+      direction: rtl;
+      display: inline;
+   }
+   
+   .star-rating input{
+      width: 70%;
+      height: 40px;
+      margin: 10px;
+   }
+   
+   .star-rating a{
+   		background-color: #009898;
+      	width: 100px;
+   }
+
+   .star-rating input[type=radio] {
+      display: none;
+   }
+
+   .star-rating label {
+      display: inline-block;
+      position: relative;
+      width: 1.1em;
+      font-size: 2em;
+      color: #000;
+   }
+
+   .star-rating label:hover,
+   .star-rating label:hover~label {
+      color: #fbbc00;
+   }
+
+   .star-rating input[type=radio]:checked~label {
+      color: #fbbc00;
+   }
+   
+.card h3{
+	margin: 10px;
+}
+#viewList label{
+	color: #fbbc00;
+	font-size: 20px;
+}
+
+#viewList li{
+	width: 100%;
+	text-align: left;
+	color: black;
+	font-size: 16px;
+}
+.paging_num{
+	width: 100%;
+}
+
+/** end 구역zone/사이트site안내(our_room) section **/
 
 
 /** gallery(편의시설)  section **/
@@ -1404,15 +1450,6 @@ ul.social_icon li a:hover {
 }
 
 /* ----------- 회원가입 ------------*/
-
-
-/* CSS Libraries Used 
-
-*Animate.css by Daniel Eden.
-*FontAwesome 4.7.0
-*Typicons
-
-*/
 
 
 .body{
