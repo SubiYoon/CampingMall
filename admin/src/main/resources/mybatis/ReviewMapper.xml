@@ -43,4 +43,26 @@
         FROM review
         WHERE review_code = #{review_code}
     </delete>
+    
+    
+    <select id="selectAllmain" resultType="map">
+	    SELECT review.review_code    review_code,
+	       user.user_name        user_name,
+	       review.review_content review_content,
+	       review.review_score   review_score
+		FROM   review
+		       JOIN book
+		         ON review.book_code = book.book_code
+		       JOIN user
+		         ON book.user_code = user.user_code
+		ORDER  BY review_code DESC
+    </select>
+    
+    
+    
+    
+    
+    
+    
+    
 </mapper>

@@ -542,45 +542,11 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2457</a></th>
-                                <td>Brandon Jacob</td>
-                                <td><a th:href="@{#}" class="text-primary">At praesentium minu</a>
-                                </td>
-                                <td>$64</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2147</a></th>
-                                <td>Bridie Kessler</td>
-                                <td><a th:href="@{#}" class="text-primary">Blanditiis dolor omnis
-                                    similique</a></td>
-                                <td>$47</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2049</a></th>
-                                <td>Ashleigh Langosh</td>
-                                <td><a th:href="@{#}" class="text-primary">At recusandae
-                                    consectetur</a></td>
-                                <td>$147</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2644</a></th>
-                                <td>Angus Grady</td>
-                                <td><a th:href="@{#}" class="text-primar">Ut voluptatem id earum
-                                    et</a></td>
-                                <td>$67</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2644</a></th>
-                                <td>Raheem Lehner</td>
-                                <td><a th:href="@{#}" class="text-primary">Sunt similique
-                                    distinctio</a></td>
-                                <td>$165</td>
-
+                            <tr th:each="reviews, i:${reviews}">
+                                <th th:text="${reviews.review_code}" scope="row"><a th:href="@{#}"></a></th>
+                                <td th:text="${reviews.user_name}"></td>
+                                <td><a th:href="@{#}" th:text="${reviews.review_content}" class="text-primary"></a></td>
+                                <td th:text="${reviews.review_score}"></td>
                             </tr>
                             </tbody>
                         </table>

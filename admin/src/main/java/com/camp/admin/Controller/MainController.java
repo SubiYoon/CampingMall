@@ -1,6 +1,5 @@
 package com.camp.admin.Controller;
 
-import com.camp.admin.service.BookService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.camp.admin.DTO.AdminDTO;
-import com.camp.admin.DTO.BookDTO;
 import com.camp.admin.DTO.CompanyDTO;
 import com.camp.admin.DTO.HomeDTO;
 import com.camp.admin.DTO.ImageDTO;
@@ -29,6 +27,7 @@ import com.camp.admin.service.FacilityService;
 import com.camp.admin.service.HomeService;
 import com.camp.admin.service.ImageService;
 import com.camp.admin.service.NoticeService;
+import com.camp.admin.service.ReviewService;
 import com.camp.admin.service.ZoneService;
 import com.camp.admin.utility.CryptoUtil;
 import com.camp.admin.utility.SaveFile;
@@ -62,6 +61,9 @@ public class MainController {
 	
 	@Autowired
 	BookService serviceB;
+	
+	@Autowired
+	ReviewService serviceR;
 
 	@RequestMapping("/")
 	public String main(){
@@ -132,6 +134,13 @@ public class MainController {
 			List<Map<String,Object>> books=serviceB.selectAllmain();
 			model.addAttribute("books",books);
 			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+		try {
+			List<Map<String, Object>> reviews = serviceR.selectAllmain();
+			model.addAttribute("reviews",reviews);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

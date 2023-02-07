@@ -731,7 +731,7 @@ public class BookService implements MyService<Integer, BookDTO> {
                 company_code));
     }
     
-    public List<Map<String, Object>> selectAllmain(){
+    public List<Map<String, Object>> selectAllmain() {
     	return mapper.selectAllmain();
     }
     

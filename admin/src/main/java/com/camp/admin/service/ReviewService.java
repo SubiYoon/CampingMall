@@ -102,4 +102,15 @@ public class ReviewService implements MyService<Integer, ReviewDTO> {
         }
         return new GraphDTO(labesList, "ReviewScore", dataList);
     }
+    
+    
+    public List<Map<String, Object>> selectAllmain() throws Exception{
+    	return mapper.selectAllmain();
+    }
+    
+    
+    
+    
+    
+    
 }
