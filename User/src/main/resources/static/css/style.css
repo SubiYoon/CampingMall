@@ -234,11 +234,19 @@ button {
      padding: 0;
 }
 
+.textnowrap{
+	white-space: nowrap;
+}
 
 /**-- heading section --**/
 
 
 /*---------------------------- preloader area ----------------------------*/
+
+.logo img{
+	height: 100%;
+	margin-left: 10%;
+}
 
 .loader_bg {
      position: fixed;
@@ -318,8 +326,12 @@ button {
      width: 80%;
      margin: 100px auto;
      padding: 10px 2%;
-     background: #fff;
-     border: 2px solid #666;
+     background: rgb(0 0 0 / 90%);
+     border-top: 20px solid #009898;
+     border-bottom: 20px solid #009898;
+	 border-radius: 10px;
+     transform: scale(0);
+     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 #modal .modal-login,
@@ -356,6 +368,28 @@ button {
      -webkit-backdrop-filter: blur(1.5px);
      border-radius: 10px;
      border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@keyframes unfoldIn {
+	0% {
+		transform: scaleX(0) scaleY(0.005);
+	}
+	50% {
+		transform: scaleX(1) scaleY(0.005);
+	}
+	100% {
+		transform: scaleY(1) scaleX(1);
+	}
+}
+
+@keyframes zoomIn {
+	from {
+		transform: scale(0);
+	}
+	to {
+		transform: scale(1);
+	}
+
 }
 
 /*-- end 로그인모달용 --*/
