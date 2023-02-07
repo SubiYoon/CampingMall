@@ -271,12 +271,12 @@ $.ajax({
 						<form>
 							<div class="form-container">
 								<div style="flex:0 0 10rem;">이름</div>
-								<input th:if="${session.user!=null}" th:value="${session.user.user_name}" type="email" class="form-control" id="customerinfo_name"  placeholder="이름을 입력해주세요">
+								<input th:if="${session.user!=null}" th:value="${session.user.user_name}" type="text" class="form-control" id="customerinfo_name"  placeholder="이름을 입력해주세요">
 								<input th:if="${session.user==null}" tpye="email" class="form-control" id="customerinfo_name" placeholder="이름을 입력해주세요">
 							</div>
 							<div class="form-container">
 								<div style="flex:0 0 10rem;">연락처</div>
-								<input th:if="${session.user!=null}" th:value="${session.user.user_tel}" type="email" class="form-control" id="customerinfo_tel" placeholder="연락처를 입력해주세요">
+								<input th:if="${session.user!=null}" th:value="${session.user.user_tel}" type="text" class="form-control" id="customerinfo_tel" placeholder="연락처를 입력해주세요">
 								<input th:if="${session.user==null}" type="email" class="form-control" id="customerinfo_tel" placeholder="연락처를 입력해주세요">
 							</div>
 						</form>
