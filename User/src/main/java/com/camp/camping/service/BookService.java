@@ -145,57 +145,64 @@ public class BookService implements MyService<Integer, BookDTO> {
         return book;
     }
 
-    public boolean availableUserWriteReview(int site_code, int user_code){
+    public boolean availableUserWriteReview(int site_code, int user_code) {
         List<BookDTO> bookList1 = mapper.selectUserSiteBook(site_code, user_code);
         List<BookDTO> bookList2 = mapper.selectUserSiteReview(site_code, user_code);
-        if(bookList1.size() > bookList2.size()){
+        if (bookList1.size() > bookList2.size()) {
             return true;
         }
         return false;
     }
 
-    public List<BookDTO> getReviewAvailableCode(int site_code, int user_code){
+    public List<BookDTO> getReviewAvailableCode(int site_code, int user_code) {
         List<BookDTO> result = new ArrayList<BookDTO>();
         List<BookDTO> bookList1 = mapper.selectUserSiteBook(site_code, user_code);
         List<BookDTO> bookList2 = mapper.selectUserSiteReview(site_code, user_code);
 
-        first:for(int i=0; i<bookList1.size(); i++){
-            for(int j=0; j<bookList2.size(); j++){
-                if(bookList1.get(i).getBook_code()==bookList2.get(j).getBook_code()){
+        first:
+        for (int i = 0; i < bookList1.size(); i++) {
+            for (int j = 0; j < bookList2.size(); j++) {
+                if (bookList1.get(i).getBook_code() == bookList2.get(j).getBook_code()) {
                     continue first;
                 }
             }
             result.add(bookList1.get(i));
         }
-        
+
         return result;
     }
-    
+
     //날짜(stringDate : "2023-02-01")를 입력받으면 체크인 날짜와 비교한다.
     //환불 요청 가능이면 1 아니면 0을 반환
     //환불 요청 가능 여부 판단 메소드
     public int IsAvailableRequestRefund(int book_code) throws Exception {
         BookDTO book = select(book_code);
-        System.out.println("book: "+book.toString());
-        
+        System.out.println("book: " + book.toString());
+
         Date checkin = Utility.StringToDate(book.getBook_checkin());
         LocalDate now = LocalDate.now();
-        Date nowDate= Utility.StringToDate(now.toString());
-        if(checkin.after(nowDate)){
+        Date nowDate = Utility.StringToDate(now.toString());
+        if (checkin.after(nowDate)) {
             return 1;
         }
         return 0;
     }
-    
-    public int updateBookState(String merchant_uid,int state) {
-    	return mapper.updateBookState(merchant_uid,state);
+
+    public int updateBookState(String merchant_uid, int state) {
+        return mapper.updateBookState(merchant_uid, state);
     }
-    
-    
-    
-    
-   
-    }    
+
+    public void insertForSample(BookDTO v) throws Exception {
+        mapper.insert2(v);
+    }
+    public void insertBookAndReservationForSample(BookDTO v) throws Exception {
+        this.insertForSample(v);
+
+        BookDTO book = this.selectMerchant(v.getMerchant_uid());
+        reservationService.insertReservationByBook(book);
+    }
+
+}
     
     
     
