@@ -1200,7 +1200,7 @@ button {
 
 .footer {
      background: #0f1521;
-     margin-top: 90px;
+     margin-top: 50px;
      padding-top: 60px;
      text-align: center;
 }
@@ -1397,4 +1397,138 @@ ul.social_icon li a:hover {
 #text {
      position: absolute;
      color: red;
+}
+
+/* ----------- 회원가입 ------------*/
+
+
+/* CSS Libraries Used 
+
+*Animate.css by Daniel Eden.
+*FontAwesome 4.7.0
+*Typicons
+
+*/
+
+
+.body{
+  background: url(../images/test1.png);
+  background-size: cover;
+  padding-bottom: 90px;
+  margin: 0px;
+}
+
+#particles-js {
+  width: 100%;
+  height: 100%;
+}
+
+.container_re{
+  margin: 0;
+  top: 50px;
+  text-align: center;
+  background-color: rgb(0 0 0 / 85%);
+  border-radius: 9px;
+  border-top: 20px solid #009898;
+  border-bottom: 20px solid #009898;
+  width: 100%;
+  box-shadow: 1px 1px 50px 30px rgb(0 0 0 / 50%);
+  white-space: nowrap;
+}
+
+.box_re{
+	display: flex;
+	margin: 30px;
+}
+
+.box_re input[type = "text"],.box_re input[type = "password"] {
+  margin: 10px auto;
+  background: #262e49;
+  border: 0;
+  border-radius: 5px;
+  padding: 14px 10px;
+  width: 100%;
+  outline: none;
+  color: #d6d6d6;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+  
+}
+
+.label_re{
+	width: 20%;
+	text-align: right;
+}
+.label_re div{
+	margin: 25px auto 35px auto;
+	font-size: 16px;
+	font-weight: bold;
+	color: #dee2e6;
+}
+
+.div_re{
+	width: 70%;
+	text-align: left;
+	padding-left: 20px;
+}
+
+.btn_re{
+	margin: 20px;
+}
+
+.check_re{
+	width: 20%;
+	margin: 20px 20px 20px auto;
+	text-align: right;
+}
+
+#tel input{
+	width: 25%;
+}
+
+::-webkit-input-placeholder {
+  color: #565f79;
+}
+
+.box_re input[type = "text"]:focus,.box_re input[type = "password"]:focus {
+  border: 1px solid #79A6FE;
+  
+}
+
+.btn1 {
+  border:0;
+  width: 90%;
+  background: #009898;
+  color: #dfdeee;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 3px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn1:hover {
+  background: #000;
+  color: #dee2e6;
+}
+
+.btn2 {
+	display: inline-block;
+  width: 30%;
+  background: #009898;
+  color: #dfdeee;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 3px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn2:hover {
+  background: #000;
+  color: #dee2e6;
 }
