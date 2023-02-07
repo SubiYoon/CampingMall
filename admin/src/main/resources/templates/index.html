@@ -462,41 +462,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2457</a></th>
-                                <td>Brandon Jacob</td>
-                                <td>At praesentium minu</td>
-                                <td>$64</td>
-                                <td><span class="badge bg-success">Approved</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2147</a></th>
-                                <td>Bridie Kessler</td>
-                                <td>Blanditiis dolor omnis similique</td>
-                                <td>$47</td>
-                                <td><span class="badge bg-warning">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2049</a></th>
-                                <td>Ashleigh Langosh</td>
-                                <td>At recusandae consectetur</td>
-                                <td>$147</td>
-                                <td><span class="badge bg-success">Approved</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2644</a></th>
-                                <td>Angus Grady</td>
-                                <td>Ut voluptatem id earum et</td>
-                                <td>$67</td>
-                                <td><span class="badge bg-danger">Rejected</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2644</a></th>
-                                <td>Raheem Lehner</td>
-                                <td>Sunt similique distinctio</td>
-                                <td>$165</td>
-                                <td>Approved</td>
-                            </tr>
+	                           <tr th:each="books, i:${books}">
+	                               <th scope="row" th:text="${books.book_code}"><a th:href="@{#}"></a></th>
+	                               <td th:text="${books}"></td>
+	                               <td>At praesentium minu</td>
+	                               <td>$64</td>
+	                               <td><span class="badge bg-success">Approved</span></td>
+	                           </tr>
                             </tbody>
                         </table>
 

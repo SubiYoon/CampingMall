@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.camp.admin.DTO.AdminDTO;
+import com.camp.admin.DTO.BookDTO;
 import com.camp.admin.DTO.CompanyDTO;
 import com.camp.admin.DTO.HomeDTO;
 import com.camp.admin.DTO.ImageDTO;
 import com.camp.admin.DTO.ZoneDTO;
 import com.camp.admin.service.AdminService;
+import com.camp.admin.service.BookService;
 import com.camp.admin.service.CompanyService;
 import com.camp.admin.service.FacilityService;
 import com.camp.admin.service.HomeService;
@@ -53,6 +55,9 @@ public class MainController {
 
 	@Autowired
 	AdminService serviceA;
+	
+	@Autowired
+	BookService serviceB;
 
 	@RequestMapping("/")
 	public String main(){
@@ -99,6 +104,16 @@ public class MainController {
 			e.printStackTrace();
 		}	
 		session.setAttribute("zlist", listZ);
+		
+		
+		try {
+			List<BookDTO> books=serviceB.selectAll();
+			model.addAttribute("books",books);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		
 		return "main";
 	}
