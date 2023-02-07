@@ -27,6 +27,8 @@ public class BookDTO {
     private int book_state;
 
     private String site_name;
+
+    private String book_site_image;
     
 
     public BookDTO(int site_code, int user_code, String merchant_uid, int book_member, String book_checkin, String book_checkout, int book_price, String book_car_number) {
