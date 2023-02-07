@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.camp.admin.DTO.AdminDTO;
@@ -77,7 +76,6 @@ public class MainController {
 				session.setAttribute("company", company);
 				session.setAttribute("admin", dbAdmin);
 			}else {
-				System.out.println(dbAdmin);
 				return "login";
 			}
 		} catch(Exception e){
@@ -133,13 +131,6 @@ public class MainController {
 		}
 
 		model.addAttribute("center", "/home");
-		return "main";
-	}
-	
-	@RequestMapping("/userEdit")
-	public String useredit(Model model) {
-		
-		model.addAttribute("center", "/userEdit");
 		return "main";
 	}
 	

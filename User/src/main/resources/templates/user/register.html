@@ -1,6 +1,6 @@
 <script>
    function isId(asValue) {
-      var regExp = /^[a-z]+[a-z0-9]{5,19}$/;
+      var regExp = /^[a-z]+[a-z0-9]{7,19}$/;
  
       return regExp.test(asValue);
    }
@@ -40,7 +40,7 @@ $(document).ready(function(){
          return;
       }
       if(!isId(id)){
-         alert("아이디는 영문자 또는 숫자 6~20자 입니다.")
+         alert("아이디는 영문자 또는 숫자 8~20자 입니다.")
          return;
       }
       if($('#register input[name=user_id]').attr('alt') == 'N'){

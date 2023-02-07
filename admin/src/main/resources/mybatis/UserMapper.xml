@@ -3,26 +3,37 @@
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camp.admin.mapper.UserMapper">
-	<insert id="insert" parameterType="UserDTO">
-        INSERT INTO user(user_id, user_password, user_name, user_birthday, user_tel) VALUES(#{user_id}, #{user_password}, #{user_name}, #{user_birthday}, #{user_tel})
-    </insert>
-    <select id="select" resultType="UserDTO">
-        SELECT user_code, user_id, user_password, user_name, user_birthday, user_tel FROM user WHERE user_id=#{user_id}
-    </select>
-    <select id="selectAll" resultType="UserDTO">
-        SELECT * FROM user
-    </select>
-    <update id="update" parameterType="UserDTO">
-        UPDATE user SET user_password=#{user_password}, user_tel=#{user_tel}, user_birthday=#{user_birthday}, user_name=#{user_name} WHERE user_code=#{user_code}
-    </update>
     <delete id="delete">
-        DELETE FROM user WHERE user_id=#{user_id}
+        Update user SET user_id='(DELETE)${user_id}' WHERE user_id=#{user_id}
     </delete>
-    <insert id="kakaoLoginInsert" parameterType="UserDTO">
-        INSERT INTO user(user_id, user_password, user_name, user_birthday, user_tel) VALUES(#{user_id}, #{user_password}, #{user_name}, #{user_birthday}, #{user_tel})
-    </insert>
-    
+    <select id="selectUsersInfo" resultType="UserDTO">
+        SELECT 
+            DISTINCT user.user_name,
+            user.user_birthday user_birthday,
+            user.user_tel user_tel,
+            user.user_code user_code,
+            user.user_id user_id
+        FROM 
+            user
+        JOIN 
+            book
+        ON 
+            user.user_code=book.user_code
+        JOIN 
+            site
+        ON 
+            book.site_code=site.site_code
+        JOIN
+            image
+        ON
+            site.site_code=image.site_code
+        WHERE 
+            image.company_code=#{company_code};
+    </select>
     <select id="selectnt" resultType="UserDTO">
         SELECT * FROM user WHERE user_name=#{n} and user_tel=#{t}
+    </select>
+    <select id="select" resultType="UserDTO">
+        SELECT * FROM user WHERE user_id=#{user_id}
     </select>
 </mapper>

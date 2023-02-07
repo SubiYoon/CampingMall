@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         UPDATE user SET user_password=#{user_password}, user_tel=#{user_tel}, user_birthday=#{user_birthday}, user_name=#{user_name} WHERE user_code=#{user_code}
     </update>
     <delete id="delete">
-        DELETE FROM user WHERE user_id=#{user_id}
+        UPDATE user SET user_id='(DELETE)${user_id}' WHERE user_id=#{user_id}
     </delete>
     <insert id="kakaoLoginInsert" parameterType="UserDTO">
         INSERT INTO user(user_id, user_password, user_name, user_birthday, user_tel) VALUES(#{user_id}, #{user_password}, #{user_name}, #{user_birthday}, #{user_tel})
