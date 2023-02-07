@@ -1,3 +1,48 @@
+<script>
+    var today = new Date();
+    var todayYear = today.getFullYear();
+    var todayMonth = today.getMonth() + 1;
+    let nowSelectingMainCart = 'Monthly';
+    let yearSelected = todayYear;
+    let monthSelected = todayMonth;
+    $(document).ready(function () {
+        setHead();
+        today = new Date();
+        nowSelectingMainCart = 'Monthly';
+        todayYear = today.getFullYear();
+        todayMonth = today.getMonth() + 1
+
+        monthAndYear();
+        getGraph('' + todayYear + '-' + ('0' + todayMonth).slice(-2));
+
+        $('.yearSelect').click(function () {
+            yearSelected = $('.yearSelect').val();
+        })
+        $('.monthSelect').click(function () {
+            monthSelected = $('.monthSelect').val();
+            monthSelected = ('0' + monthSelected).slice(-2);
+
+        })
+        $('#mainChartTypeM').click(function () {
+            nowSelectingMainCart = 'Monthly';
+            monthAndYear();
+        })
+        $('#mainChartTypeY').click(function () {
+            nowSelectingMainCart = 'Yearly';
+            monthAndYear();
+        })
+    });
+
+    function mainButton() {
+        yearSelected = $('.yearSelect').val();
+        monthSelected = $('.monthSelect').val();
+        monthSelected = ('0' + monthSelected).slice(-2);
+        let stringDate = yearSelected + '-' + monthSelected;
+        console.log(stringDate);
+        getGraph(stringDate);
+    }
+
+</script>
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -21,29 +66,16 @@
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
 
-                            <div class="filter">
-                                <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                                    class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-
-                                    <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
-                                </ul>
-                            </div>
-
                             <div class="card-body">
-                                <h5 class="card-title">Books <span>| Today</span></h5>
+                                <h5 class="card-title">Revenue <span>| This Month</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-cart"></i>
+                                        <i class="bi bi-currency-dollar"></i>
                                     </div>
-                                    <div class="ps-3">
+
+                                    <div class="ps-3" id="headRevenue">
                                         <h6>145</h6>
                                         <span class="text-success small pt-1 fw-bold">12%</span>
                                         <span class="text-muted small pt-2 ps-1">increase</span>
@@ -59,29 +91,16 @@
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card revenue-card">
 
-                            <div class="filter">
-                                <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                                    class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-
-                                    <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
-                                </ul>
-                            </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                                <h5 class="card-title">Book <span>| This Month</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-currency-dollar"></i>
+                                        <i class="bi bi-cart"></i>
                                     </div>
-                                    <div class="ps-3">
+                                    <div class="ps-3" id="headBook">
                                         <h6>$3,264</h6>
                                         <span class="text-success small pt-1 fw-bold">8%</span>
                                         <span class="text-muted small pt-2 ps-1">increase</span>
@@ -98,29 +117,16 @@
 
                         <div class="card info-card customers-card">
 
-                            <div class="filter">
-                                <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                                    class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-
-                                    <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
-                                </ul>
-                            </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Visitor <span>| This Year</span></h5>
+                                <h5 class="card-title">Visitor <span>| This Month</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-people"></i>
                                     </div>
-                                    <div class="ps-3">
+                                    <div class="ps-3" id="headVisitor">
                                         <h6>1244</h6>
                                         <span class="text-danger small pt-1 fw-bold">12%</span>
                                         <span class="text-muted small pt-2 ps-1">decrease</span>
@@ -144,76 +150,95 @@
                                     <li class="dropdown-header text-start">
                                         <h6>Filter</h6>
                                     </li>
-
-                                    <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
+                                    <li><a class="dropdown-item" id="mainChartTypeM">Monthly</a>
+                                    </li>
+                                    <li><a class="dropdown-item" id="mainChartTypeY">Yearly</a></li>
                                 </ul>
                             </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Reports <span>/Today</span></h5>
+                                <h5 class="card-title" id="mainChart"></h5>
 
                                 <!-- Line Chart -->
                                 <div id="reportsChart"></div>
 
                                 <script>
-                                    document.addEventListener("DOMContentLoaded", () => {
-                                        new ApexCharts(document.querySelector("#reportsChart"), {
-                                            series: [{
-                                                name: 'Sales',
-                                                data: [31, 40, 28, 51, 42, 82, 56],
-                                            }, {
-                                                name: 'Revenue',
-                                                data: [11, 32, 45, 32, 34, 52, 41]
-                                            }, {
-                                                name: 'Customers',
-                                                data: [15, 11, 32, 18, 9, 24, 11]
-                                            }],
-                                            chart: {
-                                                height: 350,
-                                                type: 'area',
-                                                toolbar: {
-                                                    show: false
-                                                },
-                                            },
-                                            markers: {
-                                                size: 4
-                                            },
-                                            colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                            fill: {
-                                                type: "gradient",
-                                                gradient: {
-                                                    shadeIntensity: 1,
-                                                    opacityFrom: 0.3,
-                                                    opacityTo: 0.4,
-                                                    stops: [0, 90, 100]
-                                                }
-                                            },
-                                            dataLabels: {
-                                                enabled: false
-                                            },
-                                            stroke: {
-                                                curve: 'smooth',
-                                                width: 2
-                                            },
-                                            xaxis: {
-                                                type: 'datetime',
-                                                categories: ["2018-09-19T00:00:00.000Z",
-                                                    "2018-09-19T01:30:00.000Z",
-                                                    "2018-09-19T02:30:00.000Z",
-                                                    "2018-09-19T03:30:00.000Z",
-                                                    "2018-09-19T04:30:00.000Z",
-                                                    "2018-09-19T05:30:00.000Z",
-                                                    "2018-09-19T06:30:00.000Z"]
-                                            },
-                                            tooltip: {
-                                                x: {
-                                                    format: 'dd/MM/yy HH:mm'
-                                                },
+                                    function setHead() {
+                                        let monthList = '[[${MonthList}]]';
+                                        monthList =monthList.replace('[','');
+                                        monthList =monthList.replace(']','');
+                                        monthList =monthList.replaceAll(' ','');
+                                        monthList = monthList.split(',');
+                                        for(let i = 0 ;i<monthList.length;i++){
+                                            console.log(monthList[i]);
+                                        }
+                                        let headStr = '<h6>' + monthList[0] + '</h6>';
+                                        if (monthList[1].includes('-')) {
+                                            headStr += '<span class="text-danger small pt-1 fw-bold">'
+                                                + monthList[1] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">decrease</span>';
+                                        } else{
+                                            headStr += '<span class="text-success small pt-1 fw-bold">'
+                                                + monthList[1] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">increase</span>';
+                                        }
+                                        document.getElementById("headRevenue").innerHTML = headStr;
+                                        headStr = '<h6>' + monthList[2] + '</h6>';
+                                        if (monthList[3].includes('-')) {
+                                            headStr += '<span class="text-danger small pt-1 fw-bold">'
+                                                + monthList[3] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">decrease</span>';
+                                        } else{
+                                            headStr += '<span class="text-success small pt-1 fw-bold">'
+                                                + monthList[3] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">increase</span>';
+                                        }
+                                        document.getElementById("headBook").innerHTML = headStr;
+                                        headStr = '<h6>' + monthList[4] + '</h6>';
+                                        if (monthList[5].includes('-')) {
+                                            headStr += '<span class="text-danger small pt-1 fw-bold">'
+                                                + monthList[5] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">decrease</span>';
+                                        } else{
+                                            headStr += '<span class="text-success small pt-1 fw-bold">'
+                                                + monthList[5] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">increase</span>';
+                                        }
+                                        document.getElementById("headVisitor").innerHTML = headStr;
+                                    }
+
+                                    function monthAndYear() {
+                                        let i;
+                                        var str = '통계<span> | ' + nowSelectingMainCart
+                                            + '  </span><select name=\"year\" class=\"yearSelect\">';
+                                        for (i = todayYear - 5; i < todayYear; i++) {
+                                            str += '<option value=' + i + '>' + i + '</option>';
+                                        }
+                                        str += '<option value=' + todayYear
+                                            + ' selected=\"selected\">' + todayYear +
+                                            '</option>';
+                                        for (i = todayYear + 1; i < todayYear + 5; i++) {
+                                            str += '<option value=' + i + '>' + i + '</option>';
+
+                                        }
+                                        str += '</select>';
+                                        if (nowSelectingMainCart === 'Monthly') {
+                                            str += '<select name=\"month\" class=\"monthSelect\">';
+                                            for (i = 1; i < todayMonth; i++) {
+                                                str += '<option value=' + i + '>' + i + '</option>';
                                             }
-                                        }).render();
-                                    });
+                                            str += '<option value=' + todayMonth
+                                                + ' selected=\"selected\">' + todayMonth +
+                                                '</option>';
+                                            for (i = todayMonth + 1; i < 13; i++) {
+                                                str += '<option value=' + i + '>' + i + '</option>';
+                                            }
+                                            str += '</select>';
+                                        }
+                                        str += '<button id=\"mainCharButton\" type=\"button\" onclick=\"mainButton()\">조회</button>';
+
+                                        document.getElementById("mainChart").innerHTML = str
+                                    }
                                 </script>
                                 <!-- End Line Chart -->
 
@@ -230,83 +255,128 @@
                                 <div class="col-6">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">구역별 매출
-                                            <span>| This Month</span>
                                         </h5>
-
-                                        <div id="budgetChart" style="min-height: 400px;"
-                                             class="echart"></div>
-
                                         <script>
-                                            document.addEventListener("DOMContentLoaded", () => {
-                                                var budgetChart = echarts.init(
-                                                    document.querySelector(
-                                                        "#budgetChart")).setOption({
-                                                    legend: {
-                                                        data: ['Allocated Budget',
-                                                            'Actual Spending']
-                                                    },
-                                                    radar: {
-                                                        // shape: 'circle',
-                                                        indicator: [{
-                                                            name: 'Sales',
-                                                            max: 6500
+                                            function drawMainChart(RevenueList, BookList,
+                                                VisitorList, nameList) {
+                                                new ApexCharts(
+                                                    document.querySelector("#reportsChart"), {
+                                                        series: [{
+                                                            name: 'Revenue',
+                                                            data: RevenueList
+                                                        }, {
+                                                            name: 'Book',
+                                                            data: BookList
+                                                        }, {
+                                                            name: 'Visitor',
+                                                            data: VisitorList
+                                                        }],
+                                                        chart: {
+                                                            height: 350,
+                                                            type: 'area',
+                                                            toolbar: {
+                                                                show: false
+                                                            },
                                                         },
-                                                            {
-                                                                name: 'Administration',
-                                                                max: 16000
-                                                            },
-                                                            {
-                                                                name: 'Information Technology',
-                                                                max: 30000
-                                                            },
-                                                            {
-                                                                name: 'Customer Support',
-                                                                max: 38000
-                                                            },
-                                                            {
-                                                                name: 'Development',
-                                                                max: 52000
-                                                            },
-                                                            {
-                                                                name: 'Marketing',
-                                                                max: 25000
-                                                            }
-                                                        ]
-                                                    },
-                                                    series: [{
-                                                        name: 'Budget vs spending',
-                                                        type: 'radar',
-                                                        data: [{
-                                                            value: [4200, 3000, 20000, 35000, 50000,
-                                                                18000],
-                                                            name: 'Allocated Budget'
+                                                        markers: {
+                                                            size: 4
                                                         },
-                                                            {
-                                                                value: [5000, 14000, 28000, 26000,
-                                                                    42000,
-                                                                    21000],
-                                                                name: 'Actual Spending'
+                                                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                                                        fill: {
+                                                            type: "gradient",
+                                                            gradient: {
+                                                                shadeIntensity: 1,
+                                                                opacityFrom: 0.3,
+                                                                opacityTo: 0.4,
+                                                                stops: [0, 90, 100]
                                                             }
-                                                        ]
-                                                    }]
-                                                });
-                                            });
-                                        </script>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="card-body pb-0">
-                                        <h5 class="card-title">구역별 방문자 <span>| Today</span>
-                                        </h5>
+                                                        },
+                                                        dataLabels: {
+                                                            enabled: false
+                                                        },
+                                                        stroke: {
+                                                            curve: 'smooth',
+                                                            width: 2
+                                                        },
+                                                        xaxis: {
+                                                            type: 'text',
+                                                            categories: nameList
+                                                        },
+                                                        yaxis: [
+                                                            {
+                                                                axisTicks: {
+                                                                    show: true
+                                                                },
+                                                                axisBorder: {
+                                                                    show: true,
+                                                                    color: "#4154f1"
+                                                                },
+                                                                labels: {
+                                                                    style: {
+                                                                        color: "#4154f1"
+                                                                    }
+                                                                },
+                                                                title: {
+                                                                    text: "매출 ( 원 )",
+                                                                    style: {
+                                                                        color: "#4154f1"
+                                                                    }
+                                                                },
+                                                                tooltip: {
+                                                                    enabled: true
+                                                                }
+                                                            },
+                                                            {
+                                                                seriesName: "Book",
+                                                                opposite: true,
+                                                                axisTicks: {
+                                                                    show: true
+                                                                },
+                                                                axisBorder: {
+                                                                    show: true,
+                                                                    color: "#2eca6a"
+                                                                },
+                                                                labels: {
+                                                                    style: {
+                                                                        color: "#2eca6a"
+                                                                    }
+                                                                },
+                                                                title: {
+                                                                    text: "예약수 ( 개 )",
+                                                                    style: {
+                                                                        color: "#2eca6a"
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                seriesName: "Visitor",
+                                                                opposite: true,
+                                                                axisTicks: {
+                                                                    show: true
+                                                                },
+                                                                axisBorder: {
+                                                                    show: true,
+                                                                    color: "#ff771d"
+                                                                },
+                                                                labels: {
+                                                                    style: {
+                                                                        color: "#ff771d"
+                                                                    }
+                                                                },
+                                                                title: {
+                                                                    text: "방문객 ( 명 )",
+                                                                    style: {
+                                                                        color: "#ff771d"
+                                                                    }
+                                                                }
+                                                            }]
+                                                    }).render();
+                                            }
 
-                                        <div id="trafficChart" style="min-height: 400px;"
-                                             class="echart"></div>
-
-                                        <script>
-                                            document.addEventListener("DOMContentLoaded", () => {
-                                                echarts.init(
-                                                    document.querySelector(
-                                                        "#trafficChart")).setOption({
+                                            function drawChart(divID, obj, string1) {
+                                                let myChart = echarts.init(
+                                                    document.getElementById(divID));
+                                                var option = {
                                                     tooltip: {
                                                         trigger: 'item'
                                                     },
@@ -315,7 +385,7 @@
                                                         left: 'center'
                                                     },
                                                     series: [{
-                                                        name: 'Access From',
+                                                        name: string1,
                                                         type: 'pie',
                                                         radius: ['40%', '70%'],
                                                         avoidLabelOverlap: false,
@@ -333,31 +403,82 @@
                                                         labelLine: {
                                                             show: false
                                                         },
-                                                        data: [{
-                                                            value: 1048,
-                                                            name: 'Search Engine'
-                                                        },
-                                                            {
-                                                                value: 735,
-                                                                name: 'Direct'
-                                                            },
-                                                            {
-                                                                value: 580,
-                                                                name: 'Email'
-                                                            },
-                                                            {
-                                                                value: 484,
-                                                                name: 'Union Ads'
-                                                            },
-                                                            {
-                                                                value: 300,
-                                                                name: 'Video Ads'
-                                                            }
-                                                        ]
+                                                        data: obj,
                                                     }]
-                                                });
-                                            });
+                                                }
+                                                myChart.setOption(option);
+
+                                            }
+
+                                            function getGraph(data) {
+                                                let label;
+
+                                                $.ajax({
+                                                    url: "/admin/main/graphData",
+                                                    type: "post",
+                                                    data: {
+                                                        'stringDate': data,
+                                                        'dataScale': nowSelectingMainCart
+                                                    },
+                                                    success: function (data) {
+                                                        document.getElementById(
+                                                            'reportsChart').innerHTML = "";
+                                                        label = data.Graph[3].label;
+                                                        let myobj1 = [];
+                                                        // 그래프로 나타낼 자료 리스트에 담기
+                                                        for (let i = 0;
+                                                            i < data.Graph[3].labelsList.length;
+                                                            i++) {
+                                                            myobj1.push(
+                                                                {
+                                                                    value: data.Graph[3].dataList[i],
+                                                                    name: data.Graph[3].labelsList[i]
+                                                                });
+                                                        }
+                                                        drawChart('budgetChart', myobj1);
+                                                        //구역매출
+                                                        label = data.Graph[4].label;
+                                                        myobj1 = [];
+                                                        // 그래프로 나타낼 자료 리스트에 담기
+                                                        for (let i = 0;
+                                                            i < data.Graph[4].labelsList.length;
+                                                            i++) {
+                                                            myobj1.push(
+                                                                {
+                                                                    value: data.Graph[4].dataList[i],
+                                                                    name: data.Graph[4].labelsList[i]
+                                                                });
+                                                        }
+                                                        drawChart('zoneUser', myobj1);
+
+                                                        let names = data.Graph[0].labelsList;
+                                                        let revenus = data.Graph[0].dataList;
+                                                        let books = data.Graph[1].dataList;
+                                                        let visitors = data.Graph[2].dataList;
+                                                        // 그래프 구역 인원
+                                                        drawMainChart(revenus, books, visitors,
+                                                            names);
+                                                        //
+                                                    },
+                                                    error: function () {
+                                                        alert("실패");
+                                                    }
+
+                                                }) // ajax
+                                            } // getGraph
                                         </script>
+                                        <div id="budgetChart" style="min-height: 400px;"
+                                             class="echart"></div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="card-body pb-0">
+                                        <h5 class="card-title">구역별 방문자</h5>
+                                        <div id="zoneUser" style="min-height: 400px;"
+                                             class="echart"></div>
 
                                     </div>
                                 </div>
@@ -373,69 +494,32 @@
 
                 <!-- Recent Activity -->
                 <div class="card">
-                    <div class="filter">
-                        <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                            class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
-
-                            <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                            <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                            <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
-                        </ul>
-                    </div>
 
                     <div class="card-body">
-                        <h5 class="card-title">Recent Books <span>| Today</span></h5>
+                        <h5 class="card-title">최근 예약</h5>
 
                         <table class="table table-borderless datatable">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">고객</th>
-                                <th scope="col">구역 사이트</th>
+                                <th scope="col">구역 / 사이트</th>
                                 <th scope="col">가격</th>
                                 <th scope="col">상태</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2457</a></th>
-                                <td>Brandon Jacob</td>
-                                <td><a th:href="@{#}" class="text-primary">At praesentium minu</a></td>
-                                <td>$64</td>
-                                <td><span class="badge bg-success">Approved</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2147</a></th>
-                                <td>Bridie Kessler</td>
-                                <td><a th:href="@{#}" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                                <td>$47</td>
-                                <td><span class="badge bg-warning">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2049</a></th>
-                                <td>Ashleigh Langosh</td>
-                                <td><a th:href="@{#}" class="text-primary">At recusandae consectetur</a></td>
-                                <td>$147</td>
-                                <td><span class="badge bg-success">Approved</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2644</a></th>
-                                <td>Angus Grady</td>
-                                <td><a th:href="@{#}" class="text-primar">Ut voluptatem id earum et</a></td>
-                                <td>$67</td>
-                                <td><span class="badge bg-danger">Rejected</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2644</a></th>
-                                <td>Raheem Lehner</td>
-                                <td><a th:href="@{#}" class="text-primary">Sunt similique distinctio</a></td>
-                                <td>$165</td>
-                                <td><span class="badge bg-success">Approved</span></td>
-                            </tr>
+	                           <tr th:each="books, i:${books}">
+	                               <th scope="row" th:text="${books.book_code}"><a th:href="@{#}"></a></th>
+	                               <td th:text="${books.user_name}"></td>
+	                               <td th:text="${books.site_name}"></td>
+	                               <td th:text="${books.book_price}"></td>
+	                               <td th:if="${books.book_state}==1"><span class="badge bg-success">예약완료</span></td>
+	                               <td th:if="${books.book_state}==2"><span class="badge bg-warning">환불요청</span></td>
+	                               <td th:if="${books.book_state}==3"><span class="badge bg-success">환불완료</span></td>
+	                               <td th:if="${books.book_state}==4"><span class="badge bg-danger">환불취소</span></td>
+	                               <td th:if="${books.book_state}==5"><span class="badge bg-success">체크인완료</span></td>
+	                           </tr>
                             </tbody>
                         </table>
 
@@ -445,74 +529,24 @@
 
                 <!-- News & Updates Traffic -->
                 <div class="card">
-                    <div class="filter">
-                        <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                            class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
-
-                            <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                            <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                            <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
-                        </ul>
-                    </div>
-
                     <div class="card-body">
-                        <h5 class="card-title">Recent Reviews <span>| Today</span></h5>
+                        <h5 class="card-title">최근 리뷰</h5>
 
                         <table class="table table-borderless datatable">
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">작성자 </th>
-                                <th scope="col">내용 </th>
-                                <th scope="col">별점 </th>
+                                <th scope="col">작성자</th>
+                                <th scope="col">내용</th>
+                                <th scope="col">별점</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2457</a></th>
-                                <td>Brandon Jacob</td>
-                                <td><a th:href="@{#}" class="text-primary">At praesentium minu</a></td>
-                                <td>$64</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2147</a></th>
-                                <td>Bridie Kessler</td>
-                                <td><a th:href="@{#}" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                                <td>$47</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2049</a></th>
-                                <td>Ashleigh Langosh</td>
-                                <td><a th:href="@{#}" class="text-primary">At recusandae consectetur</a></td>
-                                <td>$147</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2644</a></th>
-                                <td>Angus Grady</td>
-                                <td><a th:href="@{#}" class="text-primar">Ut voluptatem id earum et</a></td>
-                                <td>$67</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2644</a></th>
-                                <td>Raheem Lehner</td>
-                                <td><a th:href="@{#}" class="text-primary">Sunt similique distinctio</a></td>
-                                <td>$165</td>
-
-                            </tr>
-                            <tr>
-                                <th scope="row"><a th:href="@{#}">#2644</a></th>
-                                <td>Raheem Lehner</td>
-                                <td><a th:href="@{#}" class="text-primary">Sunt similique distinctio</a></td>
-                                <td>$165</td>
-
+                            <tr th:each="reviews, i:${reviews}">
+                                <th th:text="${reviews.review_code}" scope="row"><a th:href="@{#}"></a></th>
+                                <td th:text="${reviews.user_name}"></td>
+                                <td><a th:href="@{#}" th:text="${reviews.review_content}" class="text-primary"></a></td>
+                                <td th:text="${reviews.review_score}"></td>
                             </tr>
                             </tbody>
                         </table>

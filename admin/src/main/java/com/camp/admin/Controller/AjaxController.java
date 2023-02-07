@@ -1,7 +1,10 @@
 package com.camp.admin.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.camp.admin.DTO.CompanyDTO;
+import com.camp.admin.DTO.GraphDTO;
 import com.camp.admin.service.BookService;
 import com.camp.admin.service.PaymentService;
 
 @RestController
 public class AjaxController {
-	
+
 	@Autowired
 	PaymentService service;
 	
@@ -56,4 +61,50 @@ public class AjaxController {
 	}
 	
     
+
+    @RequestMapping("main/graphData")
+    public Object reviewUpload(HttpSession session, String stringDate, String dataScale) {
+        JSONObject json = new JSONObject();
+        CompanyDTO company = (CompanyDTO) session.getAttribute("company");
+        int companyCode = company.getCompany_code();
+        if (dataScale==null||dataScale.contains("M")) {
+            try {
+                List<GraphDTO> graphs = new ArrayList<>();
+                System.out.println(stringDate);
+                GraphDTO graphDTO = bookService.MonthSalesGraph(stringDate,companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bookService.MonthlyBookGraph(stringDate,companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bookService.MonthlyUserGraph(stringDate,companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bookService.MonthlyZoneSalesGraph(stringDate, companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bookService.MonthlyZoneUserGraph(stringDate, companyCode);
+                graphs.add(graphDTO);
+                json.put("Graph", graphs);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                String stringDate2 = stringDate.split("-")[0];
+                System.out.println(stringDate2);
+                List<GraphDTO> graphs = new ArrayList<>();
+                GraphDTO graphDTO = bookService.YearSalesGraph(stringDate2,companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bookService.YearlyBookGraph(stringDate2,companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bookService.YearlyUserGraph(stringDate2,companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bookService.YearlyZoneSalesGraph(stringDate2, companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bookService.YearlyZoneUserGraph(stringDate2, companyCode);
+                graphs.add(graphDTO);
+                json.put("Graph", graphs);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return json;
+    }
 }
