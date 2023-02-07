@@ -1,5 +1,6 @@
 package com.camp.camping.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,12 +15,14 @@ import com.camp.camping.DTO.FacilityDTO;
 import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.DTO.ImageDTO;
 import com.camp.camping.DTO.NoticeDTO;
+import com.camp.camping.DTO.ReviewDTO;
 import com.camp.camping.DTO.ZoneDTO;
 import com.camp.camping.service.CompanyService;
 import com.camp.camping.service.FacilityService;
 import com.camp.camping.service.HomeService;
 import com.camp.camping.service.ImageService;
 import com.camp.camping.service.NoticeService;
+import com.camp.camping.service.ReviewService;
 import com.camp.camping.service.ZoneService;
 
 @Controller
@@ -43,6 +46,9 @@ public class MainController {
 	@Autowired
 	ImageService serviceI;
 
+	@Autowired
+	ReviewService serviceR;
+
 	@RequestMapping("/")
 	public String select(){
 		
@@ -59,6 +65,7 @@ public class MainController {
 		List<ZoneDTO> listZ = null;	//구역소개
 		List<FacilityDTO> list = null;	//편의시설
 		List<ImageDTO> listI = null;
+		List<ReviewDTO> reviewList = null;
 		
 		
 		//상호 세션 생성-----------------------------
@@ -134,6 +141,18 @@ public class MainController {
 			System.out.println("실패");
 		}
 		model.addAttribute("slide", listI);
+
+		try{
+			reviewList = serviceR.selectMainReview(company.getCompany_code());
+			List<ReviewDTO> mainReview = new ArrayList<ReviewDTO>();
+			int size = reviewList.size() <=3 ? reviewList.size() : 3;
+			for(int i=0; i<size; i++){
+				mainReview.add(reviewList.get(i));
+			}
+			model.addAttribute("review", mainReview);
+		} catch(Exception e){
+			e.addSuppressed(e);
+		}
 
 		return "main";
 	}

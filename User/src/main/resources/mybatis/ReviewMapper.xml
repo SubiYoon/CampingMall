@@ -33,6 +33,29 @@
             site_code=#{site_code}
         ORDER BY review.review_code DESC
     </select>
+    <select id="selectMainReview" resultType="ReviewDTO">
+        SELECT 
+            review.review_code, 
+            review.book_code, 
+            review.review_content, 
+            review.review_score, 
+            image.image_file review_img1
+        FROM 
+            review 
+        JOIN 
+            book 
+        ON 
+            book.book_code=review.book_code
+        JOIN
+            image
+        ON
+            book.site_code=image.site_code
+        WHERE
+            image.company_code=#{company_code}
+        ORDER BY 
+            review.review_code 
+        DESC
+    </select>
     <select id="selectByCompanyCode" resultType="ReviewDTO">
         select review.review_code,
                review.book_code,

@@ -1,3 +1,4 @@
+<script src="https://cldup.com/S6Ptkwu_qA.js"></script>
 <script>
    function isId(asValue) {
       var regExp = /^[a-z]+[a-z0-9]{7,19}$/;
@@ -125,57 +126,9 @@ $(document).ready(function(){
       });
    });
 });
+
 </script>
-<style>
-   .container {
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     margin-top: 50px;
-   }
-
-   #register {
-     display: flex;
-     flex-direction: column;
-     padding: 20px;
-     background-color: #f2f2f2;
-     border-radius: 10px;
-     box-shadow: 2px 2px 5px #ccc;
-     width: 500px;
-   }
-
-   .register_label {
-     margin-top: 10px;
-     font-weight: bold;
-   }
-
-   #register input {
-     padding: 10px;
-     margin-top: 10px;
-     border-radius: 5px;
-     border: 1px solid #ccc;
-     width: 100%;
-   }
-
-   #register a {
-     padding: 10px 20px;
-     margin-top: 20px;
-     background-color: #4CAF50;
-     color: white;
-     border-radius: 5px;
-     border: none;
-     cursor: pointer;
-     width: 100%;
-     float: right;
-     text-align: center;
-   }
-
-   #checkid {
-      background-color: #4CAF50;
-      color: white;
-      float:right;
-   }
- </style>
+<div class="body">
         <div class="back_re">
          <div class="container">
             <div class="row">
@@ -186,35 +139,84 @@ $(document).ready(function(){
                </div>
             </div>
          </div>
+         <div class="back2_re">
+         </div>
       </div>
       <!-- blog -->
-      <div class="row">
-         <div class="col-md-4">
-            <div class="blog_box">
-               <h2>다 지우고 새로 UI변경해도 됩니다.</h2>
-            </div>
+
+      
+      
+      <div class="row" id="particles-js">
+      
+         <div class="col-md-2">
          </div>
-         <div class="col-md-4">
+         
+         <div class="col-md-8">
             <br><br><br><br>
-            <div class="blog_box">
+            <div class="blog_box container_re">
+            	<span class="error animated tada" id="msg"></span>
                <form id="register">
-                  <div class="blog_room">
-                     <label class="register_label">아이디</label> <input type="text" name="user_id" alt="N"><input type="button" value="아이디 중복확인" id="checkid"/><br>
-                     <label class="register_label">비밀번호</label> <input type="password" name="user_password" maxlength="16" minlength="8"/><br>
-                     <label class="register_label">비밀번호확인</label> <input type="password" name="user_password_check" maxlength="16" minlength="8"/><br>
-                     <label class="register_label">이름</label> <input type="text" name="user_name"/><br>
-                     <label class="register_label">생년월일</label> <input type="text" name="user_birthday" maxlength="6"/><br>
-                     <label class="register_label">연락처</label><br> <input type="text" style="width: 50px;" name="user_tel1"/> - <input type="text" style="width: 50px;" name="user_tel2"/> - <input type="text" style="width: 50px;" name="user_tel3"/><br>
-                     <a href="#">회원가입</a>
-                  </div>
+               		<div  class="box_re">
+                  <div class="blog_room label_re">
+	                  <div>
+	                     <label class="register_label">아이디</label>
+	                  </div>
+	                  <div>
+	                     <label class="register_label">비밀번호</label>
+	                  </div>
+	                  <div>   
+	                     <label class="register_label">비밀번호확인</label>
+	                  </div>
+	                  <div>
+	                     <label class="register_label">이름</label>
+	                  </div>
+					<div>
+	                     <label class="register_label">생년월일</label>
+	                </div>
+	                <div>
+	                     <label class="register_label">연락처</label>
+					</div>
+                </div>
+                <div class="blog_room div_re">
+	                  <div>
+	                     <input type="text" name="user_id" alt="N" placeholder="ID" autocomplete="off">
+	                  </div>
+	                  <div>
+	                     <input type="password" name="user_password" maxlength="16" minlength="8" placeholder="Passsword" autocomplete="off"/>
+	                  </div>
+	                  <div>   
+						 <input type="password" name="user_password_check" maxlength="16" minlength="8" placeholder="Passsword" autocomplete="off"/>
+	                  </div>
+	                  <div>
+						 <input type="text" name="user_name"  placeholder="이름을 입력하세요" autocomplete="off"/>
+					</div>
+					<div>
+	                     <input type="text" name="user_birthday" maxlength="6" placeholder="생년월일 6자리를 입력하세요" autocomplete="off"/>
+	                </div>
+	                <div id="tel">
+						<input type="text" name="user_tel1"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+						<input type="text" name="user_tel2"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp; 
+						<input type="text" name="user_tel3"/>
+	                </div>
+                </div>
+                <div class="blog_room check_re">
+	                  <div>
+	                     <input class="btn1" type="button" value="아이디 중복확인" id="checkid"/>
+	                  </div>
+                </div>
+                </div>
+                <div class="btn_re">
+					<a href="#" class="btn2">회원가입</a>
+                </div>
+
                </form>
-            </div>
-         </div>
-         <div class="col-md-4">
-            <div class="blog_box">
                
             </div>
          </div>
+         
+         <div class="col-md-2">
+         </div>
+
       </div>
-      
+</div>      
       <!-- end blog -->

@@ -9,7 +9,11 @@
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
 	</script>
-
+	
+	<!-- js -->
+	
+	
+	
 	<!-- mobile metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -53,18 +57,13 @@
 			document.getElementById("modal_cb").style.display = "flex";
 			connect(); 
 		});
-		/* 
-		상담종료버튼에 삽입
-		$('#modal_close_cb').click(function () {
-			document.getElementById("modal_cb").style.display = "none";
-			document.body.style = "overflow: auto";	
-		}); */
 		//end 챗봇모달------------------------
 		
 		//로그인모달--------------------------
 		$('#modal_open').click(function () {
 			document.getElementById("modal").style.display = "flex";
 			document.body.style = "overflow: hidden";
+		  
 		});
 		$('#modal_close').click(function () {
 			document.getElementById("modal").style.display = "none";
@@ -207,12 +206,19 @@
 		</div>
 		<div class="modal-login">
 			<h2>로그인</h2>
+			<div>
+				<div>아이디</div>
+				<div>비밀번호</div>
+			</div>
 			<form id="loginForm">
-				아이디 <input type="text" name="user_id" /><br>
-				비밀번호 <input type="password" name="user_password"><br><br>
+			<div>
+				<div><input type="text" name="user_id" /></div>
+				<div><input type="password" name="user_password"></div>
+			</div>
+			<div>
 				<button style="width:300px;">로그인</button>
+			</div>
 			</form>
-			<br>
 			<ul>
 				<a href="javascript:kakaoLogin()">
 					<img th:src="@{/images/kakao_login_medium_wide.png}"/>
@@ -291,7 +297,7 @@
 								aria-label="Toggle navigation">
 								<span class="navbar-toggler-icon"></span>
 							</button>
-							<div class="collapse navbar-collapse" id="navbarsExample04">
+							<div class="collapse navbar-collapse textnowrap" id="navbarsExample04">
 								<ul class="navbar-nav mr-auto">
 
 									<!-- 현재 선택 활성화로 보이게 하려면 class="nav-item active" 해야합니다-->

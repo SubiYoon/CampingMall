@@ -234,11 +234,19 @@ button {
      padding: 0;
 }
 
+.textnowrap{
+	white-space: nowrap;
+}
 
 /**-- heading section --**/
 
 
 /*---------------------------- preloader area ----------------------------*/
+
+.logo img{
+	height: 100%;
+	margin-left: 10%;
+}
 
 .loader_bg {
      position: fixed;
@@ -318,8 +326,12 @@ button {
      width: 80%;
      margin: 100px auto;
      padding: 10px 2%;
-     background: #fff;
-     border: 2px solid #666;
+     background: rgb(0 0 0 / 90%);
+     border-top: 20px solid #009898;
+     border-bottom: 20px solid #009898;
+	 border-radius: 10px;
+     transform: scale(0);
+     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
 #modal .modal-login,
@@ -356,6 +368,28 @@ button {
      -webkit-backdrop-filter: blur(1.5px);
      border-radius: 10px;
      border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@keyframes unfoldIn {
+	0% {
+		transform: scaleX(0) scaleY(0.005);
+	}
+	50% {
+		transform: scaleX(1) scaleY(0.005);
+	}
+	100% {
+		transform: scaleY(1) scaleX(1);
+	}
+}
+
+@keyframes zoomIn {
+	from {
+		transform: scale(0);
+	}
+	to {
+		transform: scale(1);
+	}
+
 }
 
 /*-- end 로그인모달용 --*/
@@ -922,7 +956,7 @@ button {
 /** end about section **/
 
 
-/** 구역안내(our_room) section **/
+/** -----------구역zone/사이트site안내(our_room) section **/
 
 .our_room {
      background-color: #f4f5f7;
@@ -976,16 +1010,7 @@ button {
      font-family: 'Hahmlet', sans-serif;
      font-weight: 500;
      transition: ease-in all 0.5s;
-     margin: auto;
 }
-
-/*
-#serv_hover:hover.room {
-     cursor: pointer;
-     box-shadow: 0px 0px 30px rgb(0, 128, 128, 0.15);
-     transition: ease-in all 0.5s;
-}
-*/
 
 .our_read_more {
      text-align: center;
@@ -1012,7 +1037,62 @@ button {
 }
 
 
-/** end 구역안내 section **/
+   .star-rating {
+      direction: rtl;
+      display: inline;
+   }
+   
+   .star-rating input{
+      width: 70%;
+      height: 40px;
+      margin: 10px;
+   }
+   
+   .star-rating a{
+   		background-color: #009898;
+      	width: 100px;
+   }
+
+   .star-rating input[type=radio] {
+      display: none;
+   }
+
+   .star-rating label {
+      display: inline-block;
+      position: relative;
+      width: 1.1em;
+      font-size: 2em;
+      color: #000;
+   }
+
+   .star-rating label:hover,
+   .star-rating label:hover~label {
+      color: #fbbc00;
+   }
+
+   .star-rating input[type=radio]:checked~label {
+      color: #fbbc00;
+   }
+   
+.card h3{
+	margin: 10px;
+}
+#viewList label{
+	color: #fbbc00;
+	font-size: 20px;
+}
+
+#viewList li{
+	width: 100%;
+	text-align: left;
+	color: black;
+	font-size: 16px;
+}
+.paging_num{
+	width: 100%;
+}
+
+/** end 구역zone/사이트site안내(our_room) section **/
 
 
 /** gallery(편의시설)  section **/
@@ -1200,7 +1280,7 @@ button {
 
 .footer {
      background: #0f1521;
-     margin-top: 90px;
+     margin-top: 50px;
      padding-top: 60px;
      text-align: center;
 }
@@ -1365,6 +1445,10 @@ ul.social_icon li a:hover {
 .back_re {
      background-color: #0f1521;
 }
+.back2_re {
+     background-color: #fff;
+     height: 50px;
+}
 
 .back_re .title {
      text-align: center;
@@ -1397,4 +1481,129 @@ ul.social_icon li a:hover {
 #text {
      position: absolute;
      color: red;
+}
+
+/* ----------- 회원가입 ------------*/
+
+
+.body{
+  background: url(../images/test1.jpg);
+  background-size: cover;
+  padding-bottom: 90px;
+  margin: 0px;
+}
+
+#particles-js {
+  width: 100%;
+  height: 100%;
+}
+
+.container_re{
+  margin: 0;
+  top: 50px;
+  text-align: center;
+  background-color: rgb(0 0 0 / 85%);
+  border-radius: 9px;
+  border-top: 20px solid #009898;
+  border-bottom: 20px solid #009898;
+  width: 100%;
+  box-shadow: 1px 1px 50px 30px rgb(0 0 0 / 50%);
+  white-space: nowrap;
+}
+
+.box_re{
+	display: flex;
+	margin: 30px;
+}
+
+.box_re input[type = "text"],.box_re input[type = "password"] {
+  margin: 10px auto;
+  background: #262e49;
+  border: 0;
+  border-radius: 5px;
+  padding: 14px 10px;
+  width: 100%;
+  outline: none;
+  color: #d6d6d6;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+  
+}
+
+.label_re{
+	width: 20%;
+	text-align: right;
+}
+.label_re div{
+	margin: 25px auto 35px auto;
+	font-size: 16px;
+	font-weight: bold;
+	color: #dee2e6;
+}
+
+.div_re{
+	width: 70%;
+	text-align: left;
+	padding-left: 20px;
+}
+
+.btn_re{
+	margin: 20px;
+}
+
+.check_re{
+	width: 20%;
+	margin: 20px 20px 20px auto;
+	text-align: right;
+}
+
+#tel input{
+	width: 25%;
+}
+
+::-webkit-input-placeholder {
+  color: #565f79;
+}
+
+.box_re input[type = "text"]:focus,.box_re input[type = "password"]:focus {
+  border: 1px solid #79A6FE;
+  
+}
+
+.btn1 {
+  border:0;
+  width: 90%;
+  background: #009898;
+  color: #dfdeee;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 3px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn1:hover {
+  background: #000;
+  color: #dee2e6;
+}
+
+.btn2 {
+	display: inline-block;
+  width: 30%;
+  background: #009898;
+  color: #dfdeee;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 3px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.btn2:hover {
+  background: #000;
+  color: #dee2e6;
 }
