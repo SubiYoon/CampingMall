@@ -66,8 +66,7 @@ public class BookInsertSampleTest {
                 "" + (int) (Math.random() * 99) + (int) (Math.random() * 10) + center[(int) (
                     Math.random() * 7)] + (int) (Math.random() * 10) + (int) (Math.random() * 10)
                     + (int) (Math.random() * 10) + (int) (Math.random() * 10) + "";
-            BookDTO bookDTO = new BookDTO(1, siteCode, userCode, merchantUid, bookMember,
-                bookCheckin, bookCheckout, bookWritedate, bookPrice, bookCarNumber, 1, "");
+            BookDTO bookDTO = new BookDTO(1, siteCode, userCode, merchantUid, bookMember, bookCheckin, bookCheckout, bookWritedate, bookPrice, bookCarNumber, 1, "","");
             try {
                 int count = 0;
                 while (count < 20) {
