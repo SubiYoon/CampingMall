@@ -37,11 +37,10 @@
             </p>
             <br>
             <!-- Table Variants -->
-            <div th:each="userList : ${userList}">
             <table class="table">
               <thead>
                 <tr class="table-success">
-                  <th scope="col">이름</th>
+                  <th style="width:16%;" scope="col">이름</th>
                   <th scope="col">생년월일</th>
                   <th scope="col">예약횟수</th>
                   <th scope="col">연락처</th>
@@ -50,8 +49,8 @@
                 </tr>
               </thead>
               <tbody>
-                  <tr>
-                    <th scope="row"><a class="userDetail" href="#Detail" th:text="${userList.user_name}"></a></th>
+                  <tr th:each="userList : ${userList}" >
+                    <th scope="row"><a class="userDetail" th:href="'/admin/user/userDetail?user_id=' + ${userList.user_id}" th:text="${userList.user_name}"></a></th>
                     <td th:text="${userList.user_birthday}"></td>
                     <td th:text="${userList.bookCount}"></td>
                     <td th:text="${userList.user_tel}"></td>
@@ -60,11 +59,6 @@
                   </tr>
               </tbody>
             </table>
-            <!-- End Table Variants -->
-              <form class="userBookDetail">
-                <input type="hidden" name="user_id" th:value="${userList.user_id}"/>
-              </form>
-            </div>
           </div>
         </div>
       </div>

@@ -991,7 +991,9 @@ button {
 
 .our_room .room .room_img figure img {
      width: 100%;
-     transition: all .5s;
+     height: 300px;
+     transition: all .2s;
+     object-fit: cover;
 }
 
 .our_room .room .room_img figure img:hover {
@@ -1030,10 +1032,17 @@ button {
      background-color: #fff;
      margin-top: 30px;
      margin-left: 8%;
+     transition: all .2s;
 }
 
 #siteimg img {
      width: 100px;
+     height: 100px;
+     object-fit: cover;
+}
+
+#siteimg:hover {
+      transform: scale(1.2);
 }
 
 
@@ -1116,7 +1125,9 @@ button {
 
 .gallery .gallery_img figure img {
      width: 100%;
-     transition: all .5s;
+     height: 200px;
+     transition: all .2s;
+     object-fit: cover;
 }
 
 .gallery .gallery_img figure img:hover {
