@@ -12,46 +12,25 @@
     });
 
     function getGraph() {
-        let labelsList = [];
-        let dataList = [];
         let label;
 
         $.ajax({
-            url: "/admin/admin.monthly",
+            url: "/admin/main/graphData",
             type: "get",
             dataType: "json",
             success: function (data) {
-                console.log(data.Graph.labelsList[0]);
-                console.log(data.Graph.dataList[0]);
-                label = data.Graph.label;
+                console.log(data.Graph[3].labelsList[0]);
+                console.log(data.Graph[3].dataList[0]);
+                label = data.Graph[3].label;
+                let myobj1=[];
                 // 그래프로 나타낼 자료 리스트에 담기
-                for (let i = 0; i < data.Graph.labelsList.length; i++) {
-                    labelsList.push(data.Graph.labelsList[i]);
-                    dataList.push(data.Graph.dataList[i]);
+
+                for (let i = 0; i < nameList2.length; i++) {
+                    myobj1.push(
+                        {value: data.Graph[3].dataList[i], name: data.Graph[3].labelsList[i]});
                 }
-                console.log(label);
-                console.log(dataList);
+                drawChart('budgetChart',myobj1,'구역별 매출')
                 // 그래프
-                new Chart(document.getElementById("line-chart"), {
-                    type: 'line',
-                    data: {
-                        labels: labelsList, // X축
-                        datasets: [{
-                            data: dataList, // 값
-                            label: label,
-                            borderColor: "#3e95cd",
-                            fill: false
-                        }
-                        ]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        title: {
-                            display: true,
-                            text: '매출'
-                        }
-                    }
-                }); //그래프
             },
             error: function () {
                 alert("실패");

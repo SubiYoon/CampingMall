@@ -54,4 +54,12 @@ public class Utility {
         }
         return Math.round(rate * 100) + "%";
     }
+    public static String StringYearAndMonthFromStringDate(String stringDate){
+        String[] array = stringDate.split("-");
+        return array[0]+"-"+array[1];
+    }
+    public static String StringYearFromStringDate(String stringDate){
+        String[] array = stringDate.split("-");
+        return array[0];
+    }
 }

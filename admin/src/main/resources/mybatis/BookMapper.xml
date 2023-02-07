@@ -37,6 +37,29 @@
         Where reservation.book_code = book.book_code
           And reservation_code = #{reservation_code}
     </select>
+    <select id="selectByWriteDateAndCompanyCode" resultType="BookDTO">
+        select book.book_code,
+               book.site_code,
+               book.user_code,
+               book.merchant_uid,
+               book.book_member,
+               book.book_checkin,
+               book.book_checkout,
+               book.book_writedate,
+               book.book_price,
+               book.book_car_number,
+               book.book_state
+        from admin,
+             book,
+             zone,
+             site
+        Where admin.company_code = #{company_code}
+          AND admin.admin_code = zone.admin_code
+          And zone.zone_code = site.zone_code
+          And site.site_code = book.site_code
+          And DATE(book.book_writedate) = #{book_writedate}
+          And book.book_state = 1
+    </select>
     <select id="selectAll" resultType="BookDTO">
         SELECT *
         FROM book
@@ -68,24 +91,32 @@
         FROM book
         WHERE book_code = #{book_code}
     </delete>
-     <select id="selectAllState" resultType="map">
-   SELECT  book.book_member book_member,
-                book.book_checkin book_checkin, 
-                book.book_checkout book_checkout,
-                book.book_price book_price,
-                book.book_car_number book_car_number,
-                book.book_state book_state,
-                book.merchant_uid merchant_uid,
-                book.user_code user_code,
-                site.site_name site_name,
-                user.user_name user_name,
-                user.user_tel user_tel
-        FROM book 
-        JOIN site 
-        ON book.site_code = site.site_code 
-        join user
-        on book.user_code = user.user_code
-        WHERE book_state=#{state};
+     <select id="selectAllmain" resultType="map">
+		  SELECT book.book_code  book_code,
+		         book.book_price book_price,
+			     book.book_state book_state,
+			     site.site_name  site_name,
+			     user.user_name  user_name
+	      FROM   book
+		         JOIN site
+	             ON book.site_code = site.site_code
+	     	     JOIN user
+	             ON book.user_code = user.user_code
+		  ORDER  BY book_writedate DESC 
+       </select>
+    
+    <select id="selectAllState" resultType="map">
+    SELECT book.book_code  book_code,
+	       book.book_price book_price,
+	       book.book_state book_state,
+	       site.site_name  site_name,
+	       USER.user_name  user_name
+	FROM   book
+	       JOIN site
+	         ON book.site_code = site.site_code
+	       JOIN USER
+	         ON book.user_code = USER.user_code
+	WHERE  book_state = # {state}; 
     </select>
     
     <update id="updateBookState">
@@ -123,6 +154,10 @@
             book.book_code    
         DESC
     </select>
+     
+    
+    
+    
     
     
     

@@ -9,6 +9,12 @@
         VALUES (#{site_code}, #{user_code}, #{merchant_uid}, #{book_member}, #{book_checkin}, #{book_checkout},
                 #{book_price}, #{book_car_number})
     </insert>
+    <insert id="insert2" parameterType="BookDTO">
+        INSERT INTO book(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price,
+                         book_car_number, book_writedate)
+        VALUES (#{site_code}, #{user_code}, #{merchant_uid}, #{book_member}, #{book_checkin}, #{book_checkout},
+                #{book_price}, #{book_car_number},#{book_writedate})
+    </insert>
     <select id="select" resultType="BookDTO">
         SELECT *
         FROM book
@@ -50,10 +56,13 @@
                 book.book_state book_state,
                 site.site_name site_name,
                 book.merchant_uid merchant_uid,
-                book.book_code book_code
+                book.book_code book_code,
+                image.image_file book_site_image
         FROM book 
         JOIN site 
         ON book.site_code = site.site_code 
+        JOIN image
+        ON site.site_code = image.site_code
         WHERE user_code=#{user_code} 
         ORDER BY book_code DESC
     </select>

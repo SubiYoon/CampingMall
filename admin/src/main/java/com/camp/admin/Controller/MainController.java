@@ -1,6 +1,9 @@
 package com.camp.admin.Controller;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,18 +20,20 @@ import com.camp.admin.DTO.HomeDTO;
 import com.camp.admin.DTO.ImageDTO;
 import com.camp.admin.DTO.ZoneDTO;
 import com.camp.admin.service.AdminService;
+import com.camp.admin.service.BookService;
 import com.camp.admin.service.CompanyService;
 import com.camp.admin.service.FacilityService;
 import com.camp.admin.service.HomeService;
 import com.camp.admin.service.ImageService;
 import com.camp.admin.service.NoticeService;
+import com.camp.admin.service.ReviewService;
 import com.camp.admin.service.ZoneService;
 import com.camp.admin.utility.CryptoUtil;
 import com.camp.admin.utility.SaveFile;
 
 @Controller
 public class MainController {
-	
+
 	@Value("${imagesdir}")
 	String imagesdir;
 
@@ -37,25 +42,31 @@ public class MainController {
 
 	@Autowired
 	HomeService serviceH;
-	
+
 	@Autowired
 	NoticeService serviceN;
 
 	@Autowired
 	FacilityService serviceF;
-	
+
 	@Autowired
 	ZoneService serviceZ;
-	
+
 	@Autowired
 	ImageService serviceI;
 
 	@Autowired
 	AdminService serviceA;
+	
+	@Autowired
+	BookService serviceB;
+	
+	@Autowired
+	ReviewService serviceR;
 
 	@RequestMapping("/")
 	public String main(){
-		
+
 		return "login";
 	}
 
@@ -86,21 +97,57 @@ public class MainController {
 		return "redirect:main";
 	}
 
-	@RequestMapping("/main")
-	public String main(Model model, HttpSession session, CompanyDTO companyDTO, ZoneDTO zoneDTO) {
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-		List<ZoneDTO> listZ = null;
-		
-		try {
-			listZ=serviceZ.selectZone(company.getCompany_code());	//상호코드
+    @RequestMapping("/main")
+    public String main(Model model, HttpSession session, CompanyDTO companyDTO, ZoneDTO zoneDTO) {
+        CompanyDTO company = (CompanyDTO) session.getAttribute("company");
+        List<ZoneDTO> listZ = null;
+
+        LocalDate now = LocalDate.now();
+        String month = ("0" + now.getMonthValue());
+        month = month.substring(month.length() - 2);
+        int companyCode = company.getCompany_code();
+        String stringYearAndMonth = "" + now.getYear() + "-" + month;
+		String stringDate = stringYearAndMonth+"-01";
+        List<String> charts = new ArrayList<>();
+        try {
+            charts.add("" + Math.round(serviceB.MonthlySales(stringDate, companyCode)));
+            charts.add(serviceB.MonthlySalesRate(stringYearAndMonth, companyCode));
+            charts.add("" + serviceB.MonthlyBookCount(stringDate, companyCode));
+            charts.add(serviceB.MonthlyBookRate(stringYearAndMonth, companyCode));
+            charts.add("" + serviceB.MonthlyUser(stringYearAndMonth, companyCode));
+            charts.add(serviceB.MonthlyUserRate(stringYearAndMonth, companyCode));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+		model.addAttribute("MonthList",charts);
+        try {
+            listZ = serviceZ.selectZone(company.getCompany_code());    //상호코드
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.setAttribute("zlist", listZ);
+        
+        
+        try {
+			List<Map<String,Object>> books=serviceB.selectAllmain();
+			model.addAttribute("books",books);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-		}	
-		session.setAttribute("zlist", listZ);
+		}
+        
+		try {
+			List<Map<String, Object>> reviews = serviceR.selectAllmain();
+			model.addAttribute("reviews",reviews);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		return "main";
-	}
-	
+
+        return "main";
+    }
+
+
 	//CompanyEdit
 	@RequestMapping("/company")
 	public String companyEdit(HttpSession session, Model model) {
