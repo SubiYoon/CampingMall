@@ -131,7 +131,7 @@ public class BookService implements MyService<Integer, BookDTO> {
             labelsList.add("" + i);
         }
         return new GraphDTO(labelsList, stringYearAndMonth,
-            DailyUserList(stringYearAndMonth, company_code));
+            DailyList(stringYearAndMonth, company_code));
     }
 
     private List<String> DailyUserList(String stringYearAndMonth, int companyCode)
@@ -706,6 +706,17 @@ public class BookService implements MyService<Integer, BookDTO> {
             MonthlyUser(Utility.StringYearAndMonthFromStringDate(stringDate), company_code),
             MonthlyUser(
                 Utility.StringYearAndMonthFromStringDate(Utility.DateToString(calendar.getTime())),
+                company_code));
+    }
+    public String MonthlyBookRate(String stringYearAndMonth, int company_code) throws Exception {
+        String stringDate = stringYearAndMonth + "-01";
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(Utility.StringToDate(stringDate));
+        calendar.add(Calendar.MONTH, -1);
+        return Utility.RateOfIncrease(
+            MonthlyBookCount(stringDate, company_code),
+            MonthlyBookCount(
+                Utility.DateToString(calendar.getTime()),
                 company_code));
     }
 

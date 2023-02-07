@@ -22,9 +22,10 @@ public class AjaxController {
         JSONObject json = new JSONObject();
         CompanyDTO company = (CompanyDTO) session.getAttribute("company");
         int companyCode = company.getCompany_code();
-        if (dataScale.contains("M")) {
+        if (dataScale==null||dataScale.contains("M")) {
             try {
                 List<GraphDTO> graphs = new ArrayList<>();
+                System.out.println(stringDate);
                 GraphDTO graphDTO = bService.MonthSalesGraph(stringDate,companyCode);
                 graphs.add(graphDTO);
                 graphDTO = bService.MonthlyBookGraph(stringDate,companyCode);
@@ -41,23 +42,24 @@ public class AjaxController {
             }
         } else {
             try {
+                String stringDate2 = stringDate.split("-")[0];
+                System.out.println(stringDate2);
                 List<GraphDTO> graphs = new ArrayList<>();
-                GraphDTO graphDTO = bService.YearSalesGraph(stringDate,companyCode);
+                GraphDTO graphDTO = bService.YearSalesGraph(stringDate2,companyCode);
                 graphs.add(graphDTO);
-                graphDTO = bService.YearlyBookGraph(stringDate,companyCode);
+                graphDTO = bService.YearlyBookGraph(stringDate2,companyCode);
                 graphs.add(graphDTO);
-                graphDTO = bService.YearlyUserGraph(stringDate,companyCode);
+                graphDTO = bService.YearlyUserGraph(stringDate2,companyCode);
                 graphs.add(graphDTO);
-                graphDTO = bService.YearlyZoneSalesGraph(stringDate, companyCode);
+                graphDTO = bService.YearlyZoneSalesGraph(stringDate2, companyCode);
                 graphs.add(graphDTO);
-                graphDTO = bService.YearlyZoneUserGraph(stringDate, companyCode);
+                graphDTO = bService.YearlyZoneUserGraph(stringDate2, companyCode);
                 graphs.add(graphDTO);
                 json.put("Graph", graphs);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
         return json;
     }
 }

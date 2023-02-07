@@ -1,22 +1,27 @@
 <script>
     var today = new Date();
     var todayYear = today.getFullYear();
-    var todayMonth = today.getMonth() + 1
+    var todayMonth = today.getMonth() + 1;
     let nowSelectingMainCart = 'Monthly';
-    let yearSelected = null;
-    let monthSelected = null;
+    let yearSelected = todayYear;
+    let monthSelected = todayMonth;
     $(document).ready(function () {
-        drawMainChart();
+        setHead();
+        today = new Date();
+        nowSelectingMainCart = 'Monthly';
+        todayYear = today.getFullYear();
+        todayMonth = today.getMonth() + 1
+
         monthAndYear();
         getGraph('' + todayYear + '-' + ('0' + todayMonth).slice(-2));
-        $('#yearSelect').click(function () {
-            yearSelected = $('#yearSelect').val();
+
+        $('.yearSelect').click(function () {
+            yearSelected = $('.yearSelect').val();
         })
-        $('#monthSelect').click(function () {
-            monthSelected = $('#monthSelect').val();
+        $('.monthSelect').click(function () {
+            monthSelected = $('.monthSelect').val();
             monthSelected = ('0' + monthSelected).slice(-2);
-            let stringDate = yearSelected + '-' + monthSelected;
-            getGraph(stringDate);
+
         })
         $('#mainChartTypeM').click(function () {
             nowSelectingMainCart = 'Monthly';
@@ -27,6 +32,16 @@
             monthAndYear();
         })
     });
+
+    function mainButton() {
+        yearSelected = $('.yearSelect').val();
+        monthSelected = $('.monthSelect').val();
+        monthSelected = ('0' + monthSelected).slice(-2);
+        let stringDate = yearSelected + '-' + monthSelected;
+        console.log(stringDate);
+        getGraph(stringDate);
+    }
+
 </script>
 <main id="main" class="main">
 
@@ -51,29 +66,16 @@
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
 
-                            <div class="filter">
-                                <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                                    class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-
-                                    <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
-                                </ul>
-                            </div>
-
                             <div class="card-body">
-                                <h5 class="card-title">Books <span>| Today</span></h5>
+                                <h5 class="card-title">Revenue <span>| This Month</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-cart"></i>
+                                        <i class="bi bi-currency-dollar"></i>
                                     </div>
-                                    <div class="ps-3">
+
+                                    <div class="ps-3" id="headRevenue">
                                         <h6>145</h6>
                                         <span class="text-success small pt-1 fw-bold">12%</span>
                                         <span class="text-muted small pt-2 ps-1">increase</span>
@@ -89,29 +91,16 @@
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card revenue-card">
 
-                            <div class="filter">
-                                <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                                    class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-
-                                    <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
-                                </ul>
-                            </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                                <h5 class="card-title">Book <span>| This Month</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                        <i class="bi bi-currency-dollar"></i>
+                                        <i class="bi bi-cart"></i>
                                     </div>
-                                    <div class="ps-3">
+                                    <div class="ps-3" id="headBook">
                                         <h6>$3,264</h6>
                                         <span class="text-success small pt-1 fw-bold">8%</span>
                                         <span class="text-muted small pt-2 ps-1">increase</span>
@@ -128,29 +117,16 @@
 
                         <div class="card info-card customers-card">
 
-                            <div class="filter">
-                                <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                                    class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-
-                                    <li><a class="dropdown-item" th:href="@{#}">Today</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Month</a></li>
-                                    <li><a class="dropdown-item" th:href="@{#}">This Year</a></li>
-                                </ul>
-                            </div>
 
                             <div class="card-body">
-                                <h5 class="card-title">Visitor <span>| This Year</span></h5>
+                                <h5 class="card-title">Visitor <span>| This Month</span></h5>
 
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-people"></i>
                                     </div>
-                                    <div class="ps-3">
+                                    <div class="ps-3" id="headVisitor">
                                         <h6>1244</h6>
                                         <span class="text-danger small pt-1 fw-bold">12%</span>
                                         <span class="text-muted small pt-2 ps-1">decrease</span>
@@ -187,9 +163,54 @@
                                 <div id="reportsChart"></div>
 
                                 <script>
-                                    function monthAndYear(){
+                                    function setHead() {
+                                        let monthList = '[[${MonthList}]]';
+                                        monthList =monthList.replace('[','');
+                                        monthList =monthList.replace(']','');
+                                        monthList =monthList.replaceAll(' ','');
+                                        monthList = monthList.split(',');
+                                        for(let i = 0 ;i<monthList.length;i++){
+                                            console.log(monthList[i]);
+                                        }
+                                        let headStr = '<h6>' + monthList[0] + '</h6>';
+                                        if (monthList[1].includes('-')) {
+                                            headStr += '<span class="text-danger small pt-1 fw-bold">'
+                                                + monthList[1] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">decrease</span>';
+                                        } else{
+                                            headStr += '<span class="text-success small pt-1 fw-bold">'
+                                                + monthList[1] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">increase</span>';
+                                        }
+                                        document.getElementById("headRevenue").innerHTML = headStr;
+                                        headStr = '<h6>' + monthList[2] + '</h6>';
+                                        if (monthList[3].includes('-')) {
+                                            headStr += '<span class="text-danger small pt-1 fw-bold">'
+                                                + monthList[3] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">decrease</span>';
+                                        } else{
+                                            headStr += '<span class="text-success small pt-1 fw-bold">'
+                                                + monthList[3] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">increase</span>';
+                                        }
+                                        document.getElementById("headBook").innerHTML = headStr;
+                                        headStr = '<h6>' + monthList[4] + '</h6>';
+                                        if (monthList[5].includes('-')) {
+                                            headStr += '<span class="text-danger small pt-1 fw-bold">'
+                                                + monthList[5] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">decrease</span>';
+                                        } else{
+                                            headStr += '<span class="text-success small pt-1 fw-bold">'
+                                                + monthList[5] + '</span>';
+                                            +'<span class="text-muted small pt-2 ps-1">increase</span>';
+                                        }
+                                        document.getElementById("headVisitor").innerHTML = headStr;
+                                    }
+
+                                    function monthAndYear() {
                                         let i;
-                                        var str = '통계<span> | ' + nowSelectingMainCart + '  </span><select name=\"year\" id=\"yearSelect\">';
+                                        var str = '통계<span> | ' + nowSelectingMainCart
+                                            + '  </span><select name=\"year\" class=\"yearSelect\">';
                                         for (i = todayYear - 5; i < todayYear; i++) {
                                             str += '<option value=' + i + '>' + i + '</option>';
                                         }
@@ -202,7 +223,7 @@
                                         }
                                         str += '</select>';
                                         if (nowSelectingMainCart === 'Monthly') {
-                                            str += '<select name=\"month\" id=\"monthSelect\">';
+                                            str += '<select name=\"month\" class=\"monthSelect\">';
                                             for (i = 1; i < todayMonth; i++) {
                                                 str += '<option value=' + i + '>' + i + '</option>';
                                             }
@@ -214,6 +235,8 @@
                                             }
                                             str += '</select>';
                                         }
+                                        str += '<button id=\"mainCharButton\" type=\"button\" onclick=\"mainButton()\">조회</button>';
+
                                         document.getElementById("mainChart").innerHTML = str
                                     }
                                 </script>
@@ -234,125 +257,122 @@
                                         <h5 class="card-title">구역별 매출
                                         </h5>
                                         <script>
-                                            function drawMainChart(){
-                                                new ApexCharts(document.querySelector("#reportsChart"), {
-                                                    series: [{
-                                                        name: 'Revenue',
-                                                        data: [31, 40, 28, 51, 42, 82, 56],
-                                                    }, {
-                                                        name: 'Book',
-                                                        data: [11, 32, 45, 32, 34, 52, 41]
-                                                    }, {
-                                                        name: 'Visitors',
-                                                        data: [15, 11, 32, 18, 9, 24, 11]
-                                                    }],
-                                                    chart: {
-                                                        height: 350,
-                                                        type: 'area',
-                                                        toolbar: {
-                                                            show: false
+                                            function drawMainChart(RevenueList, BookList,
+                                                VisitorList, nameList) {
+                                                new ApexCharts(
+                                                    document.querySelector("#reportsChart"), {
+                                                        series: [{
+                                                            name: 'Revenue',
+                                                            data: RevenueList
+                                                        }, {
+                                                            name: 'Book',
+                                                            data: BookList
+                                                        }, {
+                                                            name: 'Visitor',
+                                                            data: VisitorList
+                                                        }],
+                                                        chart: {
+                                                            height: 350,
+                                                            type: 'area',
+                                                            toolbar: {
+                                                                show: false
+                                                            },
                                                         },
-                                                    },
-                                                    markers: {
-                                                        size: 4
-                                                    },
-                                                    colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                                    fill: {
-                                                        type: "gradient",
-                                                        gradient: {
-                                                            shadeIntensity: 1,
-                                                            opacityFrom: 0.3,
-                                                            opacityTo: 0.4,
-                                                            stops: [0, 90, 100]
-                                                        }
-                                                    },
-                                                    dataLabels: {
-                                                        enabled: false
-                                                    },
-                                                    stroke: {
-                                                        curve: 'smooth',
-                                                        width: 2
-                                                    },
-                                                    xaxis: {
-                                                        type: 'text',
-                                                        categories: ["2018-06-01",
-                                                            "2018-07",
-                                                            "2018-08",
-                                                            "2018-09-01",
-                                                            "2018-10-01",
-                                                            "2018-11-01",
-                                                            "2018-12-01"]
-                                                    },
-                                                    yaxis: [
-                                                        {
-                                                            axisTicks: {
-                                                                show: true
-                                                            },
-                                                            axisBorder: {
-                                                                show: true,
-                                                                color: "#4154f1"
-                                                            },
-                                                            labels: {
-                                                                style: {
+                                                        markers: {
+                                                            size: 4
+                                                        },
+                                                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                                                        fill: {
+                                                            type: "gradient",
+                                                            gradient: {
+                                                                shadeIntensity: 1,
+                                                                opacityFrom: 0.3,
+                                                                opacityTo: 0.4,
+                                                                stops: [0, 90, 100]
+                                                            }
+                                                        },
+                                                        dataLabels: {
+                                                            enabled: false
+                                                        },
+                                                        stroke: {
+                                                            curve: 'smooth',
+                                                            width: 2
+                                                        },
+                                                        xaxis: {
+                                                            type: 'text',
+                                                            categories: nameList
+                                                        },
+                                                        yaxis: [
+                                                            {
+                                                                axisTicks: {
+                                                                    show: true
+                                                                },
+                                                                axisBorder: {
+                                                                    show: true,
                                                                     color: "#4154f1"
+                                                                },
+                                                                labels: {
+                                                                    style: {
+                                                                        color: "#4154f1"
+                                                                    }
+                                                                },
+                                                                title: {
+                                                                    text: "매출 ( 원 )",
+                                                                    style: {
+                                                                        color: "#4154f1"
+                                                                    }
+                                                                },
+                                                                tooltip: {
+                                                                    enabled: true
                                                                 }
                                                             },
-                                                            title: {
-                                                                text: "매출 ( 원 )",
-                                                                style: {
-                                                                    color: "#4154f1"
-                                                                }
-                                                            },
-                                                            tooltip: {
-                                                                enabled: true
-                                                            }
-                                                        },
-                                                        {
-                                                            seriesName: "Book",
-                                                            opposite: true,
-                                                            axisTicks: {
-                                                                show: true
-                                                            },
-                                                            axisBorder: {
-                                                                show: true,
-                                                                color: "#2eca6a"
-                                                            },
-                                                            labels: {
-                                                                style: {
+                                                            {
+                                                                seriesName: "Book",
+                                                                opposite: true,
+                                                                axisTicks: {
+                                                                    show: true
+                                                                },
+                                                                axisBorder: {
+                                                                    show: true,
                                                                     color: "#2eca6a"
+                                                                },
+                                                                labels: {
+                                                                    style: {
+                                                                        color: "#2eca6a"
+                                                                    }
+                                                                },
+                                                                title: {
+                                                                    text: "예약수 ( 개 )",
+                                                                    style: {
+                                                                        color: "#2eca6a"
+                                                                    }
                                                                 }
                                                             },
-                                                            title: {
-                                                                text: "예약수 ( 개 )",
-                                                                style: {
-                                                                    color: "#2eca6a"
-                                                                }
-                                                            }
-                                                        },
-                                                        {
-                                                            seriesName: "Visitors",
-                                                            opposite: true,
-                                                            axisTicks: {
-                                                                show: true
-                                                            },
-                                                            axisBorder: {
-                                                                show: true,
-                                                                color: "#ff771d"
-                                                            },
-                                                            labels: {
-                                                                style: {
+                                                            {
+                                                                seriesName: "Visitor",
+                                                                opposite: true,
+                                                                axisTicks: {
+                                                                    show: true
+                                                                },
+                                                                axisBorder: {
+                                                                    show: true,
                                                                     color: "#ff771d"
+                                                                },
+                                                                labels: {
+                                                                    style: {
+                                                                        color: "#ff771d"
+                                                                    }
+                                                                },
+                                                                title: {
+                                                                    text: "방문객 ( 명 )",
+                                                                    style: {
+                                                                        color: "#ff771d"
+                                                                    }
                                                                 }
-                                                            },
-                                                            title: {
-                                                                text: "방문객 ( 명 )",
-                                                                style: {
-                                                                    color: "#ff771d"
-                                                                }
-                                                            }
-                                                        }]
-                                                }).render();
+                                                            }]
+                                                    }).render();
                                             }
+
                                             function drawChart(divID, obj, string1) {
                                                 let myChart = echarts.init(
                                                     document.getElementById(divID));
@@ -387,6 +407,7 @@
                                                     }]
                                                 }
                                                 myChart.setOption(option);
+
                                             }
 
                                             function getGraph(data) {
@@ -395,24 +416,49 @@
                                                 $.ajax({
                                                     url: "/admin/main/graphData",
                                                     type: "post",
-                                                    data: {'stringDate': data, 'dataScale': nowSelectingMainCart},
+                                                    data: {
+                                                        'stringDate': data,
+                                                        'dataScale': nowSelectingMainCart
+                                                    },
                                                     success: function (data) {
-                                                        console.log(data.Graph.labelsList[0]);
-                                                        console.log(data.Graph.dataList[0]);
-                                                        label = data.Graph.label;
+                                                        document.getElementById(
+                                                            'reportsChart').innerHTML = "";
+                                                        label = data.Graph[3].label;
                                                         let myobj1 = [];
                                                         // 그래프로 나타낼 자료 리스트에 담기
-
                                                         for (let i = 0;
-                                                            i < data.Graph.labelsList.length; i++) {
+                                                            i < data.Graph[3].labelsList.length;
+                                                            i++) {
                                                             myobj1.push(
                                                                 {
-                                                                    value: data.Graph.dataList[i],
-                                                                    name: data.Graph.labelsList[i]
+                                                                    value: data.Graph[3].dataList[i],
+                                                                    name: data.Graph[3].labelsList[i]
                                                                 });
                                                         }
-                                                        drawChart('budgetChart', myobj1)
-                                                        // 그래프
+                                                        drawChart('budgetChart', myobj1);
+                                                        //구역매출
+                                                        label = data.Graph[4].label;
+                                                        myobj1 = [];
+                                                        // 그래프로 나타낼 자료 리스트에 담기
+                                                        for (let i = 0;
+                                                            i < data.Graph[4].labelsList.length;
+                                                            i++) {
+                                                            myobj1.push(
+                                                                {
+                                                                    value: data.Graph[4].dataList[i],
+                                                                    name: data.Graph[4].labelsList[i]
+                                                                });
+                                                        }
+                                                        drawChart('zoneUser', myobj1);
+
+                                                        let names = data.Graph[0].labelsList;
+                                                        let revenus = data.Graph[0].dataList;
+                                                        let books = data.Graph[1].dataList;
+                                                        let visitors = data.Graph[2].dataList;
+                                                        // 그래프 구역 인원
+                                                        drawMainChart(revenus, books, visitors,
+                                                            names);
+                                                        //
                                                     },
                                                     error: function () {
                                                         alert("실패");
@@ -431,7 +477,8 @@
                                 <div class="col-6">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">구역별 방문자</h5>
-
+                                        <div id="zoneUser" style="min-height: 400px;"
+                                             class="echart"></div>
 
                                     </div>
                                 </div>
