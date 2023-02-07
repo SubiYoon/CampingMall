@@ -464,10 +464,14 @@
                             <tbody>
 	                           <tr th:each="books, i:${books}">
 	                               <th scope="row" th:text="${books.book_code}"><a th:href="@{#}"></a></th>
-	                               <td th:text="${books}"></td>
-	                               <td>At praesentium minu</td>
-	                               <td>$64</td>
-	                               <td><span class="badge bg-success">Approved</span></td>
+	                               <td th:text="${books.user_name}"></td>
+	                               <td th:text="${books.site_name}"></td>
+	                               <td th:text="${books.book_price}"></td>
+	                               <td th:if="${books.book_state}==1"><span class="badge bg-success">예약완료</span></td>
+	                               <td th:if="${books.book_state}==2"><span class="badge bg-warning">환불요청</span></td>
+	                               <td th:if="${books.book_state}==3"><span class="badge bg-success">환불완료</span></td>
+	                               <td th:if="${books.book_state}==4"><span class="badge bg-danger">환불취소</span></td>
+	                               <td th:if="${books.book_state}==5"><span class="badge bg-success">체크인완료</span></td>
 	                           </tr>
                             </tbody>
                         </table>

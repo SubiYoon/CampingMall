@@ -1,6 +1,7 @@
 package com.camp.admin.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,5 @@ public interface BookMapper extends MyMapper<Integer, BookDTO> {
     BookDTO selectByReservationCode(int reservation_code);
     List<BookDTO> selectUserAll(int user_code);
     List<BookDTO> selectByWriteDateAndCompanyCode(int company_code, String book_writedate);
+    List<Map<String, Object>> selectAllmain();
 }

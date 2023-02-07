@@ -719,5 +719,13 @@ public class BookService implements MyService<Integer, BookDTO> {
             YearlyUser(Utility.StringYearFromStringDate(Utility.DateToString(calendar.getTime())),
                 company_code));
     }
+    
+    public List<Map<String, Object>> selectAllmain(){
+    	return mapper.selectAllmain();
+    }
+    
+    
+    
+    
 
 }

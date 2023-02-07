@@ -90,4 +90,24 @@
         FROM book
         WHERE book_code = #{book_code}
     </delete>
+    
+    <select id="selectAllmain" resultType="map">
+   SELECT  book.book_code book_code,
+                book.book_price book_price,
+                book.book_state book_state,
+                site.site_name site_name,
+                user.user_name user_name
+        FROM book 
+        JOIN site 
+        ON book.site_code = site.site_code 
+        join user
+        on book.user_code = user.user_code
+        order by book_writedate desc
+    </select>
+    
+    
+    
+    
+    
+    
 </mapper>

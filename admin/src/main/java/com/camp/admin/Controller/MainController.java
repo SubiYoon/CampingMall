@@ -1,6 +1,7 @@
 package com.camp.admin.Controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -107,8 +108,9 @@ public class MainController {
 		
 		
 		try {
-			List<BookDTO> books=serviceB.selectAll();
+			List<Map<String,Object>> books=serviceB.selectAllmain();
 			model.addAttribute("books",books);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
