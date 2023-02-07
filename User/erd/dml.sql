@@ -60,11 +60,11 @@ INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '�
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 뷰-3',40000,'마운틴 뷰-3 입니다.');
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 뷰-4',40000,'마운틴 뷰-4 입니다.');
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 뷰-5',40000,'마운틴 뷰-5 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰1',50000,'리버 뷰1 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰2',50000,'리버 뷰2 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰3',50000,'리버 뷰3 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰4',50000,'리버 뷰4 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰5',50000,'리버 뷰5 입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰-1',50000,'리버 뷰1 입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰-2',50000,'리버 뷰2 입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰-3',50000,'리버 뷰3 입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰-4',50000,'리버 뷰4 입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰-5',50000,'리버 뷰5 입니다.');
 
 -- 결제
 insert into `payment`(merchant_uid,pay_method, imp_uid) values('1','카드','1');
