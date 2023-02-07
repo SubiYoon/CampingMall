@@ -91,4 +91,8 @@ public class ReviewService implements MyService<Integer, ReviewDTO> {
         }
         return reviewCountMap;
     }
+
+    public List<ReviewDTO> selectMainReview(int company_code) throws Exception{
+        return mapper.selectMainReview(company_code);
+    }
 }

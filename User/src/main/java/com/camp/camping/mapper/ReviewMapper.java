@@ -12,6 +12,7 @@ import com.camp.camping.frame.MyMapper;
 @Repository
 @Mapper
 public interface ReviewMapper extends MyMapper<Integer, ReviewDTO> {
-	    List<ReviewDTO> selectByCompanyCode(int company_code);
-		List<ReviewDTO> selectBySiteCode(int site_code);
+	    public List<ReviewDTO> selectByCompanyCode(int company_code);
+		public List<ReviewDTO> selectBySiteCode(int site_code);
+		public List<ReviewDTO> selectMainReview(int company_code);
 }
