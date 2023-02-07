@@ -106,17 +106,23 @@
        </select>
     
     <select id="selectAllState" resultType="map">
-    SELECT book.book_code  book_code,
-	       book.book_price book_price,
-	       book.book_state book_state,
-	       site.site_name  site_name,
-	       USER.user_name  user_name
+    SELECT book.book_member book_member,
+	       book.book_checkin book_checkin, 
+           book.book_checkout book_checkout,
+           book.book_price book_price,
+           book.book_car_number book_car_number,
+           book.book_state book_state,
+           book.merchant_uid merchant_uid,
+           book.user_code user_code,
+           site.site_name site_name,
+           user.user_name user_name,
+           user.user_tel user_tel
 	FROM   book
 	       JOIN site
 	         ON book.site_code = site.site_code
 	       JOIN USER
 	         ON book.user_code = USER.user_code
-	WHERE  book_state = # {state}; 
+	WHERE  book_state = #{state}
     </select>
     
     <update id="updateBookState">

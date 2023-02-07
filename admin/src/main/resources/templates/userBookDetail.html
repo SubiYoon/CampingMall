@@ -9,6 +9,8 @@
     });
   });
 </script>
+<script src="https://kit.fontawesome.com/e0fa1f6ab7.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" th:href="@{/css/userbookDetail.css}">
 <main id="main" class="main">
 
   <div class="pagetitle">
@@ -38,6 +40,7 @@
                   <th scope="col">예약금액</th>
                   <th scope="col">차량번호</th>
                   <th scope="col">예약일</th>
+                  <th scope="col">추가구매</th>
                 </tr>
               </thead>
               <tbody>
@@ -45,8 +48,19 @@
                   <th scope="row" th:text="${bookList.site_name}"></th>
                   <td th:text="${bookList.book_member}"></td>
                   <td th:text="${bookList.book_price}"></td>
-                  <td th:text="${bookList.book_car_number}"></td>
+                  <td th:text="${bookList.book_car_number.split(',')[0]}"></td>
                   <td th:text="${bookList.book_checkin + ' ~ ' + bookList.book_checkout}"></td>
+                  <td class="userbook-icon">
+                  	<span th:if="${bookList.book_car_number.split(',')[1]=='1'}">
+                  		<i class="fa-solid fa-fire" style="color:red;"><span>불멍(모닥불)</span></i>		
+                  	</span>
+                  	<span th:if="${bookList.book_car_number.split(',')[2]=='1'}">
+                  		<i class="fa-solid fa-rocket" style="color:blue;"><span>빠른입실</span></i>		
+                  	</span>
+                  	<span th:if="${bookList.book_car_number.split(',')[3]=='1'}">
+                  		<i class="fa-solid fa-dumpster-fire" style="color:red;"><span>바베큐그릴</span></i>		
+                  	</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
