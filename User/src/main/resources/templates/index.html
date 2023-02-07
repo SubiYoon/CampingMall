@@ -116,20 +116,6 @@
                </div>
             </div>
          </div>
-        
-         <!-- 기존 폼 
-         <div class="col-md-4 col-sm-6">
-            <div id="serv_hover" class="room">
-               <div class="room_img">
-                  <figure><img th:src="@{/images/room6.jpg}" alt="#" /></figure>
-               </div>
-               <div class="bed_room">
-                  <h3>Bed Room</h3>
-                  <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there </p>
-               </div>
-            </div>
-         </div>
-         -->
          <div class="col-md-12">
 	         <div class="our_read_more">
 	         	<a class="read_more" th:href="@{/zone}"> Read More</a>
@@ -164,13 +150,6 @@
 	         	<a class="read_more" th:href="@{/facility}"> Read More</a>
 	         </div>
          </div>
-         <!--  기존양식
-         <div class="col-md-3 col-sm-6">
-            <div class="gallery_img">
-               <figure><img th:src="@{/images/gallery2.jpg}" alt="#" /></figure>
-            </div>
-         </div>       
-         -->
       </div>
    </div>
 </div>
@@ -181,45 +160,24 @@
       <div class="row">
          <div class="col-md-12">
             <div class="titlepage">
-               <h2>후기?를둘까요</h2>
-               <p>베스트 후기로 선정되신 이용객 박제 </p>
+               <h2>이용 후기</h2>
+               <p>최근 3개의 리뷰가 나옵니다.</p>
             </div>
          </div>
       </div>
       <div class="row">
-         <div class="col-md-4">
+         <div class="col-md-4" th:each="review: ${review}">
             <div class="blog_box">
                <div class="blog_img">
-                  <figure><img th:src="@{/images/blog1.jpg}" alt="#" /></figure>
+                  <figure><img th:src="'/images/' + ${review.review_img1}" alt="#" /></figure>
                </div>
                <div class="blog_room">
-                  <h3>안구건조증에 추천해요</h3>
-                  <span>&#10029;&#10029;&#10029;&#10029;</span>
-                  <p>너무좋아서 눈물이나요</p>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4">
-            <div class="blog_box">
-               <div class="blog_img">
-                  <figure><img th:src="@{/images/blog2.jpg}" alt="#" /></figure>
-               </div>
-               <div class="blog_room">
-                  <h3>집 없는 사람이라 너무 좋았어요</h3>
-                  <span>&#10029;&#10029;&#10029;&#10029;&#10029;</span>
-                  <p>여기서 살래요 여기서 살래요 여기서 살래요 여기서 살래요 여기서 살래요 여기서 살래요</p>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-4">
-            <div class="blog_box">
-               <div class="blog_img">
-                  <figure><img th:src="@{/images/blog3.jpg}" alt="#" /></figure>
-               </div>
-               <div class="blog_room">
-                  <h3>가족 과 따듯하고.즐건. 여행  시간...</h3>
-                  <span>&#10029;&#10029;&#10029;&#10029;</span>
-                  <p>너무좋아서 눈물이나요 여기서 살래요 가족여행으로 즐거운 추억을 쌓고 갑니다너무좋아서 눈물이나요 여기서 살래요 가족여행으로 즐거운 추억을 쌓고 갑니다</p>
+                  <span class="reivewStar" th:text="${'✰'}" th:if="${review.review_score == 1}"></span>
+                  <span class="reivewStar" th:text="${'✰✰'}" th:if="${review.review_score == 2}"></span>
+                  <span class="reivewStar" th:text="${'✰✰✰'}" th:if="${review.review_score == 3}"></span>
+                  <span class="reivewStar" th:text="${'✰✰✰✰'}" th:if="${review.review_score == 4}"></span>
+                  <span class="reivewStar" th:text="${'✰✰✰✰✰'}" th:if="${review.review_score == 5}"></span>
+                  <h3 th:text="${review.review_content}"></h3>
                </div>
             </div>
          </div>

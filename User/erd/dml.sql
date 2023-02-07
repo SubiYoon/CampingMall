@@ -1,9 +1,15 @@
 use campdb;
 
 -- 유저
-INSERT INTO user VALUES(0, 'user1111', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '김씨', 000101, '010-1234-5678');
-INSERT INTO user VALUES(0, 'user2222', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '이씨', 010101, '010-1584-5678');
-INSERT INTO user VALUES(0, 'user3333', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '박씨', 020202, '010-5238-4828');
+INSERT INTO user VALUES(0, 'user1111', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '홍길동', 900101, '010-1234-5678');
+INSERT INTO user VALUES(0, 'user2222', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '세종대왕', 951223, '010-1584-5678');
+INSERT INTO user VALUES(0, 'user3333', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '강감찬', 851212, '010-5238-4828');
+INSERT INTO user VALUES(0, 'user4444', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '이순신', 900101, '010-1234-5678');
+INSERT INTO user VALUES(0, 'user5555', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '계백', 951223, '010-1584-5678');
+INSERT INTO user VALUES(0, 'user6666', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '근초고왕', 851212, '010-5238-4828');
+INSERT INTO user VALUES(0, 'user7777', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '광개토대왕', 900101, '010-1234-5678');
+INSERT INTO user VALUES(0, 'user8888', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '이방원', 951223, '010-1584-5678');
+INSERT INTO user VALUES(0, 'user9999', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '이성계', 851212, '010-5238-4828');
 
 -- 상호
 INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('NoopCamping', "logo.png","book_ocline_logo.png");
@@ -29,7 +35,7 @@ INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시
 INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "시설4", "시설4입니다.");
 
 -- 홈페이지
-INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude)VALUES(1, '홍길동', '서울시', 'www.naver.com', '02-1234-1234', '1번상호설명입니다. 심문도 찍히지 그 것, 인류가 어머니로서 기강에 나오다. 이름에게 많이 재벌이 엄중히, 들어가아서 모르다 읽죠 건설에 예기하세요.', 37.5039781087508, 127.04273317956381);
+INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude)VALUES(1, '나대표', '서울시 어딘가', 'www.naver.com', '02-1234-1234', '1번상호설명입니다. 심문도 찍히지 그 것, 인류가 어머니로서 기강에 나오다. 이름에게 많이 재벌이 엄중히, 들어가아서 모르다 읽죠 건설에 예기하세요.', 37.5039781087508, 127.04273317956381);
 INSERT INTO home(admin_code, home_content, home_longitude, home_latitude)VALUES(3,'안녕하세요2', 37.56517320755754, 126.97909982283633);
 
 -- 구역
@@ -68,21 +74,26 @@ insert into `payment`(merchant_uid,pay_method, imp_uid) values('4','계좌이체
 insert into `payment`(merchant_uid,pay_method, imp_uid) values('5','카드','1');
 
 -- 예약
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,1,'1',3,'2023-02-03','2023-02-04',30000,'12가1234');
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(5,1,'5',5,'2023-02-18','2023-02-21',300000,'13가1234');
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(7,2,'2',2,'2023-02-01','2023-02-02',35000,'13나1234');
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price) values(1,2,'3',1,'2023-02-04','2023-02-07',20000);
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(15,3,'4',2,'2023-02-02','2023-02-05',45000,'13나1234');
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,3,'4',2,'2023-02-02','2023-02-05',45000,'13나1234');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,1,'1',3,'2023-02-03','2023-02-04',30000,'12가1234,1,1,1', 6);
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,2,'5',4,'2023-02-18','2023-02-21',300000,'13가1234,1,0,0', 6);
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,3,'2',2,'2023-02-01','2023-02-02',35000,'13나1234,1,0,1', 6);
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_state) values(1,4,'3',1,'2023-02-04','2023-02-07',20000, 6);
+--여기부터는 새로 만든 녀석
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,5,'7',2,'2023-02-02','2023-02-05',45000,'13나1234,1,1,1', 6);
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,6,'8',3,'2023-02-10','2023-02-21',30000,'12가1234,1,1,1', 6);
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,7,'9',1,'2023-02-25','2023-02-28',300000,'13가1234,1,0,0', 6);
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,8,'10',2,'2023-02-08','2023-02-09',35000,'13나1234,1,0,1', 6);
+
 
 -- 스케줄
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-06','방역');
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-07','방역');
 
 -- 리뷰
-insert into `review`(book_code, review_content, review_score) values(1,'맛있어요',9);
+insert into `review`(book_code, review_content, review_score) values(1,'맛있어요',3);
 insert into `review`(book_code, review_content, review_score) values(2,'추워요',4);
-insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',7);
+insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',5);
+
 
 -- 이미지
 insert into image(company_code, zone_code, image_file) VALUES(1, 1, 'zone_img1.jpg');
@@ -100,6 +111,16 @@ insert into image(company_code, site_code, image_file) VALUES(1, 7, 'site_img2.p
 insert into image(company_code, site_code, image_file) VALUES(1, 8, 'site_img3.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 9, 'site_img4.png');
 insert into image(company_code, site_code, image_file) VALUES(1, 10, 'site_img5.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 11, 'site_img1.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 12, 'site_img2.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 13, 'site_img3.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 14, 'site_img4.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 15, 'site_img5.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 16, 'site_img1.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 17, 'site_img2.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 18, 'site_img3.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 19, 'site_img4.png');
+insert into image(company_code, site_code, image_file) VALUES(1, 20, 'site_img5.png');
 
 insert into image(company_code, facility_code, image_file) VALUES(1, 1, 'gallery1.jpg');
 insert into image(company_code, facility_code, image_file) VALUES(1, 2, 'gallery2.jpg');

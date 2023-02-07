@@ -1,5 +1,7 @@
 package com.camp.camping.Controller;
 
+import java.util.Map;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,6 +55,8 @@ public class PayrestController {
     	jsonobject1.remove("book_checkin");
     	jsonobject1.remove("book_checkout");
     	jsonobject1.remove("book_price");
+    	System.out.println("000");
+    	System.out.println(jsonobject1.get("book_car_number").toString());
     	jsonobject1.remove("book_car_number");
     	service.verifyImport_payment(jsonobject1);
     	

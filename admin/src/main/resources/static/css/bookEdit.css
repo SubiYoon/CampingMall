@@ -70,3 +70,50 @@
 .refund-req-title{
 	padding:10px 0 0 20px
 }
+
+
+.refund-text-container i{
+
+
+    text-decoration: none
+
+}
+
+.refund-text-container i:hover {
+
+    cursor: help;
+
+    position: relative
+
+}
+
+.refund-text-container i span {
+
+    display: none
+
+}
+
+.refund-text-container i:hover span {
+
+    border: #c0c0c0 1px dotted;
+
+    padding: 5px 20px 5px 5px;
+
+    display: block;
+
+    z-index: 100;
+
+    left: 0px;
+    background: url(../images/status-info.png) #f0f0f0 no-repeat 100% 5%;
+
+    margin: 10px;
+
+    width: 150px;
+
+    position: absolute;
+
+    top: 10px;
+
+    text-decoration: none
+
+}
