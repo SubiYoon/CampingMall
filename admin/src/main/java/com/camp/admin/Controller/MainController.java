@@ -1,5 +1,8 @@
 package com.camp.admin.Controller;
 
+import com.camp.admin.service.BookService;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -29,7 +32,7 @@ import com.camp.admin.utility.SaveFile;
 
 @Controller
 public class MainController {
-	
+
 	@Value("${imagesdir}")
 	String imagesdir;
 
@@ -38,25 +41,27 @@ public class MainController {
 
 	@Autowired
 	HomeService serviceH;
-	
+
 	@Autowired
 	NoticeService serviceN;
 
 	@Autowired
 	FacilityService serviceF;
-	
+
 	@Autowired
 	ZoneService serviceZ;
-	
+
 	@Autowired
 	ImageService serviceI;
 
 	@Autowired
 	AdminService serviceA;
+	@Autowired
+	BookService bookService;
 
 	@RequestMapping("/")
 	public String main(){
-		
+
 		return "login";
 	}
 
@@ -88,25 +93,43 @@ public class MainController {
 		return "redirect:main";
 	}
 
-	@RequestMapping("/main")
-	public String main(Model model, HttpSession session, CompanyDTO companyDTO, ZoneDTO zoneDTO) {
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-		List<ZoneDTO> listZ = null;
-		
-		try {
-			listZ=serviceZ.selectZone(company.getCompany_code());	//상호코드
-		} catch (Exception e) {
-			e.printStackTrace();
-		}	
-		session.setAttribute("zlist", listZ);
-		
-		return "main";
-	}
-	
+    @RequestMapping("/main")
+    public String main(Model model, HttpSession session, CompanyDTO companyDTO, ZoneDTO zoneDTO) {
+        CompanyDTO company = (CompanyDTO) session.getAttribute("company");
+        List<ZoneDTO> listZ = null;
+
+        LocalDate now = LocalDate.now();
+        String month = ("0" + now.getMonthValue());
+        month = month.substring(month.length() - 2);
+        int companyCode = company.getCompany_code();
+        String stringYearAndMonth = "" + now.getYear() + "-" + month;
+		String stringDate = stringYearAndMonth+"-01";
+        List<String> charts = new ArrayList<>();
+        try {
+            charts.add("" + Math.round(bookService.MonthlySales(stringDate, companyCode)));
+            charts.add(bookService.MonthlySalesRate(stringYearAndMonth, companyCode));
+            charts.add("" + bookService.MonthlyBookCount(stringDate, companyCode));
+            charts.add(bookService.MonthlyBookRate(stringYearAndMonth, companyCode));
+            charts.add("" + bookService.MonthlyUser(stringYearAndMonth, companyCode));
+            charts.add(bookService.MonthlyUserRate(stringYearAndMonth, companyCode));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+		model.addAttribute("MonthList",charts);
+        try {
+            listZ = serviceZ.selectZone(company.getCompany_code());    //상호코드
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        session.setAttribute("zlist", listZ);
+
+        return "main";
+    }
+
 	//CompanyEdit
 	@RequestMapping("/company")
 	public String companyEdit(Model model) {
-		
+
 		model.addAttribute("center", "/company");
 		return "main";
 	}
@@ -114,21 +137,21 @@ public class MainController {
 	//CompanyEdit
 	@RequestMapping("/home")
 	public String homeEdit(Model model) {
-		
+
 		model.addAttribute("center", "/home");
 		return "main";
 	}
-	
+
 	@RequestMapping("/userEdit")
 	public String useredit(Model model) {
-		
+
 		model.addAttribute("center", "/userEdit");
 		return "main";
 	}
-	
+
 	@RequestMapping("/bookEdit")
 	public String bookedit(Model model) {
-		
+
 		model.addAttribute("center", "/bookEdit");
 		return "main";
 	}
@@ -153,7 +176,7 @@ public class MainController {
 
 		return "redirect:/";
 	}
-	
+
 	@RequestMapping("logo/edit")
 	public String logoEdit(HttpSession session, MultipartFile company_logo1, MultipartFile company_logo2){
 		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
@@ -178,7 +201,7 @@ public class MainController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 		}else if(company_logo1.isEmpty() && !company_logo2.isEmpty()){
 			try {
 				company = serviceC.select(company_code);
@@ -189,14 +212,14 @@ public class MainController {
 				e.printStackTrace();
 			}
 		}else return "redirect:/main";
-		
+
 		return "redirect:/main";
 	}
-	
+
 	@RequestMapping("slide/edit")
 	public String slideEdit(HttpSession session, List<MultipartFile> home_slide, @RequestParam List<Integer> image_code, int home_code){
 		ImageDTO image = null;
-		
+
 		for(int i=0; i<home_slide.size(); i++){
 			if(!home_slide.get(i).isEmpty()){
 				try{
@@ -217,14 +240,14 @@ public class MainController {
 
 	@RequestMapping("slide/delete")
 	public String slideDelete(int image_code){
-		
+
 		try {
 			serviceI.delete(image_code);
 		} catch (Exception e) {
 			//e.printStackTrace();
 			System.out.print("실패");
 		}
-		
+
 		return "redirect:/main";
 	}
 
@@ -232,12 +255,12 @@ public class MainController {
 	public String slideAdd(HttpSession session, MultipartFile file, int home_code){
 		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
 		ImageDTO image = new ImageDTO();
-		
+
 		if(!file.isEmpty()){
 			image.setCompany_code(company.getCompany_code());
 			image.setHome_code(home_code);
 			image.setImage_file(file.getOriginalFilename());
-			
+
 			try {
 				serviceI.insert(image);
 			} catch (Exception e) {

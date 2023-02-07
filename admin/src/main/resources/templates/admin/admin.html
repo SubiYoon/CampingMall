@@ -12,8 +12,6 @@
     });
 
     function getGraph() {
-        let labelsList = [];
-        let dataList = [];
         let label;
 
         $.ajax({
@@ -21,15 +19,15 @@
             type: "get",
             dataType: "json",
             success: function (data) {
-                console.log(data.Graph.labelsList[0]);
-                console.log(data.Graph.dataList[0]);
-                label = data.Graph.label;
+                console.log(data.Graph[3].labelsList[0]);
+                console.log(data.Graph[3].dataList[0]);
+                label = data.Graph[3].label;
                 let myobj1=[];
                 // 그래프로 나타낼 자료 리스트에 담기
 
                 for (let i = 0; i < nameList2.length; i++) {
                     myobj1.push(
-                        {value: data.Graph.dataList[i], name: data.Graph.labelsList[i]});
+                        {value: data.Graph[3].dataList[i], name: data.Graph[3].labelsList[i]});
                 }
                 drawChart('budgetChart',myobj1,'구역별 매출')
                 // 그래프
