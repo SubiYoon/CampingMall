@@ -81,7 +81,28 @@ public class AjaxController {
 		UserDTO user = (UserDTO)session.getAttribute("user");
            
 		userBookList = bService.selectUserAll(user.getUser_code());
-	
+		
+		int result=1;
+		
+		for(int i=0;i<userBookList.size();i++) {
+			try {
+				System.out.println("result0: "+userBookList.get(i).getBook_checkin());
+				System.out.println("result0: "+userBookList.get(i).getBook_code());
+				result=bService.IsAvailableRequestRefund(userBookList.get(i).getBook_code());
+				System.out.println("result1: "+result);
+				if(result==0) {
+					userBookList.get(i).setBook_car_number(userBookList.get(i).getBook_car_number()+","+result);
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			
+		}
+		
+		
+		
 		if(userBookList.size()>10){
 			List<BookDTO> userBookListLimit = new ArrayList<BookDTO>();
 			for(int i= 0; i<12; i++){
