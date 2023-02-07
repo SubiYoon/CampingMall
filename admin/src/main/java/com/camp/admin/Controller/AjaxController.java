@@ -32,7 +32,6 @@ public class AjaxController {
 			e.printStackTrace();
 		}
 		
-		System.out.println(books.toString());
 		
 		return books;
 	}

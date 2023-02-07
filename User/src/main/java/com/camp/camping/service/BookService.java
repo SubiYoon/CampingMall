@@ -176,7 +176,6 @@ public class BookService implements MyService<Integer, BookDTO> {
     //환불 요청 가능 여부 판단 메소드
     public int IsAvailableRequestRefund(int book_code) throws Exception {
         BookDTO book = select(book_code);
-        System.out.println("book: "+book.toString());
         
         Date checkin = Utility.StringToDate(book.getBook_checkin());
         LocalDate now = LocalDate.now();
