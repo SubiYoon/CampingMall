@@ -58,6 +58,7 @@
           And zone.zone_code = site.zone_code
           And site.site_code = book.site_code
           And DATE(book.book_writedate) = #{book_writedate}
+          And book.book_state = 1
     </select>
     <select id="selectAll" resultType="BookDTO">
         SELECT *
