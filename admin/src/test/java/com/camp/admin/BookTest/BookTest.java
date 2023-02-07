@@ -66,5 +66,14 @@ public class BookTest {
             throw new RuntimeException(e);
         }
     }
+    @Test
+    void DailyBookCount(){
+        System.out.println(bookService.DailyBookCount("2023-02-06",1));
+        try {
+            System.out.println(bookService.MonthlyBookGraph("2023-02",1));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

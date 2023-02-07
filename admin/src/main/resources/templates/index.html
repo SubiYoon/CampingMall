@@ -395,7 +395,7 @@
                                                 $.ajax({
                                                     url: "/admin/main/graphData",
                                                     type: "post",
-                                                    data: {'stringDate': data},
+                                                    data: {'stringDate': data, 'dataScale': nowSelectingMainCart},
                                                     success: function (data) {
                                                         console.log(data.Graph.labelsList[0]);
                                                         console.log(data.Graph.dataList[0]);

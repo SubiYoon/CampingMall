@@ -22,16 +22,18 @@ public class AjaxController {
         JSONObject json = new JSONObject();
         CompanyDTO company = (CompanyDTO) session.getAttribute("company");
         int companyCode = company.getCompany_code();
-        if (dataScale.equals("Monthly")) {
+        if (dataScale.contains("M")) {
             try {
                 List<GraphDTO> graphs = new ArrayList<>();
-                GraphDTO graphDTO = bService.MonthlyZoneSalesGraph(stringDate, companyCode);
+                GraphDTO graphDTO = bService.MonthSalesGraph(stringDate,companyCode);
                 graphs.add(graphDTO);
-                graphDTO = bService.MonthlyZoneUserGraph(stringDate, companyCode);
-                graphs.add(graphDTO);
-                graphDTO = bService.MonthSalesGraph(stringDate,companyCode);
+                graphDTO = bService.MonthlyBookGraph(stringDate,companyCode);
                 graphs.add(graphDTO);
                 graphDTO = bService.MonthlyUserGraph(stringDate,companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bService.MonthlyZoneSalesGraph(stringDate, companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bService.MonthlyZoneUserGraph(stringDate, companyCode);
                 graphs.add(graphDTO);
                 json.put("Graph", graphs);
             } catch (Exception e) {
@@ -39,9 +41,18 @@ public class AjaxController {
             }
         } else {
             try {
-                GraphDTO graphDTO = bService.MonthlyZoneSalesGraph(stringDate,
-                    company.getCompany_code());
-                json.put("Graph", graphDTO);
+                List<GraphDTO> graphs = new ArrayList<>();
+                GraphDTO graphDTO = bService.YearSalesGraph(stringDate,companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bService.YearlyBookGraph(stringDate,companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bService.YearlyUserGraph(stringDate,companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bService.YearlyZoneSalesGraph(stringDate, companyCode);
+                graphs.add(graphDTO);
+                graphDTO = bService.YearlyZoneUserGraph(stringDate, companyCode);
+                graphs.add(graphDTO);
+                json.put("Graph", graphs);
             } catch (Exception e) {
                 e.printStackTrace();
             }
