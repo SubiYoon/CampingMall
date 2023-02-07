@@ -12,8 +12,8 @@ INSERT INTO user VALUES(0, 'user8888', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa
 INSERT INTO user VALUES(0, 'user9999', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==', '이성계', 851212, '010-5238-4828');
 
 -- 상호
-INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('NoopCamping', "logo.png","book_ocline_logo.png");
-INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('GosuCamping', "sample.png", "sample.png");
+INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('NoopCamping', "logo.png","book_ocline_logo.png"); -- 차후 변경
+INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('GosuCamping', "sample.png", "sample.png"); -- 차후 변경
 
 -- 관리자
 insert into `admin`(company_code, admin_id, admin_password) values(1,'admin01','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
@@ -74,15 +74,11 @@ insert into `payment`(merchant_uid,pay_method, imp_uid) values('4','계좌이체
 insert into `payment`(merchant_uid,pay_method, imp_uid) values('5','카드','1');
 
 -- 예약
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,1,'1',3,'2023-02-03','2023-02-04',30000,'12가1234,1,1,1', 6);
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,2,'5',4,'2023-02-18','2023-02-21',300000,'13가1234,1,0,0', 6);
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,3,'2',2,'2023-02-01','2023-02-02',35000,'13나1234,1,0,1', 6);
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_state) values(1,4,'3',1,'2023-02-04','2023-02-07',20000, 6);
---여기부터는 새로 만든 녀석
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,5,'7',2,'2023-02-02','2023-02-05',45000,'13나1234,1,1,1', 6);
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,6,'8',3,'2023-02-10','2023-02-21',30000,'12가1234,1,1,1', 6);
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,7,'9',1,'2023-02-25','2023-02-28',300000,'13가1234,1,0,0', 6);
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number, book_state) values(1,8,'10',2,'2023-02-08','2023-02-09',35000,'13나1234,1,0,1', 6);
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,1,'1',3,'2023-02-03','2023-02-04',30000,'12가1234,1,1,1');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,1,'5',5,'2023-02-18','2023-02-21',300000,'13가1234,1,0,0');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,2,'2',2,'2023-02-01','2023-02-02',35000,'13나1234,1,0,1');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price) values(1,2,'3',1,'2023-02-04','2023-02-07',20000);
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,3,'4',2,'2023-02-02','2023-02-05',45000,'13나1234,1,1,1');
 
 
 -- 스케줄
@@ -93,7 +89,6 @@ insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-
 insert into `review`(book_code, review_content, review_score) values(1,'맛있어요',3);
 insert into `review`(book_code, review_content, review_score) values(2,'추워요',4);
 insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',5);
-
 
 -- 이미지
 insert into image(company_code, zone_code, image_file) VALUES(1, 1, 'zone_img1.jpg');
