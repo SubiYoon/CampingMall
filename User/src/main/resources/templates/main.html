@@ -199,31 +199,29 @@
 
 <!-- 로그인모달창 -->
 <div id="modal" class="modal-overlay">
-	<div class="modal-content">
+	<div class="modal-content textnowrap">
 		<div class="modal-btn">
 			<button th:onclick="|location.href='@{/user/register}'|">회원가입</button>
 			<button id="modal_close">닫기</button>
 		</div>
 		<div class="modal-login">
-			<h2>로그인</h2>
-			<div>
-				<div>아이디</div>
-				<div>비밀번호</div>
-			</div>
+			<img class="modal-img" th:src="@{/images/}+${session.company.company_logo1}" alt="#"/>
 			<form id="loginForm">
-			<div>
-				<div><input type="text" name="user_id" /></div>
-				<div><input type="password" name="user_password"></div>
-			</div>
-			<div>
-				<button style="width:300px;">로그인</button>
-			</div>
+				<div class="modal-div">
+					<div>아이디</div>
+					<div><input type="text" name="user_id" /></div>
+					<div>비밀번호</div>
+					<div><input type="password" name="user_password"></div>
+				</div>
+				<div class="modal-div3">
+					<button>로그인</button>
+				</div>
 			</form>
-			<ul>
 				<a href="javascript:kakaoLogin()">
-					<img th:src="@{/images/kakao_login_medium_wide.png}"/>
+				<div class="modal-div4">카카오 로그인
+				</div>
 				</a>
-			</ul>
+				
 		</div>
 	</div>
 </div>
