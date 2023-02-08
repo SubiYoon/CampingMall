@@ -29,7 +29,6 @@
 		</div>
 		
 		<div th:each="zone:${zlist}">
-		<hr>
 			<div class="zone" th:if="${zone.zone_state} == 1">
 				<div class="row">
 					<div class="col-md-6 col-sm-6">
@@ -95,7 +94,9 @@
 					</div>
 				</div>
 			</div>
-
+			<br>
+			<hr>
+			<br>
 		</div>
 
 

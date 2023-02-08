@@ -271,6 +271,31 @@ button {
      width: 280px;
 }
 
+/*---------- 인덱스 ---------*/
+
+.indexcontr h2{
+	padding: 0px 15px;
+}
+.indexcontent p{
+	padding: 20px;
+}
+
+.indexcontr img{
+	width: 300px !important;
+	margin: 15px !important;
+	height: 250px !important;
+}
+
+.indexmargin{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+
+/*---------- end인덱스 ---------*/
+
+
+
 /*-- 로그인모달용 --*/
 
 #modal {
@@ -710,12 +735,9 @@ button {
      margin-left: 9%;
 }
 
-
-
-
 .titlepage {
      text-align: center;
-     padding-bottom: 40px;
+     padding-bottom: 20px;
 }
 
 .titlepage h2 {
@@ -729,21 +751,24 @@ button {
 
 .titlepage h2::before {
      position: absolute;
-     content: "";
-     background-color: #009898;
+     content: "ㅡ";
+     color: #009898;
+     font-weight: bold;
      width: 20px;
      height: 4px;
-     transform: rotate(-36deg);
+     transform: rotate(135deg);
+     top: 15px;
 }
 
 .titlepage h2::after {
      position: absolute;
-     content: "";
-     background-color: #009898;
-     width: 20px;
-     height: 4px;
-     transform: rotate(-36deg);
-     bottom: 10px;
+     content: "ㅡ";
+     color: #009898;
+     font-weight: bold;
+     width: 85px;
+     height: 10px;
+     transform: rotate(135deg);
+     top: 50px;
 }
 
 .d_flex {
@@ -995,7 +1020,6 @@ button {
 
 .about .titlepage {
      padding-bottom: 0;
-     max-width: 443px;
      width: 100%;
      float: right;
 }
@@ -1350,13 +1374,16 @@ button {
 /** blog section **/
 
 .blog {
-     background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3) ), url(../images/slide3.jpg);
+/*      background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3) ), url(../images/slide3.jpg);
      background-repeat: no-repeat;
      background-size: 100% 100%;
-     padding: 60px 0 30px 0;
+     padding: 60px 0 30px 0; */
      margin-top: 60px;
 }
-
+.col-titlepage{
+	background-color: #009898;
+	border-radius: 15px;
+}
 .blog .titlepage {
      text-align: center;
 }
@@ -1366,9 +1393,25 @@ button {
 }
 
 .blog .titlepage p {
-     color: #fff;
-     font-size: 17px;
-     margin-top: 20px;
+	color: #fff;
+    font-size: 18px;
+  	font-weight: bold;
+    margin-top: 20px;
+}
+
+.col-md-5{
+	margin-left: -20px;
+	margin-right: 20px;
+}
+
+#bookForm{
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#bookForm li{
+	margin-bottom: 15px;
+	line-height: 40px;
 }
 
 .blog .blog_box {
@@ -1578,21 +1621,28 @@ ul.link_menu li a:hover {
      margin-bottom: 20px;
 }
 
-.sub_btn {
-     font-size: 17px;
-     transition: ease-in all 0.5s;
-     background-color: #fff;
-     color: #009898;
-     padding: 8px 0px;
-     max-width: 147px;
-     width: 100%;
-     font-weight: 500;
-     text-transform: uppercase;
-     height: 47px;
+#pay_btn_make{
+	display: block;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.sub_btn{
+	display:inline-block;
+	text-align: center;
+  	width: 50%;
+  	background: #009898;
+  	color: #fff !important;
+  	border-radius: 5px;
+  	font-size: 18px;
+  	font-weight: bold;
+  	margin-top:10px;
+  	margin-bottom:15px;
+ 	padding: 3px;
 }
 
 .sub_btn:hover {
-     background-color: #009898;
+     background-color: black;
      transition: ease-in all 0.5s;
      color: #fff;
 }
