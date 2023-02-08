@@ -38,7 +38,6 @@
         monthSelected = $('.monthSelect').val();
         monthSelected = ('0' + monthSelected).slice(-2);
         let stringDate = yearSelected + '-' + monthSelected;
-        console.log(stringDate);
         getGraph(stringDate);
     }
 
@@ -62,7 +61,7 @@
             <div class="col-lg-8">
                 <div class="row">
 
-                    <!-- Sales Card -->
+                    <!-- Sales Card --> 
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
 
@@ -145,7 +144,7 @@
 
                             <div class="filter">
                                 <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                                    class="bi bi-three-dots"></i></a>
+                                        class="bi bi-three-dots"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                     <li class="dropdown-header text-start">
                                         <h6>Filter</h6>
@@ -165,19 +164,16 @@
                                 <script>
                                     function setHead() {
                                         let monthList = '[[${MonthList}]]';
-                                        monthList =monthList.replace('[','');
-                                        monthList =monthList.replace(']','');
-                                        monthList =monthList.replaceAll(' ','');
+                                        monthList = monthList.replace('[', '');
+                                        monthList = monthList.replace(']', '');
+                                        monthList = monthList.replaceAll(' ', '');
                                         monthList = monthList.split(',');
-                                        for(let i = 0 ;i<monthList.length;i++){
-                                            console.log(monthList[i]);
-                                        }
                                         let headStr = '<h6>' + monthList[0] + '</h6>';
                                         if (monthList[1].includes('-')) {
                                             headStr += '<span class="text-danger small pt-1 fw-bold">'
                                                 + monthList[1] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">decrease</span>';
-                                        } else{
+                                        } else {
                                             headStr += '<span class="text-success small pt-1 fw-bold">'
                                                 + monthList[1] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">increase</span>';
@@ -188,7 +184,7 @@
                                             headStr += '<span class="text-danger small pt-1 fw-bold">'
                                                 + monthList[3] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">decrease</span>';
-                                        } else{
+                                        } else {
                                             headStr += '<span class="text-success small pt-1 fw-bold">'
                                                 + monthList[3] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">increase</span>';
@@ -199,7 +195,7 @@
                                             headStr += '<span class="text-danger small pt-1 fw-bold">'
                                                 + monthList[5] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">decrease</span>';
-                                        } else{
+                                        } else {
                                             headStr += '<span class="text-success small pt-1 fw-bold">'
                                                 + monthList[5] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">increase</span>';
@@ -261,116 +257,116 @@
                                                 VisitorList, nameList) {
                                                 new ApexCharts(
                                                     document.querySelector("#reportsChart"), {
-                                                        series: [{
-                                                            name: 'Revenue',
-                                                            data: RevenueList
-                                                        }, {
-                                                            name: 'Book',
-                                                            data: BookList
-                                                        }, {
-                                                            name: 'Visitor',
-                                                            data: VisitorList
-                                                        }],
-                                                        chart: {
-                                                            height: 350,
-                                                            type: 'area',
-                                                            toolbar: {
-                                                                show: false
+                                                    series: [{
+                                                        name: 'Revenue',
+                                                        data: RevenueList
+                                                    }, {
+                                                        name: 'Book',
+                                                        data: BookList
+                                                    }, {
+                                                        name: 'Visitor',
+                                                        data: VisitorList
+                                                    }],
+                                                    chart: {
+                                                        height: 350,
+                                                        type: 'area',
+                                                        toolbar: {
+                                                            show: false
+                                                        },
+                                                    },
+                                                    markers: {
+                                                        size: 4
+                                                    },
+                                                    colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                                                    fill: {
+                                                        type: "gradient",
+                                                        gradient: {
+                                                            shadeIntensity: 1,
+                                                            opacityFrom: 0.3,
+                                                            opacityTo: 0.4,
+                                                            stops: [0, 90, 100]
+                                                        }
+                                                    },
+                                                    dataLabels: {
+                                                        enabled: false
+                                                    },
+                                                    stroke: {
+                                                        curve: 'smooth',
+                                                        width: 2
+                                                    },
+                                                    xaxis: {
+                                                        type: 'text',
+                                                        categories: nameList
+                                                    },
+                                                    yaxis: [
+                                                        {
+                                                            axisTicks: {
+                                                                show: true
                                                             },
-                                                        },
-                                                        markers: {
-                                                            size: 4
-                                                        },
-                                                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                                        fill: {
-                                                            type: "gradient",
-                                                            gradient: {
-                                                                shadeIntensity: 1,
-                                                                opacityFrom: 0.3,
-                                                                opacityTo: 0.4,
-                                                                stops: [0, 90, 100]
+                                                            axisBorder: {
+                                                                show: true,
+                                                                color: "#4154f1"
+                                                            },
+                                                            labels: {
+                                                                style: {
+                                                                    color: "#4154f1"
+                                                                }
+                                                            },
+                                                            title: {
+                                                                text: "매출 ( 원 )",
+                                                                style: {
+                                                                    color: "#4154f1"
+                                                                }
+                                                            },
+                                                            tooltip: {
+                                                                enabled: true
                                                             }
                                                         },
-                                                        dataLabels: {
-                                                            enabled: false
-                                                        },
-                                                        stroke: {
-                                                            curve: 'smooth',
-                                                            width: 2
-                                                        },
-                                                        xaxis: {
-                                                            type: 'text',
-                                                            categories: nameList
-                                                        },
-                                                        yaxis: [
-                                                            {
-                                                                axisTicks: {
-                                                                    show: true
-                                                                },
-                                                                axisBorder: {
-                                                                    show: true,
-                                                                    color: "#4154f1"
-                                                                },
-                                                                labels: {
-                                                                    style: {
-                                                                        color: "#4154f1"
-                                                                    }
-                                                                },
-                                                                title: {
-                                                                    text: "매출 ( 원 )",
-                                                                    style: {
-                                                                        color: "#4154f1"
-                                                                    }
-                                                                },
-                                                                tooltip: {
-                                                                    enabled: true
-                                                                }
+                                                        {
+                                                            seriesName: "Book",
+                                                            opposite: true,
+                                                            axisTicks: {
+                                                                show: true
                                                             },
-                                                            {
-                                                                seriesName: "Book",
-                                                                opposite: true,
-                                                                axisTicks: {
-                                                                    show: true
-                                                                },
-                                                                axisBorder: {
-                                                                    show: true,
+                                                            axisBorder: {
+                                                                show: true,
+                                                                color: "#2eca6a"
+                                                            },
+                                                            labels: {
+                                                                style: {
                                                                     color: "#2eca6a"
-                                                                },
-                                                                labels: {
-                                                                    style: {
-                                                                        color: "#2eca6a"
-                                                                    }
-                                                                },
-                                                                title: {
-                                                                    text: "예약수 ( 개 )",
-                                                                    style: {
-                                                                        color: "#2eca6a"
-                                                                    }
                                                                 }
                                                             },
-                                                            {
-                                                                seriesName: "Visitor",
-                                                                opposite: true,
-                                                                axisTicks: {
-                                                                    show: true
-                                                                },
-                                                                axisBorder: {
-                                                                    show: true,
-                                                                    color: "#ff771d"
-                                                                },
-                                                                labels: {
-                                                                    style: {
-                                                                        color: "#ff771d"
-                                                                    }
-                                                                },
-                                                                title: {
-                                                                    text: "방문객 ( 명 )",
-                                                                    style: {
-                                                                        color: "#ff771d"
-                                                                    }
+                                                            title: {
+                                                                text: "예약수 ( 개 )",
+                                                                style: {
+                                                                    color: "#2eca6a"
                                                                 }
-                                                            }]
-                                                    }).render();
+                                                            }
+                                                        },
+                                                        {
+                                                            seriesName: "Visitor",
+                                                            opposite: true,
+                                                            axisTicks: {
+                                                                show: true
+                                                            },
+                                                            axisBorder: {
+                                                                show: true,
+                                                                color: "#ff771d"
+                                                            },
+                                                            labels: {
+                                                                style: {
+                                                                    color: "#ff771d"
+                                                                }
+                                                            },
+                                                            title: {
+                                                                text: "방문객 ( 명 )",
+                                                                style: {
+                                                                    color: "#ff771d"
+                                                                }
+                                                            }
+                                                        }]
+                                                }).render();
                                             }
 
                                             function drawChart(divID, obj, string1) {
@@ -467,8 +463,7 @@
                                                 }) // ajax
                                             } // getGraph
                                         </script>
-                                        <div id="budgetChart" style="min-height: 400px;"
-                                             class="echart"></div>
+                                        <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
 
 
                                     </div>
@@ -477,8 +472,7 @@
                                 <div class="col-6">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">구역별 방문자</h5>
-                                        <div id="zoneUser" style="min-height: 400px;"
-                                             class="echart"></div>
+                                        <div id="zoneUser" style="min-height: 400px;" class="echart"></div>
 
                                     </div>
                                 </div>
@@ -500,26 +494,24 @@
 
                         <table class="table table-borderless datatable">
                             <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">고객</th>
-                                <th scope="col">구역 / 사이트</th>
-                                <th scope="col">가격</th>
-                                <th scope="col">상태</th>
-                            </tr>
+                                <tr>
+                                    <th scope="col">고객</th>
+                                    <th scope="col">구역 / 사이트</th>
+                                    <th scope="col">가격</th>
+                                    <th scope="col">상태</th>
+                                </tr>
                             </thead>
                             <tbody>
-	                           <tr th:each="books, i:${books}">
-	                               <th scope="row" th:text="${books.book_code}"><a th:href="@{#}"></a></th>
-	                               <td th:text="${books.user_name}"></td>
-	                               <td th:text="${books.site_name}"></td>
-	                               <td th:text="${books.book_price}"></td>
-	                               <td th:if="${books.book_state}==1"><span class="badge bg-success">예약완료</span></td>
-	                               <td th:if="${books.book_state}==2"><span class="badge bg-warning">환불요청</span></td>
-	                               <td th:if="${books.book_state}==3"><span class="badge bg-success">환불완료</span></td>
-	                               <td th:if="${books.book_state}==4"><span class="badge bg-danger">환불취소</span></td>
-	                               <td th:if="${books.book_state}==5"><span class="badge bg-success">체크인완료</span></td>
-	                           </tr>
+                                <tr th:each="books, i:${books}">
+                                    <td th:text="${books.user_name}"></td>
+                                    <td th:text="${books.site_name}"></td>
+                                    <td th:text="${books.book_price}"></td>
+                                    <td th:if="${books.book_state}==1"><span class="badge bg-success">예약완료</span></td>
+                                    <td th:if="${books.book_state}==2"><span class="badge bg-warning">환불요청</span></td>
+                                    <td th:if="${books.book_state}==3"><span class="badge bg-success">환불완료</span></td>
+                                    <td th:if="${books.book_state}==4"><span class="badge bg-danger">환불취소</span></td>
+                                    <td th:if="${books.book_state}==5"><span class="badge bg-success">체크인완료</span></td>
+                                </tr>
                             </tbody>
                         </table>
 
@@ -534,20 +526,18 @@
 
                         <table class="table table-borderless datatable">
                             <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">작성자</th>
-                                <th scope="col">내용</th>
-                                <th scope="col">별점</th>
-                            </tr>
+                                <tr>
+                                    <th scope="col">작성자</th>
+                                    <th scope="col">내용</th>
+                                    <th scope="col">별점</th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="reviews, i:${reviews}">
-                                <th th:text="${reviews.review_code}" scope="row"><a th:href="@{#}"></a></th>
-                                <td th:text="${reviews.user_name}"></td>
-                                <td><a th:href="@{#}" th:text="${reviews.review_content}" class="text-primary"></a></td>
-                                <td th:text="${reviews.review_score}"></td>
-                            </tr>
+                                <tr th:each="reviews, i:${reviews}">
+                                    <td th:text="${reviews.user_name}"></td>
+                                    <td th:text="${reviews.review_content}"></td>
+                                    <td th:text="${reviews.review_score}"></td>
+                                </tr>
                             </tbody>
                         </table>
 
