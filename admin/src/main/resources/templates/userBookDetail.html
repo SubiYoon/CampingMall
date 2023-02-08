@@ -1,9 +1,9 @@
 <script>
-  $(document).ready(function(){
-    $('#userDetail').click(function(){
+  $(document).ready(function () {
+    $('#userDetail').click(function () {
       $(this).parent().parent().parent().parent().next().attr({
-        'method' : 'post',
-        'action' : 'userDetail'
+        'method': 'post',
+        'action': 'userDetail'
       });
       $(this).parent().parent().parent().parent().next().submit();
     });
@@ -29,7 +29,7 @@
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title" ><code th:text="${user.user_name}"></code>님의 예약 목록</h5>
+            <h5 class="card-title"><code th:text="${user.user_name}"></code>님의 예약 목록</h5>
             <p>연락처 : <code th:text="${user.user_tel}"></code></p><br>
             <!-- Table Variants -->
             <table class="table">
@@ -51,15 +51,15 @@
                   <td th:text="${bookList.book_car_number.split(',')[0]}"></td>
                   <td th:text="${bookList.book_checkin + ' ~ ' + bookList.book_checkout}"></td>
                   <td class="userbook-icon">
-                  	<span th:if="${bookList.book_car_number.split(',')[1]=='1'}">
-                  		<i class="fa-solid fa-fire" style="color:red;"><span>불멍(모닥불)</span></i>		
-                  	</span>
-                  	<span th:if="${bookList.book_car_number.split(',')[2]=='1'}">
-                  		<i class="fa-solid fa-rocket" style="color:blue;"><span>빠른입실</span></i>		
-                  	</span>
-                  	<span th:if="${bookList.book_car_number.split(',')[3]=='1'}">
-                  		<i class="fa-solid fa-dumpster-fire" style="color:red;"><span>바베큐그릴</span></i>		
-                  	</span>
+                    <span th:if="${bookList.book_car_number.split(',')[1]=='1'}">
+                      <i class="fa-solid fa-fire" style="color:red;"><span>불멍(모닥불)</span></i>
+                    </span>
+                    <span th:if="${bookList.book_car_number.split(',')[2]=='1'}">
+                      <i class="fa-solid fa-rocket" style="color:blue;"><span>빠른입실</span></i>
+                    </span>
+                    <span th:if="${bookList.book_car_number.split(',')[3]=='1'}">
+                      <i class="fa-solid fa-dumpster-fire" style="color:red;"><span>바베큐그릴</span></i>
+                    </span>
                   </td>
                 </tr>
               </tbody>
