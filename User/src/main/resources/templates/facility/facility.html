@@ -9,7 +9,7 @@ $(document).ready(function(){
             <div class="row">
                <div class="col-md-12">
                   <div class="title">
-                    <h2>편의시설</h2>
+                  <h2>편의시설</h2>
                   </div>
                </div>
             </div>
@@ -28,13 +28,13 @@ $(document).ready(function(){
                <div class="col-md-7" th:if="${fStat.odd}">
                   <div class="about_img">
                      <br>
-                     <figure><img src="images/about.png" alt="#"></figure><!--차후 th:src='/images/$"{fStat.current.facility_file}"'로 변경-->
+                     <figure><img th:src="'images/' + ${fStat.current.image_file}" alt="#"></figure>
                   </div>
                </div>
                <div class="col-md-7" th:if="${fStat.even}">
                   <div class="about_img">
                      <br>
-                     <figure><img src="images/about.png" alt="#"></figure><!--차후 th:src='/images/$"{fStat.current.facility_file}"'로 변경-->
+                     <figure><img th:src="'images/' + ${fStat.current.image_file}" alt="#"></figure>
                   </div>
                </div>
                <div class="col-md-5" th:if="${fStat.even}">
