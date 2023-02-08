@@ -195,11 +195,15 @@
                         }
                         document.getElementById("site"+(i+1)+"").innerHTML = siteList;
                      }
+                     
                      $('#bookForm li').attr({'style': 'width: '+rate+';'});
                      selectDate1 = null;
                      selectDate2 = null;
                   }
                })
+               let paybtn = "";
+               paybtn += '<a id="paymentGo" class="sub_btn">결제하기</a>';
+               document.getElementById("pay_btn_make").innerHTML = paybtn;
             }
          }
          if (cnt % 7 == 1) {
@@ -403,9 +407,7 @@
                <li id="site4"></li>
             </ul>
          </div>
-         <div>
-            <a id="paymentGo" class="sub_btn">결제하기</a>
-         </div>
+         <div id="pay_btn_make"></div>
       </form>
    </div>
 </div>
