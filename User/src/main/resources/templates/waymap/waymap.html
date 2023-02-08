@@ -10,7 +10,7 @@ $(document).ready(function(){
             <div class="row">
                <div class="col-md-12">
                   <div class="title">
-                      <h2>Contact Us</h2>
+                      <h2>위치</h2>
                   </div>
                </div>
             </div>
@@ -22,10 +22,10 @@ $(document).ready(function(){
             <div class="row">
                <div class="col-md-6">
                   <form id="request" class="main_form">
-                  		<h3>상호명</h3>
-                     <p>홈페이지 소개글 하나 적을예정 아룡딸 베앙 엉더는아쳐거자 튜녀 앙아즈어도 가망차가 타항은 조화같이 드깅인은 을토먼므춤다.</p>
-                     <p th:text="${kkomap.home_longitude}"></p>
-                     <p th:text="${kkomap.home_latitude}"></p>
+                  		<h3 th:text="${session.company.company_name}"></h3>
+						<div class="col-md-12">
+                             <p th:text="${homecont.home_content}"></p>
+                        </div>
                   </form>
                </div>
                <div class="col-md-6">
