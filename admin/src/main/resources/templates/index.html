@@ -207,19 +207,19 @@
                                         let i;
                                         var str = '통계<span> | ' + nowSelectingMainCart
                                             + '  </span><select name=\"year\" class=\"yearSelect\">';
-                                        for (i = todayYear - 5; i < todayYear; i++) {
+                                        for (i = todayYear - 3; i < todayYear; i++) {
                                             str += '<option value=' + i + '>' + i + '</option>';
                                         }
                                         str += '<option value=' + todayYear
                                             + ' selected=\"selected\">' + todayYear +
                                             '</option>';
-                                        for (i = todayYear + 1; i < todayYear + 5; i++) {
-                                            str += '<option value=' + i + '>' + i + '</option>';
+                                        for (i = todayYear + 1; i < todayYear + 2; i++) {
+                                            str += '<option value=' + i + '>' + i + '</option>  ';
 
                                         }
                                         str += '</select>';
                                         if (nowSelectingMainCart === 'Monthly') {
-                                            str += '<select name=\"month\" class=\"monthSelect\">';
+                                            str += '  <select name=\"month\" class=\"monthSelect\">';
                                             for (i = 1; i < todayMonth; i++) {
                                                 str += '<option value=' + i + '>' + i + '</option>';
                                             }
@@ -229,7 +229,7 @@
                                             for (i = todayMonth + 1; i < 13; i++) {
                                                 str += '<option value=' + i + '>' + i + '</option>';
                                             }
-                                            str += '</select>';
+                                            str += '</select>  ';
                                         }
                                         str += '<button id=\"mainCharButton\" type=\"button\" onclick=\"mainButton()\">조회</button>';
 
