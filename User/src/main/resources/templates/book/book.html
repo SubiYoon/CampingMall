@@ -27,6 +27,8 @@
    var checkInDate = null;
    var checkOutdDate = null;
    var today = null;
+   var realToday = null;
+   const ABLEDAYS = 50;
 
    //0이 붙은 숫자라 숫자화를 위해 0을 한번 빼줌
    function number() {
@@ -197,6 +199,7 @@
             cell = row.insertCell();
          }
       }
+      disabledDate()
    }
 
    function prevCalendar() {
@@ -216,8 +219,57 @@
 	   $("#bookForm>div>input[name='book_sitecode']").val(sitecode);
 	   
    }
-   
-	
+
+   function disabledDate(){
+      realToday = new Date();
+      let startDay;
+      let endDay;
+      const compareYearAndMonth = (date1, date2) => {
+         let numDate1 =date1.getFullYear()*10000+date1.getMonth()*100;
+         let numDate2 =date2.getFullYear()*10000+date2.getMonth()*100;
+         //앞에 날짜가 최신
+         if(numDate1>numDate2){
+            return 1;
+         }
+         //앞에 날짜가 옛날
+         else if(numDate1<numDate2){
+            return -1;
+         }
+         //같음
+         return 0;
+      }
+
+      //같은 달이면
+      if (compareYearAndMonth(today, realToday) === 0) {
+         console.log("같다");
+         startDay = 0;
+         endDay = today.getDate();
+      }
+      //옛날 달력이면
+      else if(compareYearAndMonth(today, realToday) === -1){
+         startDay = 0;
+         endDay = 32;
+         console.log("옛날달력");
+      }
+      //이후 달력이면
+      else{
+         realToday = new Date(realToday.getFullYear(), realToday.getMonth(), realToday.getDate()+ABLEDAYS)
+         if (compareYearAndMonth(today, realToday) === 0) {
+            console.log("근미래");
+            startDay = realToday.getDate();
+            endDay = 32;
+         }else{
+            console.log("먼미래");
+            startDay = 0;
+            endDay = 32;
+         }
+
+      }
+      for (var i = startDay; i <= endDay; i++) {
+         $('#' + i + '').attr('style', 'background-color: rgb(111,111,111);');
+      }
+
+   }
    
    
 </script>
