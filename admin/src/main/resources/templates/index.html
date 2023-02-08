@@ -503,7 +503,6 @@
                             </thead>
                             <tbody>
                                 <tr th:each="books, i:${books}">
-                                    <th scope="row" th:text="${books.book_code}"><a th:href="@{#}"></a></th>
                                     <td th:text="${books.user_name}"></td>
                                     <td th:text="${books.site_name}"></td>
                                     <td th:text="${books.book_price}"></td>
@@ -535,10 +534,8 @@
                             </thead>
                             <tbody>
                                 <tr th:each="reviews, i:${reviews}">
-                                    <th th:text="${reviews.review_code}" scope="row"><a th:href="@{#}"></a></th>
                                     <td th:text="${reviews.user_name}"></td>
-                                    <td><a th:href="@{#}" th:text="${reviews.review_content}" class="text-primary"></a>
-                                    </td>
+                                    <td th:text="${reviews.review_content}" class="text-primary"></td>
                                     <td th:text="${reviews.review_score}"></td>
                                 </tr>
                             </tbody>
