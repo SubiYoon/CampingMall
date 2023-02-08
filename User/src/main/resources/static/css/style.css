@@ -276,6 +276,10 @@ button {
 .indexcontr h2{
 	padding: 0px 15px;
 }
+
+.indexcontent h3{
+	padding: 0px;
+}
 .indexcontent p{
 	padding: 20px;
 }
@@ -1372,14 +1376,17 @@ button {
 
 
 /** blog section **/
+/** 예약하기와 메인-리뷰가 섞여 있음**/
 
 .blog {
-/*      background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3) ), url(../images/slide3.jpg);
+     background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3) ), url(../images/slide3.jpg);
+	background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3) ), url(../images/slide3.jpg);
      background-repeat: no-repeat;
      background-size: 100% 100%;
-     padding: 60px 0 30px 0; */
+     padding: 60px 0 30px 0;
      margin-top: 60px;
 }
+
 .col-titlepage{
 	background-color: #009898;
 	border-radius: 15px;
@@ -1393,6 +1400,16 @@ button {
 }
 
 .blog .titlepage p {
+	color: #fff;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.book{
+	margin-top: 60px;
+}
+
+.book .titlepage p {
 	color: #fff;
     font-size: 18px;
   	font-weight: bold;
@@ -1445,9 +1462,8 @@ button {
 
 .blog .blog_box .blog_room h3 {
      color: #121212;
-     font-size: 24px;
-     line-height: 20px;
-     font-family: 'Hahmlet', sans-serif;
+     font-size: 18px;
+     font-family: 'Noto Sans KR', sans-serif;
      font-weight: 500;
      padding-bottom: 5px;
      transition: ease-in all 0.5s;
