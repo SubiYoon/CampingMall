@@ -2,21 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/weather.css}">
+<script th:src="@{/js/weather.js}"></script>
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-
 <script>
-	
-	
-	
-	
-	
-	
-	
-
-	
 	function weather(){
 		jQuery.ajax({
 			url:"/weather/getweather",
@@ -25,25 +17,10 @@
 			contentType:"application/json",
 			dataType:"json",
 			success:function(data){
-				let dataHeader=data.json1.response.header.resultCode;
-				let dataHeader2=data.json2.response.header.resultCode;
-				
-				if(dataHeader=="00"&&dataHeader2=="00"){
 					console.log("sucee");
 					console.log(data);
-				}else{
-					console.log("sucee");
-					console.log(data);
-				}
-				
-				
-				
-				
 			}
-			
-			
 		})
-		
 	}
 	
 	
@@ -52,8 +29,6 @@
 </head>
 
 <body>
-
-<button onclick="paymentDo()">결제하기기</button> <!-- 결제하기 버튼 생성 -->
 <button onclick="weather()">날씨정보</button> 
 
 </body>

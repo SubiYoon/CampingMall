@@ -2,12 +2,16 @@ package com.camp.camping.Controller;
 
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,13 +21,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.camp.camping.DTO.WeatherDTO;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/weather")
 public class WeatherController {
 	
 	@GetMapping("/getweather")
-	public String getWeather() throws Exception{
+	public JSONObject getWeather() throws Exception{
 		
 		WeatherDTO weather=new WeatherDTO();
 		WeatherDTO weather2=new WeatherDTO();
@@ -65,30 +72,33 @@ public class WeatherController {
 		
 		
 		//날씨예보 ex)맑음,흐림
-		JSONObject json1=getjsondata(weather);
+		JSONArray json1=getjsondata(weather);
 		//예상 최고,최저 기온
-		JSONObject json2=getjsondata(weather2);
+		JSONArray json2=getjsondata(weather2);
+		json2.add(json1.get(0)); 
+		
+		
 		//오늘,내일,모레 최고,최저 기온
-		JSONObject json3=getjsondata(weather3);
+		JSONArray json3=getjsondata(weather3);
 		JSONArray list = new JSONArray();
-		list.add(json3.get(list));
-		System.out.println("list:" + list);
 		
+		for(int i=41;i<json3.size();i+=290) {
+			list.add(json3.get(i));
+			list.add(json3.get(i+7));
+			list.add(json3.get(i+116));
+		}
 		
-		
-		
-		
+		//sky 맑음(1), 구름많음(3), 흐림(4)
 		
 		JSONObject combined = new JSONObject();
-		combined.put("json1", json1);
-		combined.put("json2", json2);
-		combined.put("json3", json3);
+		combined.put("json1", json2);
+		combined.put("json2", list);
 		
 		
-        return combined.toString();
+        return combined;
     }
 	
-	public JSONObject getjsondata(WeatherDTO weather) throws Exception{
+	public JSONArray getjsondata(WeatherDTO weather) throws Exception{
 		
 		StringBuilder urlBuilder = new StringBuilder(); 
 		urlBuilder.append("http://apis.data.go.kr/1360000/"+weather.getWeather_url()); /*URL*/
@@ -134,13 +144,17 @@ public class WeatherController {
         JSONObject jo=null;
         
         jo=(JSONObject)parser.parse(sb.toString());
+        
+        JSONObject obj=(JSONObject) jo.get("response");
+		JSONObject obj1=(JSONObject) obj.get("body");
+		JSONObject obj2=(JSONObject) obj1.get("items");
+		JSONArray ary=(JSONArray) obj2.get("item");
 		
-		
-		return jo;
+		return ary;
 	}
 	
-	 
 	
+	 
 	
 }
 
