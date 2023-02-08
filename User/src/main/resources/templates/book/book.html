@@ -83,6 +83,15 @@
       }
    };
 
+   function OneClickPointOn() {
+      let clickYMD = selectDate1.split('-');
+      let clickYM = Number(clickYMD[0]) * 100 + Number(clickYMD[1]);
+      let todayYM = today.getFullYear() * 100 + (today.getMonth() + 1);
+      if (clickYM === todayYM) {
+         $('#' + Number(clickYMD[2]) + '').attr('style', 'background-color: rgb(247,233,231);');
+      }
+   }
+
    //달력에 예약날짜 기간 표시 없애기
    function bookPointOff() {
       checkInYear = null;
@@ -132,24 +141,23 @@
             clickedYear = today.getFullYear();
             clickedMonth = (1 + today.getMonth());
             clickedDate = this.getAttribute('id');
-            let clickedYMDDate = new Date(clickedYear, clickedMonth-1,  clickedDate);
+            let clickedYMDDate = new Date(clickedYear, clickedMonth - 1, clickedDate);
             clickedDate = clickedDate >= 10 ? clickedDate : '0' + clickedDate;
             clickedMonth = clickedMonth >= 10 ? clickedMonth : '0' + clickedMonth;
             clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
             if(isDisabledDate(clickedYMDDate)!==0){
                if(isDisabledDate(clickedYMDDate)===1){
                   alert("아직 활성화 되지 않은 예약입니다.")
-                  return;
                }else{
                   alert("오늘 이후 날짜를 선택해주세요.")
-                  return;
                }
+               return;
             }
             if (selectDate1 == null) {
                selectDate1 = clickedYMD;
 
                bookPointOff();
-               
+               OneClickPointOn();
                checkInYear = clickedYear;
                checkInMonth = clickedMonth;
                checkInDate = clickedDate;
@@ -209,6 +217,7 @@
          }
       }
       disabledDate();
+      OneClickPointOn();
    }
 
    function prevCalendar() {
