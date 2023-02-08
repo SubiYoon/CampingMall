@@ -132,11 +132,19 @@
             clickedYear = today.getFullYear();
             clickedMonth = (1 + today.getMonth());
             clickedDate = this.getAttribute('id');
-
+            let clickedYMDDate = new Date(clickedYear, clickedMonth-1,  clickedDate);
             clickedDate = clickedDate >= 10 ? clickedDate : '0' + clickedDate;
             clickedMonth = clickedMonth >= 10 ? clickedMonth : '0' + clickedMonth;
             clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
-
+            if(isDisabledDate(clickedYMDDate)!==0){
+               if(isDisabledDate(clickedYMDDate)===1){
+                  alert("아직 활성화 되지 않은 예약입니다.")
+                  return;
+               }else{
+                  alert("오늘 이후 날짜를 선택해주세요.")
+                  return;
+               }
+            }
             if (selectDate1 == null) {
                selectDate1 = clickedYMD;
 
@@ -220,7 +228,34 @@
 	   $("#bookForm>div>input[name='book_sitecode']").val(sitecode);
 	   
    }
-
+   function isDisabledDate(testDate){
+      realToday = new Date();
+      const compareDate = (date1, date2) => {
+         let numDate1 = date1.getFullYear() * 10000 + date1.getMonth() * 100 + date1.getDate();
+         let numDate2 = date2.getFullYear() * 10000 + date2.getMonth() * 100 + date2.getDate();
+         //앞에 날짜가 미래
+         if(numDate1>numDate2){
+            return 1;
+         }
+         //앞에 날짜가 옛날
+         else if(numDate1<numDate2){
+            return -1;
+         }
+         //같다
+         return 0;
+      }
+      //오늘또는 이전날짜를 선택함
+      if(compareDate(testDate,realToday)<1){
+         return -1;
+      }
+      realToday = new Date(realToday.getFullYear(), realToday.getMonth(), realToday.getDate()+ABLEDAYS-1)
+      //너무 먼 예약일을 선택함
+      if(compareDate(testDate,realToday)>0){
+         return 1;
+      }
+      //가능
+      return 0;
+   }
    function disabledDate(){
       realToday = new Date();
       let startDay;
