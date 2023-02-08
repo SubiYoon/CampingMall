@@ -984,12 +984,16 @@ button {
 /** about(편의시설) section **/
 
 .about {
-     background-color: #fff;
-     padding-top: 65px;
+    background-color: #fff;
+    padding-top: 65px;
+	text-align: center;
+}
+
+.aboutrow{
+	margin-bottom: 30px;
 }
 
 .about .titlepage {
-     text-align: left;
      padding-bottom: 0;
      max-width: 443px;
      width: 100%;
@@ -997,7 +1001,7 @@ button {
 }
 
 .about .titlepage h2 {
-     margin: 35px;
+     margin: 40px;
 }
 
 .about h5 {
@@ -1009,16 +1013,18 @@ button {
 }
 
 .aboutname h5{
+	text-align: center;
 	width: 100%;
 	margin-bottom: 0px;
 	color: #BDBDBD !important;
 }
 
 .about .titlepage p {
-     font-weight: 400;
-     font-size: 17px;
-     line-height: 28px;
-     padding-bottom: 35px;
+	color: #121212;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 28px;
+    padding-bottom: 25px;
 }
 
 .about_img {
@@ -1441,10 +1447,22 @@ button {
      font-weight: normal;
      box-shadow: 2px 0px 6px rgb(0, 128, 128, 0.20);
 }
+.main_form{
+	text-align: center;
+	position:absolute;
+  	top: 20%;
+}
+.main_form h3 {
+	color: #121212;
+    font-size: 30px;
+    font-family: 'Do Hyeon', sans-serif;
+    font-weight: 300;
+}
 
 .main_form p {
      font-size: 20px;
-     font-weight: normal;
+     margin-top: 15px;
+     padding: 20px;
 }
 
 .main_form .send_btn:hover {
