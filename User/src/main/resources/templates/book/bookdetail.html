@@ -15,12 +15,10 @@ function paymentDo() {
 	let result5=$('#result5').text();
 	let result6=$('#result6').text();
 	
-	let car_num_add=car_number+","+result4+","+result5+","+result6;
 	    	
 	
 	if(car_number==""||car_number==null){
-		$('#car_number').focus();
-		return false;
+		car_number="차량없음";
 	}
 	
 	if(customerinfo_name==""||customerinfo_name==null){
@@ -33,6 +31,7 @@ function paymentDo() {
 		return false;
 	}
 	
+	let car_num_add=car_number+","+result4+","+result5+","+result6;
 	
 	
 	/*<![CDATA[*/
