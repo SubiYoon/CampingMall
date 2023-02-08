@@ -207,13 +207,13 @@
                                         let i;
                                         var str = '통계<span> | ' + nowSelectingMainCart
                                             + '  </span><select name=\"year\" class=\"yearSelect\">';
-                                        for (i = todayYear - 5; i < todayYear; i++) {
+                                        for (i = todayYear - 3; i < todayYear; i++) {
                                             str += '<option value=' + i + '>' + i + '</option>';
                                         }
                                         str += '<option value=' + todayYear
                                             + ' selected=\"selected\">' + todayYear +
                                             '</option>';
-                                        for (i = todayYear + 1; i < todayYear + 5; i++) {
+                                        for (i = todayYear + 1; i < todayYear + 2; i++) {
                                             str += '<option value=' + i + '>' + i + '</option>';
 
                                         }
