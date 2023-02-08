@@ -145,6 +145,7 @@
                checkInYear = clickedYear;
                checkInMonth = clickedMonth;
                checkInDate = clickedDate;
+
             } else if (selectDate1 == clickedYMD) {
                alert("최소 1박이상을 선택해주세요.")
                return;
@@ -155,7 +156,7 @@
                checkOutdDate = clickedDate;
                
                bookPointOn();
-               
+
                $.ajax({
                   url: '/selectDate',
                   type: 'post',
@@ -199,7 +200,7 @@
             cell = row.insertCell();
          }
       }
-      disabledDate()
+      disabledDate();
    }
 
    function prevCalendar() {
@@ -241,7 +242,6 @@
 
       //같은 달이면
       if (compareYearAndMonth(today, realToday) === 0) {
-         console.log("같다");
          startDay = 0;
          endDay = today.getDate();
       }
@@ -249,24 +249,21 @@
       else if(compareYearAndMonth(today, realToday) === -1){
          startDay = 0;
          endDay = 32;
-         console.log("옛날달력");
       }
       //이후 달력이면
       else{
          realToday = new Date(realToday.getFullYear(), realToday.getMonth(), realToday.getDate()+ABLEDAYS)
          if (compareYearAndMonth(today, realToday) === 0) {
-            console.log("근미래");
             startDay = realToday.getDate();
             endDay = 32;
          }else{
-            console.log("먼미래");
             startDay = 0;
             endDay = 32;
          }
 
       }
       for (var i = startDay; i <= endDay; i++) {
-         $('#' + i + '').attr('style', 'background-color: rgb(111,111,111);');
+         $('#' + i + '').children().css("color", '#F0F0F0');
       }
 
    }
