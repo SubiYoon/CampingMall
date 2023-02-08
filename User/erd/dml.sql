@@ -122,7 +122,7 @@ insert into image(company_code, facility_code, image_file) VALUES(1, 2, 'store.j
 insert into image(company_code, facility_code, image_file) VALUES(1, 3, 'cafe.jpg');
 insert into image(company_code, facility_code, image_file) VALUES(1, 4, 'toilet.jpg');
 
-insert into image(company_code, home_code, image_file) VALUES(1, 1, 'slide1.jpg');
+insert into image(company_code, home_code, image_file) VALUES(1, 1, 'slide1.png');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'slide2.jpg');
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'slide3.jpg');
 

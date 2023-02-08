@@ -21,8 +21,7 @@
             review.review_code, 
             review.book_code, 
             review.review_content, 
-            review.review_score, 
-            review.review_image
+            review.review_score
         FROM 
             book 
         JOIN 
@@ -60,8 +59,7 @@
         select review.review_code,
                review.book_code,
                review.review_content,
-               review.review_score,
-               review.review_image
+               review.review_score
         from review,
              admin,
              book,

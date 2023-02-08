@@ -303,8 +303,8 @@ button {
 #modal_logo_edit button,
 #modal_slide_edit button {
      background-color: #009898;
-     width: 15%;
-     padding: 5px 0;
+     min-width: 15%;
+     padding: 5px 5px;
      border-radius: 50px;
      color: #fff;
      font-size: 15px;
@@ -312,7 +312,6 @@ button {
      display: line-block;
 }
 
-#modal h2,
 #modal_board_edit h2,
 #modal_logo_edit h2,
 #modal_slide_edit h2 {
@@ -325,10 +324,11 @@ button {
 #modal_slide_edit .modal-content {
      width: 80%;
      margin: 100px auto;
-     padding: 10px 2%;
+     padding: 20px 10%;
      background: rgb(0 0 0 / 90%);
-     border-top: 20px solid #009898;
-     border-bottom: 20px solid #009898;
+     border: 2px solid rgba(0, 135, 135, 0.37);
+     border-top: 10px solid #009898;
+     border-bottom: 10px solid #009898;
 	 border-radius: 10px;
      transform: scale(0);
      animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
@@ -390,6 +390,78 @@ button {
 		transform: scale(1);
 	}
 
+}
+
+
+.modal-login{
+	display: block;
+}
+
+.modal-login img{
+	min-width: 200px;
+}
+
+.modal-img{
+	width: auto;
+	height: 100px;
+	margin-bottom: 25px;
+}
+
+.modal-div{
+	width: 100%;
+	text-align: center;
+	margin-bottom: 20px;
+	color: white;
+	font-weight: bold;
+}
+
+.modal-div input{
+	margin-top:10px;
+	margin-bottom: 10px;
+	background: #262e49;
+	border: 0;
+	border-radius: 5px;
+	padding: 14px 10px;
+	width: 250px;
+	height: 40px;
+	outline: none;
+	color: #d6d6d6;
+	    -webkit-transition: all .2s ease-out;
+	    -moz-transition: all .2s ease-out;
+	    -ms-transition: all .2s ease-out;
+	    -o-transition: all .2s ease-out;
+	    transition: all .2s ease-out;
+}
+
+.modal-div input[type = "text"]:focus,.modal-div input[type = "password"]:focus {
+	border: 1px solid #79A6FE;
+}
+
+.modal-div3{
+	display:inline-block;
+  	width: 50%;
+  	background: #009898;
+  	color: #dfdeee;
+  	border-radius: 5px;
+  	font-size: 18px;
+  	font-weight: bold;
+  	margin-top:10px;
+  	margin-bottom:15px;
+ 	padding: 3px;
+}
+
+.modal-div4{
+	display:inline-block;
+  	width: 50%;
+  	height: 43px;
+  	background: #FEE500;
+  	color: #191919;
+  	border-radius: 5px;
+  	font-size: 15px;
+  	font-weight: bold;
+  	margin-top:10px;
+  	margin-bottom:15px;
+ 	padding: 7px;
 }
 
 /*-- end 로그인모달용 --*/
@@ -1161,7 +1233,7 @@ button {
 /** blog section **/
 
 .blog {
-     background: url(../images/blog_bg.jpg);
+     background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3) ), url(../images/slide3.jpg);
      background-repeat: no-repeat;
      background-size: 100% 100%;
      padding: 60px 0 30px 0;

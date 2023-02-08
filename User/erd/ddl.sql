@@ -1,270 +1,196 @@
-use campdb;
+USE CAMPDB;
 
-Drop table If exists reservation;
-Drop table If exists image;
-Drop table IF EXISTS review;
-Drop table IF EXISTS home;
-Drop table IF EXISTS facility;
-Drop table IF EXISTS notice;
-Drop table IF EXISTS book;
-Drop table IF EXISTS user;
-Drop table IF EXISTS payment;
-Drop table IF EXISTS site;
-Drop table IF EXISTS zone;
-Drop table IF EXISTS schedule;
-Drop table IF EXISTS admin;
-Drop table IF EXISTS company;
+DROP TABLE IF EXISTS RESERVATION;
 
+DROP TABLE IF EXISTS IMAGE;
 
-CREATE TABLE `notice` (
-   `notice_code`   INT   NOT NULL auto_increment,
-   `admin_code`   INT   NOT NULL,
-   `notice_level`   INT   NULL,
-   `notice_title`   varchar(100)   NULL,
-   `notice_writedate`   DATETIME   NULL   DEFAULT NOW(),
-   `notice_content`   varchar(500)   NULL,
-    primary key (notice_code)
+DROP TABLE IF EXISTS REVIEW;
+
+DROP TABLE IF EXISTS HOME;
+
+DROP TABLE IF EXISTS FACILITY;
+
+DROP TABLE IF EXISTS NOTICE;
+
+DROP TABLE IF EXISTS BOOK;
+
+DROP TABLE IF EXISTS USER;
+
+DROP TABLE IF EXISTS PAYMENT;
+
+DROP TABLE IF EXISTS SITE;
+
+DROP TABLE IF EXISTS ZONE;
+
+DROP TABLE IF EXISTS SCHEDULE;
+
+DROP TABLE IF EXISTS ADMIN;
+
+DROP TABLE IF EXISTS COMPANY;
+
+CREATE TABLE `NOTICE` (
+   `NOTICE_CODE` INT NOT NULL AUTO_INCREMENT,
+   `ADMIN_CODE` INT NOT NULL,
+   `NOTICE_LEVEL` INT NULL,
+   `NOTICE_TITLE` VARCHAR(100) NULL,
+   `NOTICE_WRITEDATE` DATETIME NULL DEFAULT NOW(),
+   `NOTICE_CONTENT` VARCHAR(500) NULL,
+   PRIMARY KEY (NOTICE_CODE)
 );
 
-CREATE TABLE `site` (
-   `site_code`   INT   NOT NULL auto_increment,
-   `zone_code`   INT   NOT NULL,
-   `site_name`   VARCHAR(100)   NULL,
-   `site_price`   INT   NULL,
-   `site_content`   LONGTEXT   NULL,
-   `site_state` INT NULL DEFAULT 1,
-    primary key (site_code)
+CREATE TABLE `SITE` (
+   `SITE_CODE` INT NOT NULL AUTO_INCREMENT,
+   `ZONE_CODE` INT NOT NULL,
+   `SITE_NAME` VARCHAR(100) NULL,
+   `SITE_PRICE` INT NULL,
+   `SITE_CONTENT` LONGTEXT NULL,
+   `SITE_STATE` INT NULL DEFAULT 1,
+   PRIMARY KEY (SITE_CODE)
 );
 
-CREATE TABLE `home` (
-   `home_code`   INT   NOT NULL auto_increment,
-   `admin_code`   INT   NOT NULL,
-   `home_owner`   VARCHAR(20)   NULL,
-   `home_content`   LONGTEXT   NOT NULL,
-   `home_address`   VARCHAR(100)   NULL,
-   `home_longitude`   DOUBLE   NULL,
-   `home_latitude`   DOUBLE   NULL,
-   `home_https`   VARCHAR(50)   NULL,
-   `home_tell`   VARCHAR(20)   NULL,
-    primary key (home_code)
+CREATE TABLE `HOME` (
+   `HOME_CODE` INT NOT NULL AUTO_INCREMENT,
+   `ADMIN_CODE` INT NOT NULL,
+   `HOME_OWNER` VARCHAR(20) NULL,
+   `HOME_CONTENT` LONGTEXT NOT NULL,
+   `HOME_ADDRESS` VARCHAR(100) NULL,
+   `HOME_LONGITUDE` DOUBLE NULL,
+   `HOME_LATITUDE` DOUBLE NULL,
+   `HOME_HTTPS` VARCHAR(50) NULL,
+   `HOME_TELL` VARCHAR(20) NULL,
+   PRIMARY KEY (HOME_CODE)
 );
 
-CREATE TABLE `facility` (
-   `facility_code`   INT   NOT NULL auto_increment, 
-   `admin_code`   INT   NOT NULL,
-   `facility_name`   VARCHAR(100)   NULL,
-   `facility_content`   LONGTEXT   NULL,
-    primary key (facility_code)
+CREATE TABLE `FACILITY` (
+   `FACILITY_CODE` INT NOT NULL AUTO_INCREMENT,
+   `ADMIN_CODE` INT NOT NULL,
+   `FACILITY_NAME` VARCHAR(100) NULL,
+   `FACILITY_CONTENT` LONGTEXT NULL,
+   PRIMARY KEY (FACILITY_CODE)
 );
 
-CREATE TABLE `book` (
-   `book_code`   INT   NOT NULL auto_increment,
-   `site_code`   INT   NOT NULL,
-   `user_code`   INT   NOT NULL,
-   `merchant_uid`   VARCHAR(30)   NOT NULL,
-   `book_member`   INT   NOT NULL,
-   `book_checkin`   VARCHAR(15)   NOT NULL,
-   `book_checkout`   VARCHAR(15)   NOT NULL,
-   `book_writedate`   DATETIME   NULL   DEFAULT NOW(),
-   `book_price`   INT   NOT NULL,
-   `book_car_number`   VARCHAR(20)   NULL,
-   `book_state` INT NULL DEFAULT 1,
-   `book_detials` VARCHAR(500) NULL,
-    primary key (book_code)
+CREATE TABLE `BOOK` (
+   `BOOK_CODE` INT NOT NULL AUTO_INCREMENT,
+   `SITE_CODE` INT NOT NULL,
+   `USER_CODE` INT NOT NULL,
+   `MERCHANT_UID` VARCHAR(30) NOT NULL,
+   `BOOK_MEMBER` INT NOT NULL,
+   `BOOK_CHECKIN` VARCHAR(15) NOT NULL,
+   `BOOK_CHECKOUT` VARCHAR(15) NOT NULL,
+   `BOOK_WRITEDATE` DATETIME NULL DEFAULT NOW(),
+   `BOOK_PRICE` INT NOT NULL,
+   `BOOK_CAR_NUMBER` VARCHAR(20) NULL,
+   `BOOK_STATE` INT NULL DEFAULT 1,
+   `BOOK_DETIALS` VARCHAR(500) NULL,
+   PRIMARY KEY (BOOK_CODE)
 );
 
-CREATE TABLE `zone` (
-   `zone_code`   INT   NOT NULL auto_increment,
-   `admin_code`   INT   NOT NULL,
-   `zone_name`   VARCHAR(30)   NOT NULL,
-   `zone_content`   LONGTEXT   NULL,
-   `zone_state` INT NULL DEFAULT 1,
-    primary key (zone_code)
+CREATE TABLE `ZONE` (
+   `ZONE_CODE` INT NOT NULL AUTO_INCREMENT,
+   `ADMIN_CODE` INT NOT NULL,
+   `ZONE_NAME` VARCHAR(30) NOT NULL,
+   `ZONE_CONTENT` LONGTEXT NULL,
+   `ZONE_STATE` INT NULL DEFAULT 1,
+   PRIMARY KEY (ZONE_CODE)
 );
 
-CREATE TABLE `user` (
-   `user_code`   INT   NOT NULL auto_increment,
-   `user_id`   VARCHAR(20)   NOT NULL,
-   `user_password`   VARCHAR(1000)   NOT NULL,
-   `user_name`   VARCHAR(20)   NOT NULL,
-   `user_birthday`   VARCHAR(10)   NOT NULL,
-   `user_tel`   VARCHAR(20)   NULL,
-    primary key (user_code)
+CREATE TABLE `USER` (
+   `USER_CODE` INT NOT NULL AUTO_INCREMENT,
+   `USER_ID` VARCHAR(20) NOT NULL,
+   `USER_PASSWORD` VARCHAR(1000) NOT NULL,
+   `USER_NAME` VARCHAR(20) NOT NULL,
+   `USER_BIRTHDAY` VARCHAR(10) NOT NULL,
+   `USER_TEL` VARCHAR(20) NULL,
+   PRIMARY KEY (USER_CODE)
 );
 
-CREATE TABLE `company` (
-   `company_code`   INT   NOT NULL auto_increment,
-   `company_name`   VARCHAR(20)   NOT NULL,
-   `company_logo1`   VARCHAR(50)   NOT NULL,
-   `company_logo2`   VARCHAR(50)   NOT NULL,
-    primary key (company_code)
+CREATE TABLE `COMPANY` (
+   `COMPANY_CODE` INT NOT NULL AUTO_INCREMENT,
+   `COMPANY_NAME` VARCHAR(20) NOT NULL,
+   `COMPANY_LOGO1` VARCHAR(50) NOT NULL,
+   `COMPANY_LOGO2` VARCHAR(50) NOT NULL,
+   PRIMARY KEY (COMPANY_CODE)
 );
 
-CREATE TABLE `admin` (
-   `admin_code`   INT   NOT NULL auto_increment,
-   `company_code`   INT   NOT NULL,
-   `admin_id`   VARCHAR(20)   NOT NULL,
-   `admin_password`   VARCHAR(1000)   NOT NULL,
-    primary key (admin_code)
+CREATE TABLE `ADMIN` (
+   `ADMIN_CODE` INT NOT NULL AUTO_INCREMENT,
+   `COMPANY_CODE` INT NOT NULL,
+   `ADMIN_ID` VARCHAR(20) NOT NULL,
+   `ADMIN_PASSWORD` VARCHAR(1000) NOT NULL,
+   PRIMARY KEY (ADMIN_CODE)
 );
 
-CREATE TABLE `payment` (
-   `merchant_uid`   VARCHAR(30)   NOT NULL,
-   `pay_method`   VARCHAR(30)   NOT NULL,
-   `imp_uid`   VARCHAR(30)   NOT NULL,
-    primary key (merchant_uid)
+CREATE TABLE `PAYMENT` (
+   `MERCHANT_UID` VARCHAR(30) NOT NULL,
+   `PAY_METHOD` VARCHAR(30) NOT NULL,
+   `IMP_UID` VARCHAR(30) NOT NULL,
+   PRIMARY KEY (MERCHANT_UID)
 );
 
-CREATE TABLE `review` (
-   `review_code`   INT   NOT NULL auto_increment,
-   `book_code`   INT   NOT NULL,
-   `review_content`   LONGTEXT   NULL,
-   `review_score`   INT   NULL,
-   `review_image`   VARCHAR(50)   NULL,
-    primary key (review_code)
+CREATE TABLE `REVIEW` (
+   `REVIEW_CODE` INT NOT NULL AUTO_INCREMENT,
+   `BOOK_CODE` INT NOT NULL,
+   `REVIEW_CONTENT` LONGTEXT NULL,
+   `REVIEW_SCORE` INT NULL,
+   PRIMARY KEY (REVIEW_CODE)
 );
 
-CREATE TABLE `schedule` (
-   `schedule_code`   INT   NOT NULL auto_increment,
-   `admin_code`   INT   NOT NULL,
-   `schedule_date`   DATE   NOT NULL,
-   `schedule_name`   VARCHAR(20)   NOT NULL,
-    primary key (schedule_code)
+CREATE TABLE `SCHEDULE` (
+   `SCHEDULE_CODE` INT NOT NULL AUTO_INCREMENT,
+   `ADMIN_CODE` INT NOT NULL,
+   `SCHEDULE_DATE` DATE NOT NULL,
+   `SCHEDULE_NAME` VARCHAR(20) NOT NULL,
+   PRIMARY KEY (SCHEDULE_CODE)
 );
 
-CREATE TABLE `image` (
-   `image_code`   INT   NOT NULL auto_increment,
-   `company_code`   INT   NOT NULL,
-   `zone_code`   INT   NULL,
-   `site_code`   INT   NULL,
-   `home_code`   INT   NULL,
-   `facility_code`   INT   NULL,
-   `image_file`   VARCHAR(50)   NOT NULL,
-    primary key (image_code)
+CREATE TABLE `IMAGE` (
+   `IMAGE_CODE` INT NOT NULL AUTO_INCREMENT,
+   `COMPANY_CODE` INT NOT NULL,
+   `ZONE_CODE` INT NULL,
+   `SITE_CODE` INT NULL,
+   `HOME_CODE` INT NULL,
+   `FACILITY_CODE` INT NULL,
+   `IMAGE_FILE` VARCHAR(50) NOT NULL,
+   PRIMARY KEY (IMAGE_CODE)
 );
 
-CREATE TABLE `reservation` (
-   `reservation_code`   INT   NOT NULL auto_increment,
-   `book_code`   INT   NOT NULL,
-   `reservation_date`   DATE   NOT NULL,
-    primary key (reservation_code)
+CREATE TABLE `RESERVATION` (
+   `RESERVATION_CODE` INT NOT NULL AUTO_INCREMENT,
+   `BOOK_CODE` INT NOT NULL,
+   `RESERVATION_DATE` DATE NOT NULL,
+   PRIMARY KEY (RESERVATION_CODE)
 );
 
-ALTER TABLE `notice` ADD CONSTRAINT `FK_admin_TO_notice_1` FOREIGN KEY (
-   `admin_code`
-)
-REFERENCES `admin` (
-   `admin_code`
-);
+ALTER TABLE `NOTICE` ADD CONSTRAINT `FK_ADMIN_TO_NOTICE_1` FOREIGN KEY ( `ADMIN_CODE` ) REFERENCES `ADMIN` ( `ADMIN_CODE` );
 
-ALTER TABLE `site` ADD CONSTRAINT `FK_zone_TO_site_1` FOREIGN KEY (
-   `zone_code`
-)
-REFERENCES `zone` (
-   `zone_code`
-);
+ALTER TABLE `SITE` ADD CONSTRAINT `FK_ZONE_TO_SITE_1` FOREIGN KEY ( `ZONE_CODE` ) REFERENCES `ZONE` ( `ZONE_CODE` );
 
-ALTER TABLE `home` ADD CONSTRAINT `FK_admin_TO_home_1` FOREIGN KEY (
-   `admin_code`
-)
-REFERENCES `admin` (
-   `admin_code`
-);
+ALTER TABLE `HOME` ADD CONSTRAINT `FK_ADMIN_TO_HOME_1` FOREIGN KEY ( `ADMIN_CODE` ) REFERENCES `ADMIN` ( `ADMIN_CODE` );
 
-ALTER TABLE `facility` ADD CONSTRAINT `FK_admin_TO_facility_1` FOREIGN KEY (
-   `admin_code`
-)
-REFERENCES `admin` (
-   `admin_code`
-);
+ALTER TABLE `FACILITY` ADD CONSTRAINT `FK_ADMIN_TO_FACILITY_1` FOREIGN KEY ( `ADMIN_CODE` ) REFERENCES `ADMIN` ( `ADMIN_CODE` );
 
-ALTER TABLE `book` ADD CONSTRAINT `FK_site_TO_book_1` FOREIGN KEY (
-   `site_code`
-)
-REFERENCES `site` (
-   `site_code`
-);
+ALTER TABLE `BOOK` ADD CONSTRAINT `FK_SITE_TO_BOOK_1` FOREIGN KEY ( `SITE_CODE` ) REFERENCES `SITE` ( `SITE_CODE` );
 
-ALTER TABLE `book` ADD CONSTRAINT `FK_user_TO_book_1` FOREIGN KEY (
-   `user_code`
-)
-REFERENCES `user` (
-   `user_code`
-);
+ALTER TABLE `BOOK` ADD CONSTRAINT `FK_USER_TO_BOOK_1` FOREIGN KEY ( `USER_CODE` ) REFERENCES `USER` ( `USER_CODE` );
 
-ALTER TABLE `book` ADD CONSTRAINT `FK_payment_TO_book_1` FOREIGN KEY (
-   `merchant_uid`
-)
-REFERENCES `payment` (
-   `merchant_uid`
-);
+ALTER TABLE `BOOK` ADD CONSTRAINT `FK_PAYMENT_TO_BOOK_1` FOREIGN KEY ( `MERCHANT_UID` ) REFERENCES `PAYMENT` ( `MERCHANT_UID` );
 
-ALTER TABLE `zone` ADD CONSTRAINT `FK_admin_TO_zone_1` FOREIGN KEY (
-   `admin_code`
-)
-REFERENCES `admin` (
-   `admin_code`
-);
+ALTER TABLE `ZONE` ADD CONSTRAINT `FK_ADMIN_TO_ZONE_1` FOREIGN KEY ( `ADMIN_CODE` ) REFERENCES `ADMIN` ( `ADMIN_CODE` );
 
-ALTER TABLE `admin` ADD CONSTRAINT `FK_company_TO_admin_1` FOREIGN KEY (
-   `company_code`
-)
-REFERENCES `company` (
-   `company_code`
-);
+ALTER TABLE `ADMIN` ADD CONSTRAINT `FK_COMPANY_TO_ADMIN_1` FOREIGN KEY ( `COMPANY_CODE` ) REFERENCES `COMPANY` ( `COMPANY_CODE` );
 
-ALTER TABLE `review` ADD CONSTRAINT `FK_book_TO_review_1` FOREIGN KEY (
-   `book_code`
-)
-REFERENCES `book` (
-   `book_code`
-);
+ALTER TABLE `REVIEW` ADD CONSTRAINT `FK_BOOK_TO_REVIEW_1` FOREIGN KEY ( `BOOK_CODE` ) REFERENCES `BOOK` ( `BOOK_CODE` );
 
-ALTER TABLE `schedule` ADD CONSTRAINT `FK_admin_TO_schedule_1` FOREIGN KEY (
-   `admin_code`
-)
-REFERENCES `admin` (
-   `admin_code`
-);
+ALTER TABLE `SCHEDULE` ADD CONSTRAINT `FK_ADMIN_TO_SCHEDULE_1` FOREIGN KEY ( `ADMIN_CODE` ) REFERENCES `ADMIN` ( `ADMIN_CODE` );
 
-ALTER TABLE `image` ADD CONSTRAINT `FK_company_TO_image_1` FOREIGN KEY (
-   `company_code`
-)
-REFERENCES `company` (
-   `company_code`
-);
+ALTER TABLE `IMAGE` ADD CONSTRAINT `FK_COMPANY_TO_IMAGE_1` FOREIGN KEY ( `COMPANY_CODE` ) REFERENCES `COMPANY` ( `COMPANY_CODE` );
 
-ALTER TABLE `image` ADD CONSTRAINT `FK_zone_TO_image_1` FOREIGN KEY (
-   `zone_code`
-)
-REFERENCES `zone` (
-   `zone_code`
-);
+ALTER TABLE `IMAGE` ADD CONSTRAINT `FK_ZONE_TO_IMAGE_1` FOREIGN KEY ( `ZONE_CODE` ) REFERENCES `ZONE` ( `ZONE_CODE` );
 
-ALTER TABLE `image` ADD CONSTRAINT `FK_site_TO_image_1` FOREIGN KEY (
-   `site_code`
-)
-REFERENCES `site` (
-   `site_code`
-);
+ALTER TABLE `IMAGE` ADD CONSTRAINT `FK_SITE_TO_IMAGE_1` FOREIGN KEY ( `SITE_CODE` ) REFERENCES `SITE` ( `SITE_CODE` );
 
-ALTER TABLE `image` ADD CONSTRAINT `FK_home_TO_image_1` FOREIGN KEY (
-   `home_code`
-)
-REFERENCES `home` (
-   `home_code`
-);
+ALTER TABLE `IMAGE` ADD CONSTRAINT `FK_HOME_TO_IMAGE_1` FOREIGN KEY ( `HOME_CODE` ) REFERENCES `HOME` ( `HOME_CODE` );
 
-ALTER TABLE `image` ADD CONSTRAINT `FK_facility_TO_image_1` FOREIGN KEY (
-   `facility_code`
-)
-REFERENCES `facility` (
-   `facility_code`
-);
+ALTER TABLE `IMAGE` ADD CONSTRAINT `FK_FACILITY_TO_IMAGE_1` FOREIGN KEY ( `FACILITY_CODE` ) REFERENCES `FACILITY` ( `FACILITY_CODE` );
 
-ALTER TABLE `reservation` ADD CONSTRAINT `FK_book_TO_reservation_1` FOREIGN KEY (
-   `book_code`
-)
-REFERENCES `book` (
-   `book_code`
-);
+ALTER TABLE `RESERVATION` ADD CONSTRAINT `FK_BOOK_TO_RESERVATION_1` FOREIGN KEY ( `BOOK_CODE` ) REFERENCES `BOOK` ( `BOOK_CODE` );

@@ -38,7 +38,6 @@
         monthSelected = $('.monthSelect').val();
         monthSelected = ('0' + monthSelected).slice(-2);
         let stringDate = yearSelected + '-' + monthSelected;
-        console.log(stringDate);
         getGraph(stringDate);
     }
 
@@ -165,19 +164,19 @@
                                 <script>
                                     function setHead() {
                                         let monthList = '[[${MonthList}]]';
-                                        monthList =monthList.replace('[','');
-                                        monthList =monthList.replace(']','');
-                                        monthList =monthList.replaceAll(' ','');
+                                        monthList = monthList.replace('[', '');
+                                        monthList = monthList.replace(']', '');
+                                        monthList = monthList.replaceAll(' ', '');
                                         monthList = monthList.split(',');
-                                        for(let i = 0 ;i<monthList.length;i++){
-                                            console.log(monthList[i]);
+                                        for (let i = 0; i < monthList.length; i++) {
+
                                         }
                                         let headStr = '<h6>' + monthList[0] + '</h6>';
                                         if (monthList[1].includes('-')) {
                                             headStr += '<span class="text-danger small pt-1 fw-bold">'
                                                 + monthList[1] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">decrease</span>';
-                                        } else{
+                                        } else {
                                             headStr += '<span class="text-success small pt-1 fw-bold">'
                                                 + monthList[1] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">increase</span>';
@@ -188,7 +187,7 @@
                                             headStr += '<span class="text-danger small pt-1 fw-bold">'
                                                 + monthList[3] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">decrease</span>';
-                                        } else{
+                                        } else {
                                             headStr += '<span class="text-success small pt-1 fw-bold">'
                                                 + monthList[3] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">increase</span>';
@@ -199,7 +198,7 @@
                                             headStr += '<span class="text-danger small pt-1 fw-bold">'
                                                 + monthList[5] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">decrease</span>';
-                                        } else{
+                                        } else {
                                             headStr += '<span class="text-success small pt-1 fw-bold">'
                                                 + monthList[5] + '</span>';
                                             +'<span class="text-muted small pt-2 ps-1">increase</span>';
@@ -509,17 +508,23 @@
                             </tr>
                             </thead>
                             <tbody>
-	                           <tr th:each="books, i:${books}">
-	                               <th scope="row" th:text="${books.book_code}"><a th:href="@{#}"></a></th>
-	                               <td th:text="${books.user_name}"></td>
-	                               <td th:text="${books.site_name}"></td>
-	                               <td th:text="${books.book_price}"></td>
-	                               <td th:if="${books.book_state}==1"><span class="badge bg-success">예약완료</span></td>
-	                               <td th:if="${books.book_state}==2"><span class="badge bg-warning">환불요청</span></td>
-	                               <td th:if="${books.book_state}==3"><span class="badge bg-success">환불완료</span></td>
-	                               <td th:if="${books.book_state}==4"><span class="badge bg-danger">환불취소</span></td>
-	                               <td th:if="${books.book_state}==5"><span class="badge bg-success">체크인완료</span></td>
-	                           </tr>
+                            <tr th:each="books, i:${books}">
+                                <th scope="row" th:text="${books.book_code}"><a th:href="@{#}"></a>
+                                </th>
+                                <td th:text="${books.user_name}"></td>
+                                <td th:text="${books.site_name}"></td>
+                                <td th:text="${books.book_price}"></td>
+                                <td th:if="${books.book_state}==1"><span class="badge bg-success">예약완료</span>
+                                </td>
+                                <td th:if="${books.book_state}==2"><span class="badge bg-warning">환불요청</span>
+                                </td>
+                                <td th:if="${books.book_state}==3"><span class="badge bg-success">환불완료</span>
+                                </td>
+                                <td th:if="${books.book_state}==4"><span class="badge bg-danger">환불취소</span>
+                                </td>
+                                <td th:if="${books.book_state}==5"><span class="badge bg-success">체크인완료</span>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
 
@@ -543,9 +548,10 @@
                             </thead>
                             <tbody>
                             <tr th:each="reviews, i:${reviews}">
-                                <th th:text="${reviews.review_code}" scope="row"><a th:href="@{#}"></a></th>
+                                <th th:text="${reviews.review_code}" scope="row"><a
+                                    th:href="@{#}"></a></th>
                                 <td th:text="${reviews.user_name}"></td>
-                                <td><a th:href="@{#}" th:text="${reviews.review_content}" class="text-primary"></a></td>
+                                <td th:text="${reviews.review_content}"></td>
                                 <td th:text="${reviews.review_score}"></td>
                             </tr>
                             </tbody>
