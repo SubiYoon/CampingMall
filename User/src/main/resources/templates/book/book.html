@@ -9,7 +9,7 @@
          if('[[${session.user}]]'==null || '[[${session.user}]]'==''){
             alert("로그인 후 사용해 주세요.")
          }else{
-            bookFrom.submit();	   
+            bookFrom.submit();
          }
       });
       
@@ -29,7 +29,7 @@
    var today = null;
    var realToday = null;
    const ABLEDAYS = 50;
-
+   var clickedSiteCode = null;
    //0이 붙은 숫자라 숫자화를 위해 0을 한번 빼줌
    function number() {
       checkInYear -= 0;
@@ -190,7 +190,7 @@
                         document.getElementById("zone"+(i+1)+"").innerText = zoneList;
                         for(var j=0; j<result.availableSite.length; j++){
                            if(result.zoneList[i].zone_code == result.availableSite[j].zone_code){
-                              siteList += "<a href='#check' onclick='insitezone("+result.availableSite[j].site_code+")' alt='N'>"+result.availableSite[j].site_name+"</a><br>";
+                              siteList += "<a id='insitezone"+result.availableSite[j].site_code+ "' href='#check' onclick='insitezone("+result.availableSite[j].site_code+")' alt='N'>"+result.availableSite[j].site_name+"</a><br>";
                            }
                         }
                         document.getElementById("site"+(i+1)+"").innerHTML = siteList;
@@ -234,8 +234,10 @@
    
    
    function insitezone(sitecode){
+      offPointSite();
 	   $("#bookForm>div>input[name='book_sitecode']").val(sitecode);
-	   
+      clickedSiteCode=sitecode;
+      onPointSite();
    }
    function isDisabledDate(testDate){
       realToday = new Date();
@@ -311,7 +313,12 @@
       }
 
    }
-   
+   function onPointSite(){
+      $('#insitezone' + clickedSiteCode + '').css("background-color", 'rgb(247,233,231)');
+   }
+   function offPointSite(){
+      $('#insitezone' + clickedSiteCode + '').css("background-color", 'white');
+   }
    
 </script>
 <style>
