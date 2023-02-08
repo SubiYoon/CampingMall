@@ -120,11 +120,11 @@
 <div class="our_room">
    <div class="container">
       <div class="row">
-         <div class="col-md-12">
+         <!-- <div class="col-md-12">
             <div class="titlepage">
                <p class="margin_0">캠핑장 구역-사이트를 확인하세요</p>
             </div>
-         </div>
+         </div> -->
       </div>
 
       <div class="zone">
@@ -138,9 +138,12 @@
             </div>
             <div class="col-md-6 col-sm-6">
                <div id="serv_hover" class="room">
-                  <div class="bed_room">
+                  <div class="bed_room zonename">
+                  	<h5>camping site</h5>
                      <h3 th:text="${site.site_name}"></h3>
+                     <h5>* * *</h5>
                      <p th:text="${site.site_content}"></p>
+                     <h5>* * *</h5>
                   </div>
                </div>
             </div>
@@ -151,11 +154,12 @@
          <div class="row">
             <div class="col-md-12 col-sm-12">
                <div id="serv_hover" class="room">
-                  <div class="bed_room card">
-                     <h3>한줄 리뷰</h3>
+                  <div class="bed_room card reviewname">
+                  	<h5>review of the site customer</h5>
+                    <h3 th:text="${site.site_name}+' 사이트 이용 고객의 후기입니다.'"></h3>
                      <div id="viewList"></div>
                      <form id="review_score">
-                        <div class="star-rating">
+                        <div class="star-rating starleft">
                            <input type="radio" id="star5" name="rating" value="5" onclick="setRatingValue(this.value)" /><label for="star5">★</label>
                            <input type="radio" id="star4" name="rating" value="4" onclick="setRatingValue(this.value)" /><label for="star4">★</label>
                            <input type="radio" id="star3" name="rating" value="3" onclick="setRatingValue(this.value)" /><label for="star3">★</label>
@@ -163,8 +167,10 @@
                            <input type="radio" id="star1" name="rating" value="1" onclick="setRatingValue(this.value)" /><label for="star1">★</label>
                         </div>
                         <div class="star-rating">
-                        <input type="text" name="review_content"/>
-						<a href="#review_upload_button" class="btn2">등록</a>
+                        	<input type="text" name="review_content"/>
+						</div>
+						<div class="star-rating starright">
+							<a href="#review_upload_button" class="btn2">등록</a>
 						</div>
                      </form>
                   </div>

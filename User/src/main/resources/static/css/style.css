@@ -981,11 +981,11 @@ button {
 
 /** end 공지사항 section **/
 
-/** about section **/
+/** about(편의시설) section **/
 
 .about {
      background-color: #fff;
-     padding-top: 85px;
+     padding-top: 65px;
 }
 
 .about .titlepage {
@@ -997,7 +997,21 @@ button {
 }
 
 .about .titlepage h2 {
-     margin-bottom: 35px;
+     margin: 35px;
+}
+
+.about h5 {
+     color: gray;
+     line-height: 20px;
+     font-family: 'Hahmlet', sans-serif;
+     font-weight: 500;
+     transition: ease-in all 0.5s;
+}
+
+.aboutname h5{
+	width: 100%;
+	margin-bottom: 0px;
+	color: #BDBDBD !important;
 }
 
 .about .titlepage p {
@@ -1018,7 +1032,10 @@ button {
 
 .about_img figure img {
      width: 100%;
-     transition: all .5s;
+     height: 300px;
+     transition: all .2s;
+     object-fit: cover;
+     margin: 10px;
 }
 
 .about_img figure img:hover {
@@ -1032,8 +1049,7 @@ button {
 
 .our_room {
      background-color: #f4f5f7;
-     padding: 60px 0 30px 0;
-     margin-top: 60px;
+     padding: 30px 0 30px 0;
 }
 
 .our_room .titlepage {
@@ -1049,8 +1065,8 @@ button {
 .our_room .room {
      text-align: center;
      background-color: #fff;
-     margin-bottom: 30px;
-     transition: ease-in all 0.5s;
+     margin: 30px 0px 30px 0px;
+     transition: ease-in all 0.1s;
 }
 
 .our_room .room .room_img {
@@ -1066,6 +1082,7 @@ button {
      height: 300px;
      transition: all .2s;
      object-fit: cover;
+     margin: 10px;
 }
 
 .our_room .room .room_img figure img:hover {
@@ -1073,78 +1090,172 @@ button {
 }
 
 .our_room .room .bed_room {
-     padding: 33px 30px;
-     height: 100%;
+    padding: 10px 30px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .our_room .room .bed_room h3 {
      color: #121212;
-     font-size: 25px;
+     font-size: 30px;
+     line-height: 20px;
+     font-family: 'Do Hyeon', sans-serif;
+     font-weight: 600;
+     transition: ease-in all 0.5s;
+}
+
+.zonename h3{
+	margin-bottom: 15px;
+	font-size: 32px !important;
+	font-family: 'Hahmlet', sans-serif !important;
+}
+
+.our_room .room .bed_room h5 {
+     color: gray;
      line-height: 20px;
      font-family: 'Hahmlet', sans-serif;
      font-weight: 500;
      transition: ease-in all 0.5s;
 }
 
+.zonename h5{
+	width: 100%;
+	margin-bottom: 0px;
+	color: #BDBDBD !important;
+}
+
+.zonename p{
+	width: 100%;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
 .our_read_more {
      text-align: center;
+     font-weight: 300;
      margin-bottom: 20px;
 }
 
-
 .zone {
      background-color: #fff;
-     padding: 20px 10px 20px 10px;
+     padding: 20px 10px 0px 10px;
+}
+
+.siteall{
+	width:100%;
 }
 
 #siteimg {
-     float: left;
-     text-align: center;
-     font-size: 20px;
-     background-color: #fff;
-     margin-top: 30px;
-     margin-left: 8%;
-     transition: all .2s;
+	width:180px;
+	height: 260px;
+	border: 1px solid #D5D5D5;
+	margin: 5px;
+	padding: 10px;
+    float: left;
+    background-color: #fff;
+    transition: all .2s;
+}
+
+#siteimg {
+	font-family: 'Hahmlet', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	color: black;
+}
+
+.sitetop{
+	padding-top: 15px;
+}
+
+.sitetdright{
+	width: 10%;
+	font-family: 'Hahmlet', sans-serif;
+	color: #BDBDBD;
+	text-align: right;
+	line-height: 10px;
+	padding-right: 20px;
+	padding-bottom: 15px;
+	font-size: 8px;
+}
+
+.sitetdleft{
+	text-align: left;
+	line-height: 21px;
+	padding-left: 20px;
+	padding-bottom: 15px;
+}
+
+.sitetdleft a:hover{
+	color: black;
 }
 
 #siteimg img {
-     width: 100px;
-     height: 100px;
+     width: 140px;
+     height: 160px;
      object-fit: cover;
 }
 
 #siteimg:hover {
-      transform: scale(1.2);
+	background-color: #EAEAEA;
+	border: 2px solid #D5D5D5;
+    transform: scale(1.05);
 }
 
+.reviewname h3{
+	margin-bottom: 30px !important;
+	line-height: 30px !important;
+}
 
-   .star-rating {
+.reviewname h5{
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 5px;
+	color: #BDBDBD !important;
+}
+
+.star-rating {
       direction: rtl;
-      display: inline;
-   }
+      display: block;
+}
+
+.starleft{
+	text-align: left !important;
+	margin-left: 5%;
+	height: 30px;
+}
+
+.starright{
+	text-align: right !important;
+	margin-right: 5%;
+	margin-bottom: 15px;
+}
    
-   .star-rating input{
-      width: 70%;
+.star-rating input{
+      width: 90%;
       height: 40px;
-      margin: 10px;
-   }
+      margin: 15px;
+}
    
-   .star-rating a{
-   		background-color: #009898;
-      	width: 100px;
-   }
+.star-rating a{
+	background-color: #009898;
+	width: 100px;
+	padding: 3px 33px 3px 0px !important;
+}
 
-   .star-rating input[type=radio] {
+.star-rating input[type=radio] {
       display: none;
-   }
+}
 
-   .star-rating label {
+.star-rating label {
       display: inline-block;
       position: relative;
       width: 1.1em;
-      font-size: 2em;
+      font-size: 1.6em;
       color: #000;
-   }
+}
 
    .star-rating label:hover,
    .star-rating label:hover~label {
@@ -1539,10 +1650,11 @@ ul.social_icon li a:hover {
 
 .back_re .title h2 {
      color: #fff;
-     font-size: 40px;
+     font-size: 42px;
+     letter-spacing: 10px;
      padding: 40px 0;
-     font-family: 'Hahmlet', sans-serif;
-     font-weight: 600;
+     font-family: 'Do Hyeon', sans-serif;
+     font-weight: 400;
      text-transform: uppercase;
      line-height: 35px;
 }
