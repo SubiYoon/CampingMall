@@ -1,35 +1,24 @@
-package com.camp.camping.Controller;
-
+package com.camp.camping.service;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import com.camp.camping.DTO.WeatherDTO;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
-@RestController
-@RequestMapping("/weather")
-public class WeatherController {
+@Service
+public class WeatherService{
 	
-	@GetMapping("/getweather")
+	
 	public JSONObject getWeather() throws Exception{
 		
 		WeatherDTO weather=new WeatherDTO();
@@ -124,7 +113,6 @@ public class WeatherController {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
-        System.out.println("responescode: "+conn.getResponseCode());
         
         BufferedReader rd;
         if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
@@ -155,13 +143,9 @@ public class WeatherController {
 	
 	
 	 
-	
+     
+
 }
-
-
-	
-	
-	
-	
-	
-
+    
+    
+    

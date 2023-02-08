@@ -2,11 +2,15 @@ package com.camp.camping.Controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +22,7 @@ import com.camp.camping.DTO.CompanyDTO;
 import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.service.BookService;
 import com.camp.camping.service.HomeService;
+import com.camp.camping.service.WeatherService;
 
 @Controller
 @RequestMapping("/book")
@@ -28,6 +33,8 @@ public class BookController {
 	BookService service;
 	@Autowired
 	HomeService serviceH;
+	@Autowired
+	WeatherService serviceW;
 	
 	@RequestMapping("")
 	public String main(Model model, HttpSession session) {
@@ -43,6 +50,28 @@ public class BookController {
 			e.printStackTrace();
 			System.out.println("CONTENT_FAIL");
 		}
+		
+		try {
+			JSONObject weatherjson=serviceW.getWeather();
+			model.addAttribute("weatherjson", weatherjson);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		List<Date> wdate=new ArrayList<>();
+		for(int i=3;i<10;i++) {
+			Date date=new Date();
+			date.setDate(date.getDate()+i);
+			wdate.add(date);
+		}
+		
+		
+		model.addAttribute("wdate", wdate);
+		
+		
+		
+		
+		
 		
 		model.addAttribute("center", dir+"book");
 		return "main";
