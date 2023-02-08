@@ -93,7 +93,7 @@ public class UserController {
 						user.setUser_tel1("이용중");
 					}
 				}
-
+				
 				userAllList.add(user);
 
 			}
