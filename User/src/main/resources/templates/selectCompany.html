@@ -49,10 +49,9 @@
 
                             <div class="pricing-list">
                                 <ul>
-                                    <li><i class="fa fa-envelope"></i>1,000 messages</li>
-                                    <li><i class="fa fa-signal"></i><span>limited</span> data</li>
-                                    <li><i class="fa fa-user"></i><span>limited</span> users</li>
-                                    <li><i class="fa fa-smile-o"></i>first 10 day free</li>
+                                    <li><i class="fa fa-user"></i><span th:text="${companyList.home_owner}"></span></li>
+                                    <li><i class="fa fa-signal"></i><span th:text="${companyList.home_tell}"></span></li>
+                                    <li><i class="fa fa-smile-o"></i><span th:text="${companyList.home_address}"></span></li>
                                 </ul>
                             </div>
                         </div>
