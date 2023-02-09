@@ -552,12 +552,16 @@ button {
      z-index: 70;
 }
 
+.row-cb{
+	margin: 5px !important;
+}
+
 #modal_cb .modal_cb-content {
-     width: 320px;
-     height: 600px;
+     width: 330px;
+     height: 650px;
      margin: auto 10px 40px auto;
      border-radius: 20px;
-     padding: 10px 2%;
+     padding: 20px 2%;
      background: #fff;
      border: 2px solid #666;
      animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
@@ -575,8 +579,10 @@ button {
 
 #modal_cb button {
      background-color: #009898;
+     border-radius: 50px;
      padding: 5px 0;
      color: #fff;
+     padding: 5px 10px;
 }
 
 #modal_cb>label {
@@ -585,7 +591,13 @@ button {
 }
 
 #modal_cb #msg {
-     width: 300px;
+     width: 270px;
+     background-color: #FCFCFC !important;
+     border-color: #BDBDBD !important;
+}
+
+#modal_cb .msg {
+     font-weight: bold;
 }
 
 #modal_cb #disconnect {
@@ -598,6 +610,10 @@ button {
 #modal_cb #chat {
      max-height: 350px;
      overflow-y: auto;
+}
+
+.row-chat{
+	margin: 15px 0px;
 }
 
 /*-- 챗봇모달용 end--*/
