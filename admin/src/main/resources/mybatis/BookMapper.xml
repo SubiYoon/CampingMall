@@ -97,12 +97,15 @@
 			     book.book_state book_state,
 			     site.site_name  site_name,
 			     user.user_name  user_name
-	      FROM   book
+				FROM   book
+				JOIN user
+	             ON book.user_code = user.user_code
 		         JOIN site
 	             ON book.site_code = site.site_code
-	     	     JOIN user
-	             ON book.user_code = user.user_code
-		  ORDER  BY book_writedate DESC 
+	     	     JOIN image
+                 ON book.site_code = image.site_code
+                 WHERE image.company_code = #{company_code}
+		  ORDER  BY book_writedate DESC;
        </select>
     
     <select id="selectAllState" resultType="map">

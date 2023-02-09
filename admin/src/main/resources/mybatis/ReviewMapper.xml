@@ -55,7 +55,12 @@
 		         ON review.book_code = book.book_code
 		       JOIN user
 		         ON book.user_code = user.user_code
-		ORDER  BY review_code DESC
+			   JOIN site
+				 ON book.site_code = site.site_code
+			   JOIN image
+				 ON site.site_code = image.site_code
+			where company_code=#{company_code}
+		ORDER  BY review_code DESC;
     </select>
     
     

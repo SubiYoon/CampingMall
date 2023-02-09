@@ -129,15 +129,16 @@ public class MainController {
         
         
         try {
-			List<Map<String,Object>> books=serviceB.selectAllmain();
+			List<Map<String,Object>> books=serviceB.selectAllmain(companyCode);
 			model.addAttribute("books",books);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
         
 		try {
-			List<Map<String, Object>> reviews = serviceR.selectAllmain();
+			List<Map<String, Object>> reviews = serviceR.selectAllmain(companyCode);
 			model.addAttribute("reviews",reviews);
 		} catch (Exception e) {
 			e.printStackTrace();

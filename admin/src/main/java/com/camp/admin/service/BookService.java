@@ -753,8 +753,8 @@ public class BookService implements MyService<Integer, BookDTO> {
                 company_code));
     }
 
-    public List<Map<String, Object>> selectAllmain() throws Exception {
-        return mapper.selectAllmain();
+    public List<Map<String, Object>> selectAllmain(int companyCode) throws Exception {
+        return mapper.selectAllmain(companyCode);
     }
 
     public List<BookDTO> selectByCompanyCodeAndYearMonth(int company_code, String stringYearMonth) {
