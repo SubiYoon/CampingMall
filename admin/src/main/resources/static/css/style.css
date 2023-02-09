@@ -249,7 +249,7 @@ h6 {
 }
 
 .card-title {
-  padding: 20px 0 15px 0;
+  padding: 20px 0 10px 0;
   font-size: 18px;
   font-weight: 500;
   color: #012970;
@@ -1236,6 +1236,15 @@ h6 {
     max-width: 50%;
   }
 }
+/*--------------------------------------------------------------
+# company 페이지
+--------------------------------------------------------------*/
+
+.comLogoEdit img{
+	width:380px; 
+	height: 200px;
+}
+
 
 /*--------------------------------------------------------------
 # Footer
@@ -1335,11 +1344,11 @@ h6 {
 
 .Btn {
      position: absolute;
-     bottom: 5%;
-     right: 5%;
+     bottom: 3%;
+     right: 3%;
 }
 .Btn a, input{
-     width: 100px;
+     width: 150px;
 }
 
 /*--------------------------------------------------------------
@@ -1421,8 +1430,12 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# zone
+# zone, facility
 --------------------------------------------------------------*/
+.row-zone{
+	max-width: 1200px;
+}
+
 .zonetitle{
 	display: flex;
 	justify-content: space-between;
@@ -1430,8 +1443,42 @@ h6 {
 }
 
 .zoneimg{
-	width: 50%;
+	height: 500px;
+	width:100%;
 	margin-bottom: 20px;
+	object-fit: fill;
+}
+
+.siteimg{
+	height: 300px;
+	width:100%;
+	margin-bottom: 20px;
+	object-fit: fill;
+}
+
+.zone-col-12 h5, .site-col-6 h5{
+	font-size: 36px;
+	font-weight: bold;
+	margin-top: 12px;
+	margin-left: 20px;
+}
+
+.zone-col-12 p, .site-col-6 p{
+	margin: 20px;
+}
+
+.zone-col-12{
+	max-width: 1200px; 
+	margin: 0px auto;
+}
+
+.site-col-6{
+	max-width: 600px; 
+	margin: 0px auto;
+}
+
+.card-radius{
+	border-radius: 20px;
 }
 
 /*--------------------------------------------------------------
