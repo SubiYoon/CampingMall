@@ -276,12 +276,23 @@ button {
 .indexcontr h2{
 	padding: 0px 15px;
 }
+.indexcontent{	
+}
 
 .indexcontent h3{
 	padding: 0px;
 }
 .indexcontent p{
+	margin-bottom: 20px;
 	padding: 20px;
+	height: 165px;
+	white-space: normal;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
 }
 
 .indexcontr img{
@@ -463,25 +474,69 @@ button {
 
 /*-- 캠핑장 선택버튼 --*/
 #comp_select {
+	width:50px;
+	border-radius:50%;
+	overflow: hidden;
+	
      visibility: visible;
      position: fixed;
      z-index: 60;
 
      margin: 10px 10px 10px 10px;
-     box-shadow: 0 5px 10px 0 rgba(31, 38, 135, 0.37);
+     box-shadow: 0 5px 10px 0 rgba(20, 38, 135, 0.5);
 
-     top: 5%;
-     right: 20px;
+     bottom: 5%;
+     right: 90px;
+     
+     transition: all 0.2s;
 }
 
-/*-- 챗봇모달용 --*/
-#modal_cbicon {
+#comp_select:hover {
+	width:60px;
+	border-radius:50%;
+	overflow: hidden;
+	
      visibility: visible;
      position: fixed;
      z-index: 60;
 
      margin: 10px 10px 10px 10px;
-     box-shadow: 0 5px 10px 0 rgba(31, 38, 135, 0.37);
+     box-shadow: 0 5px 10px 0 rgba(20, 38, 135, 0.5);
+
+     bottom: 5%;
+     right: 90px;
+}
+
+/*-- 챗봇 선택버튼 --*/
+#modal_cbicon {
+	width:50px;
+	border-radius:50%;
+	overflow: hidden;
+	
+     visibility: visible;
+     position: fixed;
+     z-index: 60;
+
+     margin: 10px 10px 10px 10px;
+     box-shadow: 0 5px 10px 0 rgba(31, 38, 135, 0.5);
+
+     bottom: 5%;
+     right: 20px;
+     
+     transition: all 0.2s;
+}
+
+#modal_cbicon:hover {
+	width:60px;
+	border-radius:50%;
+	overflow: hidden;
+	
+     visibility: visible;
+     position: fixed;
+     z-index: 70;
+
+     margin: 10px 10px 10px 10px;
+     box-shadow: 0 5px 10px 0 rgba(31, 38, 135, 0.5);
 
      bottom: 5%;
      right: 20px;
@@ -505,6 +560,13 @@ button {
      padding: 10px 2%;
      background: #fff;
      border: 2px solid #666;
+     animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+     -webkit-transition: all .2s ease-out;
+	    -moz-transition: all .2s ease-out;
+	    -ms-transition: all .2s ease-out;
+	    -o-transition: all .2s ease-out;
+	    transition: all .2s ease-out;
+     
 }
 
 #modal_cb .modal_cb-btn {
@@ -1430,8 +1492,12 @@ button {
      transition: all .5s;
 }
 
+.index_BI img {
+	height:300px;
+}
+
 .blog .blog_box .blog_img figure img:hover {
-     transform: scale(1.2);
+     transform: scale(1.1);
 }
 
 .blog .blog_box .blog_room {
