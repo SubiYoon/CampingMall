@@ -13,4 +13,6 @@ import com.camp.admin.frame.MyMapper;
 public interface NoticeMapper extends MyMapper<Integer, NoticeDTO>{
 	
 	public List<NoticeDTO> noticeLv(Integer companycode) throws Exception;
+	
+	public List<NoticeDTO> selectByCompanycode(Integer k) throws Exception;
 }

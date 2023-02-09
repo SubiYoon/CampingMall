@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.camp.admin.DTO.CompanyDTO;
 import com.camp.admin.DTO.NoticeDTO;
 import com.camp.admin.service.NoticeService;
 
@@ -23,10 +24,13 @@ public class NoticeController {
 
 //공지사항글목록	
 	@RequestMapping("")
-	public String main(Model model) {
+	public String main(Model model, HttpSession session) {
 		List<NoticeDTO> list = null;
+		
+		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+		
 		try {
-			list = ns.selectAll();
+			list = ns.selectByCompanycode(company.getCompany_code());
 			model.addAttribute("plist", list);
 		} catch (Exception e) {
 			e.printStackTrace();
