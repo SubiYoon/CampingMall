@@ -120,8 +120,8 @@
 	FROM   book
 	       JOIN site
 	         ON book.site_code = site.site_code
-	       JOIN USER
-	         ON book.user_code = USER.user_code
+	       JOIN user
+	         ON book.user_code = user.user_code
 	WHERE  book_state = #{state}
     </select>
     

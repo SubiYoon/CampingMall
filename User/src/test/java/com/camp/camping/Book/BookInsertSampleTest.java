@@ -27,8 +27,8 @@ public class BookInsertSampleTest {
 
         //사이트 코드 부분
         int start_site_code = 1;
-        int end_site_code = 20;
-        int start_merchant_uid = 10;
+        int end_site_code = 40;
+        int start_merchant_uid = 11;
         int sample_count = 190;
 
         String[] center = {"가", "나", "다", "라", "마", "바", "사"};
