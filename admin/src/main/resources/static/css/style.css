@@ -1457,8 +1457,8 @@ h6 {
 }
 
 .zone-col-12 h5, .site-col-6 h5{
-	font-size: 36px;
-	font-weight: bold;
+	font-family: "Jua", sans-serif;
+	font-size: 46px;
 	margin-top: 12px;
 	margin-left: 20px;
 }
