@@ -184,7 +184,7 @@
           And zone.zone_code = site.zone_code
           And site.site_code = book.site_code
           And (book.book_checkin LIKE #{stringYearMonth} OR book.book_checkout LIKE #{stringYearMonth})
-          And book.book_state = 1
+          And (book.book_state = 1 OR book.book_state = 2 OR book.book_state = 4)
 
     </select>
 
@@ -209,7 +209,7 @@
           And zone.zone_code = site.zone_code
           And site.site_code = book.site_code
           And book.book_writedate LIKE #{stringYearMonth}
-          And book.book_state = 1
+          And (book.book_state = 1 OR book.book_state = 2 OR book.book_state = 4)
 
     </select>
      
