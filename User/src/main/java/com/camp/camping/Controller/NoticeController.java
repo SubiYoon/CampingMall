@@ -37,7 +37,7 @@ public class NoticeController {
 		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
 		
 		try {
-			list = ns.selectAll();
+			list = ns.selectByCompanycode(company.getCompany_code());
 			model.addAttribute("plist", list);
 		} catch (Exception e) {
 			e.printStackTrace();
