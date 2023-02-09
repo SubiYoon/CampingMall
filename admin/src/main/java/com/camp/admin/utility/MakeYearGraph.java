@@ -61,7 +61,7 @@ public class MakeYearGraph {
         List<String> yearRevenue = new ArrayList<>();
         for (MakeMainGraph graph : graphList) {
             Map<String, Double> month = graph.ZoneRevenueMap(ScZn);
-            year.forEach((key, value) -> month.merge(key, value, (v1, v2) -> v1 + v2));
+            month.forEach((key, value) -> year.merge(key, value, Double::sum));
         }
         labelList = new ArrayList<>(year.keySet());
         for (double revenue : year.values()) {
@@ -75,7 +75,7 @@ public class MakeYearGraph {
         List<String> yearRevenue = new ArrayList<>();
         for (MakeMainGraph graph : graphList) {
             Map<String, Integer> month = graph.ZoneVisitorMap(ScZn);
-            year.forEach((key, value) -> month.merge(key, value, (v1, v2) -> v1 + v2));
+            month.forEach((key, value) -> year.merge(key, value, Integer::sum));
         }
         labelList = new ArrayList<>(year.keySet());
         for (double revenue : year.values()) {
