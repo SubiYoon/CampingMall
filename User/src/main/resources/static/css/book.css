@@ -1,0 +1,39 @@
+.weahter-row{
+	display: flex;
+	justify-content:center;
+}
+
+.weahter-row>div{
+	margin:5px;
+	padding:10px;
+	background-color: #cccccc45;
+	border-radius: 8px;
+}
+
+.weahter-row>div>div{
+	text-align: center;	
+}	
+
+.verticality{
+	display:flex; 
+	flex-direction: column;
+}
+
+.weahter{
+	padding:10px;
+	
+}
+.weather-info >div:nth-child(1){
+    margin-left: auto;
+}
+.weather-info >div:nth-last-child(1){
+    margin-right: auto;
+}
+
+
+@media (max-width:600px){
+	.weahter-row{
+		flex-wrap:wrap;
+		justify-content:center;
+	}
+}

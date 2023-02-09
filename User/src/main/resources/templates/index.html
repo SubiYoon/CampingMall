@@ -71,9 +71,9 @@
 <div class="main_notice">
    <div class="container-fluid">
       <div class="row">
-         <div class="col-md-12">
+         <div class="col-md-12 indexmargin">
             <div class="titlepage">
-               <h2>&nbsp;&nbsp;&nbsp;주요공지&nbsp;</h2>
+               <h2>주요공지</h2>
                <ul id="main_notice_list">
                		<div th:each="noticeLv:${noticeLv}">
                			<li>
@@ -93,11 +93,11 @@
 	
 <!-- 구역소개 -->
 <div class="our_room">
-   <div class="container">
-      <div class="row">
-         <div class="col-md-12">
+   <div class="container indexcontr">
+      <div class="row ">
+         <div class="col-md-12 indexmargin">
             <div class="titlepage">
-               <h2>&nbsp;&nbsp;&nbsp;구역소개&nbsp;</h2>
+               <h2>구역소개</h2>
                <p>캠핑장 구역을 확인할 수 있습니다.</p>
             </div>
          </div>
@@ -110,7 +110,7 @@
 						<figure><img th:src="'images/'+${img.image_file}" alt="#"/></figure>
 					</span>
 				</div>
-               <div class="bed_room">
+               <div class="bed_room indexcontent">
                   <h3 th:text="${zone.zone_name}"></h3>
                   <p th:text="${zone.zone_content}"></p>
                </div>
@@ -131,8 +131,8 @@
    <div class="container">
       <div class="row">
          <div class="col-md-12">
-            <div class="titlepage">
-               <h2>&nbsp;&nbsp;&nbsp;편의시설&nbsp;</h2>
+            <div class="titlepage indexmargin">
+               <h2>편의시설</h2>
             </div>
          </div>
       </div>
@@ -159,8 +159,8 @@
    <div class="container">
       <div class="row">
          <div class="col-md-12">
-            <div class="titlepage">
-               <h2>&nbsp;이용 후기</h2>
+            <div class="titlepage indexmargin">
+               <h2>이용후기</h2>
                <p>실 이용 고객의 최근 리뷰를 확인하세요.</p>
             </div>
          </div>

@@ -271,6 +271,35 @@ button {
      width: 280px;
 }
 
+/*---------- 인덱스 ---------*/
+
+.indexcontr h2{
+	padding: 0px 15px;
+}
+
+.indexcontent h3{
+	padding: 0px;
+}
+.indexcontent p{
+	padding: 20px;
+}
+
+.indexcontr img{
+	width: 300px !important;
+	margin: 15px !important;
+	height: 250px !important;
+}
+
+.indexmargin{
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+
+/*---------- end인덱스 ---------*/
+
+
+
 /*-- 로그인모달용 --*/
 
 #modal {
@@ -710,12 +739,9 @@ button {
      margin-left: 9%;
 }
 
-
-
-
 .titlepage {
      text-align: center;
-     padding-bottom: 40px;
+     padding-bottom: 20px;
 }
 
 .titlepage h2 {
@@ -729,21 +755,24 @@ button {
 
 .titlepage h2::before {
      position: absolute;
-     content: "";
-     background-color: #009898;
+     content: "ㅡ";
+     color: #009898;
+     font-weight: bold;
      width: 20px;
      height: 4px;
-     transform: rotate(-36deg);
+     transform: rotate(135deg);
+     top: 15px;
 }
 
 .titlepage h2::after {
      position: absolute;
-     content: "";
-     background-color: #009898;
-     width: 20px;
-     height: 4px;
-     transform: rotate(-36deg);
-     bottom: 10px;
+     content: "ㅡ";
+     color: #009898;
+     font-weight: bold;
+     width: 85px;
+     height: 10px;
+     transform: rotate(135deg);
+     top: 50px;
 }
 
 .d_flex {
@@ -981,30 +1010,49 @@ button {
 
 /** end 공지사항 section **/
 
-/** about section **/
+/** about(편의시설) section **/
 
 .about {
-     background-color: #fff;
-     padding-top: 85px;
+    background-color: #fff;
+    padding-top: 65px;
+	text-align: center;
+}
+
+.aboutrow{
+	margin-bottom: 30px;
 }
 
 .about .titlepage {
-     text-align: left;
      padding-bottom: 0;
-     max-width: 443px;
      width: 100%;
      float: right;
 }
 
 .about .titlepage h2 {
-     margin-bottom: 35px;
+     margin: 40px;
+}
+
+.about h5 {
+     color: gray;
+     line-height: 20px;
+     font-family: 'Hahmlet', sans-serif;
+     font-weight: 500;
+     transition: ease-in all 0.5s;
+}
+
+.aboutname h5{
+	text-align: center;
+	width: 100%;
+	margin-bottom: 0px;
+	color: #BDBDBD !important;
 }
 
 .about .titlepage p {
-     font-weight: 400;
-     font-size: 17px;
-     line-height: 28px;
-     padding-bottom: 35px;
+	color: #121212;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 28px;
+    padding-bottom: 25px;
 }
 
 .about_img {
@@ -1018,7 +1066,10 @@ button {
 
 .about_img figure img {
      width: 100%;
-     transition: all .5s;
+     height: 550px;
+     transition: all .2s;
+     object-fit: fill;
+     margin: 10px;
 }
 
 .about_img figure img:hover {
@@ -1032,8 +1083,7 @@ button {
 
 .our_room {
      background-color: #f4f5f7;
-     padding: 60px 0 30px 0;
-     margin-top: 60px;
+     padding: 30px 0 30px 0;
 }
 
 .our_room .titlepage {
@@ -1049,8 +1099,8 @@ button {
 .our_room .room {
      text-align: center;
      background-color: #fff;
-     margin-bottom: 30px;
-     transition: ease-in all 0.5s;
+     margin: 30px 0px 30px 0px;
+     transition: ease-in all 0.1s;
 }
 
 .our_room .room .room_img {
@@ -1066,6 +1116,7 @@ button {
      height: 300px;
      transition: all .2s;
      object-fit: cover;
+     margin: 10px;
 }
 
 .our_room .room .room_img figure img:hover {
@@ -1073,78 +1124,172 @@ button {
 }
 
 .our_room .room .bed_room {
-     padding: 33px 30px;
-     height: 100%;
+    padding: 10px 30px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .our_room .room .bed_room h3 {
      color: #121212;
-     font-size: 25px;
+     font-size: 30px;
+     line-height: 20px;
+     font-family: 'Do Hyeon', sans-serif;
+     font-weight: 600;
+     transition: ease-in all 0.5s;
+}
+
+.zonename h3{
+	margin-bottom: 15px;
+	font-size: 32px !important;
+	font-family: 'Hahmlet', sans-serif !important;
+}
+
+.our_room .room .bed_room h5 {
+     color: gray;
      line-height: 20px;
      font-family: 'Hahmlet', sans-serif;
      font-weight: 500;
      transition: ease-in all 0.5s;
 }
 
+.zonename h5{
+	width: 100%;
+	margin-bottom: 0px;
+	color: #BDBDBD !important;
+}
+
+.zonename p{
+	width: 100%;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
 .our_read_more {
      text-align: center;
+     font-weight: 300;
      margin-bottom: 20px;
 }
 
-
 .zone {
      background-color: #fff;
-     padding: 20px 10px 20px 10px;
+     padding: 20px 10px 0px 10px;
+}
+
+.siteall{
+	width:100%;
 }
 
 #siteimg {
-     float: left;
-     text-align: center;
-     font-size: 20px;
-     background-color: #fff;
-     margin-top: 30px;
-     margin-left: 8%;
-     transition: all .2s;
+	width:180px;
+	height: 260px;
+	border: 1px solid #D5D5D5;
+	margin: 5px;
+	padding: 10px;
+    float: left;
+    background-color: #fff;
+    transition: all .2s;
+}
+
+#siteimg {
+	font-family: 'Hahmlet', sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	color: black;
+}
+
+.sitetop{
+	padding-top: 15px;
+}
+
+.sitetdright{
+	width: 10%;
+	font-family: 'Hahmlet', sans-serif;
+	color: #BDBDBD;
+	text-align: right;
+	line-height: 10px;
+	padding-right: 20px;
+	padding-bottom: 15px;
+	font-size: 8px;
+}
+
+.sitetdleft{
+	text-align: left;
+	line-height: 21px;
+	padding-left: 20px;
+	padding-bottom: 15px;
+}
+
+.sitetdleft a:hover{
+	color: black;
 }
 
 #siteimg img {
-     width: 100px;
-     height: 100px;
+     width: 140px;
+     height: 160px;
      object-fit: cover;
 }
 
 #siteimg:hover {
-      transform: scale(1.2);
+	background-color: #EAEAEA;
+	border: 2px solid #D5D5D5;
+    transform: scale(1.05);
 }
 
+.reviewname h3{
+	margin-bottom: 30px !important;
+	line-height: 30px !important;
+}
 
-   .star-rating {
+.reviewname h5{
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 5px;
+	color: #BDBDBD !important;
+}
+
+.star-rating {
       direction: rtl;
-      display: inline;
-   }
+      display: block;
+}
+
+.starleft{
+	text-align: left !important;
+	margin-left: 5%;
+	height: 30px;
+}
+
+.starright{
+	text-align: right !important;
+	margin-right: 5%;
+	margin-bottom: 15px;
+}
    
-   .star-rating input{
-      width: 70%;
+.star-rating input{
+      width: 90%;
       height: 40px;
-      margin: 10px;
-   }
+      margin: 15px;
+}
    
-   .star-rating a{
-   		background-color: #009898;
-      	width: 100px;
-   }
+.star-rating a{
+	background-color: #009898;
+	width: 100px;
+	padding: 3px 33px 3px 0px !important;
+}
 
-   .star-rating input[type=radio] {
+.star-rating input[type=radio] {
       display: none;
-   }
+}
 
-   .star-rating label {
+.star-rating label {
       display: inline-block;
       position: relative;
       width: 1.1em;
-      font-size: 2em;
+      font-size: 1.6em;
       color: #000;
-   }
+}
 
    .star-rating label:hover,
    .star-rating label:hover~label {
@@ -1231,15 +1376,21 @@ button {
 
 
 /** blog section **/
+/** 예약하기와 메인-리뷰가 섞여 있음**/
 
 .blog {
      background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3) ), url(../images/slide3.jpg);
+	background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3) ), url(../images/slide3.jpg);
      background-repeat: no-repeat;
      background-size: 100% 100%;
      padding: 60px 0 30px 0;
      margin-top: 60px;
 }
 
+.col-titlepage{
+	background-color: #009898;
+	border-radius: 15px;
+}
 .blog .titlepage {
      text-align: center;
 }
@@ -1249,9 +1400,35 @@ button {
 }
 
 .blog .titlepage p {
-     color: #fff;
-     font-size: 17px;
-     margin-top: 20px;
+	color: #fff;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.book{
+	margin-top: 60px;
+}
+
+.book .titlepage p {
+	color: #fff;
+    font-size: 18px;
+  	font-weight: bold;
+    margin-top: 20px;
+}
+
+.col-md-5{
+	margin-left: -20px;
+	margin-right: 20px;
+}
+
+#bookForm{
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#bookForm li{
+	margin-bottom: 15px;
+	line-height: 40px;
 }
 
 .blog .blog_box {
@@ -1285,9 +1462,8 @@ button {
 
 .blog .blog_box .blog_room h3 {
      color: #121212;
-     font-size: 24px;
-     line-height: 20px;
-     font-family: 'Hahmlet', sans-serif;
+     font-size: 18px;
+     font-family: 'Noto Sans KR', sans-serif;
      font-weight: 500;
      padding-bottom: 5px;
      transition: ease-in all 0.5s;
@@ -1330,10 +1506,22 @@ button {
      font-weight: normal;
      box-shadow: 2px 0px 6px rgb(0, 128, 128, 0.20);
 }
+.main_form{
+	text-align: center;
+	position:absolute;
+  	top: 20%;
+}
+.main_form h3 {
+	color: #121212;
+    font-size: 30px;
+    font-family: 'Do Hyeon', sans-serif;
+    font-weight: 300;
+}
 
 .main_form p {
      font-size: 20px;
-     font-weight: normal;
+     margin-top: 15px;
+     padding: 20px;
 }
 
 .main_form .send_btn:hover {
@@ -1449,21 +1637,28 @@ ul.link_menu li a:hover {
      margin-bottom: 20px;
 }
 
-.sub_btn {
-     font-size: 17px;
-     transition: ease-in all 0.5s;
-     background-color: #fff;
-     color: #009898;
-     padding: 8px 0px;
-     max-width: 147px;
-     width: 100%;
-     font-weight: 500;
-     text-transform: uppercase;
-     height: 47px;
+#pay_btn_make{
+	display: block;
+	text-align: center;
+	margin-top: 30px;
+}
+
+.sub_btn{
+	display:inline-block;
+	text-align: center;
+  	width: 50%;
+  	background: #009898;
+  	color: #fff !important;
+  	border-radius: 5px;
+  	font-size: 18px;
+  	font-weight: bold;
+  	margin-top:10px;
+  	margin-bottom:15px;
+ 	padding: 3px;
 }
 
 .sub_btn:hover {
-     background-color: #009898;
+     background-color: black;
      transition: ease-in all 0.5s;
      color: #fff;
 }
@@ -1539,10 +1734,11 @@ ul.social_icon li a:hover {
 
 .back_re .title h2 {
      color: #fff;
-     font-size: 40px;
+     font-size: 42px;
+     letter-spacing: 10px;
      padding: 40px 0;
-     font-family: 'Hahmlet', sans-serif;
-     font-weight: 600;
+     font-family: 'Do Hyeon', sans-serif;
+     font-weight: 400;
      text-transform: uppercase;
      line-height: 35px;
 }
@@ -1690,3 +1886,120 @@ ul.social_icon li a:hover {
   background: #000;
   color: #dee2e6;
 }
+
+/* -----------end 회원가입 ------------*/
+
+/* ----------- 마이페이지 ------------*/
+
+.mypage a{
+	margin-bottom: 30px;
+}
+
+.mypage .titlepage{
+	margin: 30px;
+}
+
+.userinfo_btn{
+	background-color: #009898;
+}
+
+.userinfo_btn:hover{
+	background-color: #121212;
+}
+
+
+/* -----------end 마이페이지 ------------*/
+
+/* ----------- 회원수정(userinfo)------------*/
+
+.userinfo {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
+#updateInfo {
+ 	display: flex;
+  	flex-direction: column;
+  	padding: 20px;
+  	background-color: #f2f2f2;
+  	border-radius: 10px;
+   	box-shadow: 2px 2px 5px #ccc;
+ 	width: 100%;
+  	border-top: 20px solid #009898;
+  	border-bottom: 20px solid #009898;
+  	margin: 50px 0px;
+}
+
+ .updateInfo_label {
+   	margin-top: 20px;
+   	font-weight: bold;
+   	font-size: 16px;
+	font-weight: bold;
+ }
+
+#updateInfo input {
+/*    padding: 10px;
+   margin-top: 10px;
+   border-radius: 5px;
+   border: 1px solid #ccc;
+   width: 100%; */
+   
+  margin: 5px auto;
+  background: #262e49;
+  border: 0;
+  border-radius: 5px;
+  padding: 14px 10px;
+  width: 100%;
+  outline: none;
+  color: #d6d6d6;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
+ }
+
+.updateInfo{
+	margin-top: 70px;
+	margin-bottom: 30px;
+}
+
+#updateInfo input[type = "text"]:focus,#updateInfo input[type = "password"]:focus {
+  border: 1px solid #79A6FE;
+}
+
+#tel input{
+	width: 20%;
+}
+
+#updateInfo a {
+ 	display: inline-block;
+   	padding: 10px 20px;
+   	background-color: #009898;
+   	color: white;
+   	border-radius: 5px;
+   	border: none;
+   	cursor: pointer;
+   	width: 40%;
+   	font-size: 18px;
+   	font-weight: bold;
+   	text-align: center;
+}
+
+#updateInfo a:first-child {
+	margin-left: 6%;
+	margin-right: 3%;
+}
+
+#updateInfo a:last-child {
+	margin-left: 3%;
+	margin-right: 6%;
+}
+ 
+#updateInfo a:hover {
+  background: #000;
+  color: #dee2e6;
+}
+ 
+/* -----------end 회원수정(userinfo)------------*/

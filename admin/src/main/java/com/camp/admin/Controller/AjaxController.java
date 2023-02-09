@@ -70,7 +70,6 @@ public class AjaxController {
         if (dataScale==null||dataScale.contains("M")) {
             try {
                 List<GraphDTO> graphs = new ArrayList<>();
-                System.out.println(stringDate);
                 GraphDTO graphDTO = bookService.MonthSalesGraph(stringDate,companyCode);
                 graphs.add(graphDTO);
                 graphDTO = bookService.MonthlyBookGraph(stringDate,companyCode);
@@ -88,7 +87,6 @@ public class AjaxController {
         } else {
             try {
                 String stringDate2 = stringDate.split("-")[0];
-                System.out.println(stringDate2);
                 List<GraphDTO> graphs = new ArrayList<>();
                 GraphDTO graphDTO = bookService.YearSalesGraph(stringDate2,companyCode);
                 graphs.add(graphDTO);

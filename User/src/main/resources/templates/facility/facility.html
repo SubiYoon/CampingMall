@@ -1,49 +1,52 @@
 <script>
-$(document).ready(function(){
-	$(".nav-item:nth-child(4)").attr('class','nav-item active');
-	$(".notactive:nth-child(4)").attr('class','active');
-});
+   $(document).ready(function () {
+      $(".nav-item:nth-child(4)").attr('class', 'nav-item active');
+      $(".notactive:nth-child(4)").attr('class', 'active');
+   });
 </script>
-      <div class="back_re">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="title">
-                  <h2>편의시설</h2>
-                  </div>
-               </div>
+<div class="back_re">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="title">
+               <h2>편의시설</h2>
             </div>
          </div>
       </div>
-      <div class="about">
-         <div class="container-fluid">
-            <div class="row" th:each="f, fStat : ${facilities}">
-               <div class="col-md-5" th:if="${fStat.odd}">
-                  <div class="titlepage">
-                     <br>
-                     <h2 th:text="${fStat.current.facility_name}"></h2>
-                     <p th:text="${fStat.current.facility_content}"></p>
-                  </div>
-               </div>
-               <div class="col-md-7" th:if="${fStat.odd}">
-                  <div class="about_img">
-                     <br>
-                     <figure><img th:src="'images/' + ${fStat.current.image_file}" alt="#"></figure>
-                  </div>
-               </div>
-               <div class="col-md-7" th:if="${fStat.even}">
-                  <div class="about_img">
-                     <br>
-                     <figure><img th:src="'images/' + ${fStat.current.image_file}" alt="#"></figure>
-                  </div>
-               </div>
-               <div class="col-md-5" th:if="${fStat.even}">
-                  <div class="titlepage">
-                     <br>
-                     <h2 th:text="${fStat.current.facility_name}"></h2>
-                     <p th:text="${fStat.current.facility_content}"></p>
-                  </div>
-               </div>
+   </div>
+</div>
+<div class="about">
+   <div class="container-fluid">
+      <div class="row aboutrow" th:each="f, fStat : ${facilities}">
+         <div class="col-md-5" th:if="${fStat.odd}">
+            <div class="titlepage aboutname">
+               <h2 th:text="${fStat.current.facility_name}"></h2>
+               <h5>* * *</h5>
+               <p th:text="${fStat.current.facility_content}"></p>
+               <h5>* * *</h5>
             </div>
          </div>
+         <div class="col-md-7" th:if="${fStat.odd}">
+            <div class="about_img">
+               <figure><img th:src="'images/' + ${fStat.current.image_file}" alt="#" style="width:100%; height:500px;">
+               </figure>
+            </div>
+         </div>
+         <div class="col-md-7" th:if="${fStat.even}">
+            <div class="about_img">
+               <figure><img th:src="'images/' + ${fStat.current.image_file}" alt="#" style="width:100%; height:500px;">
+               </figure>
+            </div>
+         </div>
+         <div class="col-md-5" th:if="${fStat.even}">
+            <div class="titlepage aboutname">
+               <h2 th:text="${fStat.current.facility_name}"></h2>
+               <h5>* * *</h5>
+               <p th:text="${fStat.current.facility_content}"></p>
+               <h5>* * *</h5>
+            </div>
+         </div>
+
       </div>
+   </div>
+</div>
