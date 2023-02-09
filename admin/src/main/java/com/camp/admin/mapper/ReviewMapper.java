@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface ReviewMapper extends MyMapper<Integer, ReviewDTO> {
 	    List<ReviewDTO> selectByCompanyCode(int company_code);
-		List<Map<String, Object>> selectAllmain();
+		List<Map<String, Object>> selectAllmain(int company_code);
 }

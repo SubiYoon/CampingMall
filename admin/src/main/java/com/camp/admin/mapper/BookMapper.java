@@ -20,7 +20,7 @@ public interface BookMapper extends MyMapper<Integer, BookDTO> {
     int updateBookState(@Param("merchant_uid")String merchant_uid,@Param("state")int state);
     List<BookDTO> selectUserBook(int company_code, String user_id);
     List<BookDTO> selectByWriteDateAndCompanyCode(int company_code, String book_writedate);
-    List<Map<String, Object>> selectAllmain();
+    List<Map<String, Object>> selectAllmain(int company_code);
     List<BookDTO>selectByCompanyCodeAndYearMonth(int company_code, String stringYearMonth);
     List<BookDTO>selectByCompanyCodeAndWriteDate(int company_code,String stringYearMonth);
 }

@@ -13,7 +13,7 @@ INSERT INTO user VALUES(0, 'user9999', 'zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa
 
 -- 상호
 INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('NoopCamping', "logo.png","book_ocline_logo.png"); -- 차후 변경
-INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('GosuCamping', "logo1.png", "sample.png"); -- 차후 변경
+INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('NiceCamping', "logo1.png", "sample.png"); -- 차후 변경
 
 -- 관리자
 insert into `admin`(company_code, admin_id, admin_password) values(1,'admin01','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');

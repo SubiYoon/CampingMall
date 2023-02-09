@@ -104,8 +104,8 @@ public class ReviewService implements MyService<Integer, ReviewDTO> {
     }
     
     
-    public List<Map<String, Object>> selectAllmain() throws Exception{
-    	return mapper.selectAllmain();
+    public List<Map<String, Object>> selectAllmain(int companyCode) throws Exception{
+    	return mapper.selectAllmain(companyCode);
     }
     
     
