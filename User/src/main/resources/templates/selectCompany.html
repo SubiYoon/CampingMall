@@ -2,41 +2,25 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <!-- basic -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Camping</title>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
-    <!-- mobile metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
 
-    <!-- site metas -->
-    <title>Camping</title>
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <!--Icon Fonts-->
+    <link rel="stylesheet" media="screen" href="assets/fonts/font-awesome/font-awesome.min.css" />
 
-    <!-- bootstrap css -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <!-- style css -->
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <!-- Responsive-->
-    <link rel="stylesheet" th:href="@{/css/responsive.css}">
-    <!-- fevicon -->
-    <link rel="icon" th:href="@{/images/fevicon.png}" type="image/gif" />
-    <!-- Scrollbar Custom CSS -->
-    <link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.min.css}">
-    <!-- Tweaks for older IEs-->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
-        media="screen">
+</head>
 
 <script>
     $(document).ready(function(){
-        $('.selectCompany').click(function(){
+        $('.selectCompany > a').click(function(){
             $(this).parent().attr({
                 'method': 'post',
                 'action': '/main',
@@ -46,23 +30,38 @@
     });
 </script>
 
-<body th:each="companyList : ${companyList}">
-    <form>
-        <input type="hidden" name="company_code" th:value="${companyList.company_code}"/>
-        <a class="selectCompany"><img th:src="'/images/' + ${companyList.company_logo1}"/></a>
-    </form>
-</body>
+<body>
+    <!-- Pricing Table Section -->
+    <section id="pricing-table">
+        <div class="container">
+            <div class="row">
+                <div class="pricing">
+                    <div class="col-md-6 col-sm-12 col-xs-12" th:each="companyList : ${companyList}">
+                        <div class="pricing-table">
+                            <div class="pricing-header" >
+                                <p class="pricing-title" th:text="${companyList.company_name}"></p>
+                                <p class="pricing-rate"><img th:src="'/images/' + ${companyList.company_logo1}" /></p>
+                                <form class="selectCompany">
+                                    <input type="hidden" name="company_code" th:value="${companyList.company_code}" />
+                                    <a href="#SelectComapny" class="btn btn-custom">홈페이지로 이동하기</a>
+                                </form>
+                            </div>
 
-</header>
-<!-- end header inner -->
-<!-- Javascript files-->
-<script th:src="@{/js/jquery.min.js}"></script>
-<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/js/jquery-3.0.0.min.js}"></script>
-<!-- sidebar -->
-<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"></script>
-<script th:src="@{/js/custom.js}"></script>
-
+                            <div class="pricing-list">
+                                <ul>
+                                    <li><i class="fa fa-envelope"></i>1,000 messages</li>
+                                    <li><i class="fa fa-signal"></i><span>limited</span> data</li>
+                                    <li><i class="fa fa-user"></i><span>limited</span> users</li>
+                                    <li><i class="fa fa-smile-o"></i>first 10 day free</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pricing Table Section End -->
 </body>
 
 </html>

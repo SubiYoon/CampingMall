@@ -55,10 +55,10 @@ public class MainController {
 			session.invalidate();
 		}
 		List<CompanyDTO> companyList = null;
-		
 		try {
 			companyList = serviceC.selectAll();
 			model.addAttribute("companyList", companyList);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
