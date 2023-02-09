@@ -5,9 +5,10 @@ import com.camp.admin.DTO.BookDTO;
 import com.camp.admin.DTO.GraphDTO;
 import com.camp.admin.DTO.ReservationDTO;
 import com.camp.admin.DTO.SiteDTO;
+import com.camp.admin.DTO.ZoneDTO;
 import com.camp.admin.frame.MyService;
 import com.camp.admin.mapper.BookMapper;
-import com.camp.admin.utility.MakeMonthGraph;
+import com.camp.admin.utility.MakeMainGraph;
 import com.camp.admin.utility.Utility;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -768,13 +769,26 @@ public class BookService implements MyService<Integer, BookDTO> {
 
     }
 
-    public MakeMonthGraph getMonthGraph(int company_code, String stringYearAndMonth)
+    public MakeMainGraph getMonthGraph(int company_code, String stringYearAndMonth)
         throws ParseException {
         List<BookDTO> bookList = selectByCompanyCodeAndYearMonth(company_code,stringYearAndMonth);
         List<BookDTO> bookList2 = selectByCompanyCodeAndWriteDate(company_code,stringYearAndMonth);
         List<ReservationDTO> reservationList = reservationService.selectByCompanyCodeAndYearMonth(company_code,stringYearAndMonth);
-        return new MakeMonthGraph(bookList,reservationList,stringYearAndMonth,bookList2);
+        return new MakeMainGraph(bookList,reservationList,stringYearAndMonth,bookList2);
     }
-
-
+    public Map<String, String> SiteCodeAndZoneNameMap(int company_code) throws Exception {
+        Map<String, String> ScZn = new TreeMap<>();
+        List<SiteDTO> siteList = siteService.selectSet(company_code);
+        List<ZoneDTO> zoneList = zoneService.selectZone(company_code);
+        for(SiteDTO site : siteList){
+            String zoneName="";
+            for(ZoneDTO zone : zoneList){
+                if(zone.getZone_code()==site.getZone_code()){
+                    zoneName = zone.getZone_name();
+                }
+            }
+            ScZn.put(""+site.getSite_code(),zoneName);
+        }
+        return ScZn;
+    }
 }

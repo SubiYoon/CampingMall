@@ -1,6 +1,7 @@
 package com.camp.admin.Controller;
 
-import com.camp.admin.utility.MakeMonthGraph;
+import com.camp.admin.utility.MakeMainGraph;
+import com.camp.admin.utility.MakeYearGraph;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -71,16 +72,17 @@ public class AjaxController {
         if (dataScale==null||dataScale.contains("M")) {
             try {
                 List<GraphDTO> graphs = new ArrayList<>();
-                MakeMonthGraph monthGraph = bookService.getMonthGraph(companyCode,stringDate);
+                MakeMainGraph monthGraph = bookService.getMonthGraph(companyCode,stringDate);
+                Map<String, String> ScZn = bookService.SiteCodeAndZoneNameMap(companyCode);
                 GraphDTO graphDTO = monthGraph.MakeRevenueGraph();
                 graphs.add(graphDTO);
                 graphDTO = monthGraph.MakeBookGraph();
                 graphs.add(graphDTO);
                 graphDTO = monthGraph.MakeVisitorGraph();
                 graphs.add(graphDTO);
-                graphDTO = bookService.MonthlyZoneSalesGraph(stringDate, companyCode);
+                graphDTO = monthGraph.MakeZoneRevenueGraph(ScZn);
                 graphs.add(graphDTO);
-                graphDTO = bookService.MonthlyZoneUserGraph(stringDate, companyCode);
+                graphDTO = monthGraph.MakeZoneVisitorGraph(ScZn);
                 graphs.add(graphDTO);
                 json.put("Graph", graphs);
             } catch (Exception e) {
@@ -89,16 +91,28 @@ public class AjaxController {
         } else {
             try {
                 String stringDate2 = stringDate.split("-")[0];
+                List<MakeMainGraph> graphList = new ArrayList<>();
+                for (int i = 1; i <= 12; i++) {
+                    String stringYearAndMonth = stringDate2;
+                    if (i / 10 < 1) {
+                        stringYearAndMonth += "-0" + i;
+                    } else {
+                        stringYearAndMonth += "-" + i;
+                    }
+                    graphList.add(bookService.getMonthGraph(companyCode, stringYearAndMonth));
+                }
+                Map<String, String> ScZn = bookService.SiteCodeAndZoneNameMap(companyCode);
+                MakeYearGraph yearGraph = new MakeYearGraph(stringDate2,ScZn,graphList);
                 List<GraphDTO> graphs = new ArrayList<>();
-                GraphDTO graphDTO = bookService.YearSalesGraph(stringDate2,companyCode);
+                GraphDTO graphDTO = yearGraph.MakeYearRevenueGraph();
                 graphs.add(graphDTO);
-                graphDTO = bookService.YearlyBookGraph(stringDate2,companyCode);
+                graphDTO = yearGraph.MakeYearBookGraph();
                 graphs.add(graphDTO);
-                graphDTO = bookService.YearlyUserGraph(stringDate2,companyCode);
+                graphDTO = yearGraph.MakeYearVisitorGraph();
                 graphs.add(graphDTO);
-                graphDTO = bookService.YearlyZoneSalesGraph(stringDate2, companyCode);
+                graphDTO = yearGraph.MakeYearZoneRevenueGraph();
                 graphs.add(graphDTO);
-                graphDTO = bookService.YearlyZoneUserGraph(stringDate2, companyCode);
+                graphDTO = yearGraph.MakeYearZoneVisitorGraph();
                 graphs.add(graphDTO);
                 json.put("Graph", graphs);
             } catch (Exception e) {
