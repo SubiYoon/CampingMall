@@ -1,93 +1,95 @@
 <script>
-    $(document).ready(function(){
-        $('#board_edit').click(function(){
-            $('#board_edit_form').attr({
-                'method' : 'post',
-                'action' : 'boardEditOk'
-            });
-            $('#board_edit_form').submit();
-            
-        });
-    });
+	$(document).ready(function () {
+		$('#board_edit').click(function () {
+			$('#board_edit_form').attr({
+				'method': 'post',
+				'action': 'boardEditOk'
+			});
+			$('#board_edit_form').submit();
+		});
+	});
 </script>
 
 <main id="main" class="main">
+	<div class="row row-zone" style="margin: auto;">
+		<div class="pagetitle">
+			<h1 th:text="${boardEdit.facility_name} + ' 수정'"></h1> <!-- 게시글 제목 위치-->
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/main}">main</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/facility}">facility edit</a></li>
+					<li class="breadcrumb-item active">facility edit</li>
+				</ol>
+			</nav>
+		</div>
+	</div><!-- End Page Title -->
 
-    <div class="pagetitle">
-        <h1 th:text="${boardEdit.facility_name} + ' 수정'"></h1> <!-- 게시글 제목 위치-->
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a th:href="@{/main}">main</a></li>
-                <li class="breadcrumb-item"><a th:href="@{/facility}">facility edit</a></li>
-                <li class="breadcrumb-item active">facility edit</li>
-            </ol>
-        </nav>
-    </div><!-- End Page Title -->
-
-
-    <div class="card">
-        <div class="card-body noeditcard">
-            <form id="board_edit_form" enctype="multipart/form-data">
-             <table class="viewtable-fill">
-             <thead>
-             	<tr>
-					<th class="text-left zonethF">시설코드</th>
-					<th class="text-left zonethS" colspan="4">
-						<input id="inputnone" readonly="readonly" name="facility_code" th:value="${boardEdit.facility_code}"/>
-					</th>
-				</tr>
-				<tr>
-					<th class="text-left zonethF">시설명</th>
-					<th class="text-left zonethS" colspan="4">
-						<input id="updateth" type="text" name="facility_name" th:value="${boardEdit.facility_name}">
-					</th>
-				</tr>
-				<!-- 
+	<div class="row row-zone" style="margin: auto;">
+		<div class="card">
+			<div class="card-body noeditcard">
+				<form id="board_edit_form" enctype="multipart/form-data">
+					<table class="viewtable-fill">
+						<thead>
+							<tr>
+								<th class="text-left zonethF">시설코드</th>
+								<th class="text-left zonethS" colspan="4">
+									<input id="inputnone" readonly="readonly" name="facility_code"
+										th:value="${boardEdit.facility_code}" />
+								</th>
+							</tr>
+							<tr>
+								<th class="text-left zonethF">시설명</th>
+								<th class="text-left zonethS" colspan="4">
+									<input id="updateth" type="text" name="facility_name"
+										th:value="${boardEdit.facility_name}">
+								</th>
+							</tr>
+							<!-- 
                 <input type="hidden" name="facility_code" th:value="${boardEdit.facility_code}"/> 게시글 코드 위치
                 <label>제목 : &nbsp;</label><input type="text" name="facility_name" th:value="${boardEdit.facility_name}" width="300px"><br><br>게시글 제목 위치
                  -->
-             </thead>
-             <tbody>
-             	<tr>
-					<th class="text-left">
-						시설 설명
-					</th>
-					<td colspan="4">
-						<textarea id="updatecontent" name="facility_content" th:text="${boardEdit.facility_content}"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						교체할 이미지
-					</th>
-					<td colspan="4">
-						<input class="zonethS" name="mf" type="file"/>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left">
-						현재 이미지
-					</th>
-					<td colspan="4">
-						<span th:text="${boardEdit.image_file}">
-						<text th:text="${img.image_file}"></text>
-						</span>
-					</td>
-				</tr>
-				
-                <!-- <label>내용</label><br>
+						</thead>
+						<tbody>
+							<tr>
+								<th class="text-left">
+									시설 설명
+								</th>
+								<td colspan="4">
+									<textarea id="updatecontent" name="facility_content"
+										th:text="${boardEdit.facility_content}"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<th class="text-left">
+									교체할 이미지
+								</th>
+								<td colspan="4">
+									<input class="zonethS" name="mf" type="file" />
+								</td>
+							</tr>
+							<tr>
+								<th class="text-left">
+									현재 이미지
+								</th>
+								<td colspan="4">
+									<span th:text="${boardEdit.image_file}">
+										<text th:text="${img.image_file}"></text>
+									</span>
+								</td>
+							</tr>
+							<!-- <label>내용</label><br>
                 <textarea name="facility_content" th:text="${boardEdit.facility_content}" cols="80" rows="20" ></textarea>게시글 내용
                 <div> 
                     <label>현재파일 : &nbsp;</label><label th:text="${boardEdit.image_file}"></label>
                     <input name="mf" type="file"/> -->
-                    <div class="Btn">
-					<a id="board_edit" class="btn btn-primary" href="#board_e" >수정</a>
-					</div>
-             </tbody>
-             </table>
-            </form>
-        </div>
-    </div>
-
+							<div class="Btn">
+								<a id="board_edit" class="btn btn-primary" href="#board_e">수정</a>
+							</div>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
 
 </main><!-- End #main -->

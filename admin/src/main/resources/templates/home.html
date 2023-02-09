@@ -1,135 +1,135 @@
 <script>
-  $(document).ready(function(){
-      //홈정보 수정 확인창
-      $('#home_tbl_edit > a').click(function () {
-        if(confirm("정말 수정하시겠습니까?")){
-          $('#home_tbl_edit').attr({
-            'method':'post',
-            'action':'homeEdit'
-          });
-          $('#home_tbl_edit').submit();
-        }else return;
-      });
-
-      //슬라이더 수정 확인창
-      $('.slideForm > .image_slide_edit').click(function(){
-        if(confirm("정말 수정하시겠습니까?")){
-          $(this).parent().attr({
-            'method' : 'post',
-            'action' : 'slideEdit'
-          });
-          $(this).parent().submit();
-        } else return;
-      });
-
-      //슬라이더 삭제 확인창
-      $('.image_slide_delete').click(function(){
-        if(confirm("정말로 삭제하시겠습니까?")){
-          $(this).parent().attr({
-            'method':"post",
-            'action':"slideDelete"
-          });
-          $(this).parent().submit();
-        }else{
-          return;
-        }
-      });
-
-      //슬라이더 추가 모달
-      $('.slide_add_Form').click(function(){			
-        document.getElementById("modal_slide_add").style.display = "flex"
-        document.body.style = "overflow: hidden";
-      });
-
-        $('#slideAddForm #image_slide_add').click(function(){
-        $('#slideAddForm').attr({
-          'method' : 'post',
-          'action' : 'slideAdd'
+  $(document).ready(function () {
+    //홈정보 수정 확인창
+    $('#home_tbl_edit > a').click(function () {
+      if (confirm("정말 수정하시겠습니까?")) {
+        $('#home_tbl_edit').attr({
+          'method': 'post',
+          'action': 'homeEdit'
         });
-        $('#slideAddForm').submit();
-      });
-      //슬라이더 추가 모달 end
+        $('#home_tbl_edit').submit();
+      } else return;
+    });
 
-      //모달창 닫기
-			$('.modal_close').click(function () {
-				document.getElementById("modal_slide_add").style.display = "none";
-				document.body.style = "overflow: auto";
-			});
-			//모달창 닫기
+    //슬라이더 수정 확인창
+    $('.slideForm > .image_slide_edit').click(function () {
+      if (confirm("정말 수정하시겠습니까?")) {
+        $(this).parent().attr({
+          'method': 'post',
+          'action': 'slideEdit'
+        });
+        $(this).parent().submit();
+      } else return;
+    });
+
+    //슬라이더 삭제 확인창
+    $('.image_slide_delete').click(function () {
+      if (confirm("정말로 삭제하시겠습니까?")) {
+        $(this).parent().attr({
+          'method': "post",
+          'action': "slideDelete"
+        });
+        $(this).parent().submit();
+      } else {
+        return;
+      }
+    });
+
+    //슬라이더 추가 모달
+    $('.slide_add_Form').click(function () {
+      document.getElementById("modal_slide_add").style.display = "flex"
+      document.body.style = "overflow: hidden";
+    });
+
+    $('#slideAddForm #image_slide_add').click(function () {
+      $('#slideAddForm').attr({
+        'method': 'post',
+        'action': 'slideAdd'
+      });
+      $('#slideAddForm').submit();
+    });
+    //슬라이더 추가 모달 end
+
+    //모달창 닫기
+    $('.modal_close').click(function () {
+      document.getElementById("modal_slide_add").style.display = "none";
+      document.body.style = "overflow: auto";
+    });
+    //모달창 닫기
   });
 </script>
 <main id="main" class="main">
-
-<!-- 슬라이드 게시글 추가 -->
-<div id="modal_slide_add" class="modal-overlay">
-	<div class="modal-content">
-		<div class="modal-btn">
-			<button class="modal_close">닫기</button>
-		</div>
-		<div class="modal-login">
-			<h2>슬라이드 추가</h2>
-			<form id="slideAddForm" enctype="multipart/form-data">
-            <input type="hidden" th:value="${home.home_code}" name="home_code"/>
-            추가할 슬라이드 이미지 : <span id="logo1"></span><br><input type="file" name="file"/><br>
-				<button id="image_slide_add" style="width:200px;">추가</button>
-			</form>
-		</div>
-	</div>
-</div>
-
-  <div class="pagetitle">
-    <h1>Home 화면 수정</h1>
-    <nav>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
-        <li class="breadcrumb-item active">HomePage</li>
-      </ol>
-    </nav>
+  <!-- 슬라이드 게시글 추가 -->
+  <div id="modal_slide_add" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-btn">
+        <button class="modal_close">닫기</button>
+      </div>
+      <div class="modal-login">
+        <h2>슬라이드 추가</h2>
+        <form id="slideAddForm" enctype="multipart/form-data">
+          <input type="hidden" th:value="${home.home_code}" name="home_code" />
+          추가할 슬라이드 이미지 : <span id="logo1"></span><br><input type="file" name="file" /><br>
+          <button id="image_slide_add" style="width:200px;">추가</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row row-zone" style="margin: auto;">
+    <div class="pagetitle">
+      <h1>Home 화면 수정</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
+          <li class="breadcrumb-item active">HomePage</li>
+        </ol>
+      </nav>
+    </div>
   </div><!-- End Page Title -->
-
   <section class="section">
     <div class="row">
-      <div class="col-lg-12">
-
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">회사 정보 수정</h5>
-            <form id="home_tbl_edit">
-              <input type="hidden" th:value="${home.home_code}" name="home_code"/>
-              <label>대표 성함 : &nbsp;</label><input name="home_owner" type="text" th:value="${home.home_owner}"/><br>
-              <label>캠핑장 주소 : &nbsp;</label><input name="home_address" type="text" th:value="${home.home_address}"/><br>
-              <label>캠핑장 경도 : &nbsp;</label><input name="home_longitude" type="text" th:value="${home.home_longitude}"><br>
-              <label>캠핑장 위도 : &nbsp;</label><input name="home_latitude" type="text" th:value="${home.home_latitude}"/><br>
-              <label>캠핑장 도메인 : &nbsp;</label><input name="home_https" type="text" th:value="${home.home_https}"/><br>
-              <label>캠핑장 전화번호 : &nbsp;</label><input name="home_tell" type="text" th:value="${home.home_tell}"/><br>
-              <label>홈페이지 인삿말 : &nbsp;</label><br><textarea name="home_content" cols="50" rows="10" th:text="${home.home_content}"></textarea><br>
-              <a href="#home_edit">수정</a>
-            </form>
+      <div class="row row-zone" style="margin: auto;">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">회사 정보 수정</h5>
+              <form id="home_tbl_edit">
+                <input type="hidden" th:value="${home.home_code}" name="home_code" />
+                <label>대표 성함 : &nbsp;</label><input name="home_owner" type="text" th:value="${home.home_owner}" /><br>
+                <label>캠핑장 주소 : &nbsp;</label><input name="home_address" type="text"
+                  th:value="${home.home_address}" /><br>
+                <label>캠핑장 경도 : &nbsp;</label><input name="home_longitude" type="text"
+                  th:value="${home.home_longitude}"><br>
+                <label>캠핑장 위도 : &nbsp;</label><input name="home_latitude" type="text"
+                  th:value="${home.home_latitude}" /><br>
+                <label>캠핑장 도메인 : &nbsp;</label><input name="home_https" type="text" th:value="${home.home_https}" /><br>
+                <label>캠핑장 전화번호 : &nbsp;</label><input name="home_tell" type="text" th:value="${home.home_tell}" /><br>
+                <label>홈페이지 인삿말 : &nbsp;</label><br><textarea name="home_content" cols="50" rows="10"
+                  th:text="${home.home_content}"></textarea><br>
+                <a href="#home_edit">수정</a>
+              </form>
+            </div>
           </div>
         </div>
-
-      </div>
-      <div class="col-lg-12" style="float:right">
-        <a class="slide_add_Form" href="#slide_Add">슬라이드 이미지 추가</a>
-      </div>
-      <div class="col-lg-12" style="float:right">&nbsp;</div>
-      <div class="col-lg-6" th:each="slide : ${slideImgs}">
-
-        <div class="card">
-          <div class="card-body">
-            <form class="slideForm" enctype="multipart/form-data">
-              <input type="hidden" name="image_code" th:value="${slide.image_code}"/>
-              <h5 class="card-title" th:text="'슬라이드 ' + ${slideStat.count} + ' 이미지'"></h5>
-              <img th:src="'images/' + ${slide.image_file}" style="width:100%; height: 200px;"/><br>
-              <input type="file" name="home_slide"/><br><br>
-              <a href="#slide_edit" class="image_slide_edit" style="width:200px;">수정</a>
-              <a href="#slide_delete" class="image_slide_delete" style="width:200px;">삭제</a>
-            </form>
+        <div class="col-lg-12" style="float:right">
+          <a class="slide_add_Form" href="#slide_Add">슬라이드 이미지 추가</a>
+        </div>
+        <div class="col-lg-12" style="float:right">&nbsp;</div>
+        <div class="col-lg-6" th:each="slide : ${slideImgs}">
+          <div class="card">
+            <div class="card-body">
+              <form class="slideForm" enctype="multipart/form-data">
+                <input type="hidden" name="image_code" th:value="${slide.image_code}" />
+                <h5 class="card-title" th:text="'슬라이드 ' + ${slideStat.count} + ' 이미지'"></h5>
+                <img th:src="'images/' + ${slide.image_file}" style="width:100%; height: 200px;" /><br>
+                <input type="file" name="home_slide" /><br><br>
+                <a href="#slide_edit" class="image_slide_edit" style="width:200px;">수정</a>
+                <a href="#slide_delete" class="image_slide_delete" style="width:200px;">삭제</a>
+              </form>
+            </div>
           </div>
         </div>
-
       </div>
-
     </div>
   </section>
 
