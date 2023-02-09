@@ -1,5 +1,7 @@
 package com.camp.admin.Controller;
 
+import com.camp.admin.utility.MakeHeadGraph;
+import com.camp.admin.utility.MakeMainGraph;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,68 +36,68 @@ import com.camp.admin.utility.SaveFile;
 @Controller
 public class MainController {
 
-	@Value("${imagesdir}")
-	String imagesdir;
+    @Value("${imagesdir}")
+    String imagesdir;
 
-	@Autowired
-	CompanyService serviceC;
+    @Autowired
+    CompanyService serviceC;
 
-	@Autowired
-	HomeService serviceH;
+    @Autowired
+    HomeService serviceH;
 
-	@Autowired
-	NoticeService serviceN;
+    @Autowired
+    NoticeService serviceN;
 
-	@Autowired
-	FacilityService serviceF;
+    @Autowired
+    FacilityService serviceF;
 
-	@Autowired
-	ZoneService serviceZ;
+    @Autowired
+    ZoneService serviceZ;
 
-	@Autowired
-	ImageService serviceI;
+    @Autowired
+    ImageService serviceI;
 
-	@Autowired
-	AdminService serviceA;
-	
-	@Autowired
-	BookService serviceB;
-	
-	@Autowired
-	ReviewService serviceR;
+    @Autowired
+    AdminService serviceA;
 
-	@RequestMapping("/")
-	public String main(){
+    @Autowired
+    BookService serviceB;
 
-		return "login";
-	}
+    @Autowired
+    ReviewService serviceR;
 
-	@RequestMapping("/loginOk")
-	public String loginOk(AdminDTO admin, HttpSession session){
-		String crypPwd ="";
-		try{
-			crypPwd = CryptoUtil.sha512(admin.getAdmin_password());
-		} catch(Exception e){
-			e.printStackTrace();
-			System.out.println("암호화실패");
-		}
+    @RequestMapping("/")
+    public String main() {
 
-		try{
-			AdminDTO dbAdmin = serviceA.select(admin.getAdmin_id());
-			if(crypPwd.equals(dbAdmin.getAdmin_password())){
-				CompanyDTO company = serviceC.select(dbAdmin.getCompany_code());
-				session.setAttribute("company", company);
-				session.setAttribute("admin", dbAdmin);
-			}else {
-				return "login";
-			}
-		} catch(Exception e){
-			//e.printStackTrace();
-			System.out.println("실패");
-		}
+        return "login";
+    }
 
-		return "redirect:main";
-	}
+    @RequestMapping("/loginOk")
+    public String loginOk(AdminDTO admin, HttpSession session) {
+        String crypPwd = "";
+        try {
+            crypPwd = CryptoUtil.sha512(admin.getAdmin_password());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("암호화실패");
+        }
+
+        try {
+            AdminDTO dbAdmin = serviceA.select(admin.getAdmin_id());
+            if (crypPwd.equals(dbAdmin.getAdmin_password())) {
+                CompanyDTO company = serviceC.select(dbAdmin.getCompany_code());
+                session.setAttribute("company", company);
+                session.setAttribute("admin", dbAdmin);
+            } else {
+                return "login";
+            }
+        } catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println("실패");
+        }
+
+        return "redirect:main";
+    }
 
     @RequestMapping("/main")
     public String main(Model model, HttpSession session, CompanyDTO companyDTO, ZoneDTO zoneDTO) {
@@ -107,212 +109,212 @@ public class MainController {
         month = month.substring(month.length() - 2);
         int companyCode = company.getCompany_code();
         String stringYearAndMonth = "" + now.getYear() + "-" + month;
-		String stringDate = stringYearAndMonth+"-01";
-        List<String> charts = new ArrayList<>();
+        now = now.minusMonths(1);
+        String month2 = ("0" + now.getMonthValue());
+        month2 = month2.substring(month2.length() - 2);
+        String stringYearAndMonth2 = "" + now.getYear() + "-" + month2;
+        List<String> charts;
         try {
-            charts.add("" + Math.round(serviceB.MonthlySales(stringDate, companyCode)));
-            charts.add(serviceB.MonthlySalesRate(stringYearAndMonth, companyCode));
-            charts.add("" + serviceB.MonthlyBookCount(stringDate, companyCode));
-            charts.add(serviceB.MonthlyBookRate(stringYearAndMonth, companyCode));
-            charts.add("" + serviceB.MonthlyUser(stringYearAndMonth, companyCode));
-            charts.add(serviceB.MonthlyUserRate(stringYearAndMonth, companyCode));
+            MakeMainGraph todayGraph = serviceB.getMonthGraph(companyCode, stringYearAndMonth);
+            MakeMainGraph lastMonthGraph = serviceB.getMonthGraph(companyCode, stringYearAndMonth2);
+            MakeHeadGraph headGraph = new MakeHeadGraph(todayGraph, lastMonthGraph);
+            charts = new ArrayList<>(headGraph.MakeHeadList());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-		model.addAttribute("MonthList",charts);
+        model.addAttribute("MonthList", charts);
         try {
             listZ = serviceZ.selectZone(company.getCompany_code());    //상호코드
         } catch (Exception e) {
             e.printStackTrace();
         }
         session.setAttribute("zlist", listZ);
-        
-        
+
         try {
-			List<Map<String,Object>> books=serviceB.selectAllmain(companyCode);
-			model.addAttribute("books",books);
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-        
-		try {
-			List<Map<String, Object>> reviews = serviceR.selectAllmain(companyCode);
-			model.addAttribute("reviews",reviews);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+            List<Map<String, Object>> books = serviceB.selectAllmain(companyCode);
+            model.addAttribute("books", books);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            List<Map<String, Object>> reviews = serviceR.selectAllmain(companyCode);
+            model.addAttribute("reviews", reviews);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return "main";
     }
 
 
-	//CompanyEdit
-	@RequestMapping("/company")
-	public String companyEdit(HttpSession session, Model model) {
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-		try{
-			serviceC.select(company.getCompany_code());
-			model.addAttribute("company", company);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-		
-		model.addAttribute("center", "/company");
-		return "main";
-	}
+    //CompanyEdit
+    @RequestMapping("/company")
+    public String companyEdit(HttpSession session, Model model) {
+        CompanyDTO company = (CompanyDTO) session.getAttribute("company");
+        try {
+            serviceC.select(company.getCompany_code());
+            model.addAttribute("company", company);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	//CompanyEdit
-	@RequestMapping("/home")
-	public String homeEdit(Model model, HttpSession session) {
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-		try {
-			HomeDTO home = serviceH.select(company.getCompany_code());
-			model.addAttribute("home", home);
+        model.addAttribute("center", "/company");
+        return "main";
+    }
 
-			List<ImageDTO> img = serviceI.selectByHomeCode(home.getHome_code());
-			model.addAttribute("slideImgs", img);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    //CompanyEdit
+    @RequestMapping("/home")
+    public String homeEdit(Model model, HttpSession session) {
+        CompanyDTO company = (CompanyDTO) session.getAttribute("company");
+        try {
+            HomeDTO home = serviceH.select(company.getCompany_code());
+            model.addAttribute("home", home);
 
-		model.addAttribute("center", "/home");
-		return "main";
-	}
-	
-	@RequestMapping("/bookEdit")
-	public String bookedit(Model model) {
-		
-		model.addAttribute("center", "/bookEdit");
-		return "main";
-	}
+            List<ImageDTO> img = serviceI.selectByHomeCode(home.getHome_code());
+            model.addAttribute("slideImgs", img);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-	@RequestMapping("homeEdit")
-	public String boardEdit(HttpSession session ,HomeDTO home){
-			try{
-				serviceH.update(home);
-				System.out.println("성공");
-			}catch(Exception e){
-				//e.printStackTrace();
-				System.out.println("실패");
-			}
+        model.addAttribute("center", "/home");
+        return "main";
+    }
 
-		return "redirect:/home";
-	}
-	
-	@RequestMapping("logoEdit")
-	public String logoEdit(HttpSession session, MultipartFile company_logo1, MultipartFile company_logo2, String company_name){
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-		int company_code = company.getCompany_code();
-		if(!company_logo1.isEmpty() && !company_logo2.isEmpty()){
-			try {
-				company.setCompany_logo1(company_logo1.getOriginalFilename());
-				company.setCompany_logo2(company_logo2.getOriginalFilename());
-				company.setCompany_name(company_name);
-				SaveFile.saveFile(company_logo1, imagesdir);
-				SaveFile.saveFile(company_logo2, imagesdir);
-				serviceC.update(company);
+    @RequestMapping("/bookEdit")
+    public String bookedit(Model model) {
 
-				session.invalidate();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-		}else if(!company_logo1.isEmpty() && company_logo2.isEmpty()){
-			try {
-				company = serviceC.select(company_code);
-				company.setCompany_logo1(company_logo1.getOriginalFilename());
-				SaveFile.saveFile(company_logo1, imagesdir);
-				company.setCompany_name(company_name);
-				serviceC.update(company);
+        model.addAttribute("center", "/bookEdit");
+        return "main";
+    }
 
-				session.invalidate();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-		}else if(company_logo1.isEmpty() && !company_logo2.isEmpty()){
-			try {
-				company = serviceC.select(company_code);
-				company.setCompany_logo2(company_logo2.getOriginalFilename());
-				SaveFile.saveFile(company_logo2, imagesdir);
-				company.setCompany_name(company_name);
-				serviceC.update(company);
+    @RequestMapping("homeEdit")
+    public String boardEdit(HttpSession session, HomeDTO home) {
+        try {
+            serviceH.update(home);
+            System.out.println("성공");
+        } catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println("실패");
+        }
 
-				session.invalidate();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else {
-			try {
-				company.setCompany_name(company_name);
-				serviceC.update(company);
+        return "redirect:/home";
+    }
 
-				session.invalidate();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		return "redirect:/";
-	}
-	
-	@RequestMapping("slideEdit")
-	public String slideEdit(MultipartFile home_slide, int image_code){
-		ImageDTO image = null;
-		try{
-		image = serviceI.select(image_code);
-			image.setImage_file(home_slide.getOriginalFilename());
-			serviceI.update(image);
-			SaveFile.saveFile(home_slide, imagesdir);
-		}catch(Exception e){
-			//e.printStackTrace();
-			System.out.println("파일변경 실패");
-		}
-		
-		return "redirect:/home";
-	}
+    @RequestMapping("logoEdit")
+    public String logoEdit(HttpSession session, MultipartFile company_logo1,
+        MultipartFile company_logo2, String company_name) {
+        CompanyDTO company = (CompanyDTO) session.getAttribute("company");
+        int company_code = company.getCompany_code();
+        if (!company_logo1.isEmpty() && !company_logo2.isEmpty()) {
+            try {
+                company.setCompany_logo1(company_logo1.getOriginalFilename());
+                company.setCompany_logo2(company_logo2.getOriginalFilename());
+                company.setCompany_name(company_name);
+                SaveFile.saveFile(company_logo1, imagesdir);
+                SaveFile.saveFile(company_logo2, imagesdir);
+                serviceC.update(company);
 
-	@RequestMapping("slideDelete")
-	public String slideDelete(int image_code){
-		
-		try {
-			serviceI.delete(image_code);
-		} catch (Exception e) {
-			//e.printStackTrace();
-			System.out.print("실패");
-		}
-		
-		return "redirect:/home";
-	}
+                session.invalidate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-	@RequestMapping("slideAdd")
-	public String slideAdd(HttpSession session, MultipartFile file, int home_code){
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-		ImageDTO image = new ImageDTO();
-		
-		if(!file.isEmpty()){
-			image.setCompany_code(company.getCompany_code());
-			image.setHome_code(home_code);
-			image.setImage_file(file.getOriginalFilename());
-			
-			try {
-				serviceI.insert(image);
-				SaveFile.saveFile(file, imagesdir);
-			} catch (Exception e) {
-				//e.printStackTrace();
-				System.out.print("실패");
-			}
-		}
-		return "redirect:/home";
-	}
+        } else if (!company_logo1.isEmpty() && company_logo2.isEmpty()) {
+            try {
+                company = serviceC.select(company_code);
+                company.setCompany_logo1(company_logo1.getOriginalFilename());
+                SaveFile.saveFile(company_logo1, imagesdir);
+                company.setCompany_name(company_name);
+                serviceC.update(company);
 
-	@RequestMapping("logOut")
-	public String logOut(HttpSession session){
-		session.invalidate();
-		return "redirect:/";
-	}
+                session.invalidate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        } else if (company_logo1.isEmpty() && !company_logo2.isEmpty()) {
+            try {
+                company = serviceC.select(company_code);
+                company.setCompany_logo2(company_logo2.getOriginalFilename());
+                SaveFile.saveFile(company_logo2, imagesdir);
+                company.setCompany_name(company_name);
+                serviceC.update(company);
+
+                session.invalidate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                company.setCompany_name(company_name);
+                serviceC.update(company);
+
+                session.invalidate();
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return "redirect:/";
+    }
+
+    @RequestMapping("slideEdit")
+    public String slideEdit(MultipartFile home_slide, int image_code) {
+        ImageDTO image = null;
+        try {
+            image = serviceI.select(image_code);
+            image.setImage_file(home_slide.getOriginalFilename());
+            serviceI.update(image);
+            SaveFile.saveFile(home_slide, imagesdir);
+        } catch (Exception e) {
+            //e.printStackTrace();
+            System.out.println("파일변경 실패");
+        }
+
+        return "redirect:/home";
+    }
+
+    @RequestMapping("slideDelete")
+    public String slideDelete(int image_code) {
+
+        try {
+            serviceI.delete(image_code);
+        } catch (Exception e) {
+            //e.printStackTrace();
+            System.out.print("실패");
+        }
+
+        return "redirect:/home";
+    }
+
+    @RequestMapping("slideAdd")
+    public String slideAdd(HttpSession session, MultipartFile file, int home_code) {
+        CompanyDTO company = (CompanyDTO) session.getAttribute("company");
+        ImageDTO image = new ImageDTO();
+
+        if (!file.isEmpty()) {
+            image.setCompany_code(company.getCompany_code());
+            image.setHome_code(home_code);
+            image.setImage_file(file.getOriginalFilename());
+
+            try {
+                serviceI.insert(image);
+                SaveFile.saveFile(file, imagesdir);
+            } catch (Exception e) {
+                //e.printStackTrace();
+                System.out.print("실패");
+            }
+        }
+        return "redirect:/home";
+    }
+
+    @RequestMapping("logOut")
+    public String logOut(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
+    }
 }
