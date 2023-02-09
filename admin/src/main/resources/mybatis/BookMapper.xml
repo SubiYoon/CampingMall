@@ -160,6 +160,55 @@
             book.book_code    
         DESC
     </select>
+    <select id="selectByCompanyCodeAndYearMonth" resultType="BookDTO">
+        select book.book_code,
+               book.site_code,
+               book.user_code,
+               book.merchant_uid,
+               book.book_member,
+               book.book_checkin,
+               book.book_checkout,
+               book.book_writedate,
+               book.book_price,
+               book.book_car_number,
+               book.book_state
+        from admin,
+             book,
+             zone,
+             site
+        Where admin.company_code = #{company_code}
+          AND admin.admin_code = zone.admin_code
+          And zone.zone_code = site.zone_code
+          And site.site_code = book.site_code
+          And book.book_checkin LIKE #{stringYearMonth}
+          And book.book_state = 1
+
+    </select>
+
+    <select id="selectByCompanyCodeAndWriteDate" resultType="BookDTO">
+        select book.book_code,
+               book.site_code,
+               book.user_code,
+               book.merchant_uid,
+               book.book_member,
+               book.book_checkin,
+               book.book_checkout,
+               book.book_writedate,
+               book.book_price,
+               book.book_car_number,
+               book.book_state
+        from admin,
+             book,
+             zone,
+             site
+        Where admin.company_code = #{company_code}
+          AND admin.admin_code = zone.admin_code
+          And zone.zone_code = site.zone_code
+          And site.site_code = book.site_code
+          And book.book_writedate LIKE #{stringYearMonth}
+          And book.book_state = 1
+
+    </select>
      
     
     

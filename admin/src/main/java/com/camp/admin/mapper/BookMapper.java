@@ -21,4 +21,6 @@ public interface BookMapper extends MyMapper<Integer, BookDTO> {
     List<BookDTO> selectUserBook(int company_code, String user_id);
     List<BookDTO> selectByWriteDateAndCompanyCode(int company_code, String book_writedate);
     List<Map<String, Object>> selectAllmain();
+    List<BookDTO>selectByCompanyCodeAndYearMonth(int company_code, String stringYearMonth);
+    List<BookDTO>selectByCompanyCodeAndWriteDate(int company_code,String stringYearMonth);
 }

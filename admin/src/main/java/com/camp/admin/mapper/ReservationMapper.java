@@ -20,4 +20,5 @@ public interface ReservationMapper extends MyMapper<Integer, ReservationDTO> {
 
     ReservationDTO selectDateAndSite(@Param("site_code")int site_code,@Param("reservation_date")Date reservation_date);
     int findSiteCode(@Param("reservation_code")int reservation_code);
+    List<ReservationDTO> selectByCompanyCodeAndYearMonth(int company_code, String stringYearAndMonth);
 }

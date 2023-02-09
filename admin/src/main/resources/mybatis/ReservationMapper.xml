@@ -67,4 +67,19 @@
         FROM reservation
         WHERE book_code = #{book_code}
     </delete>
+
+    <select id="selectByCompanyCodeAndYearMonth" resultType="ReservationDTO">
+        select reservation.reservation_code, reservation.book_code, reservation.reservation_date
+        from reservation,
+             admin,
+             book,
+             zone,
+             site
+        where admin.company_code = #{company_code}
+          AND admin.admin_code = zone.admin_code
+          And zone.zone_code = site.zone_code
+          And site.site_code = book.site_code
+          And book.book_code = reservation.book_code
+          And reservation.reservation_date LIKE #{stringYearAndMonth}
+    </select>
 </mapper>

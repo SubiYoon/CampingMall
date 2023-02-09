@@ -157,6 +157,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         return new GraphDTO(labelsList, stringYearAndMonth,
             DailyUserList(stringYearAndMonth, company_code));
     }
+
     public GraphDTO MonthlyBookGraph(String stringYearAndMonth, int company_code)
         throws Exception {
         List<String> labelsList = new ArrayList<>();
@@ -181,7 +182,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         return sales;
     }
 
-    public int DailyBookCount(String stringDate, int companyCode){
+    public int DailyBookCount(String stringDate, int companyCode) {
         return mapper.selectByWriteDateAndCompanyCode(companyCode, stringDate).size();
     }
 
@@ -199,6 +200,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return monthlySales;
     }
+
     public int MonthlyBookCount(String stringDate, int company_code) throws Exception {
         int monthlySales = 0;
         Calendar calendar = Calendar.getInstance();
@@ -256,6 +258,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return sales;
     }
+
     public List<String> MonthlyBookCountList(String stringYear, int company_code) throws Exception {
         List<String> sales = new ArrayList<>();
         for (int i = 1; i <= 12; i++) {
@@ -270,6 +273,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return sales;
     }
+
     public List<String> MonthlyUserCountList(String stringYear, int company_code) throws Exception {
         List<String> sales = new ArrayList<>();
         for (int i = 1; i <= 12; i++) {
@@ -299,6 +303,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return new GraphDTO(labelsList, stringYear, MonthlyList(stringYear, company_code));
     }
+
     public GraphDTO YearlyBookGraph(String stringYear, int company_code) throws Exception {
         List<String> labelsList = new ArrayList<>();
         for (int i = 1; i <= 12; i++) {
@@ -312,6 +317,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         }
         return new GraphDTO(labelsList, stringYear, MonthlyBookCountList(stringYear, company_code));
     }
+
     public GraphDTO YearlyUserGraph(String stringYear, int company_code) throws Exception {
         List<String> labelsList = new ArrayList<>();
         for (int i = 1; i <= 12; i++) {
@@ -617,16 +623,15 @@ public class BookService implements MyService<Integer, BookDTO> {
 
         return book;
     }
-    
-    public List<Map<String, Object>> selectAllState(int book_state) throws Exception{
-    	return mapper.selectAllState(book_state);
+
+    public List<Map<String, Object>> selectAllState(int book_state) throws Exception {
+        return mapper.selectAllState(book_state);
     }
-    
-    public int updateBookState(String merchant_uid,int state) {
-    	return mapper.updateBookState(merchant_uid,state);
+
+    public int updateBookState(String merchant_uid, int state) {
+        return mapper.updateBookState(merchant_uid, state);
     }
-    
-    
+
 
     public String DailySalesRate(String stringDate, int company_code) throws Exception {
         Calendar calendar = Calendar.getInstance();
@@ -659,6 +664,7 @@ public class BookService implements MyService<Integer, BookDTO> {
     public List<BookDTO> selectUserBook(int company_code, String user_id) throws Exception {
         return mapper.selectUserBook(company_code, user_id);
     }
+
     public int DailyUser(String stringDate, int company_code) throws Exception {
         int userCount = 0;
         List<ReservationDTO> reservations = reservationService.SelectByDateAndCompanyCode(
@@ -721,6 +727,7 @@ public class BookService implements MyService<Integer, BookDTO> {
                 Utility.StringYearAndMonthFromStringDate(Utility.DateToString(calendar.getTime())),
                 company_code));
     }
+
     public String MonthlyBookRate(String stringYearAndMonth, int company_code) throws Exception {
         String stringDate = stringYearAndMonth + "-01";
         Calendar calendar = Calendar.getInstance();
@@ -743,12 +750,22 @@ public class BookService implements MyService<Integer, BookDTO> {
             YearlyUser(Utility.StringYearFromStringDate(Utility.DateToString(calendar.getTime())),
                 company_code));
     }
-    
-    public List<Map<String, Object>> selectAllmain() throws Exception{
-    	return mapper.selectAllmain();
+
+    public List<Map<String, Object>> selectAllmain() throws Exception {
+        return mapper.selectAllmain();
     }
-    
-    
-    
+
+    public List<BookDTO> selectByCompanyCodeAndYearMonth(int company_code, String stringYearMonth) {
+        return mapper.selectByCompanyCodeAndYearMonth(company_code, stringYearMonth + "%");
+    }
+
+    public List<BookDTO> selectByCompanyCodeAndWriteDate(int company_code,
+        String stringYearAndMonth)
+        throws ParseException {
+
+        return mapper.selectByCompanyCodeAndWriteDate(company_code, "%" + stringYearAndMonth + "%");
+
+    }
+
 
 }
