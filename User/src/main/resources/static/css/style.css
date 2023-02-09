@@ -1898,6 +1898,16 @@ ul.social_icon li a:hover {
 .mypage .titlepage{
 	margin: 30px;
 }
+
+.userinfo_btn{
+	background-color: #009898;
+}
+
+.userinfo_btn:hover{
+	background-color: #121212;
+}
+
+
 /* -----------end 마이페이지 ------------*/
 
 /* ----------- 회원수정(userinfo)------------*/
@@ -1908,40 +1918,88 @@ ul.social_icon li a:hover {
    align-items: center;
  }
 
- #updateInfo {
-   display: flex;
-   flex-direction: column;
-   padding: 20px;
-   background-color: #f2f2f2;
-   border-radius: 10px;
-   box-shadow: 2px 2px 5px #ccc;
-   width: 500px;
- }
+#updateInfo {
+ 	display: flex;
+  	flex-direction: column;
+  	padding: 20px;
+  	background-color: #f2f2f2;
+  	border-radius: 10px;
+   	box-shadow: 2px 2px 5px #ccc;
+ 	width: 100%;
+  	border-top: 20px solid #009898;
+  	border-bottom: 20px solid #009898;
+  	margin: 50px 0px;
+}
 
  .updateInfo_label {
-   margin-top: 10px;
-   font-weight: bold;
+   	margin-top: 20px;
+   	font-weight: bold;
+   	font-size: 16px;
+	font-weight: bold;
  }
 
- #updateInfo input {
-   padding: 10px;
+#updateInfo input {
+/*    padding: 10px;
    margin-top: 10px;
    border-radius: 5px;
    border: 1px solid #ccc;
-   width: 100%;
+   width: 100%; */
+   
+  margin: 5px auto;
+  background: #262e49;
+  border: 0;
+  border-radius: 5px;
+  padding: 14px 10px;
+  width: 100%;
+  outline: none;
+  color: #d6d6d6;
+    -webkit-transition: all .2s ease-out;
+    -moz-transition: all .2s ease-out;
+    -ms-transition: all .2s ease-out;
+    -o-transition: all .2s ease-out;
+    transition: all .2s ease-out;
  }
 
- #updateInfo a {
-   padding: 10px 20px;
-   margin-top: 20px;
-   background-color: #4CAF50;
-   color: white;
-   border-radius: 5px;
-   border: none;
-   cursor: pointer;
-   width: 100%;
-   float: right;
-   text-align: center;
- }
+.updateInfo{
+	margin-top: 70px;
+	margin-bottom: 30px;
+}
+
+#updateInfo input[type = "text"]:focus,#updateInfo input[type = "password"]:focus {
+  border: 1px solid #79A6FE;
+}
+
+#tel input{
+	width: 20%;
+}
+
+#updateInfo a {
+ 	display: inline-block;
+   	padding: 10px 20px;
+   	background-color: #009898;
+   	color: white;
+   	border-radius: 5px;
+   	border: none;
+   	cursor: pointer;
+   	width: 40%;
+   	font-size: 18px;
+   	font-weight: bold;
+   	text-align: center;
+}
+
+#updateInfo a:first-child {
+	margin-left: 6%;
+	margin-right: 3%;
+}
+
+#updateInfo a:last-child {
+	margin-left: 3%;
+	margin-right: 6%;
+}
+ 
+#updateInfo a:hover {
+  background: #000;
+  color: #dee2e6;
+}
  
 /* -----------end 회원수정(userinfo)------------*/

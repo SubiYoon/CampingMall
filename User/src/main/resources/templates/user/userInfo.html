@@ -113,30 +113,36 @@ $(document).ready(function(){
          </div>
       </div>
       <div class="row">
-         <div class="col-md-4">
+         <div class="col-md-3">
             <div class="blog_box">
                
             </div>
          </div>
-         <div class="col-md-4">
-            <br><br><br><br>
+         <div class="col-md-6">
             <div class="blog_box">
                <form id="updateInfo">
                   <div class="blog_room">
                      <input type="hidden" name="user_code" th:value="${selectUser.user_code}"/>
                      <label class="updateInfo_label">아이디</label> <input type="text" name="user_id" th:value="${selectUser.user_id}" readonly="readonly"/><br>
-                     <label class="updateInfo_label">비밀번호</label> <input type="password" name="user_password" maxlength="16" minlength="8"/><br>
-                     <label class="updateInfo_label">비밀번호확인</label> <input type="password" name="user_password_check" maxlength="16" minlength="8"/><br>
-                     <label class="updateInfo_label">이름</label> <input type="text" name="user_name" th:value="${selectUser.user_name}"/><br>
-                     <label class="updateInfo_label">생년월일</label> <input type="text" name="user_birthday" th:value="${selectUser.user_birthday}" maxlength="6"/><br>
-                     <label class="updateInfo_label">연락처</label> <input type="text" style="width: 50px;" name="user_tel1" th:value="${selectUser.user_tel1}"/> - <input type="text" style="width: 50px;" name="user_tel2" th:value="${selectUser.user_tel2}"/> - <input type="text" style="width: 50px;" name="user_tel3" th:value="${selectUser.user_tel3}"/><br>
-                     <a id="update" href="#">수정</a>
-                     <a id="delete" href="#">탈퇴</a>
+                     <label class="updateInfo_label">비밀번호</label> <input type="password" name="user_password" maxlength="16" minlength="8" placeholder="비밀번호를 입력하세요"/><br>
+                     <label class="updateInfo_label">비밀번호확인</label> <input type="password" name="user_password_check" maxlength="16" minlength="8" placeholder="비밀번호를 입력하세요"/><br>
+                     <label class="updateInfo_label">이름</label> <input type="text" name="user_name" th:value="${selectUser.user_name}" placeholder="이름을 입력하세요"/><br>
+                     <label class="updateInfo_label">생년월일</label> <input type="text" name="user_birthday" th:value="${selectUser.user_birthday}" maxlength="6" placeholder="생년월일 6자리를 입력하세요"/><br>
+                     <label class="updateInfo_label">연락처</label>
+						<div id="tel">
+							<input type="text" name="user_tel1" th:value="${selectUser.user_tel1}" placeholder="연락처"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+							<input type="text" name="user_tel2" th:value="${selectUser.user_tel2}" placeholder="번호를"/>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+							<input type="text" name="user_tel3" th:value="${selectUser.user_tel3}" placeholder="입력하세요"/>
+						</div>
+						<div class="updateInfo">
+							<a id="update" href="#">수정</a>
+							<a id="delete" href="#">탈퇴</a>
+						</div>
                   </div>
                </form>
             </div>
          </div>
-         <div class="col-md-4">
+         <div class="col-md-3">
             <div class="blog_box">
                
             </div>
