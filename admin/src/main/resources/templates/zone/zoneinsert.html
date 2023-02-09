@@ -53,7 +53,10 @@
 								<table class="viewtable-fill">
 									<thead>
 										<tr>
-											<th class="text-left zonethF">구역 명</th>
+											<th class="text-left zonethF Mtablehidden">구역 명</th>
+										</tr>
+										<tr>
+											<th class="text-left zonethF tablehidden">구역 명</th>
 											<th class="text-left zonethS" colspan="4">
 												<input id="updateth" type="text" name="zone_name">
 											</th>
@@ -61,7 +64,12 @@
 									</thead>
 									<tbody>
 										<tr>
-											<th class="text-left">
+											<th class="text-left Mtablehidden">
+												구역 설명
+											</th>
+										</tr>
+										<tr>
+											<th class="text-left tablehidden">
 												구역 설명
 											</th>
 											<td colspan="4">
@@ -69,7 +77,12 @@
 											</td>
 										</tr>
 										<tr>
-											<th class="text-left">
+											<th class="text-left Mtablehidden">
+												구역 이미지
+											</th>
+										</tr>
+										<tr>
+											<th class="text-left tablehidden">
 												구역 이미지
 											</th>
 											<td colspan="4">
@@ -79,6 +92,7 @@
 									</tbody>
 								</table>
 							</form>
+							<br class="Mtablehidden">
 							<div class="Btn">
 								<a id="upBtn" class="btn btn-primary" th:href="@{#}">등록</a>
 							</div>

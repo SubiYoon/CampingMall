@@ -21,9 +21,9 @@
 </script>
 
 <main id="main" class="main">
-    <div class="row row-zone" style="margin: auto;">
+    <div class="row row-zone">
         <div class="pagetitle">
-            <h1>시설안내 수정</h1>
+            <h1>새 시설 추가</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a th:href="@{/main}">main</a></li>
@@ -33,19 +33,55 @@
             </nav>
         </div>
     </div><!-- End Page Title -->
-    <div class="row row-zone" style="margin: auto;">
+    
+    <div class="row row-zone">
         <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">시설 추가</h5> <!-- 게시글 제목 위치-->
+            <div class="card-body noeditcard">
                 <form id="board_edit_form" enctype="multipart/form-data">
-                    <label>시설 이름 : &nbsp;</label><input type="text" name="board_name"
-                        width="300px"><br><br><!--게시글 제목 위치-->
-                    <label>시설 소개</label><br>
-                    <textarea name="board_content" cols="80" rows="20"></textarea>
-                    <div>
-                        <input name="mf" type="file" />
-                        <a href="#board_i" id="board_edit">추가</ㅑ>
-                    </div>
+                <table class="viewtable-fill">
+                	<thead>
+                		<tr>
+							<th class="text-left zonethF Mtablehidden">시설명</th>
+						</tr>
+						<tr>
+							<th class="text-left zonethF tablehidden">시설명</th>
+							<th class="text-left zonethS" colspan="4">
+								<input id="updateth" type="text" name="board_name">
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th class="text-left Mtablehidden">
+									시설 설명
+								</th>
+							</tr>
+							<tr>
+								<th class="text-left tablehidden">
+									시설 설명
+								</th>
+								<td colspan="4">
+									<textarea id="updatecontent" name="board_content"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<th class="text-left Mtablehidden">
+									삽입할 이미지
+								</th>
+							</tr>
+							<tr>
+								<th class="text-left tablehidden">
+									삽입할 이미지
+								</th>
+								<td colspan="4">
+									<input class="zonethS" name="mf" type="file" />
+								</td>
+							</tr>
+							<div class="Btn">
+								<a class="btn btn-primary" href="#board_i" id="board_edit">추가하기</a>
+							</div>
+                    	</tbody>
+                </table>
                 </form>
             </div>
         </div>

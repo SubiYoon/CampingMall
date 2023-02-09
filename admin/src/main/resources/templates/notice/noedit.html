@@ -43,8 +43,8 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
-					<li class="breadcrumb-item">Pages</li>
-					<li class="breadcrumb-item active">Blank</li>
+					<li class="breadcrumb-item">Notice</li>
+					<li class="breadcrumb-item active">Edit</li>
 				</ol>
 			</nav>
 		</div>
@@ -59,7 +59,10 @@
 								<table class="viewtable-fill">
 									<thead>
 										<tr>
-											<th class="text-left viewno" id="viewno">&nbsp;글번호</th>
+											<th colspan="7" class="text-left viewno Mtablehidden" id="viewno">&nbsp;글번호</th>
+										</tr>
+										<tr>
+											<th class="text-left viewno tablehidden" id="viewno">&nbsp;글번호</th>
 											<th class="text-left viewcode" id="viewno">
 												<input id="inputnone" readonly="readonly" name="notice_code"
 													th:value="${notice.notice_code}">
@@ -67,19 +70,22 @@
 											<th colspan="5"></th>
 										</tr>
 										<tr>
-											<th class="text-left" id="viewth">&nbsp;제목</th>
+											<th colspan="7" class="text-left Mtablehidden" id="viewth">&nbsp;제목</th>
+										</tr>
+										<tr>
+											<th class="text-left tablehidden" id="viewth">&nbsp;제목</th>
 											<th class="text-left" id="viewth">
 												<input id="updateth" type="text" name="notice_title"
 													th:value="${notice.notice_title}">
 											</th>
 											<th class="text-left" id="viewth"></th>
-											<th class="text-right" id="editad">&nbsp;/ 작성자:&nbsp;</th>
-											<th class="text-right">
+											<th class="text-right tablehidden" id="editad">&nbsp;/ 작성자:&nbsp;</th>
+											<th class="text-right tablehidden">
 												<input id="inputnone" readonly="readonly" type="text"
 													th:value="${notice.admin_code}">
 											</th>
-											<th class="text-right" id="editdate">&nbsp;/ 등록일:&nbsp;</th>
-											<th class="text-right">
+											<th class="text-right tablehidden" id="editdate">&nbsp;/ 등록일:&nbsp;</th>
+											<th class="text-right tablehidden">
 												<input id="inputnone" type="text" readonly="readonly"
 													th:value="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}">
 											</th>
@@ -99,7 +105,10 @@
 											</th>
 										</tr>
 										<tr>
-											<th class="text-left" colspan="1">
+											<th colspan="7" class="text-left Mtablehidden">&nbsp;내용</th>
+										</tr>
+										<tr>
+											<th class="text-left tablehidden" colspan="1">
 												&nbsp;내용
 											</th>
 											<td colspan="7">
@@ -111,13 +120,19 @@
 											</td>
 										</tr>
 										<tr>
-											<th class="text-left" colspan="1">
+											<th colspan="7" class="text-left Mtablehidden">&nbsp;주요공지
+											<br>
+											<span> * 1: ON / 0: OFF </span>
+											</th>
+										</tr>
+										<tr>
+											<th colspan="1" class="text-left tablehidden" >
 												&nbsp;주요공지
 											</th>
 											<td colspan="4">
 												<input type="number" min='0' max='1' name="notice_level"
 													th:value="${notice.notice_level}">
-												* 1: ON / 0: OFF
+												<span class="tablehidden"> * 1: ON / 0: OFF </span>
 											</td>
 											<th colspan="2">
 											</th>
@@ -129,6 +144,7 @@
 									</tbody>
 								</table>
 							</form>
+							<br class="Mtablehidden">
 							<div class="Btn">
 								<a id="upBtn" class="btn btn-primary" th:href="@{#}">수정</a>
 								<a id="delBtn" class="btn btn-primary" th:href="@{#}">삭제</a>

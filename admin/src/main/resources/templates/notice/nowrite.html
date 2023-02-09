@@ -20,8 +20,8 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
-					<li class="breadcrumb-item">Pages</li>
-					<li class="breadcrumb-item active">Blank</li>
+					<li class="breadcrumb-item">Notice</li>
+					<li class="breadcrumb-item active">Write</li>
 				</ol>
 			</nav>
 		</div>
@@ -37,25 +37,28 @@
 								<table class="viewtable-fill">
 									<thead>
 										<tr>
-											<th class="text-left viewno" id="viewno">&nbsp;글번호</th>
-											<th class="text-left viewcode" id="viewno">
+											<th class="text-left viewno tablehidden" id="viewno">&nbsp;글번호</th>
+											<th class="text-left viewcode tablehidden" id="viewno">
 												-
 											</th>
 											<th colspan="5"></th>
 										</tr>
 										<tr>
-											<th class="text-left" id="viewth">&nbsp;제목</th>
+											<th colspan="7" class="text-left Mtablehidden" id="viewth">&nbsp;제목</th>
+										</tr>
+										<tr>
+											<th class="text-left tablehidden" id="viewth">&nbsp;제목</th>
 											<th class="text-left" id="viewth">
 												<input id="updateth" type="text" name="notice_title">
 											</th>
 											<th class="text-left" id="viewth"></th>
-											<th class="text-right" id="editad">&nbsp;/ 작성자:&nbsp;</th>
-											<th class="text-right">
+											<th class="text-right tablehidden" id="editad">&nbsp;/ 작성자:&nbsp;</th>
+											<th class="text-right tablehidden">
 												<input id="inputnone" readonly="readonly" type="number"
 													name="admin_code" th:value="${session.admin.Admin_code}">
 											</th>
-											<th class="text-right" id="editdate">&nbsp;/ 등록일:&nbsp;</th>
-											<th class="text-right">
+											<th class="text-right tablehidden" id="editdate">&nbsp;/ 등록일:&nbsp;</th>
+											<th class="text-right tablehidden">
 												-
 											</th>
 										</tr>
@@ -74,21 +77,24 @@
 											</th>
 										</tr>
 										<tr>
-											<th class="text-left" colspan="1">
+											<th colspan="7" class="text-left Mtablehidden" id="viewth">&nbsp;내용</th>
+										</tr>
+										<tr>
+											<th class="text-left tablehidden" colspan="1">
 												&nbsp;내용
 											</th>
 											<td colspan="7">
 												<div class="text_box">
 													<textarea id="writecontent" name="notice_content"></textarea>
-													<!--  
-							<input id="writecontent" name="notice_content">
-							-->
 													<div class="count"><span>0</span>/500</div>
 												</div>
 											</td>
 										</tr>
 										<tr>
-											<th class="text-left" colspan="1">
+											<th colspan="7" class="text-left Mtablehidden" id="viewth">&nbsp;주요공지</th>
+										</tr>
+										<tr>
+											<th class="text-left tablehidden" colspan="1">
 												&nbsp;주요공지
 											</th>
 											<td colspan="4">

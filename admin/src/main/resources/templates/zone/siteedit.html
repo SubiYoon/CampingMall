@@ -24,8 +24,8 @@
 			<nav>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
-					<li class="breadcrumb-item">zone, site edit</li>
-					<li class="breadcrumb-item active">edit</li>
+					<li class="breadcrumb-item">Zone, Site edit</li>
+					<li class="breadcrumb-item active">Edit</li>
 				</ol>
 			</nav>
 		</div>
@@ -42,21 +42,30 @@
 								<table class="viewtable-fill">
 									<thead>
 										<tr>
-											<th class="text-left zonethF">사이트코드</th>
+											<th class="text-left zonethF Mtablehidden">사이트코드</th>
+										</tr>
+										<tr>
+											<th class="text-left zonethF tablehidden">사이트코드</th>
 											<th class="text-left zonethS" colspan="4">
 												<input id="inputnone" readonly="readonly" type="text" name="site_code"
 													th:value="${siteEdit.site_code}">
 											</th>
 										</tr>
 										<tr>
-											<th class="text-left zonethF">사이트 명</th>
+											<th class="text-left zonethF Mtablehidden">사이트 명</th>
+										</tr>
+										<tr>
+											<th class="text-left zonethF tablehidden">사이트 명</th>
 											<th class="text-left zonethS" colspan="4">
 												<input id="updateth" type="text" name="site_name"
 													th:value="${siteEdit.site_name}">
 											</th>
 										</tr>
 										<tr>
-											<th class="text-left zonethF">사이트 가격</th>
+											<th class="text-left zonethF Mtablehidden">사이트 가격</th>
+										</tr>
+										<tr>
+											<th class="text-left zonethF tablehidden">사이트 가격</th>
 											<th class="text-left zonethS" colspan="4">
 												<input id="updateth" type="number" name="site_price"
 													th:value="${siteEdit.site_price}">
@@ -65,7 +74,12 @@
 									</thead>
 									<tbody>
 										<tr>
-											<th class="text-left">
+											<th class="text-left Mtablehidden">
+												사이트 설명
+											</th>
+										</tr>
+										<tr>
+											<th class="text-left tablehidden">
 												사이트 설명
 											</th>
 											<td colspan="4">
@@ -74,7 +88,12 @@
 											</td>
 										</tr>
 										<tr>
-											<th class="text-left">
+											<th class="text-left Mtablehidden">
+												교체할 이미지
+											</th>
+										</tr>
+										<tr>
+											<th class="text-left tablehidden">
 												교체할 이미지
 											</th>
 											<td colspan="4">
@@ -82,7 +101,12 @@
 											</td>
 										</tr>
 										<tr>
-											<th class="text-left">
+											<th class="text-left Mtablehidden">
+												현재 이미지
+											</th>
+										</tr>
+										<tr>
+											<th class="text-left tablehidden">
 												현재 이미지
 											</th>
 											<td colspan="4">
@@ -95,6 +119,7 @@
 									</tbody>
 								</table>
 							</form>
+							<br class="Mtablehidden">
 
 							<div class="Btn">
 								<a id="upBtn" class="btn btn-primary" th:href="@{#}">수정</a>
