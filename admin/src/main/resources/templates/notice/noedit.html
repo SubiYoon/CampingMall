@@ -1,143 +1,143 @@
-
 <script>
-	$(document).ready(function() {
+	$(document).ready(function () {
 		//글자수제한
-		$('.text_box textarea').keyup(function(){
-			  var content = $(this).val();
-			  $('.text_box .count span').html(content.length);
-			  if (content.length > 500){
-			    alert("최대 500자까지 입력 가능합니다.");
-			    $(this).val(content.substring(0, 500));
-			    $('.text_box .count span').html(500);
-			  }
+		$('.text_box textarea').keyup(function () {
+			var content = $(this).val();
+			$('.text_box .count span').html(content.length);
+			if (content.length > 500) {
+				alert("최대 500자까지 입력 가능합니다.");
+				$(this).val(content.substring(0, 500));
+				$('.text_box .count span').html(500);
+			}
 		});
-		
 		//수정버튼
-		$('#upBtn').click(function(){
+		$('#upBtn').click(function () {
 			var c = confirm('수정하시겠습니까?');
-			if(c == true){
+			if (c == true) {
 				$('#up_form').attr({
-					'enctype':'multipart/form-data',
-					'method':'post',
-					'action':'[[@{/notice/noticeupdate}]]'
+					'enctype': 'multipart/form-data',
+					'method': 'post',
+					'action': '[[@{/notice/noticeupdate}]]'
 				});
 				$('#up_form').submit();
 			};
 		});
-		
 		//삭제버튼
-		$('#delBtn').click(function(){
+		$('#delBtn').click(function () {
 			var c = confirm('삭제하시겠습니까?');
-			if(c == true){
+			if (c == true) {
 				$('#up_form').attr({
-					'method':'post',
-					'action':'[[@{/notice/nodel}]]'
+					'method': 'post',
+					'action': '[[@{/notice/nodel}]]'
 				});
 				$('#up_form').submit();
 			};
 		});
-		
 	}); 
 </script>
 
-  <main id="main" class="main">
-
-    <div class="pagetitle">
-      <h1>공지 수정</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Blank</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
-    <section class="section">
-      <div class="row">
-        <div class="col-lg-12">
-        
-        <div class="card">
-        <div class="card-body noeditcard">
-	        <form id="up_form">
-	        <table class="viewtable-fill">
-			<thead>
-				<tr>
-					<th class="text-left viewno" id="viewno">&nbsp;글번호</th>
-					<th class="text-left viewcode" id="viewno">
-						<input id="inputnone" readonly="readonly" name="notice_code" th:value="${notice.notice_code}">
-					</th>
-					<th colspan="5"></th>
-				</tr>
-				<tr>
-					<th class="text-left" id="viewth">&nbsp;제목</th>
-					<th class="text-left" id="viewth">
-						<input id="updateth" type="text" name="notice_title" th:value="${notice.notice_title}">
-					</th>
-					<th class="text-left" id="viewth"></th>
-					<th class="text-right" id="editad">&nbsp;/ 작성자:&nbsp;</th>
-					<th class="text-right">
-						<input id="inputnone" readonly="readonly" type="text" th:value="${notice.admin_code}">
-					</th>
-					<th class="text-right" id="editdate">&nbsp;/ 등록일:&nbsp;</th>
-					<th class="text-right">
-						<input id="inputnone" type="text" readonly="readonly" th:value="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}">
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th id="viewlast" colspan="7">
-					</th>
-				</tr>
-				<tr>
-					<th id="viewhr" colspan="7">
-					</th>
-				</tr>
-				<tr>
-					<th id="viewlast" colspan="7">
-					</th>
-				</tr>
-				<tr>
-					<th class="text-left" colspan="1">
-						&nbsp;내용
-					</th>
-					<td colspan="7">
-						<div class="text_box">
-						<textarea id="updatecontent" name="notice_content" th:text="${notice.notice_content}"></textarea>
-						<div class="count"><span>0</span>/500</div>
+<main id="main" class="main">
+	<div class="row row-zone" style="margin: auto;">
+		<div class="pagetitle">
+			<h1>공지 수정</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
+					<li class="breadcrumb-item">Pages</li>
+					<li class="breadcrumb-item active">Blank</li>
+				</ol>
+			</nav>
+		</div>
+	</div><!-- End Page Title -->
+	<section class="section">
+		<div class="row">
+			<div class="row row-zone" style="margin: auto;">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body noeditcard">
+							<form id="up_form">
+								<table class="viewtable-fill">
+									<thead>
+										<tr>
+											<th class="text-left viewno" id="viewno">&nbsp;글번호</th>
+											<th class="text-left viewcode" id="viewno">
+												<input id="inputnone" readonly="readonly" name="notice_code"
+													th:value="${notice.notice_code}">
+											</th>
+											<th colspan="5"></th>
+										</tr>
+										<tr>
+											<th class="text-left" id="viewth">&nbsp;제목</th>
+											<th class="text-left" id="viewth">
+												<input id="updateth" type="text" name="notice_title"
+													th:value="${notice.notice_title}">
+											</th>
+											<th class="text-left" id="viewth"></th>
+											<th class="text-right" id="editad">&nbsp;/ 작성자:&nbsp;</th>
+											<th class="text-right">
+												<input id="inputnone" readonly="readonly" type="text"
+													th:value="${notice.admin_code}">
+											</th>
+											<th class="text-right" id="editdate">&nbsp;/ 등록일:&nbsp;</th>
+											<th class="text-right">
+												<input id="inputnone" type="text" readonly="readonly"
+													th:value="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}">
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th id="viewlast" colspan="7">
+											</th>
+										</tr>
+										<tr>
+											<th id="viewhr" colspan="7">
+											</th>
+										</tr>
+										<tr>
+											<th id="viewlast" colspan="7">
+											</th>
+										</tr>
+										<tr>
+											<th class="text-left" colspan="1">
+												&nbsp;내용
+											</th>
+											<td colspan="7">
+												<div class="text_box">
+													<textarea id="updatecontent" name="notice_content"
+														th:text="${notice.notice_content}"></textarea>
+													<div class="count"><span>0</span>/500</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th class="text-left" colspan="1">
+												&nbsp;주요공지
+											</th>
+											<td colspan="4">
+												<input type="number" min='0' max='1' name="notice_level"
+													th:value="${notice.notice_level}">
+												* 1: ON / 0: OFF
+											</td>
+											<th colspan="2">
+											</th>
+										</tr>
+										<tr>
+											<th id="viewlast" colspan="7">
+											</th>
+										</tr>
+									</tbody>
+								</table>
+							</form>
+							<div class="Btn">
+								<a id="upBtn" class="btn btn-primary" th:href="@{#}">수정</a>
+								<a id="delBtn" class="btn btn-primary" th:href="@{#}">삭제</a>
+							</div>
 						</div>
-					</td>
-				</tr>
-				<tr>
-					<th class="text-left" colspan="1">
-						&nbsp;주요공지
-					</th>
-					<td colspan="4">
-						<input type="number" min='0' max='1' name="notice_level" th:value="${notice.notice_level}">
-						* 1: ON / 0: OFF
-					</td>
-					<th colspan="2">
-					</th>
-				</tr>
-				<tr>
-					<th id="viewlast" colspan="7">
-					</th>
-				</tr>
-			</tbody>
-		</table>
-		</form>
-		
-		<div class="Btn">
-			<a id="upBtn" class="btn btn-primary" th:href="@{#}">수정</a>
-			<a id="delBtn" class="btn btn-primary" th:href="@{#}">삭제</a>
+					</div>
+				</div>
+			</div>
 		</div>
-		
-		</div>
-        </div>
-		
-		</div>
-		</div>
-    </section>
+	</section>
 
-  </main><!-- End #main -->
+</main><!-- End #main -->

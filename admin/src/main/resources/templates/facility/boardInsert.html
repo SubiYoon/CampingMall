@@ -1,54 +1,54 @@
 <script>
-    $(document).ready(function(){
-        $('#board_edit').click(function(){
-            if($('input[name=board_name]').val()==null || $('input[name=board_name]').val()=='' ){
+    $(document).ready(function () {
+        $('#board_edit').click(function () {
+            if ($('input[name=board_name]').val() == null || $('input[name=board_name]').val() == '') {
                 alert("시설이름을 작성해 주세요")
                 return;
-            }else if($('input[name=mf]').val()==null || $('input[name=mf]').val()==''){
+            } else if ($('input[name=mf]').val() == null || $('input[name=mf]').val() == '') {
                 alert("사진을 넣어주세요.");
                 return;
-            }else{
-                $('#board_edit').click(function(){
+            } else {
+                $('#board_edit').click(function () {
                     $('#board_edit_form').attr({
-                        'method' : 'post',
-                        'action' : 'insertOk'
+                        'method': 'post',
+                        'action': 'insertOk'
                     });
                     $('#board_edit_form').submit();
                 });
             }
         });
-        
-       
     });
 </script>
 
 <main id="main" class="main">
-
-    <div class="pagetitle">
-        <h1>시설안내 수정</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a th:href="@{/main}">main</a></li>
-                <li class="breadcrumb-item"><a th:href="@{/facility}">facility edit</a></li>
-                <li class="breadcrumb-item active">facility edit</li>
-            </ol>
-        </nav>
+    <div class="row row-zone" style="margin: auto;">
+        <div class="pagetitle">
+            <h1>시설안내 수정</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a th:href="@{/main}">main</a></li>
+                    <li class="breadcrumb-item"><a th:href="@{/facility}">facility edit</a></li>
+                    <li class="breadcrumb-item active">facility edit</li>
+                </ol>
+            </nav>
+        </div>
     </div><!-- End Page Title -->
-
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">시설 추가</h5> <!-- 게시글 제목 위치-->
-            <form id="board_edit_form" enctype="multipart/form-data">
-                <label>시설 이름 : &nbsp;</label><input type="text" name="board_name" width="300px"><br><br><!--게시글 제목 위치-->
-                <label>시설 소개</label><br>
-                <textarea name="board_content"cols="80" rows="20" ></textarea>
-                <div>
-                    <input name="mf" type="file"/>
-                    <a href="#board_i" id="board_edit" >추가</ㅑ>
-                </div>
-            </form>
+    <div class="row row-zone" style="margin: auto;">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">시설 추가</h5> <!-- 게시글 제목 위치-->
+                <form id="board_edit_form" enctype="multipart/form-data">
+                    <label>시설 이름 : &nbsp;</label><input type="text" name="board_name"
+                        width="300px"><br><br><!--게시글 제목 위치-->
+                    <label>시설 소개</label><br>
+                    <textarea name="board_content" cols="80" rows="20"></textarea>
+                    <div>
+                        <input name="mf" type="file" />
+                        <a href="#board_i" id="board_edit">추가</ㅑ>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-
 
 </main><!-- End #main -->
