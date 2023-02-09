@@ -24,6 +24,13 @@ public class BookInsertSampleTest {
 
     @Test
     void insert() {
+
+        //사이트 코드 부분
+        int start_site_code = 1;
+        int end_site_code = 40;
+        int start_merchant_uid = 11;
+        int sample_count = 190;
+
         String[] center = {"가", "나", "다", "라", "마", "바", "사"};
         int siteCode;
         int userCode;
@@ -34,7 +41,7 @@ public class BookInsertSampleTest {
         Date bookWritedate;
         int bookPrice;
         String bookCarNumber;
-        for (int i = 10; i < 200; i++) {
+        for (int i = start_merchant_uid; i < start_merchant_uid + sample_count; i++) {
             merchantUid = "" + i;
             String impUID = "imp_" + (int) (Math.random() * 10);
             for (int j = 0; j < 10; j++) {
@@ -46,7 +53,9 @@ public class BookInsertSampleTest {
                 throw new RuntimeException(e);
             }
             Calendar calendar = Calendar.getInstance();
-            siteCode = 1 + (int) (Math.random() * 20);
+
+            siteCode = start_site_code + (int) (Math.random() * end_site_code);
+
             userCode = 1 + (int) (Math.random() * 9);
 
             int x = (int) (30 - Math.random() * 330);

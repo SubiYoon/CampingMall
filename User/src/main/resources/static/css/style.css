@@ -310,27 +310,11 @@ button {
      z-index: 50;
 }
 
-#modal_logo_edit, 
-#modal_board_edit,
-#modal_slide_edit {
-     position: fixed;
-     width: 100%;
-     height: 100%;
-     transform: translate(0%, -40%);
-     z-index: 50;
-}
-
-#modal .modal-btn,
-#modal_board_edit .modal-btn,
-#modal_logo_edit .modal-btn,
-#modal_slide_edit .modal-btn {
+#modal .modal-btn {
      text-align: right;
 }
 
-#modal button,
-#modal_board_edit button,
-#modal_logo_edit button,
-#modal_slide_edit button {
+#modal button {
      background-color: #009898;
      min-width: 15%;
      padding: 5px 5px;
@@ -341,16 +325,7 @@ button {
      display: line-block;
 }
 
-#modal_board_edit h2,
-#modal_logo_edit h2,
-#modal_slide_edit h2 {
-     margin: 0;
-}
-
-#modal .modal-content,
-#modal_board_edit .modal-content,
-#modal_logo_edit .modal-content,
-#modal_slide_edit .modal-content {
+#modal .modal-content {
      width: 80%;
      margin: 100px auto;
      padding: 20px 10%;
@@ -358,30 +333,21 @@ button {
      border: 2px solid rgba(0, 135, 135, 0.37);
      border-top: 10px solid #009898;
      border-bottom: 10px solid #009898;
-	 border-radius: 10px;
+	border-radius: 10px;
      transform: scale(0);
      animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
 
-#modal .modal-login,
-#modal_board_edit .modal-login,
-#modal_logo_edit .modal-login,
-#modal_slide_edit .modal-login {
+#modal .modal-login {
      text-align: center;
      padding: 10px 0;
 }
 
-#modal .modal-login button,
-#modal_board_edit .modal-login button,
-#modal_logo_edit .modal-login button,
-#modal_slide_edit .modal-login button {
+#modal .modal-login button {
      text-align: center;
 }
 
-#modal.modal-overlay,
-#modal_board_edit.modal-overlay,
-#modal_logo_edit.modal-overlay,
-#modal_slide_edit.modal-overlay {
+#modal.modal-overlay {
      width: 100%;
      height: 100%;
      position: absolute;
@@ -494,6 +460,19 @@ button {
 }
 
 /*-- end 로그인모달용 --*/
+
+/*-- 캠핑장 선택버튼 --*/
+#comp_select {
+     visibility: visible;
+     position: fixed;
+     z-index: 60;
+
+     margin: 10px 10px 10px 10px;
+     box-shadow: 0 5px 10px 0 rgba(31, 38, 135, 0.37);
+
+     top: 5%;
+     right: 20px;
+}
 
 /*-- 챗봇모달용 --*/
 #modal_cbicon {

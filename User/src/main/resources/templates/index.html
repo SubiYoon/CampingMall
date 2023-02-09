@@ -11,13 +11,16 @@
    <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
       <ol class="carousel-indicators">
          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-         <li th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index>0}" data-target="#myCarousel" th:data-slide-to="${slideStat.index}"></li>
+         <li th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index>0}"
+            data-target="#myCarousel" th:data-slide-to="${slideStat.index}"></li>
       </ol>
       <div class="carousel-inner">
-         <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index==0}" class="carousel-item active">
+         <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index==0}"
+            class="carousel-item active">
             <img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide">
          </div>
-         <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index>0}" class="carousel-item">
+         <div th:each="slide : ${slide}" th:if="${slide.home_code == homecont.home_code and slideStat.index>0}"
+            class="carousel-item">
             <img class="first-slide" th:src="@{/images/} + ${slide.image_file}" alt="First slide">
          </div>
       </div>
@@ -31,39 +34,41 @@
       </a>
    </div>
    <!-- Logo -->
-   
-      
-         <div class="booking_ocline2">
-            <div class="col-md-1">
-               <div id="book_ocline_logo"><img class="modal_block_logo" th:src="@{/images/}+${session.company.company_logo2}"  alt="logo" /></div>
-            </div>
-         </div>
-      
-   
+
+
+   <div class="booking_ocline2">
+      <div class="col-md-1">
+         <div id="book_ocline_logo"><img class="modal_block_logo" th:src="@{/images/}+${session.company.company_logo2}"
+               alt="logo" /></div>
+      </div>
+   </div>
+
+
    <!-- 환영 인사 -->
-   
-      <div class="booking_ocline">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-5">
-                  
-                     <div class="modal_block">
-                        <div class="book_room">
-                           <h1 th:text="${session.company.company_name}"></h1><h1>방문을 환영합니다</h1>
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <span th:text="${homecont.home_content}"></span>
-                                 <input type="hidden" name="home_code" th:value="${homecont.home_code}"/>
-                              </div>
-                           </div>
+
+   <div class="booking_ocline">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-5">
+
+               <div class="modal_block">
+                  <div class="book_room">
+                     <h1 th:text="${session.company.company_name}"></h1>
+                     <h1>방문을 환영합니다</h1>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <span th:text="${homecont.home_content}"></span>
+                           <input type="hidden" name="home_code" th:value="${homecont.home_code}" />
                         </div>
                      </div>
-                  </a>
+                  </div>
                </div>
+               </a>
             </div>
          </div>
       </div>
-   
+   </div>
+
 </section>
 <!-- end banner -->
 <!--TODO: CSS수정 필요 (공지사항 번호 밀림) : 현재 번호 삭제상태-->
@@ -75,22 +80,23 @@
             <div class="titlepage">
                <h2>주요공지</h2>
                <ul id="main_notice_list">
-               		<div th:each="noticeLv:${noticeLv}">
-               			<li>
-               				<a th:text="'-&nbsp;&nbsp;'+${noticeLv.notice_title}" th:href="@{/notice/noticeview(notice_code=${noticeLv.notice_code})}"></a>
-               			</li>
-               		</div>
+                  <div th:each="noticeLv:${noticeLv}">
+                     <li>
+                        <a th:text="'-&nbsp;&nbsp;'+${noticeLv.notice_title}"
+                           th:href="@{/notice/noticeview(notice_code=${noticeLv.notice_code})}"></a>
+                     </li>
+                  </div>
                </ul>
             </div>
             <div class="main_notice_read_more">
-            	<a class="read_more" th:href="@{/notice}">Read More</a>
+               <a class="read_more" th:href="@{/notice}">Read More</a>
             </div>
          </div>
       </div>
    </div>
 </div>
 <!-- end공지 -->
-	
+
 <!-- 구역소개 -->
 <div class="our_room">
    <div class="container indexcontr">
@@ -104,12 +110,12 @@
       </div>
       <div class="row">
          <div class="col-md-4 col-sm-6" th:each="zone:${zlist}">
-            <div id="serv_hover" class="room"  th:if="${zone.zone_state} == 1">
+            <div id="serv_hover" class="room" th:if="${zone.zone_state} == 1">
                <div class="room_img">
-					<span th:each="img:${ilist}" th:if="${zone.zone_code == img.zone_code}">
-						<figure><img th:src="'images/'+${img.image_file}" alt="#"/></figure>
-					</span>
-				</div>
+                  <span th:each="img:${ilist}" th:if="${zone.zone_code == img.zone_code}">
+                     <figure><img th:src="'images/'+${img.image_file}" alt="#" /></figure>
+                  </span>
+               </div>
                <div class="bed_room indexcontent">
                   <h3 th:text="${zone.zone_name}"></h3>
                   <p th:text="${zone.zone_content}"></p>
@@ -117,9 +123,9 @@
             </div>
          </div>
          <div class="col-md-12">
-	         <div class="our_read_more">
-	         	<a class="read_more" th:href="@{/zone}"> Read More</a>
-	         </div>
+            <div class="our_read_more">
+               <a class="read_more" th:href="@{/zone}"> Read More</a>
+            </div>
          </div>
       </div>
    </div>
@@ -139,16 +145,16 @@
       <div class="row">
          <div class="col-md-3 col-sm-6" th:each="f : ${facilities}">
             <div class="gallery_img">
-               <figure><img th:src="'/images/' + ${f.image_file}" alt="#"/></figure>
+               <figure><img th:src="'/images/' + ${f.image_file}" alt="#" /></figure>
             </div>
             <div class="fac">
-               <h3 th:text="${f.facility_name}"></h3>   
+               <h3 th:text="${f.facility_name}"></h3>
             </div>
          </div>
          <div class="col-md-12">
-	         <div class="fac_read_more">
-	         	<a class="read_more" th:href="@{/facility}"> Read More</a>
-	         </div>
+            <div class="fac_read_more">
+               <a class="read_more" th:href="@{/facility}"> Read More</a>
+            </div>
          </div>
       </div>
    </div>
@@ -169,7 +175,7 @@
          <div class="col-md-4" th:each="review: ${review}">
             <div class="blog_box">
                <div class="blog_img">
-                  <figure><img th:src="'/images/' + ${review.review_img1}" alt="#" /></figure>
+                  <figure><img th:src="'/images/' + ${review.review_img1}" alt="#" style="width:100%; height:400px;"/></figure>
                </div>
                <div class="blog_room">
                   <span class="reivewStar" th:text="${'✰'}" th:if="${review.review_score == 1}"></span>
@@ -190,7 +196,7 @@
 <!--  contact -->
 <div class="contact">
    <div class="container">
-			<aside id="map_aside" th:include="${map} ? ${map} : kkomap"></aside>
+      <aside id="map_aside" th:include="${map} ? ${map} : kkomap"></aside>
    </div>
 </div>
 <!-- end contact -->

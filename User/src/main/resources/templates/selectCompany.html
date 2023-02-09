@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Camping</title>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+    <!--Icon Fonts-->
+    <link rel="stylesheet" media="screen" href="assets/fonts/font-awesome/font-awesome.min.css" />
+
+</head>
+
+<script>
+    $(document).ready(function(){
+        $('.selectCompany > a').click(function(){
+            $(this).parent().attr({
+                'method': 'post',
+                'action': '/main',
+            });
+            $(this).parent().submit();
+        });
+    });
+</script>
+
+<body>
+    <!-- Pricing Table Section -->
+    <section id="pricing-table">
+        <div class="container">
+            <div class="row">
+                <div class="pricing">
+                    <div class="col-md-6 col-sm-12 col-xs-12" th:each="companyList : ${companyList}">
+                        <div class="pricing-table">
+                            <div class="pricing-header" >
+                                <p class="pricing-title" th:text="${companyList.company_name}"></p>
+                                <p class="pricing-rate"><img th:src="'/images/' + ${companyList.company_logo1}" /></p>
+                                <form class="selectCompany">
+                                    <input type="hidden" name="company_code" th:value="${companyList.company_code}" />
+                                    <a href="#SelectComapny" class="btn btn-custom">홈페이지로 이동하기</a>
+                                </form>
+                            </div>
+
+                            <div class="pricing-list">
+                                <ul>
+                                    <li><i class="fa fa-user"></i><span th:text="${companyList.home_owner}"></span></li>
+                                    <li><i class="fa fa-signal"></i><span th:text="${companyList.home_tell}"></span></li>
+                                    <li><i class="fa fa-smile-o"></i><span th:text="${companyList.home_address}"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pricing Table Section End -->
+</body>
+
+</html>
