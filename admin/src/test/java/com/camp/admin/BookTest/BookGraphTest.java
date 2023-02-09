@@ -20,10 +20,12 @@ public class BookGraphTest {
 
     @Test
     void Monthly() throws ParseException {
-        List<BookDTO> bookList = bookService.selectByCompanyCodeAndYearMonth(1,"2023-02");
-        List<BookDTO> bookList2 = bookService.selectByCompanyCodeAndWriteDate(1,"2023-02");
-        List<ReservationDTO> reservationList = reservationService.selectByCompanyCodeAndYearMonth(1,"2023-02");
-        MakeMonthGraph a = new MakeMonthGraph(bookList,reservationList,"2023-02",bookList2);
+        int company_code=1;
+        String stringYearAndMonth="2023-02";
+        List<BookDTO> bookList = bookService.selectByCompanyCodeAndYearMonth(company_code,stringYearAndMonth);
+        List<BookDTO> bookList2 = bookService.selectByCompanyCodeAndWriteDate(company_code,stringYearAndMonth);
+        List<ReservationDTO> reservationList = reservationService.selectByCompanyCodeAndYearMonth(company_code,stringYearAndMonth);
+        MakeMonthGraph a = new MakeMonthGraph(bookList,reservationList,stringYearAndMonth,bookList2);
         System.out.println(a.MakeBookGraph());
         System.out.println(a.MakeRevenueGraph());
         System.out.println(a.MakeVisitorGraph());

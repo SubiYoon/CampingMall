@@ -1,5 +1,6 @@
 package com.camp.admin.Controller;
 
+import com.camp.admin.utility.MakeMonthGraph;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -70,11 +71,12 @@ public class AjaxController {
         if (dataScale==null||dataScale.contains("M")) {
             try {
                 List<GraphDTO> graphs = new ArrayList<>();
-                GraphDTO graphDTO = bookService.MonthSalesGraph(stringDate,companyCode);
+                MakeMonthGraph monthGraph = bookService.getMonthGraph(companyCode,stringDate);
+                GraphDTO graphDTO = monthGraph.MakeRevenueGraph();
                 graphs.add(graphDTO);
-                graphDTO = bookService.MonthlyBookGraph(stringDate,companyCode);
+                graphDTO = monthGraph.MakeBookGraph();
                 graphs.add(graphDTO);
-                graphDTO = bookService.MonthlyUserGraph(stringDate,companyCode);
+                graphDTO = monthGraph.MakeVisitorGraph();
                 graphs.add(graphDTO);
                 graphDTO = bookService.MonthlyZoneSalesGraph(stringDate, companyCode);
                 graphs.add(graphDTO);

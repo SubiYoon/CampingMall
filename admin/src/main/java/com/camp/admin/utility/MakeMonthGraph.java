@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class MakeMonthGraph {
 
@@ -42,44 +41,49 @@ public class MakeMonthGraph {
 
     public GraphDTO MakeBookGraph() throws ParseException {
         setLists();
-        Map<String, Integer> dayBookCount1 = new TreeMap<>();
         Map<String, Integer> dayBookCount2 = new HashMap<>();
-        for (int i = 1; i <= Utility.LastDayOfMonth(stringYearAndMonth + "-01"); i++) {
-            labelList.add("" + i);
-            dayBookCount1.put("" + i, 0);
-        }
+
         for (BookDTO book : bookList2) {
             String day = DateToDay(book.getBook_writedate());
             int count = 1;
             if (dayBookCount2.containsKey(day)) {
                 count += dayBookCount2.get(day);
+                System.out.println("날:"+day+" count:"+count);
             }
             dayBookCount2.put(day, count);
         }
-        dayBookCount1.putAll(dayBookCount2);
-        for (int count : dayBookCount1.values()) {
-            dataList.add("" + count);
+        for (int i = 1; i <= Utility.LastDayOfMonth(stringYearAndMonth + "-01"); i++) {
+            int count =0;
+            if(dayBookCount2.containsKey(""+i)){
+                count = dayBookCount2.get(""+i);
+            }
+            dataList.add(""+count);
         }
+
         return new GraphDTO(labelList, stringYearAndMonth, dataList);
     }
 
     public GraphDTO MakeRevenueGraph() throws ParseException {
         setLists();
-        Map<Integer, Double> CodePriceMap = new HashMap<>();
-        Map<String, Double> dayRevenueMap1 = new TreeMap<>();
-        Map<String, Double> dayRevenueMap2 = new HashMap<>();
+
         for (int i = 1; i <= Utility.LastDayOfMonth(stringYearAndMonth + "-01"); i++) {
-            dayRevenueMap1.put("" + i, 0.0);
+            labelList.add("" + i);
         }
+        
+        Map<Integer, Double> CodePriceMap = new HashMap<>();
+        Map<String, Double> dayRevenueMap2 = new HashMap<>();
+
         for (BookDTO book : bookList) {
             double bookPrice = book.getBook_price();
             double days = Utility.StringDateDifference(book.getBook_checkout(),
                 book.getBook_checkin());
+            System.out.println(book.getBook_code());
             CodePriceMap.put(book.getBook_code(), bookPrice / days);
         }
         for (ReservationDTO reservation : reservationList) {
             String day = DateToDay(reservation.getReservation_date());
             int bookCode = reservation.getBook_code();
+            System.out.println(bookCode);
             double price = CodePriceMap.get(bookCode);
             if(day.equals("7")){
                 System.out.println(price);
@@ -87,10 +91,14 @@ public class MakeMonthGraph {
             if (dayRevenueMap2.containsKey(day)) {
                 price += dayRevenueMap2.get(day);
             }
+
             dayRevenueMap2.put(day, price);
         }
-        dayRevenueMap1.putAll(dayRevenueMap2);
-        for (double count : dayRevenueMap1.values()) {
+        for (int i = 1; i <= Utility.LastDayOfMonth(stringYearAndMonth + "-01"); i++) {
+            double count = 0.0;
+            if(dayRevenueMap2.containsKey(""+i)){
+                count = dayRevenueMap2.get(""+i);
+            }
             dataList.add("" + Math.round(count));
         }
         return new GraphDTO(labelList, stringYearAndMonth, dataList);
@@ -99,11 +107,7 @@ public class MakeMonthGraph {
     public GraphDTO MakeVisitorGraph() throws ParseException {
         setLists();
         Map<Integer, Integer> CodeMemberMap = new HashMap<>();
-        Map<String, Integer> dayVisitorMap1 = new TreeMap<>();
         Map<String, Integer> dayVisitorMap2 = new HashMap<>();
-        for (int i = 1; i <= Utility.LastDayOfMonth(stringYearAndMonth + "-01"); i++) {
-            dayVisitorMap1.put("" + i, 0);
-        }
         for (BookDTO book : bookList) {
             int bookMember = book.getBook_member();
             CodeMemberMap.put(book.getBook_code(), bookMember);
@@ -117,8 +121,11 @@ public class MakeMonthGraph {
             }
             dayVisitorMap2.put(day, member);
         }
-        dayVisitorMap1.putAll(dayVisitorMap2);
-        for (int count : dayVisitorMap1.values()) {
+        for (int i = 1; i <= Utility.LastDayOfMonth(stringYearAndMonth + "-01"); i++) {
+            int count = 0;
+            if(dayVisitorMap2.containsKey(""+i)){
+                count = dayVisitorMap2.get(""+i);
+            }
             dataList.add("" + count);
         }
         return new GraphDTO(labelList, stringYearAndMonth, dataList);

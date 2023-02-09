@@ -7,6 +7,7 @@ import com.camp.admin.DTO.ReservationDTO;
 import com.camp.admin.DTO.SiteDTO;
 import com.camp.admin.frame.MyService;
 import com.camp.admin.mapper.BookMapper;
+import com.camp.admin.utility.MakeMonthGraph;
 import com.camp.admin.utility.Utility;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -765,6 +766,14 @@ public class BookService implements MyService<Integer, BookDTO> {
 
         return mapper.selectByCompanyCodeAndWriteDate(company_code, "%" + stringYearAndMonth + "%");
 
+    }
+
+    public MakeMonthGraph getMonthGraph(int company_code, String stringYearAndMonth)
+        throws ParseException {
+        List<BookDTO> bookList = selectByCompanyCodeAndYearMonth(company_code,stringYearAndMonth);
+        List<BookDTO> bookList2 = selectByCompanyCodeAndWriteDate(company_code,stringYearAndMonth);
+        List<ReservationDTO> reservationList = reservationService.selectByCompanyCodeAndYearMonth(company_code,stringYearAndMonth);
+        return new MakeMonthGraph(bookList,reservationList,stringYearAndMonth,bookList2);
     }
 
 
