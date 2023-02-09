@@ -325,6 +325,7 @@
    }
 
 </script>
+<link rel="stylesheet" th:href="@{/css/book.css}">
 <style>
    #calendar {
       width: 80%;
@@ -362,6 +363,139 @@
          </div>
       </div>
    </div>
+</div>
+<div class="weahter">
+	<div class="weahter-container">
+		<div class="weahter-row">
+			<div class="weather-info">
+			<th:block data-th-with="wdate=${#temporals.createDate(weatherjson.json2[0].fcstDate,'yyyyMMdd')}">
+				<div th:text="|${#temporals.format(wdate,'MM/dd')} (${#temporals.dayOfWeekNameShort(wdate)})|"></div>
+				<div>
+					<img th:if="${weatherjson.json2[0].fcstValue}==1" alt="맑음" src="https://ssl.gstatic.com/onebox/weather/48/sunny_s_cloudy.png">
+					<img th:if="${weatherjson.json2[0].fcstValue}==3" alt="구름많음" src="https://ssl.gstatic.com/onebox/weather/48/cloudy.png">
+					<img th:if="${weatherjson.json2[0].fcstValue}==4"alt="흐림" src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png">
+				</div>
+				<div>
+					<span th:text="${weatherjson.json2[1].fcstValue.substring(0,weatherjson.json2[1].fcstValue.length()-2)}"></span>° /
+					<span th:text="${weatherjson.json2[2].fcstValue.substring(0,weatherjson.json2[2].fcstValue.length()-2)}"></span>°
+				</div>
+			</th:block>
+			</div>
+			<div>
+			<th:block data-th-with="wdate=${#temporals.createDate(weatherjson.json2[3].fcstDate,'yyyyMMdd')}">
+				<div th:text="|${#temporals.format(wdate,'MM/dd')} (${#temporals.dayOfWeekNameShort(wdate)})|"></div>
+				<div>
+					<img th:if="${weatherjson.json2[3].fcstValue}==1" alt="맑음" src="https://ssl.gstatic.com/onebox/weather/48/sunny_s_cloudy.png">
+					<img th:if="${weatherjson.json2[3].fcstValue}==3" alt="구름많음" src="https://ssl.gstatic.com/onebox/weather/48/cloudy.png">
+					<img th:if="${weatherjson.json2[3].fcstValue}==4"alt="흐림" src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png">
+				</div>
+				<div>
+					<span th:text="${weatherjson.json2[4].fcstValue.substring(0,weatherjson.json2[4].fcstValue.length()-2)}"></span>° /
+					<span th:text="${weatherjson.json2[5].fcstValue.substring(0,weatherjson.json2[5].fcstValue.length()-2)}"></span>°
+				</div>
+			</th:block>
+			</div>
+			<div>
+			<th:block data-th-with="wdate=${#temporals.createDate(weatherjson.json2[6].fcstDate,'yyyyMMdd')}">
+				<div th:text="|${#temporals.format(wdate,'MM/dd')} (${#temporals.dayOfWeekNameShort(wdate)})|"></div>
+				<div>
+					<img th:if="${weatherjson.json2[6].fcstValue}==1" alt="맑음" src="https://ssl.gstatic.com/onebox/weather/48/sunny_s_cloudy.png">
+					<img th:if="${weatherjson.json2[6].fcstValue}==3" alt="구름많음" src="https://ssl.gstatic.com/onebox/weather/48/cloudy.png">
+					<img th:if="${weatherjson.json2[6].fcstValue}==4"alt="흐림" src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png">
+				</div>
+				<div>
+					<span th:text="${weatherjson.json2[7].fcstValue.substring(0,weatherjson.json2[7].fcstValue.length()-2)}"></span>° /
+					<span th:text="${weatherjson.json2[8].fcstValue.substring(0,weatherjson.json2[8].fcstValue.length()-2)}"></span>°
+				</div>
+			</th:block>
+			</div>
+			<div>
+				<div th:text="|${#dates.format(wdate[0],'MM/dd')} (${#dates.dayOfWeekNameShort(wdate[0])})|"></div>
+				<div>
+					<img th:if="${weatherjson.json1[1].wf3Pm.equals('맑음')}" alt="맑음" src="https://ssl.gstatic.com/onebox/weather/48/sunny_s_cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf3Pm.equals('구름많음')}" alt="구름많음" src="https://ssl.gstatic.com/onebox/weather/48/cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf3Pm.equals('흐림')}" alt="흐림" src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png">
+				</div>
+				<div>
+					<span th:text="${weatherjson.json1[0].taMax3}"></span>° /
+					<span th:text="${weatherjson.json1[0].taMin3}"></span>°
+				</div>
+			</div>
+			<div>
+				<div th:text="|${#dates.format(wdate[1],'MM/dd')} (${#dates.dayOfWeekNameShort(wdate[1])})|"></div>
+				<div>
+					<img th:if="${weatherjson.json1[1].wf4Pm.equals('맑음')}" alt="맑음" src="https://ssl.gstatic.com/onebox/weather/48/sunny_s_cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf4Pm.equals('구름많음')}" alt="구름많음" src="https://ssl.gstatic.com/onebox/weather/48/cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf4Pm.equals('흐림')}" alt="흐림" src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png">
+				</div>
+				<div>
+					<span th:text="${weatherjson.json1[0].taMax4}"></span>° /
+					<span th:text="${weatherjson.json1[0].taMin4}"></span>°
+				</div>
+			</div>
+			<div>
+				<div th:text="|${#dates.format(wdate[2],'MM/dd')} (${#dates.dayOfWeekNameShort(wdate[2])})|"></div>
+				<div>
+					<img th:if="${weatherjson.json1[1].wf5Pm.equals('맑음')}" alt="맑음" src="https://ssl.gstatic.com/onebox/weather/48/sunny_s_cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf5Pm.equals('구름많음')}" alt="구름많음" src="https://ssl.gstatic.com/onebox/weather/48/cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf5Pm.equals('흐림')}" alt="흐림" src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png">
+				</div>
+				<div>
+					<span th:text="${weatherjson.json1[0].taMax5}"></span>° /
+					<span th:text="${weatherjson.json1[0].taMin5}"></span>°
+				</div>
+			</div>
+			<div>
+				<div th:text="|${#dates.format(wdate[3],'MM/dd')} (${#dates.dayOfWeekNameShort(wdate[3])})|"></div>
+				<div>
+					<img th:if="${weatherjson.json1[1].wf6Pm.equals('맑음')}" alt="맑음" src="https://ssl.gstatic.com/onebox/weather/48/sunny_s_cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf6Pm.equals('구름많음')}" alt="구름많음" src="https://ssl.gstatic.com/onebox/weather/48/cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf6Pm.equals('흐림')}" alt="흐림" src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png">
+				</div>
+				<div>
+					<span th:text="${weatherjson.json1[0].taMax6}"></span>° /
+					<span th:text="${weatherjson.json1[0].taMin6}"></span>°
+				</div>
+			</div>
+			<div>
+				<div th:text="|${#dates.format(wdate[4],'MM/dd')} (${#dates.dayOfWeekNameShort(wdate[4])})|"></div>
+				<div>
+					<img th:if="${weatherjson.json1[1].wf7Pm.equals('맑음')}" alt="맑음" src="https://ssl.gstatic.com/onebox/weather/48/sunny_s_cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf7Pm.equals('구름많음')}" alt="구름많음" src="https://ssl.gstatic.com/onebox/weather/48/cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf7Pm.equals('흐림')}" alt="흐림" src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png">
+				</div>
+				<div>
+					<span th:text="${weatherjson.json1[0].taMax7}"></span>° /
+					<span th:text="${weatherjson.json1[0].taMin7}"></span>°
+				</div>
+			</div>
+			<div>
+				<div th:text="|${#dates.format(wdate[5],'MM/dd')} (${#dates.dayOfWeekNameShort(wdate[5])})|"></div>
+				<div>
+					<img th:if="${weatherjson.json1[1].wf8.equals('맑음')}" alt="맑음" src="https://ssl.gstatic.com/onebox/weather/48/sunny_s_cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf8.equals('구름많음')}" alt="구름많음" src="https://ssl.gstatic.com/onebox/weather/48/cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf8.equals('흐림')}" alt="흐림" src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png">
+				</div>
+				<div>
+					<span th:text="${weatherjson.json1[0].taMax8}"></span>° /
+					<span th:text="${weatherjson.json1[0].taMin8}"></span>°
+				</div>
+			</div>
+			<div>
+				<div th:text="|${#dates.format(wdate[6],'MM/dd')} (${#dates.dayOfWeekNameShort(wdate[6])})|"></div>
+				<div>
+					<img th:if="${weatherjson.json1[1].wf9.equals('맑음')}" alt="맑음" src="https://ssl.gstatic.com/onebox/weather/48/sunny_s_cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf9.equals('구름많음')}" alt="구름많음" src="https://ssl.gstatic.com/onebox/weather/48/cloudy.png">
+					<img th:if="${weatherjson.json1[1].wf9.equals('흐림')}" alt="흐림" src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png">
+				</div>
+				<div>
+					<span th:text="${weatherjson.json1[0].taMax9}"></span>° /
+					<span th:text="${weatherjson.json1[0].taMin9}"></span>°
+				</div>
+			</div>
+			
+		</div>
+	</div>
 </div>
 <div class="row">
    <div class="col-md-7">
