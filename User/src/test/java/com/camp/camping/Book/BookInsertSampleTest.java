@@ -29,7 +29,7 @@ public class BookInsertSampleTest {
         int start_site_code = 1;
         int end_site_code = 40;
         int start_merchant_uid = 11;
-        int sample_count = 190;
+        int sample_count = 500;
 
         String[] center = {"가", "나", "다", "라", "마", "바", "사"};
         int siteCode;

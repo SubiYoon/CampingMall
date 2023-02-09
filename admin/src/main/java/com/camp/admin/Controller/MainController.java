@@ -203,16 +203,17 @@ public class MainController {
 	}
 	
 	@RequestMapping("logoEdit")
-	public String logoEdit(HttpSession session, MultipartFile company_logo1, MultipartFile company_logo2){
+	public String logoEdit(HttpSession session, MultipartFile company_logo1, MultipartFile company_logo2, String company_name){
 		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
 		int company_code = company.getCompany_code();
 		if(!company_logo1.isEmpty() && !company_logo2.isEmpty()){
 			try {
 				company.setCompany_logo1(company_logo1.getOriginalFilename());
 				company.setCompany_logo2(company_logo2.getOriginalFilename());
-				serviceC.update(company);
+				company.setCompany_name(company_name);
 				SaveFile.saveFile(company_logo1, imagesdir);
 				SaveFile.saveFile(company_logo2, imagesdir);
+				serviceC.update(company);
 
 				session.invalidate();
 			} catch (Exception e) {
@@ -224,6 +225,7 @@ public class MainController {
 				company = serviceC.select(company_code);
 				company.setCompany_logo1(company_logo1.getOriginalFilename());
 				SaveFile.saveFile(company_logo1, imagesdir);
+				company.setCompany_name(company_name);
 				serviceC.update(company);
 
 				session.invalidate();
@@ -236,14 +238,25 @@ public class MainController {
 				company = serviceC.select(company_code);
 				company.setCompany_logo2(company_logo2.getOriginalFilename());
 				SaveFile.saveFile(company_logo2, imagesdir);
+				company.setCompany_name(company_name);
 				serviceC.update(company);
+
+				session.invalidate();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else return "redirect:/company";
-		
-		
+		}else {
+			try {
+				company.setCompany_name(company_name);
+				serviceC.update(company);
 
+				session.invalidate();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		return "redirect:/";
 	}
 	
