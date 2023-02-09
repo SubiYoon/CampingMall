@@ -28,8 +28,26 @@ public class BookInsertSampleTest {
         //사이트 코드 부분
         int start_site_code = 1;
         int end_site_code = 40;
+
+        //시작번호를 쓸 merchant_uid
         int start_merchant_uid = 11;
+
+        //샘플 갯수
         int sample_count = 190;
+
+        //현재 기준 몇 일 전 까지 체크인으로 가능인지
+        int min_check_in_days = 300;
+
+        //현재 기준 몇 일 후 까지 체크인으로 가능인지
+        int max_check_in_days = 30;
+
+        //몇 % 확률로 추가사항을 추가하는지(0~100)
+        int rate_of_book_details = 20;
+
+        //유저 코드 시작 번호
+        int start_user_code = 1;
+        //유저 코드 끝 번호
+        int end_user_code = 9;
 
         String[] center = {"가", "나", "다", "라", "마", "바", "사"};
         int siteCode;
@@ -54,31 +72,42 @@ public class BookInsertSampleTest {
             }
             Calendar calendar = Calendar.getInstance();
 
-            siteCode = start_site_code + (int) (Math.random() * end_site_code);
+            siteCode =
+                start_site_code + (int) (Math.random() * (1 - start_site_code + end_site_code));
 
-            userCode = 1 + (int) (Math.random() * 9);
+            userCode =
+                start_user_code + (int) (Math.random() * (1 - start_user_code + end_user_code));
 
-            int x = (int) (30 - Math.random() * 330);
+            int x = (int) (max_check_in_days - Math.random() * (max_check_in_days
+                + min_check_in_days));
             calendar.add(Calendar.DATE, x);
             bookCheckin = Utility.DateToString(calendar.getTime());
-            int y = (int) (Math.random() * 5 + Math.random() * 4 + 1);
+            int y = (int) (Math.random() * 5 + Math.random() * 4 + Math.random() * 4 + 1);
             calendar.add(Calendar.DATE, -y);
+            int counts = 1;
+            //
+            while (!calendar.before(Calendar.getInstance())) {
+                calendar.add(Calendar.DATE, -y);
+                counts++;
+            }
+
             bookWritedate = calendar.getTime();
-            calendar.add(Calendar.DATE, y);
-            y = (int) (Math.random() * 2 + Math.random() * 2 + 1);
+            calendar.add(Calendar.DATE, y * counts);
+            y = (int) (Math.random() * 1.2 + Math.random() * 1.4 + Math.random() * 1.7
+                + Math.random() * 2 + 1);
             calendar.add(Calendar.DATE, y);
             bookCheckout = Utility.DateToString(calendar.getTime());
             calendar.add(Calendar.DATE, -(x + y));
-            bookMember = (int) (Math.random() * 2 + Math.random() * 3 + 1);
-            bookPrice = (int) (Math.random() * 6 + 1) * 10000;
+            bookMember = (int) (Math.random() * 2 + Math.random() * 2 + 1);
+            bookPrice = (int) (Math.random() * 4 + (bookMember * 2) + 4) * 5000;
             bookCarNumber =
                 "" + (int) (Math.random() * 99) + (int) (Math.random() * 10)
                     + center[(int) (Math.random() * 7)] + (int) (Math.random() * 10)
                     + (int) (Math.random() * 10) + (int) (Math.random() * 10)
                     + (int) (Math.random() * 10)
-                    + "," + (int) ((Math.random() * 120) / 100)
-                    + "," + (int) ((Math.random() * 120) / 100)
-                    + "," + (int) ((Math.random() * 120) / 100);
+                    + "," + (int) ((Math.random() * (100 + rate_of_book_details)) / 100)
+                    + "," + (int) ((Math.random() * (100 + rate_of_book_details)) / 100)
+                    + "," + (int) ((Math.random() * (100 + rate_of_book_details)) / 100);
             BookDTO bookDTO = new BookDTO(1, siteCode, userCode, merchantUid, bookMember,
                 bookCheckin, bookCheckout, bookWritedate, bookPrice, bookCarNumber, 1, "", "");
             try {
@@ -88,7 +117,8 @@ public class BookInsertSampleTest {
                         bookService.insertBookAndReservationForSample(bookDTO);
                         break;
                     }
-                    siteCode = 1 + (int) (Math.random() * 20);
+                    siteCode = start_site_code + (int) (Math.random() * (1 - start_site_code
+                        + end_site_code));
                     count++;
                 }
             } catch (Exception e) {
