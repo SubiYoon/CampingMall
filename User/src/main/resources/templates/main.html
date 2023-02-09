@@ -302,8 +302,6 @@
 								<ul class="navbar-nav mr-auto">
 
 									<!-- 현재 선택 활성화로 보이게 하려면 class="nav-item active" 해야합니다-->
-
-									<li class="nav-item"><a class="nav-link" th:href="@{/campSelect}">캠핑장 선택</a></li>
 									<li class="nav-item"><a class="nav-link" th:href="@{/main}">Home</a></li>
 									<li class="nav-item"><a class="nav-link" th:href="@{/notice}">공지사항</a></li>
 									<li class="nav-item"><a class="nav-link" th:href="@{/zone}">구역안내</a></li>
@@ -335,6 +333,14 @@
 		</button>
 	</div>
 	<!-- end 챗봇아이콘 -->
+
+	<!-- 캠핑장 선택 아이콘 -->
+	<div id="comp_select">
+		<button>
+			<a href="/"><img th:src="@{/images/chatbot.png}" /></a>
+		</button>
+	</div>
+	<!-- end 캠핑장 선택 아이콘 -->
 
 	<!-- end header -->
 

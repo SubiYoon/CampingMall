@@ -175,7 +175,7 @@
          <div class="col-md-4" th:each="review: ${review}">
             <div class="blog_box">
                <div class="blog_img">
-                  <figure><img th:src="'/images/' + ${review.review_img1}" alt="#" /></figure>
+                  <figure><img th:src="'/images/' + ${review.review_img1}" alt="#" style="width:100%; height:400px;"/></figure>
                </div>
                <div class="blog_room">
                   <span class="reivewStar" th:text="${'✰'}" th:if="${review.review_score == 1}"></span>

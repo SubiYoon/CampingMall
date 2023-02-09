@@ -173,11 +173,4 @@ public class MainController {
 
 		return "main";
 	}
-
-	@RequestMapping("campSelect")
-	public String campSelect(HttpSession session){
-		session.invalidate();
-		return "redirect:/";
-	}
-	
 }
