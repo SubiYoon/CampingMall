@@ -213,10 +213,10 @@ insert into `review`(book_code, review_content, review_score) values(7,'추워�
 insert into `review`(book_code, review_content, review_score) values(8,'풍경이 멋있어요',5);
 
 -- 이미지
-insert into image(company_code, zone_code, image_file) VALUES(2, 5, 'lake.jpg');
-insert into image(company_code, zone_code, image_file) VALUES(2, 6, 'tent.png');
-insert into image(company_code, zone_code, image_file) VALUES(2, 7, 'mountain.jpg');
-insert into image(company_code, zone_code, image_file) VALUES(2, 8, 'river.png');
+insert into image(company_code, zone_code, image_file) VALUES(2, 5, 'about.png');
+insert into image(company_code, zone_code, image_file) VALUES(2, 6, 'blog1.jpg');
+insert into image(company_code, zone_code, image_file) VALUES(2, 7, 'blog2.jpg');
+insert into image(company_code, zone_code, image_file) VALUES(2, 8, 'blog3.jpg');
 
 insert into image(company_code, site_code, image_file) VALUES(2, 21, 'lake1.png');
 insert into image(company_code, site_code, image_file) VALUES(2, 22, 'lake2.png');
@@ -239,14 +239,14 @@ insert into image(company_code, site_code, image_file) VALUES(2, 38, 'river3.png
 insert into image(company_code, site_code, image_file) VALUES(2, 39, 'river4.png');
 insert into image(company_code, site_code, image_file) VALUES(2, 30, 'river5.png');
 
-insert into image(company_code, facility_code, image_file) VALUES(2, 5, 'shower.jpg');
-insert into image(company_code, facility_code, image_file) VALUES(2, 6, 'store.jpg');
-insert into image(company_code, facility_code, image_file) VALUES(2, 7, 'cafe.jpg');
-insert into image(company_code, facility_code, image_file) VALUES(2, 8, 'toilet.jpg');
+insert into image(company_code, facility_code, image_file) VALUES(2, 5, 'gallery1.jpg');
+insert into image(company_code, facility_code, image_file) VALUES(2, 6, 'gallery2.jpg');
+insert into image(company_code, facility_code, image_file) VALUES(2, 7, 'gallery3.jpg');
+insert into image(company_code, facility_code, image_file) VALUES(2, 8, 'gallery4.jpg');
 
-insert into image(company_code, home_code, image_file) VALUES(2, 2, 'slide1.png');
-insert into image(company_code, home_code, image_file) VALUES(2, 2, 'slide2.jpg');
-insert into image(company_code, home_code, image_file) VALUES(2, 2, 'slide3.jpg');
+insert into image(company_code, home_code, image_file) VALUES(2, 2, 'banner1.jpg');
+insert into image(company_code, home_code, image_file) VALUES(2, 2, 'banner2.jpg');
+insert into image(company_code, home_code, image_file) VALUES(2, 2, 'banner3.jpg');
 
 -- 예약된 날짜
 insert into reservation(book_code,reservation_date) values(6, '2023-02-03');
