@@ -50,9 +50,20 @@ public class MainController {
 	ReviewService serviceR;
 
 	@RequestMapping("/")
-	public String select(){
+	public String select(Model model, HttpSession session){
+		if(session.getAttribute("company")!=null){
+			session.invalidate();
+		}
+		List<CompanyDTO> companyList = null;
 		
-		return "redirect:/main";
+		try {
+			companyList = serviceC.selectAll();
+			model.addAttribute("companyList", companyList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "selectCompany";
 	}
 
 	@RequestMapping("/main")
@@ -61,6 +72,7 @@ public class MainController {
 		HomeDTO homekko = null;		//카카오맵
 		HomeDTO homecont = null;	//홈페이지소개
 		CompanyDTO company = null;
+		CompanyDTO companySelect = null;
 		List<NoticeDTO> nolist = null;	//주요공지
 		List<ZoneDTO> listZ = null;	//구역소개
 		List<FacilityDTO> list = null;	//편의시설
@@ -70,13 +82,18 @@ public class MainController {
 		
 		//상호 세션 생성-----------------------------
 		//TODO:차후 캠핑장 선택 페이지 생성시 수정 필요
-		try{
-			company = serviceC.select(1);
-		}catch(Exception e){
-			e.printStackTrace();
-			System.out.println("실패123");
+		if(session.getAttribute("company")==null){
+			try{
+				companySelect = serviceC.select(companyDTO.getCompany_code());
+			}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("실패123");
+			}
+				session.setAttribute("company", companySelect);
+				company = companySelect;
+		}else {
+			company = (CompanyDTO)session.getAttribute("company");
 		}
-			session.setAttribute("company", company);
 		//카카오맵경도위도-------------------------------------
 		try {
 			homekko = serviceH.select(company.getCompany_code());	//상호코드
@@ -155,6 +172,12 @@ public class MainController {
 		}
 
 		return "main";
+	}
+
+	@RequestMapping("campSelect")
+	public String campSelect(HttpSession session){
+		session.invalidate();
+		return "redirect:/";
 	}
 	
 }
