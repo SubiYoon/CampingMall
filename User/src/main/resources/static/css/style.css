@@ -344,7 +344,7 @@ button {
      border: 2px solid rgba(0, 135, 135, 0.37);
      border-top: 10px solid #009898;
      border-bottom: 10px solid #009898;
-	border-radius: 10px;
+	 border-radius: 10px;
      transform: scale(0);
      animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 }
