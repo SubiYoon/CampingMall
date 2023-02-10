@@ -17,8 +17,7 @@ INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('NiceCamp
 
 -- 관리자
 insert into `admin`(company_code, admin_id, admin_password) values(1,'admin01','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
-insert into `admin`(company_code, admin_id, admin_password) values(1,'admin02','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
-insert into `admin`(company_code, admin_id, admin_password) values(2,'admin03','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
+insert into `admin`(company_code, admin_id, admin_password) values(2,'admin02','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
 
 -- Noob camping 샘플
 
@@ -43,7 +42,7 @@ INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, ho
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'호수 뷰', '호수존 설명입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'텐트', '텐트존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'마운틴 뷰', '마운틴존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(2,'리버 뷰', 'D존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'리버 뷰', 'D존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
 
 -- 사이트
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 뷰-1',20000,'호수 뷰-1 입니다.');
@@ -144,27 +143,27 @@ insert into reservation(book_code,reservation_date) values(5, '2023-02-21');
 -- Nice camping 샘플
 
 -- 공지
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(3, 1, '[휴무안내]공지사항1제목입니다', "공지사항 1입니다.");
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(3, 1, '[안전수칙안내]공지사항2제목입니다', "공지사항 2입니다.");
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(3, 1, '[분실물안내]공지사항3제목입니다', "공지사항 3입니다.");
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(3, NULL, '[시설수리완료]공지사항4제목입니다', "공지사항 4입니다.");
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(3, NULL, '[시설수리예정]공지사항5제목입니다', "공지사항 5입니다.");
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(3, NULL, '[이벤트안내]공지사항6제목입니다', "공지사항 6입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(2, 1, '[휴무안내]공지사항1제목입니다', "공지사항 1입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(2, 1, '[안전수칙안내]공지사항2제목입니다', "공지사항 2입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(2, 1, '[분실물안내]공지사항3제목입니다', "공지사항 3입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(2, NULL, '[시설수리완료]공지사항4제목입니다', "공지사항 4입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(2, NULL, '[시설수리예정]공지사항5제목입니다', "공지사항 5입니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(2, NULL, '[이벤트안내]공지사항6제목입니다', "공지사항 6입니다.");
 
 -- 시설
-INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(3, "샤워실", "샤워실 입니다.");
-INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(3, "매점", "매점입니다.");
-INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(3, "카페", "카페입니다.");
-INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(3, "화장실", "화장실입니다.");
+INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(2, "샤워실", "샤워실 입니다.");
+INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(2, "매점", "매점입니다.");
+INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(2, "카페", "카페입니다.");
+INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(2, "화장실", "화장실입니다.");
 
 -- 홈페이지
-INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude, home_image)VALUES(3, '이만기', '충청도 어딘가', 'www.yahoo.co.kr', '043-229-1234', '안녕하세요2', 37.56517320755754, 126.97909982283633, "sample.png");
+INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude, home_image)VALUES(2, '이만기', '충청도 어딘가', 'www.yahoo.co.kr', '043-229-1234', '안녕하세요2', 37.56517320755754, 126.97909982283633, "sample.png");
 
 -- 구역
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(3,'호수 뷰', '호수존 설명입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(3,'텐트', '텐트존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(3,'마운틴 뷰', '마운틴존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(3,'리버 뷰', 'D존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(2,'호수 뷰', '호수존 설명입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(2,'텐트', '텐트존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(2,'마운틴 뷰', '마운틴존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(2,'리버 뷰', 'D존입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
 
 -- 사이트
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(5, '호수 뷰-1',20000,'호수 뷰-1 입니다.');
@@ -204,8 +203,8 @@ insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin
 
 
 -- 스케줄
-insert into `schedule`(admin_code, schedule_date, schedule_name) values(3,'2023-02-06','방역');
-insert into `schedule`(admin_code, schedule_date, schedule_name) values(3,'2023-02-07','방역');
+insert into `schedule`(admin_code, schedule_date, schedule_name) values(2,'2023-02-06','방역');
+insert into `schedule`(admin_code, schedule_date, schedule_name) values(2,'2023-02-07','방역');
 
 -- 리뷰
 insert into `review`(book_code, review_content, review_score) values(6,'맛있어요',3);
