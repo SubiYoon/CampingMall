@@ -891,10 +891,11 @@ button {
 
 .main_notice .titlepage ul {
      text-align: left;
-     margin: 0% 15% 0% 20%;
+     margin: 0% 30% 0% 30%;
      display: block;
      overflow: hidden;
 }
+
 
 .main_notice .titlepage li {
      float: left;
@@ -1019,6 +1020,10 @@ button {
      position: absolute;
      top: 5%;
      right: 10%;
+}
+
+.pre-wrap{
+	white-space: pre-wrap !important;
 }
 
 /** end 뷰 **/
@@ -2074,10 +2079,53 @@ ul.social_icon li a:hover {
 	.Mtablehidden{
 		display: inline !important;
 	}
+	
+	.Mtablehidden div{
+		width: 50%;
+	}
+	
+	.table-fill {
+     margin: 25px auto;
+     width: 80%;
+     min-width: 80%;
+     padding: 5px 5px 5px 0px;
+     text-align: left;
+     font-size: 15px;
+     white-space: normal !important;
+     overflow: hidden;
+     text-overflow: ellipsis;
+	}
 }
 
 .Mtablehidden{
 	display: none;
 }
+
+@media screen and (max-width: 950px) {
+	.main_notice .titlepage ul {
+     text-align: left;
+     margin: 0% 10% 0% 10% !important;
+     display: block;
+     overflow: hidden;
+	}
+	
+	.main_notice .titlepage li {
+	 display: inline;
+     float: left;
+     overflow: auto;
+     font-weight: 400;
+     font-size: 20px;
+     line-height: 28px;
+     padding: 0px !important;
+     width: 100%;
+
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+	}
+	
+}
+
+
 
 /* -----------end 모바일용------------*/
