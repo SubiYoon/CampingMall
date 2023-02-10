@@ -16,27 +16,20 @@
 		<div class="row">
 			<div class="row row-zone" style="margin: auto;">
 				<div class="col-lg-12">
-					<!--           <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">공지 목록</h5>
-              <p>주말동안 작업예정!!</p>
-            </div>
-          </div>
-        </div> -->
 					<div class="card">
 						<div class="card-body">
 							<table class="table-fill">
 								<thead>
 									<tr>
-										<th class="text-center" id="no">글번호</th>
+										<th class="text-center tablehidden" id="no">글번호</th>
 										<th id="impt"></th>
 										<th class="text-center" id="title">제목</th>
-										<th class="text-center" id="date">등록일</th>
+										<th class="text-center tablehidden" id="date">등록일</th>
 									</tr>
 								</thead>
 								<tbody class="table table-hover">
 									<tr th:each="notice:${plist}">
-										<td class="text-center" style="vertical-align: middle;"
+										<td class="text-center tablehidden" style="vertical-align: middle;"
 											th:text="${notice.notice_code}"></td>
 										<td class="text-right" id="impt">
 											<div th:if="${notice.notice_level == 1}">[필독]</div>
@@ -48,7 +41,7 @@
 													th:href="@{/notice/noedit(notice_code=${notice.notice_code})}"></a>
 											</div>
 										</td>
-										<td class="text-center" style="vertical-align: middle;"
+										<td class="text-center tablehidden" style="vertical-align: middle;"
 											th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}">
 										</td>
 									</tr>

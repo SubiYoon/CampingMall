@@ -1264,6 +1264,11 @@ h6 {
 	height: 100px;
 	}
 	
+	.section{
+		width: 500px;
+	}
+	
+	
 }
 
 /*--------------------------------------------------------------
@@ -1342,11 +1347,10 @@ h6 {
      white-space: nowrap;
      overflow: hidden;
      text-overflow: ellipsis;
-     
 }
 
 .table-fill tr>th {
-     padding: 8px;     
+     padding: 8px;
 }
 
 

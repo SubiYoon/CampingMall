@@ -23,7 +23,35 @@
 	<div class="col-md-12">
 	<form id="up_form">
 		<table class="viewtable-fill">
-			<thead>
+			<thead class="Mtablehidden">
+				<tr>
+					<th class="text-left" id="viewno">글번호</th>
+				</tr>
+				<tr>
+					<th class="text-left" id="viewno">
+						<input id="viewno" readonly="readonly" name="notice_code" th:value="${notice.notice_code}">
+					</th>
+				</tr>
+				<tr>
+					<th class="text-left" id="viewad">작성자:</th>
+				</tr>
+				<tr>
+					<th class="text-left" id="viewad" th:text="${notice.admin_code}"></th>
+				</tr>
+				<tr>
+					<th class="text-left" id="viewdate">등록일:</th>
+				</tr>
+				<tr>
+					<th class="text-left" id="viewdate" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"></th>
+				</tr>
+				<tr>
+					<th class="text-left" id="viewth"><hr>제목</th>
+				</tr>
+				<tr>
+					<th class="text-left" id="viewth" th:text="${notice.notice_title}"></th>
+				</tr>
+			</thead>
+			<thead class="tablehidden">
 				<tr>
 					<th class="text-left" id="viewno">&nbsp;글번호</th>
 					<th class="text-left" id="viewno">
@@ -41,7 +69,18 @@
 					<th class="text-right" id="viewdate" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"></th>
 				</tr>
 			</thead>
-			<tbody>
+			
+			<tbody class="Mtablehidden">
+				<tr>
+					<th class="text-left">
+						<hr>내용
+					</th>
+				</tr>
+				<tr>
+					<td id="viewcontent" colspan="4" th:text="${notice.notice_content}">
+				</tr>
+			</tbody>
+			<tbody class="tablehidden">
 				<tr>
 					<th id="viewlast" colspan="7">
 					</th>

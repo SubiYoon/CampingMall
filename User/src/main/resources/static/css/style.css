@@ -2064,3 +2064,20 @@ ul.social_icon li a:hover {
 }
  
 /* -----------end 회원수정(userinfo)------------*/
+
+/* -----------모바일용------------*/
+@media screen and (max-width: 600px) {
+	.tablehidden{
+		display: none;
+	}
+	
+	.Mtablehidden{
+		display: inline !important;
+	}
+}
+
+.Mtablehidden{
+	display: none;
+}
+
+/* -----------end 모바일용------------*/
