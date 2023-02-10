@@ -180,7 +180,6 @@
                   success: function (result) {
                      $('#bookForm>div>input[name=book_checkin]').val(result.book_checkin);
                      $('#bookForm>div>input[name=book_checkout]').val(result.book_checkout);
-                     //TODO: site를 zone_code와 일치
                      for (var i = 0; i < result.zoneList.length; i++) {
                         var siteList = "";
                         var zoneList = "";
