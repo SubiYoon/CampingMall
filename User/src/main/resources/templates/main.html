@@ -232,26 +232,27 @@
 <!-- 챗봇 모달창 -->
 <div id="modal_cb" class="modal_cb-overlay">
 	<div class="modal_cb-content">
-		<div class="row">
+		<div class="row row-cb">
 			<form class="pD">
 				<div class="form-group">
 					<button id="disconnect" type="submit" disabled="disabled">닫기</button>
 				</div>
 			</form>
 			<form class="pD">
-				<label class="msg" for="msg">ChatBot 상담</label>
+				<label class="msg" for="msg">챗봇으로 문의가 가능합니다.</label>
 				<div class="form-group">
 					<input type="text" id="msg" class="form-control" placeholder="문의 내용을 입력하세요...">
+					<br>
 				</div>
 				<button id="send" class="btn btn-default" disabled type="submit">보내기</button>
 			</form>
 		</div>
-		<div class="row" id="chat">
+		<div class="row row-chat" id="chat">
 			<div class="col-md-12">
 				<table id="conversation" class="table table-striped">
 					<thead>
 						<tr>
-							<th></th>
+							<th class="msg">이곳에 상담 내역이 나타나요!</th>
 						</tr>
 					</thead>
 					<tbody id="communicate">

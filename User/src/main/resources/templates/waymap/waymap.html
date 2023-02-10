@@ -1,37 +1,43 @@
- <script>
-$(document).ready(function(){
-	$(".nav-item:nth-child(6)").attr('class','nav-item active');
-	$(".notactive:nth-child(6)").attr('class','active');
-});
+<script>
+   $(document).ready(function () {
+      $(".nav-item:nth-child(6)").attr('class', 'nav-item active');
+      $(".notactive:nth-child(6)").attr('class', 'active');
+   });
 </script>
 
-    <div class="back_re">
-         <div class="container">
-            <div class="row">
+<div class="back_re">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="title">
+               <h2>위치</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<!--  contact -->
+<div class="contact">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-6">
+            <div class="row" style="top:0%;">
                <div class="col-md-12">
-                  <div class="title">
-                      <h2>위치</h2>
+                  <div class="titlepage">
+                     <h2 th:text="${session.company.company_name}"></h2>
                   </div>
                </div>
             </div>
-         </div>
-      </div>
-      <!--  contact -->
-      <div class="contact">
-         <div class="container">
             <div class="row">
-               <div class="col-md-6">
-                  <form id="request" class="main_form">
-                  		<h3 th:text="${session.company.company_name}"></h3>
-						<div class="col-md-12">
-                             <p th:text="${homecont.home_content}"></p>
-                        </div>
-                  </form>
-               </div>
-               <div class="col-md-6">
-                  <aside id="map_aside" th:include="${map} ? ${map} : kkomap"></aside>
+               <div class="col-md-12">
+                  <img th:src="'images/' + ${homecont.home_image}" style="width:100%;"></img>
                </div>
             </div>
          </div>
+         <div class="col-md-6">
+            <aside id="map_aside" th:include="${map} ? ${map} : kkomap"></aside>
+         </div>
       </div>
-      <!-- end contact -->
+   </div>
+</div>
+<!-- end contact -->

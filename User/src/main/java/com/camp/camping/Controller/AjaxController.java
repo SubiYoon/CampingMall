@@ -3,7 +3,6 @@ package com.camp.camping.Controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -42,7 +41,7 @@ public class AjaxController {
     ReviewService rService;
 
     @RequestMapping("selectDate")
-    public Object selectDate(String selectDate1, String selectDate2, String company_code){
+    public Object selectDate(String selectDate1, String selectDate2, int company_code){
         String change = null;
         List<SiteDTO> sites = null;
         List<ZoneDTO> zones =null;
@@ -58,8 +57,8 @@ public class AjaxController {
         }
         
         try {
-            sites = sService.AvailableSite(Integer.parseInt(company_code), selectDate1, selectDate2);
-            zones = zService.selectAll();
+            sites = sService.AvailableSite(company_code, selectDate1, selectDate2);
+            zones = zService.selectZone(company_code);
             json.put("availableSite", sites);
             json.put("zoneList", zones);
         } catch (Exception e) {

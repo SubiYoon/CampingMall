@@ -1236,6 +1236,45 @@ h6 {
     max-width: 50%;
   }
 }
+
+/*--------------------------------------------------------------
+# 모바일
+--------------------------------------------------------------*/
+
+@media screen and (max-width: 800px) {
+	
+	.tablehidden{
+		display: none;
+	}
+	
+	.Mtablehidden{
+		display: inline !important;
+	}
+	
+	.noeditcard{
+		margin: 40px 2px 30px 2px !important;
+	}
+	
+	.MHomeEdit input{
+	width: 100% !important;
+	}
+
+	.MHomeEdit textarea{
+	width: 100% !important;
+	height: 100px;
+	}
+	
+	.section{
+		width: 500px;
+	}
+	
+	
+}
+
+/*--------------------------------------------------------------
+# end 모바일
+--------------------------------------------------------------*/
+
 /*--------------------------------------------------------------
 # company 페이지
 --------------------------------------------------------------*/
@@ -1245,6 +1284,42 @@ h6 {
 	height: 200px;
 }
 
+.comLogoEdit a{
+	margin-left: 42%;
+}
+
+.btn-center{
+	text-align: center;
+}
+
+.btn-center a{
+	width: 180px;
+	margin: 5px;
+}
+
+.btn-center div{
+	display: block;
+	width: 180px;
+	margin: 5px auto;
+}
+
+.slide_add_Form .btn-center{
+	text-align: center;
+	width: 70%;
+}
+
+#home_tbl_edit table{
+	margin: 0px 10%;
+}
+
+#home_tbl_edit input{
+	width: 80%;
+}
+
+#home_tbl_edit textarea{
+	width: 80%;
+	height: 200px;
+}
 
 /*--------------------------------------------------------------
 # Footer
@@ -1278,11 +1353,10 @@ h6 {
      white-space: nowrap;
      overflow: hidden;
      text-overflow: ellipsis;
-     
 }
 
 .table-fill tr>th {
-     padding: 8px;     
+     padding: 8px;
 }
 
 
@@ -1305,6 +1379,8 @@ h6 {
 /*--------------------------------------------------------------
 # noedit
 --------------------------------------------------------------*/
+
+
 .noeditcard{
 	margin: 50px 50px 30px 30px;
 }
@@ -1354,6 +1430,34 @@ h6 {
 /*--------------------------------------------------------------
 # nowrite
 --------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# 모바일
+--------------------------------------------------------------*/
+
+@media screen and (max-width: 800px) {
+	#writecontent {
+	     width: 100% !important;
+	     height: 400px;
+	     overflow: scroll;
+	}
+	
+	.tablehidden{
+		display: none;
+	}
+	
+	.Mtablehidden{
+		display: inline !important;
+	}
+}
+
+/*--------------------------------------------------------------
+# end 모바일
+--------------------------------------------------------------*/
+
+.Mtablehidden{
+	display: none;
+}
 #writecontent {
      padding: 10px;
      width: 100%;
@@ -1376,7 +1480,7 @@ h6 {
   text-align: right;
 }
 
-#modal_slide_add button {
+/* #modal_slide_add button {
   background-color: #009898;
   width: 15%;
   padding: 5px 0;
@@ -1385,10 +1489,19 @@ h6 {
   font-size: 15px;
   transition: ease-in 0.5s;
   display: line-block;
-}
+} */
 
 #modal_slide_add h2 {
   margin: 0;
+}
+
+.slideModal{
+	display: inline-block;
+	margin: 15px;
+}
+
+.slideModal input{
+	width: 70%;
 }
 
 #modal_slide_add .modal-content {
@@ -1397,6 +1510,7 @@ h6 {
   padding: 10px 2%;
   background: #fff;
   border: 2px solid #666;
+  border-radius: 10px;
 }
 
 #modal_slide_add .modal-login {
@@ -1406,6 +1520,7 @@ h6 {
 
 #modal_slide_add .modal-login button{
   text-align: center;
+  width: 200px;
 }
 
 #modal_slide_add.modal-overlay {
@@ -1419,9 +1534,7 @@ h6 {
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(1.5px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -1430,10 +1543,11 @@ h6 {
 
 
 /*--------------------------------------------------------------
-# zone, facility
+# zone, facility, 그외 테이블 공통 적용
 --------------------------------------------------------------*/
 .row-zone{
 	max-width: 1200px;
+	margin: auto;
 }
 
 .zonetitle{
@@ -1490,4 +1604,33 @@ h6 {
 
 .zonethS{
 	width: 85%;
+}
+
+/*--------------------------------------------------------------
+# 휴일
+--------------------------------------------------------------*/
+ #calendar {
+      width: 80%;
+   }
+
+   #calendar tr {
+      height: 50px;
+   }
+
+   #bookForm li {
+      float: left;
+      /*width: 25%;*/
+      text-align: center;
+   }
+   
+#scheduleInsertForm{
+	display: block;
+	margin-bottom: 15px;
+}
+
+
+#scheduleInsertForm input, #scheduleInsertForm div
+	, #scheduleEditForm input, #scheduleEditForm div{
+	width: 80%;
+	margin: 10px 10%;
 }

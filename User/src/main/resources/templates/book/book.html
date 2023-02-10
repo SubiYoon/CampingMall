@@ -28,7 +28,7 @@
    var checkOutdDate = null;
    var today = null;
    var realToday = null;
-   const ABLEDAYS = 50;
+   const ABLEDAYS = 55;
    var clickedSiteCode = null;
    //0이 붙은 숫자라 숫자화를 위해 0을 한번 빼줌
    function number() {
@@ -180,7 +180,6 @@
                   success: function (result) {
                      $('#bookForm>div>input[name=book_checkin]').val(result.book_checkin);
                      $('#bookForm>div>input[name=book_checkout]').val(result.book_checkout);
-                     //TODO: site를 zone_code와 일치
                      for (var i = 0; i < result.zoneList.length; i++) {
                         var siteList = "";
                         var zoneList = "";
@@ -306,7 +305,11 @@
          if (compareYearAndMonth(today, realToday) === 0) {
             startDay = realToday.getDate();
             endDay = 32;
-         } else {
+         }else if(compareYearAndMonth(today, realToday) === -1){
+			 startDay = 32;
+			 endDay = 32;
+		 }
+		 else {
             startDay = 0;
             endDay = 32;
          }

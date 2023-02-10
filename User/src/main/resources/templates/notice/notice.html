@@ -24,15 +24,15 @@
 		<table class="table-fill">
 			<thead>
 				<tr>
-					<th class="text-center" id="no">글번호</th>
+					<th class="text-center tablehidden" id="no">글번호</th>
 					<th id="impt"></th>
 					<th class="text-center" id="title">제목</th>
-					<th class="text-center" id="date">등록일</th>
+					<th class="text-center tablehidden" id="date">등록일</th>
 				</tr>
 			</thead>
 			<tbody class="table table-hover">
 				<tr th:each="notice:${plist}">
-					<td class="text-center"><a th:text="${notice.notice_code}" th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
+					<td class="text-center tablehidden"><a th:text="${notice.notice_code}" th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
 					</td>
 					<td class="text-right" id="impt">
 						<div th:if="${notice.notice_level == 1}">[필독]</div>
@@ -42,7 +42,7 @@
 							<a th:text="${notice.notice_title}" th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
 						</div>
 					</td>
-					<td class="text-center" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}">
+					<td class="text-center tablehidden" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}">
 					</td>
 				</tr>
 			</tbody>

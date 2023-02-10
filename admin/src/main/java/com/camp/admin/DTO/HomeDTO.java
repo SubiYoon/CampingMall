@@ -17,6 +17,6 @@ public class HomeDTO {
     private double home_latitude;
     private String home_https;
     private String home_tell;
-
+    private String home_image;
 }
 
