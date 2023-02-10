@@ -473,73 +473,55 @@ button {
 /*-- end 로그인모달용 --*/
 
 /*-- 캠핑장 선택버튼 --*/
-#comp_select {
-	width:50px;
-	border-radius:50%;
-	overflow: hidden;
+#comp_select img{
+	width:70px;
+	height: 70px;
+	object-fit: cover;
+	object-position: 0 0;
 	
      visibility: visible;
      position: fixed;
      z-index: 60;
 
      margin: 10px 10px 10px 10px;
-     box-shadow: 0 5px 10px 0 rgba(20, 38, 135, 0.5);
-
-     bottom: 5%;
-     right: 90px;
+	 background-color:transparent !important;
+	
+     bottom: 3%;
+     right: 100px;
      
      transition: all 0.2s;
 }
 
-#comp_select:hover {
-	width:60px;
-	border-radius:50%;
-	overflow: hidden;
-	
-     visibility: visible;
-     position: fixed;
-     z-index: 60;
-
-     margin: 10px 10px 10px 10px;
-     box-shadow: 0 5px 10px 0 rgba(20, 38, 135, 0.5);
-
-     bottom: 5%;
-     right: 90px;
+#comp_select img:hover {
+	width: 70px;
+	height: 90px;
+	object-position: 0 0;
 }
 
 /*-- 챗봇 선택버튼 --*/
-#modal_cbicon {
-	width:50px;
-	border-radius:50%;
-	overflow: hidden;
+#modal_cbicon img{
+	width:70px;
+	height: 70px;
+	object-fit: cover;
+	object-position: 0 0;
 	
      visibility: visible;
      position: fixed;
      z-index: 60;
 
      margin: 10px 10px 10px 10px;
-     box-shadow: 0 5px 10px 0 rgba(31, 38, 135, 0.5);
-
-     bottom: 5%;
+	 background-color:transparent !important;
+	
+     bottom: 3%;
      right: 20px;
      
      transition: all 0.2s;
 }
 
-#modal_cbicon:hover {
-	width:60px;
-	border-radius:50%;
-	overflow: hidden;
-	
-     visibility: visible;
-     position: fixed;
-     z-index: 70;
-
-     margin: 10px 10px 10px 10px;
-     box-shadow: 0 5px 10px 0 rgba(31, 38, 135, 0.5);
-
-     bottom: 5%;
-     right: 20px;
+#modal_cbicon img:hover {
+	width: 70px;
+	height: 90px;
+	object-position: 0 0;
 }
 
 #modal_cb {
