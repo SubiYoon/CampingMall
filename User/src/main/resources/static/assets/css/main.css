@@ -3,16 +3,21 @@
 
 body{
   background: url(../img/bg.jpg);
+  background-size: auto;
+  background-position: center;
 }
 
 .btn-custom {
-  color: #bdc3c7;
+  color: rgb(92, 103, 109);
+  background-color:  #ffffff;
   font-size: 18px;
   border: 1px solid #bdc3c7;
+  transition: all 0.2s;
 }
 .btn-custom:hover {
   color: #ffffff;
   border: 1px solid #ffffff;
+  background-color:  rgb(36, 48, 53);
 }
 #pricing-table {
   padding-top: 50px;
@@ -23,15 +28,18 @@ body{
   font-family: 'Robot', sans-serif;
 }
 #pricing-table .pricing .pricing-table {
-  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px 0 #1E2938;
 }
 #pricing-table .pricing .pricing-table .pricing-header {
-  position: relative;
-  background: #34495e;
-  padding: 22px 22px;
-  text-align: center;
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
+  	position: relative;
+	background: rgb(101,104,128);
+	background: linear-gradient(180deg, rgba(101,104,128,0.8589810924369747) 4%, rgba(167,169,182,0.8421743697478992) 18%, rgba(205,206,214,0.9514180672268907) 42%, rgba(182,184,195,1) 61%, rgba(93,97,122,0.8309698879551821) 96%);  
+	padding: 22px 22px;
+  	text-align: center;
+  	border-top-right-radius: 20px;
+  	border-top-left-radius: 20px;
 }
 #pricing-table .pricing .pricing-table .pricing-header .pricing-title {
   color: #ffffff;
@@ -63,6 +71,9 @@ body{
   padding: 20px 0 40px 0;
   background: #ffffff;
   border: 1px solid #e3e3e3;
+  
+  border-bottom-right-radius: 20px; 
+  border-bottom-left-radius: 20px; 
 }
 #pricing-table .pricing .pricing-list ul {
   padding: 0px;
