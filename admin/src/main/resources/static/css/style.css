@@ -1322,6 +1322,10 @@ h6 {
 	.Mtablehidden{
 		display: inline !important;
 	}
+	
+	.noeditcard{
+		margin: 40px 2px 30px 2px !important;
+	}
 }
 
 /*--------------------------------------------------------------
