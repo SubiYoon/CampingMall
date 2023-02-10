@@ -191,9 +191,14 @@ public class MainController {
     }
 
     @RequestMapping("homeEdit")
-    public String boardEdit(HttpSession session, HomeDTO home) {
+    public String boardEdit(HttpSession session, HomeDTO home, MultipartFile mf) {
         try {
+            if(!mf.isEmpty()){
+                home.setHome_image(mf.getOriginalFilename());
+            }
             serviceH.update(home);
+            System.out.println(home);
+            SaveFile.saveFile(mf, imagesdir);
             System.out.println("성공");
         } catch (Exception e) {
             //e.printStackTrace();

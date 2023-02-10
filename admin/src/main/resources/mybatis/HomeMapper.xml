@@ -17,7 +17,8 @@
         home_latitude=#{home_latitude}, 
         home_https=#{home_https}, 
         home_tell=#{home_tell}, 
-        home_content=#{home_content}
+        home_content=#{home_content},
+        home_image=#{home_image}
     WHERE 
         home_code=#{home_code}
   </update>

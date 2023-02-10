@@ -37,7 +37,7 @@ INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "카
 INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "화장실", "화장실입니다.");
 
 -- 홈페이지
-INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude, home_image)VALUES(1, '나대표', '서울시 어딘가', 'www.naver.com', '02-1234-1234', '1번상호설명입니다. 심문도 찍히지 그 것, 인류가 어머니로서 기강에 나오다. 이름에게 많이 재벌이 엄중히, 들어가아서 모르다 읽죠 건설에 예기하세요.', 37.5039781087508, 127.04273317956381, "sample.jpg");
+INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude, home_image)VALUES(1, '나대표', '서울시 어딘가', 'www.naver.com', '02-1234-1234', '1번상호설명입니다. 심문도 찍히지 그 것, 인류가 어머니로서 기강에 나오다. 이름에게 많이 재벌이 엄중히, 들어가아서 모르다 읽죠 건설에 예기하세요.', 37.5039781087508, 127.04273317956381, "sample.png");
 
 -- 구역
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'호수 뷰', '호수존 설명입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
@@ -158,7 +158,7 @@ INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(3, "카
 INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(3, "화장실", "화장실입니다.");
 
 -- 홈페이지
-INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude, home_image)VALUES(3, '이만기', '충청도 어딘가', 'www.yahoo.co.kr', '043-229-1234', '안녕하세요2', 37.56517320755754, 126.97909982283633, "sample.jpg");
+INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude, home_image)VALUES(3, '이만기', '충청도 어딘가', 'www.yahoo.co.kr', '043-229-1234', '안녕하세요2', 37.56517320755754, 126.97909982283633, "sample.png");
 
 -- 구역
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(3,'호수 뷰', '호수존 설명입니다. 있다 성읍인 연습할 같을 특히, 집이, 향합니다. 벚꽃이다 장바구니, 건강은, 힘으로 확실하다 없는 대상에 대하다.');
