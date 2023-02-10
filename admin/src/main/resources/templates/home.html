@@ -89,9 +89,10 @@
   <section class="section">
     <div class="row">
       <div class="row row-zone" style="margin: auto;">
-        <div class="col-lg-12">
-          <div class="card">
+        <div class="col-lg-12 zone-col-12">
+          <div class="card card-radius">
             <div class="card-body">
+            
               <h5 class="card-title">회사 정보 수정</h5>
               <form id="home_tbl_edit">
                 <input type="hidden" th:value="${home.home_code}" name="home_code" />
@@ -106,29 +107,38 @@
                 <label>캠핑장 전화번호 : &nbsp;</label><input name="home_tell" type="text" th:value="${home.home_tell}" /><br>
                 <label>홈페이지 인삿말 : &nbsp;</label><br><textarea name="home_content" cols="50" rows="10"
                   th:text="${home.home_content}"></textarea><br>
-                <a href="#home_edit">수정</a>
+                <a class="btn btn-primary" href="#home_edit">수정</a>
               </form>
             </div>
+            
           </div>
         </div>
-        <div class="col-lg-12" style="float:right">
-          <a class="slide_add_Form" href="#slide_Add">슬라이드 이미지 추가</a>
+        
+        <div class="col-lg-12">
+        	<div class="pagetitle slide_add_Form">
+          	<a class="slide_add_Form btn btn-outline-primary" href="#slide_Add">
+          		<h1>슬라이드 이미지 추가</h1>
+         	</a>
+         	</div>
         </div>
-        <div class="col-lg-12" style="float:right">&nbsp;</div>
-        <div class="col-lg-6" th:each="slide : ${slideImgs}">
-          <div class="card">
+        <div class="col-lg-12">&nbsp;</div>
+        <div class="col-lg-6 site-col-6" th:each="slide : ${slideImgs}">
+          <div class="card card-radius">
             <div class="card-body">
+            
               <form class="slideForm" enctype="multipart/form-data">
                 <input type="hidden" name="image_code" th:value="${slide.image_code}" />
                 <h5 class="card-title" th:text="'슬라이드 ' + ${slideStat.count} + ' 이미지'"></h5>
-                <img th:src="'images/' + ${slide.image_file}" style="width:100%; height: 200px;" /><br>
-                <input type="file" name="home_slide" /><br><br>
-                <a href="#slide_edit" class="image_slide_edit" style="width:200px;">수정</a>
-                <a href="#slide_delete" class="image_slide_delete" style="width:200px;">삭제</a>
+                <img class="siteimg" th:src="'images/' + ${slide.image_file}"/>
+                <input class="zonethS" type="file" name="home_slide" /><br><br>
+                <a href="#slide_edit" class="image_slide_edit btn btn-primary" style="width:200px;">수정</a>
+                <a href="#slide_delete" class="image_slide_delete btn btn-primary" style="width:200px;">삭제</a>
               </form>
+              
             </div>
           </div>
         </div>
+        <div class="col-lg-6 site-col-6"></div>
       </div>
     </div>
   </section>
