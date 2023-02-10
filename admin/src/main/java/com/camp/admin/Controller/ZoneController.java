@@ -169,22 +169,21 @@ public class ZoneController {
 	// -----------------------------------------------------------------
 	// 사이트(site)수정페이지
 	@RequestMapping("/siteedit")
-	public String siteedit(Model model, ImageDTO imageDTO, int site_code, int zone_code) {
-		SiteDTO siteEdit = null;
+	public String siteedit(Model model, ImageDTO imageDTO, int site_code) {
+		SiteDTO siteedit = null;
 		List<ImageDTO> listI = null;
 
 		try {
 			listI = serviceI.selectBySiteCode(site_code);
 			model.addAttribute("ilist", listI);
 
-			siteEdit = serviceS.select(site_code);
-			model.addAttribute("siteEdit", siteEdit);
+			siteedit = serviceS.select(site_code);
+			model.addAttribute("siteedit", siteedit);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		model.addAttribute("zone_code", zone_code);
-		model.addAttribute("center", dir + "siteEdit");
+		model.addAttribute("center", dir + "siteedit");
 		return "main";
 	}
 
