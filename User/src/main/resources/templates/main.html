@@ -180,7 +180,8 @@
 		}
 
 		function showMessage(message) {
-			$("#communicate").append("<tr><td>" + message + "</td></tr>");
+			$("#communicate").prepend("<tr><td>" + message + "</td></tr>");
+			$('#msg').val("");
 		}
 
 		$(function () {
