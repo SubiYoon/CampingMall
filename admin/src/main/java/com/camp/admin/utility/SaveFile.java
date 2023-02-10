@@ -7,13 +7,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.camp.admin.DTO.ImageDTO;
 
 public class SaveFile {								
-	public static void saveFile(MultipartFile mf, String imagesdir,ImageDTO imageDTO) {
+	public static void saveFile(MultipartFile mf, String imagesdir,String Filename) {
 		byte [] data;
-		String imgname = imageDTO.getImage_file();
 		try {
 			data = mf.getBytes();
 			FileOutputStream fo = 
-					new FileOutputStream(imagesdir+imgname);
+					new FileOutputStream(imagesdir+Filename);
 			fo.write(data);
 			fo.close();
 		}catch(Exception e) {

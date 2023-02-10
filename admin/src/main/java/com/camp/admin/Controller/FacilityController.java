@@ -83,11 +83,12 @@ public class FacilityController {
 				//이미지코드로 이미지 정보 불러옴
 				ImageDTO img = serviceI.select(fac.getImage_code());
 				//구역,사이트,컴퍼니 별로 변경사항 변경
+				String first_image_file=img.getImage_file();
 				img.setImage_file(mf.getOriginalFilename());
-				serviceI.update(img);
+				serviceI.updateimage(img, first_image_file);
 
 				//파일 업로드
-				SaveFile.saveFile(mf, imagesdir,img);
+				SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
 			}
 			
 		} catch (Exception e) {
@@ -147,7 +148,7 @@ public class FacilityController {
 				img.setImage_file(mf.getOriginalFilename());
 				serviceI.insert(img);
 
-				SaveFile.saveFile(mf, imagesdir,img);
+				SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
 				
 			} catch(Exception e){
 				//e.printStackTrace();

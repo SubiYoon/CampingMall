@@ -198,7 +198,7 @@ public class MainController {
             }
             serviceH.update(home);
             System.out.println(home);
-            SaveFile.saveFile(mf, imagesdir);
+            SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
             System.out.println("성공");
         } catch (Exception e) {
             //e.printStackTrace();
@@ -213,15 +213,15 @@ public class MainController {
         MultipartFile company_logo2, String company_name) {
         CompanyDTO company = (CompanyDTO) session.getAttribute("company");
         int company_code = company.getCompany_code();
-        ImageDTO img=new ImageDTO();
-        img.setImage_file(company_logo2.getName());
+        String company_logo1_fileName=company_logo1.getOriginalFilename();
+        String company_logo2_fileName=company_logo2.getOriginalFilename();
         if (!company_logo1.isEmpty() && !company_logo2.isEmpty()) {
             try {
                 company.setCompany_logo1(company_logo1.getOriginalFilename());
                 company.setCompany_logo2(company_logo2.getOriginalFilename());
                 company.setCompany_name(company_name);
-                SaveFile.saveFile(company_logo1, imagesdir,img);
-                SaveFile.saveFile(company_logo2, imagesdir,img);
+                SaveFile.saveFile(company_logo1, imagesdir,company_logo1_fileName);
+                SaveFile.saveFile(company_logo2, imagesdir,company_logo2_fileName);
                 serviceC.update(company);
 
                 session.invalidate();
@@ -233,7 +233,7 @@ public class MainController {
             try {
                 company = serviceC.select(company_code);
                 company.setCompany_logo1(company_logo1.getOriginalFilename());
-                SaveFile.saveFile(company_logo1, imagesdir,img);
+                SaveFile.saveFile(company_logo1, imagesdir,company_logo1_fileName);
                 company.setCompany_name(company_name);
                 serviceC.update(company);
 
@@ -246,7 +246,7 @@ public class MainController {
             try {
                 company = serviceC.select(company_code);
                 company.setCompany_logo2(company_logo2.getOriginalFilename());
-                SaveFile.saveFile(company_logo2, imagesdir,img);
+                SaveFile.saveFile(company_logo2, imagesdir,company_logo2_fileName);
                 company.setCompany_name(company_name);
                 serviceC.update(company);
 
@@ -274,9 +274,10 @@ public class MainController {
         ImageDTO image = null;
         try {
             image = serviceI.select(image_code);
+            String first_image_file=image.getImage_file();
             image.setImage_file(home_slide.getOriginalFilename());
-            serviceI.update(image);
-            SaveFile.saveFile(home_slide, imagesdir,image);
+            serviceI.updateimage(image,first_image_file);
+            SaveFile.saveFile(home_slide, imagesdir,home_slide.getOriginalFilename());
         } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("파일변경 실패");
@@ -310,7 +311,7 @@ public class MainController {
 
             try {
                 serviceI.insert(image);
-                SaveFile.saveFile(file, imagesdir,image);
+                SaveFile.saveFile(file, imagesdir,file.getOriginalFilename());
             } catch (Exception e) {
                 //e.printStackTrace();
                 System.out.print("실패");
