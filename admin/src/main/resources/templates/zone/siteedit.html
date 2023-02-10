@@ -48,7 +48,7 @@
 											<th class="text-left zonethF tablehidden">사이트코드</th>
 											<th class="text-left zonethS" colspan="4">
 												<input id="inputnone" readonly="readonly" type="text" name="site_code"
-													th:value="${siteEdit.site_code}">
+													th:value="${siteedit.site_code}">
 											</th>
 										</tr>
 										<tr>
@@ -58,7 +58,7 @@
 											<th class="text-left zonethF tablehidden">사이트 명</th>
 											<th class="text-left zonethS" colspan="4">
 												<input id="updateth" type="text" name="site_name"
-													th:value="${siteEdit.site_name}">
+													th:value="${siteedit.site_name}">
 											</th>
 										</tr>
 										<tr>
@@ -68,7 +68,7 @@
 											<th class="text-left zonethF tablehidden">사이트 가격</th>
 											<th class="text-left zonethS" colspan="4">
 												<input id="updateth" type="number" name="site_price"
-													th:value="${siteEdit.site_price}">
+													th:value="${siteedit.site_price}">
 											</th>
 										</tr>
 									</thead>
@@ -84,7 +84,7 @@
 											</th>
 											<td colspan="4">
 												<textarea id="updatecontent" name="site_content"
-													th:text="${siteEdit.site_content}"></textarea>
+													th:text="${siteedit.site_content}"></textarea>
 											</td>
 										</tr>
 										<tr>
@@ -111,7 +111,7 @@
 											</th>
 											<td colspan="4">
 												<span th:each="img:${ilist}"
-													th:if="${img.site_code == siteEdit.site_code}">
+													th:if="${img.site_code == siteedit.site_code}">
 													<text th:text="${img.image_file}"></text>
 												</span>
 											</td>
