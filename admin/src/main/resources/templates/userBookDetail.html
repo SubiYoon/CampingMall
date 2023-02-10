@@ -50,7 +50,7 @@
                   <td th:text="${bookList.book_price}"></td>
                   <td th:text="${bookList.book_car_number.split(',')[0]}"></td>
                   <td th:text="${bookList.book_checkin + ' ~ ' + bookList.book_checkout}"></td>
-                  <td class="userbook-icon">
+                  <td class="userbook-icon" >
                     <span th:if="${bookList.book_car_number.split(',')[1]=='1'}">
                       <i class="fa-solid fa-fire" style="color:red;"><span>불멍(모닥불)</span></i>
                     </span>
