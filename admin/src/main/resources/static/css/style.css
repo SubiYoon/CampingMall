@@ -1297,6 +1297,12 @@ h6 {
 	margin: 5px;
 }
 
+.btn-center div{
+	display: block;
+	width: 180px;
+	margin: 5px auto;
+}
+
 .slide_add_Form .btn-center{
 	text-align: center;
 	width: 70%;
