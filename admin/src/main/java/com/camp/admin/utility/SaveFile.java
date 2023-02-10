@@ -2,9 +2,8 @@ package com.camp.admin.utility;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.camp.admin.DTO.ImageDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 public class SaveFile {								
 	public static void saveFile(MultipartFile mf, String imagesdir,String Filename) {

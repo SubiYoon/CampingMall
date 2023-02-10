@@ -13,9 +13,9 @@ import com.camp.admin.utility.SaveFile;
 
 @Service
 public class ImageService implements MyService<Integer, ImageDTO> {
-	@Value("${imagesdir}")
-	String imagesdir;
-	
+    @Value("${imagesdir}")
+    String imagesdir;
+
     @Autowired
     ImageMapper mapper;
 
@@ -29,14 +29,14 @@ public class ImageService implements MyService<Integer, ImageDTO> {
         mapper.delete(integer);
     }
 
-    public void updateimage(ImageDTO imageDTO,String first_image_file) throws Exception {
-    	imageDTO=checkName(imageDTO);
-    	int result=mapper.updateimage(imageDTO);
-        if(result==1) {
-        	result=mapper.selectFile(first_image_file);
-        	if(result==0) {
-        		SaveFile.deleteFile(imagesdir, first_image_file);
-        	}
+    public void updateimage(ImageDTO imageDTO, String first_image_file) throws Exception {
+        imageDTO = checkName(imageDTO);
+        int result = mapper.updateimage(imageDTO);
+        if (result == 1) {
+            result = mapper.selectFile(first_image_file);
+            if (result == 0) {
+                SaveFile.deleteFile(imagesdir, first_image_file);
+            }
         }
     }
 
@@ -66,36 +66,36 @@ public class ImageService implements MyService<Integer, ImageDTO> {
         return mapper.selectByHomeCode(home_code);
     }
 
-    public List<ImageDTO> selectByFacilityCode(int facility_code){
+    public List<ImageDTO> selectByFacilityCode(int facility_code) {
         return mapper.selectByFacilityCode(facility_code);
     }
 
-    public ImageDTO selecOnetByHomeCode(int home_code){
+    public ImageDTO selecOnetByHomeCode(int home_code) {
         return mapper.selecOnetByHomeCode(home_code);
     }
-    
+
     public void zoneUpdate(ImageDTO imageDTO) throws Exception {
         mapper.zoneUpdate(imageDTO);
     }
-    
+
     public void selectFile(String image_file) throws Exception {
         mapper.selectFile(image_file);
     }
-    
-    public ImageDTO checkName(ImageDTO imageDTO) throws Exception{
-    	int result=mapper.selectFile(imageDTO.getImage_file());
-    	if(result>0) {
-    		String image_file=imageDTO.getImage_file();
-    		String arr[]=image_file.split("\\.");
-    		imageDTO.setImage_file(arr[0]+result+"."+arr[1]);
-    		
-    	}
-    	return imageDTO;
+
+    public ImageDTO checkName(ImageDTO imageDTO) throws Exception {
+        int result = mapper.selectFile(imageDTO.getImage_file());
+        if (result > 0) {
+            String image_file = imageDTO.getImage_file();
+            String arr[] = image_file.split("\\.");
+            imageDTO.setImage_file(arr[0] + result + "." + arr[1]);
+
+        }
+        return imageDTO;
     }
 
-	@Override
-	public void update(ImageDTO v) throws Exception {
-		mapper.update(v);
-	}
-    
+    @Override
+    public void update(ImageDTO v) throws Exception {
+        mapper.update(v);
+    }
+
 }
