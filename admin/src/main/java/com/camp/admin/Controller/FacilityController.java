@@ -82,10 +82,7 @@ public class FacilityController {
 			if(!mf.isEmpty()){
 				//이미지코드로 이미지 정보 불러옴
 				ImageDTO img = serviceI.select(fac.getImage_code());
-				//구역,사이트,컴퍼니 별로 변경사항 변경
-				String first_image_file=img.getImage_file();
-				img.setImage_file(mf.getOriginalFilename());
-				serviceI.updateimage(img, first_image_file);
+				serviceI.update(mf, img);
 
 				//파일 업로드
 				SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
@@ -145,8 +142,7 @@ public class FacilityController {
 				ImageDTO img = new ImageDTO();
 				img.setCompany_code(company.getCompany_code());
 				img.setFacility_code(facList.get(facList.size()-1).getFacility_code());
-				img.setImage_file(mf.getOriginalFilename());
-				serviceI.insert(img);
+				serviceI.insert(mf, img);
 
 				SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
 				

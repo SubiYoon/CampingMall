@@ -194,11 +194,10 @@ public class MainController {
     public String boardEdit(HttpSession session, HomeDTO home, MultipartFile mf) {
         try {
             if(!mf.isEmpty()){
-                home.setHome_image(mf.getOriginalFilename());
+                home.setHome_image(logoEditFileSave(mf, home.getHome_image()));
             }
             serviceH.update(home);
-            System.out.println(home);
-            SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
+            
             System.out.println("성공");
         } catch (Exception e) {
             //e.printStackTrace();
@@ -212,16 +211,13 @@ public class MainController {
     public String logoEdit(HttpSession session, MultipartFile company_logo1,
         MultipartFile company_logo2, String company_name) {
         CompanyDTO company = (CompanyDTO) session.getAttribute("company");
-        int company_code = company.getCompany_code();
-        String company_logo1_fileName=company_logo1.getOriginalFilename();
-        String company_logo2_fileName=company_logo2.getOriginalFilename();
+
         if (!company_logo1.isEmpty() && !company_logo2.isEmpty()) {
             try {
-                company.setCompany_logo1(company_logo1.getOriginalFilename());
-                company.setCompany_logo2(company_logo2.getOriginalFilename());
                 company.setCompany_name(company_name);
-                SaveFile.saveFile(company_logo1, imagesdir,company_logo1_fileName);
-                SaveFile.saveFile(company_logo2, imagesdir,company_logo2_fileName);
+                company.setCompany_logo1(logoEditFileSave(company_logo1, company.getCompany_logo1()));
+                company.setCompany_logo2(logoEditFileSave(company_logo2, company.getCompany_logo2()));
+                
                 serviceC.update(company);
 
                 session.invalidate();
@@ -231,10 +227,10 @@ public class MainController {
 
         } else if (!company_logo1.isEmpty() && company_logo2.isEmpty()) {
             try {
-                company = serviceC.select(company_code);
-                company.setCompany_logo1(company_logo1.getOriginalFilename());
-                SaveFile.saveFile(company_logo1, imagesdir,company_logo1_fileName);
                 company.setCompany_name(company_name);
+                company.setCompany_logo1(logoEditFileSave(company_logo1, company.getCompany_logo1()));
+                
+
                 serviceC.update(company);
 
                 session.invalidate();
@@ -244,10 +240,9 @@ public class MainController {
 
         } else if (company_logo1.isEmpty() && !company_logo2.isEmpty()) {
             try {
-                company = serviceC.select(company_code);
-                company.setCompany_logo2(company_logo2.getOriginalFilename());
-                SaveFile.saveFile(company_logo2, imagesdir,company_logo2_fileName);
                 company.setCompany_name(company_name);
+                company.setCompany_logo2(logoEditFileSave(company_logo2, company.getCompany_logo2()));
+
                 serviceC.update(company);
 
                 session.invalidate();
@@ -274,10 +269,7 @@ public class MainController {
         ImageDTO image = null;
         try {
             image = serviceI.select(image_code);
-            String first_image_file=image.getImage_file();
-            image.setImage_file(home_slide.getOriginalFilename());
-            serviceI.updateimage(image,first_image_file);
-            SaveFile.saveFile(home_slide, imagesdir,home_slide.getOriginalFilename());
+            serviceI.update(home_slide, image);
         } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("파일변경 실패");
@@ -307,11 +299,9 @@ public class MainController {
         if (!file.isEmpty()) {
             image.setCompany_code(company.getCompany_code());
             image.setHome_code(home_code);
-            image.setImage_file(file.getOriginalFilename());
 
             try {
-                serviceI.insert(image);
-                SaveFile.saveFile(file, imagesdir,file.getOriginalFilename());
+                serviceI.insert(file, image);
             } catch (Exception e) {
                 //e.printStackTrace();
                 System.out.print("실패");
@@ -324,5 +314,24 @@ public class MainController {
     public String logOut(HttpSession session) {
         session.invalidate();
         return "redirect:/";
+    }
+
+    //이미지 업로드 메서드(반환값은 업로드한 파일 이름)
+    public String logoEditFileSave(MultipartFile mf, String imageName) throws Exception {
+        String fileName =mf.getOriginalFilename();
+        int fileCount = 1;
+        List<ImageDTO> imgAll = serviceI.selectAll();
+        
+        SaveFile.deleteFile(imagesdir, imageName);
+        for(int i=0; i<imgAll.size(); i++){
+            if(imgAll.get(i).getImage_file().equals(fileName)){
+                String[] filearr = mf.getOriginalFilename().split("\\.");
+                fileName = filearr[0] + "(" + fileCount + ")" + "." + filearr[1];
+                fileCount++;
+                i = 0;
+            }
+        }
+        SaveFile.saveFile(mf, imagesdir, fileName) ;
+        return fileName;
     }
 }

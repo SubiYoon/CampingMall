@@ -5,47 +5,50 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.camp.admin.DTO.ImageDTO;
-import com.camp.admin.frame.MyService;
 import com.camp.admin.mapper.ImageMapper;
 import com.camp.admin.utility.SaveFile;
 
 @Service
-public class ImageService implements MyService<Integer, ImageDTO> {
+public class ImageService{
     @Value("${imagesdir}")
     String imagesdir;
 
     @Autowired
     ImageMapper mapper;
 
-    @Override
-    public void insert(ImageDTO imageDTO) throws Exception {
+    public void insert(MultipartFile mf, ImageDTO imageDTO) throws Exception {
+        String fileName =mf.getOriginalFilename();
+        int fileCount = 1;
+        List<ImageDTO> imgAll = mapper.selectAll();
+
+        for(int i=0; i<imgAll.size(); i++){
+            if(imgAll.get(i).getImage_file().equals(fileName)){
+                String[] filearr = mf.getOriginalFilename().split("\\.");
+                fileName = filearr[0] + "(" + fileCount +")" + "." + filearr[1];
+                fileCount++;
+                i = 0;
+            }
+        }
+        imageDTO.setImage_file(fileName);
+        SaveFile.saveFile(mf, imagesdir, fileName) ;
+        
         mapper.insert(imageDTO);
     }
 
-    @Override
+    
     public void delete(Integer integer) throws Exception {
         mapper.delete(integer);
     }
 
-    public void updateimage(ImageDTO imageDTO, String first_image_file) throws Exception {
-        imageDTO = checkName(imageDTO);
-        int result = mapper.updateimage(imageDTO);
-        if (result == 1) {
-            result = mapper.selectFile(first_image_file);
-            if (result == 0) {
-                SaveFile.deleteFile(imagesdir, first_image_file);
-            }
-        }
-    }
-
-    @Override
+    
     public ImageDTO select(Integer integer) throws Exception {
         return mapper.select(integer);
     }
 
-    @Override
+    
     public List<ImageDTO> selectAll() throws Exception {
         return mapper.selectAll();
     }
@@ -81,21 +84,24 @@ public class ImageService implements MyService<Integer, ImageDTO> {
     public void selectFile(String image_file) throws Exception {
         mapper.selectFile(image_file);
     }
-
-    public ImageDTO checkName(ImageDTO imageDTO) throws Exception {
-        int result = mapper.selectFile(imageDTO.getImage_file());
-        if (result > 0) {
-            String image_file = imageDTO.getImage_file();
-            String arr[] = image_file.split("\\.");
-            imageDTO.setImage_file(arr[0] + result + "." + arr[1]);
-
+    
+    public void update(MultipartFile mf, ImageDTO imageDTO) throws Exception {
+        String fileName =mf.getOriginalFilename();
+        int fileCount = 1;
+        List<ImageDTO> imgAll = mapper.selectAll();
+        
+        SaveFile.deleteFile(imagesdir, imageDTO.getImage_file());
+        for(int i=0; i<imgAll.size(); i++){
+            if(imgAll.get(i).getImage_file().equals(fileName)){
+                String[] filearr = mf.getOriginalFilename().split("\\.");
+                fileName = filearr[0] + "(" + fileCount + ")" + "." + filearr[1];
+                fileCount++;
+                i = 0;
+            }
         }
-        return imageDTO;
-    }
-
-    @Override
-    public void update(ImageDTO v) throws Exception {
-        mapper.update(v);
+        imageDTO.setImage_file(fileName);
+        SaveFile.saveFile(mf, imagesdir, fileName) ;
+        mapper.update(imageDTO);
     }
 
 }
