@@ -101,10 +101,7 @@ public class ZoneController {
 
 			if (!mf.isEmpty()) {
 				ImageDTO img = serviceI.select(zone.getImage_code());
-				String first_image_file=img.getImage_file();
-				img.setImage_file(mf.getOriginalFilename());
-				serviceI.updateimage(img,first_image_file);
-				SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
+				serviceI.update(mf, img);
 			}
 
 		} catch (Exception e) {
@@ -142,8 +139,7 @@ public class ZoneController {
 				ImageDTO img = new ImageDTO();
 				img.setCompany_code(company.getCompany_code());
 				img.setZone_code(zonelist.get(zonelist.size() - 1).getZone_code());
-				img.setImage_file(mf.getOriginalFilename());
-				serviceI.insert(img);
+				serviceI.insert(mf, img);
 
 				SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
 			}
@@ -199,10 +195,7 @@ public class ZoneController {
 			if (!mf.isEmpty()) {
 
 				ImageDTO img = serviceI.select(site.getImage_code());
-				String first_image_file=img.getImage_file();
-				img.setImage_file(mf.getOriginalFilename());
-				serviceI.updateimage(img,first_image_file);
-				SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
+				serviceI.update(mf, img);
 			}
 
 		} catch (Exception e) {
@@ -243,8 +236,7 @@ public class ZoneController {
 				ImageDTO img = new ImageDTO();
 				img.setCompany_code(company.getCompany_code());
 				img.setSite_code(sitelist.get(sitelist.size() - 1).getSite_code());
-				img.setImage_file(mf.getOriginalFilename());
-				serviceI.insert(img);
+				serviceI.insert(mf, img);
 
 				SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
 			}
