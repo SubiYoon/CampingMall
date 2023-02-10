@@ -473,6 +473,13 @@ button {
 /*-- end 로그인모달용 --*/
 
 /*-- 캠핑장 선택버튼 --*/
+#comp_select{
+     visibility: visible;
+     position: fixed;
+     z-index: 60;
+     margin: 10px 10px 10px 10px;
+}
+
 #comp_select img{
 	width:70px;
 	height: 70px;
@@ -499,12 +506,19 @@ button {
 }
 
 /*-- 챗봇 선택버튼 --*/
+#modal_cbicon{
+     visibility: visible;
+     position: fixed;
+     z-index: 60;
+     margin: 10px 10px 10px 10px;
+}
+
 #modal_cbicon img{
 	width:70px;
 	height: 70px;
 	object-fit: cover;
 	object-position: 0 0;
-	
+	overflow: hidden;
      visibility: visible;
      position: fixed;
      z-index: 60;
