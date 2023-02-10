@@ -54,4 +54,8 @@ public class ScheduleService implements MyService<Integer, ScheduleDTO> {
             return true;
         }
     }
+
+    public List<ScheduleDTO> selectByCompany(int company_code) throws Exception{
+        return mapper.selectByCompany(company_code);
+    }
 }

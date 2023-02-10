@@ -14,4 +14,6 @@ public class ScheduleDTO {
     private int admin_code;
     private Date schedule_date;
     private String schedule_name;
+
+    private String strDate;
 }

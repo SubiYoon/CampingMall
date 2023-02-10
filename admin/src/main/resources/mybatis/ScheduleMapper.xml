@@ -39,4 +39,22 @@
         FROM schedule
         WHERE schedule_code = #{schedule_code}
     </delete>
+    <select id="selectByCompany" resultType="scheduleDTO">
+        SELECT
+            schedule.schedule_code schedule_code,
+            schedule.admin_code    admin_code,
+            schedule.schedule_date schedule_date,
+            schedule.schedule_name schedule_name
+        FROM
+            schedule
+        JOIN
+            admin
+        ON
+            admin.admin_code = schedule.admin_code
+        WHERE
+            admin.company_code = #{company_code}
+        ORDER BY
+            schedule_code
+        DESC
+    </select>
 </mapper>
