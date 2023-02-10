@@ -28,7 +28,7 @@
    var checkOutdDate = null;
    var today = null;
    var realToday = null;
-   const ABLEDAYS = 50;
+   const ABLEDAYS = 55;
    var clickedSiteCode = null;
    //0이 붙은 숫자라 숫자화를 위해 0을 한번 빼줌
    function number() {
@@ -306,7 +306,11 @@
          if (compareYearAndMonth(today, realToday) === 0) {
             startDay = realToday.getDate();
             endDay = 32;
-         } else {
+         }else if(compareYearAndMonth(today, realToday) === -1){
+			 startDay = 32;
+			 endDay = 32;
+		 }
+		 else {
             startDay = 0;
             endDay = 32;
          }
