@@ -133,6 +133,8 @@ public class WeatherService{
         
         jo=(JSONObject)parser.parse(sb.toString());
         
+        System.out.println("11"+jo);
+        
         JSONObject obj=(JSONObject) jo.get("response");
 		JSONObject obj1=(JSONObject) obj.get("body");
 		JSONObject obj2=(JSONObject) obj1.get("items");

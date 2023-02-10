@@ -87,7 +87,7 @@ public class FacilityController {
 				serviceI.update(img);
 
 				//파일 업로드
-				SaveFile.saveFile(mf, imagesdir);
+				SaveFile.saveFile(mf, imagesdir,img);
 			}
 			
 		} catch (Exception e) {
@@ -147,7 +147,7 @@ public class FacilityController {
 				img.setImage_file(mf.getOriginalFilename());
 				serviceI.insert(img);
 
-				SaveFile.saveFile(mf, imagesdir);
+				SaveFile.saveFile(mf, imagesdir,img);
 				
 			} catch(Exception e){
 				//e.printStackTrace();

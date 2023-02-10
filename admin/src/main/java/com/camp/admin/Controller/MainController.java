@@ -208,13 +208,15 @@ public class MainController {
         MultipartFile company_logo2, String company_name) {
         CompanyDTO company = (CompanyDTO) session.getAttribute("company");
         int company_code = company.getCompany_code();
+        ImageDTO img=new ImageDTO();
+        img.setImage_file(company_logo2.getName());
         if (!company_logo1.isEmpty() && !company_logo2.isEmpty()) {
             try {
                 company.setCompany_logo1(company_logo1.getOriginalFilename());
                 company.setCompany_logo2(company_logo2.getOriginalFilename());
                 company.setCompany_name(company_name);
-                SaveFile.saveFile(company_logo1, imagesdir);
-                SaveFile.saveFile(company_logo2, imagesdir);
+                SaveFile.saveFile(company_logo1, imagesdir,img);
+                SaveFile.saveFile(company_logo2, imagesdir,img);
                 serviceC.update(company);
 
                 session.invalidate();
@@ -226,7 +228,7 @@ public class MainController {
             try {
                 company = serviceC.select(company_code);
                 company.setCompany_logo1(company_logo1.getOriginalFilename());
-                SaveFile.saveFile(company_logo1, imagesdir);
+                SaveFile.saveFile(company_logo1, imagesdir,img);
                 company.setCompany_name(company_name);
                 serviceC.update(company);
 
@@ -239,7 +241,7 @@ public class MainController {
             try {
                 company = serviceC.select(company_code);
                 company.setCompany_logo2(company_logo2.getOriginalFilename());
-                SaveFile.saveFile(company_logo2, imagesdir);
+                SaveFile.saveFile(company_logo2, imagesdir,img);
                 company.setCompany_name(company_name);
                 serviceC.update(company);
 
@@ -269,7 +271,7 @@ public class MainController {
             image = serviceI.select(image_code);
             image.setImage_file(home_slide.getOriginalFilename());
             serviceI.update(image);
-            SaveFile.saveFile(home_slide, imagesdir);
+            SaveFile.saveFile(home_slide, imagesdir,image);
         } catch (Exception e) {
             //e.printStackTrace();
             System.out.println("파일변경 실패");
@@ -303,7 +305,7 @@ public class MainController {
 
             try {
                 serviceI.insert(image);
-                SaveFile.saveFile(file, imagesdir);
+                SaveFile.saveFile(file, imagesdir,image);
             } catch (Exception e) {
                 //e.printStackTrace();
                 System.out.print("실패");
