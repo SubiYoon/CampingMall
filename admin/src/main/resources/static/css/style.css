@@ -1236,6 +1236,40 @@ h6 {
     max-width: 50%;
   }
 }
+
+/*--------------------------------------------------------------
+# 모바일
+--------------------------------------------------------------*/
+
+@media screen and (max-width: 800px) {
+	
+	.tablehidden{
+		display: none;
+	}
+	
+	.Mtablehidden{
+		display: inline !important;
+	}
+	
+	.noeditcard{
+		margin: 40px 2px 30px 2px !important;
+	}
+	
+	.MHomeEdit input{
+	width: 100% !important;
+	}
+
+	.MHomeEdit textarea{
+	width: 100% !important;
+	height: 100px;
+	}
+	
+}
+
+/*--------------------------------------------------------------
+# end 모바일
+--------------------------------------------------------------*/
+
 /*--------------------------------------------------------------
 # company 페이지
 --------------------------------------------------------------*/
@@ -1249,13 +1283,31 @@ h6 {
 	margin-left: 42%;
 }
 
-.slide_add_Form{
+.btn-center{
 	text-align: center;
 }
 
-.slide_add_Form .slide_add_Form{
+.btn-center a{
+	width: 180px;
+	margin: 5px;
+}
+
+.slide_add_Form .btn-center{
 	text-align: center;
 	width: 70%;
+}
+
+#home_tbl_edit table{
+	margin: 0px 10%;
+}
+
+#home_tbl_edit input{
+	width: 80%;
+}
+
+#home_tbl_edit textarea{
+	width: 80%;
+	height: 200px;
 }
 
 /*--------------------------------------------------------------
@@ -1318,28 +1370,6 @@ h6 {
 # noedit
 --------------------------------------------------------------*/
 
-/*--------------------------------------------------------------
-# 모바일
---------------------------------------------------------------*/
-
-@media screen and (max-width: 800px) {
-	
-	.tablehidden{
-		display: none;
-	}
-	
-	.Mtablehidden{
-		display: inline !important;
-	}
-	
-	.noeditcard{
-		margin: 40px 2px 30px 2px !important;
-	}
-}
-
-/*--------------------------------------------------------------
-# end 모바일
---------------------------------------------------------------*/
 
 .noeditcard{
 	margin: 50px 50px 30px 30px;

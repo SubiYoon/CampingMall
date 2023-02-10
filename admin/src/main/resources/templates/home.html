@@ -92,22 +92,115 @@
         <div class="col-lg-12 zone-col-12">
           <div class="card card-radius">
             <div class="card-body">
-            
               <h5 class="card-title">회사 정보 수정</h5>
+              
               <form id="home_tbl_edit">
-                <input type="hidden" th:value="${home.home_code}" name="home_code" />
-                <label>대표 성함 : &nbsp;</label><input name="home_owner" type="text" th:value="${home.home_owner}" /><br>
-                <label>캠핑장 주소 : &nbsp;</label><input name="home_address" type="text"
-                  th:value="${home.home_address}" /><br>
-                <label>캠핑장 경도 : &nbsp;</label><input name="home_longitude" type="text"
-                  th:value="${home.home_longitude}"><br>
-                <label>캠핑장 위도 : &nbsp;</label><input name="home_latitude" type="text"
-                  th:value="${home.home_latitude}" /><br>
-                <label>캠핑장 도메인 : &nbsp;</label><input name="home_https" type="text" th:value="${home.home_https}" /><br>
-                <label>캠핑장 전화번호 : &nbsp;</label><input name="home_tell" type="text" th:value="${home.home_tell}" /><br>
-                <label>홈페이지 인삿말 : &nbsp;</label><br><textarea name="home_content" cols="50" rows="10"
-                  th:text="${home.home_content}"></textarea><br>
-                <a class="btn btn-primary" href="#home_edit">수정</a>
+              
+              	<table class="viewtable-fill MHomeEdit">
+              	<thead>
+              		<tr>
+              			<td>
+                			<input type="hidden" th:value="${home.home_code}" name="home_code" />
+                		</td>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF Mtablehidden">
+	                		대표 성함
+                		</th>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF tablehidden">
+	                		대표 성함
+                		</th>
+                		<td class="text-left zonethS">
+                			<input name="home_owner" type="text" th:value="${home.home_owner}" />
+                		</td>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF Mtablehidden">
+	                		캠핑장 주소
+                		</th>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF tablehidden">
+	                		캠핑장 주소
+                		</th>
+                		<td class="text-left zonethS">
+                			<input name="home_address" type="text" th:value="${home.home_address}" />
+                		</td>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF ,tablehidden">
+	                		캠핑장 경도
+                		</th>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF tablehidden">
+	                		캠핑장 경도
+                		</th>
+                		<td class="text-left zonethS">
+                			<input name="home_longitude" type="text" th:value="${home.home_longitude}" />
+                		</td>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF Mtablehidden">
+	                		캠핑장 위도
+                		</th>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF tablehidden">
+	                		캠핑장 위도
+                		</th>
+                		<td class="text-left zonethS">
+                			<input name="home_latitude" type="text" th:value="${home.home_latitude}" />
+                		</td>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF Mtablehidden">
+	                		캠핑장 도메인
+	                	</th>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF tablehidden">
+	                		캠핑장 도메인
+	                	</th>
+                		<td class="text-left zonethS">
+                			<input name="home_https" type="text" th:value="${home.home_https}" />
+                		</td>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF Mtablehidden">
+	                		캠핑장 전화번호
+                		</th>
+                	</tr>
+                	<tr>
+                		<th class="text-left zonethF tablehidden">
+	                		캠핑장 전화번호
+                		</th>
+                		<td class="text-left zonethS">
+                			<input name="home_tell" type="text" th:value="${home.home_tell}" />
+                		</td>
+                	</tr>
+                </thead>
+                <tbody>
+                	<tr>
+                		<th class="text-left zonethF Mtablehidden">
+	                		홈페이지 인삿말
+	                  	</th>
+	                </tr>
+                	<tr>
+                		<th class="text-left zonethF tablehidden">
+	                		홈페이지 인삿말
+	                  	</th>
+	                  	<td>
+	                  		<textarea name="home_content" th:text="${home.home_content}"></textarea>
+						</td>
+	                </tr>	
+                </tbody>
+                </table>
+                <div class="btn-center">
+                <a class="btn btn-primary btn-center" href="#home_edit">수정</a>
+                </div>
               </form>
             </div>
             
@@ -115,8 +208,8 @@
         </div>
         
         <div class="col-lg-12">
-        	<div class="pagetitle slide_add_Form">
-          	<a class="slide_add_Form btn btn-outline-primary" href="#slide_Add">
+        	<div class="pagetitle slide_add_Form btn-center">
+          	<a class="btn-center btn btn-outline-primary" href="#slide_Add">
           		<h1>슬라이드 이미지 추가</h1>
          	</a>
          	</div>
@@ -130,9 +223,12 @@
                 <input type="hidden" name="image_code" th:value="${slide.image_code}" />
                 <h5 class="card-title" th:text="'슬라이드 ' + ${slideStat.count} + ' 이미지'"></h5>
                 <img class="siteimg" th:src="'images/' + ${slide.image_file}"/>
-                <input class="zonethS" type="file" name="home_slide" /><br><br>
-                <a href="#slide_edit" class="image_slide_edit btn btn-primary" style="width:200px;">수정</a>
-                <a href="#slide_delete" class="image_slide_delete btn btn-primary" style="width:200px;">삭제</a>
+                <input class="zonethS" type="file" name="home_slide" />
+                <br>
+                <div class="btn-center">
+                <a href="#slide_edit" class="image_slide_edit btn btn-primary btn-center">수정</a>
+                <a href="#slide_delete" class="image_slide_delete btn btn-primary btn-center">삭제</a>
+                </div>
               </form>
               
             </div>
