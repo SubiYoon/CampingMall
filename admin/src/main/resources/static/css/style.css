@@ -1605,3 +1605,32 @@ h6 {
 .zonethS{
 	width: 85%;
 }
+
+/*--------------------------------------------------------------
+# 휴일
+--------------------------------------------------------------*/
+ #calendar {
+      width: 80%;
+   }
+
+   #calendar tr {
+      height: 50px;
+   }
+
+   #bookForm li {
+      float: left;
+      /*width: 25%;*/
+      text-align: center;
+   }
+   
+#scheduleInsertForm{
+	display: block;
+	margin-bottom: 15px;
+}
+
+
+#scheduleInsertForm input, #scheduleInsertForm div
+	, #scheduleEditForm input, #scheduleEditForm div{
+	width: 80%;
+	margin: 10px 10%;
+}
