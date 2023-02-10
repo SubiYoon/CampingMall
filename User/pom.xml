@@ -86,15 +86,11 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1</version>
   		</dependency>
-  		
-  		<!--검증을위한 import
-  		<dependency>
-		  <groupId>com.github.iamport</groupId>
-		  <artifactId>iamport-rest-client-java</artifactId>
-		  <version>0.2.14</version>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
-		  		-->
-		  		
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
 		    <groupId>org.apache.httpcomponents</groupId>
