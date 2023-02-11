@@ -90,7 +90,7 @@
         FROM book
         WHERE book_code = #{book_code}
     </delete>
-     <select id="selectAllmain" resultType="map">
+    <select id="selectAllmain" resultType="map">
 		  SELECT book.book_code  book_code,
 		         book.book_price book_price,
 			     book.book_state book_state,
@@ -105,8 +105,7 @@
                  ON book.site_code = image.site_code
                  WHERE image.company_code = #{company_code}
 		  ORDER  BY book_writedate DESC;
-       </select>
-    
+    </select>
     <select id="selectAllState" resultType="map">
     SELECT book.book_member book_member,
 	       book.book_checkin book_checkin, 
@@ -126,7 +125,6 @@
 	         ON book.user_code = user.user_code
 	WHERE  book_state = #{state}
     </select>
-    
     <update id="updateBookState">
         UPDATE book
         SET book_state=#{state}
@@ -186,7 +184,6 @@
           And (book.book_state = 1 OR book.book_state = 2 OR book.book_state = 4)
 
     </select>
-
     <select id="selectByCompanyCodeAndWriteDate" resultType="BookDTO">
         select book.book_code,
                book.site_code,
@@ -211,11 +208,4 @@
           And (book.book_state = 1 OR book.book_state = 2 OR book.book_state = 4)
 
     </select>
-     
-    
-    
-    
-    
-    
-    
 </mapper>

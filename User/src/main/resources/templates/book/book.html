@@ -8,6 +8,8 @@
       $("#pay_btn_make").click(function () {
          if ('[[${session.user}]]' == null || '[[${session.user}]]' == '') {
             alert("로그인 후 사용해 주세요.")
+            document.getElementById("modal").style.display = "flex";
+				document.body.style = "overflow: hidden";
          } else {
             bookFrom.submit();
          }
@@ -220,7 +222,6 @@
          }
       }
       disabledDate();
-      OneClickPointOn();
    }
 
    function prevCalendar() {

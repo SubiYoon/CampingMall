@@ -5,14 +5,12 @@ import com.camp.admin.DTO.ReviewDTO;
 import com.camp.admin.frame.MyService;
 import com.camp.admin.mapper.ReviewMapper;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class ReviewService implements MyService<Integer, ReviewDTO> {
@@ -70,12 +68,12 @@ public class ReviewService implements MyService<Integer, ReviewDTO> {
         for (ReviewDTO review : reviews) {
             if (beforeSiteCode == GetSiteCodeByReview(review)) {
                 reviewCountMap.put(beforeSiteName,
-                    reviewCountMap.get(beforeSiteName) + review.getReview_score());
+                        reviewCountMap.get(beforeSiteName) + review.getReview_score());
                 count++;
             } else {
                 if (!beforeSiteName.equals("")) {
                     reviewCountMap.put(beforeSiteName,
-                        reviewCountMap.get(beforeSiteName) / count);
+                            reviewCountMap.get(beforeSiteName) / count);
                 }
                 count = 1;
                 beforeSiteName = GetSiteNameByReview(review);
@@ -84,7 +82,7 @@ public class ReviewService implements MyService<Integer, ReviewDTO> {
             }
             if (!beforeSiteName.equals("")) {
                 reviewCountMap.put(beforeSiteName,
-                    reviewCountMap.get(beforeSiteName) / count);
+                        reviewCountMap.get(beforeSiteName) / count);
             }
         }
         return reviewCountMap;
@@ -102,15 +100,9 @@ public class ReviewService implements MyService<Integer, ReviewDTO> {
         }
         return new GraphDTO(labesList, "ReviewScore", dataList);
     }
-    
-    
-    public List<Map<String, Object>> selectAllmain(int companyCode) throws Exception{
-    	return mapper.selectAllmain(companyCode);
+
+    public List<Map<String, Object>> selectAllmain(int companyCode) throws Exception {
+        return mapper.selectAllmain(companyCode);
     }
-    
-    
-    
-    
-    
-    
+
 }

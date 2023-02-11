@@ -1,11 +1,9 @@
 <link rel="stylesheet" th:href="@{/css/bookEdit.css}">
 <script src="https://kit.fontawesome.com/e0fa1f6ab7.js" crossorigin="anonymous"></script>
-<!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
 </script>
 <script>
   $(document).ready(function () {
-
     var args = "";
     $.ajax({
       url: '/admin/refundBook',
@@ -47,9 +45,7 @@
       }
     });
   });
-
   function refund(num, state) {
-
     let merchant_uid = $('#m_uid' + num).text();
     let go_refund;
 
@@ -68,7 +64,7 @@
 
     if (go_refund == 1) {
       jQuery.ajax({
-        "url": "/admin/refund", // 예: http://www.myservice.com/payments/cancel
+        "url": "/admin/refund",
         "type": "POST",
         "contentType": "application/json",
         "data": JSON.stringify({
@@ -87,7 +83,6 @@
   }
 </script>
 <main id="main" class="main">
-
   <div class="pagetitle">
     <h1>고객 환불요청 처리</h1>
     <nav>
@@ -97,12 +92,10 @@
         <li class="breadcrumb-item active">Blank</li>
       </ol>
     </nav>
-  </div><!-- End Page Title -->
-
+  </div>
   <section class="section">
     <div class="row">
       <div class="col-lg-12">
-
         <div class="card">
           <div style="padding-bottom: 0;" class="card-body refund-guide">
             <h5 class="card-title">「소비자 분쟁해결 기준」 중 관광숙박업에 관한 보상기준 참조</h5>
@@ -114,14 +107,8 @@
           </div>
         </div>
       </div>
-
       <div class="row request-refund-list" style="padding:0;margin:0">
-
-
       </div>
     </div>
-
-
   </section>
-
-</main><!-- End #main -->
+</main>

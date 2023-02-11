@@ -10,7 +10,8 @@ import com.camp.admin.frame.MyMapper;
 
 @Repository
 @Mapper
-public interface UserMapper extends MyMapper<String, UserDTO>{
+public interface UserMapper extends MyMapper<String, UserDTO> {
     public List<UserDTO> selectUsersInfo(int company_code);
-    public UserDTO selectnt(String n,String t) throws Exception;
+
+    public UserDTO selectnt(String n, String t) throws Exception;
 }

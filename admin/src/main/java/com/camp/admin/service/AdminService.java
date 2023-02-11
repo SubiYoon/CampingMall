@@ -12,7 +12,7 @@ public class AdminService {
     @Autowired
     AdminMapper mapper;
 
-    public AdminDTO select(String admin_id) throws Exception{
+    public AdminDTO select(String admin_id) throws Exception {
         return mapper.select(admin_id);
     }
 }

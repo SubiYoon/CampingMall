@@ -10,7 +10,7 @@ import com.camp.admin.frame.MyService;
 import com.camp.admin.mapper.ZoneMapper;
 
 @Service
-public class ZoneService implements MyService<Integer, ZoneDTO>{
+public class ZoneService implements MyService<Integer, ZoneDTO> {
 
     @Autowired
     ZoneMapper mapper;
@@ -39,15 +39,15 @@ public class ZoneService implements MyService<Integer, ZoneDTO>{
     public List<ZoneDTO> selectAll() throws Exception {
         return mapper.selectAll();
     }
-    
+
     public List<ZoneDTO> selectZone(Integer companycode) throws Exception {
         return mapper.selectZone(companycode);
     }
-    
+
     public void updateDel(Integer integer) throws Exception {
-    	mapper.updateDel(integer);
+        mapper.updateDel(integer);
     }
-    
+
     public ZoneDTO selectForEdit(Integer k) throws Exception {
         return mapper.selectForEdit(k);
     }

@@ -8,5 +8,5 @@ import com.camp.admin.frame.MyMapper;
 
 @Repository
 @Mapper
-public interface CompanyMapper extends MyMapper<Integer, CompanyDTO>{
+public interface CompanyMapper extends MyMapper<Integer, CompanyDTO> {
 }

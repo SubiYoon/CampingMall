@@ -67,7 +67,6 @@
         FROM reservation
         WHERE book_code = #{book_code}
     </delete>
-
     <select id="selectByCompanyCodeAndYearMonth" resultType="ReservationDTO">
         select reservation.reservation_code, reservation.book_code, reservation.reservation_date
         from reservation,

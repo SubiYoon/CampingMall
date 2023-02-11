@@ -1,6 +1,5 @@
 <script>
 	$(document).ready(function () {
-		//글자수제한
 		$('.text_box textarea').keyup(function () {
 			var content = $(this).val();
 			$('.text_box .count span').html(content.length);
@@ -10,7 +9,6 @@
 				$('.text_box .count span').html(500);
 			}
 		});
-		//수정버튼
 		$('#upBtn').click(function () {
 			var c = confirm('수정하시겠습니까?');
 			if (c == true) {
@@ -22,7 +20,6 @@
 				$('#up_form').submit();
 			};
 		});
-		//삭제버튼
 		$('#delBtn').click(function () {
 			var c = confirm('삭제하시겠습니까?');
 			if (c == true) {
@@ -48,7 +45,7 @@
 				</ol>
 			</nav>
 		</div>
-	</div><!-- End Page Title -->
+	</div>
 	<section class="section">
 		<div class="row">
 			<div class="row row-zone" style="margin: auto;">
@@ -59,7 +56,8 @@
 								<table class="viewtable-fill">
 									<thead>
 										<tr>
-											<th colspan="7" class="text-left viewno Mtablehidden" id="viewno">&nbsp;글번호</th>
+											<th colspan="7" class="text-left viewno Mtablehidden" id="viewno">&nbsp;글번호
+											</th>
 										</tr>
 										<tr>
 											<th class="text-left viewno tablehidden" id="viewno">&nbsp;글번호</th>
@@ -121,12 +119,12 @@
 										</tr>
 										<tr>
 											<th colspan="7" class="text-left Mtablehidden">&nbsp;주요공지
-											<br>
-											<span> * 1: ON / 0: OFF </span>
+												<br>
+												<span> * 1: ON / 0: OFF </span>
 											</th>
 										</tr>
 										<tr>
-											<th colspan="1" class="text-left tablehidden" >
+											<th colspan="1" class="text-left tablehidden">
 												&nbsp;주요공지
 											</th>
 											<td colspan="4">
@@ -155,5 +153,4 @@
 			</div>
 		</div>
 	</section>
-
-</main><!-- End #main -->
+</main>

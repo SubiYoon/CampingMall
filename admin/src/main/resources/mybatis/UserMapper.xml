@@ -4,7 +4,12 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camp.admin.mapper.UserMapper">
     <delete id="delete">
-        Update user SET user_id='(DELETE)${user_id}' WHERE user_id=#{user_id}
+        Update 
+            user 
+        SET 
+            user_id='(DELETE)${user_id}' 
+        WHERE 
+            user_id=#{user_id}
     </delete>
     <select id="selectUsersInfo" resultType="UserDTO">
         SELECT 
@@ -31,9 +36,21 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
             image.company_code=#{company_code};
     </select>
     <select id="selectnt" resultType="UserDTO">
-        SELECT * FROM user WHERE user_name=#{n} and user_tel=#{t}
+        SELECT 
+            * 
+        FROM 
+            user 
+        WHERE 
+            user_name=#{n} 
+        AND 
+            user_tel=#{t}
     </select>
     <select id="select" resultType="UserDTO">
-        SELECT * FROM user WHERE user_id=#{user_id}
+        SELECT 
+            * 
+        FROM 
+            user 
+        WHERE 
+            user_id=#{user_id}
     </select>
 </mapper>

@@ -16,7 +16,7 @@ public class ReservationDTO {
     private int book_code;
     private Date reservation_date;
 
-    public ReservationDTO(int book_code, String reservation_date){
+    public ReservationDTO(int book_code, String reservation_date) {
         this.book_code = book_code;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {

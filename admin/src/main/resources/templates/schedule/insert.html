@@ -1,4 +1,3 @@
-<!--달력 생성 scipt-->
 <script type="text/javascript">
    var today = null;
    var selectDate = null;
@@ -30,10 +29,9 @@
          cnt += 1;
 
          cell.setAttribute('id', i);
-         //TODO: 텍스트 데코가 안먹음..
-         cell.innerHTML = '<a href="#check" style="'+'text-decoration:none;"'+'>'+i+'</a>';
-         cell.align = "center";
 
+         cell.innerHTML = '<a href="#check" style="' + 'text-decoration:none;"' + '>' + i + '</a>';
+         cell.align = "center";
 
          cell.onclick = function () {
             clickedYear = today.getFullYear();
@@ -43,8 +41,8 @@
             clickedDate = clickedDate >= 10 ? clickedDate : '0' + clickedDate;
             clickedMonth = clickedMonth >= 10 ? clickedMonth : '0' + clickedMonth;
             clickedYMD = clickedYear + "-" + clickedMonth + "-" + clickedDate;
-            
-            if(selectDate==null){
+
+            if (selectDate == null) {
                selectDate = clickedYMD;
             }
 
@@ -76,25 +74,24 @@
       today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
       buildCalendar();
    }
-   $(document).ready(function(){
-      $('#calendar a[href=#check]').click(function(){
-         if(selectDate != null){
+   $(document).ready(function () {
+      $('#calendar a[href=#check]').click(function () {
+         if (selectDate != null) {
             $('#calendar td').css("background-color", 'white');
             $(this).parent().css("background-color", 'rgb(247,233,231)');
             selectDate = null;
-         }else {
+         } else {
             $(this).parent().css("background-color", 'rgb(247,233,231)');
          }
       });
 
-      $('#scheduleInsert').click(function(){
+      $('#scheduleInsert').click(function () {
          $('#scheduleInsertForm').attr({
-            'action':'insertOk'
+            'action': 'insertOk'
          });
          $('#scheduleInsertForm').submit();
       });
    });
-
 </script>
 
 <main id="main" class="main">
@@ -113,42 +110,40 @@
          <div class="col-lg-12 zone-col-12">
             <div class="card card-radius">
                <div class="card-body">
-               <div class="card-title">
-                  
-                  <h5>휴일 추가</h5>
-                  <p>추가 할
-                     <code>휴일과 사유</code>
-                     를 작성해주세요.
-                  </p>
-                  <p>
-                     <code>하루단위</code>
-                     추가만 가능합니다.
-                  </p>
-                  <table id="calendar" align="center">
-                     <tr>
-                        <td align="center"><label onclick="prevCalendar()"> ◀ </label></td>
-                        <td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>
-                        <td align="center"><label onclick="nextCalendar()"> ▶ </label></td>
-                     </tr>
-                     <br>
-                     <tr>
-                        <td align="center">
-                           <font color="#F79DC2">일
-                        </td>
-                        <td align="center">월</td>
-                        <td align="center">화</td>
-                        <td align="center">수</td>
-                        <td align="center">목</td>
-                        <td align="center">금</td>
-                        <td align="center">
-                           <font color="skyblue">토
-                        </td>
-                     </tr>
-                     <script type="text/javascript">buildCalendar();</script>
-                  </table>
+                  <div class="card-title">
+                     <h5>휴일 추가</h5>
+                     <p>추가 할
+                        <code>휴일과 사유</code>
+                        를 작성해주세요.
+                     </p>
+                     <p>
+                        <code>하루단위</code>
+                        추가만 가능합니다.
+                     </p>
+                     <table id="calendar" align="center">
+                        <tr>
+                           <td align="center"><label onclick="prevCalendar()"> ◀ </label></td>
+                           <td colspan="5" align="center" id="calendarTitle">yyyy년 m월</td>
+                           <td align="center"><label onclick="nextCalendar()"> ▶ </label></td>
+                        </tr>
+                        <br>
+                        <tr>
+                           <td align="center">
+                              <font color="#F79DC2">일
+                           </td>
+                           <td align="center">월</td>
+                           <td align="center">화</td>
+                           <td align="center">수</td>
+                           <td align="center">목</td>
+                           <td align="center">금</td>
+                           <td align="center">
+                              <font color="skyblue">토
+                           </td>
+                        </tr>
+                        <script type="text/javascript">buildCalendar();</script>
+                     </table>
+                  </div>
                </div>
-               </div>
-               
                <div class="col-md-12">
                   <form id="scheduleInsertForm" method="post">
                      <div>
@@ -157,7 +152,7 @@
                         <input type="text" name="schedule_name" />
                      </div>
                      <div class="btn-center">
-                     <input class="btn btn-primary" id="scheduleInsert" type="button" value="추가">
+                        <input class="btn btn-primary" id="scheduleInsert" type="button" value="추가">
                      </div>
                   </form>
                </div>
@@ -166,4 +161,3 @@
       </div>
    </section>
 </main>
-<!-- end blog -->

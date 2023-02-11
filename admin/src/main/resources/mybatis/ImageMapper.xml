@@ -73,7 +73,6 @@
         FROM image
         WHERE image_file = #{image_file}
     </select>
-    
     <update id="updateimage" parameterType="ImageDTO">
         UPDATE image
         SET zone_code=IF(#{zone_code} = 0, NULL, #{zone_code}),
@@ -83,9 +82,4 @@
             image_file=#{image_file}
         WHERE image_code = #{image_code}
     </update>
-    
-    
-    
-    
-    
 </mapper>

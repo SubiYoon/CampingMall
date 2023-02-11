@@ -8,9 +8,9 @@ import com.camp.admin.frame.MyMapper;
 
 @Repository
 @Mapper
-public interface HomeMapper extends MyMapper<Integer, HomeDTO>{
-	
+public interface HomeMapper extends MyMapper<Integer, HomeDTO> {
+
 	public HomeDTO lnglat(Integer companycode) throws Exception;
-	
+
 	public HomeDTO homeCont(Integer companycode) throws Exception;
 }

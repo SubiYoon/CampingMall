@@ -33,12 +33,12 @@ public class SiteService implements MyService<Integer, SiteDTO> {
 
     @Override
     public void delete(Integer integer) throws Exception {
-    	mapper.delete(integer);
+        mapper.delete(integer);
     }
 
     @Override
     public void update(SiteDTO siteDTO) throws Exception {
-    	mapper.update(siteDTO);
+        mapper.update(siteDTO);
     }
 
     @Override
@@ -48,17 +48,17 @@ public class SiteService implements MyService<Integer, SiteDTO> {
 
     @Override
     public List<SiteDTO> selectAll() throws Exception {
-    	return mapper.selectAll();
+        return mapper.selectAll();
     }
-    
+
     public void updateDel(Integer integer) throws Exception {
-    	mapper.updateDel(integer);
+        mapper.updateDel(integer);
     }
-    
+
     public List<SiteDTO> selectSet(int company_code) throws Exception {
         return mapper.selectSet(company_code);
     }
-    
+
     public List<Integer> selectByCompany(int company_code) {
         return mapper.selectByCompany(company_code);
     }
@@ -68,7 +68,7 @@ public class SiteService implements MyService<Integer, SiteDTO> {
     }
 
     public List<Integer> AvailableSiteCode(int company_code, String stringDate1, String stringDate2)
-        throws Exception {
+            throws Exception {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(Utility.StringToDate(stringDate2));
         int days = Utility.StringDateDifference(stringDate2, stringDate1);
@@ -78,7 +78,7 @@ public class SiteService implements MyService<Integer, SiteDTO> {
         for (int i = days; i > 0; i--) {
             calendar.add(Calendar.DATE, -1);
             isAvailable = scheduleService.IsDateEmpty(Utility.DateToString(calendar.getTime()),
-                company_code);
+                    company_code);
             if (!isAvailable) {
                 return site_codes;
             }
@@ -100,9 +100,8 @@ public class SiteService implements MyService<Integer, SiteDTO> {
         return site_codes;
     }
 
-    //예약가능한 사이트들
     public List<SiteDTO> AvailableSite(int company_code, String stringDate1, String stringDate2)
-        throws Exception {
+            throws Exception {
         List<Integer> siteCodes = AvailableSiteCode(company_code, stringDate1, stringDate2);
         List<SiteDTO> availableSites = new ArrayList<>();
         for (int siteCode : siteCodes) {
@@ -112,16 +111,14 @@ public class SiteService implements MyService<Integer, SiteDTO> {
         return availableSites;
     }
 
-    //예약 가능한 사이트 갯수
     public int AvailableSiteCount(int company_code, String stringDate1, String stringDate2)
-        throws Exception {
+            throws Exception {
         List<Integer> siteCodes = AvailableSiteCode(company_code, stringDate1, stringDate2);
         return siteCodes.size();
     }
 
-    //해당 사이트코드에 두 날짜의 예약이 가능한지
     public Boolean IsOkToReservation(int site_code, String stringDate1, String stringDate2)
-        throws Exception {
+            throws Exception {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(Utility.StringToDate(stringDate2));
         int days = Utility.StringDateDifference(stringDate2, stringDate1);
@@ -130,12 +127,12 @@ public class SiteService implements MyService<Integer, SiteDTO> {
             calendar.add(Calendar.DATE, -1);
             String date = Utility.DateToString(calendar.getTime());
             isAvailable &= scheduleService.IsDateEmpty(date, this.findCompanyCode(site_code))
-                && reservationService.IsDateEmpty(site_code, date);
+                    && reservationService.IsDateEmpty(site_code, date);
         }
         return isAvailable;
     }
 
-    public SiteDTO selectView(int site_code){
+    public SiteDTO selectView(int site_code) {
         return mapper.selectView(site_code);
     }
 }

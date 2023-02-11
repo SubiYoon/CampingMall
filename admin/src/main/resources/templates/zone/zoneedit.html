@@ -1,7 +1,5 @@
 <script>
 	$(document).ready(function () {
-
-		//수정버튼
 		$('#upBtn').click(function () {
 			var c = confirm('수정하시겠습니까?');
 			if (c == true) {
@@ -13,10 +11,8 @@
 				$('#up_form').submit();
 			};
 		});
-
 	}); 
 </script>
-
 <main id="main" class="main">
 	<div class="row row-zone" style="margin: auto;">
 		<div class="pagetitle">
@@ -29,13 +25,11 @@
 				</ol>
 			</nav>
 		</div>
-	</div><!-- End Page Title -->
-
+	</div>
 	<section class="section">
 		<div class="row">
 			<div class="row row-zone" style="margin: auto;">
 				<div class="col-lg-12">
-
 					<div class="card">
 						<div class="card-body noeditcard">
 							<form id="up_form">
@@ -110,7 +104,6 @@
 								</table>
 							</form>
 							<br class="Mtablehidden">
-
 							<div class="Btn">
 								<a id="upBtn" class="btn btn-primary" th:href="@{#}">수정</a>
 							</div>
@@ -120,5 +113,4 @@
 			</div>
 		</div>
 	</section>
-
-</main><!-- End #main -->
+</main>

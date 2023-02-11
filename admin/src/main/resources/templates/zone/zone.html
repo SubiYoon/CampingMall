@@ -1,6 +1,5 @@
 <script>
 	$(document).ready(function () {
-		//삭제버튼
 		$('#zoneDelBtn').click(function () {
 			var c = confirm('구역을 삭제하시겠습니까?');
 			if (c == true) {
@@ -46,21 +45,16 @@
 			</div>
 		</div>
 	</div>
-	<!-- End Page Title -->
-
 	<form id="newzoneForm">
 		<input id="zoneinsert" type="hidden" name="admin_code" th:value="${session.admin.Admin_code}">
 		<input id="zoneinsert" type="hidden" name="zone_name" value="새로운 구역" />
 		<input id="zoneinsert" type="hidden" name="zone_content" value="구역 설명을 수정하세요." />
 	</form>
-
 	<section class="section">
 		<div class="row row-zone" style="margin: auto;">
 			<div class="col-lg-12 zone-col-12">
-
 				<div class="card card-radius">
 					<div class="card-body">
-
 						<h5 class="card-title" th:text="${zoneselect.zone_name}"></h5>
 						<hr>
 						<p th:text="${zoneselect.zone_content}"></p>
@@ -77,12 +71,10 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="col-lg-6 site-col-6" th:each="site:${slist}"
 				th:if="${zoneselect.zone_code == site.zone_code} and ${site.site_state == 1}">
 				<div class="card card-radius">
 					<div class="card-body">
-
 						<h5 class="card-title" th:text="${site.site_name}"></h5>
 						<hr>
 						<p th:text="${site.site_content}"></p>
@@ -98,10 +90,8 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 			<div class="col-lg-6 site-col-6"></div>
 		</div>
 	</section>
-
-</main><!-- End #main -->
+</main>
