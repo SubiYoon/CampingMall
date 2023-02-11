@@ -1,5 +1,7 @@
 package com.camp.camping.Controller;
 
+import com.camp.camping.utility.Utility;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -93,6 +95,13 @@ public class BookController {
 
 		book.setBook_site_image(img.get(0).getImage_file());
 
+		try {
+			book.setBook_price(
+				book.getBook_price() * Utility.StringDateDifference(book.getBook_checkout(),
+					book.getBook_checkin()));
+		} catch (ParseException e) {
+			throw new RuntimeException(e);
+		}
 		model.addAttribute("book", book);
 
 		model.addAttribute("center", dir + "bookdetail");
