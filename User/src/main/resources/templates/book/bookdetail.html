@@ -22,15 +22,29 @@
 		}
 
 		if (customerinfo_name == "" || customerinfo_name == null) {
+			alert('이름을 입력해주세요');
 			$('#customerinfo_name').focus();
 			return false;
 		}
 
-		if (customerinfo_tel == "" || customerinfo_tel == null) {
+		if (customerinfo_tel == "" || customerinfo_tel == null||customerinfo_tel.length<9) {
+			alert('전화 번호를 입력해주세요');
 			$('#customerinfo_tel').focus();
 			return false;
 		}
-
+		let tellNumber = [];
+		tellNumber = customerinfo_tel.split("-");
+		if (tellNumber.length < 3 || tellNumber[0].length < 2 || tellNumber[1].length < 3
+			|| tellNumber[2].length < 3){
+			alert('전화 번호를 입력해주세요');
+			$('#customerinfo_tel').focus();
+			return false;
+		}
+		if(isNaN(tellNumber[0])||isNaN(tellNumber[1])||isNaN(tellNumber[2])){
+			alert('올바른 전화번호를 입력해주세요');
+			$('#customerinfo_tel').focus();
+			return false;
+		}
 		let car_num_add = car_number + "," + result4 + "," + result5 + "," + result6;
 
 
@@ -287,9 +301,9 @@
 							<div class="form-container">
 								<div style="flex:0 0 10rem;">연락처</div>
 								<input th:if="${session.user!=null}" th:value="${session.user.user_tel}" type="text"
-									class="form-control" id="customerinfo_tel" placeholder="연락처를 입력해주세요">
+									class="form-control" id="customerinfo_tel" placeholder="연락처를 입력해주세요 ex)010-1234-5678">
 								<input th:if="${session.user==null}" type="email" class="form-control"
-									id="customerinfo_tel" placeholder="연락처를 입력해주세요">
+									id="customerinfo_tel" placeholder="연락처를 입력해주세요 ex)010-1234-5678">
 							</div>
 						</form>
 					</div>
