@@ -46,17 +46,11 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         return mapper.selectAll();
     }
 
-    public List<ReservationDTO> selectDate(Date d) throws Exception {
-        return mapper.selectDate(d);
-    }
 
     public void deleteByBook(Integer k) {
         mapper.deleteByBook(k);
     }
 
-    public int findSiteCode(int reservation_code) {
-        return mapper.findSiteCode(reservation_code);
-    }
 
     public void insertReservationByBook(BookDTO book) throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -106,15 +100,6 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         } catch (Exception e) {
             return true;
         }
-    }
-
-    public List<ReservationDTO> SelectByDateAndCompanyCode(String reservation_Date, int company_code)
-            throws ParseException {
-        return mapper.selectByDateAndCompanyCode(Utility.StringToDate(reservation_Date), company_code);
-    }
-
-    public int ReservationCount(String reservation_Date, int company_code) throws ParseException {
-        return SelectByDateAndCompanyCode(reservation_Date, company_code).size();
     }
 
     public List<ReservationDTO> selectByCompanyCodeAndYearMonth(int company_code, String stringYearAndMonth) {
