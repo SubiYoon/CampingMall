@@ -25,23 +25,6 @@
         FROM book
         WHERE merchant_uid = #{merchant_uid}
     </select>
-    <select id="selectByReservationCode" resultType="BookDTO">
-        select book.book_code,
-               book.site_code,
-               book.user_code,
-               book.merchant_uid,
-               book.book_member,
-               book.book_checkin,
-               book.book_checkout,
-               book.book_writedate,
-               book.book_price,
-               book.book_car_number,
-               book.book_state
-        from book,
-             reservation
-        Where reservation.book_code = book.book_code
-          And reservation_code = #{reservation_code}
-    </select>
     <select id="selectAll" resultType="BookDTO">
         SELECT *
         FROM book
