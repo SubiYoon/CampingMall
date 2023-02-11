@@ -1,5 +1,6 @@
 package com.camp.admin.Controller;
 
+import com.camp.admin.service.ReservationService;
 import com.camp.admin.utility.MakeMainGraph;
 import com.camp.admin.utility.MakeYearGraph;
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class AjaxController {
 	
 	@Autowired
 	BookService bookService;
+    @Autowired
+    ReservationService reservationService;
 	
 	@RequestMapping("/refundBook")
 	public List<Map<String, Object>> bookEdit(){
@@ -55,6 +58,7 @@ public class AjaxController {
 			result=service.cancelPayment(importToken,merchant_uid);
 			if(result==1) {
 				result=bookService.updateBookState(merchant_uid,3);
+                reservationService.deleteByBook(bookService.selectMerchant(merchant_uid).getBook_code());
 			}
 		}else if(state==4){
 			result=bookService.updateBookState(merchant_uid,4);

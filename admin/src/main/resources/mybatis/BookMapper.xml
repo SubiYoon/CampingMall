@@ -18,7 +18,6 @@
         SELECT *
         FROM book
         WHERE merchant_uid = #{merchant_uid}
-            And book_state=1
     </select>
     <select id="selectByReservationCode" resultType="BookDTO">
         select book.book_code,
