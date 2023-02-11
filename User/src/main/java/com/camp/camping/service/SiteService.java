@@ -91,7 +91,6 @@ public class SiteService implements MyService<Integer, SiteDTO> {
         return site_codes;
     }
 
-    //예약가능한 사이트들
     public List<SiteDTO> AvailableSite(int company_code, String stringDate1, String stringDate2)
         throws Exception {
         List<Integer> siteCodes = AvailableSiteCode(company_code, stringDate1, stringDate2);
@@ -103,14 +102,6 @@ public class SiteService implements MyService<Integer, SiteDTO> {
         return availableSites;
     }
 
-    //예약 가능한 사이트 갯수
-    public int AvailableSiteCount(int company_code, String stringDate1, String stringDate2)
-        throws Exception {
-        List<Integer> siteCodes = AvailableSiteCode(company_code, stringDate1, stringDate2);
-        return siteCodes.size();
-    }
-
-    //해당 사이트코드에 두 날짜의 예약이 가능한지
     public Boolean IsOkToReservation(int site_code, String stringDate1, String stringDate2)
         throws Exception {
         Calendar calendar = Calendar.getInstance();

@@ -14,13 +14,18 @@ import com.camp.admin.frame.MyMapper;
 @Mapper
 public interface BookMapper extends MyMapper<Integer, BookDTO> {
     BookDTO selectMerchant(String merchant_uid);
-    BookDTO selectByReservationCode(int reservation_code);
-    List<BookDTO> selectUserAll(int user_code);
+
+
     List<Map<String, Object>> selectAllState(int book_state);
-    int updateBookState(@Param("merchant_uid")String merchant_uid,@Param("state")int state);
+
+    int updateBookState(@Param("merchant_uid") String merchant_uid, @Param("state") int state);
+
     List<BookDTO> selectUserBook(int company_code, String user_id);
-    List<BookDTO> selectByWriteDateAndCompanyCode(int company_code, String book_writedate);
+
+
     List<Map<String, Object>> selectAllmain(int company_code);
-    List<BookDTO>selectByCompanyCodeAndYearMonth(int company_code, String stringYearMonth);
-    List<BookDTO>selectByCompanyCodeAndWriteDate(int company_code,String stringYearMonth);
+
+    List<BookDTO> selectByCompanyCodeAndYearMonth(int company_code, String stringYearMonth);
+
+    List<BookDTO> selectByCompanyCodeAndWriteDate(int company_code, String stringYearMonth);
 }

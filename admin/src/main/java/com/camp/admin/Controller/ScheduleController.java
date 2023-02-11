@@ -19,45 +19,44 @@ import com.camp.admin.utility.Utility;
 @Controller
 @RequestMapping("schedule")
 public class ScheduleController {
-    
+
     String dir = "schedule/";
 
     @Autowired
     ScheduleService serviceS;
 
     @RequestMapping("")
-    public String select(Model model, HttpSession session){
+    public String select(Model model, HttpSession session) {
 
-        CompanyDTO company = (CompanyDTO)session.getAttribute("company");
+        CompanyDTO company = (CompanyDTO) session.getAttribute("company");
 
-        try{
+        try {
             List<ScheduleDTO> scheduleList = serviceS.selectByCompany(company.getCompany_code());
-            for(int i=0; i<scheduleList.size(); i++){
+            for (int i = 0; i < scheduleList.size(); i++) {
                 scheduleList.get(i).setStrDate(Utility.DateToString(scheduleList.get(i).getSchedule_date()));
             }
             model.addAttribute("scheduleList", scheduleList);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        model.addAttribute("center", dir+"select");
+        model.addAttribute("center", dir + "select");
 
         return "main";
     }
 
     @RequestMapping("insert")
-    public String insert(Model model){
+    public String insert(Model model) {
 
-        model.addAttribute("center", dir+"insert");
+        model.addAttribute("center", dir + "insert");
 
         return "main";
     }
 
-
     @RequestMapping("insertOk")
-    public String insertOk(HttpSession session, ScheduleDTO scheduleDTO, String selectDate){
+    public String insertOk(HttpSession session, ScheduleDTO scheduleDTO, String selectDate) {
 
         Date selectDate1;
-        AdminDTO admin = (AdminDTO)session.getAttribute("admin");
+        AdminDTO admin = (AdminDTO) session.getAttribute("admin");
         try {
             selectDate1 = Utility.StringToDate(selectDate);
             scheduleDTO.setSchedule_date(selectDate1);
@@ -71,22 +70,22 @@ public class ScheduleController {
     }
 
     @RequestMapping("update")
-    public String update(Model model, int schedule_code){
+    public String update(Model model, int schedule_code) {
 
-        try{
+        try {
             ScheduleDTO sDTO = serviceS.select(schedule_code);
             model.addAttribute("schedule", sDTO);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        model.addAttribute("center", dir+"update");
+        model.addAttribute("center", dir + "update");
 
         return "main";
     }
 
     @RequestMapping("updateOk")
-    public String updateOk(HttpSession session, ScheduleDTO scheduleDTO, String selectDate){
+    public String updateOk(HttpSession session, ScheduleDTO scheduleDTO, String selectDate) {
 
         Date selectDate1 = null;
 
@@ -102,11 +101,11 @@ public class ScheduleController {
     }
 
     @RequestMapping("delete")
-    public String delete(ScheduleDTO scheduleDTO){
+    public String delete(ScheduleDTO scheduleDTO) {
 
-        try{
+        try {
             serviceS.delete(scheduleDTO.getSchedule_code());
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

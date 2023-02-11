@@ -16,7 +16,7 @@ public class FacilityDTO {
     private int image_code;
     private String image_file;
 
-    public FacilityDTO(int facility_code, int admin_code, String facility_name, String facility_content){
+    public FacilityDTO(int facility_code, int admin_code, String facility_name, String facility_content) {
         this.facility_code = facility_code;
         this.admin_code = admin_code;
         this.facility_name = facility_name;

@@ -1,10 +1,9 @@
 <script>
-	$(document).ready(function() {
+	$(document).ready(function () {
 		$(".nav-item:nth-child(2)").attr('class', 'nav-item active');
 		$(".notactive:nth-child(2)").attr('class', 'active');
 	});
 </script>
-
 <div class="back_re">
 	<div class="container">
 		<div class="row">
@@ -16,9 +15,6 @@
 		</div>
 	</div>
 </div>
-
-<!-- about -->
-
 <div class="container-md">
 	<div class="col-md-12">
 		<table class="table-fill">
@@ -32,23 +28,23 @@
 			</thead>
 			<tbody class="table table-hover">
 				<tr th:each="notice:${plist}">
-					<td class="text-center tablehidden"><a th:text="${notice.notice_code}" th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
+					<td class="text-center tablehidden"><a th:text="${notice.notice_code}"
+							th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
 					</td>
 					<td class="text-right" id="impt">
 						<div th:if="${notice.notice_level == 1}">[필독]</div>
 					</td>
 					<td class="text-left">
 						<div th:style="${notice.notice_level == 1 ? 'font-weight: bold' : 'font-weight: nomal'}">
-							<a th:text="${notice.notice_title}" th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
+							<a th:text="${notice.notice_title}"
+								th:href="@{/notice/noticeview(notice_code=${notice.notice_code})}"></a>
 						</div>
 					</td>
-					<td class="text-center tablehidden" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}">
+					<td class="text-center tablehidden"
+						th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}">
 					</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
-<!-- end about -->
-
-

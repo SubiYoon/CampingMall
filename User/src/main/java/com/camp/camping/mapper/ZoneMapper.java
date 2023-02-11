@@ -10,7 +10,7 @@ import com.camp.camping.frame.MyMapper;
 
 @Repository
 @Mapper
-public interface ZoneMapper extends MyMapper<Integer, ZoneDTO>{
-    
+public interface ZoneMapper extends MyMapper<Integer, ZoneDTO> {
+
 	public List<ZoneDTO> selectZone(Integer companycode) throws Exception;
 }

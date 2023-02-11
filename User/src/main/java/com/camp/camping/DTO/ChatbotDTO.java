@@ -12,8 +12,8 @@ import lombok.ToString;
 @Getter
 @Setter
 public class ChatbotDTO {
-	private String sendid;		//내id
-	private String receiveid;	//받는id(모두/나에게일경우 null)
-	private String content1;	//보내는 메세지
+	private String sendid;		
+	private String receiveid;	
+	private String content1;	
 	private String content2;
 }

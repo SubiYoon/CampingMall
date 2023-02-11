@@ -10,7 +10,7 @@ import com.camp.camping.frame.MyService;
 import com.camp.camping.mapper.ZoneMapper;
 
 @Service
-public class ZoneService implements MyService<Integer, ZoneDTO>{
+public class ZoneService implements MyService<Integer, ZoneDTO> {
 
     @Autowired
     ZoneMapper mapper;
@@ -39,9 +39,9 @@ public class ZoneService implements MyService<Integer, ZoneDTO>{
     public List<ZoneDTO> selectAll() throws Exception {
         return mapper.selectAll();
     }
-    
+
     public List<ZoneDTO> selectZone(Integer companycode) throws Exception {
         return mapper.selectZone(companycode);
     }
-    
+
 }

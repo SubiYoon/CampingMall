@@ -14,7 +14,7 @@ public class HomeService implements MyService<Integer, HomeDTO> {
 
 	@Autowired
 	HomeMapper mapper;
-	
+
 	@Override
 	public void insert(HomeDTO v) throws Exception {
 		mapper.insert(v);

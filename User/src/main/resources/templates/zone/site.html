@@ -82,7 +82,9 @@
       $('#register_button').click(function () {
          if ('true' == '[[${session.user==null}]]') {
             alert("로그인 후 리뷰 등록이 가능합니다.");
-            return;
+            document.getElementById("modal").style.display = "flex";
+				document.body.style = "overflow: hidden";
+            $("html").animate({scrollTop:$("#modal").offset().top},1000);
          } else {
             let review_content = $('#review_score > input[name=review_content]').val();
             $.ajax({
@@ -98,13 +100,10 @@
                   }
                   showReview();
                }
-
             });
          }
       });
-
    });
-
 </script>
 <div class="back_re">
    <div class="container">
@@ -117,17 +116,9 @@
       </div>
    </div>
 </div>
-<!-- our_room -->
 <div class="our_room">
    <div class="container">
-      <div class="row">
-         <!-- <div class="col-md-12">
-            <div class="titlepage">
-               <p class="margin_0">캠핑장 구역-사이트를 확인하세요</p>
-            </div>
-         </div> -->
-      </div>
-
+      <div class="row"></div>
       <div class="zone">
          <div class="row">
             <div class="col-md-6 col-sm-6">
@@ -150,7 +141,6 @@
             </div>
          </div>
       </div>
-
       <div class="zone">
          <div class="row">
             <div class="col-md-12 col-sm-12">
@@ -186,5 +176,3 @@
       </div>
    </div>
 </div>
-
-<!-- end our_room -->

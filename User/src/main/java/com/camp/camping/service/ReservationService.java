@@ -45,11 +45,11 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         return mapper.selectAll();
     }
 
-    public List<ReservationDTO> selectDate(Date d) throws Exception {
+    public List<ReservationDTO> selectDate(Date d){
         return mapper.selectDate(d);
     }
 
-    public void deleteByBook(Integer k){
+    public void deleteByBook(Integer k) {
         mapper.deleteByBook(k);
     }
 
@@ -67,7 +67,7 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         for (int i = BookDays(book); i > 0; i--) {
             cal.add(Calendar.DATE, -1);
             ReservationDTO reservation = new ReservationDTO(book.getBook_code(),
-                "" + sdf.format(cal.getTime()));
+                    "" + sdf.format(cal.getTime()));
             mapper.insert(reservation);
         }
     }
@@ -76,7 +76,7 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         long diff;
         try {
             diff = (Utility.StringToDate(book.getBook_checkout()).getTime() - Utility.StringToDate(
-                book.getBook_checkin()).getTime()) / 1000;
+                    book.getBook_checkin()).getTime()) / 1000;
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
@@ -89,7 +89,7 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         ReservationDTO reservation;
         try {
             reservation = mapper.selectDateAndSite(site_code,
-                new Date(sdf.parse(reservation_Date).getTime()));
+                    new Date(sdf.parse(reservation_Date).getTime()));
         } catch (ParseException e) {
             System.out.println("날짜 버그 터짐");
             throw new RuntimeException(e);
@@ -101,19 +101,14 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         ReservationDTO reservation = selectDateAndSite(site_code, reservation_Date);
         try {
             return reservation == null
-                || reservation.getReservation_date() == null;
+                    || reservation.getReservation_date() == null;
         } catch (Exception e) {
             return true;
         }
     }
 
-    //해당 날짜의 예약 목록
     public List<ReservationDTO> SelectByDateAndCompanyCode(String reservation_Date, int company_code)
-        throws ParseException {
+            throws ParseException {
         return mapper.selectByDateAndCompanyCode(Utility.StringToDate(reservation_Date), company_code);
-    }
-    //해당 날짜의 예약 갯수
-    public int ReservationCount(String reservation_Date, int company_code) throws ParseException {
-        return SelectByDateAndCompanyCode(reservation_Date,company_code).size();
     }
 }

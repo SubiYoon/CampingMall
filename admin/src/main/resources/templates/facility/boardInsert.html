@@ -1,54 +1,54 @@
 <script>
-    $(document).ready(function () {
-        $('#board_edit').click(function () {
-            if ($('input[name=board_name]').val() == null || $('input[name=board_name]').val() == '') {
-                alert("시설이름을 작성해 주세요")
-                return;
-            } else if ($('input[name=mf]').val() == null || $('input[name=mf]').val() == '') {
-                alert("사진을 넣어주세요.");
-                return;
-            } else {
-                $('#board_edit').click(function () {
-                    $('#board_edit_form').attr({
-                        'method': 'post',
-                        'action': 'insertOk'
-                    });
-                    $('#board_edit_form').submit();
-                });
-            }
-        });
-    });
+	$(document).ready(function () {
+		$('#board_edit').click(function () {
+			if ($('input[name=board_name]').val() == null || $('input[name=board_name]').val() == '') {
+				alert("시설이름을 작성해 주세요")
+				return;
+			} else if ($('input[name=mf]').val() == null || $('input[name=mf]').val() == '') {
+				alert("사진을 넣어주세요.");
+				return;
+			} else {
+				$('#board_edit').click(function () {
+					$('#board_edit_form').attr({
+						'method': 'post',
+						'action': 'insertOk'
+					});
+					$('#board_edit_form').submit();
+				});
+			}
+		});
+	});
 </script>
 
 <main id="main" class="main">
-    <div class="row row-zone">
-        <div class="pagetitle">
-            <h1>새 시설 추가</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a th:href="@{/main}">main</a></li>
-                    <li class="breadcrumb-item"><a th:href="@{/facility}">facility edit</a></li>
-                    <li class="breadcrumb-item active">facility edit</li>
-                </ol>
-            </nav>
-        </div>
-    </div><!-- End Page Title -->
-    
-    <div class="row row-zone">
-        <div class="card">
-            <div class="card-body noeditcard">
-                <form id="board_edit_form" enctype="multipart/form-data">
-                <table class="viewtable-fill">
-                	<thead>
-                		<tr>
-							<th class="text-left zonethF Mtablehidden">시설명</th>
-						</tr>
-						<tr>
-							<th class="text-left zonethF tablehidden">시설명</th>
-							<th class="text-left zonethS" colspan="4">
-								<input id="updateth" type="text" name="board_name">
-							</th>
-						</tr>
+	<div class="row row-zone">
+		<div class="pagetitle">
+			<h1>새 시설 추가</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a th:href="@{/main}">main</a></li>
+					<li class="breadcrumb-item"><a th:href="@{/facility}">facility edit</a></li>
+					<li class="breadcrumb-item active">facility edit</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+
+	<div class="row row-zone">
+		<div class="card">
+			<div class="card-body noeditcard">
+				<form id="board_edit_form" enctype="multipart/form-data">
+					<table class="viewtable-fill">
+						<thead>
+							<tr>
+								<th class="text-left zonethF Mtablehidden">시설명</th>
+							</tr>
+							<tr>
+								<th class="text-left zonethF tablehidden">시설명</th>
+								<th class="text-left zonethS" colspan="4">
+									<input id="updateth" type="text" name="board_name">
+								</th>
+							</tr>
 						</thead>
 						<tbody>
 							<tr>
@@ -80,11 +80,11 @@
 							<div class="Btn">
 								<a class="btn btn-primary" href="#board_i" id="board_edit">추가하기</a>
 							</div>
-                    	</tbody>
-                </table>
-                </form>
-            </div>
-        </div>
-    </div>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
 
-</main><!-- End #main -->
+</main>

@@ -1,9 +1,6 @@
 <script>
 	$(document).ready(function () {
-
-		//등록버튼
 		$('#upBtn').click(function () {
-
 			if ($('#updateth').val() == '' || $('#updateth').val() == null) {
 				alert("사이트명/가격을 등록하세요");
 				return;
@@ -16,8 +13,6 @@
 				alert("사이트 이미지를 등록하세요");
 				return;
 			}
-
-
 			var c = confirm('등록하시겠습니까?');
 			if (c == true) {
 				$('#up_form').attr({
@@ -28,10 +23,8 @@
 				$('#up_form').submit();
 			};
 		});
-
 	}); 
 </script>
-
 <main id="main" class="main">
 	<div class="row row-zone" style="margin: auto;">
 		<div class="pagetitle">
@@ -44,8 +37,7 @@
 				</ol>
 			</nav>
 		</div>
-	</div><!-- End Page Title -->
-
+	</div>
 	<section class="section">
 		<div class="row">
 			<div class="row row-zone" style="margin: auto;">
@@ -121,5 +113,4 @@
 			</div>
 		</div>
 	</section>
-
-</main><!-- End #main -->
+</main>

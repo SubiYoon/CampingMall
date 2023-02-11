@@ -1,5 +1,4 @@
 <script th:src="@{/js/bookdetail.js}"></script>
-<!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 <script th:inline="javascript">
 	function paymentDo() {
@@ -15,22 +14,34 @@
 		let result5 = $('#result5').text();
 		let result6 = $('#result6').text();
 
-
-
 		if (car_number == "" || car_number == null) {
 			car_number = "차량없음";
 		}
 
 		if (customerinfo_name == "" || customerinfo_name == null) {
+			alert('이름을 입력해주세요');
 			$('#customerinfo_name').focus();
 			return false;
 		}
 
-		if (customerinfo_tel == "" || customerinfo_tel == null) {
+		if (customerinfo_tel == "" || customerinfo_tel == null || customerinfo_tel.length < 9) {
+			alert('전화 번호를 입력해주세요');
 			$('#customerinfo_tel').focus();
 			return false;
 		}
-
+		let tellNumber = [];
+		tellNumber = customerinfo_tel.split("-");
+		if (tellNumber.length < 3 || tellNumber[0].length < 2 || tellNumber[1].length < 3
+			|| tellNumber[2].length < 3) {
+			alert('전화 번호를 입력해주세요');
+			$('#customerinfo_tel').focus();
+			return false;
+		}
+		if (isNaN(tellNumber[0]) || isNaN(tellNumber[1]) || isNaN(tellNumber[2])) {
+			alert('올바른 전화번호를 입력해주세요');
+			$('#customerinfo_tel').focus();
+			return false;
+		}
 		let car_num_add = car_number + "," + result4 + "," + result5 + "," + result6;
 
 
@@ -48,7 +59,6 @@
 					'site_code': site_code
 				},
 				success: function (data) {
-
 					if (data) {
 						var IMP = window.IMP;
 						IMP.init("imp57467885");
@@ -58,10 +68,9 @@
 							merchant_uid: merchant_uid,
 							name: zone_name,
 							amount: 100,     //테스트100원 실제 total_result원
-							buyer_name: customerinfo_name, //넣어야함
-							buyer_tel: customerinfo_tel //div 새로만들어서
-
-						}, function (rsp) { // 콜백 함수
+							buyer_name: customerinfo_name,
+							buyer_tel: customerinfo_tel
+						}, function (rsp) {
 							if (rsp.success) {
 								let param = {
 									'site_code': site_code,
@@ -75,8 +84,6 @@
 									'buyer_tel': rsp.buyer_tel,
 									'status': rsp.status,
 									'imp_uid': rsp.imp_uid
-
-
 								};
 								$.ajax({
 									url: "/pay/paybook",
@@ -85,7 +92,6 @@
 									dataType: "json",
 									data: JSON.stringify(param),
 									success: function (data) {
-										//검증
 										if (data == "failed") {
 											alert('결제 실패');
 										} else {
@@ -99,20 +105,13 @@
 											},
 											success: function (data) {
 												if (data == "success") {
-													//결제 성공 페이지만들어서 경로지정
 													alert('결제 완료되었습니다.');
 													location.href = "/main";
-
-
 												} else {
 													alert('결제 실패');
-
-
 												}
 											}
 										})
-
-
 									}
 								})
 							} else {
@@ -287,9 +286,10 @@
 							<div class="form-container">
 								<div style="flex:0 0 10rem;">연락처</div>
 								<input th:if="${session.user!=null}" th:value="${session.user.user_tel}" type="text"
-									class="form-control" id="customerinfo_tel" placeholder="연락처를 입력해주세요">
+									class="form-control" id="customerinfo_tel"
+									placeholder="연락처를 입력해주세요 ex)010-1234-5678">
 								<input th:if="${session.user==null}" type="email" class="form-control"
-									id="customerinfo_tel" placeholder="연락처를 입력해주세요">
+									id="customerinfo_tel" placeholder="연락처를 입력해주세요 ex)010-1234-5678">
 							</div>
 						</form>
 					</div>

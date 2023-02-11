@@ -1,5 +1,7 @@
 package com.camp.camping.Controller;
 
+import com.camp.camping.utility.Utility;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,29 +41,28 @@ public class BookController {
 	@RequestMapping("")
 	public String main(Model model, HttpSession session) {
 
-		HomeDTO homecont = null; // home테이블전체정보
+		HomeDTO homecont = null;
 		CompanyDTO company = (CompanyDTO) session.getAttribute("company");
 
-		// 홈페이지소개content----------------------------------
 		try {
-			homecont = serviceH.select(company.getCompany_code()); // 상호코드
+			homecont = serviceH.select(company.getCompany_code());
 			model.addAttribute("homecont", homecont);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("CONTENT_FAIL");
 		}
-		
+
 		try {
-			JSONObject weatherjson=serviceW.getWeather();
+			JSONObject weatherjson = serviceW.getWeather();
 			model.addAttribute("weatherjson", weatherjson);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		List<Date> wdate=new ArrayList<>();
-		for(int i=3;i<10;i++) {
-			Date date=new Date();
-			date.setDate(date.getDate()+i);
+
+		List<Date> wdate = new ArrayList<>();
+		for (int i = 3; i < 10; i++) {
+			Date date = new Date();
+			date.setDate(date.getDate() + i);
 			wdate.add(date);
 		}
 		model.addAttribute("wdate", wdate);
@@ -75,12 +76,11 @@ public class BookController {
 			@RequestParam("book_checkout") String book_checkout,
 			@RequestParam("book_sitecode") int book_sitecode) {
 
-		HomeDTO homecont = null; // home테이블전체정보
+		HomeDTO homecont = null;
 		CompanyDTO company = (CompanyDTO) session.getAttribute("company");
 
-		// 홈페이지소개content----------------------------------
 		try {
-			homecont = serviceH.select(company.getCompany_code()); // 상호코드
+			homecont = serviceH.select(company.getCompany_code());
 			model.addAttribute("homecont", homecont);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,6 +93,11 @@ public class BookController {
 
 		book.setBook_site_image(img.get(0).getImage_file());
 
+		try {
+			book.setBook_price(book.getBook_price()	* Utility.StringDateDifference(book.getBook_checkout(), book.getBook_checkin()));
+		} catch (ParseException e) {
+			throw new RuntimeException(e);
+		}
 		model.addAttribute("book", book);
 
 		model.addAttribute("center", dir + "bookdetail");

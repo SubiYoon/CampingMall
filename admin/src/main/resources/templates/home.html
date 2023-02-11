@@ -1,6 +1,5 @@
 <script>
   $(document).ready(function () {
-    //홈정보 수정 확인창
     $('#home_tbl_edit > a').click(function () {
       if (confirm("정말 수정하시겠습니까?")) {
         $('#home_tbl_edit').attr({
@@ -11,7 +10,6 @@
       } else return;
     });
 
-    //슬라이더 수정 확인창
     $('.slideForm > .image_slide_edit').click(function () {
       if (confirm("정말 수정하시겠습니까?")) {
         $(this).parent().attr({
@@ -22,7 +20,6 @@
       } else return;
     });
 
-    //슬라이더 삭제 확인창
     $('.image_slide_delete').click(function () {
       if (confirm("정말로 삭제하시겠습니까?")) {
         $(this).parent().attr({
@@ -35,11 +32,11 @@
       }
     });
 
-    //슬라이더 추가 모달
     $('.slide_add_Form').click(function () {
       document.getElementById("modal_slide_add").style.display = "flex"
       document.body.style = "overflow: hidden";
       window.scrollTo(0, 0);
+      $("html").animate({scrollTop:$("#modal_slide_add").offset().top},1000);
     });
 
     $('#slideAddForm #image_slide_add').click(function () {
@@ -49,18 +46,14 @@
       });
       $('#slideAddForm').submit();
     });
-    //슬라이더 추가 모달 end
 
-    //모달창 닫기
     $('.modal_close').click(function () {
       document.getElementById("modal_slide_add").style.display = "none";
       document.body.style = "overflow: auto";
     });
-    //모달창 닫기
   });
 </script>
 <main id="main" class="main">
-  <!-- 슬라이드 게시글 추가 -->
   <div id="modal_slide_add" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-btn">
@@ -89,7 +82,7 @@
         </ol>
       </nav>
     </div>
-  </div><!-- End Page Title -->
+  </div>
   <section class="section">
     <div class="row">
       <div class="row row-zone">
@@ -97,9 +90,7 @@
           <div class="card card-radius">
             <div class="card-body">
               <h5 class="card-title">회사 정보 수정</h5>
-
               <form id="home_tbl_edit" enctype="multipart/form-data">
-
                 <table class="viewtable-fill MHomeEdit">
                   <thead>
                     <tr>
@@ -222,10 +213,8 @@
                 </a>
               </form>
             </div>
-
           </div>
         </div>
-
         <div class="col-lg-12">
           <div class="pagetitle slide_add_Form btn-center">
             <a class="btn-center btn btn-outline-primary" href="#slide_Add">
@@ -237,7 +226,6 @@
         <div class="col-lg-6 site-col-6" th:each="slide : ${slideImgs}">
           <div class="card card-radius">
             <div class="card-body">
-
               <form class="slideForm" enctype="multipart/form-data">
                 <input type="hidden" name="image_code" th:value="${slide.image_code}" />
                 <h5 class="card-title" th:text="'슬라이드 ' + ${slideStat.count} + ' 이미지'"></h5>
@@ -249,7 +237,6 @@
                   <a href="#slide_delete" class="image_slide_delete btn btn-primary btn-center">삭제</a>
                 </div>
               </form>
-
             </div>
           </div>
         </div>
@@ -257,5 +244,4 @@
       </div>
     </div>
   </section>
-
-</main><!-- End #main -->
+</main>

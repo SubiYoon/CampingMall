@@ -4,10 +4,7 @@
       $(".notactive:nth-child(1)").attr('class', 'active');
    });
 </script>
-
-<!-- banner -->
 <section class="banner_main">
-   <!-- slider -->
    <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
       <ol class="carousel-indicators">
          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -33,24 +30,16 @@
          <span class="sr-only">Next</span>
       </a>
    </div>
-   <!-- Logo -->
-
-
    <div class="booking_ocline2">
       <div class="col-md-1">
          <div id="book_ocline_logo"><img class="modal_block_logo" th:src="@{/images/}+${session.company.company_logo2}"
                alt="logo" /></div>
       </div>
    </div>
-
-
-   <!-- 환영 인사 -->
-
    <div class="booking_ocline">
       <div class="container">
          <div class="row">
             <div class="col-md-5">
-
                <div class="modal_block">
                   <div class="book_room">
                      <h1 th:text="${session.company.company_name}"></h1>
@@ -68,11 +57,7 @@
          </div>
       </div>
    </div>
-
 </section>
-<!-- end banner -->
-
-<!-- 공지 -->
 <div class="main_notice">
    <div class="container-fluid">
       <div class="row">
@@ -95,9 +80,6 @@
       </div>
    </div>
 </div>
-<!-- end공지 -->
-
-<!-- 구역소개 -->
 <div class="our_room">
    <div class="container indexcontr">
       <div class="row ">
@@ -130,9 +112,6 @@
       </div>
    </div>
 </div>
-<!-- end 구역소개 -->
-
-<!-- 편의시설 -->
 <div class="gallery">
    <div class="container">
       <div class="row">
@@ -159,8 +138,6 @@
       </div>
    </div>
 </div>
-<!-- end 편의시설 -->
-<!-- blog -->
 <div class="blog">
    <div class="container">
       <div class="row">
@@ -175,7 +152,7 @@
          <div class="col-md-4" th:each="review: ${review}">
             <div class="blog_box">
                <div class="blog_img index_BI">
-                  <figure><img th:src="'/images/' + ${review.review_img1}" alt="#"/></figure>
+                  <figure><img th:src="'/images/' + ${review.review_img1}" alt="#" /></figure>
                </div>
                <div class="blog_room">
                   <span class="reivewStar" th:text="${'✰'}" th:if="${review.review_score == 1}"></span>
@@ -190,13 +167,8 @@
       </div>
    </div>
 </div>
-<!-- end blog -->
-
-
-<!--  contact -->
 <div class="contact">
    <div class="container">
       <aside id="map_aside" th:include="${map} ? ${map} : kkomap"></aside>
    </div>
 </div>
-<!-- end contact -->

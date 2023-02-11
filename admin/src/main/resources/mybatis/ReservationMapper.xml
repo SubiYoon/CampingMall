@@ -16,11 +16,6 @@
         SELECT *
         FROM reservation
     </select>
-    <select id="selectDate" resultType="ReservationDTO">
-        SELECT *
-        FROM reservation
-        Where reservation_date = #{reservation_date}
-    </select>
     <select id="selectDateAndSite" resultType="ReservationDTO">
         SELECT reservation.reservation_code,
                reservation.book_code,
@@ -30,27 +25,6 @@
                       ON reservation.book_code = book.book_code
         WHERE reservation.reservation_date = #{reservation_date}
           AND book.site_code = #{site_code};
-    </select>
-    <select id="selectByDateAndCompanyCode" resultType="ReservationDTO">
-        select reservation.reservation_code, reservation.book_code, reservation.reservation_date
-        from reservation,
-             admin,
-             book,
-             zone,
-             site
-        where admin.company_code = #{company_code}
-          AND admin.admin_code = zone.admin_code
-          And zone.zone_code = site.zone_code
-          And site.site_code = book.site_code
-          And book.book_code = reservation.book_code
-          And reservation.reservation_date = #{reservation_date}
-    </select>
-    <select id="findSiteCode" resultType="Integer">
-        SELECT book.site_code
-        FROM reservation
-                 join book
-                      on reservation.book_code = book.book_code
-        Where reservation_code = #{reservation_code}
     </select>
     <update id="update" parameterType="ReservationDTO">
         UPDATE reservation
@@ -67,7 +41,6 @@
         FROM reservation
         WHERE book_code = #{book_code}
     </delete>
-
     <select id="selectByCompanyCodeAndYearMonth" resultType="ReservationDTO">
         select reservation.reservation_code, reservation.book_code, reservation.reservation_date
         from reservation,

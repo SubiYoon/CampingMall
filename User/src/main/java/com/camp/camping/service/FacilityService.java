@@ -38,7 +38,7 @@ public class FacilityService implements MyService<Integer, FacilityDTO> {
         return mapper.selectAll();
     }
 
-    public List<FacilityDTO> selectByCompany(int company_code){
+    public List<FacilityDTO> selectByCompany(int company_code) {
         return mapper.selectByCompany(company_code);
     }
 }

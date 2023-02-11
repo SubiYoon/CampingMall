@@ -15,19 +15,9 @@
 		</div>
 	</div>
 </div>
-<!-- our_room -->
 <div class="our_room">
 	<div class="container">
-		<div class="row">
-			<!-- <div class="col-md-12">
-				<div class="titlepage">
-					<div class="margin_0 zonetop">
-						<span th:text="${session.company.company_name}"></span> 의 구역과,<br>캠핑 사이트를 확인하세요
-					</div>
-				</div>
-			</div> -->
-		</div>
-		
+		<div class="row"></div>
 		<div th:each="zone:${zlist}">
 			<div class="zone" th:if="${zone.zone_state} == 1">
 				<div class="row">
@@ -64,30 +54,23 @@
 									</div>
 								</div>
 								<div class="bed_room">
-									<table id="siteimg" th:each="site:${slist}" th:if="${zone.zone_code == site.zone_code} and ${site.site_state} == 1">
-									<tr th:each="img:${ilist}">
-										<td class="sitetop" th:if="${img.site_code == site.site_code}" colspan="2">
-											<a th:href="'zone/site?site_code='+${site.site_code}">
-											<img th:src="'images/'+${img.image_file}" alt="#"/>
-											</a>
-										</td>
-									</tr>
-									<tr style="height: 60px">
-										<td class="sitetdleft">
-											<a th:text="${site.site_name}" th:href="'zone/site?site_code='+${site.site_code}"></a>
-										</td>
-										<td class="sitetdright">camping<br>site</td>
-									</tr>
-
+									<table id="siteimg" th:each="site:${slist}"
+										th:if="${zone.zone_code == site.zone_code} and ${site.site_state} == 1">
+										<tr th:each="img:${ilist}">
+											<td class="sitetop" th:if="${img.site_code == site.site_code}" colspan="2">
+												<a th:href="'zone/site?site_code='+${site.site_code}">
+													<img th:src="'images/'+${img.image_file}" alt="#" />
+												</a>
+											</td>
+										</tr>
+										<tr style="height: 60px">
+											<td class="sitetdleft">
+												<a th:text="${site.site_name}"
+													th:href="'zone/site?site_code='+${site.site_code}"></a>
+											</td>
+											<td class="sitetdright">camping<br>site</td>
+										</tr>
 									</table>
-									<!-- <div id="siteimg" th:each="site:${slist}" th:if="${zone.zone_code == site.zone_code} and ${site.site_state} == 1">
-										<a th:text="${site.site_name}" th:href="'zone/site?site_code='+${site.site_code}"></a>
-										<div th:each="img:${ilist}">
-											<a th:href="'zone/site?site_code='+${site.site_code}">
-												<img th:src="'images/'+${img.image_file}" th:if="${img.site_code == site.site_code}" alt="#" />
-											</a>
-										</div>
-									</div> -->
 								</div>
 							</div>
 						</div>
@@ -98,11 +81,5 @@
 			<hr>
 			<br>
 		</div>
-
-
-
 	</div>
-
 </div>
-</div>
-<!-- end our_room -->

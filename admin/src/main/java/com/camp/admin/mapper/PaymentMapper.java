@@ -8,6 +8,6 @@ import com.camp.admin.frame.MyMapper;
 
 @Repository
 @Mapper
-public interface PaymentMapper extends MyMapper<String, PaymentDTO>{
+public interface PaymentMapper extends MyMapper<String, PaymentDTO> {
 	public int selectOk(String merchant_uid) throws Exception;
 }

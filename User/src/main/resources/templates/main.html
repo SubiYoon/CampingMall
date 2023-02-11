@@ -10,16 +10,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
 	</script>
 
-	<!-- js -->
-
-
-
 	<!-- mobile metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
 	<!-- site metas -->
-	<title>keto</title>
+	<title th:text="${session.company.company_name}"></title>
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -52,16 +48,12 @@
 
 	<script>
 		$(document).ready(function () {
-
-			//챗봇모달----------------------------
 			$('#modal_open_cb').click(function () {
 				document.getElementById("modal_cbicon").style.visibility = "hidden";
 				document.getElementById("modal_cb").style.display = "flex";
 				connect();
 			});
-			//end 챗봇모달------------------------
 
-			//로그인모달--------------------------
 			$('#modal_open').click(function () {
 				document.getElementById("modal").style.display = "flex";
 				document.body.style = "overflow: hidden";
@@ -71,9 +63,7 @@
 				document.getElementById("modal").style.display = "none";
 				document.body.style = "overflow: auto";
 			});
-			//end 로그인모달----------------------
 
-			//로그인
 			$('#loginForm button').click(function () {
 				$('#loginForm').attr({
 					'method': 'post',
@@ -81,17 +71,14 @@
 				});
 				$('#loginForm').submit();
 			});
-			//카카오 SDK 초기화
-			Kakao.init('0172e111f7c68f1a00f2e9cdd810d74a'); //발급받은 키 중 javascript키를 사용해준다.
+			
+			Kakao.init('0172e111f7c68f1a00f2e9cdd810d74a');
 			//console.log(Kakao.isInitialized()); // sdk초기화여부판단
 		});
 
-		//카카오로그인
 		function kakaoLogin() {
-			//로그인 요청(회원가입)
 			Kakao.Auth.login({
 				success: function (response) {
-					//회원 정보 가져오기
 					Kakao.API.request({
 						url: '/v2/user/me',
 						success: function (response) {
@@ -123,7 +110,6 @@
 			})
 		}
 
-		//로그아웃
 		function Logout() {
 			if (!Kakao.Auth.getAccessToken()) {
 				alert('로그아웃 하였습니다.');
@@ -134,9 +120,6 @@
 				window.location.href = '/user/logout';
 			});
 		};
-
-
-		//챗봇
 
 		var stompClient = null;
 
@@ -199,8 +182,6 @@
 
 
 </head>
-
-<!-- 로그인모달창 -->
 <div id="modal" class="modal-overlay">
 	<div class="modal-content textnowrap">
 		<div class="modal-btn">
@@ -228,9 +209,6 @@
 		</div>
 	</div>
 </div>
-<!-- end 로그인모달창 -->
-
-<!-- 챗봇 모달창 -->
 <div id="modal_cb" class="modal_cb-overlay">
 	<div class="modal_cb-content">
 		<div class="row row-cb">
@@ -263,22 +241,13 @@
 		</div>
 	</div>
 </div>
-<!-- 챗봇 모달창 end -->
-
-<!-- body -->
-
 <body class="main-layout">
-	<!-- loader  -->
 	<div class="loader_bg">
 		<div class="loader">
 			<img th:src="@{/images/loading.gif}" alt="#" />
 		</div>
 	</div>
-	<!-- end loader -->
-
-	<!-- header -->
 	<header>
-		<!-- header inner -->
 		<div class="header">
 			<div class="container">
 				<div class="row">
@@ -286,15 +255,13 @@
 						<div class="full">
 							<div class="center-desk">
 								<div class="logo">
-									<a th:href="@{/main}"><img th:src="@{/images/}+${session.company.company_logo1}"
-											alt="#" /></a>
+									<a th:href="@{/main}"><img th:src="@{/images/}+${session.company.company_logo1}" alt="#" /></a>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
 						<nav class="navigation navbar navbar-expand-md navbar-dark ">
-
 							<button id="" class="navbar-toggler" type="button" data-toggle="collapse"
 								data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
 								aria-label="Toggle navigation">
@@ -302,8 +269,6 @@
 							</button>
 							<div class="collapse navbar-collapse textnowrap" id="navbarsExample04">
 								<ul class="navbar-nav mr-auto">
-
-									<!-- 현재 선택 활성화로 보이게 하려면 class="nav-item active" 해야합니다-->
 									<li class="nav-item"><a class="nav-link" th:href="@{/main}">Home</a></li>
 									<li class="nav-item"><a class="nav-link" th:href="@{/notice}">공지사항</a></li>
 									<li class="nav-item"><a class="nav-link" th:href="@{/zone}">구역안내</a></li>
@@ -326,9 +291,6 @@
 			</div>
 		</div>
 	</header>
-	<!-- end header inner -->
-
-	<!-- 챗봇아이콘 -->
 	<div id="modal_cbicon">
 		<button id="modal_open_cb">
 			<img th:src="@{/images/CBicon.png}" />
@@ -336,26 +298,14 @@
 	</div>
 	<div id="modal_cbicon_text">
 	</div>
-	<!-- end 챗봇아이콘 -->
-
-	<!-- 캠핑장 선택 아이콘 -->
 	<div id="comp_select">
 		<button>
 			<a href="/"><img th:src="@{/images/goMain.png}" /></a>
 		</button>
 	</div>
-	<!-- end 캠핑장 선택 아이콘 -->
-
-	<!-- end header -->
-
-	<!-- banner -->
 	<section class="banner_main">
 		<aside id="center_aside" th:include="${center} ? ${center} : index"></aside>
 	</section>
-	<!-- end banner -->
-	<!-- end contact -->
-
-	<!--  footer -->
 	<footer>
 		<div class="footer" style="text-align: center;">
 			<div class="container">
@@ -391,20 +341,17 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-10 offset-md-1">
-
 							<p>
 								© 2019 All Rights Reserved. Design by <a href="https://html.design"> Free Html
 									Templates</a> <br>
 								<br> Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
 							</p>
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</footer>
-	<!-- end footer -->
 	<!-- Javascript files-->
 	<script th:src="@{/js/jquery.min.js}"></script>
 	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
