@@ -18,7 +18,8 @@
     6. 네이버클라우드를 이용해 배포 후 도메인,서버에 대해 이해 및 서버 운영,유지보수 경험
     
 # 4. Table 구성
-![Camping](https://user-images.githubusercontent.com/117332903/216555678-7d63e557-224f-40db-b5bd-8ab7c4fb01f3.png)
+![Camping](https://user-images.githubusercontent.com/117332903/218227527-60f4175b-2ff7-4791-914c-4c860873fece.png)
+
 
 
 # 3. 프로젝트 시스템흐름도 및 개발도구
