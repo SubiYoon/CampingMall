@@ -4,70 +4,84 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camp.admin.mapper.ReviewMapper">
     <insert id="insert" parameterType="ReviewDTO">
-        INSERT INTO review(review_content, review_score)
-        VALUES (#{review_content}, #{review_score})
+        INSERT INTO 
+            review(review_content, review_score)
+        VALUES 
+            (#{review_content}, #{review_score})
     </insert>
     <select id="select" resultType="ReviewDTO">
-        SELECT *
-        FROM review
-        WHERE review_code = #{review_code}
+        SELECT 
+            *
+        FROM 
+            review
+        WHERE 
+            review_code = #{review_code}
     </select>
-    <select id="selectAll" resultType="ReviewDTO"><!-- 내용, 작성자, 사이트, 사용일자, 별점 -->
-        SELECT review_code, review_content, review_score
-        FROM review
+    <select id="selectAll" resultType="ReviewDTO">
+        SELECT 
+            review_code, 
+            review_content, 
+            review_score
+        FROM 
+            review
     </select>
     <select id="selectByCompanyCode" resultType="ReviewDTO">
-        select review.review_code,
-               review.book_code,
-               review.review_content,
-               review.review_score,
-               review.review_image
-        from review,
-             admin,
-             book,
-             zone,
-             site
-        where admin.company_code = #{company_code}
-          AND admin.admin_code = zone.admin_code
-          And zone.zone_code = site.zone_code
-          And site.site_code = book.site_code
-          And book.book_code = review.book_code
+        select 
+            review.review_code,
+            review.book_code,
+            review.review_content,
+            review.review_score,
+            review.review_image
+        from 
+            review,
+            admin,
+            book,
+            zone,
+            site
+        where 
+            admin.company_code = #{company_code}
+            AND admin.admin_code = zone.admin_code
+            And zone.zone_code = site.zone_code
+            And site.site_code = book.site_code
+            And book.book_code = review.book_code
     </select>
     <update id="update" parameterType="ReviewDTO">
-        UPDATE review
-        SET review_content=#{review_content}
-        WHERE review_code = #{reveiw_code}
+        UPDATE 
+            review
+        SET 
+            review_content=#{review_content}
+        WHERE 
+            review_code = #{reveiw_code}
     </update>
     <delete id="delete">
         DELETE
-        FROM review
-        WHERE review_code = #{review_code}
+        FROM 
+            review
+        WHERE 
+            review_code = #{review_code}
     </delete>
-    
-    
     <select id="selectAllmain" resultType="map">
-	    SELECT review.review_code    review_code,
-	       user.user_name        user_name,
-	       review.review_content review_content,
-	       review.review_score   review_score
-		FROM   review
-		       JOIN book
-		         ON review.book_code = book.book_code
-		       JOIN user
-		         ON book.user_code = user.user_code
-			   JOIN site
-				 ON book.site_code = site.site_code
-			   JOIN image
-				 ON site.site_code = image.site_code
-			where company_code=#{company_code}
-		ORDER  BY review_code DESC;
+        SELECT 
+            review.review_code    review_code,
+            user.user_name        user_name,
+            review.review_content review_content,
+            review.review_score   review_score
+		FROM   
+            review
+        JOIN 
+            book
+                ON review.book_code = book.book_code
+		JOIN 
+            user
+                ON book.user_code = user.user_code
+		JOIN site
+                ON book.site_code = site.site_code
+        JOIN image
+                ON site.site_code = image.site_code
+		WHERE 
+            company_code=#{company_code}
+		ORDER  BY 
+            review_code 
+        DESC
     </select>
-    
-    
-    
-    
-    
-    
-    
-    
 </mapper>

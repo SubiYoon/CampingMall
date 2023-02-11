@@ -92,7 +92,7 @@ public class MainController {
                 return "login";
             }
         } catch (Exception e) {
-            //e.printStackTrace();
+            // e.printStackTrace();
             System.out.println("실패");
         }
 
@@ -124,7 +124,7 @@ public class MainController {
         }
         model.addAttribute("MonthList", charts);
         try {
-            listZ = serviceZ.selectZone(company.getCompany_code());    //상호코드
+            listZ = serviceZ.selectZone(company.getCompany_code());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,7 +133,6 @@ public class MainController {
         try {
             List<Map<String, Object>> books = serviceB.selectAllmain(companyCode);
             model.addAttribute("books", books);
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -149,8 +148,6 @@ public class MainController {
         return "main";
     }
 
-
-    //CompanyEdit
     @RequestMapping("/company")
     public String companyEdit(HttpSession session, Model model) {
         CompanyDTO company = (CompanyDTO) session.getAttribute("company");
@@ -164,8 +161,7 @@ public class MainController {
         model.addAttribute("center", "/company");
         return "main";
     }
-
-    //CompanyEdit
+    
     @RequestMapping("/home")
     public String homeEdit(Model model, HttpSession session) {
         CompanyDTO company = (CompanyDTO) session.getAttribute("company");
@@ -193,14 +189,14 @@ public class MainController {
     @RequestMapping("homeEdit")
     public String boardEdit(HttpSession session, HomeDTO home, MultipartFile mf) {
         try {
-            if(!mf.isEmpty()){
+            if (!mf.isEmpty()) {
                 home.setHome_image(logoEditFileSave(mf, home.getHome_image()));
             }
             serviceH.update(home);
-            
+
             System.out.println("성공");
         } catch (Exception e) {
-            //e.printStackTrace();
+            // e.printStackTrace();
             System.out.println("실패");
         }
 
@@ -209,7 +205,7 @@ public class MainController {
 
     @RequestMapping("logoEdit")
     public String logoEdit(HttpSession session, MultipartFile company_logo1,
-        MultipartFile company_logo2, String company_name) {
+            MultipartFile company_logo2, String company_name) {
         CompanyDTO company = (CompanyDTO) session.getAttribute("company");
 
         if (!company_logo1.isEmpty() && !company_logo2.isEmpty()) {
@@ -217,7 +213,7 @@ public class MainController {
                 company.setCompany_name(company_name);
                 company.setCompany_logo1(logoEditFileSave(company_logo1, company.getCompany_logo1()));
                 company.setCompany_logo2(logoEditFileSave(company_logo2, company.getCompany_logo2()));
-                
+
                 serviceC.update(company);
 
                 session.invalidate();
@@ -229,7 +225,6 @@ public class MainController {
             try {
                 company.setCompany_name(company_name);
                 company.setCompany_logo1(logoEditFileSave(company_logo1, company.getCompany_logo1()));
-                
 
                 serviceC.update(company);
 
@@ -256,8 +251,8 @@ public class MainController {
 
                 session.invalidate();
             } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                // e.printStackTrace();
+                System.out.println("실패");
             }
         }
 
@@ -271,7 +266,7 @@ public class MainController {
             image = serviceI.select(image_code);
             serviceI.update(home_slide, image);
         } catch (Exception e) {
-            //e.printStackTrace();
+            // e.printStackTrace();
             System.out.println("파일변경 실패");
         }
 
@@ -284,7 +279,7 @@ public class MainController {
         try {
             serviceI.delete(image_code);
         } catch (Exception e) {
-            //e.printStackTrace();
+            // e.printStackTrace();
             System.out.print("실패");
         }
 
@@ -303,7 +298,7 @@ public class MainController {
             try {
                 serviceI.insert(file, image);
             } catch (Exception e) {
-                //e.printStackTrace();
+                // e.printStackTrace();
                 System.out.print("실패");
             }
         }
@@ -316,22 +311,22 @@ public class MainController {
         return "redirect:/";
     }
 
-    //이미지 업로드 메서드(반환값은 업로드한 파일 이름)
+    // 이미지 업로드 메서드(반환값은 업로드한 파일 이름)
     public String logoEditFileSave(MultipartFile mf, String imageName) throws Exception {
-        String fileName =mf.getOriginalFilename();
+        String fileName = mf.getOriginalFilename();
         int fileCount = 1;
         List<ImageDTO> imgAll = serviceI.selectAll();
-        
+
         SaveFile.deleteFile(imagesdir, imageName);
-        for(int i=0; i<imgAll.size(); i++){
-            if(imgAll.get(i).getImage_file().equals(fileName)){
+        for (int i = 0; i < imgAll.size(); i++) {
+            if (imgAll.get(i).getImage_file().equals(fileName)) {
                 String[] filearr = mf.getOriginalFilename().split("\\.");
                 fileName = filearr[0] + "(" + fileCount + ")" + "." + filearr[1];
                 fileCount++;
                 i = 0;
             }
         }
-        SaveFile.saveFile(mf, imagesdir, fileName) ;
+        SaveFile.saveFile(mf, imagesdir, fileName);
         return fileName;
     }
 }

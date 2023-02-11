@@ -1,7 +1,5 @@
 package com.camp.admin.Controller;
 
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +15,6 @@ import com.camp.admin.DTO.CompanyDTO;
 import com.camp.admin.DTO.UserDTO;
 import com.camp.admin.service.BookService;
 import com.camp.admin.service.UserService;
-import com.camp.admin.utility.CryptoUtil;
 
 @Controller
 @RequestMapping("/user")
@@ -29,36 +26,6 @@ public class UserController {
 	UserService service;
 	@Autowired
 	BookService bookService;
-
-	//TODO: 관리자 로그인 수정필요
-	@RequestMapping("loginOk")
-	public String loginOk(Model model, UserDTO userDTO, HttpSession session){
-		UserDTO user = null;
-		String crypString = "";
-		String result_page = "user/loginFail";
-		
-		try {
-			crypString = CryptoUtil.sha512(userDTO.getUser_password());
-		} catch (NoSuchAlgorithmException e) {
-			//e.printStackTrace();
-			System.out.println("알고리즘 예외");
-		} catch (UnsupportedEncodingException e) {
-			//e.printStackTrace();
-			System.out.println("인코딩예외");
-		}
-
-		try {
-			user=service.select(userDTO.getUser_id());
-			if(user.getUser_id().equals(userDTO.getUser_id()) && user.getUser_password().equals(crypString)){
-				session.setAttribute("user", user);
-				result_page="redirect:/main";
-			}
-		} catch (Exception e) {
-			//e.printStackTrace();
-			System.out.println("실패");
-		}
-		return result_page;
-	}
 
 	@RequestMapping("/userEdit")
 	public String useredit(HttpSession session, Model model) {

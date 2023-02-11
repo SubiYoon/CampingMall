@@ -40,10 +40,8 @@
         let stringDate = yearSelected + '-' + monthSelected;
         getGraph(stringDate);
     }
-
 </script>
 <main id="main" class="main">
-
     <div class="pagetitle">
         <h1>통계 페이지</h1>
         <nav>
@@ -52,48 +50,33 @@
                 <li class="breadcrumb-item active">통계페이지</li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
-
+    </div>
     <section class="section dashboard">
         <div class="row">
-
-            <!-- Left side columns -->
             <div class="col-lg-8">
                 <div class="row">
-
-                    <!-- Sales Card -->
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
-
                             <div class="card-body">
                                 <h5 class="card-title">Revenue <span>| This Month</span></h5>
-
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
-
                                     <div class="ps-3" id="headRevenue">
                                         <h6>145</h6>
                                         <span class="text-success small pt-1 fw-bold">12%</span>
                                         <span class="text-muted small pt-2 ps-1">increase</span>
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                    </div><!-- End Sales Card -->
-
-                    <!-- Revenue Card -->
+                    </div>
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card revenue-card">
-
-
                             <div class="card-body">
                                 <h5 class="card-title">Book <span>| This Month</span></h5>
-
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -103,23 +86,15 @@
                                         <h6>$3,264</h6>
                                         <span class="text-success small pt-1 fw-bold">8%</span>
                                         <span class="text-muted small pt-2 ps-1">increase</span>
-
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                    </div><!-- End Revenue Card -->
-
-                    <!-- Customers Card -->
+                    </div>
                     <div class="col-xxl-4 col-xl-12">
-
                         <div class="card info-card customers-card">
-
-
                             <div class="card-body">
                                 <h5 class="card-title">Visitor <span>| This Month</span></h5>
-
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -129,19 +104,13 @@
                                         <h6>1244</h6>
                                         <span class="text-danger small pt-1 fw-bold">12%</span>
                                         <span class="text-muted small pt-2 ps-1">decrease</span>
-
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-
-                    </div><!-- End Customers Card -->
-
-                    <!-- Reports -->
+                    </div>
                     <div class="col-12">
                         <div class="card">
-
                             <div class="filter">
                                 <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
                                         class="bi bi-three-dots"></i></a>
@@ -154,13 +123,9 @@
                                     <li><a class="dropdown-item" id="mainChartTypeY">Yearly</a></li>
                                 </ul>
                             </div>
-
                             <div class="card-body">
                                 <h5 class="card-title" id="mainChart"></h5>
-
-                                <!-- Line Chart -->
                                 <div id="reportsChart"></div>
-
                                 <script>
                                     function setHead() {
                                         let monthList = '[[${MonthList}]]';
@@ -232,19 +197,12 @@
                                             str += '</select>  ';
                                         }
                                         str += '<button id=\"mainCharButton\" type=\"button\" onclick=\"mainButton()\">조회</button>';
-
                                         document.getElementById("mainChart").innerHTML = str
                                     }
                                 </script>
-                                <!-- End Line Chart -->
-
                             </div>
-
                         </div>
-                    </div><!-- End Reports -->
-
-
-                    <!-- Top Selling -->
+                    </div>
                     <div class="col-12">
                         <div class="card top-selling overflow-auto">
                             <div class="row">
@@ -421,7 +379,6 @@
                                                             'reportsChart').innerHTML = "";
                                                         label = data.Graph[3].label;
                                                         let myobj1 = [];
-                                                        // 그래프로 나타낼 자료 리스트에 담기
                                                         for (let i = 0;
                                                             i < data.Graph[3].labelsList.length;
                                                             i++) {
@@ -432,10 +389,10 @@
                                                                 });
                                                         }
                                                         drawChart('budgetChart', myobj1);
-                                                        //구역매출
+
                                                         label = data.Graph[4].label;
                                                         myobj1 = [];
-                                                        // 그래프로 나타낼 자료 리스트에 담기
+
                                                         for (let i = 0;
                                                             i < data.Graph[4].labelsList.length;
                                                             i++) {
@@ -451,47 +408,34 @@
                                                         let revenus = data.Graph[0].dataList;
                                                         let books = data.Graph[1].dataList;
                                                         let visitors = data.Graph[2].dataList;
-                                                        // 그래프 구역 인원
+
                                                         drawMainChart(revenus, books, visitors,
                                                             names);
-                                                        //
                                                     },
                                                     error: function () {
                                                         alert("실패");
                                                     }
-
-                                                }) // ajax
-                                            } // getGraph
+                                                })
+                                            }
                                         </script>
                                         <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
-
-
                                     </div>
                                 </div>
-
                                 <div class="col-6">
                                     <div class="card-body pb-0">
                                         <h5 class="card-title">구역별 방문자</h5>
                                         <div id="zoneUser" style="min-height: 400px;" class="echart"></div>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><!-- End Top Selling -->
-
+                    </div>
                 </div>
-            </div><!-- End Left side columns -->
-
-            <!-- Right side columns -->
+            </div>
             <div class="col-lg-4">
-
-                <!-- Recent Activity -->
                 <div class="card">
-
                     <div class="card-body">
                         <h5 class="card-title">최근 예약</h5>
-
                         <table class="table table-borderless datatable">
                             <thead>
                                 <tr>
@@ -514,16 +458,11 @@
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
-                </div><!-- End Recent Activity -->
-
-
-                <!-- News & Updates Traffic -->
+                </div>
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">최근 리뷰</h5>
-
                         <table class="table table-borderless datatable">
                             <thead>
                                 <tr>
@@ -540,13 +479,9 @@
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
-                </div><!-- End News & Updates -->
-
-            </div><!-- End Right side columns -->
-
+                </div>
+            </div>
         </div>
     </section>
-
-</main><!-- End #main -->
+</main>

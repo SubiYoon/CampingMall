@@ -41,7 +41,7 @@ public class ScheduleService implements MyService<Integer, ScheduleDTO> {
         return mapper.selectAll();
     }
 
-    public ScheduleDTO selectDate(Date date, int company_code){
+    public ScheduleDTO selectDate(Date date, int company_code) {
         return mapper.selectDate(date, company_code);
     }
 
@@ -55,7 +55,7 @@ public class ScheduleService implements MyService<Integer, ScheduleDTO> {
         }
     }
 
-    public List<ScheduleDTO> selectByCompany(int company_code) throws Exception{
+    public List<ScheduleDTO> selectByCompany(int company_code) throws Exception {
         return mapper.selectByCompany(company_code);
     }
 }

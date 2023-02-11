@@ -10,29 +10,33 @@ import com.camp.admin.frame.MyService;
 import com.camp.admin.mapper.CompanyMapper;
 
 @Service
-public class CompanyService implements MyService<Integer, CompanyDTO>{
-    
+public class CompanyService implements MyService<Integer, CompanyDTO> {
+
     @Autowired
     CompanyMapper mapper;
-    
+
     @Override
-    public void insert(CompanyDTO v) throws Exception{
+    public void insert(CompanyDTO v) throws Exception {
         mapper.insert(v);
     }
+
     @Override
-    public void delete(Integer k) throws Exception{
+    public void delete(Integer k) throws Exception {
         mapper.delete(k);
     }
+
     @Override
-    public void update(CompanyDTO v) throws Exception{
+    public void update(CompanyDTO v) throws Exception {
         mapper.update(v);
     }
+
     @Override
-    public CompanyDTO select(Integer k) throws Exception{
+    public CompanyDTO select(Integer k) throws Exception {
         return mapper.select(k);
     }
-    @Override    
-    public List<CompanyDTO> selectAll() throws Exception{
+
+    @Override
+    public List<CompanyDTO> selectAll() throws Exception {
         return mapper.selectAll();
     }
 }

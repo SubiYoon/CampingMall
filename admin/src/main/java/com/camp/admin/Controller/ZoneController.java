@@ -51,13 +51,13 @@ public class ZoneController {
 		CompanyDTO company = (CompanyDTO) session.getAttribute("company");
 
 		try {
-			listZ = serviceZ.selectZone(company.getCompany_code()); // 상호코드
+			listZ = serviceZ.selectZone(company.getCompany_code());
 			model.addAttribute("zlist", listZ);
 
-			listI = serviceI.selectByCompanyCode(company.getCompany_code()); // 상호코드
+			listI = serviceI.selectByCompanyCode(company.getCompany_code());
 			model.addAttribute("ilist", listI);
 
-			listS = serviceS.selectSet(company.getCompany_code()); // 상호코드
+			listS = serviceS.selectSet(company.getCompany_code());
 			model.addAttribute("slist", listS);
 
 			zonedto = serviceZ.select(zone_code);
@@ -70,8 +70,6 @@ public class ZoneController {
 		return "main";
 	}
 
-	// -----------------------------------------------------------------
-	// 구역(zone)수정페이지
 	@RequestMapping("/zoneedit")
 	public String zoneedit(Model model, ImageDTO imageDTO, int zone_code) {
 		ZoneDTO zoneEdit = null;
@@ -90,7 +88,6 @@ public class ZoneController {
 		return "main";
 	}
 
-	// 구역(zone)수정기능
 	@RequestMapping("/zoneupdate")
 	public String zoneupdate(Model model, ZoneDTO zonedto, MultipartFile mf) {
 
@@ -111,14 +108,12 @@ public class ZoneController {
 		return "redirect:/main";
 	}
 
-	// 새 구역(zone)추가페이지
 	@RequestMapping("/zoneinsert")
 	public String siteinsert(Model model) {
 		model.addAttribute("center", dir + "zoneinsert");
 		return "main";
 	}
 
-	// 구역(zone)추가기능
 	@RequestMapping("/zoneadd")
 	public String zoneadd(Model model, HttpSession session, String zone_name, String zone_content, MultipartFile mf) {
 		AdminDTO admin = (AdminDTO) session.getAttribute("admin");
@@ -141,7 +136,7 @@ public class ZoneController {
 				img.setZone_code(zonelist.get(zonelist.size() - 1).getZone_code());
 				serviceI.insert(mf, img);
 
-				SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
+				SaveFile.saveFile(mf, imagesdir, mf.getOriginalFilename());
 			}
 
 		} catch (Exception e) {
@@ -151,7 +146,6 @@ public class ZoneController {
 		return "redirect:/main";
 	}
 
-	// 구역 삭제기능(업데이트로 처리)
 	@RequestMapping("/zonedel")
 	public String zoneDel(ZoneDTO zonedto, int zone_code) {
 		try {
@@ -162,8 +156,6 @@ public class ZoneController {
 		return "redirect:/main";
 	}
 
-	// -----------------------------------------------------------------
-	// 사이트(site)수정페이지
 	@RequestMapping("/siteedit")
 	public String siteedit(Model model, ImageDTO imageDTO, int site_code) {
 		SiteDTO siteedit = null;
@@ -183,7 +175,6 @@ public class ZoneController {
 		return "main";
 	}
 
-	// 사이트(site)수정기능
 	@RequestMapping("/siteupdate")
 	public String siteupdate(Model model, SiteDTO sitedto, MultipartFile mf) {
 
@@ -206,7 +197,6 @@ public class ZoneController {
 		return "redirect:/main";
 	}
 
-	// 새사이트(site)추가페이지
 	@RequestMapping("/siteinsert")
 	public String siteinsert(Model model, int zone_code) {
 		model.addAttribute("zone_code", zone_code);
@@ -214,7 +204,6 @@ public class ZoneController {
 		return "main";
 	}
 
-	// 사이트(site)추가기능
 	@RequestMapping("/siteadd")
 	public String siteadd(Model model, HttpSession session, String site_name, int site_price, String site_content,
 			int zone_code, MultipartFile mf) {
@@ -238,7 +227,7 @@ public class ZoneController {
 				img.setSite_code(sitelist.get(sitelist.size() - 1).getSite_code());
 				serviceI.insert(mf, img);
 
-				SaveFile.saveFile(mf, imagesdir,mf.getOriginalFilename());
+				SaveFile.saveFile(mf, imagesdir, mf.getOriginalFilename());
 			}
 
 		} catch (Exception e) {
@@ -248,7 +237,6 @@ public class ZoneController {
 		return "redirect:/zone?zone_code=" + zone_code;
 	}
 
-	// 사이트 삭제기능(업데이트로 처리)
 	@RequestMapping("/sitedel")
 	public String siteDel(SiteDTO sitedto, int site_code, int zone_code) {
 		try {
@@ -258,5 +246,4 @@ public class ZoneController {
 		}
 		return "redirect:/zone?zone_code=" + zone_code;
 	}
-
 }

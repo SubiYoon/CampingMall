@@ -10,14 +10,14 @@ import com.camp.admin.frame.MyService;
 import com.camp.admin.mapper.UserMapper;
 
 @Service
-public class UserService implements MyService<String, UserDTO>{
+public class UserService implements MyService<String, UserDTO> {
 
     @Autowired
     UserMapper mapper;
 
     @Override
     public void insert(UserDTO v) throws Exception {
-        mapper.insert(v);        
+        mapper.insert(v);
     }
 
     @Override
@@ -39,12 +39,12 @@ public class UserService implements MyService<String, UserDTO>{
     public List<UserDTO> selectAll() throws Exception {
         return mapper.selectAll();
     }
-    
+
     public List<UserDTO> selectUsersInfo(int company_code) throws Exception {
         return mapper.selectUsersInfo(company_code);
     }
 
-    public UserDTO selectnt(String n,String t) throws Exception{
-    	return mapper.selectnt(n, t);
+    public UserDTO selectnt(String n, String t) throws Exception {
+        return mapper.selectnt(n, t);
     }
 }

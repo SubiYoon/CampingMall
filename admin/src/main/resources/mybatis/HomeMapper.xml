@@ -3,10 +3,7 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.camp.admin.mapper.HomeMapper">
-  <insert id="insert" parameterType="HomeDTO">
-
-  </insert>
-  <update id="update" parameterType="HomeDTO">
+<update id="update" parameterType="HomeDTO">
     UPDATE 
         home 
     SET 
@@ -21,12 +18,8 @@
         home_image=#{home_image}
     WHERE 
         home_code=#{home_code}
-  </update>
-  <delete id="delete">
-  
-  </delete>
-  
-  <select id="select" resultType="HomeDTO">
+</update>
+<select id="select" resultType="HomeDTO">
     SELECT 
         * 
     FROM 
@@ -37,8 +30,5 @@
         home.admin_code = admin.admin_code 
     WHERE 
         company_code=#{company_code}
-  </select>
-  <select id="selectAll" resultType="HomeDTO">
-
-  </select>    
+</select>
 </mapper>

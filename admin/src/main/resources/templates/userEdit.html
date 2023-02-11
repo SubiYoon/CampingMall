@@ -1,16 +1,15 @@
 <script>
-  $(document).ready(function(){
-    $('.userDetail').click(function(){
+  $(document).ready(function () {
+    $('.userDetail').click(function () {
       $(this).parent().parent().parent().parent().next().attr({
-        'method' : 'post',
-        'action' : 'userDetail'
+        'method': 'post',
+        'action': 'userDetail'
       });
       $(this).parent().parent().parent().parent().next().submit();
     });
   });
 </script>
 <main id="main" class="main">
-
   <div class="pagetitle">
     <h1>유저 관리</h1>
     <nav>
@@ -19,51 +18,50 @@
         <li class="breadcrumb-item active">UserList</li>
       </ol>
     </nav>
-  </div><!-- End Page Title -->
-
+  </div>
   <section class="section">
     <div class="row">
       <div class="col-lg-12 zone-col-12">
         <div class="card card-radius">
           <div class="card-body">
             <div class="card-title">
-            <h5>유저 목록</h5>
-            <p>현재 캠핑장을 사용한 사용자의 
-              <code>이름, 생년월일, 예약횟수, 연락처, 최근 예약일, 탈퇴여부</code>
-              목록입니다.
-            </p>
-            <p>이름을 
-              <code>클릭</code>
-              하면 과거 예약정보를 볼 수 있습니다.
-            </p>
-            <!-- Table Variants -->
-            <table class="table">
-              <thead>
-                <tr class="table-success">
-                  <th style="width:16%;" scope="col">이름</th>
-                  <th scope="col">생년월일</th>
-                  <th scope="col">예약횟수</th>
-                  <th scope="col">연락처</th>
-                  <th scope="col">최근 예약일</th>
-                  <th scope="col">탈퇴여부</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr th:each="userList : ${userList}" >
-                    <th scope="row"><a class="userDetail" th:href="'/admin/user/userDetail?user_id=' + ${userList.user_id}" th:text="${userList.user_name}"></a></th>
+              <h5>유저 목록</h5>
+              <p>현재 캠핑장을 사용한 사용자의
+                <code>이름, 생년월일, 예약횟수, 연락처, 최근 예약일, 탈퇴여부</code>
+                목록입니다.
+              </p>
+              <p>이름을
+                <code>클릭</code>
+                하면 과거 예약정보를 볼 수 있습니다.
+              </p>
+              <table class="table">
+                <thead>
+                  <tr class="table-success">
+                    <th style="width:16%;" scope="col">이름</th>
+                    <th scope="col">생년월일</th>
+                    <th scope="col">예약횟수</th>
+                    <th scope="col">연락처</th>
+                    <th scope="col">최근 예약일</th>
+                    <th scope="col">탈퇴여부</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="userList : ${userList}">
+                    <th scope="row"><a class="userDetail"
+                        th:href="'/admin/user/userDetail?user_id=' + ${userList.user_id}"
+                        th:text="${userList.user_name}"></a></th>
                     <td th:text="${userList.user_birthday}"></td>
                     <td th:text="${userList.bookCount}"></td>
                     <td th:text="${userList.user_tel}"></td>
                     <td th:text="${userList.book_checkin + ' ~ ' + userList.book_checkout}"></td>
                     <td th:text="${userList.user_tel1}"></td>
                   </tr>
-              </tbody>
-            </table>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-</main><!-- End #main -->
+</main>

@@ -12,7 +12,7 @@ import com.camp.admin.mapper.ImageMapper;
 import com.camp.admin.utility.SaveFile;
 
 @Service
-public class ImageService{
+public class ImageService {
     @Value("${imagesdir}")
     String imagesdir;
 
@@ -20,35 +20,32 @@ public class ImageService{
     ImageMapper mapper;
 
     public void insert(MultipartFile mf, ImageDTO imageDTO) throws Exception {
-        String fileName =mf.getOriginalFilename();
+        String fileName = mf.getOriginalFilename();
         int fileCount = 1;
         List<ImageDTO> imgAll = mapper.selectAll();
 
-        for(int i=0; i<imgAll.size(); i++){
-            if(imgAll.get(i).getImage_file().equals(fileName)){
+        for (int i = 0; i < imgAll.size(); i++) {
+            if (imgAll.get(i).getImage_file().equals(fileName)) {
                 String[] filearr = mf.getOriginalFilename().split("\\.");
-                fileName = filearr[0] + "(" + fileCount +")" + "." + filearr[1];
+                fileName = filearr[0] + "(" + fileCount + ")" + "." + filearr[1];
                 fileCount++;
                 i = 0;
             }
         }
         imageDTO.setImage_file(fileName);
-        SaveFile.saveFile(mf, imagesdir, fileName) ;
-        
+        SaveFile.saveFile(mf, imagesdir, fileName);
+
         mapper.insert(imageDTO);
     }
 
-    
     public void delete(Integer integer) throws Exception {
         mapper.delete(integer);
     }
 
-    
     public ImageDTO select(Integer integer) throws Exception {
         return mapper.select(integer);
     }
 
-    
     public List<ImageDTO> selectAll() throws Exception {
         return mapper.selectAll();
     }
@@ -84,15 +81,15 @@ public class ImageService{
     public void selectFile(String image_file) throws Exception {
         mapper.selectFile(image_file);
     }
-    
+
     public void update(MultipartFile mf, ImageDTO imageDTO) throws Exception {
-        String fileName =mf.getOriginalFilename();
+        String fileName = mf.getOriginalFilename();
         int fileCount = 1;
         List<ImageDTO> imgAll = mapper.selectAll();
-        
+
         SaveFile.deleteFile(imagesdir, imageDTO.getImage_file());
-        for(int i=0; i<imgAll.size(); i++){
-            if(imgAll.get(i).getImage_file().equals(fileName)){
+        for (int i = 0; i < imgAll.size(); i++) {
+            if (imgAll.get(i).getImage_file().equals(fileName)) {
                 String[] filearr = mf.getOriginalFilename().split("\\.");
                 fileName = filearr[0] + "(" + fileCount + ")" + "." + filearr[1];
                 fileCount++;
@@ -100,7 +97,7 @@ public class ImageService{
             }
         }
         imageDTO.setImage_file(fileName);
-        SaveFile.saveFile(mf, imagesdir, fileName) ;
+        SaveFile.saveFile(mf, imagesdir, fileName);
         mapper.update(imageDTO);
     }
 

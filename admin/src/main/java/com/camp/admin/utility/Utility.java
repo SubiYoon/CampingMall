@@ -24,7 +24,7 @@ public class Utility {
     }
 
     static public int StringDateDifference(String stringDate1, String stringDate2)
-        throws ParseException {
+            throws ParseException {
         long differenceDays;
         Date date1 = StringToDate(stringDate1);
         Date date2 = StringToDate(stringDate2);
@@ -64,6 +64,5 @@ public class Utility {
         String[] array = stringDate.split("-");
         return array[0];
     }
-
 
 }
