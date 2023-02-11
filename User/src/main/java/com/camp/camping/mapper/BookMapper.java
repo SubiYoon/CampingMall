@@ -13,7 +13,6 @@ import com.camp.camping.frame.MyMapper;
 @Mapper
 public interface BookMapper extends MyMapper<Integer, BookDTO> {
     BookDTO selectMerchant(String merchant_uid);
-    BookDTO selectByReservationCode(int reservation_code);
     List<BookDTO> selectUserAll(int user_code);
     List<BookDTO> selectUserSiteBook(int site_code, int user_code);
     List<BookDTO> selectUserSiteReview(int site_code, int user_code);
