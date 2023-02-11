@@ -45,7 +45,7 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         return mapper.selectAll();
     }
 
-    public List<ReservationDTO> selectDate(Date d) throws Exception {
+    public List<ReservationDTO> selectDate(Date d){
         return mapper.selectDate(d);
     }
 
@@ -112,8 +112,5 @@ public class ReservationService implements MyService<Integer, ReservationDTO> {
         throws ParseException {
         return mapper.selectByDateAndCompanyCode(Utility.StringToDate(reservation_Date), company_code);
     }
-    //해당 날짜의 예약 갯수
-    public int ReservationCount(String reservation_Date, int company_code) throws ParseException {
-        return SelectByDateAndCompanyCode(reservation_Date,company_code).size();
-    }
+
 }

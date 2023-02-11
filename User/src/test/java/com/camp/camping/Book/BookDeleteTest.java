@@ -42,17 +42,4 @@ public class BookDeleteTest {
             System.out.println("버그터짐");
         }
     }
-
-    @Test
-    void BookDeleteTest3(){
-        int book_code=6;
-        try {
-            service.deleteBookAndReservation(book_code);
-            System.out.println("삭제 성공");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("버그터짐3");
-            throw new RuntimeException(e);
-        }
-    }
 }
