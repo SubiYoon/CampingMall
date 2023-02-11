@@ -11,9 +11,9 @@
     </insert>
     <insert id="insert2" parameterType="BookDTO">
         INSERT INTO book(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price,
-                         book_car_number, book_writedate)
+                         book_car_number, book_writedate, book_state)
         VALUES (#{site_code}, #{user_code}, #{merchant_uid}, #{book_member}, #{book_checkin}, #{book_checkout},
-                #{book_price}, #{book_car_number},#{book_writedate})
+                #{book_price}, #{book_car_number},#{book_writedate},#{book_state})
     </insert>
     <select id="select" resultType="BookDTO">
         SELECT *
@@ -24,7 +24,6 @@
         SELECT *
         FROM book
         WHERE merchant_uid = #{merchant_uid}
-            And book_state=1
     </select>
     <select id="selectByReservationCode" resultType="BookDTO">
         select book.book_code,
