@@ -73,11 +73,11 @@ insert into `payment`(merchant_uid,pay_method, imp_uid) values('4','계좌이체
 insert into `payment`(merchant_uid,pay_method, imp_uid) values('5','카드','1');
 
 -- 예약
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,1,'1',3,'2023-02-03','2023-02-04',30000,'12가1234,1,1,1');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,1,'1',3,'2023-03-03','2023-03-04',30000,'12가1234,1,1,1');
 insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(6,1,'5',5,'2023-02-18','2023-02-21',300000,'13가1234,1,0,0');
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,2,'2',2,'2023-02-01','2023-02-02',35000,'13나1234,1,0,1');
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(12,2,'3',1,'2023-02-04','2023-02-07',20000,'차량없음,0,0,0');
-insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,3,'4',2,'2023-02-02','2023-02-05',45000,'13나1234,1,1,1');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(1,2,'2',2,'2023-03-01','2023-03-02',35000,'13나1234,1,0,1');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(12,2,'3',1,'2023-02-20','2023-02-23',200000,'차량없음,0,0,0');
+insert into `book`(site_code, user_code, merchant_uid, book_member, book_checkin, book_checkout, book_price, book_car_number) values(2,3,'4',2,'2023-03-02','2023-03-05',45000,'13나1234,1,1,1');
 
 
 -- 스케줄
@@ -126,18 +126,18 @@ insert into image(company_code, home_code, image_file) VALUES(1, 1, 'slide2.jpg'
 insert into image(company_code, home_code, image_file) VALUES(1, 1, 'slide3.jpg');
 
 -- 예약된 날짜
-insert into reservation(book_code,reservation_date) values(1, '2023-02-03');
-insert into reservation(book_code,reservation_date) values(2, '2023-02-01');
-insert into reservation(book_code,reservation_date) values(3, '2023-02-04');
-insert into reservation(book_code,reservation_date) values(3, '2023-02-05');
-insert into reservation(book_code,reservation_date) values(3, '2023-02-06');
-insert into reservation(book_code,reservation_date) values(4, '2023-02-02');
-insert into reservation(book_code,reservation_date) values(4, '2023-02-03');
-insert into reservation(book_code,reservation_date) values(4, '2023-02-04');
-insert into reservation(book_code,reservation_date) values(5, '2023-02-18');
-insert into reservation(book_code,reservation_date) values(5, '2023-02-19');
-insert into reservation(book_code,reservation_date) values(5, '2023-02-20');
-insert into reservation(book_code,reservation_date) values(5, '2023-02-21');
+insert into reservation(book_code,reservation_date) values(1, '2023-03-03');
+insert into reservation(book_code,reservation_date) values(2, '2023-02-18');
+insert into reservation(book_code,reservation_date) values(2, '2023-02-19');
+insert into reservation(book_code,reservation_date) values(2, '2023-02-20');
+insert into reservation(book_code,reservation_date) values(3, '2023-03-01');
+insert into reservation(book_code,reservation_date) values(4, '2023-02-20');
+insert into reservation(book_code,reservation_date) values(4, '2023-02-21');
+insert into reservation(book_code,reservation_date) values(4, '2023-02-22');
+insert into reservation(book_code,reservation_date) values(5, '2023-03-02');
+insert into reservation(book_code,reservation_date) values(5, '2023-03-03');
+insert into reservation(book_code,reservation_date) values(5, '2023-03-04');
+
 
 -- Nice camping 샘플
 
