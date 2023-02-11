@@ -30,17 +30,17 @@ $(document).ready(function(){
       var tel3 = $('#updateInfo input[name=user_tel3]').val();
       
       //비밀번호 확인
-      if(pwd == null || pwd=='' || pwd_check == null || pwd_check==''){
-         alert("비밀번호를 입력해주세요.");
-         return;
+      if((pwd == null || pwd=='') && (pwd_check == null || pwd_check=='')) {
       }
-      if(!isPassword(pwd)){
-         alert("비밀번호는 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합 해주세요.")
-         return;
-      }
-      if(pwd != pwd_check){
-         alert("비밀번호가 틀립니다.");
-         return;
+      else {
+          if (!isPassword(pwd)) {
+              alert("비밀번호는 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합 해주세요.")
+              return;
+          }
+          if (pwd != pwd_check) {
+              alert("비밀번호가 틀립니다.");
+              return;
+          }
       }
       //이름입력 확인
       if(name==null || name==''){

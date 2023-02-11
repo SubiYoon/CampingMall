@@ -158,17 +158,12 @@ public class UserController {
 		userDTO.setUser_tel(user_tel);
 
 		try {
-			crypString = CryptoUtil.sha512(userDTO.getUser_password());
-		} catch (NoSuchAlgorithmException e) {
-			//e.printStackTrace();
-			System.out.println("알고리즘 예외");
-		} catch (UnsupportedEncodingException e) {
-			//e.printStackTrace();
-			System.out.println("인코딩예외");
-		}
-		
-		try {
-			userDTO.setUser_password(crypString);
+			if(userDTO.getUser_password().equals("")||userDTO.getUser_password() == null){
+				userDTO.setUser_password(service.select(userDTO.getUser_id()).getUser_password());
+			}else {
+				crypString = CryptoUtil.sha512(userDTO.getUser_password());
+				userDTO.setUser_password(crypString);
+			}
 			service.update(userDTO);
 			model.addAttribute("center", dir + "mypage");
 		} catch (Exception e) {
