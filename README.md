@@ -1,5 +1,5 @@
 # **CampingMall Project**
-![KakaoTalk_20230211_112753441_01](https://user-images.githubusercontent.com/117332903/218267096-f3ac7df0-8a76-4fd6-a35e-b2001e85051a.png)
+<img style="width:300px; height:400px;" src="https://user-images.githubusercontent.com/117332903/218267096-f3ac7df0-8a76-4fd6-a35e-b2001e85051a.png">
 
 
 # **1. 프로젝트 주제 및 목적**
