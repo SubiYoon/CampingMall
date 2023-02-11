@@ -1,4 +1,4 @@
-# **NoobCamping Project**
+# **CampingMall Project**
 
 
 <p align="center"><img src="https://user-images.githubusercontent.com/121149157/211247956-9b2f9436-1772-466e-84c8-8b006e4c52ac.png" width="300" height="300"/></p>
