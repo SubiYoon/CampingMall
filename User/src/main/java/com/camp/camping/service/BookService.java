@@ -61,10 +61,10 @@ public class BookService implements MyService<Integer, BookDTO> {
         BookDTO book = this.selectMerchant(v.getMerchant_uid());
         reservationService.insertReservationByBook(book);
     }
+    
     public List<BookDTO> selectUserAll(int user_code) {
         return mapper.selectUserAll(user_code);
     }
-
 
     public BookDTO selectViewForm(String book_checkin, String book_checkout, int book_sitecode) {
 
@@ -101,8 +101,7 @@ public class BookService implements MyService<Integer, BookDTO> {
         List<BookDTO> bookList1 = mapper.selectUserSiteBook(site_code, user_code);
         List<BookDTO> bookList2 = mapper.selectUserSiteReview(site_code, user_code);
 
-        first:
-        for (int i = 0; i < bookList1.size(); i++) {
+        first: for (int i = 0; i < bookList1.size(); i++) {
             for (int j = 0; j < bookList2.size(); j++) {
                 if (bookList1.get(i).getBook_code() == bookList2.get(j).getBook_code()) {
                     continue first;
@@ -114,9 +113,6 @@ public class BookService implements MyService<Integer, BookDTO> {
         return result;
     }
 
-    //날짜(stringDate : "2023-02-01")를 입력받으면 체크인 날짜와 비교한다.
-    //환불 요청 가능이면 1 아니면 0을 반환
-    //환불 요청 가능 여부 판단 메소드
     public int IsAvailableRequestRefund(int book_code) throws Exception {
         BookDTO book = select(book_code);
         Date checkin = Utility.StringToDate(book.getBook_checkin());
@@ -135,14 +131,11 @@ public class BookService implements MyService<Integer, BookDTO> {
     public void insertForSample(BookDTO v) throws Exception {
         mapper.insert2(v);
     }
+
     public void insertBookAndReservationForSample(BookDTO v) throws Exception {
         this.insertForSample(v);
 
         BookDTO book = this.selectMerchant(v.getMerchant_uid());
         reservationService.insertReservationByBook(book);
     }
-
 }
-    
-    
-    

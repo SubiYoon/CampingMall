@@ -28,16 +28,14 @@ public class ChatBotController {
 
     @MessageMapping("/sendMessage")
     @SendTo("/topic/public")
-    public String sendMessage(@Payload String chatMessage) throws IOException
-    {
+    public String sendMessage(@Payload String chatMessage) throws IOException {
 
         URL url = new URL(apiUrl);
 
-        String message =  getReqMessage(chatMessage);
+        String message = getReqMessage(chatMessage);
         String encodeBase64String = makeSignature(message, secretKey);
 
-        //api서버 접속 (서버 -> 서버 통신)		
-        HttpURLConnection con = (HttpURLConnection)url.openConnection();
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("Content-Type", "application/json;UTF-8");
         con.setRequestProperty("X-NCP-CHATBOT_SIGNATURE", encodeBase64String);
@@ -50,9 +48,7 @@ public class ChatBotController {
         wr.close();
         int responseCode = con.getResponseCode();
 
-        BufferedReader br;
-
-        if(responseCode==200) { // 정상 호출
+        if (responseCode == 200) {
 
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(
@@ -62,16 +58,15 @@ public class ChatBotController {
             while ((decodedString = in.readLine()) != null) {
                 jsonString = decodedString;
             }
-            
-            //받아온 값을 세팅하는 부분
+
             JSONParser jsonparser = new JSONParser();
             try {
-                JSONObject json = (JSONObject)jsonparser.parse(jsonString);
-                JSONArray bubblesArray = (JSONArray)json.get("bubbles");
-                JSONObject bubbles = (JSONObject)bubblesArray.get(0);
-                JSONObject data = (JSONObject)bubbles.get("data");
+                JSONObject json = (JSONObject) jsonparser.parse(jsonString);
+                JSONArray bubblesArray = (JSONArray) json.get("bubbles");
+                JSONObject bubbles = (JSONObject) bubblesArray.get(0);
+                JSONObject data = (JSONObject) bubbles.get("data");
                 String description = "";
-                description = (String)data.get("description");
+                description = (String) data.get("description");
                 chatMessage = description;
             } catch (Exception e) {
                 System.out.println("error");
@@ -79,13 +74,12 @@ public class ChatBotController {
             }
 
             in.close();
-        } else {  // 에러 발생
+        } else {
             chatMessage = con.getResponseMessage();
         }
         return chatMessage;
     }
 
-    //보낼 메세지를 네이버에서 제공해준 암호화로 변경해주는 메소드
     public static String makeSignature(String message, String secretKey) {
 
         String encodeBase64String = "";
@@ -102,15 +96,13 @@ public class ChatBotController {
 
             return encodeBase64String;
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
 
         return encodeBase64String;
-
     }
 
-    //보낼 메세지를 네이버 챗봇에 포맷으로 변경해주는 메소드
     public static String getReqMessage(String voiceMessage) {
 
         String requestBody = "";
@@ -121,7 +113,7 @@ public class ChatBotController {
 
             long timestamp = new Date().getTime();
 
-            System.out.println("##"+timestamp);
+            System.out.println("##" + timestamp);
 
             obj.put("version", "v2");
             obj.put("userId", "U47b00b58c90f8e47428af8b7bddc1231heo2");
@@ -145,7 +137,7 @@ public class ChatBotController {
 
             requestBody = obj.toString();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("## Exception : " + e);
         }
 

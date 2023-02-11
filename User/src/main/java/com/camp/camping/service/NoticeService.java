@@ -10,14 +10,14 @@ import com.camp.camping.frame.MyService;
 import com.camp.camping.mapper.NoticeMapper;
 
 @Service
-public class NoticeService implements MyService<Integer, NoticeDTO>{
+public class NoticeService implements MyService<Integer, NoticeDTO> {
 
     @Autowired
     NoticeMapper mapper;
 
     @Override
     public void insert(NoticeDTO v) throws Exception {
-        mapper.insert(v);        
+        mapper.insert(v);
     }
 
     @Override
@@ -39,14 +39,13 @@ public class NoticeService implements MyService<Integer, NoticeDTO>{
     public List<NoticeDTO> selectAll() throws Exception {
         return mapper.selectAll();
     }
-    
+
     public List<NoticeDTO> noticeLv(Integer companycode) throws Exception {
-    	return mapper.noticeLv(companycode);
+        return mapper.noticeLv(companycode);
     }
-    
+
     public List<NoticeDTO> selectByCompanycode(Integer k) throws Exception {
         return mapper.selectByCompanycode(k);
     }
 
-    
 }

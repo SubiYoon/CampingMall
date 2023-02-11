@@ -12,7 +12,7 @@
         FROM review
         WHERE review_code = #{review_code}
     </select>
-    <select id="selectAll" resultType="ReviewDTO"><!-- 내용, 작성자, 사이트, 사용일자, 별점 -->
+    <select id="selectAll" resultType="ReviewDTO">
         SELECT review_code, review_content, review_score
         FROM review
     </select>

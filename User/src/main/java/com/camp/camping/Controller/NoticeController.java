@@ -23,68 +23,61 @@ public class NoticeController {
 
 	@Autowired
 	NoticeService ns;
-	
+
 	@Autowired
 	HomeService serviceH;
 
-	//공지사항글목록	
 	@RequestMapping("")
 	public String main(Model model, HttpSession session) {
-		
+
 		List<NoticeDTO> list = null;
-		HomeDTO homecont = null;	//home테이블전체정보
-		
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-		
+		HomeDTO homecont = null;
+
+		CompanyDTO company = (CompanyDTO) session.getAttribute("company");
+
 		try {
 			list = ns.selectByCompanycode(company.getCompany_code());
 			model.addAttribute("plist", list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		//홈페이지소개content----------------------------------
+
 		try {
-			homecont = serviceH.select(company.getCompany_code());	//상호코드
+			homecont = serviceH.select(company.getCompany_code());
 			model.addAttribute("homecont", homecont);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("CONTENT_FAIL");
 		}
-		
-		
+
 		model.addAttribute("center", dir + "notice");
-		
+
 		return "main";
 	}
 
-//공지사항글내용페이지
 	@RequestMapping("/noticeview")
 	public String noticeview(Model model, int notice_code, HttpSession session) {
 		NoticeDTO noticeview = null;
-		HomeDTO homecont = null;	//home테이블전체정보
-		
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-		
+		HomeDTO homecont = null;
+
+		CompanyDTO company = (CompanyDTO) session.getAttribute("company");
+
 		try {
 			noticeview = ns.select(notice_code);
 			model.addAttribute("notice", noticeview);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		//홈페이지소개content----------------------------------
+
 		try {
-			homecont = serviceH.select(company.getCompany_code());	//상호코드
+			homecont = serviceH.select(company.getCompany_code());
 			model.addAttribute("homecont", homecont);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("CONTENT_FAIL");
 		}
-		
+
 		model.addAttribute("center", dir + "noticeview");
 		return "main";
 	}
-
-	
 }

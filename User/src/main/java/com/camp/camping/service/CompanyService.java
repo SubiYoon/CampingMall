@@ -10,10 +10,10 @@ import com.camp.camping.frame.MyService;
 import com.camp.camping.mapper.CompanyMapper;
 
 @Service
-public class CompanyService implements MyService<Integer, CompanyDTO>{
-    
-    @Autowired
-    CompanyMapper mapper;
+public class CompanyService implements MyService<Integer, CompanyDTO> {
+
+	@Autowired
+	CompanyMapper mapper;
 
 	@Override
 	public void insert(CompanyDTO v) throws Exception {
@@ -39,5 +39,5 @@ public class CompanyService implements MyService<Integer, CompanyDTO>{
 	public List<CompanyDTO> selectAll() throws Exception {
 		return mapper.selectAll();
 	}
-    
+
 }

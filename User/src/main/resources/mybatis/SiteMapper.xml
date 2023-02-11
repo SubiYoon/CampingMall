@@ -28,7 +28,14 @@
     </select>
     <select id="selectView" resultType="SiteDTO">
         SELECT 
-            s.site_code site_code, s.zone_code zone_code, s.site_name site_name, s.site_content site_content, s.site_price site_price, i.image_code image_code, i.image_file image_file, s.site_state site_state
+            s.site_code site_code, 
+            s.zone_code zone_code, 
+            s.site_name site_name, 
+            s.site_content site_content, 
+            s.site_price site_price, 
+            i.image_code image_code, 
+            i.image_file image_file, 
+            s.site_state site_state
         FROM 
             site s 
         JOIN 
@@ -38,7 +45,6 @@
         WHERE 
             s.site_code=#{site_code}
     </select>
-    
     <select id="selectSet" parameterType="Integer" resultType="SiteDTO">
         SELECT * FROM site
 			JOIN zone ON zone.zone_code=site.zone_code

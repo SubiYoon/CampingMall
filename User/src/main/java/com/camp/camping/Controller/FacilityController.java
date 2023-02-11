@@ -18,42 +18,40 @@ import com.camp.camping.service.HomeService;
 @Controller
 @RequestMapping("/facility")
 public class FacilityController {
-	
+
 	String dir = "facility/";
-	
+
 	@Autowired
 	FacilityService service;
-	
+
 	@Autowired
 	HomeService serviceH;
 
 	@RequestMapping("")
 	public String main(Model model, HttpSession session) {
 		List<FacilityDTO> list = null;
-		HomeDTO homecont = null;	//home테이블전체정보
+		HomeDTO homecont = null;
 
-		CompanyDTO company = (CompanyDTO)session.getAttribute("company");
-		
+		CompanyDTO company = (CompanyDTO) session.getAttribute("company");
+
 		try {
 			list = service.selectByCompany(company.getCompany_code());
 		} catch (Exception e) {
-			//e.printStackTrace();
+			// e.printStackTrace();
 			System.out.println("실패");
 		}
 		model.addAttribute("facilities", list);
-		
-		//홈페이지소개content----------------------------------
+
 		try {
-			homecont = serviceH.select(company.getCompany_code());	//상호코드
+			homecont = serviceH.select(company.getCompany_code());
 			model.addAttribute("homecont", homecont);
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("CONTENT_FAIL");
 		}
-		
-		model.addAttribute("center", dir+"facility");
-		
+
+		model.addAttribute("center", dir + "facility");
+
 		return "main";
 	}
-	
 }

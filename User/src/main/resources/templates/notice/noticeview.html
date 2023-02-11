@@ -1,10 +1,9 @@
 <script>
-	$(document).ready(function() {
+	$(document).ready(function () {
 		$(".nav-item:nth-child(2)").attr('class', 'nav-item active');
 		$(".notactive:nth-child(2)").attr('class', 'active');
 	});
 </script>
-
 <div class="back_re">
 	<div class="container">
 		<div class="row">
@@ -16,102 +15,99 @@
 		</div>
 	</div>
 </div>
-
-<!-- about -->
-
 <div class="container-md">
 	<div class="col-md-12">
-	<form id="up_form">
-		<table class="viewtable-fill">
-			<thead class="Mtablehidden">
-				<tr>
-					<th class="text-left" id="viewno">글번호</th>
-				</tr>
-				<tr>
-					<th class="text-left" id="viewno">
-						<input id="viewno" readonly="readonly" name="notice_code" th:value="${notice.notice_code}">
-					</th>
-				</tr>
-				<tr>
-					<th class="text-left" id="viewad">작성자:</th>
-				</tr>
-				<tr>
-					<th class="text-left" id="viewad" th:text="${notice.admin_code}"></th>
-				</tr>
-				<tr>
-					<th class="text-left" id="viewdate">등록일:</th>
-				</tr>
-				<tr>
-					<th class="text-left" id="viewdate" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"></th>
-				</tr>
-				<tr>
-					<th class="text-left" id="viewth"><hr>제목</th>
-				</tr>
-				<tr>
-					<th class="text-left" id="viewth" th:text="${notice.notice_title}"></th>
-				</tr>
-			</thead>
-			<thead class="tablehidden">
-				<tr>
-					<th class="text-left" id="viewno">&nbsp;글번호</th>
-					<th class="text-left" id="viewno">
-						<input id="viewno" readonly="readonly" name="notice_code" th:value="${notice.notice_code}">
-					</th>
-					<th colspan="5"></th>
-				</tr>
-				<tr>
-					<th class="text-left" id="viewth">&nbsp;제목</th>
-					<th class="text-left" id="viewth" th:text="${notice.notice_title}"></th>
-					<th class="text-left" id="viewth"></th>
-					<th class="text-right" id="viewad">&nbsp;/ 작성자:&nbsp;</th>
-					<th class="text-right" id="viewad" th:text="${notice.admin_code}"></th>
-					<th class="text-right" id="viewdate">&nbsp;/ 등록일:&nbsp;</th>
-					<th class="text-right" id="viewdate" th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"></th>
-				</tr>
-			</thead>
-			
-			<tbody class="Mtablehidden">
-				<tr>
-					<th class="text-left">
-						<hr>내용
-					</th>
-				</tr>
-				<tr>
-					<td id="viewcontent" class="pre-wrap" colspan="4" th:text="${notice.notice_content}">
-					</td>
-				</tr>
-			</tbody>
-			<tbody class="tablehidden">
-				<tr>
-					<th id="viewlast" colspan="7">
-					</th>
-				</tr>
-				<tr>
-					<th id="viewhr" colspan="7">
-					</th>
-				</tr>
-				<tr>
-					<th id="viewlast" colspan="7">
-					</th>
-				</tr>
-				<tr>
-					<th class="text-left" colspan="1">
-						&nbsp;내용
-					</th>
-					<td id="viewcontent" class="pre-wrap" colspan="4" th:text="${notice.notice_content}">
-					</td>
-					<th colspan="2">
-					</th>
-				</tr>
-				<tr>
-					<th id="viewlast" colspan="7">
-					</th>
-				</tr>
-			</tbody>
-		</table>
-	</form>
+		<form id="up_form">
+			<table class="viewtable-fill">
+				<thead class="Mtablehidden">
+					<tr>
+						<th class="text-left" id="viewno">글번호</th>
+					</tr>
+					<tr>
+						<th class="text-left" id="viewno">
+							<input id="viewno" readonly="readonly" name="notice_code" th:value="${notice.notice_code}">
+						</th>
+					</tr>
+					<tr>
+						<th class="text-left" id="viewad">작성자:</th>
+					</tr>
+					<tr>
+						<th class="text-left" id="viewad" th:text="${notice.admin_code}"></th>
+					</tr>
+					<tr>
+						<th class="text-left" id="viewdate">등록일:</th>
+					</tr>
+					<tr>
+						<th class="text-left" id="viewdate"
+							th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"></th>
+					</tr>
+					<tr>
+						<th class="text-left" id="viewth">
+							<hr>제목
+						</th>
+					</tr>
+					<tr>
+						<th class="text-left" id="viewth" th:text="${notice.notice_title}"></th>
+					</tr>
+				</thead>
+				<thead class="tablehidden">
+					<tr>
+						<th class="text-left" id="viewno">&nbsp;글번호</th>
+						<th class="text-left" id="viewno">
+							<input id="viewno" readonly="readonly" name="notice_code" th:value="${notice.notice_code}">
+						</th>
+						<th colspan="5"></th>
+					</tr>
+					<tr>
+						<th class="text-left" id="viewth">&nbsp;제목</th>
+						<th class="text-left" id="viewth" th:text="${notice.notice_title}"></th>
+						<th class="text-left" id="viewth"></th>
+						<th class="text-right" id="viewad">&nbsp;/ 작성자:&nbsp;</th>
+						<th class="text-right" id="viewad" th:text="${notice.admin_code}"></th>
+						<th class="text-right" id="viewdate">&nbsp;/ 등록일:&nbsp;</th>
+						<th class="text-right" id="viewdate"
+							th:text="${#dates.format(notice.notice_writedate, 'yyyy-MM-dd')}"></th>
+					</tr>
+				</thead>
+				<tbody class="Mtablehidden">
+					<tr>
+						<th class="text-left">
+							<hr>내용
+						</th>
+					</tr>
+					<tr>
+						<td id="viewcontent" class="pre-wrap" colspan="4" th:text="${notice.notice_content}">
+						</td>
+					</tr>
+				</tbody>
+				<tbody class="tablehidden">
+					<tr>
+						<th id="viewlast" colspan="7">
+						</th>
+					</tr>
+					<tr>
+						<th id="viewhr" colspan="7">
+						</th>
+					</tr>
+					<tr>
+						<th id="viewlast" colspan="7">
+						</th>
+					</tr>
+					<tr>
+						<th class="text-left" colspan="1">
+							&nbsp;내용
+						</th>
+						<td id="viewcontent" class="pre-wrap" colspan="4" th:text="${notice.notice_content}">
+						</td>
+						<th colspan="2">
+						</th>
+					</tr>
+					<tr>
+						<th id="viewlast" colspan="7">
+						</th>
+					</tr>
+				</tbody>
+			</table>
+		</form>
 	</div>
 </div>
-<!-- end about -->
-
-

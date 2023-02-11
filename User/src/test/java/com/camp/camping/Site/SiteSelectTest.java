@@ -21,15 +21,6 @@ public class SiteSelectTest {
         }
     }
     @Test
-    void SiteCount(){
-        try {
-            System.out.println(service.AvailableSiteCount(1,"2023-02-03","2023-02-05"));
-        } catch (Exception e) {
-            System.out.println("ㅈ버그터짐3");
-        }
-    }
-
-    @Test
     void findAvailableSite(){
         try {
             System.out.println(service.AvailableSiteCode(1,"2023-02-03","2023-02-05"));

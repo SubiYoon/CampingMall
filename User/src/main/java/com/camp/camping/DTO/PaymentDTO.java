@@ -8,10 +8,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentDTO {
-	
+
 	private String imp_uid;
 	private String merchant_uid;
 	private String status;
-	
 
 }

@@ -14,7 +14,7 @@ public class HomeService implements MyService<Integer, HomeDTO> {
 
 	@Autowired
 	HomeMapper mapper;
-	
+
 	@Override
 	public void insert(HomeDTO v) throws Exception {
 		mapper.insert(v);
@@ -39,6 +39,4 @@ public class HomeService implements MyService<Integer, HomeDTO> {
 	public List<HomeDTO> selectAll() throws Exception {
 		return mapper.selectAll();
 	}
-	
-	
 }
