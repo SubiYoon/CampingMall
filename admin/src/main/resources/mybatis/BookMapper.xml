@@ -127,7 +127,7 @@
           And zone.zone_code = site.zone_code
           And site.site_code = book.site_code
           And (book.book_checkin LIKE #{stringYearMonth} OR book.book_checkout LIKE #{stringYearMonth})
-          And (book.book_state = 1 OR book.book_state = 2 OR book.book_state = 4)
+          And (book.book_state = 1 OR book.book_state = 2 OR book.book_state = 4 OR book.book_state = 5)
 
     </select>
     <select id="selectByCompanyCodeAndWriteDate" resultType="BookDTO">

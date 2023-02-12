@@ -30,10 +30,10 @@ public class BookInsertSampleTest {
         int end_site_code = 40;
 
         //시작번호를 쓸 merchant_uid
-        int start_merchant_uid = 2000;
+        int start_merchant_uid = 4000;
 
         //샘플 갯수
-        int sample_count = 350;
+        int sample_count = 500;
 
         //현재 기준 몇 일 전 까지 체크인으로 가능인지
         int min_check_in_days = 300;
@@ -102,7 +102,7 @@ public class BookInsertSampleTest {
             calendar.add(Calendar.DATE, y);
             bookCheckout = Utility.DateToString(calendar.getTime());
             calendar.add(Calendar.DATE, -(x + y));
-            bookMember = (int) (Math.random() * 2 + Math.random() * 2 + 1);
+            bookMember = (int) (Math.random() * 2 + Math.random() * 2 + 2);
             bookPrice = (int) (Math.random() * 4 + (bookMember * 2) + 4) * 5000;
             if (Math.random() * 10 > 1.5) {
                 bookCarNumber = "" + (int) (Math.random() * 99) + (int) (Math.random() * 10)
