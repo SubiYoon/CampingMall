@@ -11,20 +11,31 @@ import java.util.Date;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.camp.camping.DTO.HomeDTO;
 import com.camp.camping.DTO.WeatherDTO;
+import com.camp.camping.utility.GpsTransfer;
 
 @Service
 public class WeatherService {
 
-	public JSONObject getWeather() throws Exception {
+	@Autowired
+	HomeService serviceH;
+
+	public JSONObject getWeather(int home_code) throws Exception {
 
 		WeatherDTO weather = new WeatherDTO();
 		WeatherDTO weather2 = new WeatherDTO();
 		WeatherDTO weather3 = new WeatherDTO();
 
 		Date checktime=checktime();
+		HomeDTO home = serviceH.select(home_code);
+		GpsTransfer xy = new GpsTransfer(home.getHome_longitude(), home.getHome_latitude());
+		GpsTransfer.transfer(xy);
+		
+		Date date_now = new Date(System.currentTimeMillis());
 		SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyyMMdd");
 		String date = fourteen_format.format(checktime) + "1800";
 
@@ -52,9 +63,9 @@ public class WeatherService {
 		date = fourteen_format.format(checktime);
 		weather3.setWeather_base_date(date);
 		weather3.setWeather_base_time("0200");
-		weather3.setWeather_nx("61");
-		weather3.setWeather_ny("129");
-
+		weather3.setWeather_nx((int)xy.getxLat()+"");
+		weather3.setWeather_ny((int)xy.getyLon()+"");
+		
 		JSONArray json1 = getjsondata(weather);
 		JSONArray json2 = getjsondata(weather2);
 		json2.add(json1.get(0));
