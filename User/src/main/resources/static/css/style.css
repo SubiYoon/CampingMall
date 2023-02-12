@@ -1098,6 +1098,10 @@ button {
      transition: ease-in all 0.5s;
 }
 
+.aboutname{
+	padding: 0px 0px 0px 35px;
+}
+
 .aboutname h5{
 	text-align: center;
 	width: 100%;
