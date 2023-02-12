@@ -24,9 +24,9 @@ public class WeatherService {
 		WeatherDTO weather2 = new WeatherDTO();
 		WeatherDTO weather3 = new WeatherDTO();
 
-		Date date_now = new Date(System.currentTimeMillis());
+		Date checktime=checktime();
 		SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyyMMdd");
-		String date = fourteen_format.format(date_now) + "0600";
+		String date = fourteen_format.format(checktime) + "1800";
 
 		weather.setWeather_url("MidFcstInfoService/getMidLandFcst");
 		weather.setWeather_serviceKey("Q3Jb4VLoiLZHahN%2BoYfI%2BerBplbbZ4%2BNN2XrxdjqZ3hNy%2BuAujVtG3s%2F%2BPWq9BiLB5Anfysmb4Kltjhe0bFUCQ%3D%3D");
@@ -49,7 +49,7 @@ public class WeatherService {
 		weather3.setWeahter_pageNo(1);
 		weather3.setWeather_numOfRows(970);
 		weather3.setWeather_dataType("JSON");
-		date = fourteen_format.format(date_now);
+		date = fourteen_format.format(checktime);
 		weather3.setWeather_base_date(date);
 		weather3.setWeather_base_time("0200");
 		weather3.setWeather_nx("61");
@@ -135,5 +135,30 @@ public class WeatherService {
 
 		return ary;
 	}
+	
+	public Date checktime() throws Exception{
+		Date date_now = new Date(System.currentTimeMillis());
+		SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat time_format = new SimpleDateFormat("yyyyMMddHHmm");
+		String date = fourteen_format.format(date_now) + "0600";
+		String date2 = time_format.format(date_now);
+		Date basic_date06 = time_format.parse(date);
+	    Date date2_1 = time_format.parse(date2);
+		
+		if(basic_date06.after(date2_1)) {
+			date_now = new Date(System.currentTimeMillis()-(1000 * 24 * 60 * 60));
+			
+		}
+		
+		return date_now;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

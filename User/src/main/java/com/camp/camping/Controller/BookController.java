@@ -61,10 +61,17 @@ public class BookController {
 
 		List<Date> wdate = new ArrayList<>();
 		for (int i = 3; i < 10; i++) {
-			Date date = new Date();
-			date.setDate(date.getDate() + i);
-			wdate.add(date);
+			Date date;
+			try {
+				date = serviceW.checktime();
+				date.setDate(date.getDate() + i);
+				wdate.add(date);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		
+		
 		model.addAttribute("wdate", wdate);
 		model.addAttribute("center", dir + "book");
 		return "main";
