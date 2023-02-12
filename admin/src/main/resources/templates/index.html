@@ -58,7 +58,7 @@
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
                             <div class="card-body">
-                                <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                                <h5 class="card-title">매출 <span>| This Month</span></h5>
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -76,7 +76,7 @@
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card revenue-card">
                             <div class="card-body">
-                                <h5 class="card-title">Book <span>| This Month</span></h5>
+                                <h5 class="card-title">예약수 <span>| This Month</span></h5>
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -94,7 +94,7 @@
                     <div class="col-xxl-4 col-xl-12">
                         <div class="card info-card customers-card">
                             <div class="card-body">
-                                <h5 class="card-title">Visitor <span>| This Month</span></h5>
+                                <h5 class="card-title">방문객 <span>| This Month</span></h5>
                                 <div class="d-flex align-items-center">
                                     <div
                                         class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -113,7 +113,7 @@
                         <div class="card">
                             <div class="filter">
                                 <a class="icon" th:href="@{#}" data-bs-toggle="dropdown"><i
-                                        class="bi bi-three-dots"></i></a>
+                                    class="bi bi-three-dots"></i></a>
                                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                     <li class="dropdown-header text-start">
                                         <h6>Filter</h6>
@@ -215,116 +215,116 @@
                                                 VisitorList, nameList) {
                                                 new ApexCharts(
                                                     document.querySelector("#reportsChart"), {
-                                                    series: [{
-                                                        name: 'Revenue',
-                                                        data: RevenueList
-                                                    }, {
-                                                        name: 'Book',
-                                                        data: BookList
-                                                    }, {
-                                                        name: 'Visitor',
-                                                        data: VisitorList
-                                                    }],
-                                                    chart: {
-                                                        height: 350,
-                                                        type: 'area',
-                                                        toolbar: {
-                                                            show: false
+                                                        series: [{
+                                                            name: '매출',
+                                                            data: RevenueList
+                                                        }, {
+                                                            name: '예약수',
+                                                            data: BookList
+                                                        }, {
+                                                            name: '방문객',
+                                                            data: VisitorList
+                                                        }],
+                                                        chart: {
+                                                            height: 350,
+                                                            type: 'area',
+                                                            toolbar: {
+                                                                show: false
+                                                            },
                                                         },
-                                                    },
-                                                    markers: {
-                                                        size: 4
-                                                    },
-                                                    colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                                    fill: {
-                                                        type: "gradient",
-                                                        gradient: {
-                                                            shadeIntensity: 1,
-                                                            opacityFrom: 0.3,
-                                                            opacityTo: 0.4,
-                                                            stops: [0, 90, 100]
-                                                        }
-                                                    },
-                                                    dataLabels: {
-                                                        enabled: false
-                                                    },
-                                                    stroke: {
-                                                        curve: 'smooth',
-                                                        width: 2
-                                                    },
-                                                    xaxis: {
-                                                        type: 'text',
-                                                        categories: nameList
-                                                    },
-                                                    yaxis: [
-                                                        {
-                                                            axisTicks: {
-                                                                show: true
-                                                            },
-                                                            axisBorder: {
-                                                                show: true,
-                                                                color: "#4154f1"
-                                                            },
-                                                            labels: {
-                                                                style: {
+                                                        markers: {
+                                                            size: 4
+                                                        },
+                                                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                                                        fill: {
+                                                            type: "gradient",
+                                                            gradient: {
+                                                                shadeIntensity: 1,
+                                                                opacityFrom: 0.3,
+                                                                opacityTo: 0.4,
+                                                                stops: [0, 90, 100]
+                                                            }
+                                                        },
+                                                        dataLabels: {
+                                                            enabled: false
+                                                        },
+                                                        stroke: {
+                                                            curve: 'smooth',
+                                                            width: 2
+                                                        },
+                                                        xaxis: {
+                                                            type: 'text',
+                                                            categories: nameList
+                                                        },
+                                                        yaxis: [
+                                                            {
+                                                                axisTicks: {
+                                                                    show: true
+                                                                },
+                                                                axisBorder: {
+                                                                    show: true,
                                                                     color: "#4154f1"
+                                                                },
+                                                                labels: {
+                                                                    style: {
+                                                                        color: "#4154f1"
+                                                                    }
+                                                                },
+                                                                title: {
+                                                                    text: "매출 ( 원 )",
+                                                                    style: {
+                                                                        color: "#4154f1"
+                                                                    }
+                                                                },
+                                                                tooltip: {
+                                                                    enabled: true
                                                                 }
                                                             },
-                                                            title: {
-                                                                text: "매출 ( 원 )",
-                                                                style: {
-                                                                    color: "#4154f1"
-                                                                }
-                                                            },
-                                                            tooltip: {
-                                                                enabled: true
-                                                            }
-                                                        },
-                                                        {
-                                                            seriesName: "Book",
-                                                            opposite: true,
-                                                            axisTicks: {
-                                                                show: true
-                                                            },
-                                                            axisBorder: {
-                                                                show: true,
-                                                                color: "#2eca6a"
-                                                            },
-                                                            labels: {
-                                                                style: {
+                                                            {
+                                                                seriesName: "예약수",
+                                                                opposite: true,
+                                                                axisTicks: {
+                                                                    show: true
+                                                                },
+                                                                axisBorder: {
+                                                                    show: true,
                                                                     color: "#2eca6a"
+                                                                },
+                                                                labels: {
+                                                                    style: {
+                                                                        color: "#2eca6a"
+                                                                    }
+                                                                },
+                                                                title: {
+                                                                    text: "예약수 ( 개 )",
+                                                                    style: {
+                                                                        color: "#2eca6a"
+                                                                    }
                                                                 }
                                                             },
-                                                            title: {
-                                                                text: "예약수 ( 개 )",
-                                                                style: {
-                                                                    color: "#2eca6a"
-                                                                }
-                                                            }
-                                                        },
-                                                        {
-                                                            seriesName: "Visitor",
-                                                            opposite: true,
-                                                            axisTicks: {
-                                                                show: true
-                                                            },
-                                                            axisBorder: {
-                                                                show: true,
-                                                                color: "#ff771d"
-                                                            },
-                                                            labels: {
-                                                                style: {
+                                                            {
+                                                                seriesName: "방문객",
+                                                                opposite: true,
+                                                                axisTicks: {
+                                                                    show: true
+                                                                },
+                                                                axisBorder: {
+                                                                    show: true,
                                                                     color: "#ff771d"
+                                                                },
+                                                                labels: {
+                                                                    style: {
+                                                                        color: "#ff771d"
+                                                                    }
+                                                                },
+                                                                title: {
+                                                                    text: "방문객 ( 명 )",
+                                                                    style: {
+                                                                        color: "#ff771d"
+                                                                    }
                                                                 }
-                                                            },
-                                                            title: {
-                                                                text: "방문객 ( 명 )",
-                                                                style: {
-                                                                    color: "#ff771d"
-                                                                }
-                                                            }
-                                                        }]
-                                                }).render();
+                                                            }]
+                                                    }).render();
                                             }
 
                                             function drawChart(divID, obj, string1) {
@@ -438,24 +438,24 @@
                         <h5 class="card-title">최근 예약</h5>
                         <table class="table table-borderless datatable">
                             <thead>
-                                <tr>
-                                    <th scope="col">고객</th>
-                                    <th scope="col">구역 / 사이트</th>
-                                    <th scope="col">가격</th>
-                                    <th scope="col">상태</th>
-                                </tr>
+                            <tr>
+                                <th scope="col">고객</th>
+                                <th scope="col">구역 / 사이트</th>
+                                <th scope="col">가격</th>
+                                <th scope="col">상태</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="books, i:${books}">
-                                    <td th:text="${books.user_name}"></td>
-                                    <td th:text="${books.site_name}"></td>
-                                    <td th:text="${books.book_price}"></td>
-                                    <td th:if="${books.book_state}==1"><span class="badge bg-success">예약완료</span></td>
-                                    <td th:if="${books.book_state}==2"><span class="badge bg-warning">환불요청</span></td>
-                                    <td th:if="${books.book_state}==3"><span class="badge bg-success">환불완료</span></td>
-                                    <td th:if="${books.book_state}==4"><span class="badge bg-danger">환불취소</span></td>
-                                    <td th:if="${books.book_state}==5"><span class="badge bg-success">체크인완료</span></td>
-                                </tr>
+                            <tr th:each="books, i:${books}">
+                                <td th:text="${books.user_name}"></td>
+                                <td th:text="${books.site_name}"></td>
+                                <td th:text="${books.book_price}"></td>
+                                <td th:if="${books.book_state}==1"><span class="badge bg-success">예약완료</span></td>
+                                <td th:if="${books.book_state}==2"><span class="badge bg-warning">환불요청</span></td>
+                                <td th:if="${books.book_state}==3"><span class="badge bg-success">환불완료</span></td>
+                                <td th:if="${books.book_state}==4"><span class="badge bg-danger">환불취소</span></td>
+                                <td th:if="${books.book_state}==5"><span class="badge bg-success">체크인완료</span></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -465,18 +465,18 @@
                         <h5 class="card-title">최근 리뷰</h5>
                         <table class="table table-borderless datatable">
                             <thead>
-                                <tr>
-                                    <th scope="col">작성자</th>
-                                    <th scope="col">내용</th>
-                                    <th scope="col">별점</th>
-                                </tr>
+                            <tr>
+                                <th scope="col">작성자</th>
+                                <th scope="col">내용</th>
+                                <th scope="col">별점</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="reviews, i:${reviews}">
-                                    <td th:text="${reviews.user_name}"></td>
-                                    <td th:text="${reviews.review_content}" class="text-primary"></td>
-                                    <td th:text="${reviews.review_score}"></td>
-                                </tr>
+                            <tr th:each="reviews, i:${reviews}">
+                                <td th:text="${reviews.user_name}"></td>
+                                <td th:text="${reviews.review_content}" class="text-primary"></td>
+                                <td th:text="${reviews.review_score}"></td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
