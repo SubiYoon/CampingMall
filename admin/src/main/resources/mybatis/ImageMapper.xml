@@ -68,18 +68,4 @@
         FROM image
         WHERE home_code = #{home_code}
     </select>
-    <select id="selectFile" resultType="int">
-        SELECT count(*)
-        FROM image
-        WHERE image_file = #{image_file}
-    </select>
-    <update id="updateimage" parameterType="ImageDTO">
-        UPDATE image
-        SET zone_code=IF(#{zone_code} = 0, NULL, #{zone_code}),
-            site_code=IF(#{site_code} = 0, NULL, #{site_code}),
-            home_code=IF(#{home_code} = 0, NULL, #{home_code}),
-            facility_code=IF(#{facility_code} = 0, NULL, #{facility_code}),
-            image_file=#{image_file}
-        WHERE image_code = #{image_code}
-    </update>
 </mapper>

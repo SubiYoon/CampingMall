@@ -1,5 +1,12 @@
 package com.camp.admin.service;
 
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.camp.admin.DTO.BookDTO;
 import com.camp.admin.DTO.ReservationDTO;
 import com.camp.admin.DTO.SiteDTO;
@@ -7,15 +14,6 @@ import com.camp.admin.DTO.ZoneDTO;
 import com.camp.admin.frame.MyService;
 import com.camp.admin.mapper.BookMapper;
 import com.camp.admin.utility.MakeMainGraph;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.TreeMap;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class BookService implements MyService<Integer, BookDTO> {
@@ -59,34 +57,6 @@ public class BookService implements MyService<Integer, BookDTO> {
         return mapper.selectMerchant(merchant_uid);
     }
 
-    public void insertBookAndReservation(BookDTO v) throws Exception {
-        this.insert(v);
-
-        BookDTO book = this.selectMerchant(v.getMerchant_uid());
-        reservationService.insertReservationByBook(book);
-    }
-
-
-    public BookDTO selectViewForm(String book_checkin, String book_checkout, int book_sitecode) {
-
-        BookDTO book = new BookDTO();
-        try {
-            SiteDTO site = siteService.select(book_sitecode);
-            book.setSite_name(site.getSite_name());
-            book.setBook_price(site.getSite_price());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        DateFormat dateFormat = new SimpleDateFormat("MMddHHmmss");
-        Calendar cal = Calendar.getInstance();
-        Random random = new Random();
-        book.setMerchant_uid(dateFormat.format(cal.getTime()) + random.nextInt(100000));
-        book.setBook_checkin(book_checkin);
-        book.setBook_checkout(book_checkout);
-        book.setSite_code(book_sitecode);
-
-        return book;
-    }
 
     public List<Map<String, Object>> selectAllState(int book_state) {
         return mapper.selectAllState(book_state);

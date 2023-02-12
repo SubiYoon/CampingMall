@@ -84,7 +84,6 @@ public class UserController {
 		try{
 			userBooks = bookService.selectUserBook(company.getCompany_code(), user_id);
 			user = service.select(user_id);
-			System.out.println(user);
 			model.addAttribute("user", user);
 			model.addAttribute("userBookDetail", userBooks);
 		} catch(Exception e){

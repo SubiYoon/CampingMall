@@ -35,16 +35,6 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         WHERE 
             image.company_code=#{company_code};
     </select>
-    <select id="selectnt" resultType="UserDTO">
-        SELECT 
-            * 
-        FROM 
-            user 
-        WHERE 
-            user_name=#{n} 
-        AND 
-            user_tel=#{t}
-    </select>
     <select id="select" resultType="UserDTO">
         SELECT 
             * 

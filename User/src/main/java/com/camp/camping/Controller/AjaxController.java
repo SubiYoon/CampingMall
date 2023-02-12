@@ -150,10 +150,8 @@ public class AjaxController {
 
         if (state == 2) {
             result = bService.updateBookState(merchant_uid, 2);
-            System.out.println("22요청:" + result);
         } else if (state == 1) {
             result = bService.updateBookState(merchant_uid, 1);
-            System.out.println("11취소:" + result);
         }
 
         return result;

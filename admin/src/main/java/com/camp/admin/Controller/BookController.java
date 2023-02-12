@@ -42,30 +42,4 @@ public class BookController {
 		return "main";
 	}
 
-	@RequestMapping("/bookdetail")
-	public String book_detail(Model model, HttpSession session,
-			@RequestParam("book_checkin") String book_checkin,
-			@RequestParam("book_checkout") String book_checkout,
-			@RequestParam("book_sitecode") int book_sitecode) {
-
-		HomeDTO homecont = null;
-		CompanyDTO company = (CompanyDTO) session.getAttribute("company");
-
-		try {
-			homecont = serviceH.select(company.getCompany_code());
-			model.addAttribute("homecont", homecont);
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("CONTENT_FAIL");
-		}
-
-		BookDTO book = service.selectViewForm(book_checkin, book_checkout, book_sitecode);
-
-		model.addAttribute("book", book);
-
-		model.addAttribute("center", dir + "bookdetail");
-
-		return "main";
-	}
-
 }

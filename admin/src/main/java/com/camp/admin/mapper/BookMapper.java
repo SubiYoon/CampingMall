@@ -15,7 +15,6 @@ import com.camp.admin.frame.MyMapper;
 public interface BookMapper extends MyMapper<Integer, BookDTO> {
     BookDTO selectMerchant(String merchant_uid);
 
-
     List<Map<String, Object>> selectAllState(int book_state);
 
     int updateBookState(@Param("merchant_uid") String merchant_uid, @Param("state") int state);

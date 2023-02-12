@@ -43,8 +43,4 @@ public class UserService implements MyService<String, UserDTO> {
     public List<UserDTO> selectUsersInfo(int company_code) throws Exception {
         return mapper.selectUsersInfo(company_code);
     }
-
-    public UserDTO selectnt(String n, String t) throws Exception {
-        return mapper.selectnt(n, t);
-    }
 }

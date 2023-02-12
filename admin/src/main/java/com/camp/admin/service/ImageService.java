@@ -78,9 +78,6 @@ public class ImageService {
         mapper.zoneUpdate(imageDTO);
     }
 
-    public void selectFile(String image_file) throws Exception {
-        mapper.selectFile(image_file);
-    }
 
     public void update(MultipartFile mf, ImageDTO imageDTO) throws Exception {
         String fileName = mf.getOriginalFilename();

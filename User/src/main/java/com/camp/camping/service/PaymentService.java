@@ -150,7 +150,6 @@ public class PaymentService implements MyMapper<String, PaymentDTO> {
 			ObjectMapper mapper = new ObjectMapper();
 			String body = EntityUtils.toString(res.getEntity());
 			JsonNode rootNode = mapper.readTree(body);
-			System.out.println(rootNode);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

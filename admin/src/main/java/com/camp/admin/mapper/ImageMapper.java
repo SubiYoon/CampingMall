@@ -18,6 +18,4 @@ public interface ImageMapper extends MyMapper<Integer, ImageDTO> {
     List<ImageDTO> selectByFacilityCode(int facility_code);
     ImageDTO selecOnetByHomeCode(int home_code);
 	public ImageDTO zoneUpdate(ImageDTO imageDTO);
-	int selectFile(String image_file);
-	int updateimage(ImageDTO ImageDTO);
 }
