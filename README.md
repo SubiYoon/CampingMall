@@ -1,5 +1,8 @@
 # **CampingMall Project**
-<img style="width:300px; height:400px; align=center;" src="https://user-images.githubusercontent.com/117332903/218267096-f3ac7df0-8a76-4fd6-a35e-b2001e85051a.png">
+
+<div align="center">
+    <img style="width:300px; height:400px;" src="https://user-images.githubusercontent.com/117332903/218267096-f3ac7df0-8a76-4fd6-a35e-b2001e85051a.png">
+</div>
 
 
 # **1. 프로젝트 주제 및 목적**
