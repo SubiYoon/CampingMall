@@ -17,12 +17,14 @@ public class MakeHeadGraph {
 
     private int NowRevenueSum() throws ParseException {
         Map<String, Double> revenue1 = thisMonth.dayRevenueMap();
-        return (int) revenue1.values().stream().mapToDouble(Double::intValue).sum();
+        return (int)
+            Math.round(revenue1.values().stream().mapToDouble(Double::intValue).sum() * 0.1) * 10;
     }
 
     private String RevenueRate() throws ParseException {
         Map<String, Double> revenue1 = lastMonth.dayRevenueMap();
-        double compare = revenue1.values().stream().mapToDouble(Double::intValue).sum();
+        double compare =
+            Math.round(revenue1.values().stream().mapToDouble(Double::intValue).sum() * 0.1) * 10;
         return Utility.RateOfIncrease(NowRevenueSum(), compare);
     }
 
