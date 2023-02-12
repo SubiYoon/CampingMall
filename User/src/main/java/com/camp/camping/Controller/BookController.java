@@ -53,7 +53,7 @@ public class BookController {
 		}
 
 		try {
-			JSONObject weatherjson = serviceW.getWeather();
+			JSONObject weatherjson = serviceW.getWeather(homecont.getHome_code());
 			model.addAttribute("weatherjson", weatherjson);
 		} catch (Exception e) {
 			e.printStackTrace();
