@@ -37,10 +37,10 @@ INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "화
 INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude, home_image)VALUES(1, '나대표', '서울시 어디구 어디대로 245길 13-256 ', 'www.naver.com', '02-1234-1234', '산과 강과 호수로 둘러쌓인 천혜의 자연 환경을 갖춘 캠핑장에서 도심 속을 벗어나 편안한 힐링을 즐겨보세요.\n4계절마다 각 계절의 특색을 갖추고 있으며 캠핑장을 가득 채운 고목들이 즐비하여 캠핑장 전체에 시원한 그늘을 제공하고 있습니다.', 37.5039781087508, 127.04273317956381, "오시는 길.png");
 
 -- 구역
-insert into `review`(book_code, review_content, review_score) values(1,'일단 사장님 너무 친절하시고 유쾌하시고 맛집이랑 차박지 추천 다 알려주시고 텐트치는 법 몰라도 다 알려주시니까 걱정이 없었습니다',4);
-insert into `review`(book_code, review_content, review_score) values(2,'4박 5일 일정 중에 가장 기억에 남는 순간이었어요! 좀 추웠어요',3);
-insert into `review`(book_code, review_content, review_score) values(3,'저희는 다른 용품은 있어서 모닥불만 대여했는데 사장님 친절하시고 사용법도 잘 알려주셔서 안전하고 갬성있게 불멍할 수 있었어요',5);
-insert into `review`(book_code, review_content, review_score) values(5,'물품 깨끗하고 좋은 캠핑 스팟 잘 알려주셨으며 설치하는데 사장님께서 오셔서 엄청 도와주셨어요',5);
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'호수 존', '캠핑장의 자랑인 아름다운 저수지 바로 옆에 자리하고 있습니다.\n총 7개의 사이트가 파쇄석으로 이루어져 있으며 5.7m * 8m의 넉넉한 넓이를 자랑하고 있습니다.\n(5.7m ~ 6.7m로 사이트마다 다름)');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'텐트/차박 존', '충분한 그늘 수목을 식재하고 홍천강까지 데크가 연결 되어 있어 일상에 지친 사람들을 위해 충분한 휴식공간이 마련되어 있고, 강이 굽이치고 있어 주변관광을 즐길 수 있습니다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'마운틴 존', '녹음이 짙은 산자락에 위치하고 있어 조용하며 공기가 상쾌하여 캠핑의 최적지라고 할 수 있습니다.\n데크사이즈가 커서 집짓고 타프까지 가능합니다.\n배전함이 설치되어있어 릴선은 20M 면 충분합니다.');
+INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'리버 존', '아름다운 계곡을 가운데 끼고 푸르른 숲으로 둘러쌓여 있어 계절의 변화와 함께 자연의 풍경, 여유, 즐거움을 느낄수 있습니다.\n360도의 조망권과 넓은 시야를 가지고 있어, 강의 아름다운 정취와 여유를 느낄 수 있습니다.');
 
 -- 사이트
 INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 A',20000,'호수 존-호수 A 사이트 입니다.\n호수가 한눈에 내려다보이는 전망이 일품인 사이트입니다.\n호숫가 둘레길 바로 옆에 위치하며 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
@@ -84,9 +84,10 @@ insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-
 insert into `schedule`(admin_code, schedule_date, schedule_name) values(1,'2023-02-07','방역');
 
 -- 리뷰
-insert into `review`(book_code, review_content, review_score) values(1,'맛있어요',3);
-insert into `review`(book_code, review_content, review_score) values(2,'추워요',4);
-insert into `review`(book_code, review_content, review_score) values(4,'풍경이 멋있어요',5);
+insert into `review`(book_code, review_content, review_score) values(1,'일단 사장님 너무 친절하시고 유쾌하시고 맛집이랑 차박지 추천 다 알려주시고 텐트치는 법 몰라도 다 알려주시니까 걱정이 없었습니다',4);
+insert into `review`(book_code, review_content, review_score) values(2,'4박 5일 일정 중에 가장 기억에 남는 순간이었어요! 좀 추웠어요',3);
+insert into `review`(book_code, review_content, review_score) values(3,'저희는 다른 용품은 있어서 모닥불만 대여했는데 사장님 친절하시고 사용법도 잘 알려주셔서 안전하고 갬성있게 불멍할 수 있었어요',5);
+insert into `review`(book_code, review_content, review_score) values(5,'물품 깨끗하고 좋은 캠핑 스팟 잘 알려주셨으며 설치하는데 사장님께서 오셔서 엄청 도와주셨어요',5);
 
 -- 이미지
 insert into image(company_code, zone_code, image_file) VALUES(1, 1, 'lake.jpg');
