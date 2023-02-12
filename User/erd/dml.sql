@@ -19,51 +19,50 @@ INSERT INTO company(company_name, company_logo1, company_logo2) VALUES('NiceCamp
 insert into `admin`(company_code, admin_id, admin_password) values(1,'admin01','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
 insert into `admin`(company_code, admin_id, admin_password) values(2,'admin02','zefgWF8WQvW8/vwu8l2Nk2cBbk0BhTBwDkU3x8Wa9w5aq5FBI5WBz+SoBa4j15G1h8FeAyhkuV3GWkjfBj1qJg==');
 
--- Noob camping 샘플
 
 -- 공지
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '예약 및 이용시 유의사항', "1. 입장시간은 14:00시 이후 / 퇴장시간은 익일 정오 12:00시 까지 입니다.\n(입퇴장 시간은 청소 및 다음 준비를 위하여 필히 준수하여 주시기 바랍니다.)\n\n2. 예약 차량(1대) 및 예약 인원 이외에는 출입할 수 없습니다.\n     (기준인원 초과시 1인당 10,000원의 추가요금이 적용됩니다.)\n\n3.지정 주차장 제도로 인하여 추가 차량은 캠핑장내에 주차를 하시면 안됩니다.\n\n4. 화재 예방을 위해 텐트 내에서는 절대 금연이며, 휴대용 가스버너, 양초,\n    폭죽 등의 사용을 금지하며 반려 동물의 동반입소는 불가능합니다.\n\n5. 입장하신 후 텐트내 귀중품 도난 방지를 위해 신경 써 주세요.\n\n6. 미성년자는 보호자 동반 없이 이용이 불가능 합니다.");
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '[자주 묻는 질문]우천시 환불 안내', "우천시 환불 안내 단순, 우천으로 인한 환불은 100% 환불 받을 수 없습니다.\n\n달천공원오토캠핑장에서 이용이 전혀 불가능하능 할 경우 정한 바에 따라 100%환불이 됩니다.\n\n(호우특보 및 태풍등의 직접적인 영향 기타사항일 경우)\n\n 감사합니다.");
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '[환불 안내]환불요청은 홈페이지에서 하셔야 합니다.', "승인완료 후 예약자 본인이 직접 홈페이지에서 환불요청 해주셔야 합니다.\n\n홈페이지 예약확인해서 확인후 환불요청 하시면 됩니다.\n\n※ 환불신청시 참고사항 - 천재지변과 우천으로 사용이 전혀 불가능할때에는 배상금없이 사용료만 환불한다.\n\n- 사용자가 사용당일 11시간까지 통보가 없는 경우에는 환불이 불가능하다.");
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, NULL, '[휴업 안내]휴업안내', "코로나19 확진자가 다수 발생되어, 1주간 휴업을 하도록 결정이 났습니다.\n\n그리하여 02/24 ~ 03/07 정도 휴업에 들어갑니다.\n\n차후 일정이 변경되면 개별적으로 연락을 드리도록 하겠습니다.\n\n3월24일부터 3월31 일까지 예약승인되신 분은 홈페이지에서 환불 요청 부탁들립니다.\n\n기타문의는  02-1234-1234로 연락 부탁드립니다.");
-INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, NULL, '전화문의가능시간 (오전9시-오후6시)', "전화문의는 오전 9시-오후 6시에 부탁드립니다.");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '[이용안내] 캠핑장 예약 및 이용시 유의사항 안내', "\n안녕하세요, NoopCamping입니다.\n\n1. 입장시간은 14:00시 이후 / 퇴장시간은 익일 정오 12:00시 까지 입니다.\n   (입퇴장 시간은 청소 및 다음 준비를 위하여 필히 준수하여 주시기 바랍니다.)\n\n2. 예약 차량(1대) 및 예약 인원 이외에는 출입할 수 없습니다.\n   (기준인원 초과시 1인당 10,000원의 추가요금이 적용됩니다.)\n\n3.지정 주차장 제도로 인하여 추가 차량은 캠핑장 내 주차가 불가능합니다.\n\n4. 화재 예방을 위해 텐트 내에서는 절대 금연이며, 휴대용 가스버너, 양초,\n   폭죽 등의 사용을 금지하며 반려 동물의 동반입소는 불가능합니다.\n\n5. 입장하신 후 텐트내 귀중품 도난에 유의하시기 바랍니다.\n\n6. 미성년자는 보호자 동반 없이 캠핑장 이용이 불가능 합니다.\n\n감사합니다.\n\n\n");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '[자주 묻는 질문] Q. 환불은 어디서 요청하나요?', "\n안녕하세요, NoopCamping입니다.\n\n예악 환불 신청은 예약이 승인된 상태에서 본인이 직접 진행해주셔야 합니다.\n홈페이지 로그인 후 [마이페이지]-[예약내역]-[환불요청] 으로 진행합니다.\n\n※ 환불신청시 참고사항 - 천재지변과 우천으로 사용이 전혀 불가능할때에는 배상금없이 사용료만 환불됩니다.\n※ 사용자가 사용당일 11시간까지 통보가 없는 경우에는 환불이 불가능합니다.\n\n감사합니다.\n\n\n");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, NULL, '[자주 묻는 질문] Q. 비가 와서 못 갈것 같은데 환불이 가능한가요?', "\n안녕하세요, NoopCamping입니다.\n\n가벼운 우천으로 인한 환불은 100% 환불 받을 수 없습니다.\n기상 상황 및 천재지변으로 인해 캠핑장 이용이 전혀 불가능 할 경우에는 환불 규정에 따라 100% 환불이 가능합니다.\n(호우특보, 태풍 직접적인 영향 등)\n\n감사합니다.\n\n\n");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '[휴무일 안내] (방역)긴급 휴장 안내', "\n안녕하세요, NoopCamping입니다.\n\n코로나19 확진자 다수 발생으로 인한 방역 일정으로 1주간 휴장 예정입니다.\n\n※ 휴무기간: 02/24 ~ 03/07(예정)\n\n추후 일정 변경시 개별적으로 연락을 드리도록 하겠습니다.\n2월24일부터 3월31 일까지 예약승인되신 분은 홈페이지에서 환불 요청 부탁드립니다.\n기타문의는 02-1234-1234로 연락 부탁드립니다.\n※ 전화문의 가능시간 (오전9시-오후6시)\n\n감사합니다.\n\n\n");
+INSERT INTO notice(admin_code, notice_level, notice_title, notice_content) VALUES(1, 1, '[휴무일 안내] 정화조 보수공사로 인한 휴장 안내', "\n안녕하세요, NoopCamping입니다.\n\n캠핑장 정화조 보수공사 일정으로 1주간 휴장 예정입니다.\n\n※ 휴무기간: 02/24 ~ 03/07(예정)\n\n추후 일정 변경시 개별적으로 연락을 드리도록 하겠습니다.\n2월24일부터 3월31 일까지 예약승인되신 분은 홈페이지에서 환불 요청 부탁드립니다.\n기타문의는 02-1234-1234로 연락 부탁드립니다.\n※ 전화문의 가능시간 (오전9시-오후6시)\n\n감사합니다.\n\n\n");
 
 -- 시설
-INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "샤워장", "온수는 07:00~23:00에 이용 가능합니다.");
-INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "매점", "평일(월~목) : 10:00~18:00  \n주말 : 24시간 이용 가능");
-INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "카페", "평일 08:30~21:30 / 주말 10:00~19:00  \n커피, 디저트, 쥬스 다양한 메뉴를 제공하고있습니다.");
-INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "화장실", "캠핑장용 남자화장실 2개소, 여자화장실 2개소가 있습니다. \n타일, 수전 하나까지 엄선하여 청결함과 편리함을 극대화 하였습니다.");
+INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "샤워장", "마사지, 때밀이, 빨래, 자리독점 등 타인에게 피해를 유발시키는 행위를 금지합니다.\n안전사고 방지 및 환경보호를 위해 오일, 팩, 우유, 염색 등의 사용을 금지합니다.\n공용 이용 시설인 관계로 샤워실 내 휴대폰 반입을 금지합니다.\n온수는 07:00~24:00에 이용 가능합니다.");
+INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "매점", "관리동 왼편에 위치한 매점입니다. \n\n- 평일(월~금) : 10:00~18:00\n- 주말 : 24시간 이용 가능\n※ 01:30 이후 무인 키오스크로 운영됩니다.\n");
+INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "카페", "커피류, 쥬스류, 베이커리류 등 다양한 메뉴를 제공하고 있습니다.\n외부 음료 반입은 자제 부탁드립니다.\n\n- 평일(월~금) : 08:30~21:30\n- 주말 : 10:00~19:00");
+INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "화장실", "각 구역 입구에 남자화장실 2개소, 여자화장실 2개소가 설치되어 있습니다.\n위생용품 문의는 관리동으로 요청 바랍니다.\n\n- 청소 시간 : 23:00~23:30");
 
 -- 홈페이지
-INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude, home_image)VALUES(1, '나대표', '서울시 어딘가', 'www.naver.com', '02-1234-1234', '산과 강과 호수로 둘러쌓인 천혜의 자연 환경을 갖춘 캠핑장에서 도심 속을 벗어나 편안한 힐링을 즐겨보세요.\n4계절마다 각 계절의 특색을 갖추고 있으며 캠핑장을 가득 채운 고목들이 즐비하여 캠핑장 전체에 시원한 그늘을 제공하고 있습니다.', 37.5039781087508, 127.04273317956381, "오시는 길.png");
+INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude, home_image)VALUES(1, '나대표', '서울시 어디구 어디대로 245길 13-256 ', 'www.naver.com', '02-1234-1234', '산과 강과 호수로 둘러쌓인 천혜의 자연 환경을 갖춘 캠핑장에서 도심 속을 벗어나 편안한 힐링을 즐겨보세요.\n4계절마다 각 계절의 특색을 갖추고 있으며 캠핑장을 가득 채운 고목들이 즐비하여 캠핑장 전체에 시원한 그늘을 제공하고 있습니다.', 37.5039781087508, 127.04273317956381, "오시는 길.png");
 
 -- 구역
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'호수 뷰', '캠핑장의 자랑인 아름다운 저수지 바로 옆에 자리하고 있습니다.\n총 7개의 사이트가 파쇄석으로 이루어져 있으며 5.7m * 8m의 넉넉한 넓이를 자랑하고 있습니다.\n(5.7m ~ 6.7m로 사이트마다 다름)');
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'텐트', '충분한 그늘 수목을 식재하고 홍천강까지 데크가 연결 되어 있어 일상에 지친 사람들을 위해 충분한 휴식공간이 마련되어 있고, 강이 굽이치고 있어 주변관광을 즐길 수 있습니다.');
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'마운틴 뷰', '녹음이 짙은 산자락에 위치하고 있어 조용하며 공기가 상쾌하여 캠핑의 최적지라고 할 수 있습니다.\n데크사이즈가 커서 집짓고 타프까지 가능합니다.\n배전함이 설치되어있어 릴선은 20M 면 충분합니다.');
-INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'리버 뷰', '아름다운 계곡을 가운데 끼고 푸르른 숲으로 둘러쌓여 있어 계절의 변화와 함께 자연의 풍경, 여유, 즐거움을 느낄수 있습니다.\n360도의 조망권과 넓은 시야를 가지고 있어, 강의 아름다운 정취와 여유를 느낄 수 있습니다.');
+insert into `review`(book_code, review_content, review_score) values(1,'일단 사장님 너무 친절하시고 유쾌하시고 맛집이랑 차박지 추천 다 알려주시고 텐트치는 법 몰라도 다 알려주시니까 걱정이 없었습니다',4);
+insert into `review`(book_code, review_content, review_score) values(2,'4박 5일 일정 중에 가장 기억에 남는 순간이었어요! 좀 추웠어요',3);
+insert into `review`(book_code, review_content, review_score) values(3,'저희는 다른 용품은 있어서 모닥불만 대여했는데 사장님 친절하시고 사용법도 잘 알려주셔서 안전하고 갬성있게 불멍할 수 있었어요',5);
+insert into `review`(book_code, review_content, review_score) values(5,'물품 깨끗하고 좋은 캠핑 스팟 잘 알려주셨으며 설치하는데 사장님께서 오셔서 엄청 도와주셨어요',5);
 
 -- 사이트
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 뷰-1',20000,'호수 뷰-1 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 뷰-2',20000,'호수 뷰-2 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 뷰-3',20000,'호수 뷰-3 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 뷰-4',20000,'호수 뷰-4 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 뷰-5',20000,'호수 뷰-5 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(2, '텐트-1',30000,'텐트-1 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(2, '텐트-2',30000,'텐트-2 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(2, '텐트-3',30000,'텐트-3 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(2, '텐트-4',30000,'텐트-4 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(2, '텐트-5',30000,'텐트-5 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 뷰-1',40000,'마운틴 뷰-1 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 뷰-2',40000,'마운틴 뷰-2 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 뷰-3',40000,'마운틴 뷰-3 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 뷰-4',40000,'마운틴 뷰-4 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 뷰-5',40000,'마운틴 뷰-5 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰-1',50000,'리버 뷰1 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰-2',50000,'리버 뷰2 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰-3',50000,'리버 뷰3 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰-4',50000,'리버 뷰4 입니다.');
-INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰-5',50000,'리버 뷰5 입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 A',20000,'호수 존-호수 A 사이트 입니다.\n호수가 한눈에 내려다보이는 전망이 일품인 사이트입니다.\n호숫가 둘레길 바로 옆에 위치하며 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 B',20000,'호수 존-호수 B 사이트 입니다.\n호수가 한눈에 내려다보이는 전망이 일품인 사이트입니다.\n호숫가 둘레길 바로 옆에 위치하며 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 C',20000,'호수 존-호수 C 사이트 입니다.\n호수가 한눈에 내려다보이는 전망이 일품인 사이트입니다.\n호숫가 둘레길 바로 옆에 위치하며 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 D',20000,'호수 존-호수 D 사이트 입니다.\n호수가 한눈에 내려다보이는 전망이 일품인 사이트입니다.\n호숫가 둘레길 바로 옆에 위치하며 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(1, '호수 E',20000,'호수 존-호수 E 사이트 입니다.\n호수가 한눈에 내려다보이는 전망이 일품인 사이트입니다.\n호숫가 둘레길 바로 옆에 위치하며 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(2, '텐트 A',30000,'텐트/차박 존-텐트 A 사이트 입니다.\n개인 SUV차량과 캐러반 등으로 캠핑이 가능한 사이트입니다.\n호숫가 둘레길 바로 옆에 위치하며 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(2, '텐트 B',30000,'텐트/차박 존-텐트 B 사이트 입니다.\n개인 SUV차량과 캐러반 등으로 캠핑이 가능한 사이트입니다.\n호숫가 둘레길 바로 옆에 위치하며 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(2, '텐트 C',30000,'텐트/차박 존-텐트 C 사이트 입니다.\n개인 SUV차량과 캐러반 등으로 캠핑이 가능한 사이트입니다.\n호숫가 둘레길 바로 옆에 위치하며 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(2, '차박 A',30000,'텐트/차박 존-차박 A 사이트 입니다.\n개인 SUV차량과 캐러반 등으로 캠핑이 가능한 사이트입니다.\n호숫가 둘레길 바로 옆에 위치하며 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(2, '차박 B',30000,'텐트/차박 존-차박 B 사이트 입니다.\n개인 SUV차량과 캐러반 등으로 캠핑이 가능한 사이트입니다.\n호숫가 둘레길 바로 옆에 위치하며 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 A',40000,'마운틴 존-마운틴 A 사이트 입니다.\n계절마다 바뀌는 산 전경을 보며 노지 캠핑이 가능한 사이트입니다.\n금강산 아래쪽을 따라 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인3인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 B',40000,'마운틴 존-마운틴 B 사이트 입니다.\n계절마다 바뀌는 산 전경을 보며 노지 캠핑이 가능한 사이트입니다.\n금강산 아래쪽을 따라 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인3인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 C',40000,'마운틴 존-마운틴 C 사이트 입니다.\n계절마다 바뀌는 산 전경을 보며 노지 캠핑이 가능한 사이트입니다.\n금강산 아래쪽을 따라 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인3인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 D',40000,'마운틴 존-마운틴 D 사이트 입니다.\n계절마다 바뀌는 산 전경을 보며 노지 캠핑이 가능한 사이트입니다.\n금강산 아래쪽을 따라 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인3인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(3, '마운틴 E',40000,'마운틴 존-마운틴 E 사이트 입니다.\n계절마다 바뀌는 산 전경을 보며 노지 캠핑이 가능한 사이트입니다.\n금강산 아래쪽을 따라 잔디 위에 텐트 사이트가 있습니다.\n커플이나 성인3인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰 A',50000,'리버 존 - 리버 뷰 A 사이트 입니다.\n탁 트인 금강의 시원한 강바람과 함께 휴식을 취할 수 있는 사이트입니다.\n강변을 따라 사이트가 늘어서 있으며 데크 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰 B',50000,'리버 존 - 리버 뷰 B 사이트 입니다.\n탁 트인 금강의 시원한 강바람과 함께 휴식을 취할 수 있는 사이트입니다.\n강변을 따라 사이트가 늘어서 있으며 데크 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰 C',50000,'리버 존 - 리버 뷰 C 사이트 입니다.\n탁 트인 금강의 시원한 강바람과 함께 휴식을 취할 수 있는 사이트입니다.\n강변을 따라 사이트가 늘어서 있으며 데크 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰 D',50000,'리버 존 - 리버 뷰 D 사이트 입니다.\n탁 트인 금강의 시원한 강바람과 함께 휴식을 취할 수 있는 사이트입니다.\n강변을 따라 사이트가 늘어서 있으며 데크 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
+INSERT INTO `site` (zone_code, site_name, site_price, site_content)VALUES(4, '리버 뷰 E',50000,'리버 존 - 리버 뷰 E 사이트 입니다.\n탁 트인 금강의 시원한 강바람과 함께 휴식을 취할 수 있는 사이트입니다.\n강변을 따라 사이트가 늘어서 있으며 데크 위에 텐트 사이트가 있습니다.\n커플이나 성인2인+어린이 1~2명이 이용하기에 적당한 규모입니다.');
 
 -- 결제
 insert into `payment`(merchant_uid,pay_method, imp_uid) values('1','카드','1');
