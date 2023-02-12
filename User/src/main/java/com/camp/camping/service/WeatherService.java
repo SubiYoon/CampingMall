@@ -35,7 +35,6 @@ public class WeatherService {
 		GpsTransfer xy = new GpsTransfer(home.getHome_longitude(), home.getHome_latitude());
 		GpsTransfer.transfer(xy);
 		
-		Date date_now = new Date(System.currentTimeMillis());
 		SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyyMMdd");
 		String date = fourteen_format.format(checktime) + "1800";
 
