@@ -29,29 +29,36 @@ public class WeatherService {
 		WeatherDTO weather = new WeatherDTO();
 		WeatherDTO weather2 = new WeatherDTO();
 		WeatherDTO weather3 = new WeatherDTO();
-
-		Date checktime=checktime();
+		String date="";
+		SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyyMMdd");
+		Date check_date=new Date(System.currentTimeMillis());
+		date = fourteen_format.format(check_date) + "0600";
+		if(!checktime()) {
+			check_date = new Date(System.currentTimeMillis()-(1000 * 24 * 60 * 60));
+			date = fourteen_format.format(check_date) + "1800";
+		}
+		
 		HomeDTO home = serviceH.select(home_code);
+		
+		
 		GpsTransfer xy = new GpsTransfer(home.getHome_longitude(), home.getHome_latitude());
 		GpsTransfer.transfer(xy);
 		
-		SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyyMMdd");
-		String date = fourteen_format.format(checktime) + "1800";
 
 		weather.setWeather_url("MidFcstInfoService/getMidLandFcst");
 		weather.setWeather_serviceKey("Q3Jb4VLoiLZHahN%2BoYfI%2BerBplbbZ4%2BNN2XrxdjqZ3hNy%2BuAujVtG3s%2F%2BPWq9BiLB5Anfysmb4Kltjhe0bFUCQ%3D%3D");
 		weather.setWeahter_pageNo(1);
 		weather.setWeather_numOfRows(10);
 		weather.setWeather_dataType("JSON");
-		weather.setWeather_redId("11B00000");
+		weather.setWeather_redId(getrid(home.getHome_address()));
 		weather.setWeather_tmFc(date);
 
 		weather2.setWeather_url("MidFcstInfoService/getMidTa");
-		weather2.setWeather_serviceKey("Q3Jb4VLoiLZHahN%2BoYfI%2BerBplbbZ4%2BNN2XrxdjqZ3hNy%2BuAujVtG3s%2F%2BPWq9BiLB5Anfysmb4Kltjhe0bFUCQ%3D%3D");// serviceKey
+		weather2.setWeather_serviceKey("Q3Jb4VLoiLZHahN%2BoYfI%2BerBplbbZ4%2BNN2XrxdjqZ3hNy%2BuAujVtG3s%2F%2BPWq9BiLB5Anfysmb4Kltjhe0bFUCQ%3D%3D");
 		weather2.setWeahter_pageNo(1);
 		weather2.setWeather_numOfRows(10);
 		weather2.setWeather_dataType("JSON");
-		weather2.setWeather_redId("11B10101");
+		weather2.setWeather_redId(getrid2(home.getHome_address()));
 		weather2.setWeather_tmFc(date);
 
 		weather3.setWeather_url("VilageFcstInfoService_2.0/getVilageFcst");
@@ -59,7 +66,7 @@ public class WeatherService {
 		weather3.setWeahter_pageNo(1);
 		weather3.setWeather_numOfRows(970);
 		weather3.setWeather_dataType("JSON");
-		date = fourteen_format.format(checktime);
+		date = fourteen_format.format(check_date);
 		weather3.setWeather_base_date(date);
 		weather3.setWeather_base_time("0200");
 		weather3.setWeather_nx((int)xy.getxLat()+"");
@@ -146,7 +153,7 @@ public class WeatherService {
 		return ary;
 	}
 	
-	public Date checktime() throws Exception{
+	public boolean checktime() throws Exception{
 		Date date_now = new Date(System.currentTimeMillis());
 		SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyyMMdd");
 		SimpleDateFormat time_format = new SimpleDateFormat("yyyyMMddHHmm");
@@ -156,17 +163,63 @@ public class WeatherService {
 	    Date date2_1 = time_format.parse(date2);
 		
 		if(basic_date06.after(date2_1)) {
-			date_now = new Date(System.currentTimeMillis()-(1000 * 24 * 60 * 60));
-			
+			return false;
 		}
-		
-		return date_now;
+		return true;
 	}
 	
+	public String getrid(String Home_address) throws Exception{
+		String rid="11B00000";
+		if(Home_address.contains("서울")||Home_address.contains("인천")||Home_address.contains("경기도")) {
+			rid="11B00000";
+		}else if(Home_address.contains("강원도")){
+			rid="11D10000";
+			if(Home_address.contains("영동")) {
+				rid="11D20000";
+			}
+		}else if(Home_address.contains("대전")||Home_address.contains("세종")||Home_address.contains("충청남도")){
+			rid="11C20000";
+		}else if(Home_address.contains("충청북도")||Home_address.contains("충청도")){
+			rid="11C10000";
+		}else if(Home_address.contains("광주시")||Home_address.contains("전라남도")){
+			rid="11F20000";
+		}else if(Home_address.contains("전라북도")||Home_address.contains("전라도")){
+			rid="11F10000";
+		}else if(Home_address.contains("경상북도")||Home_address.contains("대구")||Home_address.contains("경상도")){
+			rid="11H10000";
+		}else if(Home_address.contains("부산")||Home_address.contains("울산")||Home_address.contains("경상남도")){
+			rid="11H10000";
+		}else if(Home_address.contains("제주도")){
+			rid="11G00000";
+		}
+		
+		return rid;
+	}
 	
-	
-	
-	
+	public String getrid2(String Home_address) throws Exception{
+		String rid="11B10101";
+		if(Home_address.contains("서울")||Home_address.contains("인천")||Home_address.contains("경기도")) {
+			rid="11B10101";
+		}else if(Home_address.contains("강원도")){
+			rid="11D10301";
+		}else if(Home_address.contains("대전")||Home_address.contains("세종")||Home_address.contains("충청남도")){
+			rid="11C20401";
+		}else if(Home_address.contains("충청북도")||Home_address.contains("충청도")){
+			rid="11C10301";
+		}else if(Home_address.contains("광주시")||Home_address.contains("전라남도")){
+			rid="11F20501";
+		}else if(Home_address.contains("전라북도")||Home_address.contains("전라도")){
+			rid="11F10201";
+		}else if(Home_address.contains("경상북도")||Home_address.contains("대구")||Home_address.contains("경상도")){
+			rid="11H10701";
+		}else if(Home_address.contains("부산")||Home_address.contains("울산")||Home_address.contains("경상남도")){
+			rid="11H20201";
+		}else if(Home_address.contains("제주도")){
+			rid="11G00201";
+		}
+		
+		return rid;
+	}
 	
 	
 	

@@ -63,9 +63,12 @@ public class BookController {
 		for (int i = 3; i < 10; i++) {
 			Date date;
 			try {
-				date = serviceW.checktime();
-				date.setDate(date.getDate() + i);
-				wdate.add(date);
+				Date check_date=new Date(System.currentTimeMillis());
+				if(!serviceW.checktime()) {
+					check_date = new Date(System.currentTimeMillis()-(1000 * 24 * 60 * 60));
+				}
+				check_date.setDate(check_date.getDate() + i);
+				wdate.add(check_date);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
