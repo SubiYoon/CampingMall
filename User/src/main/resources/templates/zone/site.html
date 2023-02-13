@@ -86,7 +86,7 @@
 				document.body.style = "overflow: hidden";
             $("html").animate({scrollTop:$("#modal").offset().top},1000);
          } else {
-            let review_content = $('#review_score > input[name=review_content]').val();
+            let review_content = $('#review_score input[name=review_content]').val();
             $.ajax({
                url: '/reviewUpload',
                data: {
