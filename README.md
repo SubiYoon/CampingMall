@@ -90,14 +90,67 @@ NAME | Representative
 촬영하고설명하고
 <br><br><br>
 
-# 7. 트러블 슈팅
+# 7. 트러블 슈팅🧨
+1. BootStrap 사용시 하위맵핑에서 js파일 실행안되는 현상 발생 (ex. localhost/user/register) - 해결
+> Thymeleaf 사용시 src를 th:src로 변경하여 해결<br>
+<br>
 
-NAME | ISSUE | SOLUTION 
----- | ---- | ---- 
-강무성 |ㅇㅇ | ㅇ? 
-김태욱 | ㅇㅇ | ㅇㅇㅋ 
-박지원 | ㄴㄴ | ㄴㄴㄴ 
-윤동섭 | ㅇㅇ | ㅇㅇㅋ 
+2. Mapping 실행시 추가적으로 GETMapping이 실행되는 현상 발생 - 해결
+> 템플릿파일 중 JS파일에서 맵핑을 두번실행되는 것으로 추정됨<br>
+> 해결은 했지만, 아직 완벽한 원인을 파악하지 못함….<br>
+<br>
 
-각자기록하셧던거 쓰심댈듯 
-<br><br><br>
+3. IntelliJ에서 main.java에 있는 xml파일 인식 못하는 문제 발생 - 해결
+> IntelliJ 이슈인것으로 추측됨.<br>
+> resources하위폴더로 Path를 새로 잡아준 후 해결<br>
+> mybatis.mapper-locations=classpath:mybatis//*.xml
+<br>
+
+4. 다른페이지에서 Login시 url이 중첩되어지는 현상 발생 - 해결
+> ex) Notice페이지에 맵핑된 페이지에서 Login 모달 실행시 /notice/login/loginOk로 맵핑됨<br>
+> 맵핑 주소 앞에 ‘ / ‘ 를 삽입하여 해결<br>
+<br>
+
+5. Kakao Map 로그인, 회원가입 후 500에러 현상 발생 - 해결
+> Controller에서 ‘ / ‘ 로 맵핑시 데이터가 전달되도록 설정되어 있음<br>
+> UserController에서 main으로 return하던것을 redirect를 사용하여 ‘ / ‘ 로 리턴시켜 해결<br>
+<br>
+
+6. 예약페이지 달력에서 background-color 클릭이벤트시 한자리 숫자와 두자리 숫자 클릭시 표시 불량 - 해결
+> 처음에 클릭하는 숫자앞에 0을 문자타입으로 붙여서 숫자로 인식 못하는 문제 발생<br>
+> 해당 문자를 숫자로 인식하게 하기 위해 0일 빼주어 숫자로 인식하게 만듬<br>
+<br>
+
+7. Controller에서 같은 변수명 List형식으로 받아지지 않는 현상 발생 - 해결
+> Controller에서 매개변수 설정시 에노테이션을 작성해 주어야함<br>
+> @RequestParam 에노테이션 작성 후 문제 해결<br>
+<br>
+
+8. Admin 페이지에 파일을 upload하기 때문에 User페이지에서 데이터를 못 받아오는 현상 발생 - 해결
+> Class를 생성해서 WebMVCConfigurer를 상속받아 addResourceHandlers 메서드를 Override 함<br>
+> Configuration 에노테이션을 Class에 선언해주어야 함<br>
+> 경로 작성시 ‘ / ‘ 닫는거 유의!!<br>
+<br>
+
+9. Jquery 동작 안하는 현상 발생.. - 해결
+> $(document).ready(); 를 선언해주지 않아 작동하지 않음..<br>
+<br>
+
+10. sidebar에 데이터 뿌려주는거 main페이지에서만 작동하고 다른페이지에서 작동 안하는 현상 발생 - 해결
+> 페이지 이동시 데이터를 불러오고 보내주는 단계가 없어 데이터 뿌려주지 못함<br>
+> session을 이용하여 해결<br>
+<br>
+
+11. 서버와 MySQL연동시 Query문 작동 안하는 문제 발생 - 해결
+> 컬럼은 상관없지만, 테이블명에서 대소문자를 구분하기 시작함<br>
+> ddl에 만든 테이블명을 소문자로 입력후 dml을 사용하니 해결 됨<br>
+<br>
+
+12. 서버 배포후 지연시간이 길다고 나와 연결 안되는 문제 발생 - 해결
+> ACG설정에서 다른 포트들은 넣었지만 80포트를 추가하지 않아 접속이 안됨<br>
+> 80포트 추가후 해결<br>
+<br>
+
+13. Local에서는 작동하나 배포 후 siteedit맵핑에 에러발생(500) - 해결
+> 코드에 불필요한 코드 삭제 후 DB에서 맵핑으로 인한 대소문자 구분해준 후 해결<br>
+<br>
