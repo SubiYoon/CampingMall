@@ -20,7 +20,7 @@
 - 다양한 API 활용과 반응형 웹, 직관적인 UI로 사용자 편의 제공
 - 캠핑장 업체 관리자의 넓은 웹 컨텐츠 수정 권한 제공
 - 차별성이나 강조할거 또 뭐있지...
-<br><br>
+<br><br><br>
 
 # 2. 프로젝트 목적
 
@@ -30,7 +30,7 @@
 - 아임포트, kakao, naver, google 등의 다양한 API를 이용하여 예약/결제 및 소셜 로그인, 카카오맵, 날씨 기능, 챗봇 등 구현
 - Spring boot OAuth2 방식 로그인 인증 구현
 - 추가및수정예정
-<br>
+<br><br><br>
 
 # 3. 시스템 구성/개발도구
 
@@ -39,10 +39,10 @@
 
 <br>
 
-## 🏕  개발도구표넣을예정
+### 🏕  개발도구표넣을예정
 
 
-<br><br>
+<br><br><br>
 
 # 4. 프로젝트 구성원 및 담당/WBS
 
@@ -63,7 +63,7 @@ NAME | Representative
 ### 🏕  wbs시트수정하고추가예정
 
 
-<br><br>
+<br><br><br>
 
 
 # 5. DB 설계/기능 흐름도
@@ -83,11 +83,12 @@ NAME | Representative
 
 <img width="100%" src="https://user-images.githubusercontent.com/117332869/218310760-6426fec6-d29e-4695-9703-99d0ea36cf9d.jpg">
 
-<br><br>
+<br><br><br>
 
 # 6. 웹 서비스 구현 화면
 
-<br>
+촬영하고설명하고
+<br><br><br>
 
 # 7. 트러블 슈팅
 
@@ -99,4 +100,4 @@ NAME | ISSUE | SOLUTION
 윤동섭 | ㅇㅇ | ㅇㅇㅋ 
 
 각자기록하셧던거 쓰심댈듯 
-<br>
+<br><br><br>
