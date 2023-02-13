@@ -46,20 +46,55 @@
 
 <br>
 
-# 4. 프로젝트 구성원/담당 및 수행 기간
-> 표넣기, 시트넣기
+# 4. 프로젝트 구성원 및 담당/WBS
+> 표넣기
+
+NAME | ISSUE | SOLUTION 
+---- | ---- | ---- 
+ㅇㅇ |ㅇㅇ | ㅇ? 
+ㅇ | ㅇㅇ | ㅇㅇㅋ 
+ㄴ | ㄴㄴ | ㄴㄴㄴ 
+ㅇ | ㅇㅇ | ㅇㅇㅋ 
+
+<br>
+
+>시트
+
+
+
 <br>
 
 
 # 5. DB 설계/기능 흐름도
+>DB 설계(ERD)
+
 ![Camping](https://user-images.githubusercontent.com/117332903/218227527-60f4175b-2ff7-4791-914c-4c860873fece.png)
 
+<br>
+
+>기능 흐름도(USER페이지)
+
 <img width="100%" src="https://user-images.githubusercontent.com/117332869/218310757-3d3b9295-02d1-43d5-ba35-6271559f319c.jpg">
-                       
+
+<br>
+
+>기능 흐름도(ADMIN페이지)
+
 <img width="100%" src="https://user-images.githubusercontent.com/117332869/218310760-6426fec6-d29e-4695-9703-99d0ea36cf9d.jpg">
+
+<br>
 
 # 6. 웹 서비스 구현 화면
 
+<br>
+
 # 7. 트러블 슈팅
 
+NAME | ISSUE | SOLUTION 
+---- | ---- | ---- 
+ㅇㅇ |ㅇㅇ | ㅇ? 
+ㅇ | ㅇㅇ | ㅇㅇㅋ 
+ㄴ | ㄴㄴ | ㄴㄴㄴ 
+ㅇ | ㅇㅇ | ㅇㅇㅋ 
 
+<br>
