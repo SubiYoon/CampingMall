@@ -76,7 +76,7 @@
 	   }
 	   
 	   let over_cost=over_num*10000;
-	   $("#result3").html(over_cost);
+	   $("#result3").html(priceToString(over_cost));
 	   total_count();
 	   
    }
@@ -104,14 +104,13 @@
    }
    
    function total_count(){
-	   let result7=parseInt($('#result7').text());
-	   let result3=parseInt($('#result3').text());
+	   let result7=StringToprice($('#result7').text());
+	   let result3=StringToprice($('#result3').text());
 	   let result4=parseInt($('#result4').text());
 	   let result5=parseInt($('#result5').text());
 	   let result6=parseInt($('#result6').text());
 	   let total_result=result7+result3+(result4*20000)+(result5*20000)+(result6*20000);
-	   
-	   $('#total_result').html(total_result);
+	   $('#total_result').html(priceToString(total_result));
    }
    
    function count_customer(over_number,basic_num){
@@ -119,5 +118,11 @@
 	   $('#total_customer').html(over_number+basic_num);
    }
    
-   
+   function priceToString(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+function StringToprice(price) {
+	return parseInt(price.toString().replace(',', ''));
+}
+
    

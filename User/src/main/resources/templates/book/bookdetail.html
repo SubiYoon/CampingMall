@@ -172,17 +172,17 @@
 					<div>
 						<span>성인</span>
 						<span class="customer-count">
-							<button type="button" onclick='count("plus",1)' class="btn btn-outline-primary">+</button>
-							<span id="result1">2</span>
 							<button type="button" onclick='count("minus",1)' class="btn btn-outline-danger">-</button>
+							<span id="result1">2</span>
+							<button type="button" onclick='count("plus",1)' class="btn btn-outline-primary">+</button>
 						</span>
 					</div>
 					<div>
 						<span>미성년자</span>
 						<span class="customer-count">
-							<button type="button" onclick='count("plus",2)' class="btn btn-outline-primary">+</button>
-							<span id="result2">0</span>
 							<button type="button" onclick='count("minus",2)' class="btn btn-outline-danger">-</button>
+							<span id="result2">0</span>
+							<button type="button" onclick='count("plus",2)' class="btn btn-outline-primary">+</button>
 						</span>
 					</div>
 					<section class="customer-count-result customer-container">
@@ -231,40 +231,40 @@
 					<div>
 						<span class="addition-item verticality">
 							<span>불멍(모닥불)</span>
-							<span>20000원</span>
+							<span>20,000원</span>
 						</span>
 						<span>
-							<button type="button" onclick='addition_count("plus",4)'
-								class="btn btn-outline-primary">+</button>
-							<span id="result4">0</span>
 							<button type="button" onclick='addition_count("minus",4)'
 								class="btn btn-outline-danger">-</button>
+							<span id="result4">0</span>
+							<button type="button" onclick='addition_count("plus",4)'
+								class="btn btn-outline-primary">+</button>
 						</span>
 					</div>
 					<div>
 						<span class="addition-item verticality">
 							<span>빠른입실</span>
-							<span>20000원</span>
+							<span>20,000원</span>
 						</span>
 						<span>
-							<button type="button" onclick='addition_count("plus", 5)'
-								class="btn btn-outline-primary">+</button>
-							<span id="result5">0</span>
 							<button type="button" onclick='addition_count("minus",5)'
 								class="btn btn-outline-danger">-</button>
+							<span id="result5">0</span>
+							<button type="button" onclick='addition_count("plus", 5)'
+								class="btn btn-outline-primary">+</button>
 						</span>
 					</div>
 					<div>
 						<span class="addition-item verticality">
 							<span>바베큐 그릴</span>
-							<span>20000원</span>
+							<span>20,000원</span>
 						</span>
 						<span>
-							<button type="button" onclick='addition_count("plus",6)'
-								class="btn btn-outline-primary">+</button>
-							<span id="result6">0</span>
 							<button type="button" onclick='addition_count("minus",6)'
 								class="btn btn-outline-danger">-</button>
+							<span id="result6">0</span>
+							<button type="button" onclick='addition_count("plus",6)'
+								class="btn btn-outline-primary">+</button>
 						</span>
 					</div>
 				</section>
@@ -311,7 +311,7 @@
 					<div>
 						<span>숙박 예약 요금</span>
 						<span>
-							<span id="result7" th:text="${book.book_price}"></span>원
+							<span id="result7" th:text="${#numbers.formatInteger(book.book_price, 3, 'COMMA')}"></span>원
 						</span>
 					</div>
 					<div>
@@ -326,25 +326,25 @@
 					<div>
 						<span>불멍(모닥불)</span>
 						<span>
-							<span>20000</span>원
+							<span>20,000</span>원
 						</span>
 					</div>
 					<div>
 						<span>빠른입실</span>
 						<span>
-							<span>20000</span>원
+							<span>20,000</span>원
 						</span>
 					</div>
 					<div>
 						<span>바베큐 그릴</span>
 						<span>
-							<span>20000</span>원
+							<span>20,000</span>원
 						</span>
 					</div>
 					<div class="total-result-container">
 						<span>총 결제 금액</span>
 						<span>
-							<span id="total_result" th:text="${book.book_price}">20000</span>원
+							<span id="total_result" th:text="${#numbers.formatInteger(book.book_price, 3, 'COMMA')}"></span>원
 						</span>
 					</div>
 				</section>

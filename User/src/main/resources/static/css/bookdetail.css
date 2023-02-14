@@ -183,7 +183,7 @@
 
 
 .customer-container>div>span>span{
-	padding:0 5px 0 5px;
+	padding:0 9px 0 9px;
 	
 }
 
@@ -234,6 +234,11 @@
 
 .reservation-customerinfo-container{
 	padding: 10px 0 10px 0;
+}
+
+.btn{
+	font-weight: bold;
+	
 }
 
 
