@@ -165,7 +165,7 @@ NAME | Representative
 ### 3. Naver 쳇봇
 - NCP의 쳇봇을 이용한 구현
 
-<img src="https://user-images.githubusercontent.com/117332903/218676813-58f0a4e3-6d83-4951-a70b-3795e5182227.gif" width="400px">
+<img src="https://user-images.githubusercontent.com/117332903/218676813-58f0a4e3-6d83-4951-a70b-3795e5182227.gif" width="310px">
 
 <br><br><br>
 
