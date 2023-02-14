@@ -93,7 +93,7 @@ NAME | Representative
 - 기상청 날씨 API를 사용하여 최근 날씨들을 보여주어 예약의 편의성 제공
 
 ![달력클릭](https://user-images.githubusercontent.com/117332903/218662949-bda7ae32-500f-4cf1-8e58-69242d989b79.gif)
-<br>
+<br><br><br>
 
 ### 2. 결제
 - 예약완료를 위한 결제기능
@@ -101,23 +101,23 @@ NAME | Representative
 - 검증단계에서 import restAPI를 통해 검증과 webhook서비스를 이용한 결제정보 동기화작업을 수행
 
 ![결제](https://user-images.githubusercontent.com/117332903/218663003-53309dde-5ce3-4ee1-b263-cd3f45ec21ab.gif)
-<br>
+<br><br><br>
 
 ---
-
+<br><br>
 ## 관리자 로그인
 - 각 관리자상호 별로 따로따로 각자의 홈페이지를 관리 할 수 있음
 - 유저페이지와 마찬가지로 세션이 만료되면 자동으로 로그인페이지로 이동
 
 ![다른admin](https://user-images.githubusercontent.com/117332903/218661687-8e01e069-6f00-46ea-b027-0a6d88878d65.gif)
-<br>
+<br><br><br>
 
 ## 통계보기
 - 원하는 통계만 골라서 볼 수 있습니다.
 - 월별 통계, 년별 매출, 예약수, 방문객, 구역별 매출, 구역별 방문객을 조회할 수 있습니다.
 
 ![통계보기](https://user-images.githubusercontent.com/117332903/218662168-3a821845-020a-4389-b1bf-5dfadae77d9d.gif)
-<br>
+<br><br><br>
 
 ## 휴일 추가
 - JavaScript의 cell을 이용하여 달력 구현
@@ -125,21 +125,21 @@ NAME | Representative
 - 달력을 이용하여 해당 날짜에 예약을 못하도록 설정
 
 ![휴일추가](https://user-images.githubusercontent.com/117332903/218662412-bc440727-d840-4a9a-81bc-1f95e87d78e6.gif)
-<br>
+<br><br><br>
 
 ## 좌표 수정
 - 위도, 경도를 수정하여 지도에 표시
 - 날씨의 경우 기상청에서 요구하는 x좌표, y좌표로 변환하여 사용
 
 ![좌표수정](https://user-images.githubusercontent.com/117332903/218662484-7c76086b-9a62-4ac4-b4c9-49f7c49ee9a4.gif)
-<br>
+<br><br><br>
 
 ## 환불
 - 관리자는 유저가 요청하는 환불건들에 대해 리스트를 확인
 - 확인 후 승인 or 환불 거절을 선택 할 수 있음
 
 ![환불완료](https://user-images.githubusercontent.com/117332903/218662570-722f2364-854e-41ea-8272-c1cb1ad6af35.gif)
-<br>
+<br><br><br>
 
 <br><br><br>
 
