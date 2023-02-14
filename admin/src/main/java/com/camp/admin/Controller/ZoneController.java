@@ -238,12 +238,12 @@ public class ZoneController {
 	}
 
 	@RequestMapping("/sitedel")
-	public String siteDel(SiteDTO sitedto, int site_code, int zone_code) {
+	public String siteDel(SiteDTO sitedto, int site_code) {
 		try {
 			serviceS.updateDel(site_code);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/zone?zone_code=" + zone_code;
+		return "redirect:/main";
 	}
 }

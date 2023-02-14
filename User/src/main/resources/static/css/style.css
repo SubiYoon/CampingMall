@@ -1313,8 +1313,12 @@ button {
 }
 
 .star-rating {
-      direction: rtl;
-      display: block;
+     direction: rtl;
+     display: block;
+}
+
+.star-rating-text {
+     display: block;
 }
 
 .starleft{
@@ -1329,7 +1333,7 @@ button {
 	margin-bottom: 15px;
 }
    
-.star-rating input{
+.star-rating-text input{
       width: 90%;
       height: 40px;
       margin: 15px;
