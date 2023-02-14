@@ -466,15 +466,15 @@
                         <table class="table table-borderless datatable">
                             <thead>
                             <tr>
-                                <th scope="col">작성자</th>
+                                <th width="80" scope="col">작성자</th>
                                 <th scope="col">내용</th>
-                                <th scope="col">별점</th>
+                                <th width="50" scope="col">별점</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="reviews, i:${reviews}">
+                            <tr th:each="reviews : ${reviews}">
                                 <td th:text="${reviews.user_name}"></td>
-                                <td th:text="${reviews.review_content}" class="text-primary"></td>
+                                <td th:text="${reviews.review_content}"></td>
                                 <td th:text="${reviews.review_score}"></td>
                             </tr>
                             </tbody>
