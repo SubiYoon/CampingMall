@@ -87,16 +87,28 @@ NAME | Representative
 # 6. 웹 서비스 구현 화면
 ## 예약과정
 ### 1. 사이트 선택
+- JavaScript의 cell을 이용하여 달력 구현
+- 함수 로직을 작성하여 체크된 날짜를 표시
+- DB에서 휴일로 설정된 날과 예약이 완료된 사이트를 제외하고 데이터를 불러옴
+- 기상청 날씨 API를 사용하여 최근 날씨들을 보여주어 예약의 편의성 제공
+
 ![달력클릭](https://user-images.githubusercontent.com/117332903/218662949-bda7ae32-500f-4cf1-8e58-69242d989b79.gif)
 <br>
 
 ### 2. 결제
+- 예약완료를 위한 결제기능
+- import API를 이용해 결제 요청 후 결제 정보를 DB에 저장
+- 검증단계에서 import restAPI를 통해 검증과 webhook서비스를 이용한 결제정보 동기화작업을 수행
+
 ![결제](https://user-images.githubusercontent.com/117332903/218663003-53309dde-5ce3-4ee1-b263-cd3f45ec21ab.gif)
 <br>
 
 ---
 
 ## 관리자 로그인
+- 각 관리자상호 별로 따로따로 각자의 홈페이지를 관리 할 수 있음
+- 유저페이지와
+
 ![다른admin](https://user-images.githubusercontent.com/117332903/218661687-8e01e069-6f00-46ea-b027-0a6d88878d65.gif)
 <br>
 
