@@ -107,24 +107,37 @@ NAME | Representative
 
 ## 관리자 로그인
 - 각 관리자상호 별로 따로따로 각자의 홈페이지를 관리 할 수 있음
-- 유저페이지와
+- 유저페이지와 마찬가지로 세션이 만료되면 자동으로 로그인페이지로 이동
 
 ![다른admin](https://user-images.githubusercontent.com/117332903/218661687-8e01e069-6f00-46ea-b027-0a6d88878d65.gif)
 <br>
 
 ## 통계보기
+- 원하는 통계만 골라서 볼 수 있습니다.
+- 월별 통계, 년별 매출, 예약수, 방문객, 구역별 매출, 구역별 방문객을 조회할 수 있습니다.
+
 ![통계보기](https://user-images.githubusercontent.com/117332903/218662168-3a821845-020a-4389-b1bf-5dfadae77d9d.gif)
 <br>
 
 ## 휴일 추가
+- JavaScript의 cell을 이용하여 달력 구현
+- 함수 로직을 작성하여 체크된 날짜를 표시
+- 달력을 이용하여 해당 날짜에 예약을 못하도록 설정
+
 ![휴일추가](https://user-images.githubusercontent.com/117332903/218662412-bc440727-d840-4a9a-81bc-1f95e87d78e6.gif)
 <br>
 
 ## 좌표 수정
+- 위도, 경도를 수정하여 지도에 표시
+- 날씨의 경우 기상청에서 요구하는 x좌표, y좌표로 변환하여 사용
+
 ![좌표수정](https://user-images.githubusercontent.com/117332903/218662484-7c76086b-9a62-4ac4-b4c9-49f7c49ee9a4.gif)
 <br>
 
 ## 환불
+- 관리자는 유저가 요청하는 환불건들에 대해 리스트를 확인
+- 확인 후 승인 or 환불 거절을 선택 할 수 있음
+
 ![환불완료](https://user-images.githubusercontent.com/117332903/218662570-722f2364-854e-41ea-8272-c1cb1ad6af35.gif)
 <br>
 
