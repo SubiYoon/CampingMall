@@ -7,23 +7,23 @@
 <br>
 
 
-# 1. 프로젝트 주제 및 기획의도
-### 🏕  기획의도/차별점
+# 1. 기획목적
+- 여러 캠핑장을 한곳에 모아 원하는 캠핑장을 선택하여 해당 캠핑장에 예약 할 수 있도록 도와주는 사이트 
+<br><br>
 
-- 여러 캠핑장을 한곳에 모아 원하는 캠핑장을 선택하여 해당 캠핑장에 예약 할 수 있도록 도와주는 사이트
-- 유저(이용 고객)와 관리자(캠핑장 업체) 페이지를 별도로 두어 보안을 강화한 캠핑장 종합 예약 웹 서비스로 기획
-- 다양한 API 활용과 반응형 웹, 직관적인 UI로 사용자 편의 제공
-- 캠핑장 업체 관리자의 넓은 웹 컨텐츠 수정 권한 제공
-- AES512방식의 단방향 암호화 사용
-
-<br><br><br>
-
-# 2. 프로젝트 목적
-
+> 교육 목적
 - 팀 프로젝트 과정으로 협업에 필요한 여러 툴을 사용한 프로젝트 완성
 - 교육받은 내용을 바탕으로 팀원 모두 프론트/백을 설계, 개발하며 프로세스 이해도 향상 
 - 네이버 클라우드 플랫폼(NCP)을 사용한 배포를 통해 도메인, 서버에 대한 이해도 향상 및 서버 운영, 유지 보수 경험 축적
 - 아임포트, kakao, naver, google 등의 다양한 API를 이용하여 예약/결제 및 소셜 로그인, 카카오맵, 날씨 기능, 챗봇 등 구현
+<br><br><br>
+
+# 2. 목표 및 차별성
+
+- 유저(이용 고객)와 관리자(캠핑장 업체) 페이지를 별도로 두어 보안을 강화한 캠핑장 종합 예약 웹 서비스로 기획
+- 다양한 API 활용과 반응형 웹, 직관적인 UI로 사용자 편의 제공
+- 캠핑장 업체 관리자의 넓은 웹 컨텐츠 수정 권한 제공
+- AES512방식의 단방향 암호화 사용
 
 <br><br><br>
 
@@ -38,30 +38,29 @@
 
 | IDE | Back | Front | DB | FrameWork | API | Etc - Tools | Server |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Eclipse<br> IntelliJ<br> VSCode | Java JDK 11 | HTML<br> JavaScript<br> Jquery<br> Ajax | MySQL | SpringBoot<br> ThymeLeaf<br>Mybatis | Weather API<br> Kakao API<br> Import API<br> Naver ChatBot | GitHub<br> WorkBanch<br> Gather Town<br> Coggle<br> Figma<br> ERDCloud<br> Google Sheet |	NCP(Naver Cloud Platform) |
+| Eclipse<br> IntelliJ<br> VSCode | Java JDK 11 | HTML<br> JavaScript<br> Jquery<br> Ajax | MySQL<br> v8.0.31 | SpringBoot<br> ThymeLeaf<br>Mybatis | Weather API<br> Kakao API<br> Import API<br> Naver ChatBot | GitHub<br> WorkBanch<br> Gather Town<br> Coggle<br> Figma<br> ERDCloud<br> CloudCraft<br> Google Sheet |	NCP(Naver Cloud Platform) |
 
 </div>
 
 <br><br><br>
 
-# 4. 프로젝트 구성원 및 담당/WBS
+# 4. WBS/프로젝트 구성원 및 담당
+### 📆WBS
+![WBS](https://user-images.githubusercontent.com/117332903/218639451-34e7105b-0062-4f2a-ac78-08678cfb1617.png)
+
+<br>
 
 ### 🏕  프로젝트 구성원
 
 NAME | Representative  
 ---- | ----
-공통 | - 주제 선정, 일정 수립, 기획 <br> - 개발환경 구축, 테이블/주요 기능 설계 <br> - 디자인 레이아웃 설계 <br> - 테스트, 디버깅, 검수, 포트폴리오 제작
-강무성 | - DB설계 <br> - ERD/DDL/DML 제작 <br> - 메인/서브 페이지 레이아웃 작업 <br> - 예약 시스템, 예약 조회시스템 <br> - ADMIN통계 페이지, 예약정보 관리 페이지 개발
-김태욱 | - 메인/서브 레이아웃 작업 <br> - 예약 조회시스템, 예약 상세, 결제 시스템 <br> - 날씨 시스템 개발 <br> - ADMIN통계 페이지 <br> - 환불 처리 페이지 개발
-박지원 | - 와이어프레임 설계 <br> - 프레임 작업, 메인/서브 페이지 레이아웃 작업 <br> - 메인 페이지 ~~C~~R~~UD~~, 공지사항 CRUD, 구역소개 CRUD <br> - 로그인 화면 <br> - 지도 시스템, 챗봇 시스템 개발
-윤동섭 | - DB설계 <br> - ERD/DDL/DML 제작 <br> - 메인/서브 페이지 레이아웃 작업 <br> - 메인 페이지 CRUD, 구역소개 CRUD, 시설소개 CRUD <br> - 로그인/SNS로그인/로그아웃/회원가입, 마이페이지 개발 <br> - 예약 시스템, 예약 조회시스템 <br> - 리뷰시스템 <br> - 다국어 처리 <br> - ADMIN로그인, 회원관리, 휴무일 지정, 예약정보 관리 페이지 개발
+공통 | - 주제 선정, 일정 수립, 기획 <br> - 개발환경 구축, 테이블/주요 기능 설계 <br> - 디자인 레이아웃 설계 <br> - 테스트, 디버깅, 검수, 포트폴리오 제작|
+강무성 | - DB설계 <br> - ERD/DDL/DML 제작 <br> - 메인/서브 페이지 레이아웃 작업 <br> - 예약 시스템, 예약 조회시스템 <br> - ADMIN통계 페이지, 예약정보 관리 페이지 개발|
+김태욱 | - 메인/서브 레이아웃 작업 <br> - 예약 조회시스템, 예약 상세, 결제 시스템 <br> - 날씨 시스템 개발 <br> - ADMIN통계 페이지 <br> - 환불 처리 페이지 개발|
+박지원 | - 와이어프레임 설계 <br> - 프레임 작업, 메인/서브 페이지 레이아웃 작업 <br> - 메인 페이지 ~~C~~R~~UD~~, 공지사항 CRUD, 구역소개 CRUD <br> - 로그인 화면 <br> - 지도 시스템, 챗봇 시스템 개발|
+윤동섭 | - DB설계 <br> - ERD/DDL/DML 제작 <br> - 메인/서브 페이지 레이아웃 작업 <br> - 메인 페에지 CRUD, 시설 CRUD, 상호 CRUD, 홈 CRUD <br> - 로그인/SNS로그인/로그아웃/회원가입/수정, 마이페이지 개발 <br> - 회원가입 시 암호화(AES512)<br> - 예약 시스템, 예약 조회시스템 <br> - 리뷰시스템 <br> - 다국어 처리 <br> - 파일업로드(중복이름파일, 교체된 이미지 삭제 처리)<br> - ADMIN로그인, 회원관리, 휴무일 지정, 예약정보 관리 페이지 개발|
 
-기본적으로 wbs시트에 있는ㄱ거만 넣었습니다 각자 추가하고 수정하기!!! 
-
-<br>
-
-### 🏕  wbs시트수정하고추가예정
-
+<br><br>
 
 <br><br><br>
 
