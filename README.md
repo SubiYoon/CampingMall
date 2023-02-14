@@ -94,6 +94,13 @@ NAME | Representative
 
 <br><br><br>
 
+## 반응형
+- 반응형 웹으로 만들어 모바일 환경에서도 사용이 가능하게 구현
+
+![반응](https://user-images.githubusercontent.com/117332903/218700164-2800e2f8-9370-4b4b-87ec-2abe7cb90ea5.gif)
+<br><br><br>
+
+
 ## 회원가입 및 탈퇴
 - 회원가입시 각 input마다 정규식을 사용해 유효성검사를 시행
 - 비밀번호는 AES512 단방향 암호화 방식을 채택하여 DB에 저장
