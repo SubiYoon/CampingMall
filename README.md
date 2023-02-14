@@ -85,6 +85,16 @@ NAME | Representative
 <br><br><br>
 
 # 6. 웹 서비스 구현 화면
+## 회원가입 및 탈퇴
+- 회원가입시 각 input마다 정규식을 사용해 유효성검사를 시행
+- 비밀번호는 AES512 단방향 암호화 방식을 채택하여 DB에 저장
+- 탈퇴시 DB에 있는 데이터 ID앞에 구분자를 삽입 후 나머지 정보는 삭제
+- ID는 통계페이지에서 예약 데이터를 이용하기 위해 남겨둠
+
+![회원가입](https://user-images.githubusercontent.com/117332903/218677920-775f388e-deb6-421e-a031-c0b114fe7b64.gif)
+
+<br><br><br>
+
 ## 예약과정
 ### 1. 사이트 선택
 - JavaScript의 cell을 이용하여 달력 구현
@@ -127,19 +137,33 @@ NAME | Representative
 ![휴일추가](https://user-images.githubusercontent.com/117332903/218662412-bc440727-d840-4a9a-81bc-1f95e87d78e6.gif)
 <br><br><br>
 
-## 좌표 수정
-- 위도, 경도를 수정하여 지도에 표시
-- 날씨의 경우 기상청에서 요구하는 x좌표, y좌표로 변환하여 사용
-
-![좌표수정](https://user-images.githubusercontent.com/117332903/218662484-7c76086b-9a62-4ac4-b4c9-49f7c49ee9a4.gif)
-<br><br><br>
-
 ## 환불
 - 관리자는 유저가 요청하는 환불건들에 대해 리스트를 확인
 - 확인 후 승인 or 환불 거절을 선택 할 수 있음
 
 ![환불완료](https://user-images.githubusercontent.com/117332903/218662570-722f2364-854e-41ea-8272-c1cb1ad6af35.gif)
 <br><br><br>
+
+## API
+### 1. 카카오 Login
+- 카카오 로그인
+- 탈퇴시 카카오와 연결도 끊고 DB에서도 데이터 삭제
+- 일반 회원가입과 같은 시스템으로 DB에서 데이터 삭제 
+
+![카카오](https://user-images.githubusercontent.com/117332903/218676346-55c65cb9-8312-44b4-b5a8-1e7b1590fa79.gif)
+<br><br><br>
+
+### 2. 날씨, 카카오 Map
+- 위도, 경도를 수정하여 지도에 표시
+- 날씨의 경우 기상청에서 요구하는 x좌표, y좌표로 변환하여 사용
+
+![좌표수정](https://user-images.githubusercontent.com/117332903/218662484-7c76086b-9a62-4ac4-b4c9-49f7c49ee9a4.gif)
+<br><br><br>
+
+### 3. Naver 쳇봇
+- NCP의 쳇봇을 이용한 구현
+
+![쳇봇](https://user-images.githubusercontent.com/117332903/218676813-58f0a4e3-6d83-4951-a70b-3795e5182227.gif)
 
 <br><br><br>
 
