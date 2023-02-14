@@ -85,9 +85,36 @@ NAME | Representative
 <br><br><br>
 
 # 6. 웹 서비스 구현 화면
+## 예약과정
+### 1. 사이트 선택
+![달력클릭](https://user-images.githubusercontent.com/117332903/218662949-bda7ae32-500f-4cf1-8e58-69242d989b79.gif)
+<br>
+
+### 2. 결제
+![결제](https://user-images.githubusercontent.com/117332903/218663003-53309dde-5ce3-4ee1-b263-cd3f45ec21ab.gif)
+<br>
+
+---
 
 ## 관리자 로그인
 ![다른admin](https://user-images.githubusercontent.com/117332903/218661687-8e01e069-6f00-46ea-b027-0a6d88878d65.gif)
+<br>
+
+## 통계보기
+![통계보기](https://user-images.githubusercontent.com/117332903/218662168-3a821845-020a-4389-b1bf-5dfadae77d9d.gif)
+<br>
+
+## 휴일 추가
+![휴일추가](https://user-images.githubusercontent.com/117332903/218662412-bc440727-d840-4a9a-81bc-1f95e87d78e6.gif)
+<br>
+
+## 좌표 수정
+![좌표수정](https://user-images.githubusercontent.com/117332903/218662484-7c76086b-9a62-4ac4-b4c9-49f7c49ee9a4.gif)
+<br>
+
+## 환불
+![환불완료](https://user-images.githubusercontent.com/117332903/218662570-722f2364-854e-41ea-8272-c1cb1ad6af35.gif)
+<br>
 
 <br><br><br>
 
