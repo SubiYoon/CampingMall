@@ -90,10 +90,22 @@ public class BookService implements MyService<Integer, BookDTO> {
     public boolean availableUserWriteReview(int site_code, int user_code) {
         List<BookDTO> bookList1 = mapper.selectUserSiteBook(site_code, user_code);
         List<BookDTO> bookList2 = mapper.selectUserSiteReview(site_code, user_code);
-        if (bookList1.size() > bookList2.size()) {
-            return true;
+        int list1Size = 0;
+        for(BookDTO book : bookList1){
+            try {
+                Date checkOut = Utility.StringToDate(book.getBook_checkout());
+                Date today = Calendar.getInstance().getTime();
+                if(book.getBook_state() == 3){
+                    continue;
+                }
+                if(checkOut.before(today)){
+                    list1Size++;
+                }
+            } catch (Exception e) {
+                System.out.println("버그");
+            }
         }
-        return false;
+        return list1Size > bookList2.size();
     }
 
     public List<BookDTO> getReviewAvailableCode(int site_code, int user_code) {

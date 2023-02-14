@@ -49,7 +49,7 @@
         ORDER BY book_code DESC
     </select>
      <select id="selectUserSiteBook" resultType="BookDTO">
-        SELECT book.book_code 
+        SELECT book.book_code, book.book_checkout, book.book_state
         FROM book
         JOIN user
         ON book.user_code = user.user_code
