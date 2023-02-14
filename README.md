@@ -93,6 +93,8 @@ NAME | Representative
 
 ![회원가입](https://user-images.githubusercontent.com/117332903/218677920-775f388e-deb6-421e-a031-c0b114fe7b64.gif)
 
+![회원탈퇴](https://user-images.githubusercontent.com/117332903/218682110-bc409d95-eb5e-44cf-ada5-7b2565153402.gif)
+
 <br><br><br>
 
 ## 예약과정
@@ -163,7 +165,7 @@ NAME | Representative
 ### 3. Naver 쳇봇
 - NCP의 쳇봇을 이용한 구현
 
-<img src="https://user-images.githubusercontent.com/117332903/218676813-58f0a4e3-6d83-4951-a70b-3795e5182227.gif" width="300px">
+![쳇봇](https://user-images.githubusercontent.com/117332903/218676813-58f0a4e3-6d83-4951-a70b-3795e5182227.gif)
 
 <br><br><br>
 
