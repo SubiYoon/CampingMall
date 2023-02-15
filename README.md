@@ -131,6 +131,15 @@ NAME | Representative
 ![결제](https://user-images.githubusercontent.com/117332903/218663003-53309dde-5ce3-4ee1-b263-cd3f45ec21ab.gif)
 <br><br><br>
 
+## 리뷰시스템
+- 고객 후기 시스템
+- 로그인을 하지 않으면 작성할 수 없음
+- 예약을 완료하지 않으면 작성할 수 없음
+- 예약 후 체크인을 하지 않은 예약에 대해서는 작성할 수 없음
+
+![리뷰](https://user-images.githubusercontent.com/117332903/218890857-968dc169-d8d1-4caf-8ca1-10350483e854.gif)
+<br><br><br>
+
 ---
 <br><br>
 ## 관리자 로그인
