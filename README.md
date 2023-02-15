@@ -272,6 +272,19 @@ NAME | Representative
 > 챗봇을 form 태그로 실행시 e.preventDefault();로 다른 form버튼을 통한 새로고침을 모두 막은 것이 원인<br>
 > 챗봇 모달 버튼에 새 클래스를 지정하여 모달 내 버튼만 e.preventDefault(); 를 적용하게 하여 해결 <br>
 <br>
+
+15. Object형태로 저장된 세션 문제 - 해결
+> 임의로 home 테이블의 정보를 가져와 세션에 저장, 사이트 상호를 구분시킴<br>
+> DTO 전체가 저장된 형태라 컨트롤러에서 사용할 수 없음<br>
+> companyDTO.getCompany_code()로 한 칼럼 데이터만 가져올 수 있어 해결<br>
+<br>
+
+16. textarea의 개행 문제 - 해결
+> 공지사항을 작성하게 되는 textarea에서 전송한 value는 개행(줄바꿈)이 적용되지 않는 문제 발생<br>
+> DB를 확인해보니 개행 문법이 따로 표기되지 않고, textarea의 개행문자는 웹에서 적용되지 않음<br>
+> textarea value가 서비스되는 웹 화면에 white-space:pre로 pre 태그형식을 적용하여 개행과 공백을 원래대로 처리하는 방식으로 해결<br>
+<br>
+<br>
 <br>
 
 
