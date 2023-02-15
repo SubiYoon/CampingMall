@@ -34,7 +34,7 @@ INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "카
 INSERT INTO facility(admin_code, facility_name, facility_content) VALUES(1, "화장실", "각 구역 입구에 남자화장실 2개소, 여자화장실 2개소가 설치되어 있습니다.\n위생용품 문의는 관리동으로 요청 바랍니다.\n\n- 청소 시간 : 23:00~23:30");
 
 -- 홈페이지
-INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude, home_image)VALUES(1, '나대표', '서울시 어디구 어디대로 245길 13-256 ', 'www.naver.com', '02-1234-1234', '산과 강과 호수로 둘러쌓인 천혜의 자연 환경을 갖춘 캠핑장에서 도심 속을 벗어나 편안한 힐링을 즐겨보세요.\n4계절마다 각 계절의 특색을 갖추고 있으며 캠핑장을 가득 채운 고목들이 즐비하여 캠핑장 전체에 시원한 그늘을 제공하고 있습니다.', 37.5039781087508, 127.04273317956381, "오시는 길.png");
+INSERT INTO home(admin_code, home_owner, home_address, home_https, home_tell, home_content, home_longitude, home_latitude, home_image)VALUES(1, '나대표', '서울시 어디구 어디대로 245길 13-256 ', 'www.naver.com', '02-1234-1234', '산과 강과 호수로 둘러쌓인 천혜의 자연 환경을 갖춘 캠핑장에서 도심 속을 벗어나 편안한 힐링을 즐겨보세요.\n4계절마다 각 계절의 특색을 갖추고 있으며 캠핑장을 가득 채운 고목들이 즐비하여 캠핑장 전체에 시원한 그늘을 제공하고 있습니다.', 37.5039781087508, 127.04273317956381, "map.png");
 
 -- 구역
 INSERT INTO zone(admin_code, zone_name, zone_content) VALUES(1,'호수 존', '캠핑장의 자랑인 아름다운 저수지 바로 옆에 자리하고 있습니다.\n총 7개의 사이트가 파쇄석으로 이루어져 있으며 5.7m * 8m의 넉넉한 넓이를 자랑하고 있습니다.\n(5.7m ~ 6.7m로 사이트마다 다름)');
