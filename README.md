@@ -68,7 +68,7 @@ NAME | Representative
 # 5. DB 설계/기능 흐름도
 ### 🏕  DB 설계(ERD)
 
-![Camping](https://user-images.githubusercontent.com/117332903/218227527-60f4175b-2ff7-4791-914c-4c860873fece.png)
+![Camping](https://user-images.githubusercontent.com/117332903/218905296-a6565359-9e29-48f9-9c9d-a6d031141864.png)
 
 <br>
 
