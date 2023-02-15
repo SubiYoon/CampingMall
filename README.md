@@ -196,8 +196,8 @@ NAME | Representative
 ![좌표수정](https://user-images.githubusercontent.com/117332903/218662484-7c76086b-9a62-4ac4-b4c9-49f7c49ee9a4.gif)
 <br><br><br>
 
-### 3. Naver 쳇봇
-- NCP의 쳇봇을 이용한 구현
+### 3. Naver AI챗봇
+- NCP의 AI Service-챗봇을 이용한 구현
 
 <img src="https://user-images.githubusercontent.com/117332903/218676813-58f0a4e3-6d83-4951-a70b-3795e5182227.gif" width="310px">
 
@@ -267,3 +267,11 @@ NAME | Representative
 13. Local에서는 작동하나 배포 후 siteedit맵핑에 에러발생(500) - 해결
 > 코드에 불필요한 코드 삭제 후 DB에서 맵핑으로 인한 대소문자 구분해준 후 해결<br>
 <br>
+
+14. 챗봇 실행시 다른 버튼이 작동하지 않는 문제 - 해결
+> 챗봇을 form 태그로 실행시 e.preventDefault();로 다른 form버튼을 통한 새로고침을 모두 막은 것이 원인<br>
+> 챗봇 모달 버튼에 새 클래스를 지정하여 모달 내 버튼만 e.preventDefault(); 를 적용하게 하여 해결 <br>
+<br>
+<br>
+
+
