@@ -59,7 +59,7 @@
 		<div class="row row-zone" style="margin: auto;">
 			<div class="col-lg-12 zone-col-12">
 				<div class="card card-radius">
-					<div class="card-body">
+					<div class="card-body pad">
 						<h5 class="card-title" th:text="${zoneselect.zone_name}"></h5>
 						<hr>
 						<p th:text="${zoneselect.zone_content}"></p>
@@ -73,7 +73,7 @@
 							th:href="@{/zone/zoneedit(zone_code=${zoneselect.zone_code})}">수정</a>
 						<form class="zone_up_form">
 							<input type="hidden" name="zone_code" th:value="${zoneselect.zone_code}"/>
-							<a class="zoneDelBtn" >삭제</a>
+							<a class="zoneDelBtn btn btn-primary" >삭제</a>
 						</form>
 					</div>
 				</div>
@@ -81,7 +81,7 @@
 			<div class="col-lg-6 site-col-6" th:each="site:${slist}"
 				th:if="${zoneselect.zone_code == site.zone_code} and ${site.site_state == 1}">
 				<div class="card card-radius">
-					<div class="card-body">
+					<div class="card-body pad">
 						<h5 class="card-title" th:text="${site.site_name}"></h5>
 						<hr>
 						<p th:text="${site.site_content}"></p>
@@ -94,7 +94,7 @@
 								th:href="@{/zone/siteedit(site_code=${site.site_code})}">수정</a>
 							<form class="site_up_form">
 								<input type="hidden" name="site_code" th:value="${site.site_code}" />
-								<a class="siteDelBtn" >삭제</a>
+								<a class="siteDelBtn btn btn-primary" >삭제</a>
 							</form>
 						</div>
 					</div>

@@ -1634,3 +1634,12 @@ h6 {
 	width: 80%;
 	margin: 10px 10%;
 }
+
+.btn-primary{
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.pad{
+	padding-bottom: 30px;
+}
