@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.admin.mapper.UserMapper">
+    <delete id="delete">
+        Update 
+            user 
+        SET 
+            user_id='(DELETE)${user_id}' 
+        WHERE 
+            user_id=#{user_id}
+    </delete>
+    <select id="selectUsersInfo" resultType="UserDTO">
+        SELECT 
+            DISTINCT user.user_name,
+            user.user_birthday user_birthday,
+            user.user_tel user_tel,
+            user.user_code user_code,
+            user.user_id user_id
+        FROM 
+            user
+        JOIN 
+            book
+        ON 
+            user.user_code=book.user_code
+        JOIN 
+            site
+        ON 
+            book.site_code=site.site_code
+        JOIN
+            image
+        ON
+            site.site_code=image.site_code
+        WHERE 
+            image.company_code=#{company_code};
+    </select>
+    <select id="select" resultType="UserDTO">
+        SELECT 
+            * 
+        FROM 
+            user 
+        WHERE 
+            user_id=#{user_id}
+    </select>
+</mapper>

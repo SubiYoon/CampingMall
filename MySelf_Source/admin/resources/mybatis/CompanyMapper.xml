@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.admin.mapper.CompanyMapper">
+	<insert id="insert" parameterType="CompanyDTO">
+        INSERT INTO company(company_name, company_logo1, company_logo2) VALUES(#{company_name}, #{company_logo1}, #{company_logo2})
+    </insert>
+    <select id="select" resultType="CompanyDTO">
+        SELECT * FROM company WHERE company_code=#{company_code}
+    </select>
+    <select id="selectAll" resultType="CompanyDTO">
+        SELECT * FROM company
+    </select>
+    <update id="update" parameterType="CompanyDTO">
+        UPDATE company SET company_name=#{company_name}, company_logo1=#{company_logo1}, company_logo2=#{company_logo2} WHERE company_code=#{company_code}
+    </update>
+</mapper>

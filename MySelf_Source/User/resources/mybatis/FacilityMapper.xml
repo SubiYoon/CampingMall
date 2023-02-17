@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.camping.mapper.FacilityMapper">
+    <insert id="insert" parameterType="FacilityDTO">
+        INSERT INTO 
+            facility(admin_code, facility_name, facility_content)
+        VALUES 
+            (#{admin_code}, #{facility_name}, #{facility_content})
+    </insert>
+    <select id="select" resultType="FacilityDTO">
+        SELECT 
+            *
+        FROM 
+            facility
+        WHERE 
+            facility_code = #{facility_code}
+    </select>
+    <select id="selectAll" resultType="FacilityDTO">
+        SELECT 
+            *
+        FROM 
+            facility
+    </select>
+    <select id="selectByCompany" resultType="FacilityDTO">
+        SELECT 
+            f.facility_code facility_code, 
+            f.admin_code admin_code, 
+            f.facility_name facility_name, 
+            f.facility_content facility_content, 
+            i.image_code image_code, 
+            i.image_file image_file 
+        FROM 
+            facility f 
+        JOIN 
+            admin ad 
+                ON 
+                    f.admin_code=ad.admin_code 
+        JOIN 
+            image i 
+                ON 
+                    f.facility_code=i.facility_code 
+        WHERE 
+            ad.company_code=#{company_code}
+    </select>
+</mapper>

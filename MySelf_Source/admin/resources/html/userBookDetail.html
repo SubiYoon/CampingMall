@@ -1,0 +1,69 @@
+<script>
+  $(document).ready(function () {
+    $('#userDetail').click(function () {
+      $(this).parent().parent().parent().parent().next().attr({
+        'method': 'post',
+        'action': 'userDetail'
+      });
+      $(this).parent().parent().parent().parent().next().submit();
+    });
+  });
+</script>
+<script src="https://kit.fontawesome.com/e0fa1f6ab7.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" th:href="@{/css/userbookDetail.css}">
+<main id="main" class="main">
+  <div class="pagetitle">
+    <h1>유저 관리</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
+        <li class="breadcrumb-item"><a th:href="@{/user/userEdit}">UserList</a></li>
+        <li class="breadcrumb-item active" th:text="${user.user_name}"></li>
+      </ol>
+    </nav>
+  </div>
+  <section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><code th:text="${user.user_name}"></code>님의 예약 목록</h5>
+            <p>연락처 : <code th:text="${user.user_tel}"></code></p><br>
+            <table class="table">
+              <thead>
+                <tr class="table-success">
+                  <th scope="col">사이트명</th>
+                  <th scope="col">인원수</th>
+                  <th scope="col">예약금액</th>
+                  <th scope="col">차량번호</th>
+                  <th scope="col">예약일</th>
+                  <th scope="col">추가구매</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="bookList : ${userBookDetail}">
+                  <th scope="row" th:text="${bookList.site_name}"></th>
+                  <td th:text="${bookList.book_member}"></td>
+                  <td th:text="${bookList.book_price}"></td>
+                  <td th:text="${bookList.book_car_number.split(',')[0]}"></td>
+                  <td th:text="${bookList.book_checkin + ' ~ ' + bookList.book_checkout}"></td>
+                  <td class="userbook-icon">
+                    <span th:if="${bookList.book_car_number.split(',')[1]=='1'}">
+                      <i class="fa-solid fa-fire" style="color:red;"><span>불멍(모닥불)</span></i>
+                    </span>
+                    <span th:if="${bookList.book_car_number.split(',')[2]=='1'}">
+                      <i class="fa-solid fa-rocket" style="color:blue;"><span>빠른입실</span></i>
+                    </span>
+                    <span th:if="${bookList.book_car_number.split(',')[3]=='1'}">
+                      <i class="fa-solid fa-dumpster-fire" style="color:red;"><span>바베큐그릴</span></i>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

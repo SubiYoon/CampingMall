@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.admin.mapper.ImageMapper">  
+    <insert id="insert" parameterType="ImageDTO">
+        INSERT INTO image(company_code, zone_code, site_code, home_code, facility_code, image_file)
+        VALUES (#{company_code}, 
+                IF(#{zone_code} = 0, NULL, #{zone_code}),
+                IF(#{site_code} = 0, NULL, #{site_code}), 
+                IF(#{home_code} = 0, NULL, #{home_code}),
+                IF(#{facility_code} = 0, NULL, #{facility_code}), 
+                #{image_file})
+    </insert>
+    <select id="select" resultType="ImageDTO">
+        SELECT *
+        FROM image
+        WHERE image_code = #{image_code}
+    </select>
+    <select id="selectByCompanyCode" resultType="ImageDTO">
+        SELECT *
+        FROM image
+        WHERE company_code = ${company_code}
+    </select>
+    <select id="selectByZoneCode" resultType="ImageDTO">
+        SELECT *
+        FROM image
+        WHERE zone_code = ${zone_code}
+    </select>
+    <select id="selectBySiteCode" resultType="ImageDTO">
+        SELECT *
+        FROM image
+        WHERE site_code = ${site_code}
+    </select>
+    <select id="selectByHomeCode" resultType="ImageDTO">
+        SELECT *
+        FROM image
+        WHERE home_code = #{home_code}
+    </select>
+    <select id="selectByFacilityCode" resultType="ImageDTO">
+        SELECT *
+        FROM image
+        WHERE facility_code = #{facility_code}
+    </select>
+    <select id="selectAll" resultType="ImageDTO">
+        SELECT *
+        FROM image
+    </select>
+    <update id="update" parameterType="ImageDTO">
+        UPDATE image
+        SET zone_code=IF(#{zone_code} = 0, NULL, #{zone_code}),
+            site_code=IF(#{site_code} = 0, NULL, #{site_code}),
+            home_code=IF(#{home_code} = 0, NULL, #{home_code}),
+            facility_code=IF(#{facility_code} = 0, NULL, #{facility_code}),
+            image_file=#{image_file}
+        WHERE image_code = #{image_code}
+    </update>
+    <update id="zoneupdate" parameterType="ImageDTO">
+        UPDATE image SET image_file=#{image_file} WHERE zone_code=#{zone_code} AND company_code=#{company_code};
+    </update>
+    <delete id="delete">
+        DELETE
+        FROM image
+        WHERE image_code = #{image_code}
+    </delete>
+    <select id="selectOneByHomeCode" resultType="ImageDTO">
+        SELECT *
+        FROM image
+        WHERE home_code = #{home_code}
+    </select>
+    <select id="selectFile" resultType="int">
+        SELECT count(*)
+        FROM image
+        WHERE image_file = #{image_file}
+    </select>
+    <update id="updateimage" parameterType="ImageDTO">
+        UPDATE image
+        SET zone_code=IF(#{zone_code} = 0, NULL, #{zone_code}),
+            site_code=IF(#{site_code} = 0, NULL, #{site_code}),
+            home_code=IF(#{home_code} = 0, NULL, #{home_code}),
+            facility_code=IF(#{facility_code} = 0, NULL, #{facility_code}),
+            image_file=#{image_file}
+        WHERE image_code = #{image_code}
+    </update>
+</mapper>

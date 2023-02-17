@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.admin.mapper.HomeMapper">
+<update id="update" parameterType="HomeDTO">
+    UPDATE 
+        home 
+    SET 
+        home_content=#{home_content}, 
+        home_owner=#{home_owner}, 
+        home_address=#{home_address}, 
+        home_longitude=#{home_longitude}, 
+        home_latitude=#{home_latitude}, 
+        home_https=#{home_https}, 
+        home_tell=#{home_tell}, 
+        home_content=#{home_content},
+        home_image=#{home_image}
+    WHERE 
+        home_code=#{home_code}
+</update>
+<select id="select" resultType="HomeDTO">
+    SELECT 
+        * 
+    FROM 
+        home 
+    JOIN 
+        admin 
+    ON 
+        home.admin_code = admin.admin_code 
+    WHERE 
+        company_code=#{company_code}
+</select>
+</mapper>

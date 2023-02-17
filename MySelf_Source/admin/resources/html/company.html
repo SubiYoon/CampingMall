@@ -1,0 +1,66 @@
+<script>
+  $(document).ready(function () {
+    $('#company_eidt').click(function () {
+      if (confirm("상호변경시 다시 로그인하셔야 합니다.")) {
+        $('#logoForm').attr({
+          'method': 'post',
+          'action': 'logoEdit'
+        })
+        $('#logoForm').submit();
+      } else return;
+    });
+  });
+</script>
+<main id="main" class="main">
+  <div class="row row-zone" style="margin: auto;">
+    <div class="pagetitle">
+      <h1>Logo 및 상호 수정</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a th:href="@{/main}">Home</a></li>
+          <li class="breadcrumb-item active">Company</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <section class="section">
+    <div class="row row-zone">
+      <form id="logoForm" enctype="multipart/form-data">
+        <div class="row">
+          <div class="col-lg-12 zone-col-12">
+            <div class="card card-radius">
+              <div class="card-body">
+                <br>
+                <img th:src="'images/' + ${company.company_logo1}" /><br>
+                <br>
+                <label>상호명 : &nbsp;</label><input name="company_name" type="text"
+                  th:value="${company.company_name}" /><br>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 site-col-6">
+            <div class="card card-radius">
+              <div class="card-body comLogoEdit">
+                <h5 class="card-title">메뉴바 로고</h5>
+                <img th:src="'images/' + ${company.company_logo1}" /><br>
+                메뉴바 Logo : <span id="logo1">&nbsp;&nbsp;</span><input type="file" name="company_logo1" /><br>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 site-col-6">
+            <div class="card card-radius">
+              <div class="card-body comLogoEdit">
+                <h5 class="card-title">캠핑장명 로고</h5>
+                <img th:src="'images/' + ${company.company_logo2}" /><br>
+                캠핑장명 Logo : <span id="logo2">&nbsp;&nbsp;</span><input type="file" name="company_logo2" /><br>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12 comLogoEdit">
+          <a id="company_eidt" class="btn btn-primary" href="#company_edit">수정 반영하기</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>

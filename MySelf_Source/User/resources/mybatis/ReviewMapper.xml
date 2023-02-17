@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.camping.mapper.ReviewMapper">
+    <insert id="insert" parameterType="ReviewDTO">
+        INSERT INTO review(review_content, book_code, review_score)
+        VALUES (#{review_content}, #{book_code}, #{review_score})
+    </insert>
+    <select id="select" resultType="ReviewDTO">
+        SELECT *
+        FROM review
+        WHERE review_code = #{review_code}
+    </select>
+    <select id="selectAll" resultType="ReviewDTO"><!-- 내용, 작성자, 사이트, 사용일자, 별점 -->
+        SELECT review_code, review_content, review_score
+        FROM review
+    </select>
+    <select id="selectBySiteCode" resultType="ReviewDTO">
+        SELECT 
+            review.review_code, 
+            review.book_code, 
+            review.review_content, 
+            review.review_score
+        FROM 
+            book 
+        JOIN 
+            review 
+        ON 
+            book.book_code=review.book_code
+        WHERE
+            site_code=#{site_code}
+        ORDER BY review.review_code DESC
+    </select>
+    <select id="selectMainReview" resultType="ReviewDTO">
+        SELECT 
+            review.review_code, 
+            review.book_code, 
+            review.review_content, 
+            review.review_score, 
+            image.image_file review_img1
+        FROM 
+            review 
+        JOIN 
+            book 
+        ON 
+            book.book_code=review.book_code
+        JOIN
+            image
+        ON
+            book.site_code=image.site_code
+        WHERE
+            image.company_code=#{company_code}
+        ORDER BY 
+            review.review_code 
+        DESC
+    </select>
+    <select id="selectByCompanyCode" resultType="ReviewDTO">
+        select review.review_code,
+               review.book_code,
+               review.review_content,
+               review.review_score
+        from review,
+             admin,
+             book,
+             zone,
+             site
+        where admin.company_code = #{company_code}
+          AND admin.admin_code = zone.admin_code
+          And zone.zone_code = site.zone_code
+          And site.site_code = book.site_code
+          And book.book_code = review.book_code
+    </select>
+    <update id="update" parameterType="ReviewDTO">
+        UPDATE review
+        SET review_content=#{review_content}
+        WHERE review_code = #{reveiw_code}
+    </update>
+    <delete id="delete">
+        DELETE
+        FROM review
+        WHERE review_code = #{review_code}
+    </delete>
+</mapper>

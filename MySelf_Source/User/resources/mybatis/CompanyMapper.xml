@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.camping.mapper.CompanyMapper">
+    <select id="select" resultType="CompanyDTO">
+        SELECT 
+            * 
+        FROM 
+            company 
+        WHERE 
+            company_code=#{company_code}
+    </select>
+    <select id="selectAll" resultType="CompanyDTO">
+        SELECT
+            * 
+        FROM 
+            company
+        JOIN
+            admin
+        ON
+            admin.company_code = company.company_code
+        JOIN
+            home
+        ON
+            admin.admin_code = home.admin_code
+    </select>
+</mapper>

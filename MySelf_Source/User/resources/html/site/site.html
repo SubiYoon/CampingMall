@@ -1,0 +1,178 @@
+<script>
+   var rating = 0;
+
+   function setRatingValue(value) {
+      rating = value;
+      console.log("Rating value is: " + rating);
+   };
+
+   //리뷰 페이징
+   var paging_num = 0;
+   var list_count = 3;  //보여줄 리뷰 갯수
+   var paging_count = 3; //보여질 페이징 갯수
+   var check_page = 0;  //현재 누른 페이지 값
+   function paging(i) {
+      paging_num = 0;
+      paging_num += list_count * (i - 1);
+      check_page += i - 2 - check_page;
+      showReview();
+   }
+
+   //리뷰점수 프린트
+   var score = "";
+   function star(count) {
+      if (count == 1) {
+         score += '<label for="star1">★</label>';
+      } else if (count == 2) {
+         score += '<label for="star2">★★</label>';
+      } else if (count == 3) {
+         score += '<label for="star3">★★★</label>';
+      } else if (count == 4) {
+         score += '<label for="star4">★★★★</label>';
+      } else if (count == 5) {
+         score += '<label for="star5">★★★★★</label>';
+      }
+   };
+
+   //리뷰 리스트 조회
+   function showReview() {
+      var args = "";
+      $.ajax({
+         url: '/siteReview',
+         data: { 'site_code': '[[${site.site_code}]]' },
+         success: function (data) {
+            var end_num = (list_count + paging_num) <= data.length ? list_count + paging_num : data.length;
+            for (var i = 0 + paging_num; i < end_num; i++) {
+               score = "";
+               star(data[i].review_score + 0);
+               args += "<ul>";
+               args += "<li>" + score + "</li>";
+               args += "<li>" + data[i].review_content + "</li>"
+               args += "<hr>";
+               args += "</ul>";
+            }
+            //데이터수로 계산한 마지막 페이지
+            var end_paging = data.length % list_count == 0 ? data.length / list_count : data.length / list_count + 1;
+            //보여질 페이지수와 그 수 초과시 처리할 마지막 페이지
+            var view_page = paging_count <= end_paging ? paging_count : end_paging;
+            //페이지 번호 눌렀을 시 증가하는 페이징 번호 적용
+            var final_end_page = view_page + check_page <= end_paging ? view_page + check_page : end_paging;
+            //0페이지는 안만들어 지게하는 조건식
+            if (1 + check_page > 0) {
+               for (var i = 1 + check_page; i <= final_end_page; i++) {
+                  args += "<span><&nbsp;&nbsp;<a class='paging_num' href='#paging' onclick='javascript:paging(" + i + ")'>" + i + "</a>&nbsp;&nbsp;></span>"
+               }
+            } else {
+               for (var i = 2 + check_page; i <= 1 + final_end_page; i++) {
+                  args += "<span><&nbsp;&nbsp;<a class='paging_num' href='#paging' onclick='javascript:paging(" + i + ")'>" + i + "</a>&nbsp;&nbsp;></span>"
+               }
+            }
+            document.getElementById('viewList').innerHTML = args;
+         }
+      });
+   };
+
+   $(document).ready(function () {
+      $(".nav-item:nth-child(3)").attr('class', 'nav-item active');
+      $(".notactive:nth-child(3)").attr('class', 'active');
+
+      showReview();
+
+      //리뷰 등록
+      $('#register_button').click(function () {
+         if ('true' == '[[${session.user==null}]]') {
+            alert("로그인 후 리뷰 등록이 가능합니다.");
+            document.getElementById("modal").style.display = "flex";
+				document.body.style = "overflow: hidden";
+            $("html").animate({scrollTop:$("#modal").offset().top},1000);
+         } else {
+            let review_content = $('#review_score > input[name=review_content]').val();
+            $.ajax({
+               url: '/reviewUpload',
+               data: {
+                  'review_content': review_content,
+                  'review_score': rating,
+                  'site_code': '[[${site.site_code}]]'
+               },
+               success: function (result) {
+                  if (result == 1) {
+                     alert("예약완료 후 작성 할 수 있습니다.")
+                  }
+                  showReview();
+               }
+            });
+         }
+      });
+   });
+</script>
+<div class="back_re">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="title">
+               <h2>구역안내</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="our_room">
+   <div class="container">
+      <div class="row"></div>
+      <div class="zone">
+         <div class="row">
+            <div class="col-md-6 col-sm-6">
+               <div id="serv_hover" class="room">
+                  <div class="room_img">
+                     <figure><img th:src="@{/images/} + ${site.image_file}" alt="#" /></figure>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+               <div id="serv_hover" class="room">
+                  <div class="bed_room zonename">
+                     <h5>camping site</h5>
+                     <h3 th:text="${site.site_name}"></h3>
+                     <h5>* * *</h5>
+                     <p class="pre-wrap" th:text="${site.site_content}"></p>
+                     <h5>* * *</h5>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="zone">
+         <div class="row">
+            <div class="col-md-12 col-sm-12">
+               <div id="serv_hover" class="room">
+                  <div class="bed_room card reviewname">
+                     <h5>review of the site customer</h5>
+                     <h3 th:text="${site.site_name}+' 사이트 이용 고객의 후기입니다.'"></h3>
+                     <div id="viewList"></div>
+                     <form id="review_score">
+                        <div class="star-rating starleft">
+                           <input type="radio" id="star5" name="rating" value="5"
+                              onclick="setRatingValue(this.value)" /><label for="star5">★</label>
+                           <input type="radio" id="star4" name="rating" value="4"
+                              onclick="setRatingValue(this.value)" /><label for="star4">★</label>
+                           <input type="radio" id="star3" name="rating" value="3"
+                              onclick="setRatingValue(this.value)" /><label for="star3">★</label>
+                           <input type="radio" id="star2" name="rating" value="2"
+                              onclick="setRatingValue(this.value)" /><label for="star2">★</label>
+                           <input type="radio" id="star1" name="rating" value="1"
+                              onclick="setRatingValue(this.value)" /><label for="star1">★</label>
+                        </div>
+                        <div class="star-rating">
+                           <input type="text" name="review_content" />
+                        </div>
+                        <div class="star-rating starright">
+                           <a id="register_button" href="#review_upload_button" class="btn2">등록</a>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

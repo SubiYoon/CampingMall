@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.admin.mapper.AdminMapper">
+    <select id="select" resultType="AdminDTO">
+        SELECT admin_code, company_code, admin_id, admin_password FROM admin WHERE admin_id=#{admin_id}
+    </select>
+</mapper>

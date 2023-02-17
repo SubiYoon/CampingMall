@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- basic -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+	</script>
+
+	<!-- mobile metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+	<!-- site metas -->
+	<title th:text="${session.company.company_name}"></title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- bootstrap css -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<!-- style css -->
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<!-- Responsive-->
+	<link rel="stylesheet" th:href="@{/css/responsive.css}">
+	<!-- fevicon -->
+	<link rel="icon" th:href="@{/images/fevicon.png}" type="image/gif" />
+	<!-- Scrollbar Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.min.css}">
+	<!-- Tweaks for older IEs-->
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+		media="screen">
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+	<!--카카오 로그인-->
+	<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+		integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx"
+		crossorigin="anonymous"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<!-- 웹소켓 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			$('#modal_open_cb').click(function () {
+				document.getElementById("modal_cbicon").style.visibility = "hidden";
+				document.getElementById("modal_cb").style.display = "flex";
+				connect();
+			});
+
+			$('#modal_open').click(function () {
+				document.getElementById("modal").style.display = "flex";
+				document.body.style = "overflow: hidden";
+
+			});
+			$('#modal_close').click(function () {
+				document.getElementById("modal").style.display = "none";
+				document.body.style = "overflow: auto";
+			});
+
+			$('#loginForm button').click(function () {
+				$('#loginForm').attr({
+					'method': 'post',
+					'action': '[[@{/user/loginOk}]]'
+				});
+				$('#loginForm').submit();
+			});
+			
+			Kakao.init('0172e111f7c68f1a00f2e9cdd810d74a');
+			//console.log(Kakao.isInitialized()); // sdk초기화여부판단
+		});
+
+		function kakaoLogin() {
+			Kakao.Auth.login({
+				success: function (response) {
+					Kakao.API.request({
+						url: '/v2/user/me',
+						success: function (response) {
+							$.ajax({
+								url: '/user/kakaoLogin',
+								type: 'post',
+								data: {
+									'user_name': response.properties.nickname,
+									'user_id': response.id,
+									'user_birthday': response.kakao_account.birthday
+								},
+								success: function (result) {
+									console.log(result);
+									window.location.href = '/main';
+								}
+							});
+						},
+						fail: function (error) {
+							console.log(error);
+						},
+					})
+						.then(function (response) {
+							console.log(response);
+						})
+				},
+				fail: function (error) {
+					console.log(error);
+				},
+			})
+		}
+
+		function Logout() {
+			if (!Kakao.Auth.getAccessToken()) {
+				alert('로그아웃 하였습니다.');
+				window.location.href = '/user/logout';
+			}
+			Kakao.Auth.logout(function (response) {
+				alert('로그아웃 하였습니다.');
+				window.location.href = '/user/logout';
+			});
+		};
+
+		var stompClient = null;
+
+		function setConnected(connected) {
+			$("#connect").prop("disabled", connected);
+			$("#disconnect").prop("disabled", !connected);
+			$("#send").prop("disabled", !connected);
+			if (connected) {
+				$("#conversation").show();
+			} else {
+				$("#conversation").hide();
+			}
+			$("#msg").html("");
+		}
+
+		function connect() {
+			var socket = new SockJS('/ws');
+			stompClient = Stomp.over(socket);
+			stompClient.connect({}, function (frame) {
+				setConnected(true);
+				console.log('Connected: ' + frame);
+				stompClient.subscribe('/topic/public', function (message) {
+					showMessage("A. " + message.body);
+				});
+			});
+		}
+
+		function disconnect() {
+			if (stompClient !== null) {
+				stompClient.disconnect();
+			}
+			setConnected(false);
+			console.log("Disconnected");
+		}
+
+		function sendMessage() {
+			let message = $("#msg").val()
+			showMessage("Q. " + message);
+
+			stompClient.send("/app/sendMessage", {}, JSON.stringify(message));
+		}
+
+		function showMessage(message) {
+			$("#communicate").prepend("<tr><td>" + message + "</td></tr>");
+			$('#msg').val("");
+		}
+
+		$(function () {
+			$(".pD").on('submit', function (e) { e.preventDefault(); });
+			$("#connect").click(function () { connect(); });
+			$("#disconnect").click(function () {
+				document.getElementById("modal_cb").style.display = "none";
+				document.body.style = "overflow: auto";
+				document.getElementById("modal_cbicon").style.visibility = "visible";
+				disconnect();
+			});
+			$("#send").click(function () { sendMessage(); });
+		});
+	</script>
+
+
+</head>
+<div id="modal" class="modal-overlay">
+	<div class="modal-content textnowrap">
+		<div class="modal-btn">
+			<button th:onclick="|location.href='@{/user/register}'|">회원가입</button>
+			<button id="modal_close">닫기</button>
+		</div>
+		<div class="modal-login">
+			<img class="modal-img" th:src="@{/images/}+${session.company.company_logo1}" alt="#" />
+			<form id="loginForm">
+				<div class="modal-div">
+					<div>아이디</div>
+					<div><input type="text" name="user_id" /></div>
+					<div>비밀번호</div>
+					<div><input type="password" name="user_password"></div>
+				</div>
+				<div class="modal-div3">
+					<button>로그인</button>
+				</div>
+			</form>
+			<a href="javascript:kakaoLogin()">
+				<div class="modal-div4">카카오 로그인
+				</div>
+			</a>
+
+		</div>
+	</div>
+</div>
+<div id="modal_cb" class="modal_cb-overlay">
+	<div class="modal_cb-content">
+		<div class="row row-cb">
+			<form class="pD">
+				<div class="form-group">
+					<button id="disconnect" type="submit" disabled="disabled">닫기</button>
+				</div>
+			</form>
+			<form class="pD">
+				<label class="msg" for="msg">챗봇으로 문의가 가능합니다.</label>
+				<div class="form-group">
+					<input type="text" id="msg" class="form-control" placeholder="문의 내용을 입력하세요...">
+					<br>
+				</div>
+				<button id="send" class="btn btn-default" disabled type="submit">보내기</button>
+			</form>
+		</div>
+		<div class="row row-chat" id="chat">
+			<div class="col-md-12">
+				<table id="conversation" class="table table-striped">
+					<thead>
+						<tr>
+							<th class="msg">이곳에 상담 내역이 나타나요!</th>
+						</tr>
+					</thead>
+					<tbody id="communicate">
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<body class="main-layout">
+	<div class="loader_bg">
+		<div class="loader">
+			<img th:src="@{/images/loading.gif}" alt="#" />
+		</div>
+	</div>
+	<header>
+		<div class="header">
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+						<div class="full">
+							<div class="center-desk">
+								<div class="logo">
+									<a th:href="@{/main}"><img th:src="@{/images/}+${session.company.company_logo1}" alt="#" /></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+						<nav class="navigation navbar navbar-expand-md navbar-dark ">
+							<button id="" class="navbar-toggler" type="button" data-toggle="collapse"
+								data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false"
+								aria-label="Toggle navigation">
+								<span class="navbar-toggler-icon"></span>
+							</button>
+							<div class="collapse navbar-collapse textnowrap" id="navbarsExample04">
+								<ul class="navbar-nav mr-auto">
+									<li class="nav-item"><a class="nav-link" th:href="@{/main}">Home</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/notice}">공지사항</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/zone}">구역안내</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/facility}">시설안내</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/book}">예약하기</a></li>
+									<li class="nav-item"><a class="nav-link" th:href="@{/waymap}">오시는길</a></li>
+									<li th:if="${session.user==null}" class="nav-item"><a class="nav-link"
+											href="#loginlogin"><button id="modal_open">로그인</button></a></li>
+									<li th:if="${session.user==null}" class="nav-item"><a class="nav-link"
+											th:href="@{/user/register}">회원가입</a></li>
+									<li th:if="${session.user!=null}" class="nav-item"><a class="nav-link"
+											href="javascript:Logout()">로그아웃</a></li>
+									<li th:if="${session.user!=null}" class="nav-item"><a class="nav-link"
+											th:href="@{/user/mypage}">마이페이지</a></li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div id="modal_cbicon">
+		<button id="modal_open_cb">
+			<img th:src="@{/images/CBicon.png}" />
+		</button>
+	</div>
+	<div id="modal_cbicon_text">
+	</div>
+	<div id="comp_select">
+		<button>
+			<a href="/"><img th:src="@{/images/goMain.png}" /></a>
+		</button>
+	</div>
+	<section class="banner_main">
+		<aside id="center_aside" th:include="${center} ? ${center} : index"></aside>
+	</section>
+	<footer>
+		<div class="footer" style="text-align: center;">
+			<div class="container">
+				<div class="row">
+					<div class=" col-md-6">
+						<h3>Contact US</h3>
+						<ul class="conta">
+							<li><i class="fa fa-map-marker" aria-hidden="true"></i>
+								<span th:text="${homecont.home_address}"></span>
+							</li>
+							<li><i class="fa fa-mobile" aria-hidden="true"></i>
+								<span th:text="${homecont.home_tell}"></span>
+							</li>
+							<li><i class="fa fa-envelope" aria-hidden="true"></i>
+								대표: <span th:text="${homecont.home_owner}"></span>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<h3>Menu Link</h3>
+						<ul class="link_menu">
+							<li class="notactive"><a th:href="@{/main}">Home</a></li>
+							<li class="notactive"><a th:href="@{/notice}"> 공지사항</a></li>
+							<li class="notactive"><a th:href="@{/zone}">구역안내</a></li>
+							<li class="notactive"><a th:href="@{/facility}">시설안내</a></li>
+							<li class="notactive"><a th:href="@{/book}">예약하기</a></li>
+							<li class="notactive"><a th:href="@{/waymap}">오시는길</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-10 offset-md-1">
+							<p>
+								© 2019 All Rights Reserved. Design by <a href="https://html.design"> Free Html
+									Templates</a> <br>
+								<br> Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Javascript files-->
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/js/jquery-3.0.0.min.js}"></script>
+	<!-- sidebar -->
+	<script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+	<script th:src="@{/js/custom.js}"></script>
+
+</body>
+
+</html>

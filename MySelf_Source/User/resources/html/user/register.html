@@ -1,0 +1,216 @@
+<script src="https://cldup.com/S6Ptkwu_qA.js"></script>
+<script>
+   function isId(asValue) {
+      var regExp = /^[a-z]+[a-z0-9]{7,19}$/;
+
+      return regExp.test(asValue);
+   }
+   function isPassword(asValue) {
+      var regExp = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+
+      return regExp.test(asValue);
+   }
+   function isNum(asValue) {
+      var regExp = /^[0-9]*$/;
+
+      return regExp.test(asValue);
+   }
+   function isCorrect(asValue) {
+      var regExp = /^[a-zA-Zㄱ-힣][a-zA-Zㄱ-힣 ]*$/;
+
+      return regExp.test(asValue);
+   }
+   $(document).ready(function () {
+      $(".nav-item:nth-child(8)").attr('class', 'nav-item active');
+      $(".notactive:nth-child(8)").attr('class', 'active');
+
+      //회원가입
+      $("#register a").click(function () {
+         var id = $('#register input[name=user_id]').val();
+         var pwd = $('#register input[name=user_password]').val();
+         var pwd_check = $('#register input[name=user_password_check]').val();
+         var name = $('#register input[name=user_name]').val();
+         var birthday = $('#register input[name=user_birthday]').val();
+         var tel1 = $('#register input[name=user_tel1]').val();
+         var tel2 = $('#register input[name=user_tel2]').val();
+         var tel3 = $('#register input[name=user_tel3]').val();
+
+         //아이디 확인
+         if (id == null || id == '') {
+            alert("아이디를 입력해주세요.");
+            return;
+         }
+         if (!isId(id)) {
+            alert("아이디는 영문자 또는 숫자 8~20자 입니다.")
+            return;
+         }
+         if ($('#register input[name=user_id]').attr('alt') == 'N') {
+            alert("아이디 중복확인을 해주세요");
+            return;
+         }
+         //비밀번호 확인
+         if (pwd == null || pwd == '' || pwd_check == null || pwd_check == '') {
+            alert("비밀번호를 입력해주세요.");
+            return;
+         }
+         if (!isPassword(pwd)) {
+            alert("비밀번호는 8 ~ 16자 영문, 숫자, 특수문자를 최소 한가지씩 조합 해주세요.")
+            return;
+         }
+         if (pwd != pwd_check) {
+            alert("비밀번호가 틀립니다.");
+            return;
+         }
+         //이름입력 확인
+         if (name == null || name == '') {
+            alert("이름을 입력하세요.");
+            return;
+         }
+         if (!isCorrect(name)) {
+            alert("이름은 한글 or 영어만 입려 가능합니다.");
+            return;
+         }
+         //생년월일 확인
+         if (birthday == null || birthday == '') {
+            alert("생일을 입력하세요.");
+            return;
+         }
+         if (!isNum(birthday)) {
+            alert("생일은 숫자만 입력해주세요.");
+            return;
+         }
+         if (birthday.length != 6) {
+            alert("생년월일 6자리를 입력해주세요.")
+            return;
+         }
+         //전화번호 확인
+         if (tel1 == null || tel1 == '' || tel2 == null || tel2 == '' || tel3 == null || tel3 == '') {
+            alert("전화번호를 입력하세요.");
+            return;
+         }
+         if (!isNum(tel1) || !isNum(tel2) || !isNum(tel3)) {
+            alert("숫자만 입력해주세요.");
+            return;
+         }
+         if (tel1.length != 3 || tel2.length != 4 || tel3.length != 4) {
+            alert("3자리, 4자리, 4자리 입력해주세요.");
+            return;
+         }
+
+         $("#register").attr({
+            'method': 'post',
+            'action': '[[@{/user/registerOk}]]'
+         });
+         $("#register").submit();
+      });
+
+      //아이디 중복확인
+      $('#checkid').click(function () {
+         var id = $('#register input[name=user_id]').val();
+         $.ajax({
+            url: '[[@{/user/checkid}]]',
+            data: { 'user_id': id },
+            success: function (data) {
+               if (data == 1) {
+                  alert("아이디가 이미 존재합니다.");
+               } else {
+                  if (!isId(id)) {
+                     alert("아이디는 영문자 + 숫자 6~20자 입니다.")
+                     return;
+                  }
+                  alert("사용가능한 아이디 입니다.");
+                  //아이디 중복확인 완료되었는지 체크(N - 안됨, Y - 됨)
+                  $('#register input[name=user_id]').attr({ 'alt': 'Y', 'readonly': 'readonly' });
+               }
+            }
+         });
+      });
+   });
+
+</script>
+<div class="body">
+   <div class="back_re">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="title">
+                  <h2 th:text="#{register}"></h2>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="back2_re">
+      </div>
+   </div>
+   <div class="row" id="particles-js">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8">
+         <br><br><br><br>
+         <div class="blog_box container_re">
+            <span class="error animated tada" id="msg"></span>
+            <form id="register">
+               <div class="box_re">
+                  <div class="blog_room label_re">
+                     <div>
+                        <label class="register_label" th:text="#{id}"></label>
+                     </div>
+                     <div>
+                        <label class="register_label" th:text="#{password}"></label>
+                     </div>
+                     <div>
+                        <label class="register_label" th:text="#{password_check}"></label>
+                     </div>
+                     <div>
+                        <label class="register_label" th:text="#{name}"></label>
+                     </div>
+                     <div>
+                        <label class="register_label" th:text="#{birthday}"></label>
+                     </div>
+                     <div>
+                        <label class="register_label" th:text="#{tel}"></label>
+                     </div>
+                  </div>
+                  <div class="blog_room div_re">
+                     <div>
+                        <input type="text" name="user_id" alt="N" placeholder="ID" autocomplete="off">
+                     </div>
+                     <div>
+                        <input type="password" name="user_password" maxlength="16" minlength="8" placeholder="Passsword"
+                           autocomplete="off" />
+                     </div>
+                     <div>
+                        <input type="password" name="user_password_check" maxlength="16" minlength="8"
+                           placeholder="Passsword" autocomplete="off" />
+                     </div>
+                     <div>
+                        <input type="text" name="user_name" placeholder="이름을 입력하세요" autocomplete="off" />
+                     </div>
+                     <div>
+                        <input type="text" name="user_birthday" maxlength="6" placeholder="생년월일 6자리를 입력하세요"
+                           autocomplete="off" />
+                     </div>
+                     <div id="tel">
+                        <input type="text" name="user_tel1" placeholder="연락처"
+                           autocomplete="off" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="user_tel2" placeholder="번호를"
+                           autocomplete="off" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="user_tel3" placeholder="입력하세요" autocomplete="off" />
+                     </div>
+                  </div>
+                  <div class="blog_room check_re">
+                     <div>
+                        <input class="btn1" type="button" th:value="#{id_check}" id="checkid" />
+                     </div>
+                  </div>
+               </div>
+               <div class="btn_re">
+                  <a href="#" class="btn2" th:text="#{register}"></a>
+               </div>
+            </form>
+         </div>
+      </div>
+      <div class="col-md-2">
+      </div>
+   </div>
+</div>
