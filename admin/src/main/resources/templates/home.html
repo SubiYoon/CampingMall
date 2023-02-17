@@ -10,9 +10,9 @@
       } else return;
     });
 
-    $('.slideForm > .image_slide_edit').click(function () {
+    $('.image_slide_edit').click(function () {
       if (confirm("정말 수정하시겠습니까?")) {
-        $(this).parent().attr({
+        $(this).parent().parent().attr({
           'method': 'post',
           'action': 'slideEdit'
         });
@@ -22,11 +22,11 @@
 
     $('.image_slide_delete').click(function () {
       if (confirm("정말로 삭제하시겠습니까?")) {
-        $(this).parent().attr({
+        $(this).parent().parent().attr({
           'method': "post",
           'action': "slideDelete"
         });
-        $(this).parent().submit();
+        $(this).parent().parent().submit();
       } else {
         return;
       }
