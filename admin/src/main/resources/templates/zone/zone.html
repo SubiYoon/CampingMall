@@ -13,7 +13,7 @@
 			if (confirm('사이트를 삭제하시겠습니까?')) {
 				$(this).parent().attr({
 					'method': 'post',
-					'action': '[[@{/zone/siteDel}]]'
+					'action': '[[@{/zone/sitedel}]]'
 				});
 				$(this).parent().submit();
 			} else return;
