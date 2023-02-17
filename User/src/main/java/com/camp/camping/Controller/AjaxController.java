@@ -60,9 +60,18 @@ public class AjaxController {
             sites = sService.AvailableSite(company_code, selectDate1, selectDate2);
             zones = zService.selectZone(company_code);
             json.put("availableSite", sites);
-            json.put("zoneList", zones);
+
+            List<ZoneDTO> zList = new ArrayList<ZoneDTO>();
+
+            for(int i=0; i<zones.size(); i++){
+                if(zones.get(i).getZone_state()!=0){
+                    zList.add(zones.get(i));
+                }
+            }
+
+            json.put("zoneList", zList);
         } catch (Exception e) {
-            // e.printStackTrace();
+            e.printStackTrace();
             System.out.println("실패");
         }
 

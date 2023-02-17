@@ -230,6 +230,7 @@
                 <input type="hidden" name="image_code" th:value="${slide.image_code}" />
                 <h5 class="card-title" th:text="'슬라이드 ' + ${slideStat.count} + ' 이미지'"></h5>
                 <img class="siteimg" th:src="'images/' + ${slide.image_file}" />
+                <span th:text="'현재 파일 : ' + ${slide.image_file}"></span><br>
                 <input class="zonethS" type="file" name="home_slide" />
                 <br>
                 <div class="btn-center">

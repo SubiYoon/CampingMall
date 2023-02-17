@@ -1,5 +1,6 @@
 package com.camp.admin.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -52,7 +53,17 @@ public class ZoneController {
 
 		try {
 			listZ = serviceZ.selectZone(company.getCompany_code());
-			model.addAttribute("zlist", listZ);
+
+			List<ZoneDTO> zones = new ArrayList<ZoneDTO>();
+
+			for(int i=0; i<listZ.size(); i++){
+				if(listZ.get(i).getZone_state()==1){
+					zones.add(listZ.get(i));
+					System.out.println(zones);
+				}
+			}
+
+			model.addAttribute("zlist", zones);
 
 			listI = serviceI.selectByCompanyCode(company.getCompany_code());
 			model.addAttribute("ilist", listI);

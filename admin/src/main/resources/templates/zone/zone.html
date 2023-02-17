@@ -1,25 +1,30 @@
 <script>
 	$(document).ready(function () {
-		$('#zoneDelBtn').click(function () {
-			var c = confirm('구역을 삭제하시겠습니까?');
-			if (c == true) {
-				$('#up_form').attr({
-					'enctype': 'multipart/form-data',
+		$('.zoneDelBtn').click(function () {
+			if (confirm('구역을 삭제하시겠습니까?')) {
+				$(this).parent().attr({
 					'method': 'post',
 					'action': '[[@{/zone/zonedel}]]'
 				});
-				$('#up_form').submit();
-			};
+				$(this).parent().submit();
+			} else return;
 		});
-		$('#siteDelBtn').click(function () {
-			var c = confirm('사이트를 삭제하시겠습니까?');
-			if (c == true) {
-				$('#up_form').attr({
+		$('.siteDelBtn').click(function () {
+			if (confirm('사이트를 삭제하시겠습니까?')) {
+				$(this).parent().attr({
 					'method': 'post',
 					'action': '[[@{/zone/siteDel}]]'
 				});
-				$('#up_form').submit();
-			};
+				$(this).parent().submit();
+			} else return;
+		});
+		$('#zone_add_button').click(function(){
+			if('[[${zlist.size >= 4}]]'){
+				alert('구역은 최대 4개까지만 가능합니다.');
+				return false;
+			}else {
+				location.href='/zone/zoneinsert';
+			}
 		});
 	}); 
 </script>
@@ -36,7 +41,7 @@
 				</nav>
 			</div>
 			<div class="pagetitle">
-				<a th:href="@{/zone/zoneinsert}" class="btn btn-outline-primary">
+				<a id="zone_add_button" class="btn btn-outline-primary">
 					<h1>새 구역 추가하기</h1>
 				</a>
 				<a th:href="@{/zone/siteinsert(zone_code=${zoneselect.zone_code})}" class="btn btn-outline-primary">
@@ -66,8 +71,10 @@
 					<div class="Btn">
 						<a id="zone_write" class="btn btn-primary"
 							th:href="@{/zone/zoneedit(zone_code=${zoneselect.zone_code})}">수정</a>
-						<a id="zoneDelBtn" class="btn btn-primary"
-							th:href="@{/zone/zonedel(zone_code=${zoneselect.zone_code})}">삭제</a>
+						<form class="zone_up_form">
+							<input type="hidden" name="zone_code" th:value="${zoneselect.zone_code}"/>
+							<a class="zoneDelBtn" >삭제</a>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -85,8 +92,10 @@
 						<div class="Btn">
 							<a id="notice_write" class="btn btn-primary"
 								th:href="@{/zone/siteedit(site_code=${site.site_code})}">수정</a>
-							<a id="siteDelBtn" class="btn btn-primary"
-								th:href="@{/zone/sitedel(site_code=${site.site_code})}">삭제</a>
+							<form class="site_up_form">
+								<input type="hidden" name="site_code" th:value="${site.site_code}" />
+								<a class="siteDelBtn" >삭제</a>
+							</form>
 						</div>
 					</div>
 				</div>
