@@ -47,6 +47,7 @@
 # 4. WBS/프로젝트 구성원 및 담당
 ### 📆WBS
 ![WBS](https://user-images.githubusercontent.com/117332903/218639451-34e7105b-0062-4f2a-ac78-08678cfb1617.png)
+<img width="1320" alt="스크린샷 2023-02-18 오후 9 06 51" src="https://user-images.githubusercontent.com/117332903/219864894-41d99735-bb88-4359-a4cf-7970cb7fa1d0.png">
 
 <br>
 
