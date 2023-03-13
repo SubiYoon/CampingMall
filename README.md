@@ -27,7 +27,16 @@
 
 <br><br><br>
 
-# 3. 시스템 구성/개발도구
+# 3. 배운점
+
+- API사용에 있어서 문서를 이해하고 이해한 내용을 문서화하여 저장하는 습관의 중요성을 깨달음
+- 단순히 query문의 작성법이 아닌 DB와 서버 연결시 고려해야 할 상황들까지 신경써야 한다는 것을 깨달음
+- 문제 발생 시 해당 문제를 스스로 해결하고 내것으로 만들기 위한 메모습관의 중요성
+- 협업을 경험하고 팀장역을 새로 맡으면서 의사소통의 중요성과 프로젝트 완료에 대한 책임감을 배움
+
+<br><br><br>
+
+# 4. 시스템 구성/개발도구
 
 ### 🏕  시스템 구성
 <img width="1743" alt="Camping Mall" src="https://user-images.githubusercontent.com/117332903/218227062-2f92280a-312b-4d4d-b7ba-4dd7c381bc2c.png">
@@ -44,7 +53,7 @@
 
 <br><br><br>
 
-# 4. WBS/프로젝트 구성원 및 담당
+# 5. WBS/프로젝트 구성원 및 담당
 ### 📆WBS
 ![WBS](https://user-images.githubusercontent.com/117332903/218639451-34e7105b-0062-4f2a-ac78-08678cfb1617.png)
 <img width="1320" alt="스크린샷 2023-02-18 오후 9 06 51" src="https://user-images.githubusercontent.com/117332903/219864894-41d99735-bb88-4359-a4cf-7970cb7fa1d0.png">
@@ -66,7 +75,7 @@ NAME | Representative
 <br><br><br>
 
 
-# 5. DB 설계/기능 흐름도
+# 6. DB 설계/기능 흐름도
 ### 🏕  DB 설계(ERD)
 
 ![Camping](https://user-images.githubusercontent.com/117332903/218905296-a6565359-9e29-48f9-9c9d-a6d031141864.png)
@@ -85,7 +94,7 @@ NAME | Representative
 
 <br><br><br>
 
-# 6. 웹 서비스 주요기능 구현 화면
+# 7. 웹 서비스 주요기능 구현 화면
 ## 캠핑장 선택 및 세션이 만료됐을 경우
 - 여러 캠핑장을 등록 후 사용 할 수 있도록 구현
 - DB에서 데이터를 불러와서 세션으로 구분
@@ -204,7 +213,7 @@ NAME | Representative
 
 <br><br><br>
 
-# 7. 나의 트러블 슈팅🧨
+# 8. 나의 트러블 슈팅🧨
 1. BootStrap 사용시 하위맵핑에서 js파일 실행안되는 현상 발생 (ex. localhost/user/register) - 해결
 > Thymeleaf 사용시 src를 th:src로 변경하여 해결<br>
 <br>
