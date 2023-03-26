@@ -53,7 +53,7 @@
 
 | IDE | Back | Front | DB | FrameWork | API | Etc - Tools | Server |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
-| Eclipse<br> IntelliJ<br> VSCode | Java JDK 11 | HTML<br> JavaScript<br> Jquery<br> Ajax | MySQL<br> v8.0.31 | SpringBoot<br> ThymeLeaf<br>Mybatis | Weather<br> Kakao<br> Import<br> Naver ChatBot | GitHub<br> WorkBanch<br> Gather Town<br> Coggle<br> Figma<br> ERDCloud<br> CloudCraft<br> Google Sheet |	Tomcat<br> NCP(Naver Cloud Platform)<br> CentOS |
+| Eclipse<br> IntelliJ<br> VSCode | Java JDK 11 | HTML<br> JavaScript<br> Jquery<br> Ajax<br> BootStrap | MySQL<br> v8.0.31 | SpringBoot<br> ThymeLeaf<br>Mybatis | Weather<br> Kakao<br> Import<br> Naver ChatBot | GitHub<br> WorkBanch<br> Gather Town<br> Coggle<br> Figma<br> ERDCloud<br> CloudCraft<br> Google Sheet |	Tomcat<br> NCP(Naver Cloud Platform)<br> CentOS |
 
 </div>
 
